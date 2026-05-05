@@ -1,4 +1,5 @@
 import Seo from '../components/Seo';
+import attenuatorImg from '../assets/images/products/attenuator.png';
 
 const homeCategories = [
   {
@@ -6,48 +7,42 @@ const homeCategories = [
     title: 'Active Components',
     description: 'High-performance SFP transceivers, bypass switches, and optical protection systems.',
     count: '15+ SKUs',
-    image:
-      'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=900&q=80',
+    image: '/images/sfp-transceiver.png',
   },
   {
     id: 'passive',
     title: 'Passive Components',
     description: 'Premium patchcords, MPO assemblies, WDMs, and precision splitters.',
     count: '40+ SKUs',
-    image:
-      'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=900&q=80',
+    image: attenuatorImg,
   },
   {
     id: 'cable',
     title: 'Cable Management',
     description: 'Modular ODFs, termination boxes, and IP-rated splice closures.',
     count: '12+ SKUs',
-    image:
-      'https://images.unsplash.com/photo-1581092335878-4f8e1f9d9f8a?auto=format&fit=crop&w=900&q=80',
+    image: '/images/fiber-patch-panel.png',
   },
   {
     id: 'test',
     title: 'Test & Measuring',
     description: 'OTDRs, optical power meters, fusion splicers, and inspection tools.',
     count: '10+ SKUs',
-    image:
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80',
+    image: '/images/fiber-patch-panel.png',
   },
   {
     id: 'specialty',
     title: 'Specialty',
     description: 'Specialized high-power and custom optical products for critical applications.',
     count: 'Custom Builds',
-    image:
-      'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=80',
+    image: '/images/hero-infrastructure.png',
   },
   {
     id: 'tools',
     title: 'Maintenance',
     description: 'Field-ready cleaning kits, fault locators, sleeves, and support accessories.',
     count: 'Tooling Range',
-    image:
-      'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=900&q=80',
+    image: '/images/fiber-patch-panel.png',
   },
 ];
 
@@ -148,9 +143,17 @@ export default function Home() {
           </div>
           <div className="hp-cat-grid">
             {homeCategories.map((category, index) => (
-              <div key={category.id} className={`hp-cat-card reveal d-${Math.min(index + 1, 4)}`}>
+              <div key={category.id} className={`hp-cat-card product-card reveal d-${Math.min(index + 1, 4)}`}>
                 <div className="hp-cat-media">
-                  <img src={category.image} alt={category.title} className="real-img" loading="lazy" />
+                  <img
+                    src={category.image}
+                    alt={category.title}
+                    className="real-img"
+                    loading="lazy"
+                    onError={(event) => {
+                      event.currentTarget.src = attenuatorImg || '/placeholder.png';
+                    }}
+                  />
                 </div>
                 <h3>{category.title}</h3>
                 <p>{category.description}</p>

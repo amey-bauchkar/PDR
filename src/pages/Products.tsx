@@ -4,6 +4,7 @@ import Seo from '../components/Seo';
 import { useRfqCart } from '../components/RfqCartProvider';
 import catalogue from '../data/catalogue.json';
 import '../styles/products.css';
+import attenuatorImg from '../assets/images/products/attenuator.png';
 
 type Card = {
   slug: string;
@@ -22,16 +23,20 @@ type Section = { id: string; eyebrow: string; heading: string; intro: string; gr
 
 const STICKY_HASH = ['#active', '#passive', '#cable', '#test', '#specialty', '#tools'];
 const CATEGORY_IMAGE_MAP: Record<string, string> = {
-  active: 'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=800&q=80',
-  passive: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
-  cable: 'https://images.unsplash.com/photo-1581092335878-4f8e1f9d9f8a?auto=format&fit=crop&w=800&q=80',
-  test: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80',
-  specialty: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=800&q=80',
-  tools: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=800&q=80',
+  active: '/images/sfp-transceiver.png',
+  passive: '/images/fiber-patchcord.png',
+  cable: '/images/fiber-patch-panel.png',
+  test: '/images/fiber-patch-panel.png',
+  specialty: '/images/hero-infrastructure.png',
+  tools: '/images/fiber-patch-panel.png',
 };
 
 const resolveCardImage = (card: Card, sectionId: string) =>
-  card.img && card.img.trim().length > 0 ? card.img : CATEGORY_IMAGE_MAP[sectionId] ?? CATEGORY_IMAGE_MAP.passive;
+  card.slug === 'attenuator'
+    ? attenuatorImg
+    : card.img && card.img.trim().length > 0
+      ? card.img
+      : CATEGORY_IMAGE_MAP[sectionId] ?? CATEGORY_IMAGE_MAP.passive;
 
 function ProductCard({ card, sectionId }: { card: Card; sectionId: string }) {
   const { addItem } = useRfqCart();
@@ -44,11 +49,19 @@ function ProductCard({ card, sectionId }: { card: Card; sectionId: string }) {
   };
 
   return (
-    <div className="pr-pcard reveal" data-product={card.slug}>
+    <div className="pr-pcard product-card reveal" data-product={card.slug}>
       <div className="pr-pcard-art">
         {card.tag && <span className="pr-prod-tag">{card.tag}</span>}
         {card.img || CATEGORY_IMAGE_MAP[sectionId] ? (
-          <img src={resolveCardImage(card, sectionId)} alt={card.name} className="real-img" loading="lazy" />
+          <img
+            src={resolveCardImage(card, sectionId)}
+            alt={card.name}
+            className="real-img"
+            loading="lazy"
+            onError={(event) => {
+              event.currentTarget.src = attenuatorImg || '/placeholder.png';
+            }}
+          />
         ) : (
           <span dangerouslySetInnerHTML={{ __html: card.heroSvg }} />
         )}
@@ -254,20 +267,28 @@ export default function Products() {
         <div className="container">
           <div className="pr-hero-grid">
             <div className="pr-hero-copy">
-              <div className="eyebrow">{catalogue.hero.eyebrow}</div>
-              <h1>{catalogue.hero.title}</h1>
-              <p className="pr-hero-subtitle">{catalogue.hero.subtitle}</p>
+              <div className="eyebrow">Product Catalogue · 50+ Families</div>
+              <h1>The Complete Fiber Optic Ecosystem. Engineered in Mumbai.</h1>
+              <p className="pr-hero-subtitle">
+                Delivering high-performance active and passive optical solutions with precision manufacturing and rigorous in-house
+                testing since 1985.
+              </p>
               <ul className="pr-hero-points">
-                <li>Engineered and tested in-house in Mumbai</li>
-                <li>Full stack from active to maintenance tools</li>
-                <li>Fast RFQ support for enterprise deployments</li>
+                <li>Engineered &amp; tested in-house in Mumbai</li>
+                <li>End-to-end product stack (Active → Maintenance)</li>
+                <li>Fast RFQ &amp; enterprise-grade deployment support</li>
               </ul>
               <div className="pr-hero-cta-row">
                 <Link className="btn btn-primary" to="/contact">Request a Quote</Link>
                 <a className="btn btn-outline" href="#active">Browse Catalogue ↓</a>
               </div>
               <div className="pr-hero-stats">
-                {catalogue.hero.stats.map((s, i) => (
+                {[
+                  '50+ Product Families',
+                  '3,000+ Buyers',
+                  'ISO 9001:2015 Certified',
+                  'Same-day shipping',
+                ].map((s, i) => (
                   <span key={i}>{s}</span>
                 ))}
               </div>

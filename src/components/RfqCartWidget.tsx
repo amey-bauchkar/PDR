@@ -59,7 +59,10 @@ export default function RfqCartWidget() {
 
       <div className={`rfq-drawer${isOpen ? ' open' : ''}`}>
         <div className="rfq-header">
-          <h2>Your Quote Request</h2>
+          <div>
+            <h2>Your Quote Request</h2>
+            <p className="rfq-header-sub">Share your specs and our engineering team responds within 24 hours.</p>
+          </div>
           <button className="rfq-close" onClick={close} aria-label="Close">
             ×
           </button>
@@ -96,6 +99,8 @@ export default function RfqCartWidget() {
         </div>
         <div className="rfq-footer">
           <form className="rfq-form" onSubmit={handleSubmit}>
+            <h3>Request a Quote</h3>
+            <p>Submit your project details and we will send a tailored proposal.</p>
             <input type="text" name="name" placeholder="Full Name" required />
             <input type="email" name="email" placeholder="Work Email" required />
             <input type="text" name="company" placeholder="Company Name" required />
