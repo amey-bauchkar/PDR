@@ -1,0 +1,1576 @@
+{
+  "hero": {
+    "eyebrow": "Product Catalogue · 50+ Families",
+    "title": "The complete fibre optic stack. Made in Mumbai.",
+    "subtitle": "Active components, passive assemblies, cable management, and test equipment — manufactured and tested in-house since 1985.",
+    "stats": [
+      "50+ Product Families",
+      "3,000+ Buyers",
+      "ISO 9001:2015",
+      "Ships Same Day"
+    ],
+    "pills": [
+      {
+        "href": "#active",
+        "name": "Active Components",
+        "meta": "15+ SKUs"
+      },
+      {
+        "href": "#passive",
+        "name": "Passive Components",
+        "meta": "40+ SKUs"
+      },
+      {
+        "href": "#cable",
+        "name": "Cable Management Devices",
+        "meta": "12+ SKUs"
+      },
+      {
+        "href": "#test",
+        "name": "Test & Measuring Equipment",
+        "meta": "10+ SKUs"
+      },
+      {
+        "href": "#drone",
+        "name": "Optical Fiber Drone",
+        "meta": ""
+      }
+    ]
+  },
+  "tabs": [
+    {
+      "target": "active",
+      "label": "Active Components"
+    },
+    {
+      "target": "passive",
+      "label": "Passive Components"
+    },
+    {
+      "target": "cable",
+      "label": "Cable Management"
+    },
+    {
+      "target": "test",
+      "label": "Test & Measuring"
+    },
+    {
+      "target": "specialty",
+      "label": "Specialty & Drones"
+    },
+    {
+      "target": "tools",
+      "label": "Maintenance Tools"
+    }
+  ],
+  "sections": [
+    {
+      "id": "active",
+      "eyebrow": "Active Components",
+      "heading": "SFP Transceivers, OLP & High-Speed Interfaces",
+      "intro": "Manufactured and tested at our Mumbai facility. Compatible with major OEM switches, routers, and DWDM platforms.",
+      "groups": [
+        {
+          "subhead": "SFP Transceivers",
+          "cards": [
+            {
+              "slug": "sfp-transceivers",
+              "tag": "SFP",
+              "img": "/images/sfp-transceiver.png",
+              "heroSvg": "",
+              "name": "Fiber Optic Transceivers (SFP)",
+              "blurb": "High performance and cost effective modules for serial optical data communication applications.",
+              "pills": [
+                "Multi-Rate",
+                "Hot-Swappable",
+                "DOM Support"
+              ],
+              "detailsSlug": "sfp-transceivers",
+              "addItem": {
+                "title": "SFP Transceivers",
+                "specs": "Standard Factory Specs",
+                "image": "images/sfp-transceiver.png"
+              }
+            },
+            {
+              "slug": "smart-sfp",
+              "tag": "Smart SFP",
+              "img": "/images/sfp-smart.png",
+              "heroSvg": "",
+              "name": "Smart SFP Transceiver",
+              "blurb": "Next-gen transceivers with integrated OAM and performance monitoring.",
+              "pills": [
+                "OAM Support",
+                "Real-time Stats"
+              ],
+              "detailsSlug": "smart-sfp",
+              "addItem": {
+                "title": "Smart SFP",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "sfp-400g",
+              "tag": "400G",
+              "img": "/images/sfp-400g.png",
+              "heroSvg": "",
+              "name": "400G",
+              "blurb": "Next-generation 400G high-capacity optical transceiver for hyperscale connectivity.",
+              "pills": [
+                "QSFP-DD",
+                "400G"
+              ],
+              "detailsSlug": "sfp-400g",
+              "addItem": {
+                "title": "SFP 400G",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "sfp-100g-bidi",
+              "tag": "100G",
+              "img": "/images/sfp-100g.png",
+              "heroSvg": "",
+              "name": "100G & 100G BIDI",
+              "blurb": "High-density 100G QSFP28 modules for enterprise and carrier routing applications.",
+              "pills": [
+                "QSFP28",
+                "100G"
+              ],
+              "detailsSlug": "sfp-100g-bidi",
+              "addItem": {
+                "title": "SFP 100G Bidi",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "sfp-40g",
+              "tag": "40G",
+              "img": "/images/fiber-patch-panel.png",
+              "heroSvg": "",
+              "name": "40G",
+              "blurb": "Reliable 40G QSFP+ transceivers for mid-tier aggregation networks.",
+              "pills": [
+                "QSFP+",
+                "40G"
+              ],
+              "detailsSlug": "sfp-40g",
+              "addItem": {
+                "title": "SFP 40G",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "sfp-25g-bidi",
+              "tag": "25G BIDI",
+              "img": "/images/sfp-25g.png",
+              "heroSvg": "",
+              "name": "25G & 25G BIDI",
+              "blurb": "25G SFP28 modules ideal for 5G fronthaul and data center server connectivity.",
+              "pills": [
+                "SFP28",
+                "25G"
+              ],
+              "detailsSlug": "sfp-25g-bidi",
+              "addItem": {
+                "title": "SFP 25G Bidi",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "sfp-10g-bidi",
+              "tag": "10G BIDI",
+              "img": "/images/fiber-patch-panel.png",
+              "heroSvg": "",
+              "name": "SFP+ 10G BIDI",
+              "blurb": "Bi-directional 10G transceivers utilizing a single fiber to double cable plant efficiency.",
+              "pills": [
+                "SFP+",
+                "10G BIDI"
+              ],
+              "detailsSlug": "sfp-10g-bidi",
+              "addItem": {
+                "title": "SFP 10G Bidi",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "sfp-10g-dual",
+              "tag": "10G Dual",
+              "img": "/images/fiber-patch-panel.png",
+              "heroSvg": "",
+              "name": "SFP+ 10G Dual Fiber",
+              "blurb": "Standard dual-fiber 10G modules for enterprise LAN, SAN, and edge routing.",
+              "pills": [
+                "SFP+",
+                "10G"
+              ],
+              "detailsSlug": "sfp-10g-dual",
+              "addItem": {
+                "title": "SFP 10G Dual",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "sfp-1g-bidi",
+              "tag": "1G BIDI",
+              "img": "/images/fiber-patch-panel.png",
+              "heroSvg": "",
+              "name": "1G SFP BIDI",
+              "blurb": "Cost-effective 1G bi-directional transceivers for access networks and FTTH deployments.",
+              "pills": [
+                "SFP",
+                "1G BIDI"
+              ],
+              "detailsSlug": "sfp-1g-bidi",
+              "addItem": {
+                "title": "SFP 1G Bidi",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "sfp-1g-dual",
+              "tag": "1G Dual",
+              "img": "/images/fiber-patch-panel.png",
+              "heroSvg": "",
+              "name": "1G SFP Dual Fiber",
+              "blurb": "Standard 1G dual-fiber modules compatible with legacy optical equipment.",
+              "pills": [
+                "SFP",
+                "1G"
+              ],
+              "detailsSlug": "sfp-1g-dual",
+              "addItem": {
+                "title": "SFP 1G Dual",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "sfp-copper",
+              "tag": "Copper",
+              "img": "/images/fiber-patch-panel.png",
+              "heroSvg": "",
+              "name": "Copper SFP+",
+              "blurb": "RJ-45 based transceiver module for Ethernet links over Cat6a/Cat7 cables.",
+              "pills": [
+                "RJ-45",
+                "10G Base-T"
+              ],
+              "detailsSlug": "sfp-copper",
+              "addItem": {
+                "title": "SFP Copper",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            }
+          ]
+        },
+        {
+          "subhead": "Other Active Components",
+          "cards": [
+            {
+              "slug": "bypass-switch",
+              "tag": "Active",
+              "img": "/images/fiber-patch-panel.png",
+              "heroSvg": "",
+              "name": "Bypass Switch",
+              "blurb": "Optical path control equipment which can automatic bypass the optical path in case the protected optical device is failure.",
+              "pills": [
+                "Auto Bypass",
+                "Path Control"
+              ],
+              "detailsSlug": "bypass-switch",
+              "addItem": {
+                "title": "Bypass Switch",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "olps",
+              "tag": "OLP",
+              "img": "/images/fiber-patch-panel.png",
+              "heroSvg": "",
+              "name": "Optical Line Protection System",
+              "blurb": "Uses spare optical fiber from different route to build a backup path for network protection.",
+              "pills": [
+                "Backup Path",
+                "Auto Switch"
+              ],
+              "detailsSlug": "olps",
+              "addItem": {
+                "title": "Olps",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "dac",
+              "tag": "DAC",
+              "img": "/images/fiber-patch-panel.png",
+              "heroSvg": "",
+              "name": "Direct Attached Cable (DAC)",
+              "blurb": "SFP-10G-DAC hot-swappable direct attach copper cable assembly (Twinax Cable) with SFP+ connectors.",
+              "pills": [
+                "SFP+ 10G",
+                "Hot-Swappable",
+                "Twinax"
+              ],
+              "detailsSlug": "dac",
+              "addItem": {
+                "title": "Dac",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "aoc",
+              "tag": "AOC",
+              "img": "/images/fiber-patch-panel.png",
+              "heroSvg": "",
+              "name": "Active Optical Cable (AOC)",
+              "blurb": "100G QSFP28 AOC assemblies offer a highly reliable and cost-effective alternative to transceiver assemblies.",
+              "pills": [
+                "100G QSFP28",
+                "Up to 100m"
+              ],
+              "detailsSlug": "aoc",
+              "addItem": {
+                "title": "Aoc",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "hd-sdi",
+              "tag": "HD-SDI",
+              "img": "/images/fiber-patch-panel.png",
+              "heroSvg": "",
+              "name": "HD-SDI Optical Transceiver",
+              "blurb": "PDR8010SG SD/HD/3G-SDI broadcasting grade HD Transceiver which can interconvert SD/HD/3G-SDI signals.",
+              "pills": [
+                "SD/HD/3G-SDI",
+                "Broadcast"
+              ],
+              "detailsSlug": "hd-sdi",
+              "addItem": {
+                "title": "Hd Sdi",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "poe-injector",
+              "tag": "PoE",
+              "img": "/images/fiber-patch-panel.png",
+              "heroSvg": "",
+              "name": "PoE Injector",
+              "blurb": "Power over Ethernet injector for optical networking and broadcasting applications.",
+              "pills": [
+                "PoE",
+                "Networking"
+              ],
+              "detailsSlug": "poe-injector",
+              "addItem": {
+                "title": "Poe Injector",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "passive",
+      "eyebrow": "Passive Components",
+      "heading": "Cable Assemblies, Adapters, WDM & Splitters",
+      "intro": "Precision-terminated and interferometry-tested. Available in standard and custom configurations.",
+      "groups": [
+        {
+          "subhead": "Cable Assembly",
+          "cards": [
+            {
+              "slug": "cat6-patch-cord",
+              "tag": "CAT6",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M12 24h24\"></path><rect x=\"6\" y=\"20\" width=\"8\" height=\"8\" rx=\"2\"></rect><rect x=\"34\" y=\"20\" width=\"8\" height=\"8\" rx=\"2\"></rect></svg>",
+              "name": "CAT 6 Patch Cord",
+              "blurb": "High-speed copper patch cord for data networking applications.",
+              "pills": [
+                "Cat 6",
+                "RJ45"
+              ],
+              "detailsSlug": "cat6-patch-cord",
+              "addItem": {
+                "title": "Cat6 Patch Cord",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "cpri-patchcord",
+              "tag": "CPRI",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M12 24h24\"></path><circle cx=\"10\" cy=\"24\" r=\"4\"></circle><circle cx=\"38\" cy=\"24\" r=\"4\"></circle></svg>",
+              "name": "CPRI Patchcord",
+              "blurb": "Outdoor waterproof fiber optic assemblies with waterproof connectors of ODVA/IP/FX/PDLC/NSN.",
+              "pills": [
+                "Outdoor",
+                "Waterproof"
+              ],
+              "detailsSlug": "cpri-patchcord",
+              "addItem": {
+                "title": "Cpri Patchcord",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "fanout-patch-cords",
+              "tag": "MPO",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"6\" y=\"20\" width=\"10\" height=\"8\" rx=\"2\"></rect><path d=\"M16 22l8-6\"></path><path d=\"M16 24h16\"></path><path d=\"M16 26l8 6\"></path><circle cx=\"38\" cy=\"16\" r=\"3\"></circle><circle cx=\"38\" cy=\"24\" r=\"3\"></circle><circle cx=\"38\" cy=\"32\" r=\"3\"></circle></svg>",
+              "name": "FanOut Patch Cords",
+              "blurb": "MTP/MPO high-density fiber connector assemblies that breakout multi-fiber connections.",
+              "pills": [
+                "MTP/MPO",
+                "High-Density"
+              ],
+              "detailsSlug": "fanout-patch-cords",
+              "addItem": {
+                "title": "Fanout Patch Cords",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "fo-patchcords",
+              "tag": "Fiber",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><circle cx=\"8\" cy=\"24\" r=\"3\"></circle><circle cx=\"40\" cy=\"24\" r=\"3\"></circle></svg>",
+              "name": "Fiber Optic Patch Cords & Pigtails",
+              "blurb": "Broadest choice of patchcords tested utilising the industry's latest interferometric equipment.",
+              "pills": [
+                "SM/MM",
+                "IL < 0.3dB"
+              ],
+              "detailsSlug": "fo-patchcords",
+              "addItem": {
+                "title": "Fo Patchcords",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patchcord.png"
+              }
+            },
+            {
+              "slug": "loopback",
+              "tag": "Test",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M14 24a10 10 0 0 1 20 0 10 10 0 0 1-20 0\"></path></svg>",
+              "name": "Loop Back Patch Cord",
+              "blurb": "Used in fiber optic network testing and diagnostics applications.",
+              "pills": [
+                "Testing",
+                "Diagnostics"
+              ],
+              "detailsSlug": "loopback",
+              "addItem": {
+                "title": "Loopback",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "mode-conditioning",
+              "tag": "MCP",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24c8-8 24 8 32 0\"></path></svg>",
+              "name": "Mode Conditioning Patchcord",
+              "blurb": "Gigabit Launch Patchcord used in longwave/long haul fiber optic applications.",
+              "pills": [
+                "Long Haul",
+                "Gigabit"
+              ],
+              "detailsSlug": "mode-conditioning",
+              "addItem": {
+                "title": "Mode Conditioning",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "mpo-assembly",
+              "tag": "MPO",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"8\" y=\"18\" width=\"14\" height=\"12\" rx=\"2\"></rect><rect x=\"26\" y=\"18\" width=\"14\" height=\"12\" rx=\"2\"></rect><path d=\"M22 24h4\"></path></svg>",
+              "name": "MPO Cable Assembly",
+              "blurb": "High-density multi-fiber connector system built around precision molded MT ferrule.",
+              "pills": [
+                "Multi-Fiber",
+                "MT Ferrule"
+              ],
+              "detailsSlug": "mpo-assembly",
+              "addItem": {
+                "title": "Mpo Assembly",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "rapid-push",
+              "tag": "FTTx",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M10 24h28\"></path><path d=\"M34 20l4 4-4 4\"></path></svg>",
+              "name": "Rapid Push Cable Assembly",
+              "blurb": "FTTXsmart pushable preterminated fiber optic drop solution for fast deployment.",
+              "pills": [
+                "Pushable",
+                "Pre-terminated"
+              ],
+              "detailsSlug": "rapid-push",
+              "addItem": {
+                "title": "Rapid Push",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "smpte-assembly",
+              "tag": "SMPTE",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"></rect><circle cx=\"18\" cy=\"24\" r=\"3\"></circle><circle cx=\"30\" cy=\"24\" r=\"3\"></circle></svg>",
+              "name": "SMPTE Cable Assembly",
+              "blurb": "Broadest range of ruggedized and dirt protected cabling options for HDTV infrastructure.",
+              "pills": [
+                "HDTV",
+                "Ruggedized"
+              ],
+              "detailsSlug": "smpte-assembly",
+              "addItem": {
+                "title": "Smpte Assembly",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "armoured-patchcord",
+              "tag": "Armoured",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><path d=\"M12 20v8M16 20v8M20 20v8M24 20v8M28 20v8M32 20v8M36 20v8\"></path></svg>",
+              "name": "Armoured Patchcord",
+              "blurb": "Ruggedized armoured cable assembly with stainless steel interlocking armour for harsh environments.",
+              "pills": [
+                "SS Armour",
+                "SM/MM"
+              ],
+              "detailsSlug": "armoured-patchcord",
+              "addItem": {
+                "title": "Armoured Patchcord",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "pof-patchcord",
+              "tag": "POF",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><circle cx=\"24\" cy=\"24\" r=\"6\"></circle></svg>",
+              "name": "POF â Plastic Optical Fiber Patchcord",
+              "blurb": "Large-core plastic fiber for short-range consumer and industrial communication links.",
+              "pills": [
+                "PMMA Core",
+                "650nm"
+              ],
+              "detailsSlug": "pof-patchcord",
+              "addItem": {
+                "title": "Pof Patchcord",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "bendiboot-patchcord",
+              "tag": "90Â°",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M16 32V16h16\"></path></svg>",
+              "name": "Bendiboot Patchcord",
+              "blurb": "90-degree angled boot design for high-density panels with restricted bend radius.",
+              "pills": [
+                "90Â° Boot",
+                "LC/SC"
+              ],
+              "detailsSlug": "bendiboot-patchcord",
+              "addItem": {
+                "title": "Bendiboot Patchcord",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "lc-uniboot",
+              "tag": "Uniboot",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h20\"></path><rect x=\"28\" y=\"20\" width=\"12\" height=\"8\" rx=\"2\"></rect></svg>",
+              "name": "LC Uniboot Patchcord",
+              "blurb": "Single-jacket duplex LC connector for reversible polarity in high-density OM3/OM4 environments.",
+              "pills": [
+                "Reversible",
+                "OM3/OM4"
+              ],
+              "detailsSlug": "lc-uniboot",
+              "addItem": {
+                "title": "Lc Uniboot",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            }
+          ]
+        },
+        {
+          "subhead": "Adapters",
+          "cards": [
+            {
+              "slug": "bare-fiber-adapter",
+              "tag": "Adapter",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"16\" y=\"14\" width=\"16\" height=\"20\" rx=\"3\"></rect><line x1=\"8\" y1=\"24\" x2=\"16\" y2=\"24\"></line><line x1=\"32\" y1=\"24\" x2=\"40\" y2=\"24\"></line></svg>",
+              "name": "Bare Fiber Adapter",
+              "blurb": "Used as a medium to link the bare optical fiber to fiber optic equipment.",
+              "pills": [
+                "Bare Fiber",
+                "SM/MM"
+              ],
+              "detailsSlug": "bare-fiber-adapter",
+              "addItem": {
+                "title": "Bare Fiber Adapter",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "hybrid-adapter",
+              "tag": "HybridCAT6CPRIMPOFiberTestMCPMPOFTTxSMPTEArmouredPOF90Â°Uniboot",
+              "img": "/images/fiber-patch-panel.png",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M12 24h24\"></path><rect x=\"6\" y=\"20\" width=\"8\" height=\"8\" rx=\"2\"></rect><rect x=\"34\" y=\"20\" width=\"8\" height=\"8\" rx=\"2\"></rect></svg>",
+              "name": "CAT 6 Patch CordCPRI PatchcordFanOut Patch CordsFiber Optic Patch Cords & PigtailsLoop Back Patch CordMode Conditioning PatchcordMPO Cable AssemblyRapid Push Cable AssemblySMPTE Cable AssemblyArmoured PatchcordPOF â Plastic Optical Fiber PatchcordBendiboot PatchcordLC Uniboot Patchcord",
+              "blurb": "High-speed copper patch cord for data networking applications.",
+              "pills": [
+                "Cat 6",
+                "RJ45",
+                "Outdoor",
+                "Waterproof",
+                "MTP/MPO",
+                "High-Density",
+                "SM/MM",
+                "IL < 0.3dB",
+                "Testing",
+                "Diagnostics",
+                "Long Haul",
+                "Gigabit",
+                "Multi-Fiber",
+                "MT Ferrule",
+                "Pushable",
+                "Pre-terminated",
+                "HDTV",
+                "Ruggedized",
+                "SS Armour",
+                "SM/MM",
+                "PMMA Core",
+                "650nm",
+                "90Â° Boot",
+                "LC/SC",
+                "Reversible",
+                "OM3/OM4"
+              ],
+              "detailsSlug": "cat6-patch-cord",
+              "addItem": {
+                "title": "Hybrid Adapter",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "cpri-patchcord",
+              "tag": "CPRI",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M12 24h24\"></path><circle cx=\"10\" cy=\"24\" r=\"4\"></circle><circle cx=\"38\" cy=\"24\" r=\"4\"></circle></svg>",
+              "name": "CPRI Patchcord",
+              "blurb": "Outdoor waterproof fiber optic assemblies with waterproof connectors of ODVA/IP/FX/PDLC/NSN.",
+              "pills": [
+                "Outdoor",
+                "Waterproof"
+              ],
+              "detailsSlug": "cpri-patchcord",
+              "addItem": {
+                "title": "Cpri Patchcord",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "fanout-patch-cords",
+              "tag": "MPO",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"6\" y=\"20\" width=\"10\" height=\"8\" rx=\"2\"></rect><path d=\"M16 22l8-6\"></path><path d=\"M16 24h16\"></path><path d=\"M16 26l8 6\"></path><circle cx=\"38\" cy=\"16\" r=\"3\"></circle><circle cx=\"38\" cy=\"24\" r=\"3\"></circle><circle cx=\"38\" cy=\"32\" r=\"3\"></circle></svg>",
+              "name": "FanOut Patch Cords",
+              "blurb": "MTP/MPO high-density fiber connector assemblies that breakout multi-fiber connections.",
+              "pills": [
+                "MTP/MPO",
+                "High-Density"
+              ],
+              "detailsSlug": "fanout-patch-cords",
+              "addItem": {
+                "title": "Fanout Patch Cords",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "fo-patchcords",
+              "tag": "Fiber",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><circle cx=\"8\" cy=\"24\" r=\"3\"></circle><circle cx=\"40\" cy=\"24\" r=\"3\"></circle></svg>",
+              "name": "Fiber Optic Patch Cords & Pigtails",
+              "blurb": "Broadest choice of patchcords tested utilising the industry's latest interferometric equipment.",
+              "pills": [
+                "SM/MM",
+                "IL < 0.3dB"
+              ],
+              "detailsSlug": "fo-patchcords",
+              "addItem": {
+                "title": "Fo Patchcords",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patchcord.png"
+              }
+            },
+            {
+              "slug": "loopback",
+              "tag": "Test",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M14 24a10 10 0 0 1 20 0 10 10 0 0 1-20 0\"></path></svg>",
+              "name": "Loop Back Patch Cord",
+              "blurb": "Used in fiber optic network testing and diagnostics applications.",
+              "pills": [
+                "Testing",
+                "Diagnostics"
+              ],
+              "detailsSlug": "loopback",
+              "addItem": {
+                "title": "Loopback",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "mode-conditioning",
+              "tag": "MCP",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24c8-8 24 8 32 0\"></path></svg>",
+              "name": "Mode Conditioning Patchcord",
+              "blurb": "Gigabit Launch Patchcord used in longwave/long haul fiber optic applications.",
+              "pills": [
+                "Long Haul",
+                "Gigabit"
+              ],
+              "detailsSlug": "mode-conditioning",
+              "addItem": {
+                "title": "Mode Conditioning",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "mpo-assembly",
+              "tag": "MPO",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"8\" y=\"18\" width=\"14\" height=\"12\" rx=\"2\"></rect><rect x=\"26\" y=\"18\" width=\"14\" height=\"12\" rx=\"2\"></rect><path d=\"M22 24h4\"></path></svg>",
+              "name": "MPO Cable Assembly",
+              "blurb": "High-density multi-fiber connector system built around precision molded MT ferrule.",
+              "pills": [
+                "Multi-Fiber",
+                "MT Ferrule"
+              ],
+              "detailsSlug": "mpo-assembly",
+              "addItem": {
+                "title": "Mpo Assembly",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "rapid-push",
+              "tag": "FTTx",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M10 24h28\"></path><path d=\"M34 20l4 4-4 4\"></path></svg>",
+              "name": "Rapid Push Cable Assembly",
+              "blurb": "FTTXsmart pushable preterminated fiber optic drop solution for fast deployment.",
+              "pills": [
+                "Pushable",
+                "Pre-terminated"
+              ],
+              "detailsSlug": "rapid-push",
+              "addItem": {
+                "title": "Rapid Push",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "smpte-assembly",
+              "tag": "SMPTE",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"></rect><circle cx=\"18\" cy=\"24\" r=\"3\"></circle><circle cx=\"30\" cy=\"24\" r=\"3\"></circle></svg>",
+              "name": "SMPTE Cable Assembly",
+              "blurb": "Broadest range of ruggedized and dirt protected cabling options for HDTV infrastructure.",
+              "pills": [
+                "HDTV",
+                "Ruggedized"
+              ],
+              "detailsSlug": "smpte-assembly",
+              "addItem": {
+                "title": "Smpte Assembly",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "armoured-patchcord",
+              "tag": "Armoured",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><path d=\"M12 20v8M16 20v8M20 20v8M24 20v8M28 20v8M32 20v8M36 20v8\"></path></svg>",
+              "name": "Armoured Patchcord",
+              "blurb": "Ruggedized armoured cable assembly with stainless steel interlocking armour for harsh environments.",
+              "pills": [
+                "SS Armour",
+                "SM/MM"
+              ],
+              "detailsSlug": "armoured-patchcord",
+              "addItem": {
+                "title": "Armoured Patchcord",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "pof-patchcord",
+              "tag": "POF",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><circle cx=\"24\" cy=\"24\" r=\"6\"></circle></svg>",
+              "name": "POF â Plastic Optical Fiber Patchcord",
+              "blurb": "Large-core plastic fiber for short-range consumer and industrial communication links.",
+              "pills": [
+                "PMMA Core",
+                "650nm"
+              ],
+              "detailsSlug": "pof-patchcord",
+              "addItem": {
+                "title": "Pof Patchcord",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "bendiboot-patchcord",
+              "tag": "90Â°",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M16 32V16h16\"></path></svg>",
+              "name": "Bendiboot Patchcord",
+              "blurb": "90-degree angled boot design for high-density panels with restricted bend radius.",
+              "pills": [
+                "90Â° Boot",
+                "LC/SC"
+              ],
+              "detailsSlug": "bendiboot-patchcord",
+              "addItem": {
+                "title": "Bendiboot Patchcord",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "lc-uniboot",
+              "tag": "Uniboot",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h20\"></path><rect x=\"28\" y=\"20\" width=\"12\" height=\"8\" rx=\"2\"></rect></svg>",
+              "name": "LC Uniboot Patchcord",
+              "blurb": "Single-jacket duplex LC connector for reversible polarity in high-density OM3/OM4 environments.",
+              "pills": [
+                "Reversible",
+                "OM3/OM4"
+              ],
+              "detailsSlug": "lc-uniboot",
+              "addItem": {
+                "title": "Lc Uniboot",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "bare-fiber-adapter",
+              "tag": "Adapter",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"16\" y=\"14\" width=\"16\" height=\"20\" rx=\"3\"></rect><line x1=\"8\" y1=\"24\" x2=\"16\" y2=\"24\"></line><line x1=\"32\" y1=\"24\" x2=\"40\" y2=\"24\"></line></svg>",
+              "name": "Bare Fiber Adapter",
+              "blurb": "Used as a medium to link the bare optical fiber to fiber optic equipment.",
+              "pills": [
+                "Bare Fiber",
+                "SM/MM"
+              ],
+              "detailsSlug": "bare-fiber-adapter",
+              "addItem": {
+                "title": "Bare Fiber Adapter",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "hybrid-adapter",
+              "tag": "",
+              "img": "",
+              "heroSvg": "",
+              "name": "",
+              "blurb": "",
+              "pills": [],
+              "detailsSlug": "",
+              "addItem": {
+                "title": "",
+                "specs": "Standard Factory Specs",
+                "image": ""
+              }
+            },
+            {
+              "slug": "mating-sleeve",
+              "tag": "Sleeve",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"20\" y=\"12\" width=\"8\" height=\"24\" rx=\"2\"></rect><line x1=\"8\" y1=\"24\" x2=\"20\" y2=\"24\"></line><line x1=\"28\" y1=\"24\" x2=\"40\" y2=\"24\"></line></svg>",
+              "name": "Mating Sleeve / Alignment Sleeve",
+              "blurb": "Precision ceramic or bronze split sleeve for bare fiber alignment in fusion splicing and testing.",
+              "pills": [
+                "Ceramic",
+                "2.5mm / 1.25mm"
+              ],
+              "detailsSlug": "mating-sleeve",
+              "addItem": {
+                "title": "Mating Sleeve",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            }
+          ]
+        },
+        {
+          "subhead": "Attenuator",
+          "cards": [
+            {
+              "slug": "attenuator",
+              "tag": "Attenuator",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><path d=\"M18 18l6 6-6 6\"></path><path d=\"M30 18l-6 6 6 6\"></path></svg>",
+              "name": "Variable Fiber Attenuator",
+              "blurb": "Buildout attenuators providing superior performance for all single-mode in-line attenuation requirements.",
+              "pills": [
+                "1310/1490/1550nm",
+                "SM"
+              ],
+              "detailsSlug": "attenuator",
+              "addItem": {
+                "title": "Attenuator",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            }
+          ]
+        },
+        {
+          "subhead": "MUX / DEMUX",
+          "cards": [
+            {
+              "slug": "cwdm",
+              "tag": "CWDM",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"12\" width=\"20\" height=\"24\" rx=\"3\"></rect><line x1=\"6\" y1=\"20\" x2=\"14\" y2=\"20\"></line><line x1=\"6\" y1=\"28\" x2=\"14\" y2=\"28\"></line><line x1=\"34\" y1=\"24\" x2=\"42\" y2=\"24\"></line></svg>",
+              "name": "CWDM Mux / DeMux Module",
+              "blurb": "Cost-effective network solution for connecting and linking together multiple data centers.",
+              "pills": [
+                "CWDM",
+                "Multi-Channel"
+              ],
+              "detailsSlug": "cwdm",
+              "addItem": {
+                "title": "Cwdm",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "dwdm",
+              "tag": "DWDM",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"12\" width=\"20\" height=\"24\" rx=\"3\"></rect><line x1=\"6\" y1=\"18\" x2=\"14\" y2=\"18\"></line><line x1=\"6\" y1=\"24\" x2=\"14\" y2=\"24\"></line><line x1=\"6\" y1=\"30\" x2=\"14\" y2=\"30\"></line><line x1=\"34\" y1=\"24\" x2=\"42\" y2=\"24\"></line></svg>",
+              "name": "DWDM Mux/DeMux Module",
+              "blurb": "Most robust and low-cost bandwidth upgrade for currently deployed fiber infrastructure.",
+              "pills": [
+                "DWDM",
+                "Dense WDM"
+              ],
+              "detailsSlug": "dwdm",
+              "addItem": {
+                "title": "Dwdm",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "plc-splitter",
+              "tag": "Splitter",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><line x1=\"8\" y1=\"24\" x2=\"20\" y2=\"24\"></line><path d=\"M20 24l10-8\"></path><path d=\"M20 24l10 0\"></path><path d=\"M20 24l10 8\"></path></svg>",
+              "name": "PLC Splitter",
+              "blurb": "High-quality splitters designed for long-term reliability and superior performance.",
+              "pills": [
+                "PLC",
+                "1xN / 2xN"
+              ],
+              "detailsSlug": "plc-splitter",
+              "addItem": {
+                "title": "Plc Splitter",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-splitter.png"
+              }
+            }
+          ]
+        },
+        {
+          "subhead": "Connectors",
+          "cards": [
+            {
+              "slug": "field-connector",
+              "tag": "Field",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"16\" width=\"20\" height=\"16\" rx=\"2\"></rect><line x1=\"8\" y1=\"24\" x2=\"14\" y2=\"24\"></line><line x1=\"34\" y1=\"24\" x2=\"40\" y2=\"24\"></line></svg>",
+              "name": "Fiber Optic Connector, Field Installable",
+              "blurb": "Fast Field Assembly Optical Connector designed to manage on-site fiber connections with ease of maintenance.",
+              "pills": [
+                "Field Install",
+                "Fast Assembly"
+              ],
+              "detailsSlug": "field-connector",
+              "addItem": {
+                "title": "Field Connector",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cable",
+      "eyebrow": "Cable Management Devices",
+      "heading": "Termination Boxes, ODFs & Splice Closures",
+      "intro": "Indoor and outdoor enclosures built for telecom, ISP, and data centre installations.",
+      "groups": [
+        {
+          "subhead": "Indoor Termination",
+          "cards": [
+            {
+              "slug": "rack-mount-fms",
+              "tag": "Rack",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"6\" y=\"16\" width=\"36\" height=\"16\" rx=\"2\"></rect><line x1=\"12\" y1=\"24\" x2=\"16\" y2=\"24\"></line><line x1=\"20\" y1=\"24\" x2=\"24\" y2=\"24\"></line><line x1=\"28\" y1=\"24\" x2=\"32\" y2=\"24\"></line><circle cx=\"8\" cy=\"20\" r=\"1\"></circle><circle cx=\"8\" cy=\"28\" r=\"1\"></circle><circle cx=\"40\" cy=\"20\" r=\"1\"></circle><circle cx=\"40\" cy=\"28\" r=\"1\"></circle></svg>",
+              "name": "Rack Mount Fiber Management System",
+              "blurb": "19” Rack Mount fiber-optic enclosures help deliver modularity, flexibility and customization in design.",
+              "pills": [
+                "19\" Rack",
+                "Modular"
+              ],
+              "detailsSlug": "rack-mount-fms",
+              "addItem": {
+                "title": "Rack Mount Fms",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "htb",
+              "tag": "HTB",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"12\" width=\"20\" height=\"24\" rx=\"2\"></rect><path d=\"M14 24h20\"></path><circle cx=\"24\" cy=\"18\" r=\"2\"></circle></svg>",
+              "name": "Home Termination Box (HTB)",
+              "blurb": "Installed inside the customer's premises to provide fiber termination points and housing.",
+              "pills": [
+                "FTTH",
+                "Indoor"
+              ],
+              "detailsSlug": "htb",
+              "addItem": {
+                "title": "Htb",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "wall-mount",
+              "tag": "Wall",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"10\" y=\"8\" width=\"28\" height=\"32\" rx=\"3\"></rect><line x1=\"24\" y1=\"8\" x2=\"24\" y2=\"40\"></line><circle cx=\"20\" cy=\"24\" r=\"1\"></circle><circle cx=\"28\" cy=\"24\" r=\"1\"></circle></svg>",
+              "name": "Optical Fiber Wall Mount Enclosure",
+              "blurb": "Two door fibre optic wall mounted enclosures provide a cost effective, secure method of terminating fiber.",
+              "pills": [
+                "Wall Mount",
+                "Secure"
+              ],
+              "detailsSlug": "wall-mount",
+              "addItem": {
+                "title": "Wall Mount",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "fdb",
+              "tag": "FDB",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"12\" y=\"10\" width=\"24\" height=\"28\" rx=\"2\"></rect><line x1=\"12\" y1=\"18\" x2=\"36\" y2=\"18\"></line><line x1=\"24\" y1=\"18\" x2=\"24\" y2=\"38\"></line></svg>",
+              "name": "Fiber Distribution Box (FDB)",
+              "blurb": "Compact termination box used at the building premises such as residence, offices etc.",
+              "pills": [
+                "Compact",
+                "Distribution"
+              ],
+              "detailsSlug": "fdb",
+              "addItem": {
+                "title": "Fdb",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "cat6-panel",
+              "tag": "Panel",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"6\" y=\"16\" width=\"36\" height=\"16\" rx=\"2\"></rect><line x1=\"12\" y1=\"20\" x2=\"16\" y2=\"20\"></line><line x1=\"12\" y1=\"28\" x2=\"16\" y2=\"28\"></line><line x1=\"20\" y1=\"20\" x2=\"24\" y2=\"20\"></line><line x1=\"20\" y1=\"28\" x2=\"24\" y2=\"28\"></line><line x1=\"28\" y1=\"20\" x2=\"32\" y2=\"20\"></line><line x1=\"28\" y1=\"28\" x2=\"32\" y2=\"28\"></line></svg>",
+              "name": "CAT 6 Patch Panel",
+              "blurb": "Cat 6 24 Port Distribution Panel designed for High speed Network applications.",
+              "pills": [
+                "24 Port",
+                "Cat 6"
+              ],
+              "detailsSlug": "cat6-panel",
+              "addItem": {
+                "title": "Cat6 Panel",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            }
+          ]
+        },
+        {
+          "subhead": "Outdoor Termination",
+          "cards": [
+            {
+              "slug": "heat-shrink-closure",
+              "tag": "Closure",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M12 16h24a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4v-8a4 4 0 0 1 4-4z\"></path><path d=\"M8 20h32\"></path><path d=\"M8 28h32\"></path><line x1=\"20\" y1=\"16\" x2=\"20\" y2=\"32\"></line><line x1=\"28\" y1=\"16\" x2=\"28\" y2=\"32\"></line></svg>",
+              "name": "Heat Shrink Splice Closure",
+              "blurb": "Heat shrink sealing designed to be used in any environment aerial, pedestal, buried, manhole.",
+              "pills": [
+                "Heat Shrink",
+                "All-Environment"
+              ],
+              "detailsSlug": "heat-shrink-closure",
+              "addItem": {
+                "title": "Heat Shrink Closure",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "odf",
+              "tag": "ODF",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"12\" y=\"6\" width=\"24\" height=\"36\" rx=\"2\"></rect><line x1=\"12\" y1=\"18\" x2=\"36\" y2=\"18\"></line><line x1=\"12\" y1=\"30\" x2=\"36\" y2=\"30\"></line></svg>",
+              "name": "Optical Distribution Frames",
+              "blurb": "Multi-purpose wall mount fiberoptic enclosures built of high-quality ABS Plastic material.",
+              "pills": [
+                "ABS Plastic",
+                "Multi-purpose"
+              ],
+              "detailsSlug": "odf",
+              "addItem": {
+                "title": "Odf",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "horizontal-closure",
+              "tag": "Splice",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"8\"></rect><line x1=\"16\" y1=\"16\" x2=\"16\" y2=\"32\"></line><line x1=\"32\" y1=\"16\" x2=\"32\" y2=\"32\"></line><line x1=\"8\" y1=\"24\" x2=\"40\" y2=\"24\"></line></svg>",
+              "name": "Fiber Optic Splitter Closure GJS 2016",
+              "blurb": "Closure adopts mechanical sealing structure with oval shaped cable port entrances in base.",
+              "pills": [
+                "Mechanical Seal",
+                "Outdoor"
+              ],
+              "detailsSlug": "horizontal-closure",
+              "addItem": {
+                "title": "Horizontal Closure",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "eyebrow": "Test & Measuring Equipment",
+      "heading": "OTDR, Power Meters, Splicers & Inspectors",
+      "intro": "Professional-grade fiber test instruments manufactured and calibrated in-house.",
+      "groups": [
+        {
+          "subhead": "Power Meter",
+          "cards": [
+            {
+              "slug": "pon-power-meter",
+              "tag": "PON",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"8\" width=\"20\" height=\"32\" rx=\"3\"></rect><rect x=\"18\" y=\"14\" width=\"12\" height=\"8\" rx=\"1\"></rect><circle cx=\"24\" cy=\"30\" r=\"3\"></circle><circle cx=\"20\" cy=\"26\" r=\"1\"></circle><circle cx=\"28\" cy=\"26\" r=\"1\"></circle><circle cx=\"20\" cy=\"34\" r=\"1\"></circle><circle cx=\"28\" cy=\"34\" r=\"1\"></circle></svg>",
+              "name": "PON Power Meter",
+              "blurb": "Providing distinct power values for 1310 nm, 1490 nm and 1550 nm with pass through measurement.",
+              "pills": [
+                "1310/1490/1550nm",
+                "Pass-through"
+              ],
+              "detailsSlug": "pon-power-meter",
+              "addItem": {
+                "title": "Pon Power Meter",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "mini-opm",
+              "tag": "Mini",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"16\" y=\"10\" width=\"16\" height=\"28\" rx=\"3\"></rect><rect x=\"20\" y=\"14\" width=\"8\" height=\"6\" rx=\"1\"></rect><circle cx=\"24\" cy=\"28\" r=\"4\"></circle></svg>",
+              "name": "Mini Optical Power Meter",
+              "blurb": "Essential tool for all technicians installing or maintaining optical fiber networks.",
+              "pills": [
+                "Compact",
+                "Testing"
+              ],
+              "detailsSlug": "mini-opm",
+              "addItem": {
+                "title": "Mini Opm",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "5in1-opm",
+              "tag": "5-in-1",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"12\" y=\"8\" width=\"24\" height=\"32\" rx=\"3\"></rect><rect x=\"16\" y=\"14\" width=\"16\" height=\"8\" rx=\"1\"></rect><circle cx=\"24\" cy=\"30\" r=\"4\"></circle><line x1=\"18\" y1=\"28\" x2=\"20\" y2=\"28\"></line><line x1=\"28\" y1=\"28\" x2=\"30\" y2=\"28\"></line><line x1=\"18\" y1=\"32\" x2=\"20\" y2=\"32\"></line><line x1=\"28\" y1=\"32\" x2=\"30\" y2=\"32\"></line></svg>",
+              "name": "5 IN 1 Optical Power Meter",
+              "blurb": "Display Range 1310/1490/1550/1625: +10 to -70dBm, Accuracy +- 0.2 dB.",
+              "pills": [
+                "Multi-Wavelength",
+                "+-0.2dB Accuracy"
+              ],
+              "detailsSlug": "5in1-opm",
+              "addItem": {
+                "title": "5In1 Opm",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "regular-opm",
+              "tag": "OPM",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"12\" y=\"8\" width=\"24\" height=\"32\" rx=\"4\"></rect><rect x=\"16\" y=\"14\" width=\"16\" height=\"10\" rx=\"1\"></rect><circle cx=\"24\" cy=\"32\" r=\"3\"></circle></svg>",
+              "name": "Regular Optical Power Meter",
+              "blurb": "Standard bench/field OPM for 800â1700nm range, auto-wavelength detection, LCD display.",
+              "pills": [
+                "800â1700nm",
+                "Auto-Î»"
+              ],
+              "detailsSlug": "regular-opm",
+              "addItem": {
+                "title": "Regular Opm",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            }
+          ]
+        },
+        {
+          "subhead": "OTDR",
+          "cards": [
+            {
+              "slug": "mini-otdr",
+              "tag": "OTDR",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"10\" y=\"12\" width=\"28\" height=\"24\" rx=\"3\"></rect><rect x=\"14\" y=\"16\" width=\"20\" height=\"12\" rx=\"1\"></rect><circle cx=\"16\" cy=\"32\" r=\"1\"></circle><circle cx=\"20\" cy=\"32\" r=\"1\"></circle><circle cx=\"24\" cy=\"32\" r=\"1\"></circle><circle cx=\"32\" cy=\"32\" r=\"2\"></circle></svg>",
+              "name": "Mini OTDR PDR4402S",
+              "blurb": "On-Line Mini Pro-OTDR used for installation and maintenance of Optical Fiber Network especially in FTTx and Data Centers.",
+              "pills": [
+                "Pro-OTDR",
+                "FTTx/Data Center"
+              ],
+              "detailsSlug": "mini-otdr",
+              "addItem": {
+                "title": "Mini Otdr",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "pocket-otdr",
+              "tag": "Pocket",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"10\" width=\"20\" height=\"28\" rx=\"2\"></rect><rect x=\"16\" y=\"14\" width=\"16\" height=\"12\" rx=\"1\"></rect><circle cx=\"24\" cy=\"32\" r=\"2\"></circle></svg>",
+              "name": "Pocket OTDR",
+              "blurb": "Ultra-compact handheld OTDR for quick field checks; single-mode and multimode models.",
+              "pills": [
+                "Pocket",
+                "SM/MM"
+              ],
+              "detailsSlug": "pocket-otdr",
+              "addItem": {
+                "title": "Pocket Otdr",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            }
+          ]
+        },
+        {
+          "subhead": "Splicer",
+          "cards": [
+            {
+              "slug": "fusion-splicer",
+              "tag": "Splicer",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"12\" y=\"14\" width=\"24\" height=\"20\" rx=\"3\"></rect><path d=\"M18 14V10h12v4\"></path><circle cx=\"24\" cy=\"24\" r=\"4\"></circle><path d=\"M12 24H8\"></path><path d=\"M40 24h-4\"></path></svg>",
+              "name": "Fusion Splicer PDR618H",
+              "blurb": "Handheld, Small, Light. 8s splicing time, 26s tube heating time. 5800mAh pluggable Li-battery.",
+              "pills": [
+                "8s Splicing",
+                "5800mAh Battery"
+              ],
+              "detailsSlug": "fusion-splicer",
+              "addItem": {
+                "title": "Fusion Splicer",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "next-gen-splicer",
+              "tag": "Pro",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"10\" y=\"14\" width=\"28\" height=\"20\" rx=\"3\"></rect><path d=\"M16 14V10h16v4\"></path><circle cx=\"24\" cy=\"24\" r=\"4\"></circle><path d=\"M10 24H6\"></path><path d=\"M42 24h-4\"></path></svg>",
+              "name": "Next Gen Optical Fusion Splicer (OPM + VFL)",
+              "blurb": "Advanced splicer with integrated optical power meter and visual fault locator.",
+              "pills": [
+                "Integrated OPM",
+                "Built-in VFL"
+              ],
+              "detailsSlug": "next-gen-splicer",
+              "addItem": {
+                "title": "Next Gen Splicer",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            }
+          ]
+        },
+        {
+          "subhead": "Endface Inspector",
+          "cards": [
+            {
+              "slug": "easyget-wifi",
+              "tag": "WiFi",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"18\" y=\"10\" width=\"12\" height=\"28\" rx=\"2\"></rect><path d=\"M22 10V6h4v4\"></path><circle cx=\"24\" cy=\"18\" r=\"3\"></circle><circle cx=\"24\" cy=\"30\" r=\"1\"></circle></svg>",
+              "name": "EasyGet WiFi Wireless Fiber Endface Microscope",
+              "blurb": "Inspect dirt and damage on fiber endfaces of optical connectors directly to prevent attenuation.",
+              "pills": [
+                "Wireless",
+                "Microscope"
+              ],
+              "detailsSlug": "easyget-wifi",
+              "addItem": {
+                "title": "Easyget Wifi",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "easycheck-v2",
+              "tag": "Digital",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"10\" y=\"12\" width=\"28\" height=\"24\" rx=\"3\"></rect><rect x=\"14\" y=\"16\" width=\"20\" height=\"14\" rx=\"1\"></rect><path d=\"M20 40l4-4 4 4\"></path></svg>",
+              "name": "EasyCheck V2 Digital Fiber Endface Inspector",
+              "blurb": "Digital inspection of dirt and damage on fiber endface to resolve optical attenuation causes.",
+              "pills": [
+                "Digital",
+                "Inspection"
+              ],
+              "detailsSlug": "easycheck-v2",
+              "addItem": {
+                "title": "Easycheck V2",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "specialty",
+      "eyebrow": "Specialty Products",
+      "heading": "Optical Fiber Drone",
+      "intro": "Next-generation aerial fiber deployment, inspection, and surveillance solutions.",
+      "groups": []
+    },
+    {
+      "id": "tools",
+      "eyebrow": "Maintenance & Cleaning",
+      "heading": "Maintenance Tools",
+      "intro": "Professional cleaning and maintenance tools for optical fiber infrastructure.",
+      "groups": [
+        {
+          "subhead": "",
+          "cards": [
+            {
+              "slug": "cleaner-pen",
+              "tag": "Cleaner",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"18\" y=\"10\" width=\"12\" height=\"28\" rx=\"2\"></rect><path d=\"M22 10V6h4v4\"></path></svg>",
+              "name": "Fiber Optic Cleaner Pen",
+              "blurb": "One-click cleaner pen available in 1.25mm (LC/MU) and 2.5mm (SC/FC/ST) ferrule types.",
+              "pills": [
+                "1.25mm / 2.5mm",
+                "800+ Cleans"
+              ],
+              "detailsSlug": "cleaner-pen",
+              "addItem": {
+                "title": "Cleaner Pen",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "cassette-cleaner",
+              "tag": "Cassette",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"10\" y=\"12\" width=\"28\" height=\"24\" rx=\"4\"></rect><circle cx=\"18\" cy=\"24\" r=\"4\"></circle><circle cx=\"30\" cy=\"24\" r=\"4\"></circle></svg>",
+              "name": "Cassette Cleaner",
+              "blurb": "High-performance cassette cleaner with replacement reels providing 400+ clean cycles.",
+              "pills": [
+                "400+ Cycles",
+                "Dry Cloth"
+              ],
+              "detailsSlug": "cassette-cleaner",
+              "addItem": {
+                "title": "Cassette Cleaner",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "mpo-cleaner",
+              "tag": "MPO",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"14\" width=\"20\" height=\"20\" rx=\"2\"></rect><path d=\"M14 24h20\"></path></svg>",
+              "name": "Fiber Optic Cleaner Pen MPO",
+              "blurb": "Specialized one-click cleaner for multi-fiber MPO/MTP ports and assemblies.",
+              "pills": [
+                "MPO/MTP",
+                "600+ Cleans"
+              ],
+              "detailsSlug": "mpo-cleaner",
+              "addItem": {
+                "title": "Mpo Cleaner",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "vfl",
+              "tag": "VFL",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M24 10l4 8 8 4-8 4-4 8-4-8-8-4 8-4z\"></path><circle cx=\"24\" cy=\"24\" r=\"2\"></circle></svg>",
+              "name": "VFL â Visual Fault Locator",
+              "blurb": "650nm visible red laser (1mW) to detect breaks, micro-bends, and faults up to 10km.",
+              "pills": [
+                "650nm Laser",
+                "Up to 10km"
+              ],
+              "detailsSlug": "vfl",
+              "addItem": {
+                "title": "Vfl",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "fiber-spool",
+              "tag": "Spool",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><circle cx=\"24\" cy=\"24\" r=\"16\"></circle><circle cx=\"24\" cy=\"24\" r=\"6\"></circle><path d=\"M24 8v16\"></path><path d=\"M8 24h16\"></path></svg>",
+              "name": "Fiber Spool / Fiber Drum",
+              "blurb": "Precision-wound fiber optic spool for storage, testing, and emergency field restoration. Available in SM and MM, 100m to 2km lengths.",
+              "pills": [
+                "SM / MM",
+                "100m â 2km"
+              ],
+              "detailsSlug": "fiber-spool",
+              "addItem": {
+                "title": "Fiber Spool",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            },
+            {
+              "slug": "splice-sleeves",
+              "tag": "Sleeves",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"20\" width=\"20\" height=\"8\" rx=\"4\"></rect><line x1=\"8\" y1=\"24\" x2=\"40\" y2=\"24\"></line></svg>",
+              "name": "Splice Sleeves",
+              "blurb": "Heat-shrink protection for fusion splices, available in standard 60mm and 40mm lengths.",
+              "pills": [
+                "60mm / 40mm",
+                "Heat-Shrink"
+              ],
+              "detailsSlug": "splice-sleeves",
+              "addItem": {
+                "title": "Splice Sleeves",
+                "specs": "Standard Factory Specs",
+                "image": "images/fiber-patch-panel.png"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

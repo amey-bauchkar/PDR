@@ -1,0 +1,501 @@
+/* ================================================================
+   PHASE 6 — FINAL EXECUTION PASS
+   Premium industrial B2B overhaul
+   Loads AFTER phase5-polish.css — overrides everything
+   ================================================================ */
+
+/* ─── 1. FOOTER: FULL REDESIGN — DARK CHARCOAL/NAVY ─── */
+.footer {
+  background: #0C1220 !important;
+  background-image: linear-gradient(180deg, #111827 0%, #0C1220 40%, #090E1A 100%) !important;
+  border-top: 1px solid rgba(148,163,184,.08) !important;
+  padding: 72px 0 0 !important;
+  position: relative;
+}
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(148,163,184,.15), transparent);
+}
+
+/* Footer grid spacing */
+.footer .footer-grid {
+  gap: 40px 48px;
+}
+
+/* Footer text — muted slate, not blue-white */
+.footer p, .footer a, .footer li {
+  color: rgba(203,213,225,.65) !important;
+  font-size: 13px;
+  line-height: 1.75;
+}
+.footer a:hover {
+  color: #E2E8F0 !important;
+}
+
+/* Footer headings — subtle uppercase, no bright blue */
+.footer h4 {
+  color: rgba(241,245,249,.9) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: .18em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 20px !important;
+  position: relative;
+  padding-bottom: 12px;
+}
+.footer h4::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background: rgba(2,132,199,.5);
+  border-radius: 1px;
+}
+
+/* Footer brand section */
+.footer .footer-brand .brand {
+  color: #F1F5F9 !important;
+}
+.footer .footer-brand .brand .brand-mark {
+  background: linear-gradient(135deg, #1E293B, #334155) !important;
+  box-shadow: 0 4px 12px -2px rgba(0,0,0,.4) !important;
+  border: 1px solid rgba(148,163,184,.12);
+}
+.footer .footer-brand p {
+  color: rgba(148,163,184,.55) !important;
+  font-size: 13px !important;
+  line-height: 1.7 !important;
+  max-width: 340px;
+}
+.footer .footer-brand p strong {
+  color: rgba(241,245,249,.85) !important;
+  font-weight: 700;
+}
+
+/* Made in India chip */
+.footer .made-in {
+  background: rgba(241,245,249,.04) !important;
+  border: 1px solid rgba(148,163,184,.1) !important;
+  color: rgba(203,213,225,.7) !important;
+  font-size: 11px !important;
+  padding: 5px 12px !important;
+  border-radius: 6px !important;
+}
+
+/* Social row */
+.footer .social-row a {
+  background: rgba(241,245,249,.04) !important;
+  border: 1px solid rgba(148,163,184,.08) !important;
+  color: rgba(148,163,184,.6) !important;
+  border-radius: 8px !important;
+  width: 36px !important;
+  height: 36px !important;
+  transition: all 200ms ease !important;
+}
+.footer .social-row a:hover {
+  background: rgba(2,132,199,.12) !important;
+  border-color: rgba(2,132,199,.3) !important;
+  color: #38BDF8 !important;
+  transform: translateY(-2px);
+}
+
+/* Footer links hover */
+.footer ul {
+  gap: 6px !important;
+}
+.footer li a {
+  padding: 2px 0;
+  display: inline-block;
+  transition: color 150ms ease, transform 150ms ease !important;
+}
+.footer li a:hover {
+  color: #CBD5E1 !important;
+  transform: translateX(3px);
+}
+
+/* Footer bottom / legal */
+.footer .footer-bottom {
+  margin-top: 48px !important;
+  padding: 20px 0 !important;
+  border-top: 1px solid rgba(148,163,184,.06) !important;
+}
+.footer .footer-bottom p {
+  color: rgba(148,163,184,.35) !important;
+  font-size: 11px !important;
+}
+.footer .footer-bottom .links a {
+  color: rgba(148,163,184,.4) !important;
+  font-size: 11px !important;
+}
+.footer .footer-bottom .links a:hover {
+  color: rgba(203,213,225,.7) !important;
+}
+
+/* Footer quick actions */
+.footer-quick-actions {
+  border-top-color: rgba(148,163,184,.06) !important;
+}
+.footer-quick-actions a[style*="background:var(--accent)"],
+.footer-quick-actions a:first-child {
+  background: rgba(2,132,199,.15) !important;
+  border: 1px solid rgba(2,132,199,.25) !important;
+  color: #38BDF8 !important;
+  border-radius: 8px !important;
+}
+.footer-quick-actions a[style*="background:var(--accent)"]:hover,
+.footer-quick-actions a:first-child:hover {
+  background: rgba(2,132,199,.25) !important;
+  border-color: rgba(2,132,199,.4) !important;
+}
+.footer-quick-actions a[style*="background:rgba(255,255,255,.06)"],
+.footer-quick-actions a:not(:first-child) {
+  background: rgba(241,245,249,.03) !important;
+  border: 1px solid rgba(148,163,184,.08) !important;
+  color: rgba(203,213,225,.7) !important;
+  border-radius: 8px !important;
+}
+.footer-quick-actions a:not(:first-child):hover {
+  background: rgba(241,245,249,.06) !important;
+  border-color: rgba(148,163,184,.15) !important;
+  color: #E2E8F0 !important;
+}
+
+/* Footer contact strong labels */
+.footer li strong {
+  color: rgba(241,245,249,.75) !important;
+  font-size: 11px !important;
+  letter-spacing: .06em;
+}
+
+
+/* ─── 2. GLOBAL ANTI-TEMPLATE: TIGHTER SPACING ─── */
+
+/* Reduce section padding globally */
+.section {
+  padding: clamp(48px, 6vw, 80px) 0 !important;
+}
+
+/* Tighter section head margins */
+.sec-head {
+  margin-bottom: 32px !important;
+}
+
+/* Better section head typography */
+.sec-head p {
+  font-size: 16px !important;
+  line-height: 1.65;
+  max-width: 640px;
+}
+
+/* Eyebrow: more refined, less template */
+.eyebrow {
+  font-size: 11px !important;
+  letter-spacing: .14em !important;
+  color: var(--accent) !important;
+  margin-bottom: 14px !important;
+  font-weight: 700;
+}
+.eyebrow::before {
+  width: 20px !important;
+  height: 1.5px !important;
+  opacity: .7;
+}
+
+/* Card border radius: less rounded = less cheap */
+.ind-card,
+.why-card,
+.svc,
+.cert,
+.hp-cat-card,
+.hp-sol-card,
+.prod-card,
+.loc-card {
+  border-radius: 10px !important;
+}
+
+/* Card borders: more subtle */
+.ind-card,
+.why-card,
+.hp-cat-card,
+.hp-sol-card {
+  border-color: rgba(226,232,240,.7) !important;
+}
+
+/* Card hover: less floaty, more grounded */
+.ind-card:hover,
+.why-card:hover,
+.hp-cat-card:hover,
+.hp-sol-card:hover,
+.svc:hover,
+.cert:hover,
+.prod-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 28px -8px rgba(15,23,42,.08), 0 4px 6px -2px rgba(15,23,42,.03) !important;
+}
+
+/* Card icons: less rounded, more professional */
+.ind-icon,
+.hp-cat-icon,
+.hp-sol-ico,
+.svc-ico {
+  border-radius: 8px !important;
+}
+
+/* Why card numbers: less template-like */
+.why-card .num {
+  font-size: 40px !important;
+  color: rgba(15,23,42,.05) !important;
+  margin-bottom: 8px !important;
+}
+
+
+/* ─── 3. HOMEPAGE SPACING FIX ─── */
+
+/* Product section → Solutions: remove gap */
+.section[style*="padding-bottom: 0px"] {
+  padding-bottom: 0 !important;
+}
+.section[style*="padding-top: 48px"] {
+  padding-top: 40px !important;
+}
+
+/* CTA band section: tighter */
+.section[style*="padding-top:20px"] {
+  padding-top: 16px !important;
+  padding-bottom: 72px !important;
+}
+
+/* Hero: tighter bottom */
+.hp-hero {
+  padding: 110px 0 64px !important;
+}
+
+/* Trust strip: more compact */
+.trust-strip {
+  padding: 28px 0 !important;
+}
+
+/* Stats bar: tighter */
+.stats .stat {
+  padding: 32px 24px !important;
+}
+.stat-num {
+  font-size: 42px !important;
+}
+
+/* Why PDR section: tighter */
+.section[style*="background:var(--surface-2)"] {
+  padding: clamp(48px, 6vw, 72px) 0 !important;
+}
+
+
+/* ─── 4. MEGA MENU ENHANCEMENT ─── */
+
+/* Premium mega menu panel */
+.mega {
+  width: min(960px, 92vw) !important;
+  padding: 28px !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(226,232,240,.8) !important;
+  box-shadow: 0 24px 64px -16px rgba(15,23,42,.12), 0 8px 20px -8px rgba(15,23,42,.06) !important;
+  background: #FFFFFF !important;
+}
+
+/* Mega menu items: more structured */
+.mega-grid {
+  gap: 4px !important;
+}
+.mega a {
+  padding: 14px 16px !important;
+  border-radius: 8px !important;
+  border: 1px solid transparent !important;
+  transition: all 150ms ease !important;
+}
+.mega a:hover {
+  background: #F8FAFC !important;
+  border-color: rgba(226,232,240,.6) !important;
+  transform: translateX(2px) !important;
+}
+.mega a strong {
+  font-size: 14px !important;
+  margin-bottom: 3px !important;
+  color: #0F172A !important;
+}
+.mega a:hover strong {
+  color: var(--accent) !important;
+}
+.mega a span {
+  font-size: 12px !important;
+  color: #64748B !important;
+  line-height: 1.4;
+}
+
+/* Nav link underline: thinner */
+.nav-center > a::after {
+  height: 1.5px !important;
+}
+
+
+/* ─── 5. BLUE/VISUAL AUDIT — REDUCE BLUE OVERUSE ─── */
+
+/* Product card art: less aggressive blue gradient */
+.prod-art {
+  background: linear-gradient(145deg, #111827, #1E293B) !important;
+}
+
+/* Brand mark in header: more navy, less bright */
+.brand-mark {
+  background: linear-gradient(135deg, #1E3A5F, #0F2847) !important;
+  box-shadow: 0 4px 12px -2px rgba(15,23,42,.3) !important;
+}
+
+/* Card hover borders: use slate not bright blue */
+.ind-card:hover,
+.why-card:hover,
+.hp-cat-card:hover,
+.hp-sol-card:hover,
+.svc:hover {
+  border-color: #94A3B8 !important;
+}
+
+/* Hero status pills: more subtle */
+.hero-status {
+  background: rgba(16,185,129,.06) !important;
+  border-color: rgba(16,185,129,.18) !important;
+  font-size: 11px !important;
+}
+
+/* Trust strip: more refined */
+.trust-line {
+  font-size: 11px !important;
+  letter-spacing: .14em !important;
+  color: #94A3B8 !important;
+  margin-bottom: 18px !important;
+}
+.trust-item {
+  font-size: 13px !important;
+  color: #334155 !important;
+  opacity: 1 !important;
+}
+
+/* Section alternation: better contrast */
+.sec-muted {
+  background: #F8FAFC !important;
+}
+
+/* Hero visual: better framing */
+.hp-hero-visual {
+  border-radius: 10px !important;
+  border-color: rgba(226,232,240,.6) !important;
+  box-shadow: 0 16px 48px -12px rgba(15,23,42,.1), 0 4px 8px -2px rgba(15,23,42,.04) !important;
+  padding: 6px !important;
+}
+
+/* Hero badges: more refined */
+.hp-hero-badges span,
+div[style*="display:inline-flex"][style*="background:#F1F5F9"] {
+  border-radius: 4px !important;
+  font-size: 12px !important;
+}
+
+/* Button refinements: less rounded for premium feel */
+.btn {
+  border-radius: 8px !important;
+}
+.btn-primary {
+  box-shadow: 0 4px 14px -4px rgba(2,132,199,.35) !important;
+}
+.btn-primary:hover {
+  background: #0369A1 !important;
+  box-shadow: 0 8px 24px -6px rgba(2,132,199,.4) !important;
+}
+
+/* Chip styling: less pill-like */
+.chip {
+  border-radius: 6px !important;
+}
+
+/* CTA band: better border */
+.hp-cta-band {
+  border-radius: 16px !important;
+}
+
+/* Mobile overlay: charcoal not blue */
+.mobile-overlay {
+  background: #0C1220 !important;
+}
+
+
+/* ─── 6. PREMIUM TYPOGRAPHY REFINEMENTS ─── */
+
+/* H2: slightly smaller for density */
+h2 {
+  font-size: clamp(28px, 3.2vw, 42px) !important;
+  letter-spacing: -.025em !important;
+}
+
+/* Body text: slightly darker for readability */
+body {
+  color: #374151 !important;
+}
+
+/* Muted text: better contrast */
+.sec-head p {
+  color: #4B5563 !important;
+}
+
+
+/* ─── 7. SECTION DIVIDERS ─── */
+
+/* Add subtle top borders between sections */
+.section + .section {
+  border-top: 1px solid rgba(226,232,240,.4);
+}
+.section.sec-dark + .section,
+.section + .section.sec-dark,
+.stats + .section {
+  border-top: none;
+}
+
+
+/* ─── 8. RESPONSIVE OVERRIDES ─── */
+
+@media (max-width: 900px) {
+  .footer .footer-grid {
+    gap: 28px !important;
+  }
+  .section {
+    padding: clamp(40px, 5vw, 64px) 0 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding: 48px 0 0 !important;
+  }
+  .footer h4::after {
+    display: none;
+  }
+  .mega {
+    display: none !important;
+  }
+  h2 {
+    font-size: clamp(22px, 6vw, 30px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 36px 0 !important;
+  }
+  .hp-hero {
+    padding: 100px 0 48px !important;
+  }
+}

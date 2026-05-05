@@ -1,0 +1,765 @@
+:root {
+  /* Premium Motion Tokens */
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  --dur-fast: 150ms;
+  --dur-smooth: 250ms;
+  --dur-reveal: 600ms;
+}
+
+/* ─── 1. FOCUS & ACCESSIBILITY ─── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Minimum tap targets */
+.icon-btn,
+.social-row a,
+.menu-toggle,
+.pr-close,
+.chip {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Skip to main content (screen reader) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── 2. GLOBAL MICRO-INTERACTIONS ─── */
+/* Smoother link transitions everywhere */
+a { 
+  transition: color var(--dur-fast) var(--ease-in-out), opacity var(--dur-fast) var(--ease-in-out); 
+}
+
+/* Button Refinements */
+.btn {
+  transition: all var(--dur-smooth) var(--ease-smooth);
+  will-change: transform, box-shadow, background-color;
+}
+.btn:active {
+  transform: scale(0.96);
+  transition: transform 100ms var(--ease-out);
+}
+
+/* Card lift standardization */
+.pr-pcard,
+.hp-cat-card,
+.hp-sol-card,
+.ind-card,
+.why-card,
+.svc,
+.cert,
+.loc-card,
+.sl-card,
+.rs-card,
+.prod-card {
+  transition: transform var(--dur-smooth) var(--ease-smooth), 
+              box-shadow var(--dur-smooth) var(--ease-smooth), 
+              border-color var(--dur-smooth) var(--ease-smooth),
+              background-color var(--dur-smooth) var(--ease-smooth);
+  will-change: transform, box-shadow;
+}
+
+.prod-card:hover,
+.ind-card:hover,
+.cert:hover {
+  transform: translateY(-6px);
+}
+
+/* Form Focus Refinement */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px var(--accent-soft) !important;
+  transition: all var(--dur-fast) var(--ease-out);
+}
+
+/* Dropdown & Panel Transitions */
+.mega,
+.mobile-overlay,
+.pr-drawer {
+  transition: opacity var(--dur-smooth) var(--ease-smooth), 
+              transform var(--dur-smooth) var(--ease-smooth),
+              visibility var(--dur-smooth);
+}
+
+/* Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--dur-reveal) var(--ease-smooth), 
+              transform var(--dur-reveal) var(--ease-smooth);
+  will-change: opacity, transform;
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── 3. MOBILE FLOAT CTA FIX ─── */
+/* Prevent overlap: add safe area padding to page bottom */
+@media (max-width: 900px) {
+  main {
+    padding-bottom: 72px;
+  }
+  .float-cta {
+    bottom: max(16px, env(safe-area-inset-bottom, 16px));
+    font-size: 14px;
+    padding: 13px 20px;
+    border-radius: 99px;
+    z-index: 998;
+    box-shadow: 0 8px 32px -4px rgba(74,159,216,0.5);
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* ─── 4. MOBILE LAYOUT FIXES (390px target) ─── */
+@media (max-width: 480px) {
+  /* Header breathing room */
+  .container.nav {
+    padding: 0 12px;
+  }
+  .brand small {
+    display: none;
+  }
+  
+  /* Section padding tighter but not cramped */
+  .section {
+    padding: 48px 0;
+  }
+  .sec-head {
+    margin-bottom: 28px;
+  }
+  .sec-head h2, h2 {
+    font-size: clamp(22px, 6vw, 32px);
+    line-height: 1.2;
+  }
+  .sec-head p {
+    font-size: 15px;
+  }
+  .container {
+    padding: 0 16px;
+  }
+  
+  /* Eyebrow */
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  
+  /* Buttons: full-width stacking on small screens */
+  .hp-cta-row,
+  div[style*="display:flex"][style*="justify-content:center"][style*="flex-wrap:wrap"] {
+    gap: 8px !important;
+  }
+  .hp-cta-row .btn,
+  .btn-primary,
+  .btn-ghost,
+  .btn-outline {
+    font-size: 14px;
+    padding: 12px 20px;
+  }
+  
+  /* Stats grid: single column */
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .stat {
+    border-right: none !important;
+    padding: 20px 16px;
+  }
+}
+
+/* ─── 5. PRODUCTS PAGE MOBILE ─── */
+@media (max-width: 640px) {
+  /* Product grid: single column with breathing room */
+  .pr-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+  }
+  .pr-pcard-art {
+    height: 120px;
+  }
+  .pr-pcard-body {
+    padding: 14px 16px 16px;
+  }
+  .pr-pcard-body h3 {
+    font-size: 15px;
+    line-height: 1.3;
+  }
+  .pr-pcard-body > p {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .pr-prod-cta {
+    padding-top: 12px;
+  }
+  .pr-prod-cta a {
+    font-size: 13px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  /* Sub-headings */
+  .pr-sub-head {
+    font-size: 18px;
+    margin-bottom: 20px;
+    padding-left: 12px;
+  }
+  
+  /* Hero stats */
+  .pr-hero-stats {
+    flex-wrap: wrap;
+    gap: 4px 0;
+  }
+  .pr-hero-stats span {
+    font-size: 12px;
+    padding: 2px 8px;
+  }
+  
+  /* Sticky nav scrollable */
+  .pr-sticky-nav {
+    top: 60px;
+  }
+  .pr-tab {
+    padding: 12px 14px;
+    font-size: 12px;
+  }
+}
+
+/* Products tablet: 2-column grid */
+@media (min-width: 641px) and (max-width: 900px) {
+  .pr-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px;
+  }
+}
+
+/* ─── 6. DRAWER MOBILE POLISH ─── */
+@media (max-width: 640px) {
+  .pr-drawer {
+    width: 100vw !important;
+  }
+  .pr-drawer-head {
+    padding: 16px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .pr-drawer-body {
+    padding: 20px 16px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .pr-drawer-img {
+    height: 160px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+  }
+  .pr-feat-list li {
+    font-size: 13px;
+  }
+  .pr-spec-trow {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  .pr-spec-tkey {
+    font-size: 12px;
+    min-width: 100px;
+    width: 100px;
+  }
+  .pr-spec-tval {
+    font-size: 12px;
+  }
+  .pr-app-tag {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+  
+  /* Drawer CTA area */
+  .pr-drawer-cta {
+    padding: 14px 16px;
+    gap: 8px !important;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    background: var(--bg-2);
+    border-top: 1px solid rgba(255,255,255,.08);
+    /* safe area for iOS */
+    padding-bottom: max(14px, env(safe-area-inset-bottom, 14px));
+  }
+  .pr-drawer-cta .btn {
+    font-size: 13px !important;
+    padding: 11px 12px;
+    min-height: 44px;
+  }
+}
+
+/* ─── 7. CONTACT PAGE MOBILE ─── */
+@media (max-width: 640px) {
+  .ct-hero {
+    padding: 100px 0 32px;
+  }
+  .ct-hero h1 {
+    font-size: clamp(24px, 6.5vw, 32px);
+  }
+  .ct-hero > .container > p {
+    font-size: 15px;
+  }
+  .ct-info-card {
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .ct-info-card h3 {
+    font-size: 17px;
+    margin-bottom: 16px;
+  }
+  .ct-detail-text p,
+  .ct-detail-text a {
+    font-size: 14px;
+  }
+  .ct-form-wrap {
+    padding: 20px;
+    border-radius: 14px;
+  }
+  .ct-form-head h2 {
+    font-size: 22px;
+  }
+  .ct-form-head p {
+    font-size: 14px;
+  }
+  .ct-input,
+  .ct-select,
+  .ct-textarea {
+    padding: 12px 14px;
+    font-size: 16px; /* prevents iOS zoom */
+    border-radius: 8px;
+  }
+  .ct-field label {
+    font-size: 12px;
+  }
+  .ct-map-wrap {
+    height: 280px;
+    margin-top: 48px;
+  }
+}
+
+/* ─── 8. ABOUT PAGE MOBILE ─── */
+@media (max-width: 640px) {
+  .ab-hero {
+    padding: 100px 0 48px;
+  }
+  .ab-hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px;
+  }
+  .ab-stats-bar {
+    flex-wrap: wrap;
+  }
+  .ab-stat {
+    flex: 1 1 45%;
+    min-width: 140px;
+    padding: 24px 16px;
+    border-bottom: 1px solid var(--line-dark);
+  }
+  .ab-stat:nth-child(odd) {
+    border-right: 1px solid var(--line-dark);
+  }
+  .ab-stat:nth-child(even) {
+    border-right: none;
+  }
+  .ab-stat:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+  .ab-stat-num {
+    font-size: 30px;
+  }
+  .ab-stat-label {
+    font-size: 11px;
+    line-height: 1.3;
+  }
+  .ab-story-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px;
+  }
+  .mfg-row {
+    grid-template-columns: 1fr !important;
+    gap: 24px;
+  }
+  .mfg-points {
+    grid-template-columns: 1fr !important;
+  }
+}
+@media (max-width: 375px) {
+  .ab-stat {
+    flex: 1 1 100%;
+    border-right: none !important;
+  }
+}
+
+/* ─── 9. SOLUTIONS PAGE MOBILE ─── */
+@media (max-width: 640px) {
+  .sl-card {
+    flex-direction: column !important;
+  }
+  .sl-card-img {
+    height: 180px !important;
+    min-height: auto !important;
+    width: 100% !important;
+  }
+  .sl-card-body {
+    padding: 20px !important;
+  }
+  .sl-card-body h3 {
+    font-size: 18px;
+  }
+  .sl-feat-item {
+    font-size: 13px;
+  }
+}
+
+/* ─── 10. RESOURCES PAGE MOBILE ─── */
+@media (max-width: 640px) {
+  .rs-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .rs-card {
+    padding: 20px;
+  }
+  .rs-video-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ─── 11. FOOTER MOBILE ─── */
+@media (max-width: 640px) {
+  .footer {
+    padding: 48px 0 0;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px;
+  }
+  .footer-brand p {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .footer h4 {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  .footer ul {
+    gap: 6px;
+  }
+  .footer p, .footer a, .footer li {
+    font-size: 12px;
+  }
+  .social-row {
+    margin-top: 14px;
+  }
+  .social-row a {
+    width: 38px;
+    height: 38px;
+  }
+  /* Footer quick actions */
+  .footer-quick-actions {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+  .footer-quick-actions a {
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+  }
+  .footer-bottom {
+    padding: 20px 0;
+    margin-top: 32px;
+  }
+}
+
+/* ─── 12. TABLET (768px) ─── */
+@media (min-width: 641px) and (max-width: 1100px) {
+  .hp-cat-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .hp-cat-grid .hp-cat-card:last-child {
+    grid-column: auto;
+  }
+  .hp-sol-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .cert-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+}
+
+/* ─── 13. WIDE SCREEN CONSTRAINT ─── */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+/* ─── 14. PRINT STYLES ─── */
+@media print {
+  .site-header,
+  .float-cta,
+  .mobile-overlay,
+  .pr-drawer,
+  .pr-drawer-backdrop,
+  .fiber-scroll-zone {
+    display: none !important;
+  }
+  body {
+    color: #000 !important;
+    background: #fff !important;
+  }
+}
+
+/* ─── 15. SMOOTH SCROLL ANCHORS ─── */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+/* ─── 16. IMAGE OPTIMIZATION ─── */
+img {
+  max-width: 100%;
+  height: auto;
+}
+img[loading="lazy"] {
+  content-visibility: auto;
+}
+
+/* ─── 17. HEADER SCROLL TRANSITION ─── */
+.site-header {
+  transition: background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* ─── 18. SELECTION COLOR ─── */
+::selection {
+  background: rgba(74,159,216,0.2);
+  color: inherit;
+}
+
+/* ─── 19. FORM POLISH ─── */
+input, select, textarea, button {
+  font-family: inherit;
+}
+/* iOS form element fix */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* ─── 20. CANVAS STATE ─── */
+#fiberCanvas {
+  will-change: transform;
+  image-rendering: auto;
+}
+
+/* ─── 21. REDUCED MOTION ─── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .pr-drawer {
+    transition: none !important;
+  }
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── 22. TRUST LINE SPACING FIX ─── */
+.pr-drawer-cta > div:last-child {
+  padding-bottom: 4px;
+}
+
+/* ─── 23. HERO STATUS PILL CONSISTENCY ─── */
+.hero-status {
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 99px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-status .live {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  display: inline-block;
+  animation: livePulse 2s ease-in-out infinite;
+}
+@keyframes livePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ─── 24. NARROW SCREEN HERO SIZING (320-390px) ─── */
+@media (max-width: 400px) {
+  h1 {
+    font-size: clamp(24px, 7vw, 36px) !important;
+    line-height: 1.15;
+  }
+  .pr-hero h1,
+  .ct-hero h1,
+  .ab-hero h1,
+  [class*="-hero"] h1 {
+    font-size: clamp(22px, 6.5vw, 32px) !important;
+  }
+}
+
+/* ─── 25. INDUSTRY GRID MOBILE ─── */
+@media (max-width: 640px) {
+  .ind-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px;
+  }
+  .ind-card {
+    padding: 16px;
+  }
+  .ind-card h3 {
+    font-size: 13px;
+  }
+  .ind-card p {
+    font-size: 11px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+@media (max-width: 375px) {
+  .ind-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ─── 26. SOLUTIONS HERO MOBILE ─── */
+@media (max-width: 640px) {
+  .sl-hero {
+    padding: 100px 0 48px;
+  }
+  .sl-hero h1 {
+    font-size: clamp(24px, 6.5vw, 34px);
+  }
+}
+
+/* ─── 27. MOBILE NAV OVERLAY POLISH ─── */
+.mobile-overlay {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+.mobile-overlay a,
+.mobile-overlay summary {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.mobile-cta {
+  padding-bottom: max(24px, env(safe-area-inset-bottom, 24px));
+}
+
+/* ─── 28. SCROLL BAR STYLING ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(113,113,122,0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(113,113,122,0.5);
+}
+
+/* Dark sections */
+.sec-dark ::-webkit-scrollbar-thumb,
+.pr-drawer ::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.15);
+}
+
+/* ─── 29. PRODUCT HERO MOBILE ─── */
+@media (max-width: 640px) {
+  .pr-hero {
+    padding: 100px 0 48px;
+  }
+  .pr-hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px;
+  }
+  .pr-cat-nav-panel {
+    padding: 16px;
+    border-radius: 14px;
+  }
+  .pr-cat-pill {
+    padding: 12px 14px;
+    margin-bottom: 6px;
+  }
+  .pr-cat-pill-name {
+    font-size: 13px;
+  }
+  .pr-cat-pill-right {
+    font-size: 11px;
+  }
+}
+
+/* ─── 30. GLOBAL LINK UNDERLINE ON HOVER ─── */
+.footer a:hover,
+.ct-detail-text a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

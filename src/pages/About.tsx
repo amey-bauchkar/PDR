@@ -1,0 +1,263 @@
+import { Link } from 'react-router-dom';
+import Seo from '../components/Seo';
+import '../styles/about.css';
+
+export default function About() {
+  return (
+    <>
+      <Seo
+        title="About PDR World | 40 Years of Fiber Optic Manufacturing Excellence"
+        description="Established in 1985, PDR Videotronics India is a pioneer in fiber optic technology. ISO 9001:2015 certified manufacturing facility in Mumbai, serving global telecom and defence sectors."
+        canonical="https://pdrworld.com/about"
+      />
+      {/* HERO SECTION */}
+      <section className="ab-hero">
+        <div className="container">
+          <div className="ab-hero-grid">
+            <div className="reveal">
+              <div className="eyebrow">Our Story · Since 1985</div>
+              <h1 style={{ color: '#07008F' }}>Pioneering optical fiber technology in India.</h1>
+              <p style={{ fontSize: '18px', color: '#475569', marginTop: '24px', maxWidth: '540px' }}>For nearly four decades, PDR Videotronics has been at the forefront of manufacturing active and passive fiber optic infrastructure, empowering India&apos;s digital backbone from our Mumbai headquarters.</p>
+            </div>
+            <div className="ab-hero-img reveal" style={{ transitionDelay: '0.1s' }}>
+              <img src="/images/factory-modern.png" alt="PDR Manufacturing Facility" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.9 }} />
+              <div className="ab-est">
+                <div className="ab-est-year">1985</div>
+                <div className="ab-est-text">Year Established</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* STATS BAR */}
+      <div className="ab-stats-bar reveal">
+        <div className="container" style={{ display: 'flex', width: '100%', padding: 0 }}>
+          <div className="ab-stat">
+            <div className="ab-stat-num">3,000+</div>
+            <div className="ab-stat-label">Enterprise Customers</div>
+          </div>
+          <div className="ab-stat">
+            <div className="ab-stat-num">15+</div>
+            <div className="ab-stat-label">Countries Exported To</div>
+          </div>
+          <div className="ab-stat">
+            <div className="ab-stat-num">50+</div>
+            <div className="ab-stat-label">Product Families</div>
+          </div>
+          <div className="ab-stat">
+            <div className="ab-stat-num">40+</div>
+            <div className="ab-stat-label">Years of Excellence</div>
+          </div>
+        </div>
+      </div>
+
+      {/* THE PDR STORY */}
+      <section className="section reveal" style={{ background: 'var(--surface-2)', borderBottom: '1px solid var(--line)' }}>
+        <div className="container">
+          <div className="ab-story-grid">
+            <div>
+              <h2 style={{ marginBottom: '24px' }}>Building the foundation of modern connectivity.</h2>
+              <div className="ab-story-content">
+                <p>Established in 1985 in Mumbai, PDR Videotronics India Pvt. Ltd. began with a vision to build reliable, high-quality electronic and optical components for the emerging telecommunications sector. As technology evolved, so did we.</p>
+                <p>Today, we are a leading manufacturer and supplier of Active and Passive Fiber Optic Components, Cable Management Devices, and Test &amp; Measuring Equipment. Our product portfolio is trusted by Telecom Operators, Defence forces, ISPs, OEMs, and Research Institutions globally.</p>
+                <p>Our philosophy is simple: complete vertical integration. By keeping manufacturing, testing, and distribution entirely in-house, we ensure zero supply chain gaps and unparalleled quality control. We don&apos;t just assemble; we engineer solutions that withstand the harshest environments and the most demanding data loads.</p>
+              </div>
+            </div>
+            <div>
+              <ul className="ab-values">
+                <li className="ab-value">
+                  <div className="ab-value-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg></div>
+                  <div>
+                    <h4>Uncompromising Quality</h4>
+                    <p>100% factory testing using advanced interferometric equipment.</p>
+                  </div>
+                </li>
+                <li className="ab-value">
+                  <div className="ab-value-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg></div>
+                  <div>
+                    <h4>Rapid Delivery</h4>
+                    <p>Extensive inventory allows for same-day shipping on standard products.</p>
+                  </div>
+                </li>
+                <li className="ab-value">
+                  <div className="ab-value-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" /><polyline points="3.27 6.96 12 12.01 20.73 6.96" /><line x1="12" y1="22.08" x2="12" y2="12" /></svg></div>
+                  <div>
+                    <h4>Custom Engineering</h4>
+                    <p>We manufacture to specific client configurations within 24 hours.</p>
+                  </div>
+                </li>
+                <li className="ab-value">
+                  <div className="ab-value-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg></div>
+                  <div>
+                    <h4>Dedicated Support</h4>
+                    <p>Direct access to our engineering team for technical consultations.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* HISTORY & EVOLUTION */}
+      <section className="section reveal" id="history">
+        <div className="container">
+          <div className="sec-head center">
+            <div className="eyebrow" style={{ justifyContent: 'center' }}>Our Journey</div>
+            <h2>40 Years of Innovation</h2>
+            <p>From a small R&amp;D lab in 1985 to a global leader in fiber optic technology.</p>
+          </div>
+
+          <div className="timeline">
+            <div className="tm-item left">
+              <div className="tm-content">
+                <h3>1985</h3>
+                <h4>The Inception</h4>
+                <p>PDR Videotronics India was established in Mumbai with a vision to pioneer domestic research and development in optical communication.</p>
+              </div>
+            </div>
+            <div className="tm-item right">
+              <div className="tm-content">
+                <h3>1995</h3>
+                <h4>Manufacturing Scale-up</h4>
+                <p>Expanded operations to a dedicated facility to meet the surging demand for high-quality patch cords and termination boxes from national telecom operators.</p>
+              </div>
+            </div>
+            <div className="tm-item left">
+              <div className="tm-content">
+                <h3>2010</h3>
+                <h4>Going Global</h4>
+                <p>Achieved ISO 9001:2015 certification and expanded export operations to over 15 countries, establishing PDR as a trusted international B2B partner.</p>
+              </div>
+            </div>
+            <div className="tm-item right">
+              <div className="tm-content">
+                <h3>2024</h3>
+                <h4>Next-Gen Horizons</h4>
+                <p>Launched the Optical Fiber Drone and 400G transceiver portfolio, continuing to lead India&apos;s &quot;Make in India&quot; initiative in high-speed networking.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* COMPLIANCE & CERTIFICATIONS */}
+      <section className="section sec-muted reveal" id="compliance">
+        <div className="container">
+          <div className="sec-head center">
+            <div className="eyebrow" style={{ justifyContent: 'center' }}>Compliance &amp; Quality</div>
+            <h2>Tested. Verified. Certified.</h2>
+            <p>Our manufacturing processes adhere to the strictest global standards, ensuring every component performs flawlessly in mission-critical environments.</p>
+          </div>
+
+          <div className="ab-cert-grid">
+            <div className="ab-cert-card">
+              <div className="ab-cert-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>
+              <h4>ISO 9001:2015</h4>
+              <p>Certified Quality Management System for manufacturing and distribution.</p>
+            </div>
+            <div className="ab-cert-card">
+              <div className="ab-cert-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="11" width="18" height="10" rx="2" /><circle cx="12" cy="5" r="2" /><path d="M12 7v4" /></svg></div>
+              <h4>RoHS Compliant</h4>
+              <p>Products free from hazardous substances, ensuring environmental safety.</p>
+            </div>
+            <div className="ab-cert-card">
+              <div className="ab-cert-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg></div>
+              <h4>REACH Compliant</h4>
+              <p>Chemical safety and registration compliance for global distribution.</p>
+            </div>
+            <div className="ab-cert-card">
+              <div className="ab-cert-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M20 7h-9l-3-3h-5v16h22v-13z" /></svg></div>
+              <h4>MIL-STD Rated</h4>
+              <p>Ruggedised components meeting rigorous military-grade durability standards.</p>
+            </div>
+            <div className="ab-cert-card">
+              <div className="ab-cert-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg></div>
+              <h4>TEC Approved</h4>
+              <p>Certified by the Telecommunication Engineering Centre for public networks.</p>
+            </div>
+            <div className="ab-cert-card">
+              <div className="ab-cert-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10" /><path d="M2 12h20" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg></div>
+              <h4>Global Export</h4>
+              <p>Compliant with international telecom standards for global deployment.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* MANUFACTURING / MAKE IN INDIA */}
+      <section className="ab-mfg reveal">
+        <div className="container">
+          <div className="ab-mfg-grid">
+            <div>
+              <div className="eyebrow">Manufacturing Facility</div>
+              <h2 style={{ color: '#07008F', marginBottom: '24px' }}>Engineered in Mumbai. Deployed Worldwide.</h2>
+              <p style={{ color: '#475569', fontSize: '16px', lineHeight: 1.7 }}>Our state-of-the-art manufacturing facility at Filmcity Complex, Goregaon East, is the heart of PDR operations. Equipped with clean rooms, precision polishing machines, and advanced interferometers, we maintain absolute control over production quality.</p>
+
+              <div className="ab-mfg-features">
+                <div className="ab-mfg-feature">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
+                  <div>
+                    <h4>Interferometric Testing</h4>
+                    <p>Every cable assembly is tested for 3D geometry, insertion loss, and return loss.</p>
+                  </div>
+                </div>
+                <div className="ab-mfg-feature">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" /><polyline points="3.27 6.96 12 12.01 20.73 6.96" /><line x1="12" y1="22.08" x2="12" y2="12" /></svg>
+                  <div>
+                    <h4>Custom Prototyping</h4>
+                    <p>In-house tooling allows for rapid prototyping of custom ODFs and enclosures.</p>
+                  </div>
+                </div>
+                <div className="ab-mfg-feature">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+                  <div>
+                    <h4>Clean Room Assembly</h4>
+                    <p>Dust-free environments ensure zero contamination during connector termination.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="ab-hero-img" style={{ aspectRatio: '1/1.1', background: '#27272A', borderRadius: '18px', overflow: 'hidden', border: '1px solid rgba(255,255,255,.1)' }}>
+              <img src="/images/factory-modern.png" alt="PDR Manufacturing Facility Mumbai" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section reveal" id="careers" style={{ background: '#FAFAFA', borderTop: '1px solid #E2E8F0' }}>
+        <div className="container">
+          <div style={{ maxWidth: '800px', margin: '0 auto', background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: '24px', padding: '56px 40px', textAlign: 'center', boxShadow: 'var(--shadow-lg)', position: 'relative', overflow: 'hidden' }}>
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #4A9FD8, #07008F)' }}></div>
+            <div className="eyebrow" style={{ justifyContent: 'center', marginBottom: '16px' }}>Join Our Team</div>
+            <h2 style={{ marginBottom: '20px', color: '#07008F' }}>Careers at PDR</h2>
+            <p style={{ fontSize: '18px', color: '#475569', marginBottom: '40px', lineHeight: 1.6, maxWidth: '600px', marginInline: 'auto' }}>PDR Videotronics is constantly seeking innovative engineers, skilled technicians, and driven sales professionals who are passionate about shaping the future of global fiber optic infrastructure.</p>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
+              <a className="btn btn-primary" href="mailto:careers@pdrworld.com" style={{ padding: '16px 32px' }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginRight: '8px' }}><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                Send your CV
+              </a>
+              <a className="btn btn-outline" href="https://www.linkedin.com/company/pdr-world-mumbai/" target="_blank" rel="noopener noreferrer" style={{ padding: '16px 32px' }}>
+                View Openings on LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section">
+        <div className="container" style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto' }}>
+          <div className="eyebrow" style={{ justifyContent: 'center' }}>Partner With Us</div>
+          <h2>Ready to upgrade your network?</h2>
+          <p style={{ fontSize: '18px', color: 'var(--muted)', margin: '16px 0 32px' }}>Contact our technical team for product inquiries, custom manufacturing requests, or to become a distributor.</p>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link className="btn btn-primary" to="/contact?inquiry=Technical+Support">Request Technical Consultation</Link>
+            <Link className="btn btn-outline" to="/contact?inquiry=Distributorship">Become a Distributor</Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
