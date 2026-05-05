@@ -1275,10 +1275,29 @@ textarea:focus {
 }
 
 /* ─── 13. WIDE SCREEN CONSTRAINT ─── */
-@media (min-width: 1440px) {
-  .container {
-    max-width: 1280px;
+@media (max-width: 768px) {
+  .logo-container {
+    padding-top: 0;
+    max-width: 140px;
   }
+}
+
+/* BRAND LOGO STYLES */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer-logo {
+  height: 32px;
+  opacity: 0.9;
 }
 
 /* ─── 14. PRINT STYLES ─── */

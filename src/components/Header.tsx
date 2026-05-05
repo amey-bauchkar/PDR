@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 
+import logo from '../assets/logo.png';
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -53,11 +55,13 @@ export default function Header() {
       <header className={`site-header${scrolled ? ' scrolled' : ''}`} id="top">
         <div className="container nav">
           <Link className="brand" to="/" aria-label="PDR World home">
-            <span className="brand-mark">PDR</span>
-            <span>
-              PDR World
-              <small>Videotronics India · Since 1985</small>
-            </span>
+            <div className="logo-container">
+              <img src={logo} alt="PDR World" className="logo" />
+              <span className="brand-text" style={{ display: 'flex', flexDirection: 'column' }}>
+                PDR World
+                <small>Videotronics India · Since 1985</small>
+              </span>
+            </div>
           </Link>
 
           <nav className="nav-center" aria-label="Primary">

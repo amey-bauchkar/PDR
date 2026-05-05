@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import logo from '../assets/logo.png';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -7,11 +8,13 @@ export default function Footer() {
       <div className="container footer-grid">
         <div className="footer-brand">
           <Link className="brand" to="/">
-            <span className="brand-mark">PDR</span>
-            <span>
-              PDR World
-              <small>Videotronics India · Since 1985</small>
-            </span>
+            <div className="logo-container">
+              <img src={logo} alt="PDR World" className="logo footer-logo" />
+              <span className="brand-text" style={{ display: 'flex', flexDirection: 'column' }}>
+                PDR World
+                <small>Videotronics India · Since 1985</small>
+              </span>
+            </div>
           </Link>
           <p>
             <strong>Together in Progress</strong> — India's longstanding manufacturer of active &amp; passive fiber optic infrastructure —
