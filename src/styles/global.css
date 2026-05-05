@@ -2505,3 +2505,9 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.product-actions { display: flex; gap: 12px; margin-top: 12px; align-items: center; }
+.product-actions .btn-primary { background: #1a2b6d; color: white; padding: 10px 16px; border-radius: 10px; font-size: 14px; font-weight: 500; border: none; transition: all 0.25s ease; box-shadow: none; }
+.product-actions .btn-primary:hover { background: #2c3f8f; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
+.product-actions .btn-secondary { background: transparent; color: #1a2b6d; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid transparent; transition: all 0.25s ease; }
+.product-actions .btn-secondary:hover { background: rgba(26,43,109,0.08); }

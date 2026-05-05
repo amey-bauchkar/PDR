@@ -121,11 +121,11 @@ function ProductCard({ card, sectionId }: { card: Card; sectionId: string }) {
             ))}
           </div>
         )}
-        <div className="pr-prod-cta">
-          <button className="add-to-quote-btn" onClick={handleAdd}>
+        <div className="product-actions">
+          <button className="btn-primary" onClick={handleAdd}>
             {added ? '✓ Added' : 'Add to Quote'}
           </button>
-          {card.detailsSlug && <Link to={`/products/${card.detailsSlug}`}>Details →</Link>}
+          {card.detailsSlug && <Link className="btn-secondary" to={`/products/${card.detailsSlug}`}>Details →</Link>}
         </div>
       </div>
     </div>
@@ -171,6 +171,14 @@ function StickyNav() {
 }
 
 function CategorySection({ section, alt }: { section: Section; alt: boolean }) {
+  const excludedProducts = [
+    "Armoured Patchcord",
+    "POF — Plastic Optical Fiber Patchcord",
+    "Bendiboot Patchcord",
+    "LC Uniboot Patchcord",
+    "Mating Sleeve / Alignment Sleeve"
+  ];
+
   return (
     <section className={`section reveal${alt ? ' sec-muted' : ''}`} id={section.id}>
       <div className="container">
@@ -185,9 +193,11 @@ function CategorySection({ section, alt }: { section: Section; alt: boolean }) {
               {g.subhead && <h3 className="pr-sub-head">{g.subhead}</h3>}
               <div className="pr-grid">
                 {g.cards && g.cards.length > 0 ? (
-                  g.cards.map((c, idx) => (
-                    <ProductCard key={c.slug || idx} card={c} sectionId={section.id} />
-                  ))
+                  g.cards
+                    .filter((c) => !excludedProducts.includes(c.name))
+                    .map((c, idx) => (
+                      <ProductCard key={c.slug || idx} card={c} sectionId={section.id} />
+                    ))
                 ) : (
                   <div>No products available in this category.</div>
                 )}
