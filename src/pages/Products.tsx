@@ -21,8 +21,19 @@ type Group = { subhead: string; cards: Card[] };
 type Section = { id: string; eyebrow: string; heading: string; intro: string; groups: Group[] };
 
 const STICKY_HASH = ['#active', '#passive', '#cable', '#test', '#specialty', '#tools'];
+const CATEGORY_IMAGE_MAP: Record<string, string> = {
+  active: 'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=800&q=80',
+  passive: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
+  cable: 'https://images.unsplash.com/photo-1581092335878-4f8e1f9d9f8a?auto=format&fit=crop&w=800&q=80',
+  test: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80',
+  specialty: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=800&q=80',
+  tools: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=800&q=80',
+};
 
-function ProductCard({ card }: { card: Card }) {
+const resolveCardImage = (card: Card, sectionId: string) =>
+  card.img && card.img.trim().length > 0 ? card.img : CATEGORY_IMAGE_MAP[sectionId] ?? CATEGORY_IMAGE_MAP.passive;
+
+function ProductCard({ card, sectionId }: { card: Card; sectionId: string }) {
   const { addItem } = useRfqCart();
   const [added, setAdded] = useState(false);
 
@@ -36,8 +47,8 @@ function ProductCard({ card }: { card: Card }) {
     <div className="pr-pcard reveal" data-product={card.slug}>
       <div className="pr-pcard-art">
         {card.tag && <span className="pr-prod-tag">{card.tag}</span>}
-        {card.img ? (
-          <img src={card.img} alt={card.slug} className="real-img" />
+        {card.img || CATEGORY_IMAGE_MAP[sectionId] ? (
+          <img src={resolveCardImage(card, sectionId)} alt={card.name} className="real-img" loading="lazy" />
         ) : (
           <span dangerouslySetInnerHTML={{ __html: card.heroSvg }} />
         )}
@@ -115,7 +126,7 @@ function CategorySection({ section, alt }: { section: Section; alt: boolean }) {
             {g.subhead && <h3 className="pr-sub-head">{g.subhead}</h3>}
             <div className="pr-grid">
               {g.cards.map((c) => (
-                <ProductCard key={c.slug} card={c} />
+                <ProductCard key={c.slug} card={c} sectionId={section.id} />
               ))}
             </div>
           </div>
@@ -242,11 +253,16 @@ export default function Products() {
       <section className="pr-hero">
         <div className="container">
           <div className="pr-hero-grid">
-            <div>
+            <div className="pr-hero-copy">
               <div className="eyebrow">{catalogue.hero.eyebrow}</div>
               <h1>{catalogue.hero.title}</h1>
-              <p style={{ fontSize: 18, color: '#475569', marginTop: 18, maxWidth: 520 }}>{catalogue.hero.subtitle}</p>
-              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 28 }}>
+              <p className="pr-hero-subtitle">{catalogue.hero.subtitle}</p>
+              <ul className="pr-hero-points">
+                <li>Engineered and tested in-house in Mumbai</li>
+                <li>Full stack from active to maintenance tools</li>
+                <li>Fast RFQ support for enterprise deployments</li>
+              </ul>
+              <div className="pr-hero-cta-row">
                 <Link className="btn btn-primary" to="/contact">Request a Quote</Link>
                 <a className="btn btn-outline" href="#active">Browse Catalogue ↓</a>
               </div>
@@ -283,20 +299,17 @@ export default function Products() {
       )}
 
       {/* TRUST BAND */}
-      <section
-        className="section reveal"
-        style={{ background: 'var(--surface-2)', borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)' }}
-      >
+      <section className="section reveal pr-trust-band">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}>
+          <div className="pr-trust-layout">
             <div>
               <div className="eyebrow">Made in Mumbai</div>
-              <h2 style={{ color: '#07008F' }}>Manufactured, tested and dispatched from one floor.</h2>
-              <p style={{ color: '#475569', marginTop: 16, fontSize: 16 }}>
+              <h2>Manufactured, tested and dispatched from one floor.</h2>
+              <p className="pr-trust-copy">
                 PDR operates a vertically integrated production facility at Filmcity Complex, Goregaon East — ensuring zero supply chain
                 gaps and full quality ownership.
               </p>
-              <Link className="btn btn-outline" style={{ marginTop: 32 }} to="/about">About Our Manufacturing →</Link>
+              <Link className="btn btn-outline pr-trust-link" to="/about">About Our Manufacturing →</Link>
             </div>
             <div className="pr-trust-grid">
               <div className="pr-trust-tile"><div className="stat-num">40+</div><div className="stat-label">Years Heritage</div></div>
@@ -311,13 +324,13 @@ export default function Products() {
       {/* CTA BAND */}
       <section className="section">
         <div className="container">
-          <div style={{ textAlign: 'center', maxWidth: 760, margin: '0 auto' }}>
-            <div className="eyebrow" style={{ justifyContent: 'center' }}>Need a Custom Configuration?</div>
+          <div className="pr-custom-cta">
+            <div className="eyebrow pr-custom-eyebrow">Need a Custom Configuration?</div>
             <h2>We manufacture to spec.</h2>
-            <p style={{ fontSize: 18, color: 'var(--muted)', marginTop: 16, marginBottom: 36 }}>
+            <p className="pr-custom-copy">
               Non-standard lengths, connector types, armour configurations, and private-label assemblies — quoted within 24 hours.
             </p>
-            <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <div className="pr-custom-cta-row">
               <Link className="btn btn-primary" to="/contact?inquiry=Custom+Manufacturing">Submit Your RFQ →</Link>
               <Link className="btn btn-outline" to="/contact?inquiry=Technical+Support">Talk to an Engineer</Link>
               <a

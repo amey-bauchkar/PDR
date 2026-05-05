@@ -1,6 +1,7 @@
 import { Link, useParams, Navigate } from 'react-router-dom';
 import Seo from '../components/Seo';
 import productsData from '../data/products.json';
+import catalogueData from '../data/catalogue.json';
 
 type Product = {
   slug: string;
@@ -18,10 +19,28 @@ type Product = {
 };
 
 const products = productsData as Product[];
+const catalogueImageBySlug = new Map<string, string>();
+const categoryFallbackImage: Record<string, string> = {
+  'Active Components': 'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=900&q=80',
+  'Passive Components': 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=900&q=80',
+  'Cable Management Devices': 'https://images.unsplash.com/photo-1581092335878-4f8e1f9d9f8a?auto=format&fit=crop&w=900&q=80',
+  'Test & Measuring Equipment': 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80',
+  'Maintenance Tools': 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=900&q=80',
+  'Specialty Products': 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=80',
+};
+
+for (const section of (catalogueData as { sections?: { groups?: { cards?: { slug: string; img?: string }[] }[] }[] }).sections ?? []) {
+  for (const group of section.groups ?? []) {
+    for (const card of group.cards ?? []) {
+      if (card.img && card.img.trim()) catalogueImageBySlug.set(card.slug, card.img);
+    }
+  }
+}
 
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
   const product = products.find((p) => p.slug === slug);
+  const detailImage = (slug ? catalogueImageBySlug.get(slug) : undefined) ?? categoryFallbackImage[product?.category ?? ''] ?? categoryFallbackImage['Passive Components'];
 
   if (!product) return <Navigate to="/404" replace />;
 
@@ -56,19 +75,17 @@ export default function ProductDetail() {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 80, alignItems: 'center' }}>
-            <div
-              style={{
-                background: '#FAFAFA',
-                border: '1px solid #E2E8F0',
-                borderRadius: 16,
-                aspectRatio: '1',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                color: '#4A9FD8',
-              }}
-              dangerouslySetInnerHTML={{ __html: product.heroIcon }}
-            />
+            <div className="pd-image-frame">
+              <img
+                src={detailImage}
+                alt={product.name}
+                className="pd-image"
+                loading="eager"
+                onError={(event) => {
+                  event.currentTarget.src = categoryFallbackImage['Passive Components'];
+                }}
+              />
+            </div>
 
             <div>
               <h1

@@ -1,5 +1,56 @@
 import Seo from '../components/Seo';
 
+const homeCategories = [
+  {
+    id: 'active',
+    title: 'Active Components',
+    description: 'High-performance SFP transceivers, bypass switches, and optical protection systems.',
+    count: '15+ SKUs',
+    image:
+      'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    id: 'passive',
+    title: 'Passive Components',
+    description: 'Premium patchcords, MPO assemblies, WDMs, and precision splitters.',
+    count: '40+ SKUs',
+    image:
+      'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    id: 'cable',
+    title: 'Cable Management',
+    description: 'Modular ODFs, termination boxes, and IP-rated splice closures.',
+    count: '12+ SKUs',
+    image:
+      'https://images.unsplash.com/photo-1581092335878-4f8e1f9d9f8a?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    id: 'test',
+    title: 'Test & Measuring',
+    description: 'OTDRs, optical power meters, fusion splicers, and inspection tools.',
+    count: '10+ SKUs',
+    image:
+      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    id: 'specialty',
+    title: 'Specialty',
+    description: 'Specialized high-power and custom optical products for critical applications.',
+    count: 'Custom Builds',
+    image:
+      'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    id: 'tools',
+    title: 'Maintenance',
+    description: 'Field-ready cleaning kits, fault locators, sleeves, and support accessories.',
+    count: 'Tooling Range',
+    image:
+      'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=900&q=80',
+  },
+];
+
 export default function Home() {
   return (
     <>
@@ -96,33 +147,19 @@ export default function Home() {
             </p>
           </div>
           <div className="hp-cat-grid">
-            <div className="hp-cat-card reveal d-1">
-              <img src="/images/sfp-transceiver.png" alt="Active Components" className="real-img" />
-              <h3>Active Components</h3>
-              <p>High-performance SFP transceivers, bypass switches, and optical protection systems.</p>
-              <div className="hp-cat-count">15+ SKUs</div>
-              <a className="btn-link" href="/products#active" style={{ marginTop: 'auto', paddingTop: 12 }}>
-                Explore Category →
-              </a>
-            </div>
-            <div className="hp-cat-card reveal d-2">
-              <img src="/images/fiber-patchcord.png" alt="Passive Components" className="real-img" />
-              <h3>Passive Components</h3>
-              <p>Premium patchcords, MPO assemblies, WDMs, and precision splitters.</p>
-              <div className="hp-cat-count">40+ SKUs</div>
-              <a className="btn-link" href="/products#passive" style={{ marginTop: 'auto', paddingTop: 12 }}>
-                Explore Category →
-              </a>
-            </div>
-            <div className="hp-cat-card reveal d-3">
-              <img src="/images/fiber-patch-panel.png" alt="Cable Management" className="real-img" />
-              <h3>Cable Management</h3>
-              <p>Modular ODFs, termination boxes, and IP-rated splice closures.</p>
-              <div className="hp-cat-count">12+ SKUs</div>
-              <a className="btn-link" href="/products#cable" style={{ marginTop: 'auto', paddingTop: 12 }}>
-                Explore Category →
-              </a>
-            </div>
+            {homeCategories.map((category, index) => (
+              <div key={category.id} className={`hp-cat-card reveal d-${Math.min(index + 1, 4)}`}>
+                <div className="hp-cat-media">
+                  <img src={category.image} alt={category.title} className="real-img" loading="lazy" />
+                </div>
+                <h3>{category.title}</h3>
+                <p>{category.description}</p>
+                <div className="hp-cat-count">{category.count}</div>
+                <a className="btn-link" href={`/products#${category.id}`}>
+                  Explore Category →
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -204,94 +241,27 @@ export default function Home() {
       </section>
 
       {/* SECTION 6: FINAL CTA */}
-      <section className="section reveal">
+      <section className="section reveal hp-final-cta-wrap">
         <div className="container">
-          <div
-            style={{
-              background: '#07008F',
-              borderRadius: 32,
-              padding: '100px 48px',
-              textAlign: 'center',
-              color: '#fff',
-              position: 'relative',
-              overflow: 'hidden',
-              boxShadow: 'var(--shadow-lg)',
-            }}
-          >
-            <div
-              style={{
-                position: 'absolute',
-                inset: 0,
-                opacity: 0.15,
-                backgroundImage: "url('/images/industrial-texture.png')",
-                backgroundSize: 'cover',
-              }}
-            ></div>
-            <div
-              style={{
-                position: 'absolute',
-                top: '-50%',
-                left: '-50%',
-                width: '200%',
-                height: '200%',
-                background: 'radial-gradient(circle at 50% 50%, rgba(74,159,216,0.15), transparent 60%)',
-                pointerEvents: 'none',
-              }}
-            ></div>
-            <div style={{ position: 'relative', zIndex: 1, maxWidth: 800, margin: '0 auto' }}>
-              <div
-                className="hero-status"
-                style={{
-                  background: 'rgba(255,255,255,0.08)',
-                  borderColor: 'rgba(255,255,255,0.2)',
-                  color: '#fff',
-                  marginBottom: 24,
-                }}
-              >
-                <span className="live" style={{ background: '#fff', boxShadow: '0 0 10px #fff' }}></span> Ready to Deploy Worldwide
+          <div className="hp-final-cta">
+            <div className="hp-final-cta-inner">
+              <div className="hero-status hp-final-status">
+                <span className="live"></span> Ready to Deploy Worldwide
               </div>
-              <h2
-                style={{
-                  color: '#fff',
-                  fontSize: 'clamp(32px, 5vw, 48px)',
-                  marginBottom: 24,
-                  letterSpacing: '-0.03em',
-                }}
-              >
+              <h2>
                 Tell us your network requirements.
                 <br />
                 We&rsquo;ll engineer the solution.
               </h2>
-              <p
-                style={{
-                  fontSize: 18,
-                  color: 'rgba(255,255,255,0.7)',
-                  maxWidth: 600,
-                  margin: '0 auto 44px',
-                  lineHeight: 1.6,
-                }}
-              >
+              <p>
                 24-hour RFQ turnaround. Direct technical support from our Mumbai facility. Samples available for qualified
                 infrastructure projects.
               </p>
-              <div className="hp-cta-row" style={{ justifyContent: 'center' }}>
-                <a
-                  className="btn btn-primary"
-                  href="/contact"
-                  style={{ background: '#fff', color: '#07008F', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}
-                >
+              <div className="hp-cta-row hp-final-cta-row">
+                <a className="btn btn-primary" href="/contact">
                   Request Technical Quote
                 </a>
-                <a
-                  className="btn btn-outline"
-                  style={{
-                    background: 'rgba(255,255,255,0.05)',
-                    color: '#fff',
-                    borderColor: 'rgba(255,255,255,0.3)',
-                    backdropFilter: 'blur(10px)',
-                  }}
-                  href="/about"
-                >
+                <a className="btn btn-outline" href="/about">
                   Explore Facility
                 </a>
               </div>

@@ -1,10 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openMega, setOpenMega] = useState<string | null>(null);
   const location = useLocation();
+  const closeTimer = useRef<number | null>(null);
+
+  const clearCloseTimer = () => {
+    if (closeTimer.current !== null) {
+      window.clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  };
+
+  const openWithDelayCancel = (menu: string) => {
+    clearCloseTimer();
+    setOpenMega(menu);
+  };
+
+  const closeWithDelay = () => {
+    clearCloseTimer();
+    closeTimer.current = window.setTimeout(() => {
+      setOpenMega(null);
+    }, 180);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -19,6 +40,13 @@ export default function Header() {
   useEffect(() => {
     document.body.classList.toggle('menu-open', menuOpen);
   }, [menuOpen]);
+
+  useEffect(
+    () => () => {
+      clearCloseTimer();
+    },
+    [],
+  );
 
   return (
     <>
@@ -39,7 +67,11 @@ export default function Header() {
             <NavLink to="/about" className={({ isActive }) => (isActive ? 'active' : undefined)}>
               About Us
             </NavLink>
-            <div className="has-mega">
+            <div
+              className={`has-mega${openMega === 'products' ? ' open' : ''}`}
+              onMouseEnter={() => openWithDelayCancel('products')}
+              onMouseLeave={closeWithDelay}
+            >
               <NavLink to="/products" className={({ isActive }) => (isActive ? 'active' : undefined)} aria-haspopup="true">
                 Products
                 <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
@@ -75,7 +107,11 @@ export default function Header() {
                 </div>
               </div>
             </div>
-            <div className="has-mega">
+            <div
+              className={`has-mega${openMega === 'tools' ? ' open' : ''}`}
+              onMouseEnter={() => openWithDelayCancel('tools')}
+              onMouseLeave={closeWithDelay}
+            >
               <NavLink to="/cable-configurator" className={({ isActive }) => (isActive ? 'active' : undefined)} aria-haspopup="true">
                 Configurator Tools
                 <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
