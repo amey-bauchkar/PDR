@@ -584,7 +584,7 @@
               "tag": "POF",
               "img": "",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><circle cx=\"24\" cy=\"24\" r=\"6\"></circle></svg>",
-              "name": "POF â Plastic Optical Fiber Patchcord",
+              "name": "POF — Plastic Optical Fiber Patchcord",
               "blurb": "Large-core plastic fiber for short-range consumer and industrial communication links.",
               "pills": [
                 "PMMA Core",
@@ -599,13 +599,13 @@
             },
             {
               "slug": "bendiboot-patchcord",
-              "tag": "90Â°",
+              "tag": "90°",
               "img": "",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M16 32V16h16\"></path></svg>",
               "name": "Bendiboot Patchcord",
               "blurb": "90-degree angled boot design for high-density panels with restricted bend radius.",
               "pills": [
-                "90Â° Boot",
+                "90° Boot",
                 "LC/SC"
               ],
               "detailsSlug": "bendiboot-patchcord",
@@ -654,297 +654,6 @@
                 "title": "Bare Fiber Adapter",
                 "specs": "Standard Factory Specs",
                 "image": "images/fiber-patch-panel.png"
-              }
-            },
-            {
-              "slug": "hybrid-adapter",
-              "tag": "HybridCAT6CPRIMPOFiberTestMCPMPOFTTxSMPTEArmouredPOF90Â°Uniboot",
-              "img": "/images/fiber-patch-panel.png",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M12 24h24\"></path><rect x=\"6\" y=\"20\" width=\"8\" height=\"8\" rx=\"2\"></rect><rect x=\"34\" y=\"20\" width=\"8\" height=\"8\" rx=\"2\"></rect></svg>",
-              "name": "CAT 6 Patch CordCPRI PatchcordFanOut Patch CordsFiber Optic Patch Cords & PigtailsLoop Back Patch CordMode Conditioning PatchcordMPO Cable AssemblyRapid Push Cable AssemblySMPTE Cable AssemblyArmoured PatchcordPOF â Plastic Optical Fiber PatchcordBendiboot PatchcordLC Uniboot Patchcord",
-              "blurb": "High-speed copper patch cord for data networking applications.",
-              "pills": [
-                "Cat 6",
-                "RJ45",
-                "Outdoor",
-                "Waterproof",
-                "MTP/MPO",
-                "High-Density",
-                "SM/MM",
-                "IL < 0.3dB",
-                "Testing",
-                "Diagnostics",
-                "Long Haul",
-                "Gigabit",
-                "Multi-Fiber",
-                "MT Ferrule",
-                "Pushable",
-                "Pre-terminated",
-                "HDTV",
-                "Ruggedized",
-                "SS Armour",
-                "SM/MM",
-                "PMMA Core",
-                "650nm",
-                "90Â° Boot",
-                "LC/SC",
-                "Reversible",
-                "OM3/OM4"
-              ],
-              "detailsSlug": "cat6-patch-cord",
-              "addItem": {
-                "title": "Hybrid Adapter",
-                "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
-              }
-            },
-            {
-              "slug": "cpri-patchcord",
-              "tag": "CPRI",
-              "img": "",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M12 24h24\"></path><circle cx=\"10\" cy=\"24\" r=\"4\"></circle><circle cx=\"38\" cy=\"24\" r=\"4\"></circle></svg>",
-              "name": "CPRI Patchcord",
-              "blurb": "Outdoor waterproof fiber optic assemblies with waterproof connectors of ODVA/IP/FX/PDLC/NSN.",
-              "pills": [
-                "Outdoor",
-                "Waterproof"
-              ],
-              "detailsSlug": "cpri-patchcord",
-              "addItem": {
-                "title": "Cpri Patchcord",
-                "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
-              }
-            },
-            {
-              "slug": "fanout-patch-cords",
-              "tag": "MPO",
-              "img": "",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"6\" y=\"20\" width=\"10\" height=\"8\" rx=\"2\"></rect><path d=\"M16 22l8-6\"></path><path d=\"M16 24h16\"></path><path d=\"M16 26l8 6\"></path><circle cx=\"38\" cy=\"16\" r=\"3\"></circle><circle cx=\"38\" cy=\"24\" r=\"3\"></circle><circle cx=\"38\" cy=\"32\" r=\"3\"></circle></svg>",
-              "name": "FanOut Patch Cords",
-              "blurb": "MTP/MPO high-density fiber connector assemblies that breakout multi-fiber connections.",
-              "pills": [
-                "MTP/MPO",
-                "High-Density"
-              ],
-              "detailsSlug": "fanout-patch-cords",
-              "addItem": {
-                "title": "Fanout Patch Cords",
-                "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
-              }
-            },
-            {
-              "slug": "fo-patchcords",
-              "tag": "Fiber",
-              "img": "",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><circle cx=\"8\" cy=\"24\" r=\"3\"></circle><circle cx=\"40\" cy=\"24\" r=\"3\"></circle></svg>",
-              "name": "Fiber Optic Patch Cords & Pigtails",
-              "blurb": "Broadest choice of patchcords tested utilising the industry's latest interferometric equipment.",
-              "pills": [
-                "SM/MM",
-                "IL < 0.3dB"
-              ],
-              "detailsSlug": "fo-patchcords",
-              "addItem": {
-                "title": "Fo Patchcords",
-                "specs": "Standard Factory Specs",
-                "image": "images/fiber-patchcord.png"
-              }
-            },
-            {
-              "slug": "loopback",
-              "tag": "Test",
-              "img": "",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M14 24a10 10 0 0 1 20 0 10 10 0 0 1-20 0\"></path></svg>",
-              "name": "Loop Back Patch Cord",
-              "blurb": "Used in fiber optic network testing and diagnostics applications.",
-              "pills": [
-                "Testing",
-                "Diagnostics"
-              ],
-              "detailsSlug": "loopback",
-              "addItem": {
-                "title": "Loopback",
-                "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
-              }
-            },
-            {
-              "slug": "mode-conditioning",
-              "tag": "MCP",
-              "img": "",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24c8-8 24 8 32 0\"></path></svg>",
-              "name": "Mode Conditioning Patchcord",
-              "blurb": "Gigabit Launch Patchcord used in longwave/long haul fiber optic applications.",
-              "pills": [
-                "Long Haul",
-                "Gigabit"
-              ],
-              "detailsSlug": "mode-conditioning",
-              "addItem": {
-                "title": "Mode Conditioning",
-                "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
-              }
-            },
-            {
-              "slug": "mpo-assembly",
-              "tag": "MPO",
-              "img": "",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"8\" y=\"18\" width=\"14\" height=\"12\" rx=\"2\"></rect><rect x=\"26\" y=\"18\" width=\"14\" height=\"12\" rx=\"2\"></rect><path d=\"M22 24h4\"></path></svg>",
-              "name": "MPO Cable Assembly",
-              "blurb": "High-density multi-fiber connector system built around precision molded MT ferrule.",
-              "pills": [
-                "Multi-Fiber",
-                "MT Ferrule"
-              ],
-              "detailsSlug": "mpo-assembly",
-              "addItem": {
-                "title": "Mpo Assembly",
-                "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
-              }
-            },
-            {
-              "slug": "rapid-push",
-              "tag": "FTTx",
-              "img": "",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M10 24h28\"></path><path d=\"M34 20l4 4-4 4\"></path></svg>",
-              "name": "Rapid Push Cable Assembly",
-              "blurb": "FTTXsmart pushable preterminated fiber optic drop solution for fast deployment.",
-              "pills": [
-                "Pushable",
-                "Pre-terminated"
-              ],
-              "detailsSlug": "rapid-push",
-              "addItem": {
-                "title": "Rapid Push",
-                "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
-              }
-            },
-            {
-              "slug": "smpte-assembly",
-              "tag": "SMPTE",
-              "img": "",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"></rect><circle cx=\"18\" cy=\"24\" r=\"3\"></circle><circle cx=\"30\" cy=\"24\" r=\"3\"></circle></svg>",
-              "name": "SMPTE Cable Assembly",
-              "blurb": "Broadest range of ruggedized and dirt protected cabling options for HDTV infrastructure.",
-              "pills": [
-                "HDTV",
-                "Ruggedized"
-              ],
-              "detailsSlug": "smpte-assembly",
-              "addItem": {
-                "title": "Smpte Assembly",
-                "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
-              }
-            },
-            {
-              "slug": "armoured-patchcord",
-              "tag": "Armoured",
-              "img": "",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><path d=\"M12 20v8M16 20v8M20 20v8M24 20v8M28 20v8M32 20v8M36 20v8\"></path></svg>",
-              "name": "Armoured Patchcord",
-              "blurb": "Ruggedized armoured cable assembly with stainless steel interlocking armour for harsh environments.",
-              "pills": [
-                "SS Armour",
-                "SM/MM"
-              ],
-              "detailsSlug": "armoured-patchcord",
-              "addItem": {
-                "title": "Armoured Patchcord",
-                "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
-              }
-            },
-            {
-              "slug": "pof-patchcord",
-              "tag": "POF",
-              "img": "",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><circle cx=\"24\" cy=\"24\" r=\"6\"></circle></svg>",
-              "name": "POF â Plastic Optical Fiber Patchcord",
-              "blurb": "Large-core plastic fiber for short-range consumer and industrial communication links.",
-              "pills": [
-                "PMMA Core",
-                "650nm"
-              ],
-              "detailsSlug": "pof-patchcord",
-              "addItem": {
-                "title": "Pof Patchcord",
-                "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
-              }
-            },
-            {
-              "slug": "bendiboot-patchcord",
-              "tag": "90Â°",
-              "img": "",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M16 32V16h16\"></path></svg>",
-              "name": "Bendiboot Patchcord",
-              "blurb": "90-degree angled boot design for high-density panels with restricted bend radius.",
-              "pills": [
-                "90Â° Boot",
-                "LC/SC"
-              ],
-              "detailsSlug": "bendiboot-patchcord",
-              "addItem": {
-                "title": "Bendiboot Patchcord",
-                "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
-              }
-            },
-            {
-              "slug": "lc-uniboot",
-              "tag": "Uniboot",
-              "img": "",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h20\"></path><rect x=\"28\" y=\"20\" width=\"12\" height=\"8\" rx=\"2\"></rect></svg>",
-              "name": "LC Uniboot Patchcord",
-              "blurb": "Single-jacket duplex LC connector for reversible polarity in high-density OM3/OM4 environments.",
-              "pills": [
-                "Reversible",
-                "OM3/OM4"
-              ],
-              "detailsSlug": "lc-uniboot",
-              "addItem": {
-                "title": "Lc Uniboot",
-                "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
-              }
-            },
-            {
-              "slug": "bare-fiber-adapter",
-              "tag": "Adapter",
-              "img": "",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"16\" y=\"14\" width=\"16\" height=\"20\" rx=\"3\"></rect><line x1=\"8\" y1=\"24\" x2=\"16\" y2=\"24\"></line><line x1=\"32\" y1=\"24\" x2=\"40\" y2=\"24\"></line></svg>",
-              "name": "Bare Fiber Adapter",
-              "blurb": "Used as a medium to link the bare optical fiber to fiber optic equipment.",
-              "pills": [
-                "Bare Fiber",
-                "SM/MM"
-              ],
-              "detailsSlug": "bare-fiber-adapter",
-              "addItem": {
-                "title": "Bare Fiber Adapter",
-                "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
-              }
-            },
-            {
-              "slug": "hybrid-adapter",
-              "tag": "",
-              "img": "",
-              "heroSvg": "",
-              "name": "",
-              "blurb": "",
-              "pills": [],
-              "detailsSlug": "",
-              "addItem": {
-                "title": "",
-                "specs": "Standard Factory Specs",
-                "image": ""
               }
             },
             {
@@ -1305,10 +1014,10 @@
               "img": "",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"12\" y=\"8\" width=\"24\" height=\"32\" rx=\"4\"></rect><rect x=\"16\" y=\"14\" width=\"16\" height=\"10\" rx=\"1\"></rect><circle cx=\"24\" cy=\"32\" r=\"3\"></circle></svg>",
               "name": "Regular Optical Power Meter",
-              "blurb": "Standard bench/field OPM for 800â1700nm range, auto-wavelength detection, LCD display.",
+              "blurb": "Standard bench/field OPM for 800-1700nm range, auto-wavelength detection, LCD display.",
               "pills": [
-                "800â1700nm",
-                "Auto-Î»"
+                "800-1700nm",
+                "Auto-λ"
               ],
               "detailsSlug": "regular-opm",
               "addItem": {
@@ -1519,7 +1228,7 @@
               "tag": "VFL",
               "img": "",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M24 10l4 8 8 4-8 4-4 8-4-8-8-4 8-4z\"></path><circle cx=\"24\" cy=\"24\" r=\"2\"></circle></svg>",
-              "name": "VFL â Visual Fault Locator",
+              "name": "VFL - Visual Fault Locator",
               "blurb": "650nm visible red laser (1mW) to detect breaks, micro-bends, and faults up to 10km.",
               "pills": [
                 "650nm Laser",
@@ -1538,10 +1247,10 @@
               "img": "",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><circle cx=\"24\" cy=\"24\" r=\"16\"></circle><circle cx=\"24\" cy=\"24\" r=\"6\"></circle><path d=\"M24 8v16\"></path><path d=\"M8 24h16\"></path></svg>",
               "name": "Fiber Spool / Fiber Drum",
-              "blurb": "Precision-wound fiber optic spool for storage, testing, and emergency field restoration. Available in SM and MM, 100m to 2km lengths.",
+              "blurb": "Precision-wound fiber optic spool for storage, testing, and emergency field restoration. Available in SM and MM, 100m – 2km lengths.",
               "pills": [
                 "SM / MM",
-                "100m â 2km"
+                "100m - 2km"
               ],
               "detailsSlug": "fiber-spool",
               "addItem": {

@@ -4,7 +4,7 @@ import Seo from '../components/Seo';
 import { useRfqCart } from '../components/RfqCartProvider';
 import catalogue from '../data/catalogue.json';
 import '../styles/products.css';
-import attenuatorImg from '../assets/images/products/attenuator.png';
+import attenuatorImg from '../assets/images/products/passive/attenuator.png';
 
 // Passive Component Images
 import bareFiber from '../assets/images/products/passive/bare-fiber-adapter.png';
@@ -18,6 +18,11 @@ import fiberConnector from '../assets/images/products/passive/fiber-connector.pn
 import fiberPigtails from '../assets/images/products/passive/fiber-patch-pigtails.png';
 import loopback from '../assets/images/products/passive/loopback-patch-cord.png';
 import modeConditioning from '../assets/images/products/passive/mode-conditioning-patchcord.jpg';
+import mpoCable from '../assets/images/products/passive/mpo-cable-assembly.png';
+import plcSplitter from '../assets/images/products/passive/plc-splitter.png';
+import rapidPush from '../assets/images/products/passive/rapid-push-cable.png';
+import scAdapter from '../assets/images/products/passive/sc-apc-to-sc-upc-adapter.png';
+import smpteCable from '../assets/images/products/passive/smpte-cable.png';
 
 type Card = {
   slug: string;
@@ -46,9 +51,11 @@ const CATEGORY_IMAGE_MAP: Record<string, string> = {
 
 // Slug → local image map for passive components
 const PASSIVE_IMAGE_MAP: Record<string, string> = {
+  'attenuator': attenuatorImg,
   'bare-fiber-adapter': bareFiber,
   'cat6-patch-cord': cat6Cord,
   'cat6-patch-panel': cat6Panel,
+  'cat6-panel': cat6Panel,
   'cpri-patchcord': cpri,
   'cwdm': cwdm,
   'dwdm': dwdm,
@@ -57,12 +64,16 @@ const PASSIVE_IMAGE_MAP: Record<string, string> = {
   'fo-patchcords': fiberPigtails,
   'loopback': loopback,
   'mode-conditioning': modeConditioning,
+  'mpo-assembly': mpoCable,
+  'plc-splitter': plcSplitter,
+  'rapid-push': rapidPush,
+  'sc-apc-upc': scAdapter,
+  'smpte-assembly': smpteCable,
 };
 
 const resolveCardImage = (card: Card, sectionId: string) => {
   // Check slug-specific passive image map first
   if (PASSIVE_IMAGE_MAP[card.slug]) return PASSIVE_IMAGE_MAP[card.slug];
-  if (card.slug === 'attenuator') return attenuatorImg;
   if (card.img && card.img.trim().length > 0) return card.img;
   return CATEGORY_IMAGE_MAP[sectionId] ?? CATEGORY_IMAGE_MAP.passive;
 };
@@ -72,19 +83,24 @@ function ProductCard({ card, sectionId }: { card: Card; sectionId: string }) {
   const [added, setAdded] = useState(false);
 
   const handleAdd = () => {
-    addItem({ title: card.addItem.title, specs: card.addItem.specs, image: card.addItem.image, qty: 1 });
+    addItem({ 
+      title: card.addItem?.title || card.name || 'Product', 
+      specs: card.addItem?.specs || 'Standard Specs', 
+      image: card.addItem?.image || '/placeholder.png', 
+      qty: 1 
+    });
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
   };
 
   return (
-    <div className="pr-pcard product-card reveal" data-product={card.slug}>
+    <div className="pr-pcard product-card reveal" data-product={card.slug || 'unknown'}>
       <div className="pr-pcard-art">
         {card.tag && <span className="pr-prod-tag">{card.tag}</span>}
         {PASSIVE_IMAGE_MAP[card.slug] || card.slug === 'attenuator' || card.img || CATEGORY_IMAGE_MAP[sectionId] ? (
           <img
             src={resolveCardImage(card, sectionId)}
-            alt={card.name}
+            alt={card.name || 'Product Image'}
             className="real-img"
             loading="lazy"
             onError={(event) => {
@@ -92,13 +108,13 @@ function ProductCard({ card, sectionId }: { card: Card; sectionId: string }) {
             }}
           />
         ) : (
-          <span dangerouslySetInnerHTML={{ __html: card.heroSvg }} />
+          <span dangerouslySetInnerHTML={{ __html: card.heroSvg || '' }} />
         )}
       </div>
       <div className="pr-pcard-body">
-        <h3>{card.name}</h3>
-        <p>{card.blurb}</p>
-        {card.pills.length > 0 && (
+        <h3>{card.name || 'Unnamed Product'}</h3>
+        <p>{card.blurb || ''}</p>
+        {card.pills && card.pills.length > 0 && (
           <div className="pr-spec-row">
             {card.pills.map((p, i) => (
               <span key={i} className="pr-spec-pill">{p}</span>
@@ -163,16 +179,24 @@ function CategorySection({ section, alt }: { section: Section; alt: boolean }) {
           <h2>{section.heading}</h2>
           <p>{section.intro}</p>
         </div>
-        {section.groups.map((g, i) => (
-          <div key={i}>
-            {g.subhead && <h3 className="pr-sub-head">{g.subhead}</h3>}
-            <div className="pr-grid">
-              {g.cards.map((c) => (
-                <ProductCard key={c.slug} card={c} sectionId={section.id} />
-              ))}
+        {section.groups && section.groups.length > 0 ? (
+          section.groups.map((g, i) => (
+            <div key={i}>
+              {g.subhead && <h3 className="pr-sub-head">{g.subhead}</h3>}
+              <div className="pr-grid">
+                {g.cards && g.cards.length > 0 ? (
+                  g.cards.map((c, idx) => (
+                    <ProductCard key={c.slug || idx} card={c} sectionId={section.id} />
+                  ))
+                ) : (
+                  <div>No products available in this category.</div>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <div>No product groups available.</div>
+        )}
       </div>
     </section>
   );
