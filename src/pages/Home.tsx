@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
 
 export default function Home() {
@@ -27,8 +28,8 @@ export default function Home() {
                 Mumbai, trusted worldwide.
               </p>
               <div className="hp-cta-row">
-                <a className="btn btn-primary" href="/contact">Request Quote</a>
-                <a className="btn btn-outline" href="/products">Browse Products</a>
+                <Link className="btn btn-primary" to="/contact">Request Quote</Link>
+                <Link className="btn btn-outline" to="/products">Browse Products</Link>
               </div>
               <div className="hero-trust-chips">
                 <div className="trust-chip">
@@ -101,27 +102,27 @@ export default function Home() {
               <h3>Active Components</h3>
               <p>High-performance SFP transceivers, bypass switches, and optical protection systems.</p>
               <div className="hp-cat-count">15+ SKUs</div>
-              <a className="btn-link" href="/products#active" style={{ marginTop: 'auto', paddingTop: 12 }}>
+              <Link className="btn-link" to="/products#active" style={{ marginTop: 'auto', paddingTop: 12 }}>
                 Explore Category →
-              </a>
+              </Link>
             </div>
             <div className="hp-cat-card reveal d-2">
               <img src="/images/fiber-patchcord.png" alt="Passive Components" className="real-img" />
               <h3>Passive Components</h3>
               <p>Premium patchcords, MPO assemblies, WDMs, and precision splitters.</p>
               <div className="hp-cat-count">40+ SKUs</div>
-              <a className="btn-link" href="/products#passive" style={{ marginTop: 'auto', paddingTop: 12 }}>
+              <Link className="btn-link" to="/products#passive" style={{ marginTop: 'auto', paddingTop: 12 }}>
                 Explore Category →
-              </a>
+              </Link>
             </div>
             <div className="hp-cat-card reveal d-3">
               <img src="/images/fiber-patch-panel.png" alt="Cable Management" className="real-img" />
               <h3>Cable Management</h3>
               <p>Modular ODFs, termination boxes, and IP-rated splice closures.</p>
               <div className="hp-cat-count">12+ SKUs</div>
-              <a className="btn-link" href="/products#cable" style={{ marginTop: 'auto', paddingTop: 12 }}>
+              <Link className="btn-link" to="/products#cable" style={{ marginTop: 'auto', paddingTop: 12 }}>
                 Explore Category →
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -147,7 +148,7 @@ export default function Home() {
               </div>
               <h3>Telecommunications</h3>
               <p>High-density DAS and FTTH solutions for public networks and metro rail systems.</p>
-              <a className="btn-link" href="/solutions#telecom">Case Study →</a>
+              <Link className="btn-link" to="/solutions#telecom">Case Study →</Link>
             </div>
             <div className="hp-sol-card reveal d-2">
               <div className="hp-sol-ico">
@@ -158,7 +159,7 @@ export default function Home() {
               </div>
               <h3>Defence &amp; Aerospace</h3>
               <p>MIL-spec components and tactical fiber assemblies for mission-critical operations.</p>
-              <a className="btn-link" href="/solutions#defence">Learn More →</a>
+              <Link className="btn-link" to="/solutions#defence">Learn More →</Link>
             </div>
             <div className="hp-sol-card reveal d-3">
               <div className="hp-sol-ico">
@@ -169,7 +170,7 @@ export default function Home() {
               </div>
               <h3>Enterprise Data Centers</h3>
               <p>Hyperscale cabling and modular patch panels optimized for low-latency performance.</p>
-              <a className="btn-link" href="/solutions#datacentre">Architecture →</a>
+              <Link className="btn-link" to="/solutions#datacentre">Architecture →</Link>
             </div>
           </div>
         </div>
@@ -275,14 +276,14 @@ export default function Home() {
                 infrastructure projects.
               </p>
               <div className="hp-cta-row" style={{ justifyContent: 'center' }}>
-                <a
+                <Link
                   className="btn btn-primary"
-                  href="/contact"
+                  to="/contact"
                   style={{ background: '#fff', color: '#07008F', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}
                 >
                   Request Technical Quote
-                </a>
-                <a
+                </Link>
+                <Link
                   className="btn btn-outline"
                   style={{
                     background: 'rgba(255,255,255,0.05)',
@@ -290,10 +291,10 @@ export default function Home() {
                     borderColor: 'rgba(255,255,255,0.3)',
                     backdropFilter: 'blur(10px)',
                   }}
-                  href="/about"
+                  to="/about"
                 >
                   Explore Facility
-                </a>
+                </Link>
               </div>
             </div>
           </div>

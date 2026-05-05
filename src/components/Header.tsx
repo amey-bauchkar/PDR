@@ -1,10 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
+
+type MegaKey = 'products' | 'tools' | null;
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openMega, setOpenMega] = useState<MegaKey>(null);
   const location = useLocation();
+  const navRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -12,13 +16,39 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Close everything on route change
   useEffect(() => {
     setMenuOpen(false);
-  }, [location.pathname]);
+    setOpenMega(null);
+  }, [location.pathname, location.hash]);
 
+  // Mobile body class
   useEffect(() => {
     document.body.classList.toggle('menu-open', menuOpen);
   }, [menuOpen]);
+
+  // Click outside / escape to close mega
+  useEffect(() => {
+    if (!openMega) return;
+    const onDown = (e: MouseEvent) => {
+      const nav = navRef.current;
+      if (nav && !nav.contains(e.target as Node)) setOpenMega(null);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpenMega(null);
+    };
+    document.addEventListener('mousedown', onDown);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onDown);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [openMega]);
+
+  const toggleMega = (key: Exclude<MegaKey, null>) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    setOpenMega((prev) => (prev === key ? null : key));
+  };
 
   return (
     <>
@@ -32,15 +62,26 @@ export default function Header() {
             </span>
           </Link>
 
-          <nav className="nav-center" aria-label="Primary">
+          <nav ref={navRef} className="nav-center" aria-label="Primary">
             <NavLink to="/" end className={({ isActive }) => (isActive ? 'active' : undefined)}>
               Home
             </NavLink>
             <NavLink to="/about" className={({ isActive }) => (isActive ? 'active' : undefined)}>
               About Us
             </NavLink>
-            <div className="has-mega">
-              <NavLink to="/products" className={({ isActive }) => (isActive ? 'active' : undefined)} aria-haspopup="true">
+
+            <div
+              className={`has-mega${openMega === 'products' ? ' open' : ''}`}
+              onMouseEnter={() => setOpenMega('products')}
+              onMouseLeave={() => setOpenMega((prev) => (prev === 'products' ? null : prev))}
+            >
+              <NavLink
+                to="/products"
+                className={({ isActive }) => (isActive ? 'active' : undefined)}
+                aria-haspopup="true"
+                aria-expanded={openMega === 'products'}
+                onClick={toggleMega('products')}
+              >
                 Products
                 <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M3 5l3 3 3-3" />
@@ -48,35 +89,46 @@ export default function Header() {
               </NavLink>
               <div className="mega" role="menu">
                 <div className="mega-grid">
-                  <Link to="/products#passive">
+                  <Link to="/products#passive" onClick={() => setOpenMega(null)}>
                     <strong>Passive Components</strong>
                     <span>Patchcords · Armoured · CPRI · FanOut · Rapid Push · Splitters · WDM · Adapters</span>
                   </Link>
-                  <Link to="/products#active">
+                  <Link to="/products#active" onClick={() => setOpenMega(null)}>
                     <strong>Active Components</strong>
                     <span>SFP Transceivers · OLP · DAC/AOC · Bypass Switch</span>
                   </Link>
-                  <Link to="/products#cable">
+                  <Link to="/products#cable" onClick={() => setOpenMega(null)}>
                     <strong>Cable Management</strong>
                     <span>ODF · FDB · Closures · Termination Boxes</span>
                   </Link>
-                  <Link to="/products#test">
+                  <Link to="/products#test" onClick={() => setOpenMega(null)}>
                     <strong>Test &amp; Measuring</strong>
                     <span>OPM · Laser Source · OTDR · Microscopes · BERT</span>
                   </Link>
-                  <Link to="/products#specialty">
+                  <Link to="/products#specialty" onClick={() => setOpenMega(null)}>
                     <strong>Specialty &amp; Drones</strong>
                     <span>Optical Fiber Drone · High-Power Patchcord · Custom Assemblies</span>
                   </Link>
-                  <Link to="/products#tools">
+                  <Link to="/products#tools" onClick={() => setOpenMega(null)}>
                     <strong>Maintenance Tools</strong>
                     <span>Cleavers · Cleaners · Splice Sleeves</span>
                   </Link>
                 </div>
               </div>
             </div>
-            <div className="has-mega">
-              <NavLink to="/cable-configurator" className={({ isActive }) => (isActive ? 'active' : undefined)} aria-haspopup="true">
+
+            <div
+              className={`has-mega${openMega === 'tools' ? ' open' : ''}`}
+              onMouseEnter={() => setOpenMega('tools')}
+              onMouseLeave={() => setOpenMega((prev) => (prev === 'tools' ? null : prev))}
+            >
+              <NavLink
+                to="/cable-configurator"
+                className={({ isActive }) => (isActive ? 'active' : undefined)}
+                aria-haspopup="true"
+                aria-expanded={openMega === 'tools'}
+                onClick={toggleMega('tools')}
+              >
                 Configurator Tools
                 <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M3 5l3 3 3-3" />
@@ -84,7 +136,11 @@ export default function Header() {
               </NavLink>
               <div className="mega" role="menu" style={{ width: 320, right: 'auto', left: 0, transform: 'translateX(-20%)' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                  <Link to="/cable-configurator" style={{ padding: 16, border: '1px solid var(--line)', borderRadius: 12, transition: 'all 0.2s' }}>
+                  <Link
+                    to="/cable-configurator"
+                    onClick={() => setOpenMega(null)}
+                    style={{ padding: 16, border: '1px solid var(--line)', borderRadius: 12, transition: 'all 0.2s' }}
+                  >
                     <strong style={{ display: 'block', fontSize: 15, color: 'var(--ink)', marginBottom: 4 }}>
                       Custom Cable Builder{' '}
                       <span style={{ fontSize: 10, background: 'var(--accent)', color: '#fff', padding: '2px 6px', borderRadius: 4, marginLeft: 4 }}>
@@ -93,7 +149,11 @@ export default function Header() {
                     </strong>
                     <span style={{ fontSize: 13, color: 'var(--muted)' }}>Multi-step fiber patchcord wizard</span>
                   </Link>
-                  <Link to="/fiber-selector" style={{ padding: 16, border: '1px solid var(--line)', borderRadius: 12, transition: 'all 0.2s' }}>
+                  <Link
+                    to="/fiber-selector"
+                    onClick={() => setOpenMega(null)}
+                    style={{ padding: 16, border: '1px solid var(--line)', borderRadius: 12, transition: 'all 0.2s' }}
+                  >
                     <strong style={{ display: 'block', fontSize: 15, color: 'var(--ink)', marginBottom: 4 }}>
                       Fiber Management Selector
                     </strong>
@@ -102,6 +162,7 @@ export default function Header() {
                 </div>
               </div>
             </div>
+
             <NavLink to="/solutions" className={({ isActive }) => (isActive ? 'active' : undefined)}>
               Solutions
             </NavLink>

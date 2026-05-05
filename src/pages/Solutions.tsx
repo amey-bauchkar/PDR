@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
 import '../styles/solutions.css';
 
@@ -43,7 +44,7 @@ export default function Solutions() {
                 <div className="sl-use-case">
                   <strong>Key Outcome:</strong> Instant localization of unauthorized activity or physical breaches along 50km+ corridors.
                 </div>
-                <a href="/contact?inquiry=DAS" className="sl-hero-btn" style={{ padding: '14px 28px' }}>Request Engineering Specs</a>
+                <Link to="/contact?inquiry=DAS" className="sl-hero-btn" style={{ padding: '14px 28px' }}>Request Engineering Specs</Link>
               </div>
               <div className="sl-metrics-grid">
                 <div className="sl-metric-card">
@@ -104,7 +105,7 @@ export default function Solutions() {
                 </div>
               </div>
               <div style={{ marginTop: 32 }}>
-                <a href="/contact?inquiry=DTS" className="sl-hero-link">Review Thermal Performance Data →</a>
+                <Link to="/contact?inquiry=DTS" className="sl-hero-link">Review Thermal Performance Data →</Link>
               </div>
             </div>
 
@@ -120,7 +121,7 @@ export default function Solutions() {
                   <li className="sl-feat-item">Automated fault localization via live GIS mapping</li>
                   <li className="sl-feat-item">Event-triggered optical path rerouting</li>
                 </ul>
-                <a href="/contact?inquiry=Monitoring" className="btn btn-outline" style={{ padding: '14px 28px' }}>Inquire About System Deployment</a>
+                <Link to="/contact?inquiry=Monitoring" className="btn btn-outline" style={{ padding: '14px 28px' }}>Inquire About System Deployment</Link>
               </div>
               <div className="sl-metrics-grid">
                 <div className="sl-metric-card" style={{ background: '#F8FAFC' }}>
@@ -276,7 +277,7 @@ export default function Solutions() {
               <h2 style={{ color: '#07008F' }}>Technical feasibility and infrastructure planning.</h2>
               <p style={{ fontSize: 18, color: '#475569', margin: '16px auto 40px', maxWidth: 720 }}>We work alongside lead contractors and network architects to provide BOM validation, feasibility mapping, and custom assembly specifications for critical infrastructure deployments.</p>
               <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-                <a className="sl-hero-btn" href="/contact?inquiry=Engineering+Consultation">Consult with our Team →</a>
+                <Link className="sl-hero-btn" to="/contact?inquiry=Engineering+Consultation">Consult with our Team →</Link>
                 <a className="btn btn-outline" href="https://wa.me/918419916460?text=Hi, I would like to discuss a technical infrastructure project." target="_blank" rel="noopener noreferrer" style={{ padding: '16px 28px' }}>Technical Inquiry (WhatsApp)</a>
               </div>
             </div>

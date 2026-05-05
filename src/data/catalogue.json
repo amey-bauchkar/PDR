@@ -89,7 +89,7 @@
               "addItem": {
                 "title": "SFP Transceivers",
                 "specs": "Standard Factory Specs",
-                "image": "images/sfp-transceiver.png"
+                "image": "/images/sfp-transceiver.png"
               }
             },
             {
@@ -107,7 +107,7 @@
               "addItem": {
                 "title": "Smart SFP",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -125,7 +125,7 @@
               "addItem": {
                 "title": "SFP 400G",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -143,7 +143,7 @@
               "addItem": {
                 "title": "SFP 100G Bidi",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -161,7 +161,7 @@
               "addItem": {
                 "title": "SFP 40G",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -179,7 +179,7 @@
               "addItem": {
                 "title": "SFP 25G Bidi",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -197,7 +197,7 @@
               "addItem": {
                 "title": "SFP 10G Bidi",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -215,7 +215,7 @@
               "addItem": {
                 "title": "SFP 10G Dual",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -233,7 +233,7 @@
               "addItem": {
                 "title": "SFP 1G Bidi",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -251,7 +251,7 @@
               "addItem": {
                 "title": "SFP 1G Dual",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -269,7 +269,7 @@
               "addItem": {
                 "title": "SFP Copper",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             }
           ]
@@ -292,7 +292,7 @@
               "addItem": {
                 "title": "Bypass Switch",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -310,7 +310,7 @@
               "addItem": {
                 "title": "Olps",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -329,7 +329,7 @@
               "addItem": {
                 "title": "Dac",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -347,7 +347,7 @@
               "addItem": {
                 "title": "Aoc",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -365,7 +365,7 @@
               "addItem": {
                 "title": "Hd Sdi",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -383,7 +383,7 @@
               "addItem": {
                 "title": "Poe Injector",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             }
           ]
@@ -414,7 +414,7 @@
               "addItem": {
                 "title": "Cat6 Patch Cord",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -432,7 +432,7 @@
               "addItem": {
                 "title": "Cpri Patchcord",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -450,7 +450,7 @@
               "addItem": {
                 "title": "Fanout Patch Cords",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -468,7 +468,7 @@
               "addItem": {
                 "title": "Fo Patchcords",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patchcord.png"
+                "image": "/images/fiber-patchcord.png"
               }
             },
             {
@@ -486,7 +486,7 @@
               "addItem": {
                 "title": "Loopback",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -504,7 +504,7 @@
               "addItem": {
                 "title": "Mode Conditioning",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -522,7 +522,7 @@
               "addItem": {
                 "title": "Mpo Assembly",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -540,7 +540,7 @@
               "addItem": {
                 "title": "Rapid Push",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -558,7 +558,7 @@
               "addItem": {
                 "title": "Smpte Assembly",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -576,7 +576,7 @@
               "addItem": {
                 "title": "Armoured Patchcord",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -594,7 +594,7 @@
               "addItem": {
                 "title": "Pof Patchcord",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -612,7 +612,7 @@
               "addItem": {
                 "title": "Bendiboot Patchcord",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -630,7 +630,7 @@
               "addItem": {
                 "title": "Lc Uniboot",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             }
           ]
@@ -653,7 +653,7 @@
               "addItem": {
                 "title": "Bare Fiber Adapter",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -695,7 +695,7 @@
               "addItem": {
                 "title": "Hybrid Adapter",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -713,7 +713,7 @@
               "addItem": {
                 "title": "Cpri Patchcord",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -731,7 +731,7 @@
               "addItem": {
                 "title": "Fanout Patch Cords",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -749,7 +749,7 @@
               "addItem": {
                 "title": "Fo Patchcords",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patchcord.png"
+                "image": "/images/fiber-patchcord.png"
               }
             },
             {
@@ -767,7 +767,7 @@
               "addItem": {
                 "title": "Loopback",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -785,7 +785,7 @@
               "addItem": {
                 "title": "Mode Conditioning",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -803,7 +803,7 @@
               "addItem": {
                 "title": "Mpo Assembly",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -821,7 +821,7 @@
               "addItem": {
                 "title": "Rapid Push",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -839,7 +839,7 @@
               "addItem": {
                 "title": "Smpte Assembly",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -857,7 +857,7 @@
               "addItem": {
                 "title": "Armoured Patchcord",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -875,7 +875,7 @@
               "addItem": {
                 "title": "Pof Patchcord",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -893,7 +893,7 @@
               "addItem": {
                 "title": "Bendiboot Patchcord",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -911,7 +911,7 @@
               "addItem": {
                 "title": "Lc Uniboot",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -929,7 +929,7 @@
               "addItem": {
                 "title": "Bare Fiber Adapter",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -962,7 +962,7 @@
               "addItem": {
                 "title": "Mating Sleeve",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             }
           ]
@@ -985,7 +985,7 @@
               "addItem": {
                 "title": "Attenuator",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             }
           ]
@@ -1008,7 +1008,7 @@
               "addItem": {
                 "title": "Cwdm",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1026,7 +1026,7 @@
               "addItem": {
                 "title": "Dwdm",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1044,7 +1044,7 @@
               "addItem": {
                 "title": "Plc Splitter",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-splitter.png"
+                "image": "/images/fiber-splitter.png"
               }
             }
           ]
@@ -1067,7 +1067,7 @@
               "addItem": {
                 "title": "Field Connector",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             }
           ]
@@ -1098,7 +1098,7 @@
               "addItem": {
                 "title": "Rack Mount Fms",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1116,7 +1116,7 @@
               "addItem": {
                 "title": "Htb",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1134,7 +1134,7 @@
               "addItem": {
                 "title": "Wall Mount",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1152,7 +1152,7 @@
               "addItem": {
                 "title": "Fdb",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1170,7 +1170,7 @@
               "addItem": {
                 "title": "Cat6 Panel",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             }
           ]
@@ -1193,7 +1193,7 @@
               "addItem": {
                 "title": "Heat Shrink Closure",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1211,7 +1211,7 @@
               "addItem": {
                 "title": "Odf",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1229,7 +1229,7 @@
               "addItem": {
                 "title": "Horizontal Closure",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             }
           ]
@@ -1260,7 +1260,7 @@
               "addItem": {
                 "title": "Pon Power Meter",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1278,7 +1278,7 @@
               "addItem": {
                 "title": "Mini Opm",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1296,7 +1296,7 @@
               "addItem": {
                 "title": "5In1 Opm",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1314,7 +1314,7 @@
               "addItem": {
                 "title": "Regular Opm",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             }
           ]
@@ -1337,7 +1337,7 @@
               "addItem": {
                 "title": "Mini Otdr",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1355,7 +1355,7 @@
               "addItem": {
                 "title": "Pocket Otdr",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             }
           ]
@@ -1378,7 +1378,7 @@
               "addItem": {
                 "title": "Fusion Splicer",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1396,7 +1396,7 @@
               "addItem": {
                 "title": "Next Gen Splicer",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             }
           ]
@@ -1419,7 +1419,7 @@
               "addItem": {
                 "title": "Easyget Wifi",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1437,7 +1437,7 @@
               "addItem": {
                 "title": "Easycheck V2",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             }
           ]
@@ -1475,7 +1475,7 @@
               "addItem": {
                 "title": "Cleaner Pen",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1493,7 +1493,7 @@
               "addItem": {
                 "title": "Cassette Cleaner",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1511,7 +1511,7 @@
               "addItem": {
                 "title": "Mpo Cleaner",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1529,7 +1529,7 @@
               "addItem": {
                 "title": "Vfl",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1547,7 +1547,7 @@
               "addItem": {
                 "title": "Fiber Spool",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             },
             {
@@ -1565,7 +1565,7 @@
               "addItem": {
                 "title": "Splice Sleeves",
                 "specs": "Standard Factory Specs",
-                "image": "images/fiber-patch-panel.png"
+                "image": "/images/fiber-patch-panel.png"
               }
             }
           ]

@@ -85,10 +85,11 @@ const sections = sectionIds.map((id) => {
         const detailsHref = $card.find('.pr-prod-cta a').attr('href') || '';
         const detailsSlug = detailsHref.replace(/\.html$/, '');
         const addBtn = $card.find('.add-to-quote-btn');
+        const rawAddImg = addBtn.attr('data-img') || img || '';
         const addItem = {
           title: addBtn.attr('data-title') || name,
           specs: addBtn.attr('data-specs') || 'Standard Factory Specs',
-          image: addBtn.attr('data-img') || img || '',
+          image: rawAddImg.startsWith('/') || /^https?:\/\//.test(rawAddImg) ? rawAddImg : (rawAddImg ? '/' + rawAddImg : ''),
         };
         current.cards.push({
           slug,
