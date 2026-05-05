@@ -14,13 +14,17 @@ export default function About() {
       <section className="ab-hero">
         <div className="container">
           <div className="ab-hero-grid">
-            <div className="reveal">
+            <div className="reveal ab-hero-copy">
               <div className="eyebrow">Our Story · Since 1985</div>
-              <h1 style={{ color: '#07008F' }}>Pioneering optical fiber technology in India.</h1>
-              <p style={{ fontSize: '18px', color: '#475569', marginTop: '24px', maxWidth: '540px' }}>For nearly four decades, PDR Videotronics has been at the forefront of manufacturing active and passive fiber optic infrastructure, empowering India&apos;s digital backbone from our Mumbai headquarters.</p>
+              <h1>Pioneering optical fiber technology in India.</h1>
+              <p>
+                For nearly four decades, PDR Videotronics has been at the forefront of manufacturing active and passive fiber optic
+                infrastructure, empowering India&apos;s digital backbone from our Mumbai headquarters.
+              </p>
             </div>
             <div className="ab-hero-img reveal" style={{ transitionDelay: '0.1s' }}>
-              <img src="/images/factory-modern.png" alt="PDR Manufacturing Facility" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.9 }} />
+              <img src="/images/factory-modern.png" alt="PDR Manufacturing Facility" />
+              <div className="ab-hero-img-overlay" />
               <div className="ab-est">
                 <div className="ab-est-year">1985</div>
                 <div className="ab-est-text">Year Established</div>
@@ -53,11 +57,11 @@ export default function About() {
       </div>
 
       {/* THE PDR STORY */}
-      <section className="section reveal" style={{ background: 'var(--surface-2)', borderBottom: '1px solid var(--line)' }}>
+      <section className="section reveal ab-story-section">
         <div className="container">
           <div className="ab-story-grid">
             <div>
-              <h2 style={{ marginBottom: '24px' }}>Building the foundation of modern connectivity.</h2>
+              <h2 className="ab-story-title">Building the foundation of modern connectivity.</h2>
               <div className="ab-story-content">
                 <p>Established in 1985 in Mumbai, PDR Videotronics India Pvt. Ltd. began with a vision to build reliable, high-quality electronic and optical components for the emerging telecommunications sector. As technology evolved, so did we.</p>
                 <p>Today, we are a leading manufacturer and supplier of Active and Passive Fiber Optic Components, Cable Management Devices, and Test &amp; Measuring Equipment. Our product portfolio is trusted by Telecom Operators, Defence forces, ISPs, OEMs, and Research Institutions globally.</p>
@@ -104,7 +108,7 @@ export default function About() {
       <section className="section reveal" id="history">
         <div className="container">
           <div className="sec-head center">
-            <div className="eyebrow" style={{ justifyContent: 'center' }}>Our Journey</div>
+            <div className="eyebrow ab-center-eyebrow">Our Journey</div>
             <h2>40 Years of Innovation</h2>
             <p>From a small R&amp;D lab in 1985 to a global leader in fiber optic technology.</p>
           </div>
@@ -146,7 +150,7 @@ export default function About() {
       <section className="section sec-muted reveal" id="compliance">
         <div className="container">
           <div className="sec-head center">
-            <div className="eyebrow" style={{ justifyContent: 'center' }}>Compliance &amp; Quality</div>
+            <div className="eyebrow ab-center-eyebrow">Compliance &amp; Quality</div>
             <h2>Tested. Verified. Certified.</h2>
             <p>Our manufacturing processes adhere to the strictest global standards, ensuring every component performs flawlessly in mission-critical environments.</p>
           </div>
@@ -192,8 +196,12 @@ export default function About() {
           <div className="ab-mfg-grid">
             <div>
               <div className="eyebrow">Manufacturing Facility</div>
-              <h2 style={{ color: '#07008F', marginBottom: '24px' }}>Engineered in Mumbai. Deployed Worldwide.</h2>
-              <p style={{ color: '#475569', fontSize: '16px', lineHeight: 1.7 }}>Our state-of-the-art manufacturing facility at Filmcity Complex, Goregaon East, is the heart of PDR operations. Equipped with clean rooms, precision polishing machines, and advanced interferometers, we maintain absolute control over production quality.</p>
+              <h2 className="ab-mfg-title">Engineered in Mumbai. Deployed Worldwide.</h2>
+              <p className="ab-mfg-copy">
+                Our state-of-the-art manufacturing facility at Filmcity Complex, Goregaon East, is the heart of PDR operations.
+                Equipped with clean rooms, precision polishing machines, and advanced interferometers, we maintain absolute control
+                over production quality.
+              </p>
 
               <div className="ab-mfg-features">
                 <div className="ab-mfg-feature">
@@ -219,26 +227,30 @@ export default function About() {
                 </div>
               </div>
             </div>
-            <div className="ab-hero-img" style={{ aspectRatio: '1/1.1', background: '#27272A', borderRadius: '18px', overflow: 'hidden', border: '1px solid rgba(255,255,255,.1)' }}>
-              <img src="/images/factory-modern.png" alt="PDR Manufacturing Facility Mumbai" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <div className="ab-hero-img ab-mfg-image">
+              <img src="/images/factory-modern.png" alt="PDR Manufacturing Facility Mumbai" />
+              <div className="ab-hero-img-overlay" />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section reveal" id="careers" style={{ background: '#FAFAFA', borderTop: '1px solid #E2E8F0' }}>
+      <section className="section reveal ab-careers-wrap" id="careers">
         <div className="container">
-          <div style={{ maxWidth: '800px', margin: '0 auto', background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: '24px', padding: '56px 40px', textAlign: 'center', boxShadow: 'var(--shadow-lg)', position: 'relative', overflow: 'hidden' }}>
-            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #4A9FD8, #07008F)' }}></div>
-            <div className="eyebrow" style={{ justifyContent: 'center', marginBottom: '16px' }}>Join Our Team</div>
-            <h2 style={{ marginBottom: '20px', color: '#07008F' }}>Careers at PDR</h2>
-            <p style={{ fontSize: '18px', color: '#475569', marginBottom: '40px', lineHeight: 1.6, maxWidth: '600px', marginInline: 'auto' }}>PDR Videotronics is constantly seeking innovative engineers, skilled technicians, and driven sales professionals who are passionate about shaping the future of global fiber optic infrastructure.</p>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
-              <a className="btn btn-primary" href="mailto:careers@pdrworld.com" style={{ padding: '16px 32px' }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginRight: '8px' }}><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <div className="ab-careers-card">
+            <div className="ab-careers-bar"></div>
+            <div className="eyebrow ab-center-eyebrow">Join Our Team</div>
+            <h2>Careers at PDR</h2>
+            <p>
+              PDR Videotronics is constantly seeking innovative engineers, skilled technicians, and driven sales professionals who are
+              passionate about shaping the future of global fiber optic infrastructure.
+            </p>
+            <div className="ab-careers-cta">
+              <a className="btn btn-primary" href="mailto:careers@pdrworld.com">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                 Send your CV
               </a>
-              <a className="btn btn-outline" href="https://www.linkedin.com/company/pdr-world-mumbai/" target="_blank" rel="noopener noreferrer" style={{ padding: '16px 32px' }}>
+              <a className="btn btn-outline" href="https://www.linkedin.com/company/pdr-world-mumbai/" target="_blank" rel="noopener noreferrer">
                 View Openings on LinkedIn
               </a>
             </div>
@@ -248,11 +260,11 @@ export default function About() {
 
       {/* CTA */}
       <section className="section">
-        <div className="container" style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto' }}>
-          <div className="eyebrow" style={{ justifyContent: 'center' }}>Partner With Us</div>
+        <div className="container ab-partner-cta">
+          <div className="eyebrow ab-center-eyebrow">Partner With Us</div>
           <h2>Ready to upgrade your network?</h2>
-          <p style={{ fontSize: '18px', color: 'var(--muted)', margin: '16px 0 32px' }}>Contact our technical team for product inquiries, custom manufacturing requests, or to become a distributor.</p>
-          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <p>Contact our technical team for product inquiries, custom manufacturing requests, or to become a distributor.</p>
+          <div className="ab-partner-actions">
             <Link className="btn btn-primary" to="/contact?inquiry=Technical+Support">Request Technical Consultation</Link>
             <Link className="btn btn-outline" to="/contact?inquiry=Distributorship">Become a Distributor</Link>
           </div>

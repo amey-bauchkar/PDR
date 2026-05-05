@@ -1,14 +1,33 @@
 import { useEffect, useRef, useState } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 
-type MegaKey = 'products' | 'tools' | null;
+import logo from '../assets/logo.png';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [openMega, setOpenMega] = useState<MegaKey>(null);
+  const [openMega, setOpenMega] = useState<string | null>(null);
   const location = useLocation();
-  const navRef = useRef<HTMLElement | null>(null);
+  const closeTimer = useRef<number | null>(null);
+
+  const clearCloseTimer = () => {
+    if (closeTimer.current !== null) {
+      window.clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  };
+
+  const openWithDelayCancel = (menu: string) => {
+    clearCloseTimer();
+    setOpenMega(menu);
+  };
+
+  const closeWithDelay = () => {
+    clearCloseTimer();
+    closeTimer.current = window.setTimeout(() => {
+      setOpenMega(null);
+    }, 180);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -27,39 +46,25 @@ export default function Header() {
     document.body.classList.toggle('menu-open', menuOpen);
   }, [menuOpen]);
 
-  // Click outside / escape to close mega
-  useEffect(() => {
-    if (!openMega) return;
-    const onDown = (e: MouseEvent) => {
-      const nav = navRef.current;
-      if (nav && !nav.contains(e.target as Node)) setOpenMega(null);
-    };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpenMega(null);
-    };
-    document.addEventListener('mousedown', onDown);
-    document.addEventListener('keydown', onKey);
-    return () => {
-      document.removeEventListener('mousedown', onDown);
-      document.removeEventListener('keydown', onKey);
-    };
-  }, [openMega]);
-
-  const toggleMega = (key: Exclude<MegaKey, null>) => (e: React.MouseEvent) => {
-    e.preventDefault();
-    setOpenMega((prev) => (prev === key ? null : key));
-  };
+  useEffect(
+    () => () => {
+      clearCloseTimer();
+    },
+    [],
+  );
 
   return (
     <>
       <header className={`site-header${scrolled ? ' scrolled' : ''}`} id="top">
         <div className="container nav">
           <Link className="brand" to="/" aria-label="PDR World home">
-            <span className="brand-mark">PDR</span>
-            <span>
-              PDR World
-              <small>Videotronics India · Since 1985</small>
-            </span>
+            <div className="logo-container">
+              <img src={logo} alt="PDR World" className="logo" />
+              <span className="brand-text" style={{ display: 'flex', flexDirection: 'column' }}>
+                PDR World
+                <small>Videotronics India · Since 1985</small>
+              </span>
+            </div>
           </Link>
 
           <nav ref={navRef} className="nav-center" aria-label="Primary">
@@ -69,19 +74,12 @@ export default function Header() {
             <NavLink to="/about" className={({ isActive }) => (isActive ? 'active' : undefined)}>
               About Us
             </NavLink>
-
             <div
               className={`has-mega${openMega === 'products' ? ' open' : ''}`}
-              onMouseEnter={() => setOpenMega('products')}
-              onMouseLeave={() => setOpenMega((prev) => (prev === 'products' ? null : prev))}
+              onMouseEnter={() => openWithDelayCancel('products')}
+              onMouseLeave={closeWithDelay}
             >
-              <NavLink
-                to="/products"
-                className={({ isActive }) => (isActive ? 'active' : undefined)}
-                aria-haspopup="true"
-                aria-expanded={openMega === 'products'}
-                onClick={toggleMega('products')}
-              >
+              <NavLink to="/products" className={({ isActive }) => (isActive ? 'active' : undefined)} aria-haspopup="true">
                 Products
                 <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M3 5l3 3 3-3" />
@@ -116,19 +114,12 @@ export default function Header() {
                 </div>
               </div>
             </div>
-
             <div
               className={`has-mega${openMega === 'tools' ? ' open' : ''}`}
-              onMouseEnter={() => setOpenMega('tools')}
-              onMouseLeave={() => setOpenMega((prev) => (prev === 'tools' ? null : prev))}
+              onMouseEnter={() => openWithDelayCancel('tools')}
+              onMouseLeave={closeWithDelay}
             >
-              <NavLink
-                to="/cable-configurator"
-                className={({ isActive }) => (isActive ? 'active' : undefined)}
-                aria-haspopup="true"
-                aria-expanded={openMega === 'tools'}
-                onClick={toggleMega('tools')}
-              >
+              <NavLink to="/cable-configurator" className={({ isActive }) => (isActive ? 'active' : undefined)} aria-haspopup="true">
                 Configurator Tools
                 <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M3 5l3 3 3-3" />

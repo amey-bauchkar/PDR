@@ -4,6 +4,25 @@ import Seo from '../components/Seo';
 import { useRfqCart } from '../components/RfqCartProvider';
 import catalogue from '../data/catalogue.json';
 import '../styles/products.css';
+import attenuatorImg from '../assets/images/products/passive/attenuator.png';
+
+// Passive Component Images
+import bareFiber from '../assets/images/products/passive/bare-fiber-adapter.png';
+import cat6Cord from '../assets/images/products/passive/cat6-patch-cord.png';
+import cat6Panel from '../assets/images/products/passive/cat6-patch-panel.png';
+import cpri from '../assets/images/products/passive/cpri-patchcord.png';
+import cwdm from '../assets/images/products/passive/cwdm-mux.png';
+import dwdm from '../assets/images/products/passive/dwdm-mux.png';
+import fanout from '../assets/images/products/passive/fanout-patch-cords.jpg';
+import fiberConnector from '../assets/images/products/passive/fiber-connector.png';
+import fiberPigtails from '../assets/images/products/passive/fiber-patch-pigtails.png';
+import loopback from '../assets/images/products/passive/loopback-patch-cord.png';
+import modeConditioning from '../assets/images/products/passive/mode-conditioning-patchcord.jpg';
+import mpoCable from '../assets/images/products/passive/mpo-cable-assembly.png';
+import plcSplitter from '../assets/images/products/passive/plc-splitter.png';
+import rapidPush from '../assets/images/products/passive/rapid-push-cable.png';
+import scAdapter from '../assets/images/products/passive/sc-apc-to-sc-upc-adapter.png';
+import smpteCable from '../assets/images/products/passive/smpte-cable.png';
 
 type Card = {
   slug: string;
@@ -21,42 +40,92 @@ type Group = { subhead: string; cards: Card[] };
 type Section = { id: string; eyebrow: string; heading: string; intro: string; groups: Group[] };
 
 const STICKY_HASH = ['#active', '#passive', '#cable', '#test', '#specialty', '#tools'];
+const CATEGORY_IMAGE_MAP: Record<string, string> = {
+  active: '/images/sfp-transceiver.png',
+  passive: '/images/fiber-patchcord.png',
+  cable: '/images/fiber-patch-panel.png',
+  test: '/images/fiber-patch-panel.png',
+  specialty: '/images/hero-infrastructure.png',
+  tools: '/images/fiber-patch-panel.png',
+};
 
-function ProductCard({ card }: { card: Card }) {
+// Slug → local image map for passive components
+const PASSIVE_IMAGE_MAP: Record<string, string> = {
+  'attenuator': attenuatorImg,
+  'bare-fiber-adapter': bareFiber,
+  'cat6-patch-cord': cat6Cord,
+  'cat6-patch-panel': cat6Panel,
+  'cat6-panel': cat6Panel,
+  'cpri-patchcord': cpri,
+  'cwdm': cwdm,
+  'dwdm': dwdm,
+  'fanout-patch-cords': fanout,
+  'field-connector': fiberConnector,
+  'fo-patchcords': fiberPigtails,
+  'loopback': loopback,
+  'mode-conditioning': modeConditioning,
+  'mpo-assembly': mpoCable,
+  'plc-splitter': plcSplitter,
+  'rapid-push': rapidPush,
+  'sc-apc-upc': scAdapter,
+  'smpte-assembly': smpteCable,
+};
+
+const resolveCardImage = (card: Card, sectionId: string) => {
+  // Check slug-specific passive image map first
+  if (PASSIVE_IMAGE_MAP[card.slug]) return PASSIVE_IMAGE_MAP[card.slug];
+  if (card.img && card.img.trim().length > 0) return card.img;
+  return CATEGORY_IMAGE_MAP[sectionId] ?? CATEGORY_IMAGE_MAP.passive;
+};
+
+function ProductCard({ card, sectionId }: { card: Card; sectionId: string }) {
   const { addItem } = useRfqCart();
   const [added, setAdded] = useState(false);
 
   const handleAdd = () => {
-    addItem({ title: card.addItem.title, specs: card.addItem.specs, image: card.addItem.image, qty: 1 });
+    addItem({ 
+      title: card.addItem?.title || card.name || 'Product', 
+      specs: card.addItem?.specs || 'Standard Specs', 
+      image: card.addItem?.image || '/placeholder.png', 
+      qty: 1 
+    });
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
   };
 
   return (
-    <div className="pr-pcard reveal" data-product={card.slug}>
+    <div className="pr-pcard product-card reveal" data-product={card.slug || 'unknown'}>
       <div className="pr-pcard-art">
         {card.tag && <span className="pr-prod-tag">{card.tag}</span>}
-        {card.img ? (
-          <img src={card.img} alt={card.slug} className="real-img" />
+        {PASSIVE_IMAGE_MAP[card.slug] || card.slug === 'attenuator' || card.img || CATEGORY_IMAGE_MAP[sectionId] ? (
+          <img
+            src={resolveCardImage(card, sectionId)}
+            alt={card.name || 'Product Image'}
+            className="real-img"
+            loading="lazy"
+            onError={(event) => {
+              event.currentTarget.src = attenuatorImg || '/placeholder.png';
+            }}
+          />
         ) : (
-          <span dangerouslySetInnerHTML={{ __html: card.heroSvg }} />
+          <span dangerouslySetInnerHTML={{ __html: card.heroSvg || '' }} />
         )}
       </div>
       <div className="pr-pcard-body">
-        <h3>{card.name}</h3>
-        <p>{card.blurb}</p>
-        {card.pills.length > 0 && (
+        <h3>{card.name || 'Unnamed Product'}</h3>
+        <p>{card.blurb || ''}</p>
+        {card.pills && card.pills.length > 0 && (
           <div className="pr-spec-row">
             {card.pills.map((p, i) => (
               <span key={i} className="pr-spec-pill">{p}</span>
             ))}
           </div>
         )}
-        <div className="pr-prod-cta">
-          <button className="add-to-quote-btn" onClick={handleAdd}>
+        <div className="product-actions">
+          <button className="btn-primary" onClick={handleAdd}>
             {added ? '✓ Added' : 'Add to Quote'}
           </button>
-          {card.detailsSlug && <Link to={`/products/${card.detailsSlug}`}>Details →</Link>}
+          {card.detailsSlug && <Link className="btn-secondary" to={`/products/${card.detailsSlug}`}>Details →</Link>}
         </div>
       </div>
     </div>
@@ -102,6 +171,14 @@ function StickyNav() {
 }
 
 function CategorySection({ section, alt }: { section: Section; alt: boolean }) {
+  const excludedProducts = [
+    "Armoured Patchcord",
+    "POF — Plastic Optical Fiber Patchcord",
+    "Bendiboot Patchcord",
+    "LC Uniboot Patchcord",
+    "Mating Sleeve / Alignment Sleeve"
+  ];
+
   return (
     <section className={`section reveal${alt ? ' sec-muted' : ''}`} id={section.id}>
       <div className="container">
@@ -110,16 +187,26 @@ function CategorySection({ section, alt }: { section: Section; alt: boolean }) {
           <h2>{section.heading}</h2>
           <p>{section.intro}</p>
         </div>
-        {section.groups.map((g, i) => (
-          <div key={i}>
-            {g.subhead && <h3 className="pr-sub-head">{g.subhead}</h3>}
-            <div className="pr-grid">
-              {g.cards.map((c) => (
-                <ProductCard key={c.slug} card={c} />
-              ))}
+        {section.groups && section.groups.length > 0 ? (
+          section.groups.map((g, i) => (
+            <div key={i}>
+              {g.subhead && <h3 className="pr-sub-head">{g.subhead}</h3>}
+              <div className="pr-grid">
+                {g.cards && g.cards.length > 0 ? (
+                  g.cards
+                    .filter((c) => !excludedProducts.includes(c.name))
+                    .map((c, idx) => (
+                      <ProductCard key={c.slug || idx} card={c} sectionId={section.id} />
+                    ))
+                ) : (
+                  <div>No products available in this category.</div>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <div>No product groups available.</div>
+        )}
       </div>
     </section>
   );
@@ -242,16 +329,29 @@ export default function Products() {
       <section className="pr-hero">
         <div className="container">
           <div className="pr-hero-grid">
-            <div>
-              <div className="eyebrow">{catalogue.hero.eyebrow}</div>
-              <h1>{catalogue.hero.title}</h1>
-              <p style={{ fontSize: 18, color: '#475569', marginTop: 18, maxWidth: 520 }}>{catalogue.hero.subtitle}</p>
-              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 28 }}>
+            <div className="pr-hero-copy">
+              <div className="eyebrow">Product Catalogue · 50+ Families</div>
+              <h1>The Complete Fiber Optic Ecosystem. Engineered in Mumbai.</h1>
+              <p className="pr-hero-subtitle">
+                Delivering high-performance active and passive optical solutions with precision manufacturing and rigorous in-house
+                testing since 1985.
+              </p>
+              <ul className="pr-hero-points">
+                <li>Engineered &amp; tested in-house in Mumbai</li>
+                <li>End-to-end product stack (Active → Maintenance)</li>
+                <li>Fast RFQ &amp; enterprise-grade deployment support</li>
+              </ul>
+              <div className="pr-hero-cta-row">
                 <Link className="btn btn-primary" to="/contact">Request a Quote</Link>
                 <a className="btn btn-outline" href="#active">Browse Catalogue ↓</a>
               </div>
               <div className="pr-hero-stats">
-                {catalogue.hero.stats.map((s, i) => (
+                {[
+                  '50+ Product Families',
+                  '3,000+ Buyers',
+                  'ISO 9001:2015 Certified',
+                  'Same-day shipping',
+                ].map((s, i) => (
                   <span key={i}>{s}</span>
                 ))}
               </div>
@@ -283,20 +383,17 @@ export default function Products() {
       )}
 
       {/* TRUST BAND */}
-      <section
-        className="section reveal"
-        style={{ background: 'var(--surface-2)', borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)' }}
-      >
+      <section className="section reveal pr-trust-band">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}>
+          <div className="pr-trust-layout">
             <div>
               <div className="eyebrow">Made in Mumbai</div>
-              <h2 style={{ color: '#07008F' }}>Manufactured, tested and dispatched from one floor.</h2>
-              <p style={{ color: '#475569', marginTop: 16, fontSize: 16 }}>
+              <h2>Manufactured, tested and dispatched from one floor.</h2>
+              <p className="pr-trust-copy">
                 PDR operates a vertically integrated production facility at Filmcity Complex, Goregaon East — ensuring zero supply chain
                 gaps and full quality ownership.
               </p>
-              <Link className="btn btn-outline" style={{ marginTop: 32 }} to="/about">About Our Manufacturing →</Link>
+              <Link className="btn btn-outline pr-trust-link" to="/about">About Our Manufacturing →</Link>
             </div>
             <div className="pr-trust-grid">
               <div className="pr-trust-tile"><div className="stat-num">40+</div><div className="stat-label">Years Heritage</div></div>
@@ -311,13 +408,13 @@ export default function Products() {
       {/* CTA BAND */}
       <section className="section">
         <div className="container">
-          <div style={{ textAlign: 'center', maxWidth: 760, margin: '0 auto' }}>
-            <div className="eyebrow" style={{ justifyContent: 'center' }}>Need a Custom Configuration?</div>
+          <div className="pr-custom-cta">
+            <div className="eyebrow pr-custom-eyebrow">Need a Custom Configuration?</div>
             <h2>We manufacture to spec.</h2>
-            <p style={{ fontSize: 18, color: 'var(--muted)', marginTop: 16, marginBottom: 36 }}>
+            <p className="pr-custom-copy">
               Non-standard lengths, connector types, armour configurations, and private-label assemblies — quoted within 24 hours.
             </p>
-            <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <div className="pr-custom-cta-row">
               <Link className="btn btn-primary" to="/contact?inquiry=Custom+Manufacturing">Submit Your RFQ →</Link>
               <Link className="btn btn-outline" to="/contact?inquiry=Technical+Support">Talk to an Engineer</Link>
               <a

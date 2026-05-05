@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
+import logo from '../assets/logo.png';
 import '../styles/notfound.css';
 
 export default function NotFound() {
@@ -7,7 +8,7 @@ export default function NotFound() {
     <>
       <Seo title="Page Not Found | PDR World" description="The page you're looking for doesn't exist." canonical="https://pdrworld.com/404" />
       <div className="nf-wrap">
-        <span className="nf-brand-mark">PDR</span>
+        <img src={logo} alt="PDR World" className="logo" style={{ marginBottom: 24, height: 48 }} />
         <h1>404</h1>
         <h2>Page not found</h2>
         <p>
