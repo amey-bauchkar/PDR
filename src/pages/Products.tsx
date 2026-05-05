@@ -6,6 +6,19 @@ import catalogue from '../data/catalogue.json';
 import '../styles/products.css';
 import attenuatorImg from '../assets/images/products/attenuator.png';
 
+// Passive Component Images
+import bareFiber from '../assets/images/products/passive/bare-fiber-adapter.png';
+import cat6Cord from '../assets/images/products/passive/cat6-patch-cord.png';
+import cat6Panel from '../assets/images/products/passive/cat6-patch-panel.png';
+import cpri from '../assets/images/products/passive/cpri-patchcord.png';
+import cwdm from '../assets/images/products/passive/cwdm-mux.png';
+import dwdm from '../assets/images/products/passive/dwdm-mux.png';
+import fanout from '../assets/images/products/passive/fanout-patch-cords.jpg';
+import fiberConnector from '../assets/images/products/passive/fiber-connector.png';
+import fiberPigtails from '../assets/images/products/passive/fiber-patch-pigtails.png';
+import loopback from '../assets/images/products/passive/loopback-patch-cord.png';
+import modeConditioning from '../assets/images/products/passive/mode-conditioning-patchcord.jpg';
+
 type Card = {
   slug: string;
   tag: string;
@@ -31,12 +44,28 @@ const CATEGORY_IMAGE_MAP: Record<string, string> = {
   tools: '/images/fiber-patch-panel.png',
 };
 
-const resolveCardImage = (card: Card, sectionId: string) =>
-  card.slug === 'attenuator'
-    ? attenuatorImg
-    : card.img && card.img.trim().length > 0
-      ? card.img
-      : CATEGORY_IMAGE_MAP[sectionId] ?? CATEGORY_IMAGE_MAP.passive;
+// Slug → local image map for passive components
+const PASSIVE_IMAGE_MAP: Record<string, string> = {
+  'bare-fiber-adapter': bareFiber,
+  'cat6-patch-cord': cat6Cord,
+  'cat6-patch-panel': cat6Panel,
+  'cpri-patchcord': cpri,
+  'cwdm': cwdm,
+  'dwdm': dwdm,
+  'fanout-patch-cords': fanout,
+  'field-connector': fiberConnector,
+  'fo-patchcords': fiberPigtails,
+  'loopback': loopback,
+  'mode-conditioning': modeConditioning,
+};
+
+const resolveCardImage = (card: Card, sectionId: string) => {
+  // Check slug-specific passive image map first
+  if (PASSIVE_IMAGE_MAP[card.slug]) return PASSIVE_IMAGE_MAP[card.slug];
+  if (card.slug === 'attenuator') return attenuatorImg;
+  if (card.img && card.img.trim().length > 0) return card.img;
+  return CATEGORY_IMAGE_MAP[sectionId] ?? CATEGORY_IMAGE_MAP.passive;
+};
 
 function ProductCard({ card, sectionId }: { card: Card; sectionId: string }) {
   const { addItem } = useRfqCart();
@@ -52,7 +81,7 @@ function ProductCard({ card, sectionId }: { card: Card; sectionId: string }) {
     <div className="pr-pcard product-card reveal" data-product={card.slug}>
       <div className="pr-pcard-art">
         {card.tag && <span className="pr-prod-tag">{card.tag}</span>}
-        {card.img || CATEGORY_IMAGE_MAP[sectionId] ? (
+        {PASSIVE_IMAGE_MAP[card.slug] || card.slug === 'attenuator' || card.img || CATEGORY_IMAGE_MAP[sectionId] ? (
           <img
             src={resolveCardImage(card, sectionId)}
             alt={card.name}
