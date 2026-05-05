@@ -262,10 +262,10 @@ export default function Home() {
                 infrastructure projects.
               </p>
               <div className="hp-cta-row hp-final-cta-row">
-                <a className="btn btn-primary" href="/contact">
+                <Link className="btn btn-primary" to="/contact">
                   Request Technical Quote
-                </a>
-                <a className="btn btn-outline" href="/about">
+                </Link>
+                <Link className="btn btn-outline" to="/about">
                   Explore Facility
                 </Link>
               </div>

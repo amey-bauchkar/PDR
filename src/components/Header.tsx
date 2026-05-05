@@ -67,7 +67,7 @@ export default function Header() {
             </div>
           </Link>
 
-          <nav ref={navRef} className="nav-center" aria-label="Primary">
+          <nav className="nav-center" aria-label="Primary">
             <NavLink to="/" end className={({ isActive }) => (isActive ? 'active' : undefined)}>
               Home
             </NavLink>
