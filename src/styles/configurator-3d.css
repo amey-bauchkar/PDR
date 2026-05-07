@@ -1,0 +1,260 @@
+/* ===== Cable Configurator (3D demo design) ===== */
+.cfg3-page {
+  background: #F5F6F8;
+  color: #1A1A1A;
+  min-height: 100vh;
+  padding-top: 76px;
+}
+.cfg3-top-bar {
+  background: #fff;
+  border-bottom: 1px solid #E2E4E8;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cfg3-brand {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1A1A1A;
+  letter-spacing: 0.01em;
+}
+.cfg3-brand span { color: #0066CC; }
+.cfg3-demo-tag {
+  font-size: 11px;
+  color: #888;
+  letter-spacing: 0.04em;
+  background: #F0F0F0;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.cfg3-wrap { max-width: 1060px; margin: 0 auto; padding: 28px 24px 48px; }
+.cfg3-title { font-size: 22px; font-weight: 600; color: #111; margin-bottom: 4px; }
+.cfg3-sub { font-size: 14px; color: #666; margin-bottom: 24px; }
+
+.cfg3-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .cfg3-layout { grid-template-columns: 1fr; }
+}
+
+.cfg3-left { display: flex; flex-direction: column; gap: 12px; }
+
+.cfg3-viewer-box {
+  background: #fff;
+  border: 1px solid #E2E4E8;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.cfg3-canvas-wrap {
+  background: #F8F9FB;
+  border-bottom: 1px solid #E2E4E8;
+  position: relative;
+}
+.cfg3-canvas {
+  width: 100%;
+  height: 310px;
+  display: block;
+  cursor: grab;
+}
+.cfg3-canvas:active { cursor: grabbing; }
+.cfg3-canvas-hint {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 10px;
+  color: #AAA;
+  letter-spacing: 0.03em;
+}
+.cfg3-fiber-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 4px;
+  transition: all 0.25s;
+}
+
+.cfg3-spec-wrap { padding: 16px 18px; }
+.cfg3-sec-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #888;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.cfg3-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+@media (max-width: 640px) {
+  .cfg3-spec-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.cfg3-sc { background: #F8F9FB; border-radius: 6px; padding: 9px 10px; }
+.cfg3-sc.hi { background: #EBF3FF; }
+.cfg3-sc-k {
+  font-size: 9px;
+  color: #888;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.cfg3-sc-v { font-size: 12px; font-weight: 600; color: #111; }
+.cfg3-sc.hi .cfg3-sc-v { color: #0055BB; }
+
+.cfg3-cart-box {
+  background: #fff;
+  border: 1px solid #E2E4E8;
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cfg3-cart-label { font-size: 12px; font-weight: 600; color: #333; white-space: nowrap; }
+.cfg3-cart-items {
+  flex: 1;
+  font-size: 12px;
+  color: #555;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cfg3-cart-count { font-size: 12px; font-weight: 600; color: #0066CC; white-space: nowrap; }
+.cfg3-rfq-btn {
+  padding: 8px 16px;
+  background: #0066CC;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.cfg3-rfq-btn:hover { background: #0052A8; }
+
+.cfg3-right { display: flex; flex-direction: column; gap: 10px; }
+.cfg3-step-card {
+  background: #fff;
+  border: 1px solid #E2E4E8;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.cfg3-step-head {
+  font-size: 10px;
+  font-weight: 600;
+  color: #888;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.cfg3-fiber-list { display: flex; flex-direction: column; gap: 5px; }
+.cfg3-fopt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid #E2E4E8;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: #fff;
+}
+.cfg3-fopt:hover { border-color: #AABDD8; background: #F7FAFF; }
+.cfg3-fopt.on { border-color: #0066CC; background: #EBF3FF; }
+.cfg3-fdot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.cfg3-fname { font-size: 12px; font-weight: 600; color: #222; }
+.cfg3-fsub { font-size: 10px; color: #888; margin-top: 1px; }
+.cfg3-fopt.on .cfg3-fname { color: #0055BB; }
+
+.cfg3-conn-grid,
+.cfg3-jack-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+.cfg3-copt,
+.cfg3-jopt {
+  padding: 7px 9px;
+  border: 1px solid #E2E4E8;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: #fff;
+}
+.cfg3-copt:hover,
+.cfg3-jopt:hover { border-color: #AABDD8; background: #F7FAFF; }
+.cfg3-copt.on,
+.cfg3-jopt.on { border-color: #0066CC; background: #EBF3FF; }
+.cfg3-cname,
+.cfg3-jname { font-size: 11px; font-weight: 600; color: #222; }
+.cfg3-csub,
+.cfg3-jsub { font-size: 9px; color: #888; margin-top: 2px; line-height: 1.3; }
+.cfg3-copt.on .cfg3-cname,
+.cfg3-jopt.on .cfg3-jname { color: #0055BB; }
+
+.cfg3-len-row { display: flex; align-items: center; gap: 12px; margin-top: 2px; }
+.cfg3-len-val { font-size: 18px; font-weight: 700; color: #0066CC; min-width: 44px; }
+.cfg3-len-row input[type='range'] {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  background: #DDE2EA;
+  border-radius: 2px;
+  outline: none;
+}
+.cfg3-len-row input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #0066CC;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #0066CC;
+}
+.cfg3-len-row input[type='range']::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #0066CC;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #0066CC;
+}
+
+.cfg3-add-btn {
+  width: 100%;
+  padding: 11px;
+  background: #0066CC;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-top: 2px;
+}
+.cfg3-add-btn:hover { background: #0052A8; }
+.cfg3-add-conf {
+  font-size: 11px;
+  color: #1A8A4A;
+  text-align: center;
+  margin-top: 6px;
+  font-weight: 500;
+}
