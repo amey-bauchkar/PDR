@@ -212,100 +212,6 @@ function CategorySection({ section, alt }: { section: Section; alt: boolean }) {
   );
 }
 
-function SpecialtySection() {
-  const { addItem } = useRfqCart();
-  const [added, setAdded] = useState(false);
-  const handleAdd = () => {
-    addItem({ title: 'High Power Patchcord', specs: 'Standard Factory Specs', image: '/images/fiber-patch-panel.png', qty: 1 });
-    setAdded(true);
-    setTimeout(() => setAdded(false), 1500);
-  };
-  return (
-    <section
-      className="section reveal"
-      id="specialty"
-      style={{ background: '#FAFAFA', borderTop: '1px solid #E2E8F0', borderBottom: '1px solid #E2E8F0' }}
-    >
-      <div className="container">
-        <div className="sec-head center">
-          <div className="eyebrow" style={{ justifyContent: 'center' }}>Specialty Products</div>
-          <h2>Optical Fiber Drone</h2>
-          <p style={{ color: '#475569' }}>
-            Next-generation aerial fiber deployment, inspection, and surveillance solutions.
-          </p>
-        </div>
-
-        <div className="pr-drone-feature">
-          <div style={{ textAlign: 'center', marginBottom: 32 }}>
-            <svg width="64" height="64" viewBox="0 0 48 48" fill="none" stroke="var(--accent)" strokeWidth="1.5" style={{ margin: '0 auto' }}>
-              <path d="M12 12l24 24M12 36l24-24" />
-              <circle cx="12" cy="12" r="4" />
-              <circle cx="36" cy="36" r="4" />
-              <circle cx="12" cy="36" r="4" />
-              <circle cx="36" cy="12" r="4" />
-              <rect x="20" y="20" width="8" height="8" rx="2" />
-            </svg>
-          </div>
-          <h3 style={{ textAlign: 'center', fontSize: 24, color: '#07008F', marginBottom: 16 }}>Aerial Fiber Deployment</h3>
-          <p style={{ textAlign: 'center', color: '#475569', fontSize: 16 }}>
-            Engineered for rapid field deployment, remote infrastructure inspection, and secure surveillance across challenging terrains.
-          </p>
-          <ul className="pr-drone-features">
-            <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>{' '}
-              Rapid aerial deployment in inaccessible areas
-            </li>
-            <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>{' '}
-              High-resolution optical infrastructure inspection
-            </li>
-            <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>{' '}
-              Real-time secure surveillance feed
-            </li>
-          </ul>
-
-          <div className="pr-pcard reveal" data-product="high-power-patchcord" style={{ boxShadow: 'none', border: '1px solid #E2E8F0' }}>
-            <div className="pr-pcard-art">
-              <span className="pr-prod-tag">High-Power</span>
-              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#fff" strokeWidth="1.5">
-                <path d="M8 24h32" />
-                <circle cx="24" cy="24" r="8" />
-                <path d="M24 16v16" />
-              </svg>
-            </div>
-            <div className="pr-pcard-body">
-              <h3>High-Power Patchcord</h3>
-              <p>Specialty assembly for laser delivery and sensing applications. Handling 1W–50W power.</p>
-              <div className="pr-spec-row">
-                <span className="pr-spec-pill">1W–50W</span>
-                <span className="pr-spec-pill">SM Fiber</span>
-              </div>
-              <div className="pr-prod-cta">
-                <button className="add-to-quote-btn" onClick={handleAdd}>
-                  {added ? '✓ Added' : 'Add to Quote'}
-                </button>
-                <Link to="/products/high-power-patchcord">Details →</Link>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', marginTop: 32, flexWrap: 'wrap' }}>
-          <Link className="btn btn-primary" to="/products/drone">Inquire Now</Link>
-          <Link className="btn btn-outline" to="/products/drone">Request Datasheet</Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function Products() {
   const location = useLocation();
 
@@ -378,9 +284,9 @@ export default function Products() {
 
       <StickyNav />
 
-      {sections.map((s, i) =>
-        s.id === 'specialty' ? <SpecialtySection key={s.id} /> : <CategorySection key={s.id} section={s} alt={i % 2 === 0} />,
-      )}
+      {sections.map((s, i) => (
+        <CategorySection key={s.id} section={s} alt={i % 2 === 0} />
+      ))}
 
       {/* TRUST BAND */}
       <section className="section reveal pr-trust-band">

@@ -124,8 +124,8 @@ export default function Footer() {
       </div>
 
       <div
-        className="footer-quick-actions"
-        style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 24, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,.06)' }}
+        className="container footer-quick-actions"
+        style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginTop: 24, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,.06)' }}
       >
         <Link
           to="/contact"

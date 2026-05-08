@@ -392,8 +392,12 @@
               "img": "/images/live/hd-sdi-optical-transciever.png",
               "heroSvg": "",
               "name": "HD-SDI Optical Transciever",
-              "blurb": "",
-              "pills": [],
+              "blurb": "PDR’s PDR8010SG SD/HD/3G-SDI Optical Transceivers broadcasting grade HD Transceiver which can interconvert SD/HD/3G-SDI electric signal and optical signal.",
+              "pills": [
+                "SD/HD/3G auto-detection",
+                "Support",
+                "With 2CH Bi-Di data."
+              ],
               "detailsSlug": "hd-sdi-optical-transciever",
               "addItem": {
                 "title": "HD-SDI Optical Transciever",
@@ -407,8 +411,10 @@
               "img": "/images/live/direct-attached-cable.png",
               "heroSvg": "",
               "name": "Direct Attached Cable",
-              "blurb": "",
-              "pills": [],
+              "blurb": "PDR SFP-10G-DAC-PXM is a hot-swappable direct attach copper cable assembly (also known as Twinax Cable or DAC) with SFP+ modules at both ends.",
+              "pills": [
+                "Support for 1x"
+              ],
               "detailsSlug": "direct-attached-cable",
               "addItem": {
                 "title": "Direct Attached Cable",
@@ -422,8 +428,12 @@
               "img": "/images/live/active-optical-cable.png",
               "heroSvg": "",
               "name": "Active Optical Cable",
-              "blurb": "",
-              "pills": [],
+              "blurb": "PDR 100G QSFP28 Active Optical Cable (AOC) assemblies offer a highly reliable and cost-effective alternative to transceiver assemblies available in lengths ranging from 0.5 m to 10",
+              "pills": [
+                "QSFP28 MSA",
+                "IEEE P802.3bm",
+                "100GBASE-SR4"
+              ],
               "detailsSlug": "active-optical-cable",
               "addItem": {
                 "title": "Active Optical Cable",
@@ -830,8 +840,12 @@
               "img": "/images/live/attenuator.png",
               "heroSvg": "",
               "name": "Attenuator",
-              "blurb": "",
-              "pills": [],
+              "blurb": "Buildout attenuators provide superior performance for all single-mode in-line attenuation requirements Standard attenuation values are 5, 10, 15, and 20 dB, available in SC, FC, ST and LC connector styles.",
+              "pills": [
+                "SC",
+                "Long-term reliability",
+                "Low ripple"
+              ],
               "detailsSlug": "attenuator",
               "addItem": {
                 "title": "Attenuator",
@@ -845,7 +859,7 @@
               "img": "/images/live/cat-6-patch-panel.png",
               "heroSvg": "",
               "name": "CAT 6 Patch Panel",
-              "blurb": "",
+              "blurb": "PDR’s Cat 6 24 Port Distribution Panel is designed for High speed Network",
               "pills": [],
               "detailsSlug": "cat-6-patch-panel",
               "addItem": {
@@ -860,8 +874,12 @@
               "img": "/images/live/sc-apc-female-to-sc-upc-male-adapter-converter.png",
               "heroSvg": "",
               "name": "SC/APC FEMALE to SC/UPC MALE Adapter Converter",
-              "blurb": "",
-              "pills": [],
+              "blurb": "• Easily mate (pair) SC UPC (blue) equipment sockets that require SC UPC (blue) connectors with existing SC APC (green) cabling infrastructure",
+              "pills": [
+                "Single Mode 9/125",
+                "Hybrid Fixed Type Adapter",
+                "No Loss 0dB"
+              ],
               "detailsSlug": "sc-apc-female-to-sc-upc-male-adapter-converter",
               "addItem": {
                 "title": "SC/APC FEMALE to SC/UPC MALE Adapter Converter",
@@ -1037,8 +1055,12 @@
               "img": "/images/live/wall-mount-enclosure-model-ftb-r24.png",
               "heroSvg": "",
               "name": "Wall Mount Enclosure – Model FTB-R24",
-              "blurb": "",
-              "pills": [],
+              "blurb": "PDR introduces multi-purpose wall mount fiberoptic enclosures.",
+              "pills": [
+                "Protection Class",
+                "Box Size",
+                "Splice Capacity"
+              ],
               "detailsSlug": "wall-mount-enclosure-model-ftb-r24",
               "addItem": {
                 "title": "Wall Mount Enclosure – Model FTB-R24",
@@ -1052,8 +1074,11 @@
               "img": "/images/live/fiber-optic-termination-box-model-tb-c08.png",
               "heroSvg": "",
               "name": "Fiber Optic Termination Box – Model TB-C08",
-              "blurb": "",
-              "pills": [],
+              "blurb": "FTB-C08 is Snap-in type, compact, easy to open and Close – fiber optic termination Box used in data communication networks, CATV networks or FTTH access network.",
+              "pills": [
+                "Protection Class",
+                "Splice Capacity"
+              ],
               "detailsSlug": "fiber-optic-termination-box-model-tb-c08",
               "addItem": {
                 "title": "Fiber Optic Termination Box – Model TB-C08",
@@ -1067,8 +1092,12 @@
               "img": "/images/live/fiber-optic-termination-box-model-din-fb.png",
               "heroSvg": "",
               "name": "Fiber Optic Termination Box – Model DIN-FB",
-              "blurb": "",
-              "pills": [],
+              "blurb": "Fiber optic Din terminal box is available for the distribution and terminal connection for various kinds of optical fiber system, especially suitable for mini-network terminal dist",
+              "pills": [
+                "Standard size",
+                "Material",
+                "Flame Rating"
+              ],
               "detailsSlug": "fiber-optic-termination-box-model-din-fb",
               "addItem": {
                 "title": "Fiber Optic Termination Box – Model DIN-FB",
@@ -1082,8 +1111,11 @@
               "img": "/images/live/fiber-termination-and-distribution-box.png",
               "heroSvg": "",
               "name": "Fiber Termination And Distribution Box",
-              "blurb": "",
-              "pills": [],
+              "blurb": "PDR’s Fiber Termination And Distribution Box are specially designed to provide reliable and long-lasting protection for optical fibers and splices, combined with maximum ease of installation and maintenance.",
+              "pills": [
+                "Standard Fiber Count",
+                "Splice Trays are Retractable"
+              ],
               "detailsSlug": "fiber-termination-and-distribution-box",
               "addItem": {
                 "title": "Fiber Termination And Distribution Box",
@@ -1097,8 +1129,12 @@
               "img": "/images/live/fiber-optic-termination-box-ftb-08b-2.png",
               "heroSvg": "",
               "name": "Fiber Optic Termination Box FTB-08B-2",
-              "blurb": "",
-              "pills": [],
+              "blurb": "The Fiber Distribution Box (FDB) is a compact termination box used at the building premises such as residence, offices etc.",
+              "pills": [
+                "outdoor natural environments",
+                "With double-page design",
+                "completely separated"
+              ],
               "detailsSlug": "fiber-optic-termination-box-ftb-08b-2",
               "addItem": {
                 "title": "Fiber Optic Termination Box FTB-08B-2",
@@ -1112,8 +1148,12 @@
               "img": "/images/live/fiber-distribution-box-fdb-32.png",
               "heroSvg": "",
               "name": "Fiber Distribution Box (FDB) – 32",
-              "blurb": "",
-              "pills": [],
+              "blurb": "PDR Model No.:HT-FTB-48A can connect the drop cable with feeder cable as the termination point in the Fttx network, which is cable to meet at least 48 users requirements.",
+              "pills": [
+                "performance",
+                "With double-page design",
+                "Package Information"
+              ],
               "detailsSlug": "fiber-distribution-box-fdb-32",
               "addItem": {
                 "title": "Fiber Distribution Box (FDB) – 32",
@@ -1335,7 +1375,7 @@
               "img": "/images/live/variable-fiber-attenuator.png",
               "heroSvg": "",
               "name": "Variable Fiber Attenuator",
-              "blurb": "",
+              "blurb": "Calibrated Wavelengths: 1310 nm / 1490 nm / 1550 nm",
               "pills": [],
               "detailsSlug": "variable-fiber-attenuator",
               "addItem": {
@@ -1350,8 +1390,12 @@
               "img": "/images/live/laser-source.png",
               "heroSvg": "",
               "name": "Laser Source",
-              "blurb": "",
-              "pills": [],
+              "blurb": "Stable and accurate single-mode optical laser source for fiber link testing and OTDR loss reference.",
+              "pills": [
+                "1310/1550 nm",
+                "Single Mode",
+                "Compact"
+              ],
               "detailsSlug": "laser-source",
               "addItem": {
                 "title": "Laser Source",
@@ -1365,8 +1409,12 @@
               "img": "/images/live/e1-ber-tester.png",
               "heroSvg": "",
               "name": "E1 BER Tester",
-              "blurb": "",
-              "pills": [],
+              "blurb": "This E1 BER (Bit Error Rate) tester is a compact, multi-functional, handheld E1 line test instrument, specially designed for installation and maintenance.",
+              "pills": [
+                "Large space for data storage",
+                "One time slot monitored",
+                "Real-time clock"
+              ],
               "detailsSlug": "e1-ber-tester",
               "addItem": {
                 "title": "E1 BER Tester",
@@ -1380,8 +1428,12 @@
               "img": "/images/live/autoget-wifi-intelligent-fiber-endface-microscope.png",
               "heroSvg": "",
               "name": "AutoGet Wifi Intelligent Fiber Endface Microscope",
-              "blurb": "",
-              "pills": [],
+              "blurb": "The primary cause of optical network problems is that the connector’s endface is dirty or damaged, so, how to quickly and efficiently diagnose is particularly important.",
+              "pills": [
+                "Fully automatic",
+                "All in one design",
+                "Excellent analysis ability"
+              ],
               "detailsSlug": "autoget-wifi-intelligent-fiber-endface-microscope",
               "addItem": {
                 "title": "AutoGet Wifi Intelligent Fiber Endface Microscope",
@@ -1395,8 +1447,10 @@
               "img": "/images/live/twoway-fiber-polarity-and-return-loss-meter.png",
               "heroSvg": "",
               "name": "TwoWay Fiber Polarity and Return Loss Meter",
-              "blurb": "",
-              "pills": [],
+              "blurb": "TwoWay fiber polarity and return Loss meter is a new product that PDR uses innovative design concepts to solve the problems encountered in the current duplex fiber jumper test, whi",
+              "pills": [
+                "RL mandrel-free test"
+              ],
               "detailsSlug": "twoway-fiber-polarity-and-return-loss-meter",
               "addItem": {
                 "title": "TwoWay Fiber Polarity and Return Loss Meter",
@@ -1410,7 +1464,7 @@
               "img": "/images/live/optical-talk-set.jpg",
               "heroSvg": "",
               "name": "Optical Talk Set",
-              "blurb": "",
+              "blurb": "Standard: Carrying Bag, User’s manual, Calibration certificate, Ear phone & mic – 1 no.",
               "pills": [],
               "detailsSlug": "optical-talk-set",
               "addItem": {
@@ -1438,8 +1492,12 @@
               "img": "/images/live/high-power-patch-cord.png",
               "heroSvg": "",
               "name": "High power patch cord",
-              "blurb": "",
-              "pills": [],
+              "blurb": "PDR provides the broadest choice of patchcords to the industry.",
+              "pills": [
+                "Available is short boot",
+                "IEC",
+                "Simplex"
+              ],
               "detailsSlug": "high-power-patch-cord",
               "addItem": {
                 "title": "High power patch cord",
@@ -1574,7 +1632,7 @@
               "img": "/images/live/cold-shrink-sleeve.png",
               "heroSvg": "",
               "name": "Cold Shrink Sleeve",
-              "blurb": "",
+              "blurb": "This product was developed particularly for Electrical Industry to carry out environmental protection in cabling installation done in explosive area, whereby usage of heat has been prohibited.",
               "pills": [],
               "detailsSlug": "cold-shrink-sleeve",
               "addItem": {
@@ -1589,7 +1647,7 @@
               "img": "/images/live/fiber-cleaver-clv-b1.png",
               "heroSvg": "",
               "name": "Fiber Cleaver CLV-B1",
-              "blurb": "",
+              "blurb": "Specifications • Applications: Fast Connector • Bare Fiber Diameter: 125um • Coating Fiber Diameter: 250um, 900um • Cleaving length 250um: 9~16mm, 900um: 10~16mm • Blade Life: 1800",
               "pills": [],
               "detailsSlug": "fiber-cleaver-clv-b1",
               "addItem": {
