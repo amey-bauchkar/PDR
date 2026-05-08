@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
-import attenuatorImg from '../assets/images/products/attenuator.png';
 
 const homeCategories = [
   {
@@ -15,7 +14,7 @@ const homeCategories = [
     title: 'Passive Components',
     description: 'Premium patchcords, MPO assemblies, WDMs, and precision splitters.',
     count: '40+ SKUs',
-    image: attenuatorImg,
+    image: '/images/fiber-patchcord.png',
   },
   {
     id: 'cable',
@@ -152,7 +151,7 @@ export default function Home() {
                     className="real-img"
                     loading="lazy"
                     onError={(event) => {
-                      event.currentTarget.src = attenuatorImg || '/placeholder.png';
+                      event.currentTarget.src = '/images/fiber-patchcord.png';
                     }}
                   />
                 </div>

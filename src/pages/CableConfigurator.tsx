@@ -417,13 +417,7 @@ export default function CableConfigurator() {
         canonical="https://pdrworld.com/cable-configurator"
       />
 
-      <div className="cfg3-top-bar">
-        <div className="cfg3-brand">
-          PDR <span>World</span> — Cable Configurator
-        </div>
-        <div className="cfg3-demo-tag">DEMO BUILD</div>
-      </div>
-
+      
       <div className="cfg3-wrap">
         <div className="cfg3-title">Custom Cable Builder</div>
         <div className="cfg3-sub">Select your specifications below. The 3D model updates in real time.</div>
