@@ -2515,3 +2515,26 @@ body {
 .product-actions .btn-primary:hover { background: #2c3f8f; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
 .product-actions .btn-secondary { background: transparent; color: #1a2b6d; padding: 8px 10px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid transparent; transition: all 0.25s ease; }
 .product-actions .btn-secondary:hover { background: rgba(26,43,109,0.08); }
+
+/* ===== Trust band tiles on light background — make numbers visible ===== */
+.pr-trust-band .pr-trust-tile {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.pr-trust-band .pr-trust-tile .stat-num {
+  color: var(--accent);
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: clamp(32px, 3.4vw, 44px);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.pr-trust-band .pr-trust-tile .stat-label {
+  color: #07008F;
+  font-weight: 600;
+  font-size: 13px;
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
