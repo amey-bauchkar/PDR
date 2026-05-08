@@ -1772,11 +1772,15 @@ select {
   border-radius: 8px !important;
 }
 
-/* Why card numbers: less template-like */
+/* Why card numbers: bold + brand-colored for legibility */
 .why-card .num {
+  font-family: 'Manrope', sans-serif !important;
   font-size: 40px !important;
-  color: rgba(15,23,42,.05) !important;
-  margin-bottom: 8px !important;
+  font-weight: 800 !important;
+  color: var(--accent) !important;
+  letter-spacing: -0.02em !important;
+  margin-bottom: 16px !important;
+  line-height: 1 !important;
 }
 
 
