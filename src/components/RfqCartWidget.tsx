@@ -10,14 +10,21 @@ export default function RfqCartWidget() {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     setSubmitting(true);
-    await submit({
-      name: String(fd.get('name') ?? ''),
-      email: String(fd.get('email') ?? ''),
-      company: String(fd.get('company') ?? ''),
-      notes: String(fd.get('notes') ?? ''),
-    });
-    setSubmitting(false);
-    e.currentTarget.reset();
+
+    try {
+      await submit({
+        name: String(fd.get('name') ?? ''),
+        email: String(fd.get('email') ?? ''),
+        company: String(fd.get('company') ?? ''),
+        notes: String(fd.get('notes') ?? ''),
+      });
+      e.currentTarget.reset();
+    } catch (error) {
+      console.error('Failed to submit quote request', error);
+      alert('We could not submit the quote request right now. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
