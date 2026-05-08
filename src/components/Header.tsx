@@ -133,10 +133,7 @@ export default function Header() {
                     style={{ padding: 16, border: '1px solid var(--line)', borderRadius: 12, transition: 'all 0.2s' }}
                   >
                     <strong style={{ display: 'block', fontSize: 15, color: 'var(--ink)', marginBottom: 4 }}>
-                      Custom Cable Builder{' '}
-                      <span style={{ fontSize: 10, background: 'var(--accent)', color: '#fff', padding: '2px 6px', borderRadius: 4, marginLeft: 4 }}>
-                        PRO
-                      </span>
+                      Custom Cable Builder
                     </strong>
                     <span style={{ fontSize: 13, color: 'var(--muted)' }}>Multi-step fiber patchcord wizard</span>
                   </Link>
