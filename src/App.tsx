@@ -11,6 +11,7 @@ import Resources from './pages/Resources';
 import Contact from './pages/Contact';
 import CableConfigurator from './pages/CableConfigurator';
 import FiberSelector from './pages/FiberSelector';
+import AdminNew from './pages/AdminNew';
 import NotFound from './pages/NotFound';
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="cable-configurator" element={<CableConfigurator />} />
           <Route path="fiber-selector" element={<FiberSelector />} />
+          <Route path="admin" element={<AdminNew />} />
           <Route path="404" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Route>
