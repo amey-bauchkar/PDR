@@ -6,7 +6,7 @@ import RfqCartWidget from './components/RfqCartWidget';
 import Home from './pages/Home';
 import About from './pages/About';
 import Products from './pages/Products';
-import ProductDetail from './pages/ProductDetail';
+import ProductRoute from './pages/ProductRoute';
 import Solutions from './pages/Solutions';
 import Resources from './pages/Resources';
 import Contact from './pages/Contact';
@@ -24,7 +24,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="products" element={<Products />} />
-          <Route path="products/:slug" element={<ProductDetail />} />
+          <Route path="products/:slug" element={<ProductRoute />} />
           <Route path="solutions" element={<Solutions />} />
           <Route path="resources" element={<Resources />} />
           <Route path="contact" element={<Contact />} />

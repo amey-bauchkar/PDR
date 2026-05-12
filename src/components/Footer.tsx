@@ -50,12 +50,12 @@ export default function Footer() {
         <div>
           <h4>Products</h4>
           <ul>
-            <li><Link to="/products#passive">Passive Components</Link></li>
-            <li><Link to="/products#active">Active Components</Link></li>
-            <li><Link to="/products#cable">Cable Management</Link></li>
-            <li><Link to="/products#test">Test &amp; Measuring</Link></li>
-            <li><Link to="/products#specialty">Specialty &amp; Drones</Link></li>
-            <li><Link to="/products#tools">Maintenance Tools</Link></li>
+            <li><Link to="/products/passive-components">Passive Components</Link></li>
+            <li><Link to="/products/active-components">Active Components</Link></li>
+            <li><Link to="/products/cable-management">Cable Management</Link></li>
+            <li><Link to="/products/test-measuring">Test &amp; Measuring</Link></li>
+            <li><Link to="/products/specialty-drones">Specialty &amp; Drones</Link></li>
+            <li><Link to="/products/maintenance-tools">Maintenance Tools</Link></li>
           </ul>
         </div>
 

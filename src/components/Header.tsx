@@ -57,14 +57,8 @@ export default function Header() {
     <>
       <header className={`site-header${scrolled ? ' scrolled' : ''}`} id="top">
         <div className="container nav">
-          <Link className="brand" to="/" aria-label="PDR World home">
-            <div className="logo-container">
-              <img src={logo} alt="PDR World" className="logo" />
-              <span className="brand-text" style={{ display: 'flex', flexDirection: 'column' }}>
-                PDR World
-                <small>Videotronics India · Since 1985</small>
-              </span>
-            </div>
+          <Link className="brand site-header-brand" to="/" aria-label="PDR World home">
+            <img src={logo} alt="" className="logo site-header-logo" />
           </Link>
 
           <nav className="nav-center" aria-label="Primary">
@@ -87,27 +81,27 @@ export default function Header() {
               </NavLink>
               <div className="mega" role="menu">
                 <div className="mega-grid">
-                  <Link to="/products#passive" onClick={() => setOpenMega(null)}>
+                  <Link to="/products/passive-components" onClick={() => setOpenMega(null)}>
                     <strong>Passive Components</strong>
                     <span>Patchcords · Armoured · CPRI · FanOut · Rapid Push · Splitters · WDM · Adapters</span>
                   </Link>
-                  <Link to="/products#active" onClick={() => setOpenMega(null)}>
+                  <Link to="/products/active-components" onClick={() => setOpenMega(null)}>
                     <strong>Active Components</strong>
                     <span>SFP Transceivers · OLP · DAC/AOC · Bypass Switch</span>
                   </Link>
-                  <Link to="/products#cable" onClick={() => setOpenMega(null)}>
+                  <Link to="/products/cable-management" onClick={() => setOpenMega(null)}>
                     <strong>Cable Management</strong>
                     <span>ODF · FDB · Closures · Termination Boxes</span>
                   </Link>
-                  <Link to="/products#test" onClick={() => setOpenMega(null)}>
+                  <Link to="/products/test-measuring" onClick={() => setOpenMega(null)}>
                     <strong>Test &amp; Measuring</strong>
                     <span>OPM · Laser Source · OTDR · Microscopes · BERT</span>
                   </Link>
-                  <Link to="/products#specialty" onClick={() => setOpenMega(null)}>
+                  <Link to="/products/specialty-drones" onClick={() => setOpenMega(null)}>
                     <strong>Specialty &amp; Drones</strong>
                     <span>Optical Fiber Drone · High-Power Patchcord · Custom Assemblies</span>
                   </Link>
-                  <Link to="/products#tools" onClick={() => setOpenMega(null)}>
+                  <Link to="/products/maintenance-tools" onClick={() => setOpenMega(null)}>
                     <strong>Maintenance Tools</strong>
                     <span>Cleavers · Cleaners · Splice Sleeves</span>
                   </Link>
@@ -201,12 +195,12 @@ export default function Header() {
             </svg>
           </summary>
           <div className="submenu">
-            <Link to="/products#passive">Passive Components</Link>
-            <Link to="/products#active">Active Components</Link>
-            <Link to="/products#cable">Cable Management Devices</Link>
-            <Link to="/products#test">Test &amp; Measuring Equipment</Link>
-            <Link to="/products#specialty">Specialty &amp; Drones</Link>
-            <Link to="/products#tools">Maintenance Tools</Link>
+            <Link to="/products/passive-components">Passive Components</Link>
+            <Link to="/products/active-components">Active Components</Link>
+            <Link to="/products/cable-management">Cable Management Devices</Link>
+            <Link to="/products/test-measuring">Test &amp; Measuring Equipment</Link>
+            <Link to="/products/specialty-drones">Specialty &amp; Drones</Link>
+            <Link to="/products/maintenance-tools">Maintenance Tools</Link>
           </div>
         </details>
         <details>
