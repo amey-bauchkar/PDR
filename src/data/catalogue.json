@@ -11,27 +11,27 @@
     ],
     "pills": [
       {
-        "href": "#active",
+        "href": "/products/active-components",
         "name": "Active Components",
         "meta": "15+ SKUs"
       },
       {
-        "href": "#passive",
+        "href": "/products/passive-components",
         "name": "Passive Components",
         "meta": "40+ SKUs"
       },
       {
-        "href": "#cable",
+        "href": "/products/cable-management",
         "name": "Cable Management Devices",
         "meta": "12+ SKUs"
       },
       {
-        "href": "#test",
+        "href": "/products/test-measuring",
         "name": "Test & Measuring Equipment",
         "meta": "10+ SKUs"
       },
       {
-        "href": "#drone",
+        "href": "/products/specialty-drones",
         "name": "Optical Fiber Drone",
         "meta": ""
       }

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { ShieldCheck } from 'lucide-react';
 import Seo from '../components/Seo';
+import { productsCategoryHref } from '../data/productCategoryRoutes';
 
 const homeCategories = [
   {
@@ -61,10 +61,6 @@ export default function Home() {
         <div className="container">
           <div className="hp-hero-grid">
             <div className="hp-hero-content reveal">
-              <div className="hero-iso-badge" role="status">
-                <ShieldCheck size={18} strokeWidth={2} aria-hidden />
-                ISO 9001:2015 Certified Manufacturer
-              </div>
               <h1>
                 Next-Gen Fiber Infrastructure.
                 <br />
@@ -160,9 +156,9 @@ export default function Home() {
                 <h3>{category.title}</h3>
                 <p>{category.description}</p>
                 <div className="hp-cat-count">{category.count}</div>
-                <a className="btn-link" href={`/products#${category.id}`}>
+                <Link className="btn-link" to={productsCategoryHref(category.id)}>
                   Explore Category →
-                </a>
+                </Link>
               </div>
             ))}
           </div>
