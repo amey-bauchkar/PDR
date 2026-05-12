@@ -57,14 +57,8 @@ export default function Header() {
     <>
       <header className={`site-header${scrolled ? ' scrolled' : ''}`} id="top">
         <div className="container nav">
-          <Link className="brand" to="/" aria-label="PDR World home">
-            <div className="logo-container">
-              <img src={logo} alt="PDR World" className="logo" />
-              <span className="brand-text" style={{ display: 'flex', flexDirection: 'column' }}>
-                PDR World
-                <small>Videotronics India · Since 1985</small>
-              </span>
-            </div>
+          <Link className="brand site-header-brand" to="/" aria-label="PDR World home">
+            <img src={logo} alt="" className="logo site-header-logo" />
           </Link>
 
           <nav className="nav-center" aria-label="Primary">

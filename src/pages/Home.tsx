@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { ShieldCheck } from 'lucide-react';
 import Seo from '../components/Seo';
 
 const homeCategories = [
@@ -60,8 +61,9 @@ export default function Home() {
         <div className="container">
           <div className="hp-hero-grid">
             <div className="hp-hero-content reveal">
-              <div className="hero-status">
-                <span className="live"></span> ISO 9001:2015 Certified Manufacturer
+              <div className="hero-iso-badge" role="status">
+                <ShieldCheck size={18} strokeWidth={2} aria-hidden />
+                ISO 9001:2015 Certified Manufacturer
               </div>
               <h1>
                 Next-Gen Fiber Infrastructure.
@@ -102,7 +104,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="hp-hero-visual reveal d-2">
+            <div className="hp-hero-visual hero-image-card reveal d-2">
               <img src="/images/hero-infrastructure.png" alt="PDR Fiber Optic Infrastructure" loading="eager" />
             </div>
           </div>
@@ -167,55 +169,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 4: SOLUTIONS */}
-      <section className="section reveal" style={{ background: '#FFFFFF' }}>
-        <div className="container">
-          <div className="sec-head center">
-            <div className="eyebrow">Industrial Solutions</div>
-            <h2>Field-proven in critical environments.</h2>
-            <p>Our infrastructure powers telecom networks, defence operations, and data centers across 15+ countries.</p>
-          </div>
-          <div className="hp-sol-grid">
-            <div className="hp-sol-card reveal d-1">
-              <div className="hp-sol-ico">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 20V10" />
-                  <path d="M18 20V4" />
-                  <path d="M6 20v-4" />
-                  <path d="M2 12c2-3 4-4 6-4s4 1 6 4 4 4 6 4" />
-                </svg>
-              </div>
-              <h3>Telecommunications</h3>
-              <p>High-density DAS and FTTH solutions for public networks and metro rail systems.</p>
-              <Link className="btn-link" to="/solutions#telecom">Case Study →</Link>
-            </div>
-            <div className="hp-sol-card reveal d-2">
-              <div className="hp-sol-ico">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="3" />
-                  <path d="M12 2v3m0 14v3M4.22 4.22l2.12 2.12m11.32 11.32l2.12 2.12M2 12h3m14 0h3" />
-                </svg>
-              </div>
-              <h3>Defence &amp; Aerospace</h3>
-              <p>MIL-spec components and tactical fiber assemblies for mission-critical operations.</p>
-              <Link className="btn-link" to="/solutions#defence">Learn More →</Link>
-            </div>
-            <div className="hp-sol-card reveal d-3">
-              <div className="hp-sol-ico">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
-              </div>
-              <h3>Enterprise Data Centers</h3>
-              <p>Hyperscale cabling and modular patch panels optimized for low-latency performance.</p>
-              <Link className="btn-link" to="/solutions#datacentre">Architecture →</Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 5: WHY PDR */}
+      {/* SECTION 4: WHY PDR */}
       <section className="section reveal sec-muted">
         <div className="container">
           <div className="sec-head">
@@ -243,7 +197,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 6: FINAL CTA */}
+      {/* SECTION 5: FINAL CTA */}
       <section className="section reveal hp-final-cta-wrap">
         <div className="container">
           <div className="hp-final-cta">
