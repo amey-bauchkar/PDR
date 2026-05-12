@@ -97,105 +97,281 @@ function pm(color: number, shin = 60, spec = 0x222222) {
   return new THREE.MeshPhongMaterial({ color, shininess: shin, specular: spec });
 }
 
-function buildSC(side: number, fc: number, bc: number, apc: boolean) {
-  const g = new THREE.Group();
-  g.add(new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.085, 0.38, 16), pm(bc, 25)));
-  const body = new THREE.Mesh(new THREE.CylinderGeometry(0.155, 0.155, 0.5, 16), pm(0x363636, 90, 0x444444));
-  body.position.y = 0.43;
-  g.add(body);
-  [0.28, 0.58].forEach((y) => {
-    const r = new THREE.Mesh(new THREE.CylinderGeometry(0.168, 0.168, 0.06, 16), pm(0x2a2a2a));
-    r.position.y = y;
-    g.add(r);
-  });
-  const latch = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.34, 0.22), pm(fc, 40));
-  latch.position.set(0, 0.43, 0.17);
-  g.add(latch);
-  const fer = new THREE.Mesh(new THREE.CylinderGeometry(0.078, 0.078, 0.28, 16), pm(0xcccccc, 130, 0x999999));
-  if (apc) fer.rotation.z = 0.14;
-  fer.position.y = 0.8;
-  g.add(fer);
-  const tip = new THREE.Mesh(new THREE.CylinderGeometry(0.076, 0.065, 0.065, 16), pm(0xeeeeee, 150));
-  tip.position.set(0, 0.96, 0);
-  g.add(tip);
-  const ring = new THREE.Mesh(new THREE.TorusGeometry(0.155, 0.017, 8, 24), pm(fc, 110));
-  ring.position.y = 0.43;
-  g.add(ring);
-  g.rotation.z = side > 0 ? -Math.PI / 2 : Math.PI / 2;
-  return g;
+// Standard connector body colors (matches industry convention)
+// APC connectors: green housing | UPC SM: blue housing | UPC MM: beige/ivory housing
+function housingColor(apc: boolean, multimode: boolean) {
+  if (apc) return 0x16a34a; // green for APC
+  if (multimode) return 0xd4a373; // beige/ivory for OM3/OM4
+  return 0x1d4ed8; // royal blue for SM-UPC
 }
 
-function buildLC(side: number, fc: number, bc: number, apc: boolean) {
+// SC (Subscriber Connector) — square push-pull, ceramic ferrule
+function buildSC(side: number, _fc: number, bc: number, apc: boolean, multimode = false) {
   const g = new THREE.Group();
-  g.add(new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.058, 0.3, 14), pm(bc, 25)));
-  const body = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.38, 14), pm(0x383838, 90, 0x444444));
-  body.position.y = 0.33;
-  g.add(body);
-  const tab = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.28, 0.16), pm(fc, 50));
-  tab.position.set(0, 0.33, 0.13);
-  g.add(tab);
-  const fer = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, 0.22, 14), pm(0xcccccc, 130));
-  if (apc) fer.rotation.z = 0.14;
-  fer.position.y = 0.62;
-  g.add(fer);
-  const tip = new THREE.Mesh(new THREE.CylinderGeometry(0.053, 0.044, 0.055, 14), pm(0xeeeeee, 150));
-  tip.position.set(0, 0.76, 0);
-  g.add(tip);
-  g.rotation.z = side > 0 ? -Math.PI / 2 : Math.PI / 2;
-  return g;
-}
+  const housing = housingColor(apc, multimode);
 
-function buildFC(side: number, _fc: number, bc: number) {
-  const g = new THREE.Group();
-  g.add(new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.08, 0.34, 16), pm(bc, 25)));
-  const body = new THREE.Mesh(new THREE.CylinderGeometry(0.148, 0.148, 0.5, 16), pm(0xb8a000, 120, 0x666600));
-  body.position.y = 0.42;
-  g.add(body);
-  for (let i = 0; i < 8; i++) {
-    const r = new THREE.Mesh(new THREE.CylinderGeometry(0.155, 0.155, 0.038, 16), pm(0xaa9000, 60));
-    r.position.y = 0.17 + i * 0.063;
-    g.add(r);
+  // Strain-relief boot (tapered, fiber jacket color)
+  const boot = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.06, 0.28, 16), pm(bc, 25));
+  boot.position.y = 0.14;
+  g.add(boot);
+  // Boot grip rings
+  for (let i = 0; i < 3; i++) {
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.084 - i * 0.005, 0.008, 6, 24), pm(bc, 60));
+    ring.rotation.x = Math.PI / 2;
+    ring.position.y = 0.06 + i * 0.07;
+    g.add(ring);
   }
-  const fer = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.075, 0.26, 16), pm(0xdddddd, 130));
-  fer.position.y = 0.82;
+
+  // Square housing body (the signature SC look)
+  const body = new THREE.Mesh(new THREE.BoxGeometry(0.27, 0.45, 0.27), pm(housing, 70, 0x222244));
+  body.position.y = 0.5;
+  g.add(body);
+
+  // Recessed channel along top for grip
+  const channel = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.04, 0.27), pm(0x111111, 30));
+  channel.position.set(0, 0.62, 0);
+  g.add(channel);
+
+  // Squeeze-release tab on top (slightly raised wing)
+  const tab = new THREE.Mesh(new THREE.BoxGeometry(0.31, 0.16, 0.08), pm(housing, 60));
+  tab.position.set(0, 0.55, 0.14);
+  g.add(tab);
+
+  // Ferrule guard (raised collar at front)
+  const guard = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.08, 0.16), pm(housing, 70, 0x222244));
+  guard.position.y = 0.78;
+  g.add(guard);
+
+  // White ceramic ferrule
+  const fer = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.22, 24), pm(0xf5f5f5, 180, 0xffffff));
+  if (apc) fer.rotation.z = 0.14; // angled APC face
+  fer.position.y = 0.93;
   g.add(fer);
+
+  // Ferrule tip (slightly different shade)
+  const tip = new THREE.Mesh(new THREE.CylinderGeometry(0.046, 0.046, 0.02, 24), pm(0xeaeaea, 200));
+  tip.position.y = 1.04;
+  g.add(tip);
+
   g.rotation.z = side > 0 ? -Math.PI / 2 : Math.PI / 2;
   return g;
 }
 
-function buildST(side: number, _fc: number, bc: number) {
+// LC (Lucent Connector) — half-size, hinged release latch
+function buildLC(side: number, _fc: number, bc: number, apc: boolean, multimode = false) {
   const g = new THREE.Group();
-  g.add(new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.08, 0.34, 16), pm(bc, 25)));
-  const body = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 0.46, 16), pm(0xb8a000, 110));
+  const housing = housingColor(apc, multimode);
+
+  // Strain-relief boot
+  const boot = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.045, 0.22, 16), pm(bc, 25));
+  boot.position.y = 0.11;
+  g.add(boot);
+  for (let i = 0; i < 2; i++) {
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.06, 0.006, 6, 24), pm(bc, 60));
+    ring.rotation.x = Math.PI / 2;
+    ring.position.y = 0.05 + i * 0.08;
+    g.add(ring);
+  }
+
+  // Small square housing
+  const body = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.32, 0.16), pm(housing, 70, 0x222244));
   body.position.y = 0.4;
   g.add(body);
-  const bay = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, 0.1, 3), pm(0xaa9000, 80));
-  bay.position.y = 0.62;
-  g.add(bay);
-  const fer = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.075, 0.24, 16), pm(0xcccccc, 130));
-  fer.position.y = 0.79;
+
+  // Hinged release tab on top (LC signature)
+  const tabHinge = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.02, 0.06), pm(housing, 50));
+  tabHinge.position.set(0, 0.5, 0.08);
+  g.add(tabHinge);
+  const tabArm = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.16, 0.04), pm(housing, 50));
+  tabArm.position.set(0, 0.42, 0.09);
+  tabArm.rotation.x = -0.4;
+  g.add(tabArm);
+
+  // Ferrule guard
+  const guard = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.06, 0.1), pm(housing, 70, 0x222244));
+  guard.position.y = 0.6;
+  g.add(guard);
+
+  // 1.25mm ceramic ferrule (smaller than SC)
+  const fer = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.18, 24), pm(0xf5f5f5, 180, 0xffffff));
+  if (apc) fer.rotation.z = 0.14;
+  fer.position.y = 0.72;
   g.add(fer);
+
+  const tip = new THREE.Mesh(new THREE.CylinderGeometry(0.028, 0.028, 0.02, 24), pm(0xeaeaea, 200));
+  tip.position.y = 0.82;
+  g.add(tip);
+
   g.rotation.z = side > 0 ? -Math.PI / 2 : Math.PI / 2;
   return g;
 }
 
-function buildMPO(side: number, fc: number, bc: number) {
+// FC (Ferrule Connector) — round body, threaded knurled nut
+function buildFC(side: number, _fc: number, bc: number, apc = false) {
   const g = new THREE.Group();
-  g.add(new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.1, 0.34, 16), pm(bc, 25)));
-  const body = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.54, 0.3), pm(0x2e2e2e, 80, 0x444444));
-  body.position.y = 0.47;
-  g.add(body);
-  const key = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.08, 0.3), pm(fc, 60));
-  key.position.set(0, 0.27, 0);
-  g.add(key);
-  const face = new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.5, 0.06), pm(0xcccccc, 120));
-  face.position.y = 0.74;
-  g.add(face);
-  for (let i = 0; i < 6; i++) {
-    const pin = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.07, 8), pm(0xaaaaaa, 120));
-    pin.position.set(-0.12 + i * 0.048, 0.74, 0.06);
-    g.add(pin);
+
+  // Strain-relief boot
+  const boot = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.05, 0.24, 16), pm(bc, 25));
+  boot.position.y = 0.12;
+  g.add(boot);
+
+  // Black backbone behind nut
+  const backbone = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.12, 20), pm(0x222222, 80, 0x444444));
+  backbone.position.y = 0.3;
+  g.add(backbone);
+
+  // Knurled threaded coupling nut (the FC signature)
+  // Built from a slightly higher-poly cylinder with surface rings
+  const nut = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, 0.4, 32), pm(0xc0c0c0, 180, 0x999999));
+  nut.position.y = 0.56;
+  g.add(nut);
+
+  // Knurled grip ridges around the nut
+  for (let i = 0; i < 20; i++) {
+    const angle = (i / 20) * Math.PI * 2;
+    const ridge = new THREE.Mesh(
+      new THREE.BoxGeometry(0.02, 0.4, 0.012),
+      pm(0xaaaaaa, 140, 0x888888),
+    );
+    ridge.position.set(Math.sin(angle) * 0.158, 0.56, Math.cos(angle) * 0.158);
+    ridge.rotation.y = -angle;
+    g.add(ridge);
   }
+
+  // Top and bottom rim of the nut (slightly larger to define the knurled section)
+  [0.37, 0.75].forEach((y) => {
+    const rim = new THREE.Mesh(new THREE.CylinderGeometry(0.165, 0.165, 0.04, 32), pm(0xb0b0b0, 160));
+    rim.position.y = y;
+    g.add(rim);
+  });
+
+  // Key slot indicator (small notch on top)
+  const key = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.04, 0.04), pm(0x444444, 60));
+  key.position.set(0, 0.78, 0.13);
+  g.add(key);
+
+  // Ferrule guard
+  const guard = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.085, 0.06, 24), pm(0xb0b0b0, 130));
+  guard.position.y = 0.82;
+  g.add(guard);
+
+  // 2.5mm ceramic ferrule
+  const fer = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.18, 24), pm(0xf5f5f5, 180, 0xffffff));
+  if (apc) fer.rotation.z = 0.14;
+  fer.position.y = 0.95;
+  g.add(fer);
+
+  const tip = new THREE.Mesh(new THREE.CylinderGeometry(0.046, 0.046, 0.02, 24), pm(0xeaeaea, 200));
+  tip.position.y = 1.05;
+  g.add(tip);
+
+  g.rotation.z = side > 0 ? -Math.PI / 2 : Math.PI / 2;
+  return g;
+}
+
+// ST (Straight Tip) — round body with bayonet quarter-turn mount
+function buildST(side: number, _fc: number, bc: number) {
+  const g = new THREE.Group();
+
+  // Strain-relief boot
+  const boot = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.05, 0.24, 16), pm(bc, 25));
+  boot.position.y = 0.12;
+  g.add(boot);
+
+  // Black backbone
+  const backbone = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.1, 20), pm(0x1a1a1a, 80));
+  backbone.position.y = 0.28;
+  g.add(backbone);
+
+  // Bayonet coupling sleeve (chrome-finish, smooth + flared)
+  const sleeve = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.14, 0.32, 28), pm(0xb8b8b8, 200, 0x888888));
+  sleeve.position.y = 0.5;
+  g.add(sleeve);
+
+  // Sleeve rim
+  const flange = new THREE.Mesh(new THREE.CylinderGeometry(0.165, 0.165, 0.06, 28), pm(0xa0a0a0, 160));
+  flange.position.y = 0.68;
+  g.add(flange);
+
+  // Bayonet slots (two L-shaped cutouts represented as small dark recesses on either side)
+  [0, Math.PI].forEach((a) => {
+    const slot = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.12, 0.015), pm(0x222222, 40));
+    slot.position.set(Math.sin(a) * 0.151, 0.5, Math.cos(a) * 0.151);
+    slot.rotation.y = -a;
+    g.add(slot);
+    const slotHook = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.02, 0.015), pm(0x222222, 40));
+    slotHook.position.set(Math.sin(a) * 0.151, 0.43, Math.cos(a) * 0.151);
+    slotHook.rotation.y = -a;
+    g.add(slotHook);
+  });
+
+  // Ferrule guard
+  const guard = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.085, 0.06, 24), pm(0xb0b0b0, 130));
+  guard.position.y = 0.76;
+  g.add(guard);
+
+  // 2.5mm ceramic ferrule
+  const fer = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.18, 24), pm(0xf5f5f5, 180, 0xffffff));
+  fer.position.y = 0.9;
+  g.add(fer);
+
+  const tip = new THREE.Mesh(new THREE.CylinderGeometry(0.046, 0.046, 0.02, 24), pm(0xeaeaea, 200));
+  tip.position.y = 1.0;
+  g.add(tip);
+
+  g.rotation.z = side > 0 ? -Math.PI / 2 : Math.PI / 2;
+  return g;
+}
+
+// MPO/MTP (Multi-fiber Push-On) — rectangular face with guide pins, pull tab
+function buildMPO(side: number, fc: number, bc: number, apc = false) {
+  const g = new THREE.Group();
+  const housing = apc ? 0x16a34a : 0x1d4ed8;
+
+  // Strain-relief boot (wider for MPO ribbon cable)
+  const boot = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.09, 0.28, 16), pm(bc, 25));
+  boot.position.y = 0.14;
+  g.add(boot);
+
+  // Housing body — rectangular (taller than wide)
+  const body = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.5, 0.26), pm(housing, 70, 0x111133));
+  body.position.y = 0.53;
+  g.add(body);
+
+  // Side grip recesses
+  [0.18, -0.18].forEach((x) => {
+    const recess = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.34, 0.27), pm(0x0a0a2a, 40));
+    recess.position.set(x, 0.53, 0);
+    g.add(recess);
+  });
+
+  // Pull tab on top (the MPO signature)
+  const pullTab = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.04, 0.18), pm(0xeeeeee, 60));
+  pullTab.position.y = 0.8;
+  g.add(pullTab);
+  const pullTabRibs = new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.02, 0.12), pm(fc, 80));
+  pullTabRibs.position.y = 0.82;
+  g.add(pullTabRibs);
+
+  // Ferrule face (white ceramic block)
+  const face = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.1, 0.16), pm(0xfafafa, 200, 0xffffff));
+  face.position.y = 0.85;
+  g.add(face);
+
+  // Two precision alignment guide pins
+  [-0.13, 0.13].forEach((x) => {
+    const pin = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.08, 12), pm(0xcccccc, 200, 0xaaaaaa));
+    pin.position.set(x, 0.92, 0);
+    g.add(pin);
+  });
+
+  // 12 fiber holes (visualized as small dark dots in a single row)
+  for (let i = 0; i < 12; i++) {
+    const hole = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.025, 8), pm(0x111111, 10));
+    hole.position.set(-0.11 + i * 0.02, 0.91, 0);
+    g.add(hole);
+  }
+
   g.rotation.z = side > 0 ? -Math.PI / 2 : Math.PI / 2;
   return g;
 }
@@ -358,8 +534,9 @@ export default function CableConfigurator() {
       });
     }
 
+    const multimode = fiberKey.startsWith('mm_');
     [1, -1].forEach((side) => {
-      const c = getBuilder(cd.shape)(side, f.cableColor, f.jacketColor, cd.apc);
+      const c = getBuilder(cd.shape)(side, f.cableColor, f.jacketColor, cd.apc, multimode);
       c.position.x = side * (cLen / 2 + (isMPO ? 0.09 : 0.06));
       group.add(c);
     });
