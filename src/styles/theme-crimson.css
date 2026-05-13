@@ -1,0 +1,151 @@
+/* ===== Crimson accent preview theme =====
+ * Activated by adding class "theme-crimson" to <body>.
+ * Overrides the design-token accents but keeps the dark-blue primary
+ * (#07008F) so the navy + white identity stays intact.
+ */
+
+body.theme-crimson {
+  --accent: #E11D48;
+  --accent-2: #B91C1C;
+  --accent-soft: rgba(225, 29, 72, 0.12);
+  --color-accent: #E11D48;
+}
+
+/* CTAs */
+body.theme-crimson .btn-primary {
+  background: #E11D48;
+  box-shadow: 0 8px 24px -8px rgba(225, 29, 72, 0.55);
+}
+body.theme-crimson .btn-primary:hover {
+  background: #07008F;
+  box-shadow: 0 14px 30px -8px rgba(225, 29, 72, 0.7);
+}
+
+/* Subtle accent-tinted backgrounds and rings need a manual swap because they're hard-coded
+ * to the old sky-blue value (#4A9FD8 / rgba(74,159,216,*)) in the original CSS. */
+body.theme-crimson .pr-cat-dot,
+body.theme-crimson .sl-cred-icon,
+body.theme-crimson .hp-cat-card:hover,
+body.theme-crimson .rs-card:hover,
+body.theme-crimson .sl-card:hover {
+  color: inherit;
+}
+
+body.theme-crimson .hp-cat-card:hover {
+  border-color: #E11D48;
+}
+body.theme-crimson .rs-card:hover,
+body.theme-crimson .sl-card:hover,
+body.theme-crimson .why-card:hover {
+  border-color: #E11D48;
+}
+
+body.theme-crimson .live {
+  background: #E11D48 !important;
+  box-shadow: 0 0 8px rgba(225, 29, 72, 0.6) !important;
+}
+
+body.theme-crimson .pr-prod-tag,
+body.theme-crimson .sel-badge {
+  background: rgba(225, 29, 72, 0.08);
+  color: #B91C1C;
+}
+
+/* Why-card numbers (we made them accent-colored in a previous fix) */
+body.theme-crimson .why-card .num {
+  color: #E11D48 !important;
+}
+
+/* Trust band numerals */
+body.theme-crimson .pr-trust-band .pr-trust-tile .stat-num {
+  color: #E11D48;
+}
+
+/* Eyebrow chips */
+body.theme-crimson .eyebrow {
+  color: #E11D48;
+}
+body.theme-crimson .eyebrow::before {
+  background: #E11D48;
+}
+
+/* Nav underline + active link */
+body.theme-crimson .nav-center > a::after {
+  background: #E11D48;
+}
+body.theme-crimson .nav-center > a:hover,
+body.theme-crimson .nav-center .has-mega:hover > a,
+body.theme-crimson .nav-center > a.active {
+  color: #E11D48;
+}
+
+/* Floating mobile CTA */
+body.theme-crimson .float-cta {
+  background: #E11D48;
+  box-shadow: 0 16px 40px -8px rgba(225, 29, 72, 0.55);
+}
+
+/* RFQ cart widget */
+body.theme-crimson .rfq-cart-widget {
+  background: #E11D48 !important;
+  box-shadow: 0 12px 32px -8px rgba(225, 29, 72, 0.55) !important;
+}
+
+/* Footer quick action pill */
+body.theme-crimson .footer-quick-actions a:first-child,
+body.theme-crimson .footer-quick-actions > a[href="/contact"] {
+  background: #E11D48 !important;
+}
+
+/* Theme toggle FAB itself */
+.theme-toggle-fab {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  z-index: 9999;
+  background: #ffffff;
+  color: #07008F;
+  border: 1px solid #e2e8f0;
+  border-radius: 99px;
+  padding: 10px 16px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.18);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.theme-toggle-fab:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.24);
+}
+.theme-toggle-fab .swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.theme-toggle-fab .swatch-current {
+  background: #4A9FD8;
+}
+.theme-toggle-fab .swatch-crimson {
+  background: #E11D48;
+}
+body.theme-crimson .theme-toggle-fab .swatch-current {
+  background: #E11D48;
+}
+body.theme-crimson .theme-toggle-fab .swatch-crimson {
+  background: #4A9FD8;
+}
+
+@media (max-width: 600px) {
+  .theme-toggle-fab {
+    bottom: 16px;
+    left: 16px;
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+}
