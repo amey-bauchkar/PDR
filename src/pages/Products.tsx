@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Seo from '../components/Seo';
 import { useRfqCart } from '../components/RfqCartProvider';
-import catalogue from '../data/catalogue.json';
+import rawCatalogue from '../data/catalogue.json';
+import { mergeWithCatalogue } from '../lib/productSync';
 import '../styles/products.css';
 
 type Card = {
@@ -63,10 +64,10 @@ function ProductCard({ card }: { card: Card }) {
   );
 }
 
-function StickyNav() {
+function StickyNav({ catalogue }: { catalogue: any }) {
   const [active, setActive] = useState('active');
   useEffect(() => {
-    const sections = STICKY_HASH.map((h) => document.querySelector<HTMLElement>(h)).filter(Boolean) as HTMLElement[];
+    const sections = STICKY_HASH.map((h: string) => document.querySelector<HTMLElement>(h)).filter(Boolean) as HTMLElement[];
     if (!sections.length) return;
     const onScroll = () => {
       const y = window.scrollY;
@@ -101,7 +102,7 @@ function StickyNav() {
   );
 }
 
-function CategorySection({ section, alt }: { section: Section; alt: boolean }) {
+function CategorySection({ section, alt }: { section: any; alt: boolean }) {
   return (
     <section className={`section reveal${alt ? ' sec-muted' : ''}`} id={section.id}>
       <div className="container">
@@ -110,11 +111,11 @@ function CategorySection({ section, alt }: { section: Section; alt: boolean }) {
           <h2>{section.heading}</h2>
           <p>{section.intro}</p>
         </div>
-        {section.groups.map((g, i) => (
+        {section.groups.map((g: any, i: number) => (
           <div key={i}>
             {g.subhead && <h3 className="pr-sub-head">{g.subhead}</h3>}
             <div className="pr-grid">
-              {g.cards.map((c) => (
+              {g.cards.map((c: any) => (
                 <ProductCard key={c.slug} card={c} />
               ))}
             </div>
@@ -221,6 +222,17 @@ function SpecialtySection() {
 
 export default function Products() {
   const location = useLocation();
+  const [catalogue, setCatalogue] = useState(() => mergeWithCatalogue(rawCatalogue));
+
+  useEffect(() => {
+    // Refresh catalogue when admin makes changes
+    const handleStorageChange = () => {
+      setCatalogue(mergeWithCatalogue(rawCatalogue));
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
 
   useEffect(() => {
     if (!location.hash) return;
@@ -251,13 +263,13 @@ export default function Products() {
                 <a className="btn btn-outline" href="#active">Browse Catalogue ↓</a>
               </div>
               <div className="pr-hero-stats">
-                {catalogue.hero.stats.map((s, i) => (
+                {catalogue.hero.stats.map((s: any, i: number) => (
                   <span key={i}>{s}</span>
                 ))}
               </div>
             </div>
             <div className="pr-cat-nav-panel">
-              {catalogue.hero.pills.map((p, i) => (
+              {catalogue.hero.pills.map((p: any, i: number) => (
                 <a key={i} className="pr-cat-pill" href={p.href}>
                   <span className="pr-cat-pill-left">
                     <span className="pr-cat-dot"></span>
@@ -276,9 +288,9 @@ export default function Products() {
         </div>
       </section>
 
-      <StickyNav />
+      <StickyNav catalogue={catalogue} />
 
-      {sections.map((s, i) =>
+      {sections.map((s: any, i: number) =>
         s.id === 'specialty' ? <SpecialtySection key={s.id} /> : <CategorySection key={s.id} section={s} alt={i % 2 === 0} />,
       )}
 

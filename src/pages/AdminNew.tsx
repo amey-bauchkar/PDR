@@ -11,6 +11,7 @@ import {
   checkPermission,
   verifyCredentials,
 } from '../lib/adminAuth';
+import { getAdminProducts, saveProduct, deleteProduct } from '../lib/productSync';
 import '../styles/admin-enhanced.css';
 
 type AdminStatus = 'Active' | 'Draft' | 'Archived';
@@ -113,8 +114,8 @@ export default function AdminNew() {
 
   const [products, setProducts] = useState<AdminProduct[]>(() => {
     if (typeof window === 'undefined') return asAdminProducts(seedProducts as typeof seedProducts);
-    const raw = window.localStorage.getItem(STORAGE_KEYS.products);
-    return raw ? JSON.parse(raw) : asAdminProducts(seedProducts as typeof seedProducts);
+    const adminProducts = getAdminProducts();
+    return adminProducts.length > 0 ? adminProducts : asAdminProducts(seedProducts as typeof seedProducts);
   });
 
   const [rfqs, setRfqs] = useState<RFQRequest[]>(() => {
@@ -272,10 +273,12 @@ export default function AdminNew() {
 
     if (editorMode === 'edit' && editingSlug) {
       setProducts((current) => current.map((p) => (p.slug === editingSlug ? payload : p)));
+      saveProduct(payload);
       pushActivity('Product updated', `${payload.name}`, 'info', 'update');
       setNotice('Product updated successfully.');
     } else {
       setProducts((current) => [payload, ...current]);
+      saveProduct(payload);
       pushActivity('Product created', `${payload.name}`, 'success', 'create');
       setNotice('Product added successfully.');
     }
@@ -309,6 +312,7 @@ export default function AdminNew() {
     const target = products.find((p) => p.slug === slug);
     if (!target) return;
     setProducts((current) => current.filter((p) => p.slug !== slug));
+    deleteProduct(slug);
     if (editingSlug === slug) resetForm();
     pushActivity('Product deleted', `${target.name}`, 'warning', 'delete');
   };
@@ -559,32 +563,49 @@ export default function AdminNew() {
                 </div>
 
                 <div className="admin-grid">
-                  <div className="admin-table-section">
-                    <table className="admin-table">
-                      <thead>
-                        <tr>
-                          <th>Product</th>
-                          <th>Category</th>
-                          <th>Status</th>
-                          <th>Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {filteredProducts.map((p) => (
-                          <tr key={p.slug}>
-                            <td><strong>{p.name}</strong></td>
-                            <td>{p.category}</td>
-                            <td><span className={`admin-status-badge ${p.status.toLowerCase()}`}>{p.status}</span></td>
-                            <td>
-                              <button className="admin-btn-sm" onClick={() => handleEdit(p)}>Edit</button>
-                              {checkPermission(session, 'delete_products') && (
-                                <button className="admin-btn-sm danger" onClick={() => handleDelete(p.slug)}>Delete</button>
-                              )}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                  <div className="admin-products-grouped">
+                    {categories.length === 0 ? (
+                      <p className="admin-empty">No products yet.</p>
+                    ) : (
+                      categories.map((cat) => {
+                        const productsInCategory = filteredProducts.filter((p) => p.category === cat);
+                        if (productsInCategory.length === 0) return null;
+                        return (
+                          <div key={cat} className="admin-category-group">
+                            <h3 className="admin-category-heading">{cat}</h3>
+                            <div className="admin-products-grid">
+                              {productsInCategory.map((product) => (
+                                <div key={product.slug} className="admin-product-card">
+                                  {product.imageUrl && (
+                                    <div className="admin-product-image">
+                                      <img src={product.imageUrl} alt={product.name} />
+                                    </div>
+                                  )}
+                                  <div className="admin-product-details">
+                                    <h4>{product.name}</h4>
+                                    <p className="admin-product-slug">{product.slug}</p>
+                                    {product.tagline && <p className="admin-product-tagline">{product.tagline}</p>}
+                                    <span className={`admin-status-badge ${product.status.toLowerCase()}`}>
+                                      {product.status}
+                                    </span>
+                                  </div>
+                                  <div className="admin-product-actions">
+                                    <button className="admin-btn-sm" onClick={() => handleEdit(product)}>
+                                      ✎ Edit
+                                    </button>
+                                    {checkPermission(session, 'delete_products') && (
+                                      <button className="admin-btn-sm danger" onClick={() => handleDelete(product.slug)}>
+                                        🗑 Delete
+                                      </button>
+                                    )}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      })
+                    )}
                   </div>
 
                   <div className="admin-form-section">
@@ -603,12 +624,12 @@ export default function AdminNew() {
                         <input value={form.slug} onChange={(e) => setForm({...form, slug: e.target.value})} placeholder="auto-generated" />
                       </div>
                       <div className="admin-form-group">
-                        <label>Description</label>
-                        <textarea value={form.description} onChange={(e) => setForm({...form, description: e.target.value})} rows={3} />
-                      </div>
-                      <div className="admin-form-group">
                         <label>Tagline</label>
                         <input value={form.tagline} onChange={(e) => setForm({...form, tagline: e.target.value})} />
+                      </div>
+                      <div className="admin-form-group">
+                        <label>Description</label>
+                        <textarea value={form.description} onChange={(e) => setForm({...form, description: e.target.value})} rows={3} />
                       </div>
                       <div className="admin-form-group">
                         <label>Image</label>
