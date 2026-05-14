@@ -76,7 +76,7 @@ export default function RfqCartWidget() {
             <p style={{ textAlign: 'center', color: 'var(--muted)', padding: '40px 0' }}>Your cart is empty.</p>
           ) : (
             items.map((item, idx) => (
-              <div key={idx} className="rfq-item">
+              <div key={`${item.title}-${item.specs}`} className="rfq-item">
                 <img
                   src={item.image}
                   className="rfq-item-img"

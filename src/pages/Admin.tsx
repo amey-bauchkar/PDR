@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import Seo from '../components/Seo';
 import seedProducts from '../data/products.json';
@@ -178,6 +178,7 @@ const mockAuthUser: AuthUser = {
 
 export default function Admin() {
   const [authUser] = useState<AuthUser>(mockAuthUser);
+  const formRef = useRef<HTMLFormElement>(null);
   const [products, setProducts] = useState<AdminProduct[]>(() => {
     if (typeof window === 'undefined') return asAdminProducts(seedProducts as typeof seedProducts);
     const raw = window.localStorage.getItem(PRODUCT_STORAGE_KEY);
@@ -327,6 +328,11 @@ export default function Admin() {
       imageUrl: product.imageUrl ?? '',
     });
     setNotice('Editing product — make your changes and save.');
+    
+    // Scroll form into view
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0);
   };
 
   const handleDelete = (slug: string) => {
@@ -573,7 +579,7 @@ export default function Admin() {
               </div>
 
               <aside className="admin-sidebar">
-                <form className="admin-form-card" onSubmit={handleSubmit}>
+                <form className="admin-form-card" ref={formRef} onSubmit={handleSubmit}>
                   <div className="admin-form-head">
                     <div>
                       <span className="admin-badge">{editorMode === 'edit' ? 'Editing product' : 'Create product'}</span>
