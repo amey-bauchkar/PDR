@@ -8,7 +8,8 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const formElement = e.currentTarget;
+    const fd = new FormData(formElement);
     setSubmitting(true);
 
     try {
@@ -22,10 +23,10 @@ export default function Contact() {
         message: String(fd.get('message') ?? ''),
       });
       alert('Thank you. Our team will respond within 24 hours.');
-      e.currentTarget.reset();
-    } catch (error) {
+      formElement.reset();
+    } catch (error: any) {
       console.error('Failed to submit contact inquiry', error);
-      alert('We could not submit your inquiry right now. Please try again.');
+      alert(`We could not submit your inquiry right now. Error: ${error?.message || error}. Please try again.`);
     } finally {
       setSubmitting(false);
     }
