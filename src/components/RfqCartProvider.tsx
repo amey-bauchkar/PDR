@@ -1,38 +1,61 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
-
-type CartItem = { title: string; specs: string; image: string; qty: number };
+import { hasSupabaseConfig } from '../lib/supabase';
+import { submitQuoteRequest, syncQuoteSession } from '../lib/leadCapture';
+import type { QuoteItem, QuoteRequestPayload } from '../lib/formTypes';
 
 type RfqContext = {
-  items: CartItem[];
+  items: QuoteItem[];
   isOpen: boolean;
-  addItem: (item: CartItem) => void;
+  addItem: (item: QuoteItem) => void;
   removeItem: (index: number) => void;
   updateQty: (index: number, delta: number) => void;
   open: () => void;
   close: () => void;
-  submit: (form: { name: string; email: string; company: string; notes: string }) => Promise<void>;
+  submit: (form: QuoteRequestPayload) => Promise<void>;
 };
 
 const Ctx = createContext<RfqContext | null>(null);
 const STORAGE_KEY = 'pdr_rfq_cart';
+const SESSION_KEY = 'pdr_rfq_session_hash';
 
-function loadInitial(): CartItem[] {
+function loadInitial(): QuoteItem[] {
   if (typeof window === 'undefined') return [];
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as CartItem[]) : [];
+    return raw ? (JSON.parse(raw) as QuoteItem[]) : [];
   } catch {
     return [];
   }
 }
 
+function loadSessionHash() {
+  if (typeof window === 'undefined') return 'server-session';
+  const existing = localStorage.getItem(SESSION_KEY);
+  if (existing) return existing;
+  const next = globalThis.crypto?.randomUUID?.() ?? `rfq_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+  localStorage.setItem(SESSION_KEY, next);
+  return next;
+}
+
 export function RfqCartProvider({ children }: { children: React.ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>(loadInitial);
+  const [items, setItems] = useState<QuoteItem[]>(loadInitial);
+  const [sessionHash] = useState(loadSessionHash);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   }, [items]);
+
+  useEffect(() => {
+    if (!hasSupabaseConfig || typeof window === 'undefined') return;
+    const timer = window.setTimeout(() => {
+      syncQuoteSession(sessionHash, items).catch((error) => {
+        console.error('Failed to sync RFQ cart with Supabase', error);
+      });
+    }, 350);
+
+    return () => window.clearTimeout(timer);
+  }, [items, sessionHash]);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
@@ -41,7 +64,7 @@ export function RfqCartProvider({ children }: { children: React.ReactNode }) {
     };
   }, [isOpen]);
 
-  const addItem = useCallback((item: CartItem) => {
+  const addItem = useCallback((item: QuoteItem) => {
     setItems((prev) => {
       const idx = prev.findIndex((p) => p.title === item.title && p.specs === item.specs);
       if (idx >= 0) {
@@ -69,12 +92,20 @@ export function RfqCartProvider({ children }: { children: React.ReactNode }) {
   const open = useCallback(() => setIsOpen(true), []);
   const close = useCallback(() => setIsOpen(false), []);
 
-  const submit = useCallback(async (_form: { name: string; email: string; company: string; notes: string }) => {
-    await new Promise((r) => setTimeout(r, 1500));
-    alert('Quote Request Submitted Successfully! Our engineers will contact you within 24 hours.');
-    setItems([]);
-    setIsOpen(false);
-  }, []);
+  const submit = useCallback(
+    async (form: QuoteRequestPayload) => {
+      if (items.length === 0) {
+        alert('Add at least one product before submitting a quote request.');
+        return;
+      }
+
+      await submitQuoteRequest(sessionHash, form, items);
+      alert('Quote Request Submitted Successfully! Our engineers will contact you within 24 hours.');
+      setItems([]);
+      setIsOpen(false);
+    },
+    [items, sessionHash],
+  );
 
   return (
     <Ctx.Provider value={{ items, isOpen, addItem, removeItem, updateQty, open, close, submit }}>
