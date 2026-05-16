@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import Seo from '../components/Seo';
 import {
   CatalogHubCategoryPills,
@@ -7,9 +8,30 @@ import {
 } from '../components/products/CatalogBlocks';
 import { BreadcrumbSchema } from '../components/Schema';
 import { productsCategoryHref } from '../data/productCategoryRoutes';
+import { mergeWithCatalogue } from '../lib/productSync';
+import rawCatalogue from '../data/catalogue.json';
 import '../styles/products.css';
 
 export default function Products() {
+  const location = useLocation();
+  const [catalogue, setCatalogue] = useState(() => mergeWithCatalogue(rawCatalogue));
+
+  useEffect(() => {
+    // Refresh catalogue when admin makes changes
+    const handleStorageChange = () => {
+      setCatalogue(mergeWithCatalogue(rawCatalogue));
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
+
+  useEffect(() => {
+    if (!location.hash) return;
+    const el = document.querySelector(location.hash);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [location.hash]);
+
   return (
     <>
       <Seo
@@ -26,11 +48,10 @@ export default function Products() {
         <div className="container">
           <div className="pr-hero-grid">
             <div className="pr-hero-copy">
-              <div className="eyebrow">Product Catalogue · 50+ Families</div>
-              <h1>The Complete Fiber Optic Ecosystem. Engineered in Mumbai.</h1>
+              <div className="eyebrow">{catalogue.hero.eyebrow || 'Product Catalogue · 50+ Families'}</div>
+              <h1>{catalogue.hero.title || 'The Complete Fiber Optic Ecosystem. Engineered in Mumbai.'}</h1>
               <p className="pr-hero-subtitle">
-                Delivering high-performance active and passive optical solutions with precision manufacturing and rigorous in-house testing
-                since 1985.
+                {catalogue.hero.subtitle || 'Delivering high-performance active and passive optical solutions with precision manufacturing and rigorous in-house testing since 1985.'}
               </p>
               <ul className="pr-hero-points">
                 <li>Engineered &amp; tested in-house in Mumbai</li>
@@ -46,7 +67,7 @@ export default function Products() {
                 </Link>
               </div>
               <div className="pr-hero-stats">
-                {['50+ Product Families', '3,000+ Buyers', 'ISO 9001:2015 Certified', 'Same-day shipping'].map((s, i) => (
+                {(catalogue.hero.stats || ['50+ Product Families', '3,000+ Buyers', 'ISO 9001:2015 Certified', 'Same-day shipping']).map((s: string, i: number) => (
                   <span key={i}>{s}</span>
                 ))}
               </div>

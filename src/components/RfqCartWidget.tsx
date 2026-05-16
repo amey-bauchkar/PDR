@@ -8,16 +8,26 @@ export default function RfqCartWidget() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const formElement = e.currentTarget;
+    const fd = new FormData(formElement);
     setSubmitting(true);
-    await submit({
-      name: String(fd.get('name') ?? ''),
-      email: String(fd.get('email') ?? ''),
-      company: String(fd.get('company') ?? ''),
-      notes: String(fd.get('notes') ?? ''),
-    });
-    setSubmitting(false);
-    e.currentTarget.reset();
+
+    try {
+      await submit({
+        name: String(fd.get('name') ?? ''),
+        email: String(fd.get('email') ?? ''),
+        company: String(fd.get('company') ?? ''),
+        notes: String(fd.get('notes') ?? ''),
+      });
+      formElement.reset();
+      alert('Thank you! Your quote request has been securely submitted.');
+      close();
+    } catch (error: any) {
+      console.error('Failed to submit quote request', error);
+      alert(`We could not submit the quote request right now. Error: ${error?.message || error}. Please try again.`);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -72,7 +82,7 @@ export default function RfqCartWidget() {
             <p style={{ textAlign: 'center', color: 'var(--muted)', padding: '40px 0' }}>Your cart is empty.</p>
           ) : (
             items.map((item, idx) => (
-              <div key={idx} className="rfq-item">
+              <div key={`${item.title}-${item.specs}`} className="rfq-item">
                 <img
                   src={item.image}
                   className="rfq-item-img"

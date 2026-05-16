@@ -13,6 +13,7 @@ import Contact from './pages/Contact';
 import FiberSelector from './pages/FiberSelector';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
+import AdminNew from './pages/AdminNew';
 import NotFound from './pages/NotFound';
 import ScrollToHash from './components/ScrollToHash';
 
@@ -43,6 +44,8 @@ export default function App() {
           <Route path="fiber-selector" element={<FiberSelector />} />
           <Route path="terms" element={<Terms />} />
           <Route path="privacy" element={<Privacy />} />
+          <Route path="admin-new" element={<AdminNew />} />
+          <Route path="admin" element={<AdminNew />} />
           <Route path="404" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Route>
