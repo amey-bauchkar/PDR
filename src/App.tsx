@@ -11,6 +11,7 @@ import Solutions from './pages/Solutions';
 import Resources from './pages/Resources';
 import Contact from './pages/Contact';
 import FiberSelector from './pages/FiberSelector';
+import AdminNew from './pages/AdminNew';
 import NotFound from './pages/NotFound';
 
 // Three.js is heavy — load the configurator on demand
@@ -37,6 +38,8 @@ export default function App() {
             }
           />
           <Route path="fiber-selector" element={<FiberSelector />} />
+          <Route path="admin-new" element={<AdminNew />} />
+          <Route path="admin" element={<AdminNew />} />
           <Route path="404" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Route>

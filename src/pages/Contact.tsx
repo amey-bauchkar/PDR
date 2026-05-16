@@ -1,11 +1,35 @@
+import { useState } from 'react';
 import Seo from '../components/Seo';
+import { submitContactInquiry } from '../lib/leadCapture';
 import '../styles/contact.css';
 
 export default function Contact() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert('Thank you. Our team will respond within 24 hours.');
-    e.currentTarget.reset();
+    const formElement = e.currentTarget;
+    const fd = new FormData(formElement);
+    setSubmitting(true);
+
+    try {
+      await submitContactInquiry({
+        firstName: String(fd.get('fname') ?? ''),
+        lastName: String(fd.get('lname') ?? ''),
+        email: String(fd.get('email') ?? ''),
+        phone: String(fd.get('phone') ?? ''),
+        company: String(fd.get('company') ?? ''),
+        inquiryType: String(fd.get('inquiryType') ?? ''),
+        message: String(fd.get('message') ?? ''),
+      });
+      alert('Thank you. Our team will respond within 24 hours.');
+      formElement.reset();
+    } catch (error: any) {
+      console.error('Failed to submit contact inquiry', error);
+      alert(`We could not submit your inquiry right now. Error: ${error?.message || error}. Please try again.`);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -127,7 +151,9 @@ export default function Contact() {
                     <textarea id="message" name="message" className="ct-textarea" placeholder="Please provide part numbers, specifications, or details about your project..."></textarea>
                   </div>
 
-                  <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', padding: 16, fontSize: 16, marginTop: 8 }}>Submit Inquiry →</button>
+                  <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', padding: 16, fontSize: 16, marginTop: 8 }} disabled={submitting}>
+                    {submitting ? 'Submitting...' : 'Submit Inquiry →'}
+                  </button>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, color: 'var(--muted)', marginTop: 12, justifyContent: 'center' }}>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
                     Your data is secure · Response within 24 hours · No spam
