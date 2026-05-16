@@ -1,20 +1,25 @@
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
+import { BreadcrumbSchema } from '../components/Schema';
 import '../styles/resources.css';
 
 export default function Resources() {
   return (
     <>
       <Seo
-        title="Resources & Support | Technical Training & Partner Programs — PDR World"
-        description="Access PDR World resources: Technical support, custom manufacturing, channel partner programs, and industry training. Support India's fiber infrastructure from Mumbai."
+        title="Fiber Optic Technical Resources & Support | Training & Partner Programs — PDR World"
+        description="Technical documentation, training videos, partner programs, and industry news from PDR Videotronics. Supporting India's fiber optic infrastructure ecosystem."
         canonical="https://pdrworld.com/resources"
       />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://pdrworld.com/' },
+        { name: 'Resources', url: 'https://pdrworld.com/resources' },
+      ]} />
       {/* HERO */}
       <section className="rs-hero reveal" style={{ width: '100%' }}>
         <div className="container">
           <div className="eyebrow" style={{ justifyContent: 'center' }}>Support &amp; Insights</div>
-          <h1 style={{ color: '#07008F' }}>Resources &amp; Media</h1>
+          <h1 style={{ color: '#07008F' }}>Fiber Optic Technical Resources, Training & Support</h1>
           <p>Access technical documentation, partner programs, training videos, and the latest news from PDR Videotronics.</p>
 
           <div className="rs-grid">

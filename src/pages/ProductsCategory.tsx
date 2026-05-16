@@ -1,5 +1,6 @@
 import { Link, Navigate } from 'react-router-dom';
 import Seo from '../components/Seo';
+import { BreadcrumbSchema } from '../components/Schema';
 import {
   CatalogCategorySection,
   CatalogHubCategoryPills,
@@ -31,6 +32,11 @@ export default function ProductsCategory({ categoryPath }: Props) {
         description={description}
         canonical={categoryCanonical(categoryPath)}
       />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://pdrworld.com/' },
+        { name: 'Products', url: 'https://pdrworld.com/products' },
+        { name: section.eyebrow, url: categoryCanonical(categoryPath) },
+      ]} />
 
       <section className="pr-hero">
         <div className="container">

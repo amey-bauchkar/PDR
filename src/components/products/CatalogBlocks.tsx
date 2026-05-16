@@ -3,23 +3,23 @@ import { Link } from 'react-router-dom';
 import { useRfqCart } from '../RfqCartProvider';
 import catalogue from '../../data/catalogue.json';
 import { productsCategoryHref } from '../../data/productCategoryRoutes';
-import attenuatorImg from '../../assets/images/products/passive/attenuator.png';
-import bareFiber from '../../assets/images/products/passive/bare-fiber-adapter.png';
-import cat6Cord from '../../assets/images/products/passive/cat6-patch-cord.png';
-import cat6Panel from '../../assets/images/products/passive/cat6-patch-panel.png';
-import cpri from '../../assets/images/products/passive/cpri-patchcord.png';
-import cwdm from '../../assets/images/products/passive/cwdm-mux.png';
-import dwdm from '../../assets/images/products/passive/dwdm-mux.png';
-import fanout from '../../assets/images/products/passive/fanout-patch-cords.jpg';
-import fiberConnector from '../../assets/images/products/passive/fiber-connector.png';
-import fiberPigtails from '../../assets/images/products/passive/fiber-patch-pigtails.png';
-import loopback from '../../assets/images/products/passive/loopback-patch-cord.png';
-import modeConditioning from '../../assets/images/products/passive/mode-conditioning-patchcord.jpg';
-import mpoCable from '../../assets/images/products/passive/mpo-cable-assembly.png';
-import plcSplitter from '../../assets/images/products/passive/plc-splitter.png';
-import rapidPush from '../../assets/images/products/passive/rapid-push-cable.png';
-import scAdapter from '../../assets/images/products/passive/sc-apc-to-sc-upc-adapter.png';
-import smpteCable from '../../assets/images/products/passive/smpte-cable.png';
+import attenuatorImg from '../../assets/images/products/passive/attenuator.webp';
+import bareFiber from '../../assets/images/products/passive/bare-fiber-adapter.webp';
+import cat6Cord from '../../assets/images/products/passive/cat6-patch-cord.webp';
+import cat6Panel from '../../assets/images/products/passive/cat6-patch-panel.webp';
+import cpri from '../../assets/images/products/passive/cpri-patchcord.webp';
+import cwdm from '../../assets/images/products/passive/cwdm-mux.webp';
+import dwdm from '../../assets/images/products/passive/dwdm-mux.webp';
+import fanout from '../../assets/images/products/passive/fanout-patch-cords.webp';
+import fiberConnector from '../../assets/images/products/passive/fiber-connector.webp';
+import fiberPigtails from '../../assets/images/products/passive/fiber-patch-pigtails.webp';
+import loopback from '../../assets/images/products/passive/loopback-patch-cord.webp';
+import modeConditioning from '../../assets/images/products/passive/mode-conditioning-patchcord.webp';
+import mpoCable from '../../assets/images/products/passive/mpo-cable-assembly.webp';
+import plcSplitter from '../../assets/images/products/passive/plc-splitter.webp';
+import rapidPush from '../../assets/images/products/passive/rapid-push-cable.webp';
+import scAdapter from '../../assets/images/products/passive/sc-apc-to-sc-upc-adapter.webp';
+import smpteCable from '../../assets/images/products/passive/smpte-cable.webp';
 
 export type CatalogCard = {
   slug: string;
@@ -37,12 +37,12 @@ export type CatalogGroup = { subhead: string; cards: CatalogCard[] };
 export type CatalogSection = { id: string; eyebrow: string; heading: string; intro: string; groups: CatalogGroup[] };
 
 const CATEGORY_IMAGE_MAP: Record<string, string> = {
-  active: '/images/sfp-transceiver.png',
-  passive: '/images/fiber-patchcord.png',
-  cable: '/images/fiber-patch-panel.png',
-  test: '/images/fiber-patch-panel.png',
-  specialty: '/images/hero-infrastructure.png',
-  tools: '/images/fiber-patch-panel.png',
+  active: '/images/sfp-transceiver.webp',
+  passive: '/images/fiber-patchcord.webp',
+  cable: '/images/fiber-patch-panel.webp',
+  test: '/images/fiber-patch-panel.webp',
+  specialty: '/images/hero-infrastructure.webp',
+  tools: '/images/fiber-patch-panel.webp',
 };
 
 const PASSIVE_IMAGE_MAP: Record<string, string> = {
@@ -80,7 +80,7 @@ export function CatalogProductCard({ card, sectionId }: { card: CatalogCard; sec
     addItem({
       title: card.addItem?.title || card.name || 'Product',
       specs: card.addItem?.specs || 'Standard Specs',
-      image: card.addItem?.image || '/placeholder.png',
+      image: card.addItem?.image || '/placeholder.webp',
       qty: 1,
     });
     setAdded(true);
@@ -97,8 +97,10 @@ export function CatalogProductCard({ card, sectionId }: { card: CatalogCard; sec
             alt={card.name || 'Product Image'}
             className="real-img"
             loading="lazy"
+            width="400"
+            height="300"
             onError={(event) => {
-              event.currentTarget.src = attenuatorImg || '/placeholder.png';
+              event.currentTarget.src = attenuatorImg || '/placeholder.webp';
             }}
           />
         ) : (

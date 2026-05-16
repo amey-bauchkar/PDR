@@ -1,4 +1,5 @@
 import Seo from '../components/Seo';
+import { LocalBusinessSchema, BreadcrumbSchema } from '../components/Schema';
 import '../styles/contact.css';
 
 export default function Contact() {
@@ -11,16 +12,21 @@ export default function Contact() {
   return (
     <>
       <Seo
-        title="Contact Us | Request a Quote & Engineering Support — PDR World"
-        description="Get in touch with PDR World (Videotronics India) for RFQs, technical engineering consultation, or partnership inquiries. Headquarters and manufacturing based in Mumbai."
+        title="Contact PDR World | Fiber Optic Manufacturer in Mumbai — Request a Quote"
+        description="Contact PDR Videotronics India for RFQs, engineering consultation, or partnership inquiries. ISO 9001:2015 certified fiber optic manufacturer in Mumbai since 1985."
         canonical="https://pdrworld.com/contact"
       />
+      <LocalBusinessSchema />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://pdrworld.com/' },
+        { name: 'Contact', url: 'https://pdrworld.com/contact' },
+      ]} />
 
       {/* HERO & MAIN GRID */}
       <section className="ct-hero">
         <div className="container">
           <div className="eyebrow">Contact Us</div>
-          <h1 style={{ color: '#07008F' }}>Get in touch with PDR.</h1>
+          <h1 style={{ color: '#07008F' }}>Contact PDR World — Fiber Optic Manufacturer in Mumbai</h1>
           <p style={{ fontSize: 18, color: '#475569', marginTop: 16, maxWidth: 600 }}>Whether you need a custom manufacturing quote, technical support, or distribution details, our team in Mumbai is ready to assist.</p>
 
           <div className="ct-grid">

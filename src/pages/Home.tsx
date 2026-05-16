@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
+import { OrganizationSchema, WebSiteSchema } from '../components/Schema';
 import { productsCategoryHref } from '../data/productCategoryRoutes';
 
 const homeCategories = [
@@ -8,42 +9,42 @@ const homeCategories = [
     title: 'Active Components',
     description: 'High-performance SFP transceivers, bypass switches, and optical protection systems.',
     count: '15+ SKUs',
-    image: '/images/sfp-transceiver.png',
+    image: '/images/sfp-transceiver.webp',
   },
   {
     id: 'passive',
     title: 'Passive Components',
     description: 'Premium patchcords, MPO assemblies, WDMs, and precision splitters.',
     count: '40+ SKUs',
-    image: '/images/fiber-patchcord.png',
+    image: '/images/fiber-patchcord.webp',
   },
   {
     id: 'cable',
     title: 'Cable Management',
     description: 'Modular ODFs, termination boxes, and IP-rated splice closures.',
     count: '12+ SKUs',
-    image: '/images/fiber-patch-panel.png',
+    image: '/images/fiber-patch-panel.webp',
   },
   {
     id: 'test',
     title: 'Test & Measuring',
     description: 'OTDRs, optical power meters, fusion splicers, and inspection tools.',
     count: '10+ SKUs',
-    image: '/images/fiber-patch-panel.png',
+    image: '/images/fiber-patch-panel.webp',
   },
   {
     id: 'specialty',
     title: 'Specialty',
     description: 'Specialized high-power and custom optical products for critical applications.',
     count: 'Custom Builds',
-    image: '/images/hero-infrastructure.png',
+    image: '/images/hero-infrastructure.webp',
   },
   {
     id: 'tools',
     title: 'Maintenance',
     description: 'Field-ready cleaning kits, fault locators, sleeves, and support accessories.',
     count: 'Tooling Range',
-    image: '/images/fiber-patch-panel.png',
+    image: '/images/fiber-patch-panel.webp',
   },
 ];
 
@@ -51,10 +52,12 @@ export default function Home() {
   return (
     <>
       <Seo
-        title="PDR World | Industrial Fiber Optic Solutions & Infrastructure — Since 1985"
-        description="PDR World (Videotronics India) is an ISO 9001:2015 certified manufacturer of high-performance fiber optic solutions since 1985. Specializing in active and passive components, test equipment, and enterprise infrastructure. Made in India."
+        title="Fiber Optic Manufacturer in India | Active & Passive Components — PDR World"
+        description="PDR World is an ISO 9001:2015 certified manufacturer of fiber optic components since 1985. SFP transceivers, patch cords, ODFs, OTDRs, and more. Made in Mumbai."
         canonical="https://pdrworld.com/"
       />
+      <OrganizationSchema />
+      <WebSiteSchema />
 
       {/* SECTION 1: PREMIUM HERO */}
       <section className="hp-hero">
@@ -62,9 +65,9 @@ export default function Home() {
           <div className="hp-hero-grid">
             <div className="hp-hero-content reveal">
               <h1>
-                Next-Gen Fiber Infrastructure.
+                Fiber Optic Components Manufacturer in India
                 <br />
-                <span>Built for Reliability.</span>
+                <span>— Since 1985</span>
               </h1>
               <p>
                 PDR manufactures high-performance optical solutions for telecom, defence, and hyperscale data centers. Engineered in
@@ -101,7 +104,10 @@ export default function Home() {
               </div>
             </div>
             <div className="hp-hero-visual hero-image-card reveal d-2">
-              <img src="/images/hero-infrastructure.png" alt="PDR Fiber Optic Infrastructure" loading="eager" />
+              <picture>
+                <source srcSet="/images/hero-infrastructure.webp" type="image/webp" />
+                <img src="/images/hero-infrastructure.webp" alt="PDR Fiber Optic Infrastructure" loading="eager" width="800" height="600" />
+              </picture>
             </div>
           </div>
         </div>
@@ -148,8 +154,10 @@ export default function Home() {
                     alt={category.title}
                     className="real-img"
                     loading="lazy"
+                    width="400"
+                    height="300"
                     onError={(event) => {
-                      event.currentTarget.src = '/images/fiber-patchcord.png';
+                      event.currentTarget.src = '/images/fiber-patchcord.webp';
                     }}
                   />
                 </div>
@@ -157,7 +165,7 @@ export default function Home() {
                 <p>{category.description}</p>
                 <div className="hp-cat-count">{category.count}</div>
                 <Link className="btn-link" to={productsCategoryHref(category.id)}>
-                  Explore Category →
+                  View {category.title} →
                 </Link>
               </div>
             ))}

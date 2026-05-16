@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Seo from '../components/Seo';
+import { BreadcrumbSchema, SoftwareApplicationSchema } from '../components/Schema';
 import { useRfqCart } from '../components/RfqCartProvider';
 
 type CatalogItem = {
@@ -19,7 +20,7 @@ const CATALOG: CatalogItem[] = [
     id: 'FMS-1U-24',
     title: '1U Rack Mount LIU - 24 Core',
     desc: 'Sliding tray patch panel for standard 19-inch racks.',
-    image: '/images/fiber-patch-panel.png',
+    image: '/images/fiber-patch-panel.webp',
     env: 'Indoor',
     mount: 'Rack Mount',
     cap: 24,
@@ -30,7 +31,7 @@ const CATALOG: CatalogItem[] = [
     id: 'FMS-2U-48',
     title: '2U High Density ODF - 48 Core',
     desc: 'High density patch panel with integrated cable management.',
-    image: '/images/fiber-patch-panel.png',
+    image: '/images/fiber-patch-panel.webp',
     env: 'Indoor',
     mount: 'Rack Mount',
     cap: 48,
@@ -41,7 +42,7 @@ const CATALOG: CatalogItem[] = [
     id: 'FDB-OUT-16',
     title: 'Outdoor IP65 Termination Box',
     desc: 'Weatherproof enclosure for FTTH drops and pole mounting.',
-    image: '/images/fiber-patch-panel.png',
+    image: '/images/fiber-patch-panel.webp',
     env: 'Outdoor',
     mount: 'Pole Mount',
     cap: 24,
@@ -52,7 +53,7 @@ const CATALOG: CatalogItem[] = [
     id: 'WMS-IN-48',
     title: 'Indoor Wall Mount Enclosure',
     desc: 'Compact dual-door lockable enclosure for building telecom rooms.',
-    image: '/images/fiber-patch-panel.png',
+    image: '/images/fiber-patch-panel.webp',
     env: 'Indoor',
     mount: 'Wall Mount',
     cap: 48,
@@ -63,7 +64,7 @@ const CATALOG: CatalogItem[] = [
     id: 'FMS-4U-144',
     title: '4U Enterprise ODF - 144 Core',
     desc: 'Maximum capacity data center distribution frame.',
-    image: '/images/fiber-patch-panel.png',
+    image: '/images/fiber-patch-panel.webp',
     env: 'Indoor',
     mount: 'Rack Mount',
     cap: 144,
@@ -172,13 +173,23 @@ export default function FiberSelector() {
         description="Filter, configure, and specify rack and wall mount fiber enclosures for your network build."
         canonical="https://pdrworld.com/fiber-selector"
       />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://pdrworld.com/' },
+        { name: 'Configurator Tools', url: 'https://pdrworld.com/fiber-selector' },
+        { name: 'Fiber Management Selector', url: 'https://pdrworld.com/fiber-selector' },
+      ]} />
+      <SoftwareApplicationSchema 
+        name="PDR World Fiber Management Selector"
+        description="Interactive tool for filtering and selecting rack mount, wall mount, and pole mount fiber management products."
+        applicationCategory="BusinessApplication"
+      />
 
       <section style={{ paddingTop: 120, paddingBottom: 80, background: 'var(--surface-3)' }}>
         <div className="container">
-          <div className="sec-head">
+          <div style={{ maxWidth: 800 }}>
             <div className="eyebrow">Interactive Selector</div>
-            <h2>Fiber Management Selector</h2>
-            <p>Filter, configure, and specify rack and wall mount enclosures for your network build.</p>
+            <h1 className="h2" style={{ marginBottom: '1rem' }}>Fiber Optic Patch Panel & ODF Selector</h1>
+            <p>Filter, configure, and specify high-density rack mount patch panels, wall mount enclosures, and outdoor IP65 termination boxes for your enterprise network. Choose from 24-core to 144-core optical distribution frames and customize port interfaces.</p>
           </div>
 
           <div className="sel-layout">

@@ -5,6 +5,7 @@ import {
   ProductsCustomCta,
   ProductsTrustBand,
 } from '../components/products/CatalogBlocks';
+import { BreadcrumbSchema } from '../components/Schema';
 import { productsCategoryHref } from '../data/productCategoryRoutes';
 import '../styles/products.css';
 
@@ -12,10 +13,14 @@ export default function Products() {
   return (
     <>
       <Seo
-        title="Product Catalogue | PDR World — Fiber Optic Solutions"
-        description="Browse PDR World's full fiber optic catalogue: SFP transceivers, patch cords, ODFs, OTDRs, drones, and more. ISO 9001:2015 certified manufacturing."
+        title="Fiber Optic Product Catalogue | SFP Transceivers, Patch Cords, ODFs — PDR World"
+        description="Browse PDR World's complete fiber optic catalogue: SFP transceivers, patch cords, ODFs, OTDRs, drones, and maintenance tools. ISO 9001:2015 certified. Made in India."
         canonical="https://pdrworld.com/products"
       />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://pdrworld.com/' },
+        { name: 'Products', url: 'https://pdrworld.com/products' },
+      ]} />
 
       <section className="pr-hero">
         <div className="container">

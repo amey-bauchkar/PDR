@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
+import { OrganizationSchema, BreadcrumbSchema } from '../components/Schema';
 import '../styles/about.css';
 import iso9001Pdf from '../assets/certi/PDR VIDEOTRONICS ISO 9001 2015.pdf';
 import iso14001Pdf from '../assets/certi/PDR VIDEOTRONICS ISO 14001 2015.pdf';
@@ -14,24 +15,32 @@ export default function About() {
   return (
     <>
       <Seo
-        title="About PDR World | 40 Years of Fiber Optic Manufacturing Excellence"
-        description="Established in 1985, PDR Videotronics India is a pioneer in fiber optic technology. ISO 9001:2015 certified manufacturing facility in Mumbai, serving global telecom and defence sectors."
+        title="About PDR World | Fiber Optic Manufacturer in India Since 1985"
+        description="PDR Videotronics India — ISO 9001:2015 certified fiber optic manufacturer in Mumbai. 40+ years building active and passive optical components for telecom and defence."
         canonical="https://pdrworld.com/about"
       />
+      <OrganizationSchema />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://pdrworld.com/' },
+        { name: 'About', url: 'https://pdrworld.com/about' },
+      ]} />
       {/* HERO SECTION */}
       <section className="ab-hero">
         <div className="container">
           <div className="ab-hero-grid">
             <div className="reveal ab-hero-copy">
               <div className="eyebrow">Our Story · Since 1985</div>
-              <h1>Pioneering optical fiber technology in India.</h1>
+              <h1>Leading Fiber Optic Manufacturer in India — PDR Videotronics</h1>
               <p>
                 For nearly four decades, PDR Videotronics has been at the forefront of manufacturing active and passive fiber optic
                 infrastructure, empowering India&apos;s digital backbone from our Mumbai headquarters.
               </p>
             </div>
             <div className="ab-hero-img reveal" style={{ transitionDelay: '0.1s' }}>
-              <img src="/images/factory-modern.png" alt="PDR Manufacturing Facility" />
+              <picture>
+                <source srcSet="/images/factory-modern.webp" type="image/webp" />
+                <img src="/images/factory-modern.webp" alt="PDR Manufacturing Facility" width="800" height="600" />
+              </picture>
               <div className="ab-hero-img-overlay" />
               <div className="ab-est">
                 <div className="ab-est-year">1985</div>
@@ -251,7 +260,10 @@ export default function About() {
               </div>
             </div>
             <div className="ab-hero-img ab-mfg-image">
-              <img src="/images/factory-modern.png" alt="PDR Manufacturing Facility Mumbai" />
+              <picture>
+                <source srcSet="/images/factory-modern.webp" type="image/webp" />
+                <img src="/images/factory-modern.webp" alt="PDR Manufacturing Facility Mumbai" width="800" height="600" />
+              </picture>
               <div className="ab-hero-img-overlay" />
             </div>
           </div>
