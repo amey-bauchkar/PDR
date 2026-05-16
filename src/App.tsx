@@ -28,6 +28,7 @@ export default function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="cable-configurator" element={<CableConfigurator />} />
           <Route path="fiber-selector" element={<FiberSelector />} />
+          <Route path="admin-new" element={<AdminNew />} />
           <Route path="admin" element={<AdminNew />} />
           <Route path="404" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />

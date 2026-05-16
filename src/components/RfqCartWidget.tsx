@@ -8,7 +8,8 @@ export default function RfqCartWidget() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const formElement = e.currentTarget;
+    const fd = new FormData(formElement);
     setSubmitting(true);
 
     try {
@@ -18,10 +19,12 @@ export default function RfqCartWidget() {
         company: String(fd.get('company') ?? ''),
         notes: String(fd.get('notes') ?? ''),
       });
-      e.currentTarget.reset();
-    } catch (error) {
+      formElement.reset();
+      alert('Thank you! Your quote request has been securely submitted.');
+      close();
+    } catch (error: any) {
       console.error('Failed to submit quote request', error);
-      alert('We could not submit the quote request right now. Please try again.');
+      alert(`We could not submit the quote request right now. Error: ${error?.message || error}. Please try again.`);
     } finally {
       setSubmitting(false);
     }

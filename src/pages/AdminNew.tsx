@@ -12,6 +12,7 @@ import {
   verifyCredentials,
 } from '../lib/adminAuth';
 import { getAdminProducts, saveProduct, deleteProduct } from '../lib/productSync';
+import { supabase } from '../lib/supabase';
 import '../styles/admin-enhanced.css';
 
 type AdminStatus = 'Active' | 'Draft' | 'Archived';
@@ -110,7 +111,7 @@ export default function AdminNew() {
   const [loginPassword, setLoginPassword] = useState('Admin@123');
   const [loginError, setLoginError] = useState('');
   const [darkMode, setDarkMode] = useState(false);
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'products' | 'rfqs' | 'activity' | 'settings'>('dashboard');
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'products' | 'rfqs' | 'activity' | 'settings' | 'inquiries'>('dashboard');
 
   const [products, setProducts] = useState<AdminProduct[]>(() => {
     if (typeof window === 'undefined') return asAdminProducts(seedProducts as typeof seedProducts);
@@ -123,6 +124,96 @@ export default function AdminNew() {
     const raw = window.localStorage.getItem(STORAGE_KEYS.rfqs);
     return raw ? JSON.parse(raw) : [];
   });
+
+  const [inquiries, setInquiries] = useState<any[]>(() => {
+    if (typeof window === 'undefined') return [];
+    const raw = window.localStorage.getItem('pdrworld-pending-contact-inquiries');
+    try {
+      return raw ? JSON.parse(raw) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    async function fetchFromSupabase() {
+      if (!supabase) return;
+      try {
+        const { data: dbInquiries, error: inqError } = await supabase
+          .from('contact_inquiries')
+          .select('*')
+          .order('created_at', { ascending: false });
+        
+        if (!inqError && dbInquiries) {
+          const mappedInquiries = dbInquiries.map((inq: any) => ({
+            firstName: inq.first_name,
+            lastName: inq.last_name,
+            email: inq.email,
+            inquiryType: inq.inquiry_type,
+            message: inq.message,
+            createdAt: inq.created_at
+          }));
+          
+          setInquiries(prev => {
+            const localKeys = new Set(prev.map(i => i.email + i.message));
+            const uniqueDb = mappedInquiries.filter((i: any) => !localKeys.has(i.email + i.message));
+            return [...uniqueDb, ...prev]; // DB items first (newer usually)
+          });
+        }
+
+        const { data: dbRfqs, error: rfqError } = await supabase
+          .from('quote_requests')
+          .select('*, quote_request_items(*)')
+          .order('created_at', { ascending: false });
+
+        if (!rfqError && dbRfqs) {
+          const mappedRfqs = dbRfqs.map((rfq: any) => ({
+            id: rfq.id,
+            name: rfq.full_name,
+            email: rfq.email,
+            company: rfq.company,
+            status: rfq.status,
+            createdAt: rfq.created_at,
+            items: rfq.quote_request_items ? rfq.quote_request_items.map((item: any) => `${item.quantity}x ${item.product_title} (${item.product_specs})`) : [],
+            notes: rfq.notes
+          }));
+
+          setRfqs(prev => {
+            const localIds = new Set(prev.map(r => r.id));
+            const uniqueDb = mappedRfqs.filter((r: any) => !localIds.has(r.id));
+            return [...uniqueDb, ...prev];
+          });
+        }
+      } catch (err) {
+        console.error('Failed to fetch from Supabase', err);
+      }
+    }
+
+    fetchFromSupabase();
+  }, []);
+
+  useEffect(() => {
+    const handleStorageUpdate = () => {
+      const rawRfq = window.localStorage.getItem(STORAGE_KEYS.rfqs);
+      if (rawRfq) {
+        try { setRfqs(JSON.parse(rawRfq)); } catch {}
+      }
+      const rawInq = window.localStorage.getItem('pdrworld-pending-contact-inquiries');
+      if (rawInq) {
+        try { setInquiries(JSON.parse(rawInq)); } catch {}
+      }
+    };
+
+    window.addEventListener('local-storage-update', handleStorageUpdate);
+    window.addEventListener('storage', handleStorageUpdate);
+    window.addEventListener('focus', handleStorageUpdate);
+    
+    return () => {
+      window.removeEventListener('local-storage-update', handleStorageUpdate);
+      window.removeEventListener('storage', handleStorageUpdate);
+      window.removeEventListener('focus', handleStorageUpdate);
+    };
+  }, []);
 
   const [activity, setActivity] = useState<ActivityItem[]>(() => {
     if (typeof window === 'undefined') return [];
@@ -474,6 +565,12 @@ export default function AdminNew() {
                   📋 RFQs <span className="admin-badge-count">{rfqNewCount}</span>
                 </button>
               )}
+              <button
+                className={`admin-nav-item ${activeTab === 'inquiries' ? 'active' : ''}`}
+                onClick={() => setActiveTab('inquiries')}
+              >
+                ✉️ Inquiries <span className="admin-badge-count">{inquiries.length}</span>
+              </button>
               {checkPermission(session, 'view_analytics') && (
                 <button
                   className={`admin-nav-item ${activeTab === 'activity' ? 'active' : ''}`}
@@ -722,6 +819,40 @@ export default function AdminNew() {
                       </div>
                     ))
                   )}
+                </div>
+              </section>
+            )}
+
+            {activeTab === 'inquiries' && (
+              <section>
+                <h2>Local Inquiries</h2>
+                <p>Enquiries saved in your browser's local storage (because Supabase is offline).</p>
+                <div className="admin-activity-table" style={{ marginTop: 20 }}>
+                  <table className="admin-table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Inquiry Type</th>
+                        <th>Message</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {inquiries.map((inq, index) => (
+                        <tr key={index}>
+                          <td>{inq.firstName} {inq.lastName}</td>
+                          <td>{inq.email}</td>
+                          <td>{inq.inquiryType}</td>
+                          <td>{inq.message || 'No message'}</td>
+                        </tr>
+                      ))}
+                      {inquiries.length === 0 && (
+                        <tr>
+                          <td colSpan={4} className="admin-empty">No inquiries found in local storage.</td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
                 </div>
               </section>
             )}
