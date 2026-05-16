@@ -11,8 +11,11 @@ import Solutions from './pages/Solutions';
 import Resources from './pages/Resources';
 import Contact from './pages/Contact';
 import FiberSelector from './pages/FiberSelector';
+import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
 import AdminNew from './pages/AdminNew';
 import NotFound from './pages/NotFound';
+import ScrollToHash from './components/ScrollToHash';
 
 // Three.js is heavy — load the configurator on demand
 const CableConfigurator = lazy(() => import('./pages/CableConfigurator'));
@@ -20,6 +23,7 @@ const CableConfigurator = lazy(() => import('./pages/CableConfigurator'));
 export default function App() {
   return (
     <RfqCartProvider>
+      <ScrollToHash />
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
@@ -38,6 +42,8 @@ export default function App() {
             }
           />
           <Route path="fiber-selector" element={<FiberSelector />} />
+          <Route path="terms" element={<Terms />} />
+          <Route path="privacy" element={<Privacy />} />
           <Route path="admin-new" element={<AdminNew />} />
           <Route path="admin" element={<AdminNew />} />
           <Route path="404" element={<NotFound />} />

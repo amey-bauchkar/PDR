@@ -88,7 +88,7 @@ export default function RfqCartWidget() {
                   className="rfq-item-img"
                   alt={item.title}
                   onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).src = '/images/fiber-patchcord.png';
+                    (e.currentTarget as HTMLImageElement).src = '/images/fiber-patchcord.webp';
                   }}
                 />
                 <div className="rfq-item-info">

@@ -1,22 +1,32 @@
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
+import { BreadcrumbSchema, ServiceSchema } from '../components/Schema';
 import '../styles/solutions.css';
 
 export default function Solutions() {
   return (
     <>
       <Seo
-        title="Enterprise Solutions | Smart Fiber Optic Infrastructure — PDR World"
-        description="Custom-engineered fiber optic solutions for DAS, DTS, fiber monitoring, and FTTH. Field-proven infrastructure for telecom operators, data centres, and industrial utilities."
+        title="Fiber Optic Infrastructure Solutions | DAS, DTS & Network Monitoring — PDR World"
+        description="Custom-engineered fiber optic infrastructure: Distributed Acoustic Sensing, Distributed Temperature Sensing, and fiber link monitoring. Field-proven for telecom, defence, and utilities."
         canonical="https://pdrworld.com/solutions"
       />
-      <main>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://pdrworld.com/' },
+        { name: 'Solutions', url: 'https://pdrworld.com/solutions' },
+      ]} />
+      <ServiceSchema 
+        name="Fiber Optic Infrastructure Solutions"
+        description="Custom-engineered fiber optic infrastructure: Distributed Acoustic Sensing, Distributed Temperature Sensing, and fiber link monitoring. Field-proven for telecom, defence, and utilities."
+        serviceType="Telecommunications Infrastructure"
+      />
+      {/* Removed nested <main> — Layout already provides <main> */}
         {/* HERO */}
         <section className="sl-hero reveal">
           <div className="container">
             <div className="sl-hero-inner">
               <div className="eyebrow">PDR INFRASTRUCTURE SYSTEMS</div>
-              <h1>Field-proven fiber networks for operational reliability.</h1>
+              <h1>Fiber Optic Sensing & Monitoring Solutions for Critical Infrastructure</h1>
               <p>We engineer specialized infrastructure for link integrity, acoustic sensing, and thermal profiling. Our solutions focus on fault localization and network survivability in the world's most demanding industrial environments.</p>
               <div className="sl-hero-actions">
                 <a href="#sensing" className="sl-hero-btn">View Sensing Systems</a>
@@ -146,6 +156,20 @@ export default function Solutions() {
                 </div>
               </div>
             </div>
+
+            {/* Industry anchor targets for footer hash links */}
+            <div id="telecom" style={{ scrollMarginTop: 120 }} />
+            <div id="defence" style={{ scrollMarginTop: 120 }} />
+            <div id="datacentre" style={{ scrollMarginTop: 120 }} />
+            <div id="datacenter" style={{ scrollMarginTop: 120 }} />
+            <div id="5g" style={{ scrollMarginTop: 120 }} />
+            <div id="metro" style={{ scrollMarginTop: 120 }} />
+            <div id="power" style={{ scrollMarginTop: 120 }} />
+            <div id="utilities" style={{ scrollMarginTop: 120 }} />
+            <div id="ftth" style={{ scrollMarginTop: 120 }} />
+            <div id="broadcast" style={{ scrollMarginTop: 120 }} />
+            <div id="enterprise" style={{ scrollMarginTop: 120 }} />
+            <div id="industries" style={{ scrollMarginTop: 120 }} />
           </div>
         </section>
 
@@ -164,7 +188,6 @@ export default function Solutions() {
             </div>
           </div>
         </section>
-      </main>
     </>
   );
 }

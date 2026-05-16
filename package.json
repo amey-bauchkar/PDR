@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prerender": "node prerender.js",
+    "build:full": "npm run build && npm run prerender"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.56.0",
@@ -28,7 +30,10 @@
     "eslint": "^10.2.1",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
+    "express": "^5.2.1",
     "globals": "^17.5.0",
+    "puppeteer": "^25.0.2",
+    "sharp": "^0.34.5",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.58.2",
     "vite": "^8.0.10"

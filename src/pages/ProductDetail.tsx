@@ -1,5 +1,6 @@
 import { Link, useParams, Navigate } from 'react-router-dom';
 import Seo from '../components/Seo';
+import { ProductSchema, BreadcrumbSchema } from '../components/Schema';
 import productsData from '../data/products.json';
 import catalogueData from '../data/catalogue.json';
 
@@ -50,7 +51,26 @@ export default function ProductDetail() {
         title={product.title}
         description={product.description}
         canonical={`https://pdrworld.com/products/${product.slug}`}
+        ogTitle={`${product.name} — ${product.category} | PDR World`}
+        ogDescription={product.description}
+        ogUrl={`https://pdrworld.com/products/${product.slug}`}
+        ogImage={detailImage}
+        ogType="product"
       />
+      <ProductSchema
+        name={product.name}
+        description={product.description}
+        slug={product.slug}
+        category={product.category}
+        specs={product.specs}
+        image={detailImage}
+      />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://pdrworld.com/' },
+        { name: 'Products', url: 'https://pdrworld.com/products' },
+        { name: product.category, url: 'https://pdrworld.com/products' },
+        { name: product.name, url: `https://pdrworld.com/products/${product.slug}` },
+      ]} />
 
       {/* HERO */}
       <section className="section" style={{ paddingTop: 160, paddingBottom: 80, background: '#FFFFFF' }}>
@@ -78,7 +98,7 @@ export default function ProductDetail() {
             <div className="pd-image-frame">
               <img
                 src={detailImage}
-                alt={product.name}
+                alt={`${product.name} — ${product.category} by PDR World`}
                 className="pd-image"
                 loading="eager"
                 onError={(event) => {

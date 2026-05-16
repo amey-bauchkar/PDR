@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 import Seo from '../components/Seo';
+import { BreadcrumbSchema, SoftwareApplicationSchema } from '../components/Schema';
 import { useRfqCart } from '../components/RfqCartProvider';
 import '../styles/configurator-3d.css';
 
@@ -573,7 +574,7 @@ export default function CableConfigurator() {
     addItem({
       title: `Custom ${fiber.label} Patchcord`,
       specs: `${connector} · ${jacket} · ${length} m`,
-      image: '/images/fiber-patchcord.png',
+      image: '/images/fiber-patchcord.webp',
       qty: 1,
     });
     setConfirmation(`Added: ${item}`);
@@ -594,10 +595,19 @@ export default function CableConfigurator() {
         canonical="https://pdrworld.com/cable-configurator"
       />
 
-      
-      <div className="cfg3-wrap">
-        <div className="cfg3-title">Custom Cable Builder</div>
-        <div className="cfg3-sub">Select your specifications below. The 3D model updates in real time.</div>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://pdrworld.com/' },
+        { name: 'Configurator Tools', url: 'https://pdrworld.com/cable-configurator' },
+        { name: 'Custom Cable Builder', url: 'https://pdrworld.com/cable-configurator' },
+      ]} />
+      <SoftwareApplicationSchema 
+        name="PDR World Custom Cable Builder"
+        description="Interactive 3D configurator for building custom fiber optic patchcords and cable assemblies."
+        applicationCategory="BusinessApplication"
+      />
+      <main className="cfg3-wrap">
+        <h1 className="cfg3-title">Custom Fiber Optic Cable Configurator</h1>
+        <p className="cfg3-sub">Build and visualize your custom fiber optic patch cords in real-time 3D. Select from Single Mode (OS2) or Multimode (OM3, OM4) fibers, pair with industry-standard SC, LC, FC, ST, or high-density MPO connectors, and choose the optimal jacket type (LSZH, PVC, Armoured, Outdoor PE) for your enterprise network infrastructure. Get an instant quote for your specific data center requirements.</p>
 
         <div className="cfg3-layout">
           <div className="cfg3-left">
@@ -721,7 +731,7 @@ export default function CableConfigurator() {
             {confirmation && <div className="cfg3-add-conf" style={{ display: 'block' }}>{confirmation}</div>}
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

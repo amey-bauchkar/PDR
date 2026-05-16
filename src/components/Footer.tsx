@@ -199,11 +199,11 @@ export default function Footer() {
           © {year} PDR Videotronics India Pvt. Ltd. — All Rights Reserved. GSTIN: 27AAACP2446G1ZL
         </p>
         <div className="links">
-          <a href="mailto:info@pdrworld.com?subject=Legal%20%E2%80%94%20Terms%20of%20Sale%20Request">Terms of Sale</a>
-          <a href="mailto:info@pdrworld.com?subject=Legal%20%E2%80%94%20Terms%20of%20Use%20Request">Terms of Use</a>
-          <a href="mailto:info@pdrworld.com?subject=Legal%20%E2%80%94%20Privacy%20Policy%20Request">Privacy Policy</a>
-          <a href="mailto:info@pdrworld.com?subject=Legal%20%E2%80%94%20Disclaimer%20Request">Disclaimer</a>
-          <a href="mailto:info@pdrworld.com?subject=Legal%20%E2%80%94%20Subscriptions%20Request">Subscriptions</a>
+          <Link to="/terms">Terms of Sale</Link>
+          <Link to="/terms">Terms of Use</Link>
+          <Link to="/privacy">Privacy Policy</Link>
+          <Link to="/privacy">Disclaimer</Link>
+          <a href="mailto:info@pdrworld.com?subject=Subscriptions">Subscriptions</a>
         </div>
       </div>
     </footer>

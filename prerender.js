@@ -1,0 +1,95 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import puppeteer from 'puppeteer';
+import express from 'express';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Import product data directly (parsing JSON)
+const productsData = JSON.parse(fs.readFileSync(path.join(__dirname, 'src/data/products.json'), 'utf8'));
+
+// Static routes
+const routes = [
+  '/',
+  '/about',
+  '/products',
+  '/solutions',
+  '/resources',
+  '/contact',
+  '/cable-configurator',
+  '/fiber-selector',
+  '/terms',
+  '/privacy',
+  '/products/active-components',
+  '/products/passive-components',
+  '/products/cable-management',
+  '/products/test-measuring',
+  '/products/specialty-drones',
+  '/products/maintenance-tools',
+];
+
+// Product routes
+for (const product of productsData) {
+  if (product.slug) {
+    routes.push(`/products/${product.slug}`);
+  }
+}
+
+const PORT = 3000;
+const DIST_DIR = path.join(__dirname, 'dist');
+
+async function run() {
+  console.log(`Starting prerender for ${routes.length} routes...`);
+
+  // Start a local server to serve the React SPA
+  const app = express();
+  app.use(express.static(DIST_DIR));
+  // Fallback to index.html for SPA routing
+  app.use((req, res) => {
+    res.sendFile(path.join(DIST_DIR, 'index.html'));
+  });
+
+  const server = app.listen(PORT, async () => {
+    console.log(`Server listening on port ${PORT}`);
+
+    const browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+
+    for (const route of routes) {
+      console.log(`Prerendering ${route}...`);
+      try {
+        await page.goto(`http://localhost:${PORT}${route}`, { waitUntil: 'networkidle0' });
+        // Wait for React to render something into #root
+        await page.waitForFunction('document.querySelector("#root").innerHTML.length > 0', { timeout: 10000 }).catch(() => {});
+        // Small delay to ensure any immediate useEffects complete
+        await new Promise((r) => setTimeout(r, 500));
+
+        const html = await page.content();
+
+        // Create directory if it's not the root
+        let outputPath;
+        if (route === '/') {
+          outputPath = path.join(DIST_DIR, 'index.html');
+        } else {
+          const routeDir = path.join(DIST_DIR, route);
+          if (!fs.existsSync(routeDir)) {
+            fs.mkdirSync(routeDir, { recursive: true });
+          }
+          outputPath = path.join(routeDir, 'index.html');
+        }
+
+        fs.writeFileSync(outputPath, html);
+      } catch (err) {
+        console.error(`Failed to prerender ${route}`, err);
+      }
+    }
+
+    await browser.close();
+    server.close();
+    console.log('Prerendering complete!');
+  });
+}
+
+run();
