@@ -44,8 +44,7 @@ export default function App() {
           <Route path="fiber-selector" element={<FiberSelector />} />
           <Route path="terms" element={<Terms />} />
           <Route path="privacy" element={<Privacy />} />
-          <Route path="admin-new" element={<AdminNew />} />
-          <Route path="admin" element={<AdminNew />} />
+          <Route path="dashboard-admin" element={<AdminNew />} />
           <Route path="404" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Route>
