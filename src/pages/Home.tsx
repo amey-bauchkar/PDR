@@ -198,9 +198,6 @@ export default function Home() {
         <div className="container">
           <div className="hp-final-cta">
             <div className="hp-final-cta-inner">
-              <div className="hero-status hp-final-status">
-                <span className="live"></span> Ready to Deploy Worldwide
-              </div>
               <h2>
                 Tell us your network requirements.
                 <br />
