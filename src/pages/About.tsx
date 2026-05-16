@@ -1,6 +1,14 @@
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
 import '../styles/about.css';
+import iso9001Pdf from '../assets/certi/PDR VIDEOTRONICS ISO 9001 2015.pdf';
+import iso14001Pdf from '../assets/certi/PDR VIDEOTRONICS ISO 14001 2015.pdf';
+import rohsPdf from '../assets/certi/ROHS Compliant.pdf';
+import cactPdf from '../assets/certi/PDR CACT Certificate.pdf';
+import iecPdf from '../assets/certi/IEC Certificate.pdf';
+import nsicPdf from '../assets/certi/NSIC Certificate.pdf';
+import udyamPdf from '../assets/certi/Udyam Registration Certificate.pdf';
+import mpcbPdf from '../assets/certi/MPCB Certificate.pdf';
 
 export default function About() {
   return (
@@ -156,36 +164,51 @@ export default function About() {
           </div>
 
           <div className="ab-cert-grid">
-            <div className="ab-cert-card">
+            <a href={iso9001Pdf} target="_blank" rel="noopener noreferrer" className="ab-cert-card" style={{ display: 'block' }}>
               <div className="ab-cert-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>
               <h4>ISO 9001:2015</h4>
               <p>Certified Quality Management System for manufacturing and distribution.</p>
-            </div>
-            <div className="ab-cert-card">
+            </a>
+            <a href={iso14001Pdf} target="_blank" rel="noopener noreferrer" className="ab-cert-card" style={{ display: 'block' }}>
+              <div className="ab-cert-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>
+              <h4>ISO 14001:2015</h4>
+              <p>Certified Environmental Management System ensuring sustainable practices.</p>
+            </a>
+            <a href={rohsPdf} target="_blank" rel="noopener noreferrer" className="ab-cert-card" style={{ display: 'block' }}>
               <div className="ab-cert-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="11" width="18" height="10" rx="2" /><circle cx="12" cy="5" r="2" /><path d="M12 7v4" /></svg></div>
               <h4>RoHS Compliant</h4>
               <p>Products free from hazardous substances, ensuring environmental safety.</p>
-            </div>
-            <div className="ab-cert-card">
-              <div className="ab-cert-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg></div>
-              <h4>REACH Compliant</h4>
-              <p>Chemical safety and registration compliance for global distribution.</p>
-            </div>
-            <div className="ab-cert-card">
-              <div className="ab-cert-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M20 7h-9l-3-3h-5v16h22v-13z" /></svg></div>
-              <h4>MIL-STD Rated</h4>
-              <p>Ruggedised components meeting rigorous military-grade durability standards.</p>
-            </div>
-            <div className="ab-cert-card">
+            </a>
+            <a href={cactPdf} target="_blank" rel="noopener noreferrer" className="ab-cert-card" style={{ display: 'block' }}>
               <div className="ab-cert-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg></div>
-              <h4>TEC Approved</h4>
-              <p>Certified by the Telecommunication Engineering Centre for public networks.</p>
-            </div>
-            <div className="ab-cert-card">
+              <h4>CACT Certificate</h4>
+              <p>Component Approval Centre for Telecommunications certification.</p>
+            </a>
+            <a href={iecPdf} target="_blank" rel="noopener noreferrer" className="ab-cert-card" style={{ display: 'block' }}>
               <div className="ab-cert-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10" /><path d="M2 12h20" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg></div>
-              <h4>Global Export</h4>
-              <p>Compliant with international telecom standards for global deployment.</p>
-            </div>
+              <h4>IEC Certificate</h4>
+              <p>Compliant with International Electrotechnical Commission standards.</p>
+            </a>
+            <a href={nsicPdf} target="_blank" rel="noopener noreferrer" className="ab-cert-card" style={{ display: 'block' }}>
+              <div className="ab-cert-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M20 7h-9l-3-3h-5v16h22v-13z" /></svg></div>
+              <h4>NSIC Certificate</h4>
+              <p>Registered with National Small Industries Corporation for quality manufacturing.</p>
+            </a>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginTop: '1.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
+            <a href={udyamPdf} target="_blank" rel="noopener noreferrer" className="ab-cert-card" style={{ padding: '1.25rem 1.5rem', display: 'flex', alignItems: 'center', gap: '1rem', textAlign: 'left', minHeight: 'auto' }}>
+              <div className="ab-cert-icon" style={{ marginBottom: 0, width: '40px', height: '40px', display: 'grid', placeItems: 'center' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg></div>
+              <div>
+                <h4 style={{ margin: 0, fontSize: '1rem' }}>Udyam Registration</h4>
+              </div>
+            </a>
+            <a href={mpcbPdf} target="_blank" rel="noopener noreferrer" className="ab-cert-card" style={{ padding: '1.25rem 1.5rem', display: 'flex', alignItems: 'center', gap: '1rem', textAlign: 'left', minHeight: 'auto' }}>
+              <div className="ab-cert-icon" style={{ marginBottom: 0, width: '40px', height: '40px', display: 'grid', placeItems: 'center' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg></div>
+              <div>
+                <h4 style={{ margin: 0, fontSize: '1rem' }}>MPCB Certificate</h4>
+              </div>
+            </a>
           </div>
         </div>
       </section>
