@@ -14,6 +14,7 @@ import FiberSelector from './pages/FiberSelector';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import AdminNew from './pages/AdminNew';
+import AdminProductForm from './pages/AdminProductForm';
 import NotFound from './pages/NotFound';
 import ScrollToHash from './components/ScrollToHash';
 import { fetchAndSyncProducts } from './lib/productSync';
@@ -52,6 +53,8 @@ export default function App() {
           <Route path="privacy" element={<Privacy />} />
           <Route path="admin-new" element={<AdminNew />} />
           <Route path="admin" element={<AdminNew />} />
+          <Route path="admin/products/new" element={<AdminProductForm />} />
+          <Route path="admin/products/edit/:slug" element={<AdminProductForm />} />
           <Route path="404" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Route>
