@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { FormEvent } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Seo from '../components/Seo';
 import seedProducts from '../data/products.json';
 import type { AdminSession } from '../lib/adminAuth';
@@ -64,6 +65,7 @@ type ProductFormState = {
   category: string;
   title: string;
   description: string;
+  descriptionText: string;
   canonical: string;
   tagline: string;
   status: AdminStatus;
@@ -86,6 +88,7 @@ const DEFAULT_FORM: ProductFormState = {
   category: '',
   title: '',
   description: '',
+  descriptionText: '',
   canonical: '',
   tagline: '',
   status: 'Active',
@@ -257,6 +260,15 @@ export default function AdminNew() {
   const [category, setCategory] = useState('All');
   const [status, setStatus] = useState<'All' | AdminStatus>('All');
   const [editorMode, setEditorMode] = useState<'create' | 'edit'>('create');
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  useEffect(() => {
+    if (location.state && (location.state as any).activeTab) {
+      setActiveTab((location.state as any).activeTab);
+    }
+  }, [location]);
+  
   const [editingSlug, setEditingSlug] = useState<string | null>(null);
   const [form, setForm] = useState<ProductFormState>(DEFAULT_FORM);
   const [notice, setNotice] = useState('');
@@ -395,7 +407,11 @@ export default function AdminNew() {
       name: form.name.trim(),
       category: form.category.trim(),
       title: form.title.trim(),
-      description: form.description.trim(),
+      description: form.descriptionText
+        .split('\n')
+        .map((s) => s.trim())
+        .filter(Boolean)
+        .join('. '),
       canonical: form.canonical.trim(),
       tagline: form.tagline.trim(),
       status: form.status,
@@ -441,6 +457,9 @@ export default function AdminNew() {
       category: product.category,
       title: product.title ?? '',
       description: product.description ?? '',
+      descriptionText: product.description
+        ? product.description.split('. ').join('\n')
+        : '',
       canonical: product.canonical ?? '',
       tagline: product.tagline ?? '',
       status: product.status,
@@ -688,7 +707,7 @@ export default function AdminNew() {
               {darkMode ? '☀️' : '🌙'}
             </button>
             <span className="admin-user-info">{session.email}</span>
-            <button className="admin-btn-secondary" onClick={handleLogout}>
+            <button className="admin-btn-logout" onClick={handleLogout}>
               Logout
             </button>
           </div>
@@ -702,7 +721,8 @@ export default function AdminNew() {
                   className={`admin-nav-item ${activeTab === 'dashboard' ? 'active' : ''}`}
                   onClick={() => setActiveTab('dashboard')}
                 >
-                  📊 Dashboard
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                  Dashboard
                 </button>
               )}
               {checkPermission(session, 'manage_products') && (
@@ -710,7 +730,8 @@ export default function AdminNew() {
                   className={`admin-nav-item ${activeTab === 'products' ? 'active' : ''}`}
                   onClick={() => setActiveTab('products')}
                 >
-                  📦 Products
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                  Products
                 </button>
               )}
               {checkPermission(session, 'manage_rfqs') && (
@@ -718,7 +739,8 @@ export default function AdminNew() {
                   className={`admin-nav-item ${activeTab === 'rfqs' ? 'active' : ''}`}
                   onClick={() => setActiveTab('rfqs')}
                 >
-                  📋 RFQs
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                  RFQs
                 </button>
               )}
 
@@ -727,7 +749,8 @@ export default function AdminNew() {
                   className={`admin-nav-item ${activeTab === 'activity' ? 'active' : ''}`}
                   onClick={() => setActiveTab('activity')}
                 >
-                  📈 Activity
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+                  Activity
                 </button>
               )}
               {checkPermission(session, 'manage_settings') && (
@@ -735,16 +758,17 @@ export default function AdminNew() {
                   className={`admin-nav-item ${activeTab === 'settings' ? 'active' : ''}`}
                   onClick={() => setActiveTab('settings')}
                 >
-                  ⚙️ Settings
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                  Settings
                 </button>
               )}
             </nav>
           </aside>
 
-          <main className="admin-content">
+          <main className="admin-main">
             {activeTab === 'dashboard' && (
               <section>
-                <h2>Dashboard Overview</h2>
+                <h2 className="admin-page-title">Dashboard Overview</h2>
                 <div className="admin-metrics-grid">
                   <div className="admin-metric">
                     <strong>{products.length}</strong>
@@ -778,6 +802,45 @@ export default function AdminNew() {
                     ))}
                   </div>
                 </div>
+
+                <div className="admin-summary-row">
+                  <div className="admin-summary-card">
+                    <div className="admin-summary-icon admin-summary-icon--blue">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                    </div>
+                    <div>
+                      <p className="admin-summary-label">Total Products</p>
+                      <p className="admin-summary-value">{products.length} items in catalogue</p>
+                    </div>
+                  </div>
+                  <div className="admin-summary-card">
+                    <div className="admin-summary-icon admin-summary-icon--green">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20,6 9,17 4,12"/></svg>
+                    </div>
+                    <div>
+                      <p className="admin-summary-label">Active Listings</p>
+                      <p className="admin-summary-value">{activeCount} products published</p>
+                    </div>
+                  </div>
+                  <div className="admin-summary-card">
+                    <div className="admin-summary-icon admin-summary-icon--amber">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+                    </div>
+                    <div>
+                      <p className="admin-summary-label">Draft Products</p>
+                      <p className="admin-summary-value">{draftCount} pending review</p>
+                    </div>
+                  </div>
+                  <div className="admin-summary-card">
+                    <div className="admin-summary-icon admin-summary-icon--purple">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l1.27-.85a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
+                    </div>
+                    <div>
+                      <p className="admin-summary-label">Open RFQs</p>
+                      <p className="admin-summary-value">{rfqs.length} quote requests</p>
+                    </div>
+                  </div>
+                </div>
               </section>
             )}
 
@@ -785,7 +848,10 @@ export default function AdminNew() {
               <section>
                 <div className="admin-section-header">
                   <h2>Product Management</h2>
-                  <button className="admin-btn-primary" onClick={() => { setEditorMode('create'); setEditingSlug(null); setForm(DEFAULT_FORM); }}>
+                  <button 
+                    className="admin-btn-primary" 
+                    onClick={() => navigate('/admin/products/new')}
+                  >
                     + New Product
                   </button>
                 </div>
@@ -810,7 +876,7 @@ export default function AdminNew() {
                   </select>
                 </div>
 
-                <div className="admin-grid">
+                <div style={{ width: '100%' }}>
                   <div className="admin-products-grouped">
                     {categories.length === 0 ? (
                       <p className="admin-empty">No products yet.</p>
@@ -838,7 +904,7 @@ export default function AdminNew() {
                                     </span>
                                   </div>
                                   <div className="admin-product-actions">
-                                    <button className="admin-btn-sm" onClick={() => handleEdit(product)}>
+                                    <button className="admin-btn-sm" onClick={() => navigate(`/admin/products/edit/${product.slug}`)}>
                                       ✎ Edit
                                     </button>
                                     {checkPermission(session, 'delete_products') && (
@@ -854,254 +920,6 @@ export default function AdminNew() {
                         );
                       })
                     )}
-                  </div>
-
-                  <div className="admin-form-section">
-                    <form onSubmit={handleSubmit}>
-                      <h3>{editorMode === 'edit' ? 'Edit Product' : 'Add Product'}</h3>
-                      <div className="admin-form-group">
-                        <label>Name</label>
-                        <input required value={form.name} onChange={(e) => setForm({...form, name: e.target.value})} />
-                      </div>
-                      <div className="admin-form-group">
-                        <label>Category</label>
-                        <select
-                          required
-                          value={categories.includes(form.category) ? form.category : (form.category ? "new" : "")}
-                          onChange={(e) => {
-                            const val = e.target.value;
-                            if (val === "new") {
-                              setForm({ ...form, category: "" });
-                            } else {
-                              setForm({ ...form, category: val });
-                            }
-                          }}
-                          className="admin-select"
-                          style={{ width: '100%' }}
-                        >
-                          <option value="">Select Category...</option>
-                          {categories.map((cat) => (
-                            <option key={cat} value={cat}>
-                              {cat}
-                            </option>
-                          ))}
-                          <option value="new">+ Add New Category...</option>
-                        </select>
-                        
-                        {(!categories.includes(form.category) || !form.category) && (
-                          <input
-                            type="text"
-                            required
-                            placeholder="Enter New Category Name"
-                            value={form.category}
-                            onChange={(e) => setForm({ ...form, category: e.target.value })}
-                            style={{ marginTop: '8px' }}
-                            className="admin-search"
-                          />
-                        )}
-                      </div>
-
-                      <div className="admin-form-group">
-                        <label>Tagline</label>
-                        <input value={form.tagline} onChange={(e) => setForm({...form, tagline: e.target.value})} />
-                      </div>
-                      <div className="admin-form-group">
-                        <label>Description (one point per line)</label>
-                        <textarea 
-                          value={form.description} 
-                          onChange={(e) => setForm({...form, description: e.target.value})} 
-                          rows={4} 
-                          placeholder="Bullet point 1&#10;Bullet point 2&#10;Bullet point 3"
-                        />
-                      </div>
-                      <div className="admin-form-group">
-                        <label>SEO Title</label>
-                        <input value={form.title} onChange={(e) => setForm({...form, title: e.target.value})} placeholder="e.g. Active Optical Cable (AOC) | PDR World" />
-                      </div>
-                      <div className="admin-form-group">
-                        <label>Key Features (one per line)</label>
-                        <textarea value={form.featuresText} onChange={(e) => setForm({...form, featuresText: e.target.value})} rows={4} placeholder="Feature 1&#10;Feature 2" />
-                      </div>
-                      <div className="admin-form-group">
-                        <label>Applications (one per line)</label>
-                        <textarea value={form.applicationsText} onChange={(e) => setForm({...form, applicationsText: e.target.value})} rows={4} placeholder="Application 1&#10;Application 2" />
-                      </div>
-                      <div className="admin-form-group">
-                        <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span>Technical Specifications</span>
-                          <button
-                            type="button"
-                            className="btn btn-outline"
-                            style={{ padding: '6px 12px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
-                            onClick={() => setForm({ ...form, specs: [...form.specs, { label: 'Cable Type', value: '' }] })}
-                          >
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                            Add Specification
-                          </button>
-                        </label>
-
-                        {form.specs.length === 0 ? (
-                          <div style={{ padding: '16px', background: 'rgba(7,0,143,0.02)', border: '1px dashed #07008F', borderRadius: '8px', textAlign: 'center', color: '#64748B', marginTop: '8px' }}>
-                            No specifications added. Click "Add Specification" to build technical overview.
-                          </div>
-                        ) : (
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '12px' }}>
-                            {form.specs.map((spec, index) => {
-                              const isCustom = !COMMON_SPEC_LABELS.includes(spec.label);
-                              return (
-                                <div key={index} style={{ display: 'grid', gridTemplateColumns: '1fr 2fr auto', gap: '12px', alignItems: 'start' }}>
-                                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                                    <select
-                                      value={isCustom ? "custom" : spec.label}
-                                      onChange={(e) => {
-                                        const val = e.target.value;
-                                        const newSpecs = [...form.specs];
-                                        if (val === "custom") {
-                                          newSpecs[index] = { ...newSpecs[index], label: "" };
-                                        } else {
-                                          newSpecs[index] = { ...newSpecs[index], label: val };
-                                        }
-                                        setForm({ ...form, specs: newSpecs });
-                                      }}
-                                      style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid #E2E8F0', background: '#FFFFFF', color: '#0F172A', fontSize: '14px' }}
-                                    >
-                                      {!COMMON_SPEC_LABELS.includes(spec.label) && spec.label !== "" && (
-                                        <option value={spec.label}>{spec.label}</option>
-                                      )}
-                                      {COMMON_SPEC_LABELS.map((lbl) => (
-                                        <option key={lbl} value={lbl}>{lbl}</option>
-                                      ))}
-                                      <option value="custom">+ Custom Label...</option>
-                                    </select>
-                                    
-                                    {isCustom && (
-                                      <input
-                                        type="text"
-                                        required
-                                        placeholder="Custom label name"
-                                        value={spec.label}
-                                        onChange={(e) => {
-                                          const newSpecs = [...form.specs];
-                                          newSpecs[index] = { ...newSpecs[index], label: e.target.value };
-                                          setForm({ ...form, specs: newSpecs });
-                                        }}
-                                        style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid #E2E8F0', background: '#FFFFFF', color: '#0F172A', fontSize: '14px' }}
-                                      />
-                                    )}
-                                  </div>
-
-                                  <input
-                                    type="text"
-                                    required
-                                    placeholder="Specification value (e.g. Multimode Fiber, 10G)"
-                                    value={spec.value}
-                                    onChange={(e) => {
-                                      const newSpecs = [...form.specs];
-                                      newSpecs[index] = { ...newSpecs[index], value: e.target.value };
-                                      setForm({ ...form, specs: newSpecs });
-                                    }}
-                                    style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid #E2E8F0', background: '#FFFFFF', color: '#0F172A', fontSize: '14px' }}
-                                  />
-
-                                  <button
-                                    type="button"
-                                    className="btn btn-outline"
-                                    style={{ 
-                                      padding: '8px 12px', 
-                                      border: '1px solid #ef4444', 
-                                      color: '#ef4444', 
-                                      height: '38px',
-                                      display: 'flex',
-                                      alignItems: 'center',
-                                      justifyContent: 'center',
-                                      borderRadius: '6px',
-                                      cursor: 'pointer'
-                                    }}
-                                    onClick={() => {
-                                      const newSpecs = form.specs.filter((_, i) => i !== index);
-                                      setForm({ ...form, specs: newSpecs });
-                                    }}
-                                  >
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                                  </button>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        )}
-                      </div>
-                      <div className="admin-form-group">
-                        <label>Image</label>
-                        <div className="admin-image-upload-section">
-                          <input 
-                            type="file" 
-                            accept="image/*"
-                            onChange={handleImageUpload}
-                            className="admin-file-input"
-                          />
-                          {imagePreview && (
-                            <div className="admin-image-preview" style={{ marginTop: '12px' }}>
-                              <img src={imagePreview} alt="Preview" />
-                              <button 
-                                type="button" 
-                                className="admin-btn-remove-image"
-                                onClick={() => {
-                                  setImagePreview('');
-                                  setForm({...form, imageUrl: ''});
-                                }}
-                              >
-                                ✕ Remove
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                      <div className="admin-form-group">
-                        <label>Datasheet PDF</label>
-                        <div className="admin-image-upload-section">
-                          <input 
-                            type="file" 
-                            accept="application/pdf"
-                            onChange={handlePdfUpload}
-                            className="admin-file-input"
-                          />
-                          {form.datasheetUrl && (
-                            <div style={{ marginTop: '12px', padding: '12px', background: 'rgba(7,0,143,0.05)', borderRadius: '8px', border: '1px solid rgba(7,0,143,0.1)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E21D3C" strokeWidth="2">
-                                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                                  <polyline points="14 2 14 8 20 8" />
-                                </svg>
-                                <span style={{ fontSize: '13px', color: '#475569', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '300px' }}>
-                                  {form.datasheetUrl.startsWith('data:') ? 'Uploaded PDF (Base64 file)' : form.datasheetUrl}
-                                </span>
-                              </div>
-                              <button 
-                                type="button" 
-                                className="admin-btn-remove-image"
-                                style={{ margin: 0 }}
-                                onClick={() => setForm({...form, datasheetUrl: ''})}
-                              >
-                                ✕ Remove
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                      <div className="admin-form-group">
-                        <label>Status</label>
-                        <select value={form.status} onChange={(e) => setForm({...form, status: e.target.value as AdminStatus})}>
-                          <option value="Active">Active</option>
-                          <option value="Draft">Draft</option>
-                          <option value="Archived">Archived</option>
-                        </select>
-                      </div>
-                      {notice && <div className={`admin-message ${noticeType}`}>{notice}</div>}
-                      <button type="submit" className="admin-btn-primary admin-btn-full">
-                        {editorMode === 'edit' ? 'Save Changes' : 'Add Product'}
-                      </button>
-                      {editorMode === 'edit' && <button type="button" className="admin-btn-secondary admin-btn-full" onClick={resetForm}>Cancel</button>}
-                    </form>
                   </div>
                 </div>
               </section>
