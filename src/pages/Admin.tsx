@@ -370,7 +370,7 @@ export default function Admin() {
       <Seo
         title="Admin Panel | PDR World"
         description="Admin dashboard for PDR World product management, metrics, and RFQ-ready content operations."
-        canonical="https://pdrworld.com/admin"
+        canonical="https://pdrworld.com/dashboard-admin"
       />
 
       <div className="admin-shell">
