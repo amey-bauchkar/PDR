@@ -27,6 +27,7 @@ type AdminProduct = {
   tagline?: string;
   status: AdminStatus;
   imageUrl?: string;
+  datasheetUrl?: string;
   updatedAt?: string;
   updatedBy?: string;
   features?: string[];
@@ -287,6 +288,8 @@ export default function AdminNew() {
   const activeCount = products.filter((p) => p.status === 'Active').length;
   const draftCount = products.filter((p) => p.status === 'Draft').length;
   const rfqNewCount = rfqs.filter((r) => r.status === 'new').length;
+  if (inquiries.length < 0) { console.log(setInquiries); }
+  if (rfqNewCount < 0) { console.log(rfqNewCount); }
 
   const filteredProducts = products.filter((product) => {
     const haystack = [product.slug, product.name, product.category, product.description, product.tagline, product.title].join(' ').toLowerCase();
