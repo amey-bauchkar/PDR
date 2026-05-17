@@ -111,13 +111,13 @@
 
     /* Homepage Styles */
     /* Homepage Styles Redesign */
-    .hp-hero { position: relative; padding: 180px 0 120px; background: #FFFFFF; overflow: hidden; display: flex; align-items: center; }
+    .hp-hero { position: relative; padding: 120px 0 80px; background: #FFFFFF; overflow: hidden; display: flex; align-items: center; min-height: 100vh; }
     .hp-hero::before { content: ""; position: absolute; top: -10%; right: -10%; width: 700px; height: 700px; background: radial-gradient(circle, rgba(74,159,216,0.06), transparent 70%); pointer-events: none; }
-    .hp-hero-grid { display: grid; grid-template-columns: 1fr 1.16fr; gap: 56px; align-items: center; position: relative; z-index: 2; }
+    .hp-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; position: relative; z-index: 2; width: 100%; }
     .hp-hero-content { max-width: 640px; }
-    .hp-hero h1 { font-size: clamp(42px, 6vw, 72px); line-height: 1; margin-bottom: 28px; letter-spacing: -0.04em; color: #07008F; font-weight: 800; }
+    .hp-hero h1 { font-size: clamp(32px, 4vw, 52px); line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.03em; color: #07008F; font-weight: 800; }
     .hp-hero h1 span { color: var(--accent); }
-    .hp-hero p { font-size: 20px; color: #475569; margin-bottom: 44px; line-height: 1.6; max-width: 540px; }
+    .hp-hero p { font-size: 17px; color: #475569; margin-bottom: 28px; line-height: 1.6; max-width: 480px; }
     .hp-cta-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
     
     .hp-hero-visual.hero-image-card,
@@ -131,11 +131,12 @@
       border: none;
       width: 100%;
       aspect-ratio: 4 / 3;
+      align-self: center;
     }
     @media (min-width: 1101px) {
       .hp-hero-visual.hero-image-card {
-        min-height: 460px;
-        aspect-ratio: 5 / 4;
+        min-height: 0;
+        aspect-ratio: 4 / 3;
       }
     }
     .hero-image-card img {
@@ -149,7 +150,7 @@
       transform: scale(1.02);
     }
 
-    .hero-trust-chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 48px; }
+    .hero-trust-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
     .trust-chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 99px; font-size: 12px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.2s var(--ease); }
     .trust-chip:hover { border-color: var(--accent); color: var(--ink); transform: translateY(-1px); }
     .trust-chip svg { width: 14px; height: 14px; color: var(--accent); }
