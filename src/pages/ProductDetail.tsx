@@ -1,7 +1,9 @@
+import { useState, useEffect } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
-import Seo from '../components/Seo';
+import Seo from '../components/Seo'; // trigger HMR
 import productsData from '../data/products.json';
 import catalogueData from '../data/catalogue.json';
+import { mergeWithProducts } from '../lib/productSync';
 
 type Product = {
   slug: string;
@@ -16,9 +18,10 @@ type Product = {
   applications: string[];
   specs: { label: string; value: string }[];
   related: { slug: string; name: string }[];
+  imageUrl?: string;
+  datasheetUrl?: string;
 };
 
-const products = productsData as Product[];
 const catalogueImageBySlug = new Map<string, string>();
 const categoryFallbackImage: Record<string, string> = {
   'Active Components': 'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=900&q=80',
@@ -39,8 +42,22 @@ for (const section of (catalogueData as { sections?: { groups?: { cards?: { slug
 
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
+  const [products, setProducts] = useState<Product[]>(() => mergeWithProducts(productsData));
+
+  useEffect(() => {
+    const handleStorage = () => {
+      setProducts(mergeWithProducts(productsData));
+    };
+    window.addEventListener('storage', handleStorage);
+    window.addEventListener('pdrworld-product-update', handleStorage);
+    return () => {
+      window.removeEventListener('storage', handleStorage);
+      window.removeEventListener('pdrworld-product-update', handleStorage);
+    };
+  }, []);
+
   const product = products.find((p) => p.slug === slug);
-  const detailImage = (slug ? catalogueImageBySlug.get(slug) : undefined) ?? categoryFallbackImage[product?.category ?? ''] ?? categoryFallbackImage['Passive Components'];
+  const detailImage = product?.imageUrl || (slug ? catalogueImageBySlug.get(slug) : undefined) || categoryFallbackImage[product?.category ?? ''] || categoryFallbackImage['Passive Components'];
 
   if (!product) return <Navigate to="/404" replace />;
 
@@ -100,22 +117,63 @@ export default function ProductDetail() {
               >
                 {product.name}
               </h1>
-              <p style={{ color: '#475569', fontSize: 20, lineHeight: 1.6, marginBottom: 40 }}>{product.tagline}</p>
+              <p style={{ color: '#475569', fontSize: 20, lineHeight: 1.6, marginBottom: 24 }}>{product.tagline}</p>
 
               <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
                 <Link to={`/contact?inquiry=Quote+for+${product.slug}`} className="btn btn-primary" style={{ padding: '16px 32px', fontSize: 16 }}>
                   Request Quote
                 </Link>
-                <a href="#" className="btn btn-outline" style={{ padding: '16px 32px', fontSize: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <line x1="16" y1="13" x2="8" y2="13" />
-                    <line x1="16" y1="17" x2="8" y2="17" />
-                    <polyline points="10 9 9 9 8 9" />
-                  </svg>
-                  Datasheet (PDF)
-                </a>
+                {product.datasheetUrl ? (
+                  <a
+                    href={product.datasheetUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download={`${product.slug}-datasheet.pdf`}
+                    className="btn btn-outline"
+                    style={{ padding: '16px 32px', fontSize: 16, display: 'flex', alignItems: 'center', gap: 8 }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="16" y1="13" x2="8" y2="13" />
+                      <line x1="16" y1="17" x2="8" y2="17" />
+                      <polyline points="10 9 9 9 8 9" />
+                    </svg>
+                    Datasheet (PDF)
+                  </a>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      import('../lib/datasheetPdf').then(({ downloadProductDatasheet }) => {
+                        downloadProductDatasheet({
+                          slug: product.slug,
+                          name: product.name,
+                          category: product.category,
+                          title: product.title || `${product.name} | PDR World`,
+                          description: product.description || '',
+                          canonical: `https://pdrworld.com/products/${product.slug}`,
+                          tagline: product.tagline || '',
+                          features: product.features || [],
+                          applications: product.applications || [],
+                          specs: product.specs || [],
+                          related: product.related || [],
+                        });
+                      });
+                    }}
+                    className="btn btn-outline"
+                    style={{ padding: '16px 32px', fontSize: 16, display: 'flex', alignItems: 'center', gap: 8 }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="16" y1="13" x2="8" y2="13" />
+                      <line x1="16" y1="17" x2="8" y2="17" />
+                      <polyline points="10 9 9 9 8 9" />
+                    </svg>
+                    Datasheet (PDF)
+                  </button>
+                )}
               </div>
             </div>
           </div>

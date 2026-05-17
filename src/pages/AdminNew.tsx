@@ -29,6 +29,11 @@ type AdminProduct = {
   imageUrl?: string;
   updatedAt?: string;
   updatedBy?: string;
+  features?: string[];
+  applications?: string[];
+  specs?: { label: string; value: string }[];
+  related?: { slug: string; name: string }[];
+  heroIcon?: string;
 };
 
 type ActivityItem = {
@@ -62,6 +67,10 @@ type ProductFormState = {
   tagline: string;
   status: AdminStatus;
   imageUrl: string;
+  featuresText: string;
+  applicationsText: string;
+  specs: { label: string; value: string }[];
+  datasheetUrl: string;
 };
 
 const STORAGE_KEYS = {
@@ -78,8 +87,12 @@ const DEFAULT_FORM: ProductFormState = {
   description: '',
   canonical: '',
   tagline: '',
-  status: 'Draft',
+  status: 'Active',
   imageUrl: '',
+  featuresText: '',
+  applicationsText: '',
+  specs: [],
+  datasheetUrl: '',
 };
 
 const nowLabel = () =>
@@ -105,13 +118,34 @@ const asAdminProducts = (items: typeof seedProducts): AdminProduct[] =>
     updatedBy: 'system',
   }));
 
+const COMMON_SPEC_LABELS = [
+  "Cable Type",
+  "Data Rate",
+  "Reach",
+  "Armour Material",
+  "Fiber Type",
+  "Jacket Type",
+  "Connector Type",
+  "Insertion Loss",
+  "Return Loss",
+  "Operating Temperature",
+  "Capacity",
+  "Ports",
+  "Dimensions",
+  "Weight",
+  "Material",
+  "Transmission Distance",
+  "Wavelength",
+  "Power Budget"
+];
+
 export default function AdminNew() {
   const [session, setSession] = useState<AdminSession | null>(null);
   const [loginEmail, setLoginEmail] = useState('admin@pdrworld.com');
   const [loginPassword, setLoginPassword] = useState('Admin@123');
   const [loginError, setLoginError] = useState('');
   const [darkMode, setDarkMode] = useState(false);
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'products' | 'rfqs' | 'activity' | 'settings' | 'inquiries'>('dashboard');
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'products' | 'rfqs' | 'activity' | 'settings'>('dashboard');
 
   const [products, setProducts] = useState<AdminProduct[]>(() => {
     if (typeof window === 'undefined') return asAdminProducts(seedProducts as typeof seedProducts);
@@ -124,7 +158,6 @@ export default function AdminNew() {
     const raw = window.localStorage.getItem(STORAGE_KEYS.rfqs);
     return raw ? JSON.parse(raw) : [];
   });
-
   const [inquiries, setInquiries] = useState<any[]>(() => {
     if (typeof window === 'undefined') return [];
     const raw = window.localStorage.getItem('pdrworld-pending-contact-inquiries');
@@ -134,7 +167,6 @@ export default function AdminNew() {
       return [];
     }
   });
-
   useEffect(() => {
     async function fetchFromSupabase() {
       if (!supabase) return;
@@ -157,7 +189,7 @@ export default function AdminNew() {
           setInquiries(prev => {
             const localKeys = new Set(prev.map(i => i.email + i.message));
             const uniqueDb = mappedInquiries.filter((i: any) => !localKeys.has(i.email + i.message));
-            return [...uniqueDb, ...prev]; // DB items first (newer usually)
+            return [...uniqueDb, ...prev]; // DB items first
           });
         }
 
@@ -201,8 +233,7 @@ export default function AdminNew() {
       const rawInq = window.localStorage.getItem('pdrworld-pending-contact-inquiries');
       if (rawInq) {
         try { setInquiries(JSON.parse(rawInq)); } catch {}
-      }
-    };
+      }    };
 
     window.addEventListener('local-storage-update', handleStorageUpdate);
     window.addEventListener('storage', handleStorageUpdate);
@@ -230,6 +261,7 @@ export default function AdminNew() {
   const [notice, setNotice] = useState('');
   const [noticeType, setNoticeType] = useState<'success' | 'error' | 'info'>('success');
   const [imagePreview, setImagePreview] = useState<string>('');
+  const [isExporting, setIsExporting] = useState(false);
 
   useEffect(() => {
     const storedSession = getStoredSession();
@@ -273,7 +305,7 @@ export default function AdminNew() {
   ) => {
     setActivity((current) => [
       {
-        id: Date.now(),
+        id: Date.now() + Math.random(),
         title,
         detail,
         tone,
@@ -341,6 +373,20 @@ export default function AdminNew() {
       return;
     }
 
+    const features = form.featuresText
+      .split('\n')
+      .map((s) => s.trim())
+      .filter(Boolean);
+
+    const applications = form.applicationsText
+      .split('\n')
+      .map((s) => s.trim())
+      .filter(Boolean);
+
+    const specs = form.specs.filter((s) => s.label.trim() && s.value.trim());
+
+    const existingProduct = products.find((p) => p.slug === editingSlug);
+
     const payload: AdminProduct = {
       slug: nextSlug,
       name: form.name.trim(),
@@ -351,6 +397,12 @@ export default function AdminNew() {
       tagline: form.tagline.trim(),
       status: form.status,
       imageUrl: form.imageUrl.trim(),
+      features,
+      applications,
+      specs,
+      related: existingProduct?.related || [],
+      heroIcon: existingProduct?.heroIcon || `<svg width="120" height="120" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="14" y="14" width="20" height="20" rx="3"></rect><circle cx="24" cy="24" r="4"></circle></svg>`,
+      datasheetUrl: form.datasheetUrl.trim(),
       updatedAt: new Date().toISOString(),
       updatedBy: session.email,
     };
@@ -390,6 +442,10 @@ export default function AdminNew() {
       tagline: product.tagline ?? '',
       status: product.status,
       imageUrl: product.imageUrl ?? '',
+      featuresText: (product.features ?? []).join('\n'),
+      applicationsText: (product.applications ?? []).join('\n'),
+      specs: product.specs ?? [],
+      datasheetUrl: product.datasheetUrl ?? '',
     });
     setImagePreview(product.imageUrl ?? '');
   };
@@ -420,6 +476,73 @@ export default function AdminNew() {
     pushActivity('RFQ status updated', `ID: ${rfqId} → ${newStatus}`, 'info', 'status_change');
   };
 
+  const downloadExcel = async () => {
+    setIsExporting(true);
+    if (!supabase) {
+      generateCSV(rfqs);
+      setIsExporting(false);
+      return;
+    }
+
+    try {
+      const { data: dbRfqs, error } = await supabase
+        .from('quote_requests')
+        .select('*, quote_request_items(*)')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      if (dbRfqs) {
+        const mappedRfqs = dbRfqs.map((rfq: any) => ({
+          id: rfq.id,
+          name: rfq.full_name,
+          email: rfq.email,
+          company: rfq.company,
+          status: rfq.status,
+          createdAt: rfq.created_at,
+          items: rfq.quote_request_items ? rfq.quote_request_items.map((item: any) => `${item.quantity}x ${item.product_title} (${item.product_specs})`) : [],
+          notes: rfq.notes
+        }));
+
+        setRfqs(mappedRfqs);
+        generateCSV(mappedRfqs);
+        pushActivity('RFQs exported', `Successfully exported ${mappedRfqs.length} RFQs to CSV/Excel`, 'success', 'status_change');
+      }
+    } catch (err) {
+      console.error('Failed to fetch latest quotes during export:', err);
+      generateCSV(rfqs);
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
+  const generateCSV = (data: typeof rfqs) => {
+    const headers = ['Client Name', 'Company', 'Email', 'Requested Items', 'Date', 'Status', 'Notes'];
+    const rows = data.map(rfq => [
+      rfq.name,
+      rfq.company || '—',
+      rfq.email,
+      rfq.items.join('; '),
+      new Date(rfq.createdAt).toLocaleString(),
+      rfq.status,
+      rfq.notes || ''
+    ]);
+
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.map(val => `"${val.replace(/"/g, '""')}"`).join(','))
+    ].join('\n');
+
+    const blob = new Blob([new Uint8Array([0xEF, 0xBB, 0xBF]), csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `PDR-World-RFQs-${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -446,6 +569,36 @@ export default function AdminNew() {
     };
     reader.onerror = () => {
       setNotice('Failed to read image file.');
+      setNoticeType('error');
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handlePdfUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    if (file.type !== 'application/pdf') {
+      setNotice('Please select a valid PDF file.');
+      setNoticeType('error');
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      setNotice('PDF size must be less than 10MB.');
+      setNoticeType('error');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const dataUrl = e.target?.result as string;
+      setForm({ ...form, datasheetUrl: dataUrl });
+      setNotice('Datasheet PDF uploaded successfully!');
+      setNoticeType('success');
+    };
+    reader.onerror = () => {
+      setNotice('Failed to read PDF file.');
       setNoticeType('error');
     };
     reader.readAsDataURL(file);
@@ -562,15 +715,10 @@ export default function AdminNew() {
                   className={`admin-nav-item ${activeTab === 'rfqs' ? 'active' : ''}`}
                   onClick={() => setActiveTab('rfqs')}
                 >
-                  📋 RFQs <span className="admin-badge-count">{rfqNewCount}</span>
+                  📋 RFQs
                 </button>
               )}
-              <button
-                className={`admin-nav-item ${activeTab === 'inquiries' ? 'active' : ''}`}
-                onClick={() => setActiveTab('inquiries')}
-              >
-                ✉️ Inquiries <span className="admin-badge-count">{inquiries.length}</span>
-              </button>
+
               {checkPermission(session, 'view_analytics') && (
                 <button
                   className={`admin-nav-item ${activeTab === 'activity' ? 'active' : ''}`}
@@ -714,49 +862,182 @@ export default function AdminNew() {
                       </div>
                       <div className="admin-form-group">
                         <label>Category</label>
-                        <input required value={form.category} onChange={(e) => setForm({...form, category: e.target.value})} />
+                        <select
+                          required
+                          value={categories.includes(form.category) ? form.category : (form.category ? "new" : "")}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            if (val === "new") {
+                              setForm({ ...form, category: "" });
+                            } else {
+                              setForm({ ...form, category: val });
+                            }
+                          }}
+                          className="admin-select"
+                          style={{ width: '100%' }}
+                        >
+                          <option value="">Select Category...</option>
+                          {categories.map((cat) => (
+                            <option key={cat} value={cat}>
+                              {cat}
+                            </option>
+                          ))}
+                          <option value="new">+ Add New Category...</option>
+                        </select>
+                        
+                        {(!categories.includes(form.category) || !form.category) && (
+                          <input
+                            type="text"
+                            required
+                            placeholder="Enter New Category Name"
+                            value={form.category}
+                            onChange={(e) => setForm({ ...form, category: e.target.value })}
+                            style={{ marginTop: '8px' }}
+                            className="admin-search"
+                          />
+                        )}
                       </div>
-                      <div className="admin-form-group">
-                        <label>Slug</label>
-                        <input value={form.slug} onChange={(e) => setForm({...form, slug: e.target.value})} placeholder="auto-generated" />
-                      </div>
+
                       <div className="admin-form-group">
                         <label>Tagline</label>
                         <input value={form.tagline} onChange={(e) => setForm({...form, tagline: e.target.value})} />
                       </div>
                       <div className="admin-form-group">
-                        <label>Description</label>
-                        <textarea value={form.description} onChange={(e) => setForm({...form, description: e.target.value})} rows={3} />
+                        <label>Description (one point per line)</label>
+                        <textarea 
+                          value={form.description} 
+                          onChange={(e) => setForm({...form, description: e.target.value})} 
+                          rows={4} 
+                          placeholder="Bullet point 1&#10;Bullet point 2&#10;Bullet point 3"
+                        />
+                      </div>
+                      <div className="admin-form-group">
+                        <label>SEO Title</label>
+                        <input value={form.title} onChange={(e) => setForm({...form, title: e.target.value})} placeholder="e.g. Active Optical Cable (AOC) | PDR World" />
+                      </div>
+                      <div className="admin-form-group">
+                        <label>Key Features (one per line)</label>
+                        <textarea value={form.featuresText} onChange={(e) => setForm({...form, featuresText: e.target.value})} rows={4} placeholder="Feature 1&#10;Feature 2" />
+                      </div>
+                      <div className="admin-form-group">
+                        <label>Applications (one per line)</label>
+                        <textarea value={form.applicationsText} onChange={(e) => setForm({...form, applicationsText: e.target.value})} rows={4} placeholder="Application 1&#10;Application 2" />
+                      </div>
+                      <div className="admin-form-group">
+                        <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span>Technical Specifications</span>
+                          <button
+                            type="button"
+                            className="btn btn-outline"
+                            style={{ padding: '6px 12px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                            onClick={() => setForm({ ...form, specs: [...form.specs, { label: 'Cable Type', value: '' }] })}
+                          >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            Add Specification
+                          </button>
+                        </label>
+
+                        {form.specs.length === 0 ? (
+                          <div style={{ padding: '16px', background: 'rgba(7,0,143,0.02)', border: '1px dashed #07008F', borderRadius: '8px', textAlign: 'center', color: '#64748B', marginTop: '8px' }}>
+                            No specifications added. Click "Add Specification" to build technical overview.
+                          </div>
+                        ) : (
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '12px' }}>
+                            {form.specs.map((spec, index) => {
+                              const isCustom = !COMMON_SPEC_LABELS.includes(spec.label);
+                              return (
+                                <div key={index} style={{ display: 'grid', gridTemplateColumns: '1fr 2fr auto', gap: '12px', alignItems: 'start' }}>
+                                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                                    <select
+                                      value={isCustom ? "custom" : spec.label}
+                                      onChange={(e) => {
+                                        const val = e.target.value;
+                                        const newSpecs = [...form.specs];
+                                        if (val === "custom") {
+                                          newSpecs[index] = { ...newSpecs[index], label: "" };
+                                        } else {
+                                          newSpecs[index] = { ...newSpecs[index], label: val };
+                                        }
+                                        setForm({ ...form, specs: newSpecs });
+                                      }}
+                                      style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid #E2E8F0', background: '#FFFFFF', color: '#0F172A', fontSize: '14px' }}
+                                    >
+                                      {!COMMON_SPEC_LABELS.includes(spec.label) && spec.label !== "" && (
+                                        <option value={spec.label}>{spec.label}</option>
+                                      )}
+                                      {COMMON_SPEC_LABELS.map((lbl) => (
+                                        <option key={lbl} value={lbl}>{lbl}</option>
+                                      ))}
+                                      <option value="custom">+ Custom Label...</option>
+                                    </select>
+                                    
+                                    {isCustom && (
+                                      <input
+                                        type="text"
+                                        required
+                                        placeholder="Custom label name"
+                                        value={spec.label}
+                                        onChange={(e) => {
+                                          const newSpecs = [...form.specs];
+                                          newSpecs[index] = { ...newSpecs[index], label: e.target.value };
+                                          setForm({ ...form, specs: newSpecs });
+                                        }}
+                                        style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid #E2E8F0', background: '#FFFFFF', color: '#0F172A', fontSize: '14px' }}
+                                      />
+                                    )}
+                                  </div>
+
+                                  <input
+                                    type="text"
+                                    required
+                                    placeholder="Specification value (e.g. Multimode Fiber, 10G)"
+                                    value={spec.value}
+                                    onChange={(e) => {
+                                      const newSpecs = [...form.specs];
+                                      newSpecs[index] = { ...newSpecs[index], value: e.target.value };
+                                      setForm({ ...form, specs: newSpecs });
+                                    }}
+                                    style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid #E2E8F0', background: '#FFFFFF', color: '#0F172A', fontSize: '14px' }}
+                                  />
+
+                                  <button
+                                    type="button"
+                                    className="btn btn-outline"
+                                    style={{ 
+                                      padding: '8px 12px', 
+                                      border: '1px solid #ef4444', 
+                                      color: '#ef4444', 
+                                      height: '38px',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      justifyContent: 'center',
+                                      borderRadius: '6px',
+                                      cursor: 'pointer'
+                                    }}
+                                    onClick={() => {
+                                      const newSpecs = form.specs.filter((_, i) => i !== index);
+                                      setForm({ ...form, specs: newSpecs });
+                                    }}
+                                  >
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                  </button>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
                       </div>
                       <div className="admin-form-group">
                         <label>Image</label>
                         <div className="admin-image-upload-section">
-                          <div className="admin-image-upload-options">
-                            <div className="admin-upload-option">
-                              <label htmlFor="image-url" className="admin-upload-label">From URL</label>
-                              <input 
-                                id="image-url"
-                                value={form.imageUrl && !form.imageUrl.startsWith('data:') ? form.imageUrl : ''} 
-                                onChange={(e) => {
-                                  setForm({...form, imageUrl: e.target.value});
-                                  if (!e.target.value.startsWith('data:')) setImagePreview(e.target.value);
-                                }} 
-                                placeholder="https://example.com/image.jpg"
-                              />
-                            </div>
-                            <div className="admin-upload-option">
-                              <label htmlFor="image-upload" className="admin-upload-label">Or Upload from PC</label>
-                              <input 
-                                id="image-upload"
-                                type="file" 
-                                accept="image/*"
-                                onChange={handleImageUpload}
-                                className="admin-file-input"
-                              />
-                            </div>
-                          </div>
+                          <input 
+                            type="file" 
+                            accept="image/*"
+                            onChange={handleImageUpload}
+                            className="admin-file-input"
+                          />
                           {imagePreview && (
-                            <div className="admin-image-preview">
+                            <div className="admin-image-preview" style={{ marginTop: '12px' }}>
                               <img src={imagePreview} alt="Preview" />
                               <button 
                                 type="button" 
@@ -765,6 +1046,38 @@ export default function AdminNew() {
                                   setImagePreview('');
                                   setForm({...form, imageUrl: ''});
                                 }}
+                              >
+                                ✕ Remove
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <div className="admin-form-group">
+                        <label>Datasheet PDF</label>
+                        <div className="admin-image-upload-section">
+                          <input 
+                            type="file" 
+                            accept="application/pdf"
+                            onChange={handlePdfUpload}
+                            className="admin-file-input"
+                          />
+                          {form.datasheetUrl && (
+                            <div style={{ marginTop: '12px', padding: '12px', background: 'rgba(7,0,143,0.05)', borderRadius: '8px', border: '1px solid rgba(7,0,143,0.1)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E21D3C" strokeWidth="2">
+                                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                  <polyline points="14 2 14 8 20 8" />
+                                </svg>
+                                <span style={{ fontSize: '13px', color: '#475569', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '300px' }}>
+                                  {form.datasheetUrl.startsWith('data:') ? 'Uploaded PDF (Base64 file)' : form.datasheetUrl}
+                                </span>
+                              </div>
+                              <button 
+                                type="button" 
+                                className="admin-btn-remove-image"
+                                style={{ margin: 0 }}
+                                onClick={() => setForm({...form, datasheetUrl: ''})}
                               >
                                 ✕ Remove
                               </button>
@@ -793,69 +1106,101 @@ export default function AdminNew() {
 
             {activeTab === 'rfqs' && checkPermission(session, 'manage_rfqs') && (
               <section>
-                <h2>RFQ Management</h2>
-                <div className="admin-rfq-list">
-                  {rfqs.length === 0 ? (
-                    <p className="admin-empty">No RFQs yet.</p>
-                  ) : (
-                    rfqs.map((rfq) => (
-                      <div key={rfq.id} className="admin-rfq-card">
-                        <div className="admin-rfq-header">
-                          <h4>{rfq.name}</h4>
-                          <select
-                            value={rfq.status}
-                            onChange={(e) => handleStatusChange(rfq.id, e.target.value as RFQRequest['status'])}
-                            className={`admin-status-select ${rfq.status}`}
-                          >
-                            <option value="new">New</option>
-                            <option value="in_progress">In Progress</option>
-                            <option value="completed">Completed</option>
-                          </select>
-                        </div>
-                        <p><strong>Email:</strong> {rfq.email}</p>
-                        <p><strong>Company:</strong> {rfq.company}</p>
-                        <p><strong>Items:</strong> {rfq.items.join(', ')}</p>
-                        <p><strong>Date:</strong> {rfq.createdAt}</p>
-                      </div>
-                    ))
-                  )}
+                <h2>Quotes & Inquiries</h2>
+
+                <div style={{ marginBottom: 40 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: '12px' }}>
+                    <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0 }}>
+                      📋 Product Quotes (RFQs)
+                      <span className="admin-badge-count">{rfqs.length}</span>
+                    </h3>
+                    <button 
+                      onClick={downloadExcel} 
+                      disabled={isExporting}
+                      className="admin-btn-primary"
+                      style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        gap: '8px', 
+                        padding: '8px 16px', 
+                        fontSize: '14px',
+                        background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+                        border: 'none',
+                        color: 'white',
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        borderRadius: '6px',
+                        opacity: isExporting ? 0.7 : 1
+                      }}
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                      </svg>
+                      {isExporting ? 'Syncing & Exporting...' : 'Download Excel Sheet'}
+                    </button>
+                  </div>
+                  <div className="admin-activity-table">
+                    {rfqs.length === 0 ? (
+                      <p className="admin-empty">No RFQs yet.</p>
+                    ) : (
+                      <table className="admin-table">
+                        <thead>
+                          <tr>
+                            <th>Client Name</th>
+                            <th>Company</th>
+                            <th>Email</th>
+                            <th>Requested Items</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {rfqs.map((rfq) => (
+                            <tr key={rfq.id}>
+                              <td>
+                                <strong>{rfq.name}</strong>
+                                {rfq.notes && (
+                                  <div style={{ fontSize: '0.85em', color: '#888', marginTop: 4 }}>
+                                    💡 {rfq.notes}
+                                  </div>
+                                )}
+                              </td>
+                              <td>{rfq.company || '—'}</td>
+                              <td><a href={`mailto:${rfq.email}`} style={{ color: 'var(--primary-color)' }}>{rfq.email}</a></td>
+                              <td>
+                                <ul style={{ margin: 0, paddingLeft: 16, fontSize: '0.9em' }}>
+                                  {rfq.items.map((item, idx) => (
+                                    <li key={idx}>{item}</li>
+                                  ))}
+                                </ul>
+                              </td>
+                              <td style={{ whiteSpace: 'nowrap' }}>
+                                {new Date(rfq.createdAt).toLocaleDateString()}
+                              </td>
+                              <td>
+                                <select
+                                  value={rfq.status}
+                                  onChange={(e) => handleStatusChange(rfq.id, e.target.value as RFQRequest['status'])}
+                                  className={`admin-status-select ${rfq.status}`}
+                                >
+                                  <option value="new">New</option>
+                                  <option value="in_progress">In Progress</option>
+                                  <option value="completed">Completed</option>
+                                </select>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    )}
+                  </div>
                 </div>
               </section>
             )}
 
-            {activeTab === 'inquiries' && (
-              <section>
-                <h2>Local Inquiries</h2>
-                <p>Enquiries saved in your browser's local storage (because Supabase is offline).</p>
-                <div className="admin-activity-table" style={{ marginTop: 20 }}>
-                  <table className="admin-table">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Inquiry Type</th>
-                        <th>Message</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {inquiries.map((inq, index) => (
-                        <tr key={index}>
-                          <td>{inq.firstName} {inq.lastName}</td>
-                          <td>{inq.email}</td>
-                          <td>{inq.inquiryType}</td>
-                          <td>{inq.message || 'No message'}</td>
-                        </tr>
-                      ))}
-                      {inquiries.length === 0 && (
-                        <tr>
-                          <td colSpan={4} className="admin-empty">No inquiries found in local storage.</td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </table>
-                </div>
-              </section>
-            )}
+
 
             {activeTab === 'activity' && checkPermission(session, 'view_analytics') && (
               <section>
@@ -898,6 +1243,13 @@ export default function AdminNew() {
                     <p>Current User: {session.email}</p>
                     <p>Role: {session.role.toUpperCase()}</p>
                     <p>Session ID: {session.id.substring(0, 20)}...</p>
+                    <button
+                      className="admin-btn-secondary danger"
+                      onClick={handleLogout}
+                      style={{ marginTop: 16 }}
+                    >
+                      Logout Session
+                    </button>
                   </div>
                   <div className="admin-setting-group">
                     <h3>Preferences</h3>

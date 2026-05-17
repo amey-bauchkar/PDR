@@ -8,8 +8,6 @@ import '../styles/theme-crimson.css';
 function useRevealOnScroll() {
   const location = useLocation();
   useEffect(() => {
-    const els = document.querySelectorAll<HTMLElement>('.reveal:not(.in)');
-    if (!els.length) return;
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -21,8 +19,26 @@ function useRevealOnScroll() {
       },
       { rootMargin: '0px 0px -2% 0px', threshold: 0.02 },
     );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+
+    const observeNewElements = () => {
+      document.querySelectorAll<HTMLElement>('.reveal:not(.in)').forEach((el) => {
+        // io.observe is safe to call multiple times on the same element
+        io.observe(el);
+      });
+    };
+
+    observeNewElements();
+
+    const mo = new MutationObserver(() => {
+      observeNewElements();
+    });
+
+    mo.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      io.disconnect();
+      mo.disconnect();
+    };
   }, [location.pathname]);
 }
 
