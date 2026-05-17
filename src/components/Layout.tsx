@@ -59,14 +59,17 @@ function useScrollToHashOrTop() {
 export default function Layout() {
   useRevealOnScroll();
   useScrollToHashOrTop();
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith('/admin');
+
   return (
     <>
-      <Header />
+      {!isAdmin && <Header />}
       <main>
         <Outlet />
       </main>
-      <Footer />
-      <ThemeToggle />
+      {!isAdmin && <Footer />}
+      {!isAdmin && <ThemeToggle />}
     </>
   );
 }
