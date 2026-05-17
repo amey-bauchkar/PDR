@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import Seo from '../components/Seo';
 import { BreadcrumbSchema } from '../components/Schema';
@@ -9,14 +10,29 @@ import {
   ProductsCustomCta,
   ProductsTrustBand,
 } from '../components/products/CatalogBlocks';
-import catalogue from '../data/catalogue.json';
+import rawCatalogue from '../data/catalogue.json';
 import type { ProductCategoryPath } from '../data/productCategoryRoutes';
 import { categoryCanonical, categoryPathToSectionId } from '../data/productCategoryRoutes';
+import { mergeWithCatalogue } from '../lib/productSync';
 import '../styles/products.css';
 
 type Props = { categoryPath: ProductCategoryPath };
 
 export default function ProductsCategory({ categoryPath }: Props) {
+  const [catalogue, setCatalogue] = useState(() => mergeWithCatalogue(rawCatalogue));
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setCatalogue(mergeWithCatalogue(rawCatalogue));
+    };
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('pdrworld-product-update', handleStorageChange);
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('pdrworld-product-update', handleStorageChange);
+    };
+  }, []);
+
   const sectionId = categoryPathToSectionId(categoryPath);
   const sections = catalogue.sections as CatalogSection[];
   const section = sections.find((s) => s.id === sectionId);

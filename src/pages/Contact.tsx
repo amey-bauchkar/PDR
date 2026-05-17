@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Seo from '../components/Seo';
 import { LocalBusinessSchema, BreadcrumbSchema } from '../components/Schema';
-import { submitContactInquiry } from '../lib/leadCapture';
 import '../styles/contact.css';
 
 export default function Contact() {
@@ -13,18 +12,30 @@ export default function Contact() {
     const fd = new FormData(formElement);
     setSubmitting(true);
 
+    const object = Object.fromEntries(fd);
+    // Add Web3Forms access key (replace with your actual key in .env)
+    object.access_key = import.meta.env.VITE_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE";
+    object.subject = `New Inquiry: ${object.inquiryType} from ${object.fname} ${object.lname}`;
+    object.from_name = `${object.fname} ${object.lname}`;
+
     try {
-      await submitContactInquiry({
-        firstName: String(fd.get('fname') ?? ''),
-        lastName: String(fd.get('lname') ?? ''),
-        email: String(fd.get('email') ?? ''),
-        phone: String(fd.get('phone') ?? ''),
-        company: String(fd.get('company') ?? ''),
-        inquiryType: String(fd.get('inquiryType') ?? ''),
-        message: String(fd.get('message') ?? ''),
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(object)
       });
-      alert('Thank you. Our team will respond within 24 hours.');
-      formElement.reset();
+      
+      const data = await res.json();
+
+      if (data.success) {
+        alert('Thank you! Your message has been sent successfully. Our team will respond within 24 hours.');
+        formElement.reset();
+      } else {
+        throw new Error(data.message || 'Form submission failed');
+      }
     } catch (error: any) {
       console.error('Failed to submit contact inquiry', error);
       alert(`We could not submit your inquiry right now. Error: ${error?.message || error}. Please try again.`);

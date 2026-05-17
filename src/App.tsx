@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import { RfqCartProvider } from './components/RfqCartProvider';
@@ -16,11 +16,17 @@ import Privacy from './pages/Privacy';
 import AdminNew from './pages/AdminNew';
 import NotFound from './pages/NotFound';
 import ScrollToHash from './components/ScrollToHash';
+import { fetchAndSyncProducts } from './lib/productSync';
 
 // Three.js is heavy — load the configurator on demand
 const CableConfigurator = lazy(() => import('./pages/CableConfigurator'));
 
 export default function App() {
+  useEffect(() => {
+    // Sync local product cache with direct Supabase database updates in the background
+    fetchAndSyncProducts();
+  }, []);
+
   return (
     <RfqCartProvider>
       <ScrollToHash />

@@ -5,10 +5,11 @@ import {
   CatalogHubCategoryPills,
   ProductsCustomCta,
   ProductsTrustBand,
+  CatalogCategorySection
 } from '../components/products/CatalogBlocks';
 import { BreadcrumbSchema } from '../components/Schema';
 import { productsCategoryHref } from '../data/productCategoryRoutes';
-import { mergeWithCatalogue } from '../lib/productSync';
+import { mergeWithCatalogue, getAdminProducts } from '../lib/productSync';
 import rawCatalogue from '../data/catalogue.json';
 import '../styles/products.css';
 
@@ -23,7 +24,11 @@ export default function Products() {
     };
     
     window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
+    window.addEventListener('pdrworld-product-update', handleStorageChange);
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('pdrworld-product-update', handleStorageChange);
+    };
   }, []);
 
   useEffect(() => {
@@ -31,6 +36,50 @@ export default function Products() {
     const el = document.querySelector(location.hash);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, [location.hash]);
+
+  // Extract recently added admin products
+  const adminProducts = getAdminProducts().filter((p) => p.status === 'Active');
+  const catalogueSlugs = new Set<string>();
+  if (rawCatalogue && rawCatalogue.sections) {
+    rawCatalogue.sections.forEach((section: any) => {
+      if (section.groups) {
+        section.groups.forEach((group: any) => {
+          if (group.cards) {
+            group.cards.forEach((card: any) => {
+              if (card.slug) catalogueSlugs.add(card.slug);
+            });
+          }
+        });
+      }
+    });
+  }
+  const newAdminProducts = adminProducts.filter((p) => !catalogueSlugs.has(p.slug));
+  const newArrivalsSection = newAdminProducts.length > 0 ? {
+    id: 'new-arrivals',
+    eyebrow: 'New Additions',
+    heading: 'Recently Added Products',
+    intro: 'The latest products engineered and added to our catalogue.',
+    groups: [
+      {
+        subhead: '',
+        cards: newAdminProducts.map((p) => ({
+          slug: p.slug,
+          tag: p.tagline || 'New',
+          img: p.imageUrl || '',
+          heroSvg: p.heroIcon || '',
+          name: p.name,
+          blurb: p.description || '',
+          pills: p.specs ? p.specs.slice(0, 3).map((s) => s.value) : [],
+          detailsSlug: p.slug,
+          addItem: {
+            title: p.name,
+            specs: p.specs && p.specs.length > 0 ? `${p.specs[0].label}: ${p.specs[0].value}` : 'Standard Specs',
+            image: p.imageUrl || '/placeholder.png',
+          },
+        }))
+      }
+    ]
+  } : null;
 
   return (
     <>
@@ -78,6 +127,12 @@ export default function Products() {
           </div>
         </div>
       </section>
+
+      {newArrivalsSection && (
+        <div style={{ paddingBottom: 60 }}>
+          <CatalogCategorySection section={newArrivalsSection as any} alt={true} />
+        </div>
+      )}
 
       <ProductsTrustBand />
       <ProductsCustomCta />
