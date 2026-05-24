@@ -56,7 +56,7 @@
     },
     {
       "target": "specialty",
-      "label": "Specialty & Drones"
+      "label": "Optical Fiber Drone"
     },
     {
       "target": "tools",
@@ -275,7 +275,7 @@
           ]
         },
         {
-          "subhead": "Other Active Components",
+          "subhead": "Bypass Switch",
           "cards": [
             {
               "slug": "bypass-switch",
@@ -294,7 +294,12 @@
                 "specs": "Standard Factory Specs",
                 "image": "/images/live/bypass-switch.webp"
               }
-            },
+            }
+          ]
+        },
+        {
+          "subhead": "Optical Line Protection System (OLPS)",
+          "cards": [
             {
               "slug": "olps",
               "tag": "OLP",
@@ -312,7 +317,12 @@
                 "specs": "Standard Factory Specs",
                 "image": "/images/live/optical-line-protection-system.webp"
               }
-            },
+            }
+          ]
+        },
+        {
+          "subhead": "Direct Attached Cable (DAC)",
+          "cards": [
             {
               "slug": "dac",
               "tag": "DAC",
@@ -331,7 +341,12 @@
                 "specs": "Standard Factory Specs",
                 "image": "/images/fiber-patch-panel.webp"
               }
-            },
+            }
+          ]
+        },
+        {
+          "subhead": "Active Optical Cable (AOC)",
+          "cards": [
             {
               "slug": "aoc",
               "tag": "AOC",
@@ -349,7 +364,12 @@
                 "specs": "Standard Factory Specs",
                 "image": "/images/fiber-patch-panel.webp"
               }
-            },
+            }
+          ]
+        },
+        {
+          "subhead": "HD-SDI Optical Transceiver",
+          "cards": [
             {
               "slug": "hd-sdi",
               "tag": "HD-SDI",
@@ -367,7 +387,12 @@
                 "specs": "Standard Factory Specs",
                 "image": "/images/fiber-patch-panel.webp"
               }
-            },
+            }
+          ]
+        },
+        {
+          "subhead": "PoE Injector",
+          "cards": [
             {
               "slug": "poe-injector",
               "tag": "PoE",
@@ -384,61 +409,6 @@
                 "title": "Poe Injector",
                 "specs": "Standard Factory Specs",
                 "image": "/images/live/poe-injector.webp"
-              }
-            },
-            {
-              "slug": "hd-sdi-optical-transciever",
-              "tag": "",
-              "img": "/images/live/hd-sdi-optical-transciever.webp",
-              "heroSvg": "",
-              "name": "HD-SDI Optical Transciever",
-              "blurb": "PDR’s PDR8010SG SD/HD/3G-SDI Optical Transceivers broadcasting grade HD Transceiver which can interconvert SD/HD/3G-SDI electric signal and optical signal.",
-              "pills": [
-                "SD/HD/3G auto-detection",
-                "Support",
-                "With 2CH Bi-Di data."
-              ],
-              "detailsSlug": "hd-sdi-optical-transciever",
-              "addItem": {
-                "title": "HD-SDI Optical Transciever",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/hd-sdi-optical-transciever.webp"
-              }
-            },
-            {
-              "slug": "direct-attached-cable",
-              "tag": "",
-              "img": "/images/live/direct-attached-cable.webp",
-              "heroSvg": "",
-              "name": "Direct Attached Cable",
-              "blurb": "PDR SFP-10G-DAC-PXM is a hot-swappable direct attach copper cable assembly (also known as Twinax Cable or DAC) with SFP+ modules at both ends.",
-              "pills": [
-                "Support for 1x"
-              ],
-              "detailsSlug": "direct-attached-cable",
-              "addItem": {
-                "title": "Direct Attached Cable",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/direct-attached-cable.webp"
-              }
-            },
-            {
-              "slug": "active-optical-cable",
-              "tag": "",
-              "img": "/images/live/active-optical-cable.webp",
-              "heroSvg": "",
-              "name": "Active Optical Cable",
-              "blurb": "PDR 100G QSFP28 Active Optical Cable (AOC) assemblies offer a highly reliable and cost-effective alternative to transceiver assemblies available in lengths ranging from 0.5 m to 10",
-              "pills": [
-                "QSFP28 MSA",
-                "IEEE P802.3bm",
-                "100GBASE-SR4"
-              ],
-              "detailsSlug": "active-optical-cable",
-              "addItem": {
-                "title": "Active Optical Cable",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/active-optical-cable.webp"
               }
             }
           ]
@@ -728,6 +698,25 @@
                 "specs": "Standard Factory Specs",
                 "image": "/images/fiber-patch-panel.webp"
               }
+            },
+            {
+              "slug": "hybrid-adapter",
+              "tag": "Hybrid",
+              "img": "/images/live/sc-apc-female-to-sc-upc-male-adapter-converter.webp",
+              "heroSvg": "",
+              "name": "SC/APC to SC/UPC Adapter",
+              "blurb": "• Easily mate (pair) SC UPC (blue) equipment sockets that require SC UPC (blue) connectors with existing SC APC (green) cabling infrastructure",
+              "pills": [
+                "Single Mode 9/125",
+                "Hybrid Fixed Type Adapter",
+                "No Loss 0dB"
+              ],
+              "detailsSlug": "hybrid-adapter",
+              "addItem": {
+                "title": "SC/APC FEMALE to SC/UPC MALE Adapter Converter",
+                "specs": "Standard Factory Specs",
+                "image": "/images/live/sc-apc-female-to-sc-upc-male-adapter-converter.webp"
+              }
             }
           ]
         },
@@ -835,56 +824,22 @@
               }
             },
             {
-              "slug": "attenuator",
-              "tag": "",
-              "img": "/images/live/attenuator.webp",
+              "slug": "soc",
+              "tag": "SOC",
+              "img": "/images/live/splice-on-connector.webp",
               "heroSvg": "",
-              "name": "Attenuator",
-              "blurb": "Buildout attenuators provide superior performance for all single-mode in-line attenuation requirements Standard attenuation values are 5, 10, 15, and 20 dB, available in SC, FC, ST and LC connector styles.",
+              "name": "Splice-On Connector (SOC)",
+              "blurb": "Field installable connector without epoxy or polishing.",
               "pills": [
-                "SC",
-                "Long-term reliability",
-                "Low ripple"
+                "IL < 0.2dB",
+                "No Epoxy",
+                "Fusion Splicing"
               ],
-              "detailsSlug": "attenuator",
+              "detailsSlug": "soc",
               "addItem": {
-                "title": "Attenuator",
+                "title": "Splice-On Connector",
                 "specs": "Standard Factory Specs",
-                "image": "/images/live/attenuator.webp"
-              }
-            },
-            {
-              "slug": "cat-6-patch-panel",
-              "tag": "",
-              "img": "/images/live/cat-6-patch-panel.webp",
-              "heroSvg": "",
-              "name": "CAT 6 Patch Panel",
-              "blurb": "PDR’s Cat 6 24 Port Distribution Panel is designed for High speed Network",
-              "pills": [],
-              "detailsSlug": "cat-6-patch-panel",
-              "addItem": {
-                "title": "CAT 6 Patch Panel",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/cat-6-patch-panel.webp"
-              }
-            },
-            {
-              "slug": "sc-apc-female-to-sc-upc-male-adapter-converter",
-              "tag": "",
-              "img": "/images/live/sc-apc-female-to-sc-upc-male-adapter-converter.webp",
-              "heroSvg": "",
-              "name": "SC/APC FEMALE to SC/UPC MALE Adapter Converter",
-              "blurb": "• Easily mate (pair) SC UPC (blue) equipment sockets that require SC UPC (blue) connectors with existing SC APC (green) cabling infrastructure",
-              "pills": [
-                "Single Mode 9/125",
-                "Hybrid Fixed Type Adapter",
-                "No Loss 0dB"
-              ],
-              "detailsSlug": "sc-apc-female-to-sc-upc-male-adapter-converter",
-              "addItem": {
-                "title": "SC/APC FEMALE to SC/UPC MALE Adapter Converter",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/sc-apc-female-to-sc-upc-male-adapter-converter.webp"
+                "image": "/images/live/splice-on-connector.webp"
               }
             }
           ]
@@ -1370,20 +1325,29 @@
               }
             },
             {
-              "slug": "variable-fiber-attenuator",
+              "slug": "autoget-wifi-intelligent-fiber-endface-microscope",
               "tag": "",
-              "img": "/images/live/variable-fiber-attenuator.webp",
+              "img": "/images/live/autoget-wifi-intelligent-fiber-endface-microscope.webp",
               "heroSvg": "",
-              "name": "Variable Fiber Attenuator",
-              "blurb": "Calibrated Wavelengths: 1310 nm / 1490 nm / 1550 nm",
-              "pills": [],
-              "detailsSlug": "variable-fiber-attenuator",
+              "name": "AutoGet Wifi Intelligent Fiber Endface Microscope",
+              "blurb": "The primary cause of optical network problems is that the connector’s endface is dirty or damaged, so, how to quickly and efficiently diagnose is particularly important.",
+              "pills": [
+                "Fully automatic",
+                "All in one design",
+                "Excellent analysis ability"
+              ],
+              "detailsSlug": "autoget-wifi-intelligent-fiber-endface-microscope",
               "addItem": {
-                "title": "Variable Fiber Attenuator",
+                "title": "AutoGet Wifi Intelligent Fiber Endface Microscope",
                 "specs": "Standard Factory Specs",
-                "image": "/images/live/variable-fiber-attenuator.webp"
+                "image": "/images/live/autoget-wifi-intelligent-fiber-endface-microscope.webp"
               }
-            },
+            }
+          ]
+        },
+        {
+          "subhead": "Other Test Equipment",
+          "cards": [
             {
               "slug": "laser-source",
               "tag": "",
@@ -1420,25 +1384,6 @@
                 "title": "E1 BER Tester",
                 "specs": "Standard Factory Specs",
                 "image": "/images/live/e1-ber-tester.webp"
-              }
-            },
-            {
-              "slug": "autoget-wifi-intelligent-fiber-endface-microscope",
-              "tag": "",
-              "img": "/images/live/autoget-wifi-intelligent-fiber-endface-microscope.webp",
-              "heroSvg": "",
-              "name": "AutoGet Wifi Intelligent Fiber Endface Microscope",
-              "blurb": "The primary cause of optical network problems is that the connector’s endface is dirty or damaged, so, how to quickly and efficiently diagnose is particularly important.",
-              "pills": [
-                "Fully automatic",
-                "All in one design",
-                "Excellent analysis ability"
-              ],
-              "detailsSlug": "autoget-wifi-intelligent-fiber-endface-microscope",
-              "addItem": {
-                "title": "AutoGet Wifi Intelligent Fiber Endface Microscope",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/autoget-wifi-intelligent-fiber-endface-microscope.webp"
               }
             },
             {
@@ -1479,15 +1424,15 @@
     },
     {
       "id": "specialty",
-      "eyebrow": "Specialty Products",
-      "heading": "Optical Fiber Drone",
+      "eyebrow": "Optical Fiber Drone",
+      "heading": "Aerial Deployment Solutions",
       "intro": "Next-generation aerial fiber deployment, inspection, and surveillance solutions.",
       "groups": [
         {
           "subhead": "",
           "cards": [
             {
-              "slug": "high-power-patch-cord",
+              "slug": "high-power-patchcord",
               "tag": "",
               "img": "/images/live/high-power-patch-cord.webp",
               "heroSvg": "",
@@ -1498,11 +1443,30 @@
                 "IEC",
                 "Simplex"
               ],
-              "detailsSlug": "high-power-patch-cord",
+              "detailsSlug": "high-power-patchcord",
               "addItem": {
                 "title": "High power patch cord",
                 "specs": "Standard Factory Specs",
                 "image": "/images/live/high-power-patch-cord.webp"
+              }
+            },
+            {
+              "slug": "drone",
+              "tag": "Drone",
+              "img": "/images/live/optical-fiber-drone.webp",
+              "heroSvg": "",
+              "name": "Optical Fiber Drone",
+              "blurb": "Rapid aerial deployment in inaccessible areas.",
+              "pills": [
+                "Aerial Deployment",
+                "4K / Thermal",
+                "Secure Link"
+              ],
+              "detailsSlug": "drone",
+              "addItem": {
+                "title": "Optical Fiber Drone",
+                "specs": "Standard Factory Specs",
+                "image": "/images/live/optical-fiber-drone.webp"
               }
             }
           ]
@@ -1516,7 +1480,7 @@
       "intro": "Professional cleaning and maintenance tools for optical fiber infrastructure.",
       "groups": [
         {
-          "subhead": "",
+          "subhead": "Cleaning Tools",
           "cards": [
             {
               "slug": "cleaner-pen",
@@ -1571,7 +1535,12 @@
                 "specs": "Standard Factory Specs",
                 "image": "/images/live/fiber-optic-cleaner-pen-mpo.webp"
               }
-            },
+            }
+          ]
+        },
+        {
+          "subhead": "Fault Locators",
+          "cards": [
             {
               "slug": "vfl",
               "tag": "VFL",
@@ -1589,23 +1558,25 @@
                 "specs": "Standard Factory Specs",
                 "image": "/images/fiber-patch-panel.webp"
               }
-            },
+            }
+          ]
+        },
+        {
+          "subhead": "Splicing Tools & Accessories",
+          "cards": [
             {
-              "slug": "fiber-spool",
-              "tag": "Spool",
-              "img": "",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><circle cx=\"24\" cy=\"24\" r=\"16\"></circle><circle cx=\"24\" cy=\"24\" r=\"6\"></circle><path d=\"M24 8v16\"></path><path d=\"M8 24h16\"></path></svg>",
-              "name": "Fiber Spool / Fiber Drum",
-              "blurb": "Precision-wound fiber optic spool for storage, testing, and emergency field restoration. Available in SM and MM, 100m – 2km lengths.",
-              "pills": [
-                "SM / MM",
-                "100m - 2km"
-              ],
-              "detailsSlug": "fiber-spool",
+              "slug": "fiber-cleaver-clv-b1",
+              "tag": "",
+              "img": "/images/live/fiber-cleaver-clv-b1.webp",
+              "heroSvg": "",
+              "name": "Fiber Cleaver CLV-B1",
+              "blurb": "Specifications • Applications: Fast Connector • Bare Fiber Diameter: 125um • Coating Fiber Diameter: 250um, 900um • Cleaving length 250um: 9~16mm, 900um: 10~16mm • Blade Life: 1800",
+              "pills": [],
+              "detailsSlug": "fiber-cleaver-clv-b1",
               "addItem": {
-                "title": "Fiber Spool",
+                "title": "Fiber Cleaver CLV-B1",
                 "specs": "Standard Factory Specs",
-                "image": "/images/fiber-patch-panel.webp"
+                "image": "/images/live/fiber-cleaver-clv-b1.webp"
               }
             },
             {
@@ -1640,20 +1611,28 @@
                 "specs": "Standard Factory Specs",
                 "image": "/images/live/cold-shrink-sleeve.webp"
               }
-            },
+            }
+          ]
+        },
+        {
+          "subhead": "Spools",
+          "cards": [
             {
-              "slug": "fiber-cleaver-clv-b1",
-              "tag": "",
-              "img": "/images/live/fiber-cleaver-clv-b1.webp",
-              "heroSvg": "",
-              "name": "Fiber Cleaver CLV-B1",
-              "blurb": "Specifications • Applications: Fast Connector • Bare Fiber Diameter: 125um • Coating Fiber Diameter: 250um, 900um • Cleaving length 250um: 9~16mm, 900um: 10~16mm • Blade Life: 1800",
-              "pills": [],
-              "detailsSlug": "fiber-cleaver-clv-b1",
+              "slug": "fiber-spool",
+              "tag": "Spool",
+              "img": "",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><circle cx=\"24\" cy=\"24\" r=\"16\"></circle><circle cx=\"24\" cy=\"24\" r=\"6\"></circle><path d=\"M24 8v16\"></path><path d=\"M8 24h16\"></path></svg>",
+              "name": "Fiber Spool / Fiber Drum",
+              "blurb": "Precision-wound fiber optic spool for storage, testing, and emergency field restoration. Available in SM and MM, 100m – 2km lengths.",
+              "pills": [
+                "SM / MM",
+                "100m - 2km"
+              ],
+              "detailsSlug": "fiber-spool",
               "addItem": {
-                "title": "Fiber Cleaver CLV-B1",
+                "title": "Fiber Spool",
                 "specs": "Standard Factory Specs",
-                "image": "/images/live/fiber-cleaver-clv-b1.webp"
+                "image": "/images/fiber-patch-panel.webp"
               }
             }
           ]
