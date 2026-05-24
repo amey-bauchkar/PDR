@@ -90,7 +90,6 @@ export function CatalogProductCard({ card, sectionId }: { card: CatalogCard; sec
   return (
     <div className="pr-pcard product-card reveal" data-product={card.slug || 'unknown'}>
       <div className="pr-pcard-art">
-        {card.tag && <span className="pr-prod-tag">{card.tag}</span>}
         {PASSIVE_IMAGE_MAP[card.slug] || card.slug === 'attenuator' || card.img || CATEGORY_IMAGE_MAP[sectionId] ? (
           <img
             src={resolveCardImage(card, sectionId)}
