@@ -1,0 +1,51 @@
+Variable Fiber Attenuator - PDR OVA Series
+
+Main Characteristics
+
+Parameters Attenuating Range Calibrated Wavelengths Fiber Mode Attenuating Mode
+
+PDR-OVA-40
+
+PDR-OVA-60
+
+40 dB (SM)
+
+60 dB (SM)
+
+1310 nm / 1490 nm / 1550 nm
+
+SM
+
+Digital
+
+Display Resolving Power Display
+
+0.1 dB LCD, 128 x 64
+
+Max Input Power Return Loss Insertion Loss Uncertainty
+
+< + 21 dBm > 40 dB < 2.5 dB ±0.5 dB
+
+Repeatability Optical Connector Rs-232
+
+± 0.2 dB FC/PC (or customise other connectors)
+Optional
+
+Auto Power Off Battery Charge Operate Time Storage Temperature Operating Temperature
+
+No operation in 10 minutes (can be cancelled), Low battery energy Yes
+Above 20 hours -20 ~ +60 °C, 90%RH -10 ~ +50 °C, 90%RH
+
+Power Supply
+
+3 x AA batteries or AC/DC adapter
+
+Size Net Weight
+
+190mm x 90mm x 40mm About 450 g
+
+Accessories Standard: Carrying bag, User's manual, Packing Box, Calibration certificate - 1No. each Optional: AC/DC Adapter - 1No.
+
+Test & Measurement Equi pments
+
+

@@ -36,7 +36,7 @@ export type CatalogCard = {
 export type CatalogGroup = { subhead: string; cards: CatalogCard[] };
 export type CatalogSection = { id: string; eyebrow: string; heading: string; intro: string; groups: CatalogGroup[] };
 
-const CATEGORY_IMAGE_MAP: Record<string, string> = {
+export const CATEGORY_IMAGE_MAP: Record<string, string> = {
   active: '/images/sfp-transceiver.webp',
   passive: '/images/fiber-patchcord.webp',
   cable: '/images/fiber-patch-panel.webp',
@@ -45,7 +45,7 @@ const CATEGORY_IMAGE_MAP: Record<string, string> = {
   tools: '/images/fiber-patch-panel.webp',
 };
 
-const PASSIVE_IMAGE_MAP: Record<string, string> = {
+export const PASSIVE_IMAGE_MAP: Record<string, string> = {
   attenuator: attenuatorImg,
   'bare-fiber-adapter': bareFiber,
   'cat6-patch-cord': cat6Cord,
@@ -66,7 +66,7 @@ const PASSIVE_IMAGE_MAP: Record<string, string> = {
   'smpte-assembly': smpteCable,
 };
 
-const resolveCardImage = (card: CatalogCard, sectionId: string) => {
+export const resolveCardImage = (card: CatalogCard, sectionId: string) => {
   if (PASSIVE_IMAGE_MAP[card.slug]) return PASSIVE_IMAGE_MAP[card.slug];
   if (card.img && card.img.trim().length > 0) return card.img;
   return CATEGORY_IMAGE_MAP[sectionId] ?? CATEGORY_IMAGE_MAP.passive;
@@ -80,7 +80,7 @@ export function CatalogProductCard({ card, sectionId }: { card: CatalogCard; sec
     addItem({
       title: card.addItem?.title || card.name || 'Product',
       specs: card.addItem?.specs || 'Standard Specs',
-      image: card.addItem?.image || '/placeholder.webp',
+      image: resolveCardImage(card, sectionId),
       qty: 1,
     });
     setAdded(true);
@@ -173,7 +173,7 @@ export function CatalogCategorySection({
   ];
 
   return (
-    <section className={`section reveal${alt ? ' sec-muted' : ''}`} id={section.id}>
+    <section className={`section pr-section reveal${alt ? ' sec-muted' : ''}`} id={section.id}>
       <div className="container">
         {!omitIntroHead && (
           <div className="sec-head">
@@ -184,7 +184,7 @@ export function CatalogCategorySection({
         )}
         {section.groups && section.groups.length > 0 ? (
           section.groups.map((g, i) => (
-            <div key={i}>
+            <div key={i} className="pr-group">
               {g.subhead && <h3 className="pr-sub-head">{g.subhead}</h3>}
               <div className="pr-grid">
                 {g.cards && g.cards.length > 0 ? (
@@ -207,7 +207,7 @@ export function CatalogCategorySection({
 
 export function ProductsTrustBand() {
   return (
-    <section className="section reveal pr-trust-band">
+    <section className="section pr-section reveal pr-trust-band">
       <div className="container">
         <div className="pr-trust-layout">
           <div>
@@ -247,7 +247,7 @@ export function ProductsTrustBand() {
 
 export function ProductsCustomCta() {
   return (
-    <section className="section">
+    <section className="section pr-section">
       <div className="container">
         <div className="pr-custom-cta">
           <div className="eyebrow pr-custom-eyebrow">Need a Custom Configuration?</div>

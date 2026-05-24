@@ -6,6 +6,7 @@ import { ProductSchema, BreadcrumbSchema } from '../components/Schema';
 import productsData from '../data/products.json';
 import catalogueData from '../data/catalogue.json';
 import { mergeWithProducts } from '../lib/productSync';
+import { PASSIVE_IMAGE_MAP } from '../components/products/CatalogBlocks';
 
 type Product = {
   slug: string;
@@ -61,7 +62,8 @@ export default function ProductDetail() {
   }, []);
 
   const product = products.find((p) => p.slug === slug);
-  const detailImage = product?.imageUrl || (slug ? catalogueImageBySlug.get(slug) : undefined) || categoryFallbackImage[product?.category ?? ''] || categoryFallbackImage['Passive Components'];
+  // Canonical image priority: bundled asset (PASSIVE_IMAGE_MAP) > product.imageUrl > catalogue JSON img > category fallback
+  const detailImage = (slug ? PASSIVE_IMAGE_MAP[slug] : undefined) || product?.imageUrl || (slug ? catalogueImageBySlug.get(slug) : undefined) || categoryFallbackImage[product?.category ?? ''] || categoryFallbackImage['Passive Components'];
 
   if (!product) return <Navigate to="/404" replace />;
 
@@ -165,7 +167,6 @@ export default function ProductDetail() {
                     href={product.datasheetUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    download={`${product.slug}-datasheet.pdf`}
                     className="btn btn-outline"
                     style={{ padding: '16px 32px', fontSize: 16, display: 'flex', alignItems: 'center', gap: 8 }}
                   >
@@ -182,8 +183,13 @@ export default function ProductDetail() {
                   <button
                     type="button"
                     onClick={() => {
+                      const newWindow = window.open('', '_blank');
+                      if (newWindow) {
+                        newWindow.document.write('<div style="font-family:sans-serif;padding:40px;text-align:center;color:#475569;">Generating datasheet...</div>');
+                      }
+                      
                       import('../lib/datasheetPdf').then(({ downloadProductDatasheet }) => {
-                        downloadProductDatasheet({
+                        const pdfUrl = downloadProductDatasheet({
                           slug: product.slug,
                           name: product.name,
                           category: product.category,
@@ -196,6 +202,12 @@ export default function ProductDetail() {
                           specs: product.specs || [],
                           related: product.related || [],
                         });
+                        
+                        if (newWindow) {
+                          newWindow.location.href = pdfUrl;
+                        } else {
+                          window.location.href = pdfUrl;
+                        }
                       });
                     }}
                     className="btn btn-outline"

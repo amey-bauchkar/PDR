@@ -45,7 +45,8 @@
         "slug": "sfp-400g",
         "name": "400G"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/aoc.pdf"
   },
   {
     "slug": "armoured-patchcord",
@@ -93,39 +94,44 @@
         "slug": "bendiboot-patchcord",
         "name": "Bendiboot Patchcord"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/armoured-patchcord.pdf"
   },
   {
     "slug": "attenuator",
     "name": "Variable Fiber Attenuator",
-    "category": "Passive Components",
-    "title": "Variable Fiber Attenuator | PDR World",
-    "description": "Buildout attenuator for precise power control",
+    "category": "Test & Measuring Equipment",
+    "title": "Variable Fiber Attenuator - OVA Series | PDR World",
+    "description": "Digital variable fiber attenuator with up to 60 dB attenuation range",
     "canonical": "https://pdrworld.com/attenuator.html",
-    "tagline": "Buildout attenuator for precise power control",
+    "tagline": "Digital variable fiber attenuator with up to 60 dB attenuation range",
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><path d=\"M18 18l6 6-6 6\"></path><path d=\"M30 18l-6 6 6 6\"></path></svg>",
     "features": [
-      "Buildout attenuator for precise power control",
-      "Wavelength independent options available",
-      "High power endurance"
+      "Attenuation range up to 60 dB (SM)",
+      "Calibrated wavelengths: 1310 nm / 1490 nm / 1550 nm",
+      "Digital attenuating mode"
     ],
     "applications": [
-      "Receiver Protection",
-      "Optical Power Equalization",
-      "EDFA Balancing"
+      "Test and Measurement",
+      "Optical Link Simulation",
+      "Fiber Optic Lab Use"
     ],
     "specs": [
       {
         "label": "Attenuation Range",
-        "value": "1dB to 30dB"
+        "value": "40 dB / 60 dB"
       },
       {
-        "label": "Wavelengths",
-        "value": "1310nm / 1490nm / 1550nm"
+        "label": "Calibrated Wavelengths",
+        "value": "1310 nm / 1490 nm / 1550 nm"
       },
       {
-        "label": "Return Loss",
-        "value": "> 50dB"
+        "label": "Fiber Mode",
+        "value": "SM"
+      },
+      {
+        "label": "Attenuating Mode",
+        "value": "Digital"
       }
     ],
     "related": [
@@ -141,7 +147,8 @@
         "slug": "pof-patchcord",
         "name": "POF — Plastic Optical Fiber Patchcord"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/attenuator.pdf"
   },
   {
     "slug": "bare-fiber-adapter",
@@ -189,7 +196,8 @@
         "slug": "pof-patchcord",
         "name": "POF — Plastic Optical Fiber Patchcord"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/bare-fiber-adapter.pdf"
   },
   {
     "slug": "bendiboot-patchcord",
@@ -285,7 +293,8 @@
         "slug": "sfp-400g",
         "name": "400G"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/bypass-switch.pdf"
   },
   {
     "slug": "cassette-cleaner",
@@ -333,7 +342,8 @@
         "slug": "vfl",
         "name": "VFL — Visual Fault Locator"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/cassette-cleaner.pdf"
   },
   {
     "slug": "cat6-panel",
@@ -381,7 +391,8 @@
         "slug": "wall-mount",
         "name": "Optical Fiber Wall Mount Enclosure"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/cat6-panel.pdf"
   },
   {
     "slug": "cat6-patch-cord",
@@ -429,7 +440,8 @@
         "slug": "pof-patchcord",
         "name": "POF — Plastic Optical Fiber Patchcord"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/cat6-patch-cord.pdf"
   },
   {
     "slug": "cleaner-pen",
@@ -477,7 +489,8 @@
         "slug": "vfl",
         "name": "VFL — Visual Fault Locator"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/cleaner-pen.pdf"
   },
   {
     "slug": "cpri-patchcord",
@@ -525,7 +538,8 @@
         "slug": "pof-patchcord",
         "name": "POF — Plastic Optical Fiber Patchcord"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/cpri-patchcord.pdf"
   },
   {
     "slug": "cwdm",
@@ -573,7 +587,8 @@
         "slug": "pof-patchcord",
         "name": "POF — Plastic Optical Fiber Patchcord"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/cwdm.pdf"
   },
   {
     "slug": "dac",
@@ -621,7 +636,8 @@
         "slug": "sfp-400g",
         "name": "400G"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/dac.pdf"
   },
   {
     "slug": "drone",
@@ -709,7 +725,8 @@
         "slug": "pof-patchcord",
         "name": "POF — Plastic Optical Fiber Patchcord"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/dwdm.pdf"
   },
   {
     "slug": "easycheck-v2",
@@ -757,7 +774,8 @@
         "slug": "next-gen-splicer",
         "name": "Next Gen Optical Fusion Splicer (OPM + VFL)"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/easycheck-v2.pdf"
   },
   {
     "slug": "easyget-wifi",
@@ -805,7 +823,8 @@
         "slug": "next-gen-splicer",
         "name": "Next Gen Optical Fusion Splicer (OPM + VFL)"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/easyget-wifi.pdf"
   },
   {
     "slug": "fanout-patch-cords",
@@ -901,7 +920,8 @@
         "slug": "wall-mount",
         "name": "Optical Fiber Wall Mount Enclosure"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/fdb.pdf"
   },
   {
     "slug": "fiber-spool",
@@ -997,7 +1017,8 @@
         "slug": "pof-patchcord",
         "name": "POF — Plastic Optical Fiber Patchcord"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/field-connector.pdf"
   },
   {
     "slug": "fo-patchcords",
@@ -1045,7 +1066,8 @@
         "slug": "pof-patchcord",
         "name": "POF — Plastic Optical Fiber Patchcord"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/fo-patchcords.pdf"
   },
   {
     "slug": "fusion-splicer",
@@ -1093,7 +1115,8 @@
         "slug": "next-gen-splicer",
         "name": "Next Gen Optical Fusion Splicer (OPM + VFL)"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/fusion-splicer.pdf"
   },
   {
     "slug": "hd-sdi",
@@ -1141,7 +1164,8 @@
         "slug": "sfp-400g",
         "name": "400G"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/hd-sdi.pdf"
   },
   {
     "slug": "heat-shrink-closure",
@@ -1189,7 +1213,8 @@
         "slug": "wall-mount",
         "name": "Optical Fiber Wall Mount Enclosure"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/heat-shrink-closure.pdf"
   },
   {
     "slug": "high-power-patchcord",
@@ -1229,7 +1254,8 @@
         "slug": "drone",
         "name": "Optical Fiber Drone"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/high-power-patchcord.pdf"
   },
   {
     "slug": "horizontal-closure",
@@ -1277,7 +1303,8 @@
         "slug": "wall-mount",
         "name": "Optical Fiber Wall Mount Enclosure"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/horizontal-closure.pdf"
   },
   {
     "slug": "htb",
@@ -1325,7 +1352,8 @@
         "slug": "fdb",
         "name": "Fiber Distribution Box (FDB)"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/htb.pdf"
   },
   {
     "slug": "hybrid-adapter",
@@ -1373,7 +1401,8 @@
         "slug": "pof-patchcord",
         "name": "POF — Plastic Optical Fiber Patchcord"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/hybrid-adapter.pdf"
   },
   {
     "slug": "lc-uniboot",
@@ -1469,7 +1498,8 @@
         "slug": "pof-patchcord",
         "name": "POF — Plastic Optical Fiber Patchcord"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/loopback.pdf"
   },
   {
     "slug": "mating-sleeve",
@@ -1613,7 +1643,8 @@
         "slug": "next-gen-splicer",
         "name": "Next Gen Optical Fusion Splicer (OPM + VFL)"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/mini-otdr.pdf"
   },
   {
     "slug": "mode-conditioning",
@@ -1661,7 +1692,8 @@
         "slug": "pof-patchcord",
         "name": "POF — Plastic Optical Fiber Patchcord"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/mode-conditioning.pdf"
   },
   {
     "slug": "mpo-assembly",
@@ -1709,7 +1741,8 @@
         "slug": "pof-patchcord",
         "name": "POF — Plastic Optical Fiber Patchcord"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/mpo-assembly.pdf"
   },
   {
     "slug": "mpo-cleaner",
@@ -1757,7 +1790,8 @@
         "slug": "vfl",
         "name": "VFL — Visual Fault Locator"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/mpo-cleaner.pdf"
   },
   {
     "slug": "next-gen-splicer",
@@ -1853,7 +1887,8 @@
         "slug": "wall-mount",
         "name": "Optical Fiber Wall Mount Enclosure"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/odf.pdf"
   },
   {
     "slug": "olps",
@@ -1901,7 +1936,8 @@
         "slug": "sfp-400g",
         "name": "400G"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/olps.pdf"
   },
   {
     "slug": "plc-splitter",
@@ -1949,7 +1985,8 @@
         "slug": "pof-patchcord",
         "name": "POF — Plastic Optical Fiber Patchcord"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/plc-splitter.pdf"
   },
   {
     "slug": "pocket-otdr",
@@ -2045,7 +2082,8 @@
         "slug": "sfp-400g",
         "name": "400G"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/poe-injector.pdf"
   },
   {
     "slug": "pof-patchcord",
@@ -2141,7 +2179,8 @@
         "slug": "next-gen-splicer",
         "name": "Next Gen Optical Fusion Splicer (OPM + VFL)"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/pon-power-meter.pdf"
   },
   {
     "slug": "rack-mount-fms",
@@ -2189,7 +2228,8 @@
         "slug": "fdb",
         "name": "Fiber Distribution Box (FDB)"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/rack-mount-fms.pdf"
   },
   {
     "slug": "rapid-push",
@@ -2237,7 +2277,8 @@
         "slug": "pof-patchcord",
         "name": "POF — Plastic Optical Fiber Patchcord"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/rapid-push.pdf"
   },
   {
     "slug": "regular-opm",
@@ -2878,7 +2919,8 @@
         "slug": "sfp-100g-bidi",
         "name": "100G & 100G BIDI"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/sfp-transceivers.pdf"
   },
   {
     "slug": "smart-sfp",
@@ -2978,7 +3020,8 @@
         "slug": "pof-patchcord",
         "name": "POF — Plastic Optical Fiber Patchcord"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/smpte-assembly.pdf"
   },
   {
     "slug": "soc",
@@ -3170,6 +3213,7 @@
         "slug": "fdb",
         "name": "Fiber Distribution Box (FDB)"
       }
-    ]
+    ],
+    "datasheetUrl": "/datasheets/wall-mount.pdf"
   }
 ]
