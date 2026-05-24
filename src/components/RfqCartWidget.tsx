@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRfqCart } from './RfqCartProvider';
+import { getFallbackImage } from '../lib/imageResolution';
 
 export default function RfqCartWidget() {
   const { items, isOpen, removeItem, updateQty, open, close, submit } = useRfqCart();
@@ -99,7 +100,10 @@ export default function RfqCartWidget() {
                     className="rfq-item-img"
                     alt={item.title}
                     onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = '/images/fiber-patchcord.webp';
+                      const fallback = getFallbackImage();
+                      if (!(e.currentTarget as HTMLImageElement).src.endsWith(fallback)) {
+                        (e.currentTarget as HTMLImageElement).src = fallback;
+                      }
                     }}
                   />
                   <div className="rfq-item-info">
@@ -132,7 +136,10 @@ export default function RfqCartWidget() {
                           alt={item.title}
                           style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                           onError={(e) => {
-                            (e.currentTarget as HTMLImageElement).src = '/images/fiber-patchcord.webp';
+                            const fallback = getFallbackImage();
+                            if (!(e.currentTarget as HTMLImageElement).src.endsWith(fallback)) {
+                              (e.currentTarget as HTMLImageElement).src = fallback;
+                            }
                           }}
                         />
                         <div style={{ position: 'absolute', top: -6, right: -6, background: 'var(--accent)', color: '#fff', fontSize: 10, fontWeight: 'bold', padding: '2px 6px', borderRadius: 99, boxShadow: '0 2px 4px rgba(0,0,0,0.15)', zIndex: 2 }}>{item.qty}</div>

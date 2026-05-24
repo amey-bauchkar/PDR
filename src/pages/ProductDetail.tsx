@@ -4,9 +4,8 @@ import { useRfqCart } from '../components/RfqCartProvider';
 import Seo from '../components/Seo';
 import { ProductSchema, BreadcrumbSchema } from '../components/Schema';
 import productsData from '../data/products.json';
-import catalogueData from '../data/catalogue.json';
 import { mergeWithProducts } from '../lib/productSync';
-import { PASSIVE_IMAGE_MAP } from '../components/products/CatalogBlocks';
+import { resolveCanonicalProductImage, getFallbackImage } from '../lib/imageResolution';
 
 type Product = {
   slug: string;
@@ -25,23 +24,6 @@ type Product = {
   datasheetUrl?: string;
 };
 
-const catalogueImageBySlug = new Map<string, string>();
-const categoryFallbackImage: Record<string, string> = {
-  'Active Components': 'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=900&q=80',
-  'Passive Components': 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=900&q=80',
-  'Cable Management Devices': 'https://images.unsplash.com/photo-1581092335878-4f8e1f9d9f8a?auto=format&fit=crop&w=900&q=80',
-  'Test & Measuring Equipment': 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80',
-  'Maintenance Tools': 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=900&q=80',
-  'Specialty Products': 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=80',
-};
-
-for (const section of (catalogueData as { sections?: { groups?: { cards?: { slug: string; img?: string }[] }[] }[] }).sections ?? []) {
-  for (const group of section.groups ?? []) {
-    for (const card of group.cards ?? []) {
-      if (card.img && card.img.trim()) catalogueImageBySlug.set(card.slug, card.img);
-    }
-  }
-}
 
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -62,8 +44,7 @@ export default function ProductDetail() {
   }, []);
 
   const product = products.find((p) => p.slug === slug);
-  // Canonical image priority: bundled asset (PASSIVE_IMAGE_MAP) > product.imageUrl > catalogue JSON img > category fallback
-  const detailImage = (slug ? PASSIVE_IMAGE_MAP[slug] : undefined) || product?.imageUrl || (slug ? catalogueImageBySlug.get(slug) : undefined) || categoryFallbackImage[product?.category ?? ''] || categoryFallbackImage['Passive Components'];
+  const detailImage = resolveCanonicalProductImage(product?.slug, product?.imageUrl, product?.category);
 
   if (!product) return <Navigate to="/404" replace />;
 
@@ -124,7 +105,10 @@ export default function ProductDetail() {
                 className="pd-image"
                 loading="eager"
                 onError={(event) => {
-                  event.currentTarget.src = categoryFallbackImage['Passive Components'];
+                  const fallback = getFallbackImage(product?.category);
+                  if (!event.currentTarget.src.endsWith(fallback)) {
+                    event.currentTarget.src = fallback;
+                  }
                 }}
               />
             </div>
