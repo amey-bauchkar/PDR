@@ -64,14 +64,15 @@ export default function Home() {
         <div className="container">
           <div className="hp-hero-grid">
             <div className="hp-hero-content reveal">
-              <h1>
-                Fiber Optic Components Manufacturer in India
+              <h1 style={{ letterSpacing: '-0.02em', lineHeight: 1.15 }}>
+                Fiber Optic Solutions
                 <br />
-                <span>— Since 1985</span>
+                Engineered for <span style={{ color: '#4A9FD8' }}>Reliability.</span>
               </h1>
-              <p>
-                PDR manufactures high-performance optical solutions for telecom, defence, and hyperscale data centers. Engineered in
-                Mumbai, trusted worldwide.
+              <p style={{ fontSize: '1.125rem', lineHeight: 1.6, marginTop: '24px', opacity: 0.85, maxWidth: '600px' }}>
+                <strong>Smart Fiber Monitoring &amp; Telecom Infrastructure Solutions.</strong>
+                <br />
+                <span style={{ display: 'inline-block', marginTop: '8px' }}>Make in India Fiber Optic Technology for Next-Gen Networks.</span>
               </p>
               <div className="hp-cta-row">
                 <Link className="btn btn-primary" to="/contact">Request Quote</Link>

@@ -62,8 +62,10 @@ export const PASSIVE_IMAGE_MAP: Record<string, string> = {
   'mpo-assembly': mpoCable,
   'plc-splitter': plcSplitter,
   'rapid-push': rapidPush,
-  'sc-apc-upc': scAdapter,
+  'hybrid-adapter': scAdapter,
   'smpte-assembly': smpteCable,
+  soc: '/images/live/splice-on-connector.webp',
+  drone: '/images/live/optical-fiber-drone.webp',
 };
 
 export const resolveCardImage = (card: CatalogCard, sectionId: string) => {
@@ -164,14 +166,6 @@ export function CatalogCategorySection({
   alt: boolean;
   omitIntroHead?: boolean;
 }) {
-  const excludedProducts = [
-    'Armoured Patchcord',
-    'POF — Plastic Optical Fiber Patchcord',
-    'Bendiboot Patchcord',
-    'LC Uniboot Patchcord',
-    'Mating Sleeve / Alignment Sleeve',
-  ];
-
   return (
     <section className={`section pr-section reveal${alt ? ' sec-muted' : ''}`} id={section.id}>
       <div className="container">
@@ -189,7 +183,6 @@ export function CatalogCategorySection({
               <div className="pr-grid">
                 {g.cards && g.cards.length > 0 ? (
                   g.cards
-                    .filter((c) => !excludedProducts.includes(c.name))
                     .map((c, idx) => <CatalogProductCard key={c.slug || idx} card={c} sectionId={section.id} />)
                 ) : (
                   <div>No products available in this category.</div>
