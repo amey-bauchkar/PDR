@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
+import { useRfqCart } from '../components/RfqCartProvider';
 import Seo from '../components/Seo';
 import { ProductSchema, BreadcrumbSchema } from '../components/Schema';
 import productsData from '../data/products.json';
@@ -43,6 +44,8 @@ for (const section of (catalogueData as { sections?: { groups?: { cards?: { slug
 
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
+  const { addItem } = useRfqCart();
+  const [added, setAdded] = useState(false);
   const [products, setProducts] = useState<Product[]>(() => mergeWithProducts(productsData));
 
   useEffect(() => {
@@ -140,9 +143,23 @@ export default function ProductDetail() {
               <p style={{ color: '#475569', fontSize: 20, lineHeight: 1.6, marginBottom: 24 }}>{product.tagline}</p>
 
               <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-                <Link to={`/contact?inquiry=Quote+for+${product.slug}`} className="btn btn-primary" style={{ padding: '16px 32px', fontSize: 16 }}>
-                  Request Quote
-                </Link>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  style={{ padding: '16px 32px', fontSize: 16 }}
+                  onClick={() => {
+                    addItem({
+                      title: product.name,
+                      specs: product.specs?.[0] ? `${product.specs[0].label}: ${product.specs[0].value}` : 'Standard Specs',
+                      image: detailImage || '/placeholder.webp',
+                      qty: 1,
+                    });
+                    setAdded(true);
+                    setTimeout(() => setAdded(false), 1500);
+                  }}
+                >
+                  {added ? '✓ Added' : 'Add to Quote'}
+                </button>
                 {product.datasheetUrl ? (
                   <a
                     href={product.datasheetUrl}
