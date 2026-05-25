@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { calculatorService } from '../services/CalculatorService.js';
+import { calculatorService } from '../services/calculatorService.js';
 import { AuthRequest, asyncHandler } from '../middleware/auth.js';
 import { OpticalLinkBudgetInput } from '../types/index.js';
 
