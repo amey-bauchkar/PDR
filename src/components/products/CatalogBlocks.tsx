@@ -30,7 +30,7 @@ export function CatalogProductCard({ card, sectionId }: { card: CatalogCard; sec
     addItem({
       title: card.addItem?.title || card.name || 'Product',
       specs: card.addItem?.specs || 'Standard Specs',
-      image: resolveCanonicalProductImage(card.slug, undefined, sectionId),
+      image: resolveCanonicalProductImage(card.slug, card.img, sectionId),
       qty: 1,
     });
     setAdded(true);
@@ -44,7 +44,7 @@ export function CatalogProductCard({ card, sectionId }: { card: CatalogCard; sec
           <span dangerouslySetInnerHTML={{ __html: card.heroSvg }} />
         ) : (
           <img
-            src={resolveCanonicalProductImage(card.slug, undefined, sectionId)}
+            src={resolveCanonicalProductImage(card.slug, card.img, sectionId)}
             alt={card.name || 'Product Image'}
             className="real-img"
             loading="lazy"

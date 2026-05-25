@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import { useRfqCart } from '../components/RfqCartProvider';
 import Seo from '../components/Seo';
@@ -47,6 +47,34 @@ export default function ProductDetail() {
   const detailImage = resolveCanonicalProductImage(product?.slug, product?.imageUrl, product?.category);
 
   if (!product) return <Navigate to="/404" replace />;
+
+  // Convert base64 data: URLs to blob: URLs for browser compatibility.
+  // Browsers block opening data: URLs via target="_blank" for security.
+  // Static products with file paths like '/datasheets/x.pdf' pass through unchanged.
+  const datasheetHref = useMemo(() => {
+    const url = product.datasheetUrl;
+    if (!url || !url.startsWith('data:')) return url || '';
+    try {
+      const [header, base64] = url.split(',');
+      const mime = header.match(/:(.*?);/)?.[1] || 'application/pdf';
+      const binary = atob(base64);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+      const blob = new Blob([bytes], { type: mime });
+      return URL.createObjectURL(blob);
+    } catch {
+      return url;
+    }
+  }, [product.datasheetUrl]);
+
+  // Revoke blob URL on unmount or when datasheetUrl changes to prevent memory leaks
+  useEffect(() => {
+    return () => {
+      if (datasheetHref && datasheetHref.startsWith('blob:')) {
+        URL.revokeObjectURL(datasheetHref);
+      }
+    };
+  }, [datasheetHref]);
 
   return (
     <>
@@ -146,9 +174,9 @@ export default function ProductDetail() {
                 >
                   {added ? '✓ Added' : 'Add to Quote'}
                 </button>
-                {product.datasheetUrl ? (
+                {datasheetHref ? (
                   <a
-                    href={product.datasheetUrl}
+                    href={datasheetHref}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-outline"
