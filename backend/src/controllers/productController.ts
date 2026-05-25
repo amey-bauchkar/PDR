@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { productService } from '../services/ProductService.js';
+import { productService } from '../services/productService.js';
 import { AuthRequest, asyncHandler } from '../middleware/auth.js';
 import { ProductFilter } from '../types/index.js';
 

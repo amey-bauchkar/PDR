@@ -2,6 +2,7 @@ import { hasSupabaseConfig, supabase } from './supabase';
 import type { ContactInquiryPayload, QuoteItem, QuoteRequestPayload } from './formTypes';
 
 const CONTACT_API_URL = import.meta.env.VITE_CONTACT_API_URL || '/api/contact';
+const RFQ_API_URL = import.meta.env.VITE_RFQ_API_URL || '/api/rfq/submit';
 const LOCAL_CONTACT_STORAGE_KEY = 'pdrworld-pending-contact-inquiries';
 
 function saveToLocalFallback(payload: ContactInquiryPayload) {
@@ -66,6 +67,42 @@ function saveRfqToLocalFallback(payload: QuoteRequestPayload, items: QuoteItem[]
 }
 
 export async function submitQuoteRequest(sessionHash: string, payload: QuoteRequestPayload, items: QuoteItem[]) {
+  const backendItems = items.map((item) => ({
+    productId: item.title,
+    productName: item.title,
+    quantity: item.qty,
+    configuration: {
+      specs: item.specs,
+      image: item.image,
+    },
+  }));
+
+  if (typeof window !== 'undefined') {
+    try {
+      const response = await fetch(RFQ_API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          sessionHash,
+          name: payload.name,
+          email: payload.email,
+          company: payload.company,
+          notes: payload.notes,
+          items: backendItems,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        return { id: typeof data?.data?.id === 'string' ? data.data.id : null, viaSupabase: false };
+      }
+    } catch (error) {
+      console.warn('Backend RFQ API unavailable, falling back to Supabase', error);
+    }
+  }
+
   const client = ensureSupabaseClient();
   if (!client) {
     await new Promise((resolve) => setTimeout(resolve, 900));

@@ -274,7 +274,7 @@ export default function AdminNew() {
   const [notice, setNotice] = useState('');
   const [noticeType, setNoticeType] = useState<'success' | 'error' | 'info'>('success');
   const [imagePreview, setImagePreview] = useState<string>('');
-  const [isExporting, setIsExporting] = useState(false);
+  const googleSheetUrl = import.meta.env.VITE_GOOGLE_SHEETS_URL || (import.meta.env.VITE_GOOGLE_SHEETS_ID ? `https://docs.google.com/spreadsheets/d/${import.meta.env.VITE_GOOGLE_SHEETS_ID}/edit` : '');
 
   useEffect(() => {
     const storedSession = getStoredSession();
@@ -498,71 +498,15 @@ export default function AdminNew() {
     pushActivity('RFQ status updated', `ID: ${rfqId} → ${newStatus}`, 'info', 'status_change');
   };
 
-  const downloadExcel = async () => {
-    setIsExporting(true);
-    if (!supabase) {
-      generateCSV(rfqs);
-      setIsExporting(false);
+  const openGoogleSheet = () => {
+    if (!googleSheetUrl) {
+      setNotice('Set VITE_GOOGLE_SHEETS_URL to open the live RFQ sheet.');
+      setNoticeType('info');
       return;
     }
 
-    try {
-      const { data: dbRfqs, error } = await supabase
-        .from('quote_requests')
-        .select('*, quote_request_items(*)')
-        .order('created_at', { ascending: false });
-
-      if (error) throw error;
-
-      if (dbRfqs) {
-        const mappedRfqs = dbRfqs.map((rfq: any) => ({
-          id: rfq.id,
-          name: rfq.full_name,
-          email: rfq.email,
-          company: rfq.company,
-          status: rfq.status,
-          createdAt: rfq.created_at,
-          items: rfq.quote_request_items ? rfq.quote_request_items.map((item: any) => `${item.quantity}x ${item.product_title} (${item.product_specs})`) : [],
-          notes: rfq.notes
-        }));
-
-        setRfqs(mappedRfqs);
-        generateCSV(mappedRfqs);
-        pushActivity('RFQs exported', `Successfully exported ${mappedRfqs.length} RFQs to CSV/Excel`, 'success', 'status_change');
-      }
-    } catch (err) {
-      console.error('Failed to fetch latest quotes during export:', err);
-      generateCSV(rfqs);
-    } finally {
-      setIsExporting(false);
-    }
-  };
-
-  const generateCSV = (data: typeof rfqs) => {
-    const headers = ['Client Name', 'Company', 'Email', 'Requested Items', 'Date', 'Status', 'Notes'];
-    const rows = data.map(rfq => [
-      rfq.name,
-      rfq.company || '—',
-      rfq.email,
-      rfq.items.join('; '),
-      new Date(rfq.createdAt).toLocaleString(),
-      rfq.status,
-      rfq.notes || ''
-    ]);
-
-    const csvContent = [
-      headers.join(','),
-      ...rows.map(row => row.map(val => `"${val.replace(/"/g, '""')}"`).join(','))
-    ].join('\n');
-
-    const blob = new Blob([new Uint8Array([0xEF, 0xBB, 0xBF]), csvContent], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `PDR-World-RFQs-${new Date().toISOString().slice(0, 10)}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    window.open(googleSheetUrl, '_blank', 'noopener,noreferrer');
+    pushActivity('Google Sheet opened', 'Opened the live RFQ sheet in a new tab.', 'info', 'status_change');
   };
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -935,31 +879,30 @@ export default function AdminNew() {
                       📋 Product Quotes (RFQs)
                       <span className="admin-badge-count">{rfqs.length}</span>
                     </h3>
-                    <button 
-                      onClick={downloadExcel} 
-                      disabled={isExporting}
-                      className="admin-btn-primary"
-                      style={{ 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        gap: '8px', 
-                        padding: '8px 16px', 
-                        fontSize: '14px',
-                        background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
-                        border: 'none',
-                        color: 'white',
-                        fontWeight: 600,
-                        cursor: 'pointer',
-                        borderRadius: '6px',
-                        opacity: isExporting ? 0.7 : 1
-                      }}
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                        <polyline points="7 10 12 15 17 10" />
-                        <line x1="12" y1="15" x2="12" y2="3" />
-                      </svg>
-                      {isExporting ? 'Syncing & Exporting...' : 'Download Excel Sheet'}
+                      <button 
+                        onClick={openGoogleSheet} 
+                        className="admin-btn-primary"
+                        style={{ 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          gap: '8px', 
+                          padding: '8px 16px', 
+                          fontSize: '14px',
+                          background: 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)',
+                          border: 'none',
+                          color: 'white',
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                          borderRadius: '6px'
+                        }}
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M14 3h7v7" />
+                          <path d="M10 14 21 3" />
+                          <path d="M21 14v7h-7" />
+                          <path d="M3 10V3h7" />
+                        </svg>
+                        Open Live Google Sheet
                     </button>
                   </div>
                   <div className="admin-activity-table">

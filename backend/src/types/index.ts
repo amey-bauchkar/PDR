@@ -56,6 +56,7 @@ export interface QuoteRequest {
   name: string;
   email: string;
   company: string;
+  notes?: string;
   items: QuoteItem[];
   status: 'pending' | 'submitted' | 'processed';
   submittedAt: string;

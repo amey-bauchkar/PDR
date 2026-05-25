@@ -1,7 +1,23 @@
 import { supabaseServiceClient } from '../config/database.js';
+import { config } from '../config/env.js';
+import { google } from 'googleapis';
 import { QuoteRequest, QuoteItem } from '../types/index.js';
 import { AppError } from '../types/index.js';
 import { v4 as uuidv4 } from 'uuid';
+
+const SHEET_HEADERS = [
+  'Submitted At',
+  'RFQ ID',
+  'Session Hash',
+  'Name',
+  'Email',
+  'Company',
+  'Notes',
+  'Item Count',
+  'Items Summary',
+  'Items JSON',
+  'Status',
+];
 
 export class RfqService {
   /**
@@ -12,6 +28,7 @@ export class RfqService {
     name: string,
     email: string,
     company: string,
+    notes: string | undefined,
     items: QuoteItem[]
   ): Promise<QuoteRequest> {
     try {
@@ -25,45 +42,54 @@ export class RfqService {
       }
 
       const rfqId = uuidv4();
+      const submittedAt = new Date().toISOString();
+      const rfqRecord = {
+        id: rfqId,
+        session_hash: sessionHash,
+        name,
+        email,
+        company,
+        notes,
+        status: 'submitted',
+        submitted_at: submittedAt,
+      };
 
-      // Store RFQ in database
-      const { data: rfqData, error: rfqError } = await supabaseServiceClient
-        .from('quote_requests')
-        .insert([
-          {
-            id: rfqId,
-            session_hash: sessionHash,
-            name,
-            email,
-            company,
-            status: 'submitted',
-            submitted_at: new Date().toISOString(),
-          },
-        ])
-        .select()
-        .single();
+      let rfqData = rfqRecord;
 
-      if (rfqError || !rfqData) {
-        throw new AppError(500, 'RFQ_INSERT_ERROR', 'Failed to create RFQ');
+      if (supabaseServiceClient) {
+        // Store RFQ in database when Supabase is configured
+        const { data, error } = await supabaseServiceClient
+          .from('quote_requests')
+          .insert([rfqRecord])
+          .select()
+          .single();
+
+        if (error || !data) {
+          console.warn('Failed to create RFQ in Supabase, continuing with Google Sheets only:', error);
+        } else {
+          rfqData = data;
+        }
       }
 
-      // Store RFQ items
-      const itemsToInsert = items.map((item, index) => ({
-        id: uuidv4(),
-        quote_request_id: rfqId,
-        product_id: item.productId,
-        product_name: item.productName,
-        quantity: item.quantity,
-        configuration: item.configuration || {},
-        sort_order: index,
-      }));
+      if (supabaseServiceClient) {
+        // Store RFQ items when Supabase is configured
+        const itemsToInsert = items.map((item, index) => ({
+          id: uuidv4(),
+          quote_request_id: rfqId,
+          product_id: item.productId,
+          product_name: item.productName,
+          quantity: item.quantity,
+          configuration: item.configuration || {},
+          sort_order: index,
+        }));
 
-      const { error: itemsError } = await supabaseServiceClient
-        .from('quote_request_items')
-        .insert(itemsToInsert);
+        const { error: itemsError } = await supabaseServiceClient
+          .from('quote_request_items')
+          .insert(itemsToInsert);
 
-      if (itemsError) {
-        throw new AppError(500, 'ITEMS_INSERT_ERROR', 'Failed to store RFQ items');
+        if (itemsError) {
+          console.warn('Failed to store RFQ items in Supabase, continuing with Google Sheets only:', itemsError);
+        }
       }
 
       // Trigger downstream integrations
@@ -76,11 +102,12 @@ export class RfqService {
         name,
         email,
         company,
+        notes,
         items,
         status: 'submitted',
-        submittedAt: new Date().toISOString(),
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
+        submittedAt,
+        createdAt: submittedAt,
+        updatedAt: submittedAt,
       };
     } catch (error: any) {
       if (error instanceof AppError) throw error;
@@ -174,6 +201,75 @@ export class RfqService {
   }
 
   /**
+   * Backfill historical RFQs to Google Sheets (admin utility)
+   */
+  async syncAllRfqsToGoogleSheets() {
+    if (!supabaseServiceClient) {
+      throw new AppError(500, 'SUPABASE_NOT_CONFIGURED', 'Supabase is required for RFQ backfill');
+    }
+
+    const sheetsCtx = this.getSheetsContext();
+    if (!sheetsCtx) {
+      throw new AppError(500, 'GOOGLE_SHEETS_NOT_CONFIGURED', 'Google Sheets credentials are not configured');
+    }
+
+    const { data: rfqs, error: rfqError } = await supabaseServiceClient
+      .from('quote_requests')
+      .select('*')
+      .order('submitted_at', { ascending: true });
+
+    if (rfqError) {
+      throw new AppError(500, 'RFQ_FETCH_ERROR', 'Failed to fetch historical RFQs', rfqError.message);
+    }
+
+    const { data: itemRows, error: itemsError } = await supabaseServiceClient
+      .from('quote_request_items')
+      .select('*')
+      .order('sort_order', { ascending: true });
+
+    if (itemsError) {
+      throw new AppError(500, 'RFQ_ITEMS_FETCH_ERROR', 'Failed to fetch RFQ items', itemsError.message);
+    }
+
+    await this.ensureSheetHeaders(sheetsCtx);
+    const existingIds = await this.getExistingSheetRfqIds(sheetsCtx);
+
+    const itemsByRfq = new Map<string, QuoteItem[]>();
+    for (const row of itemRows || []) {
+      const mapped: QuoteItem = {
+        productId: row.product_id,
+        productName: row.product_name,
+        quantity: row.quantity,
+        configuration: row.configuration || {},
+      };
+
+      const list = itemsByRfq.get(row.quote_request_id) || [];
+      list.push(mapped);
+      itemsByRfq.set(row.quote_request_id, list);
+    }
+
+    let synced = 0;
+    let skipped = 0;
+
+    for (const rfq of rfqs || []) {
+      if (existingIds.has(rfq.id)) {
+        skipped += 1;
+        continue;
+      }
+
+      const items = itemsByRfq.get(rfq.id) || [];
+      await this.appendRfqRowToSheet(sheetsCtx, rfq, items);
+      synced += 1;
+    }
+
+    return {
+      total: (rfqs || []).length,
+      synced,
+      skipped,
+    };
+  }
+
+  /**
    * Trigger CRM webhook integration
    */
   private async triggerCrmIntegration(rfqData: any, items: QuoteItem[]) {
@@ -213,19 +309,98 @@ export class RfqService {
    */
   private async logToGoogleSheets(rfqData: any, items: QuoteItem[]) {
     try {
-      const sheetsId = process.env.GOOGLE_SHEETS_ID;
-
-      if (!sheetsId) {
-        console.log('Google Sheets ID not configured, skipping sheet logging');
+      const sheetsCtx = this.getSheetsContext();
+      if (!sheetsCtx) {
+        console.warn('Google Sheets credentials not configured, skipping sheet logging');
         return;
       }
 
-      console.log('Logging to Google Sheets:', { rfqId: rfqData.id, name: rfqData.name });
-      // Implement Google Sheets logging in production
+      await this.ensureSheetHeaders(sheetsCtx);
+      await this.appendRfqRowToSheet(sheetsCtx, rfqData, items);
+
+      console.log('Logged RFQ to Google Sheets:', { rfqId: rfqData.id, name: rfqData.name });
     } catch (error: any) {
       console.error('Error logging to Google Sheets:', error);
       // Don't throw - let RFQ submission succeed even if logging fails
     }
+  }
+
+  private getSheetsContext() {
+    const spreadsheetId = config.googleSheets.sheetsId;
+    const serviceAccountEmail = config.googleSheets.serviceAccountEmail;
+    const serviceAccountPrivateKey = config.googleSheets.serviceAccountPrivateKey;
+
+    if (!spreadsheetId || !serviceAccountEmail || !serviceAccountPrivateKey) {
+      return null;
+    }
+
+    const auth = new google.auth.JWT({
+      email: serviceAccountEmail,
+      key: serviceAccountPrivateKey.replace(/\\n/g, '\n'),
+      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    });
+
+    return {
+      spreadsheetId,
+      sheetName: config.googleSheets.sheetName || 'Sheet1',
+      sheets: google.sheets({ version: 'v4', auth }),
+    };
+  }
+
+  private async ensureSheetHeaders(ctx: { spreadsheetId: string; sheetName: string; sheets: any }) {
+    const headerResponse = await ctx.sheets.spreadsheets.values.get({
+      spreadsheetId: ctx.spreadsheetId,
+      range: `${ctx.sheetName}!A1:K1`,
+    });
+
+    if (!headerResponse.data.values || headerResponse.data.values.length === 0) {
+      await ctx.sheets.spreadsheets.values.update({
+        spreadsheetId: ctx.spreadsheetId,
+        range: `${ctx.sheetName}!A1:K1`,
+        valueInputOption: 'RAW',
+        requestBody: { values: [SHEET_HEADERS] },
+      });
+    }
+  }
+
+  private async getExistingSheetRfqIds(ctx: { spreadsheetId: string; sheetName: string; sheets: any }) {
+    const idResponse = await ctx.sheets.spreadsheets.values.get({
+      spreadsheetId: ctx.spreadsheetId,
+      range: `${ctx.sheetName}!B2:B`,
+    });
+
+    const rows: string[][] = idResponse.data.values || [];
+    return new Set(rows.map((row) => row[0]).filter(Boolean));
+  }
+
+  private async appendRfqRowToSheet(
+    ctx: { spreadsheetId: string; sheetName: string; sheets: any },
+    rfqData: any,
+    items: QuoteItem[]
+  ) {
+    const submittedAt = rfqData.submitted_at || rfqData.submittedAt || new Date().toISOString();
+
+    await ctx.sheets.spreadsheets.values.append({
+      spreadsheetId: ctx.spreadsheetId,
+      range: `${ctx.sheetName}!A:K`,
+      valueInputOption: 'USER_ENTERED',
+      insertDataOption: 'INSERT_ROWS',
+      requestBody: {
+        values: [[
+          submittedAt,
+          rfqData.id,
+          rfqData.session_hash || rfqData.sessionHash || '',
+          rfqData.name,
+          rfqData.email,
+          rfqData.company,
+          rfqData.notes || '',
+          String(items.length),
+          items.map((item) => `${item.quantity}x ${item.productName}`).join(' | '),
+          JSON.stringify(items),
+          rfqData.status || 'submitted',
+        ]],
+      },
+    });
   }
 
   /**

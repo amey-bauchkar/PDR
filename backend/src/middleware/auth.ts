@@ -1,6 +1,7 @@
 import { Response, NextFunction } from 'express';
 import { AppError } from '../types/index.js';
-import { AuthRequest } from './common.js';
+import type { AuthRequest } from './common.js';
+export type { AuthRequest } from './common.js';
 
 // JWT token verification middleware
 export function verifyToken(req: AuthRequest, res: Response, next: NextFunction) {

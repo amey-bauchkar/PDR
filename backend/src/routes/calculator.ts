@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import * as CalculatorController from '../controllers/CalculatorController.js';
+import * as CalculatorController from '../controllers/calculatorController.js';
 
 const router = Router();
 

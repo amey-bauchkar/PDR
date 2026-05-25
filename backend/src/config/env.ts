@@ -34,7 +34,10 @@ export const config = {
 
   googleSheets: {
     sheetsId: process.env.GOOGLE_SHEETS_ID || '',
-    apiKey: process.env.GOOGLE_SHEETS_API_KEY || '',
+    sheetName: process.env.GOOGLE_SHEETS_TAB_NAME || 'Sheet1',
+    url: process.env.GOOGLE_SHEETS_URL || '',
+    serviceAccountEmail: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || '',
+    serviceAccountPrivateKey: process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY || '',
   },
 
   email: {
