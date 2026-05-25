@@ -25,7 +25,6 @@ type ProductFormState = {
   title: string;
   description: string;
   descriptionText: string;
-  canonical: string;
   tagline: string;
   status: AdminStatus;
   imageUrl: string;
@@ -42,7 +41,6 @@ const DEFAULT_FORM: ProductFormState = {
   title: '',
   description: '',
   descriptionText: '',
-  canonical: '',
   tagline: '',
   status: 'Active',
   imageUrl: '',
@@ -129,7 +127,6 @@ export default function AdminProductForm() {
           descriptionText: prod.description
             ? prod.description.split('. ').join('\n')
             : '',
-          canonical: prod.canonical ?? '',
           tagline: prod.tagline ?? '',
           status: prod.status,
           imageUrl: prod.imageUrl ?? '',
@@ -250,7 +247,7 @@ export default function AdminProductForm() {
 
     const nextSlug = form.slug.trim() ? toSlug(form.slug) : toSlug(form.name);
     if (!nextSlug || !form.name.trim() || !form.category.trim()) {
-      setNotice('Name, category, and slug are required.');
+      setNotice('Name and category are required.');
       setNoticeType('error');
       return;
     }
@@ -279,7 +276,7 @@ export default function AdminProductForm() {
         .map((s) => s.trim())
         .filter(Boolean)
         .join('. '),
-      canonical: form.canonical.trim(),
+      canonical: existingProduct?.canonical || `https://pdrworld.com/products/${nextSlug}`,
       tagline: form.tagline.trim(),
       status: form.status,
       imageUrl: form.imageUrl.trim(),

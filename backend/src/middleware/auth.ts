@@ -1,7 +1,7 @@
-import { Response, NextFunction } from 'express';
+import { Request, Response, NextFunction, RequestHandler } from 'express';
 import { AppError } from '../types/index.js';
 import type { AuthRequest } from './common.js';
-export type { AuthRequest } from './common.js';
+export type { AuthRequest };
 
 // JWT token verification middleware
 export function verifyToken(req: AuthRequest, res: Response, next: NextFunction) {
@@ -40,8 +40,10 @@ export function requireRole(...allowedRoles: string[]) {
 }
 
 // Async error wrapper for route handlers
-export function asyncHandler(fn: Function) {
-  return (req: any, res: Response, next: NextFunction) => {
+export function asyncHandler(
+  fn: (req: any, res: Response, next: NextFunction) => Promise<any> | any
+): RequestHandler {
+  return (req: Request, res: Response, next: NextFunction) => {
     Promise.resolve(fn(req, res, next)).catch(next);
   };
 }

@@ -137,3 +137,13 @@ export interface PaginationQuery {
   sort?: string;
   order?: 'asc' | 'desc';
 }
+
+export interface ContactInquiryPayload {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  company: string;
+  inquiryType: string;
+  message: string;
+}

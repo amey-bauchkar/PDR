@@ -8,7 +8,6 @@ const router = Router();
  * RFQ routes
  */
 router.post('/submit', RfqController.submitRfq);
-router.post('/sync-to-sheets', verifyToken, RfqController.syncRfqsToSheets);
 router.get('/:id', RfqController.getRfq);
 
 // Admin only
