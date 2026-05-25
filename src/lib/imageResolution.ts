@@ -53,6 +53,18 @@ export const PASSIVE_IMAGE_MAP: Record<string, string> = {
   'smpte-assembly': smpteCable,
   soc: '/images/live/splice-on-connector.webp',
   drone: '/images/live/optical-fiber-drone.webp',
+  // --- Previously missing products (Layer 1 canonical fix) ---
+  'armoured-patchcord': fiberPigtails,
+  'pof-patchcord': fiberPigtails,
+  'bendiboot-patchcord': fiberPigtails,
+  'lc-uniboot': fiberPigtails,
+  'mating-sleeve': bareFiber,
+  'regular-opm': '/images/live/mini-optical-power-meter.jpg',
+  'pocket-otdr': '/images/live/mini-otdr-pdr4402s.png',
+  'next-gen-splicer': '/images/live/fusion-splicer-pdr618h.png',
+  vfl: '/images/live/fiber-optic-cleaner-pen.png',
+  'splice-sleeves': '/images/live/cold-shrink-sleeve.png',
+  'fiber-spool': '/images/live/rapid-push-cable-assembly.png',
 };
 
 const catalogueImageBySlug = new Map<string, string>();
