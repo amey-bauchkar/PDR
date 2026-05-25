@@ -5,7 +5,7 @@ const router = Router();
 /**
  * Health check endpoint
  */
-router.get('/', (req: Request, res: Response) => {
+router.get('/health', (req: Request, res: Response) => {
   res.json({
     status: 'OK',
     timestamp: Date.now(),
