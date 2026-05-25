@@ -507,16 +507,6 @@ export default function AdminProductForm() {
                     )}
                   </div>
 
-                  <div className="admin-form-group">
-                    <label>URL Slug</label>
-                    <input 
-                      value={form.slug} 
-                      onChange={(e) => setForm({...form, slug: e.target.value})} 
-                      placeholder="e.g. active-optical-cable (leave blank to auto-generate)"
-                      className="admin-search"
-                      style={{ width: '100%' }}
-                    />
-                  </div>
 
                   <div className="admin-form-group">
                     <label>Tagline</label>
@@ -589,16 +579,6 @@ export default function AdminProductForm() {
                     />
                   </div>
 
-                  <div className="admin-form-group">
-                    <label>Canonical URL</label>
-                    <input 
-                      value={form.canonical} 
-                      onChange={(e) => setForm({...form, canonical: e.target.value})} 
-                      placeholder="e.g. https://pdrworld.com/products/active-optical-cable"
-                      className="admin-search"
-                      style={{ width: '100%' }}
-                    />
-                  </div>
 
                   <div className="admin-form-group">
                     <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
