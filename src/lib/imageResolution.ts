@@ -51,8 +51,8 @@ export const PASSIVE_IMAGE_MAP: Record<string, string> = {
   'rapid-push': rapidPush,
   'hybrid-adapter': scAdapter,
   'smpte-assembly': smpteCable,
-  soc: '/images/live/splice-on-connector.webp',
-  drone: '/images/live/optical-fiber-drone.webp',
+  soc: '/images/live/fiber-optic-connector-field-installable.png',
+  drone: '/images/hero-infrastructure.webp',
   // --- Previously missing products (Layer 1 canonical fix) ---
   'armoured-patchcord': fiberPigtails,
   'pof-patchcord': fiberPigtails,

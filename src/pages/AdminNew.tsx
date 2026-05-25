@@ -13,6 +13,7 @@ import {
   verifyCredentials,
 } from '../lib/adminAuth';
 import { getAdminProducts, saveProduct, deleteProduct } from '../lib/productSync';
+import { resolveCanonicalProductImage } from '../lib/imageResolution';
 import { supabase } from '../lib/supabase';
 import '../styles/admin-enhanced.css';
 
@@ -834,11 +835,14 @@ export default function AdminNew() {
                             <div className="admin-products-grid">
                               {productsInCategory.map((product) => (
                                 <div key={product.slug} className="admin-product-card">
-                                  {product.imageUrl && (
-                                    <div className="admin-product-image">
-                                      <img src={product.imageUrl} alt={product.name} />
-                                    </div>
-                                  )}
+                                  {(() => {
+                                    const displayImg = resolveCanonicalProductImage(product.slug, product.imageUrl, product.category);
+                                    return displayImg ? (
+                                      <div className="admin-product-image">
+                                        <img src={displayImg} alt={product.name} />
+                                      </div>
+                                    ) : null;
+                                  })()}
                                   <div className="admin-product-details">
                                     <h4>{product.name}</h4>
                                     <p className="admin-product-slug">{product.slug}</p>
