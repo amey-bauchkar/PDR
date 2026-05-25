@@ -589,7 +589,7 @@
             {
               "slug": "armoured-patchcord",
               "tag": "Armoured",
-              "img": "",
+              "img": "/images/live/fiber-optic-patch-cords-and-pigtails.png",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><path d=\"M12 20v8M16 20v8M20 20v8M24 20v8M28 20v8M32 20v8M36 20v8\"></path></svg>",
               "name": "Armoured Patchcord",
               "blurb": "Ruggedized armoured cable assembly with stainless steel interlocking armour for harsh environments.",
@@ -607,7 +607,7 @@
             {
               "slug": "pof-patchcord",
               "tag": "POF",
-              "img": "",
+              "img": "/images/live/fiber-optic-patch-cords-and-pigtails.png",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><circle cx=\"24\" cy=\"24\" r=\"6\"></circle></svg>",
               "name": "POF — Plastic Optical Fiber Patchcord",
               "blurb": "Large-core plastic fiber for short-range consumer and industrial communication links.",
@@ -625,7 +625,7 @@
             {
               "slug": "bendiboot-patchcord",
               "tag": "90°",
-              "img": "",
+              "img": "/images/live/fiber-optic-patch-cords-and-pigtails.png",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M16 32V16h16\"></path></svg>",
               "name": "Bendiboot Patchcord",
               "blurb": "90-degree angled boot design for high-density panels with restricted bend radius.",
@@ -643,7 +643,7 @@
             {
               "slug": "lc-uniboot",
               "tag": "Uniboot",
-              "img": "",
+              "img": "/images/live/fiber-optic-patch-cords-and-pigtails.png",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h20\"></path><rect x=\"28\" y=\"20\" width=\"12\" height=\"8\" rx=\"2\"></rect></svg>",
               "name": "LC Uniboot Patchcord",
               "blurb": "Single-jacket duplex LC connector for reversible polarity in high-density OM3/OM4 environments.",
@@ -684,7 +684,7 @@
             {
               "slug": "mating-sleeve",
               "tag": "Sleeve",
-              "img": "",
+              "img": "/images/live/bare-fiber-adapter.png",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"20\" y=\"12\" width=\"8\" height=\"24\" rx=\"2\"></rect><line x1=\"8\" y1=\"24\" x2=\"20\" y2=\"24\"></line><line x1=\"28\" y1=\"24\" x2=\"40\" y2=\"24\"></line></svg>",
               "name": "Mating Sleeve / Alignment Sleeve",
               "blurb": "Precision ceramic or bronze split sleeve for bare fiber alignment in fusion splicing and testing.",
@@ -1186,7 +1186,7 @@
             {
               "slug": "regular-opm",
               "tag": "OPM",
-              "img": "",
+              "img": "/images/live/mini-optical-power-meter.jpg",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"12\" y=\"8\" width=\"24\" height=\"32\" rx=\"4\"></rect><rect x=\"16\" y=\"14\" width=\"16\" height=\"10\" rx=\"1\"></rect><circle cx=\"24\" cy=\"32\" r=\"3\"></circle></svg>",
               "name": "Regular Optical Power Meter",
               "blurb": "Standard bench/field OPM for 800-1700nm range, auto-wavelength detection, LCD display.",
@@ -1227,7 +1227,7 @@
             {
               "slug": "pocket-otdr",
               "tag": "Pocket",
-              "img": "",
+              "img": "/images/live/mini-otdr-pdr4402s.png",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"10\" width=\"20\" height=\"28\" rx=\"2\"></rect><rect x=\"16\" y=\"14\" width=\"16\" height=\"12\" rx=\"1\"></rect><circle cx=\"24\" cy=\"32\" r=\"2\"></circle></svg>",
               "name": "Pocket OTDR",
               "blurb": "Ultra-compact handheld OTDR for quick field checks; single-mode and multimode models.",
@@ -1268,7 +1268,7 @@
             {
               "slug": "next-gen-splicer",
               "tag": "Pro",
-              "img": "",
+              "img": "/images/live/fusion-splicer-pdr618h.png",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"10\" y=\"14\" width=\"28\" height=\"20\" rx=\"3\"></rect><path d=\"M16 14V10h16v4\"></path><circle cx=\"24\" cy=\"24\" r=\"4\"></circle><path d=\"M10 24H6\"></path><path d=\"M42 24h-4\"></path></svg>",
               "name": "Next Gen Optical Fusion Splicer (OPM + VFL)",
               "blurb": "Advanced splicer with integrated optical power meter and visual fault locator.",
@@ -1544,7 +1544,7 @@
             {
               "slug": "vfl",
               "tag": "VFL",
-              "img": "",
+              "img": "/images/live/fiber-optic-cleaner-pen.png",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M24 10l4 8 8 4-8 4-4 8-4-8-8-4 8-4z\"></path><circle cx=\"24\" cy=\"24\" r=\"2\"></circle></svg>",
               "name": "VFL - Visual Fault Locator",
               "blurb": "650nm visible red laser (1mW) to detect breaks, micro-bends, and faults up to 10km.",
@@ -1582,7 +1582,7 @@
             {
               "slug": "splice-sleeves",
               "tag": "Sleeves",
-              "img": "",
+              "img": "/images/live/cold-shrink-sleeve.png",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"20\" width=\"20\" height=\"8\" rx=\"4\"></rect><line x1=\"8\" y1=\"24\" x2=\"40\" y2=\"24\"></line></svg>",
               "name": "Splice Sleeves",
               "blurb": "Heat-shrink protection for fusion splices, available in standard 60mm and 40mm lengths.",
@@ -1620,7 +1620,7 @@
             {
               "slug": "fiber-spool",
               "tag": "Spool",
-              "img": "",
+              "img": "/images/live/rapid-push-cable-assembly.png",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><circle cx=\"24\" cy=\"24\" r=\"16\"></circle><circle cx=\"24\" cy=\"24\" r=\"6\"></circle><path d=\"M24 8v16\"></path><path d=\"M8 24h16\"></path></svg>",
               "name": "Fiber Spool / Fiber Drum",
               "blurb": "Precision-wound fiber optic spool for storage, testing, and emergency field restoration. Available in SM and MM, 100m – 2km lengths.",
