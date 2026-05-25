@@ -8,9 +8,6 @@ import { ProductFilter } from '../types/index.js';
  * Get all products with optional filters and pagination
  */
 export const getProducts = asyncHandler(async (req: AuthRequest, res: Response) => {
-  const page = parseInt(req.query.page as string) || 1;
-  const pageSize = parseInt(req.query.pageSize as string) || 10;
-
   const filters: ProductFilter = {
     environment: req.query.environment as string,
     mountType: req.query.mountType as string,
@@ -19,7 +16,14 @@ export const getProducts = asyncHandler(async (req: AuthRequest, res: Response) 
     maxCapacity: req.query.maxCapacity ? parseInt(req.query.maxCapacity as string) : undefined,
   };
 
-  const result = await productService.getProducts(filters, page, pageSize);
+  let result;
+  if (req.query.page) {
+    const page = parseInt(req.query.page as string) || 1;
+    const pageSize = parseInt(req.query.pageSize as string) || 10;
+    result = await productService.getProducts(filters, page, pageSize);
+  } else {
+    result = await productService.getProducts(filters);
+  }
 
   res.json({
     success: true,
@@ -84,3 +88,43 @@ export const searchProducts = asyncHandler(async (req: AuthRequest, res: Respons
     timestamp: Date.now(),
   });
 });
+
+/**
+ * POST /api/products
+ * Create a new product
+ */
+export const createProduct = asyncHandler(async (req: AuthRequest, res: Response) => {
+  const newProduct = await productService.createProduct(req.body);
+  res.status(201).json({
+    success: true,
+    data: newProduct,
+    timestamp: Date.now(),
+  });
+});
+
+/**
+ * PUT /api/products/:slug
+ * Update an existing product
+ */
+export const updateProduct = asyncHandler(async (req: AuthRequest, res: Response) => {
+  const updatedProduct = await productService.updateProduct(req.params.slug, req.body);
+  res.json({
+    success: true,
+    data: updatedProduct,
+    timestamp: Date.now(),
+  });
+});
+
+/**
+ * DELETE /api/products/:slug
+ * Delete product by slug
+ */
+export const deleteProduct = asyncHandler(async (req: AuthRequest, res: Response) => {
+  await productService.deleteProduct(req.params.slug);
+  res.json({
+    success: true,
+    data: { slug: req.params.slug },
+    timestamp: Date.now(),
+  });
+});
+

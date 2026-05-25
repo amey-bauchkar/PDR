@@ -1,4 +1,5 @@
-import { supabaseServiceClient } from '../config/database.js';
+import { supabaseServiceClient as rawSupabaseServiceClient } from '../config/database.js';
+const supabaseServiceClient = rawSupabaseServiceClient!;
 import { AppError, ContactInquiryPayload } from '../types/index.js';
 
 export class ContactService {

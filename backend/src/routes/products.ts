@@ -8,8 +8,13 @@ const router = Router();
  */
 router.get('/', ProductController.getProducts);
 router.get('/search', ProductController.searchProducts);
-router.get('/category/:categoryId', ProductController.getProductsByCategory);
-router.get('/:id/configuration-options', ProductController.getProductConfigurationOptions);
 router.get('/:id', ProductController.getProduct);
+router.get('/:id/configuration-options', ProductController.getProductConfigurationOptions);
+router.get('/category/:categoryId', ProductController.getProductsByCategory);
+
+// Product CRUD routes
+router.post('/', ProductController.createProduct);
+router.put('/:slug', ProductController.updateProduct);
+router.delete('/:slug', ProductController.deleteProduct);
 
 export default router;
