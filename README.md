@@ -1,73 +1,182 @@
-# React + TypeScript + Vite
+# PDR World — Fiber Optic & Network Infrastructure Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Modern enterprise-grade product catalogue and RFQ platform built for PDR World, focused on fiber optic infrastructure, active/passive networking components, cable management, testing equipment, and industrial optical solutions.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Product Catalogue
 
-## React Compiler
+* Structured multi-category product architecture
+* Active Components
+* Passive Components
+* Cable Management
+* Test & Measuring Equipment
+* Optical Fiber Drone
+* Maintenance Tools
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Product Experience
 
-## Expanding the ESLint configuration
+* Dedicated product detail pages
+* Technical specifications
+* Datasheet preview support
+* Responsive product grids
+* Consistent product image rendering
+* Product categorization aligned with wireframe structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### RFQ (Request For Quote) System
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+* Add to Quote workflow
+* Interactive Quote Cart
+* 2-step RFQ submission experience
+* Product quantity management
+* Compact request summary
+* Inquiry submission form
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Datasheet System
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+* Legacy datasheet migration from original PDR website
+* Inline PDF preview support
+* Fallback dynamic datasheet generation
+* Product-to-datasheet mapping system
+
+### Media & Resources
+
+* Video gallery support
+* Technical demonstrations
+* Factory tour previews
+* Resources section
+
+### UX Improvements
+
+* Mobile responsive layout
+* Clean category hierarchy
+* Improved spacing and visual rhythm
+* Consistent image pipeline across:
+  * catalogue
+  * product pages
+  * cart
+  * RFQ summary
+
+---
+
+# 🛠️ Tech Stack
+
+* React
+* TypeScript
+* Vite
+* Tailwind CSS
+* React Router
+* jsPDF
+* Node.js utility scripts
+
+---
+
+# 📂 Project Structure
+
+```bash
+src/
+ ├── components/
+ ├── pages/
+ ├── data/
+ ├── styles/
+ ├── lib/
+ ├── hooks/
+ └── assets/
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+# ⚙️ Installation
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/Foremark-Technologies/pdr.git
+
+cd pdr
+
+npm install
 ```
+
+---
+
+# ▶️ Run Development Server
+
+```bash
+npm run dev
+```
+
+---
+
+# 🏗️ Production Build
+
+```bash
+npm run build
+```
+
+---
+
+# 📑 Datasheet Architecture
+
+The project supports two datasheet systems:
+
+### 1. Real Legacy Datasheets
+
+Mapped PDFs migrated from the original PDR website.
+
+### 2. Fallback Dynamic Datasheets
+
+Auto-generated PDFs using jsPDF for products without legacy datasheets.
+
+---
+
+# 🧩 RFQ Workflow
+
+```text
+Add to Quote
+   ↓
+Quote Cart
+   ↓
+Proceed to Request
+   ↓
+Request Details Form
+   ↓
+Submit RFQ
+```
+
+---
+
+# 🔒 Stability & Architecture Notes
+
+* SEO-safe routing preserved
+* Product slugs remain stable
+* Datasheet mappings preserved
+* Canonical image resolution system implemented
+* Responsive behavior maintained
+* Wireframe-aligned catalogue structure
+
+---
+
+# 📸 Key Improvements Completed
+
+* Catalogue cleanup & wireframe alignment
+* Product hierarchy restructuring
+* Duplicate removal
+* Datasheet migration & preview support
+* RFQ UX enhancement
+* Cart image consistency fixes
+* Product image pipeline unification
+* Video section improvements
+* Responsive layout refinements
+
+---
+
+# 👨💻 Development Notes
+
+This repository contains the modernized implementation of the PDR World product and RFQ ecosystem with focus on:
+
+* scalable product architecture
+* enterprise RFQ workflows
+* technical catalogue usability
+* legacy asset preservation
+* modern responsive UX
+
+---

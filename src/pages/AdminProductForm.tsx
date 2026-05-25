@@ -504,6 +504,7 @@ export default function AdminProductForm() {
                     )}
                   </div>
 
+
                   <div className="admin-form-group">
                     <label>Tagline</label>
                     <input 
@@ -574,6 +575,7 @@ export default function AdminProductForm() {
                       style={{ width: '100%' }}
                     />
                   </div>
+
 
                   <div className="admin-form-group">
                     <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

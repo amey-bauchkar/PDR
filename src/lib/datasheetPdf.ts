@@ -251,7 +251,7 @@ export function downloadProductDatasheet(product: ProductDatasheetInput) {
     doc.text(`Page ${i} of ${totalPages}`, 190, 286, { align: 'right' });
   }
 
-  // Save the document with safe slug filename
-  const safeFilename = `${product.slug.replace(/[^a-z0-9_-]/gi, '_')}_datasheet.pdf`;
-  doc.save(safeFilename);
+  // Return the document as an inline preview blob URL
+  const pdfBlobUrl = doc.output('bloburl');
+  return typeof pdfBlobUrl === 'string' ? pdfBlobUrl : (pdfBlobUrl as any).toString();
 }

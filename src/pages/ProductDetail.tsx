@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
+import { useRfqCart } from '../components/RfqCartProvider';
 import Seo from '../components/Seo';
 import { ProductSchema, BreadcrumbSchema } from '../components/Schema';
 import productsData from '../data/products.json';
-import catalogueData from '../data/catalogue.json';
 import { mergeWithProducts } from '../lib/productSync';
+import { resolveCanonicalProductImage, getFallbackImage } from '../lib/imageResolution';
 
 type Product = {
   slug: string;
@@ -23,26 +24,11 @@ type Product = {
   datasheetUrl?: string;
 };
 
-const catalogueImageBySlug = new Map<string, string>();
-const categoryFallbackImage: Record<string, string> = {
-  'Active Components': 'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=900&q=80',
-  'Passive Components': 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=900&q=80',
-  'Cable Management Devices': 'https://images.unsplash.com/photo-1581092335878-4f8e1f9d9f8a?auto=format&fit=crop&w=900&q=80',
-  'Test & Measuring Equipment': 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80',
-  'Maintenance Tools': 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=900&q=80',
-  'Specialty Products': 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=80',
-};
-
-for (const section of (catalogueData as { sections?: { groups?: { cards?: { slug: string; img?: string }[] }[] }[] }).sections ?? []) {
-  for (const group of section.groups ?? []) {
-    for (const card of group.cards ?? []) {
-      if (card.img && card.img.trim()) catalogueImageBySlug.set(card.slug, card.img);
-    }
-  }
-}
 
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
+  const { addItem } = useRfqCart();
+  const [added, setAdded] = useState(false);
   const [products, setProducts] = useState<Product[]>(() => mergeWithProducts(productsData));
 
   useEffect(() => {
@@ -58,7 +44,7 @@ export default function ProductDetail() {
   }, []);
 
   const product = products.find((p) => p.slug === slug);
-  const detailImage = product?.imageUrl || (slug ? catalogueImageBySlug.get(slug) : undefined) || categoryFallbackImage[product?.category ?? ''] || categoryFallbackImage['Passive Components'];
+  const detailImage = resolveCanonicalProductImage(product?.slug, product?.imageUrl, product?.category);
 
   if (!product) return <Navigate to="/404" replace />;
 
@@ -119,7 +105,10 @@ export default function ProductDetail() {
                 className="pd-image"
                 loading="eager"
                 onError={(event) => {
-                  event.currentTarget.src = categoryFallbackImage['Passive Components'];
+                  const fallback = getFallbackImage(product?.category);
+                  if (!event.currentTarget.src.endsWith(fallback)) {
+                    event.currentTarget.src = fallback;
+                  }
                 }}
               />
             </div>
@@ -140,15 +129,28 @@ export default function ProductDetail() {
               <p style={{ color: '#475569', fontSize: 20, lineHeight: 1.6, marginBottom: 24 }}>{product.tagline}</p>
 
               <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-                <Link to={`/contact?inquiry=Quote+for+${product.slug}`} className="btn btn-primary" style={{ padding: '16px 32px', fontSize: 16 }}>
-                  Request Quote
-                </Link>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  style={{ padding: '16px 32px', fontSize: 16 }}
+                  onClick={() => {
+                    addItem({
+                      title: product.name,
+                      specs: product.specs?.[0] ? `${product.specs[0].label}: ${product.specs[0].value}` : 'Standard Specs',
+                      image: detailImage || '/placeholder.webp',
+                      qty: 1,
+                    });
+                    setAdded(true);
+                    setTimeout(() => setAdded(false), 1500);
+                  }}
+                >
+                  {added ? '✓ Added' : 'Add to Quote'}
+                </button>
                 {product.datasheetUrl ? (
                   <a
                     href={product.datasheetUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    download={`${product.slug}-datasheet.pdf`}
                     className="btn btn-outline"
                     style={{ padding: '16px 32px', fontSize: 16, display: 'flex', alignItems: 'center', gap: 8 }}
                   >
@@ -165,8 +167,13 @@ export default function ProductDetail() {
                   <button
                     type="button"
                     onClick={() => {
+                      const newWindow = window.open('', '_blank');
+                      if (newWindow) {
+                        newWindow.document.write('<div style="font-family:sans-serif;padding:40px;text-align:center;color:#475569;">Generating datasheet...</div>');
+                      }
+                      
                       import('../lib/datasheetPdf').then(({ downloadProductDatasheet }) => {
-                        downloadProductDatasheet({
+                        const pdfUrl = downloadProductDatasheet({
                           slug: product.slug,
                           name: product.name,
                           category: product.category,
@@ -179,6 +186,12 @@ export default function ProductDetail() {
                           specs: product.specs || [],
                           related: product.related || [],
                         });
+                        
+                        if (newWindow) {
+                          newWindow.location.href = pdfUrl;
+                        } else {
+                          window.location.href = pdfUrl;
+                        }
                       });
                     }}
                     className="btn btn-outline"

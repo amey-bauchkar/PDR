@@ -3,23 +3,7 @@ import { Link } from 'react-router-dom';
 import { useRfqCart } from '../RfqCartProvider';
 import catalogue from '../../data/catalogue.json';
 import { productsCategoryHref } from '../../data/productCategoryRoutes';
-import attenuatorImg from '../../assets/images/products/passive/attenuator.webp';
-import bareFiber from '../../assets/images/products/passive/bare-fiber-adapter.webp';
-import cat6Cord from '../../assets/images/products/passive/cat6-patch-cord.webp';
-import cat6Panel from '../../assets/images/products/passive/cat6-patch-panel.webp';
-import cpri from '../../assets/images/products/passive/cpri-patchcord.webp';
-import cwdm from '../../assets/images/products/passive/cwdm-mux.webp';
-import dwdm from '../../assets/images/products/passive/dwdm-mux.webp';
-import fanout from '../../assets/images/products/passive/fanout-patch-cords.webp';
-import fiberConnector from '../../assets/images/products/passive/fiber-connector.webp';
-import fiberPigtails from '../../assets/images/products/passive/fiber-patch-pigtails.webp';
-import loopback from '../../assets/images/products/passive/loopback-patch-cord.webp';
-import modeConditioning from '../../assets/images/products/passive/mode-conditioning-patchcord.webp';
-import mpoCable from '../../assets/images/products/passive/mpo-cable-assembly.webp';
-import plcSplitter from '../../assets/images/products/passive/plc-splitter.webp';
-import rapidPush from '../../assets/images/products/passive/rapid-push-cable.webp';
-import scAdapter from '../../assets/images/products/passive/sc-apc-to-sc-upc-adapter.webp';
-import smpteCable from '../../assets/images/products/passive/smpte-cable.webp';
+import { resolveCanonicalProductImage, getFallbackImage } from '../../lib/imageResolution';
 
 export type CatalogCard = {
   slug: string;
@@ -36,41 +20,7 @@ export type CatalogCard = {
 export type CatalogGroup = { subhead: string; cards: CatalogCard[] };
 export type CatalogSection = { id: string; eyebrow: string; heading: string; intro: string; groups: CatalogGroup[] };
 
-const CATEGORY_IMAGE_MAP: Record<string, string> = {
-  active: '/images/sfp-transceiver.webp',
-  passive: '/images/fiber-patchcord.webp',
-  cable: '/images/fiber-patch-panel.webp',
-  test: '/images/fiber-patch-panel.webp',
-  specialty: '/images/hero-infrastructure.webp',
-  tools: '/images/fiber-patch-panel.webp',
-};
 
-const PASSIVE_IMAGE_MAP: Record<string, string> = {
-  attenuator: attenuatorImg,
-  'bare-fiber-adapter': bareFiber,
-  'cat6-patch-cord': cat6Cord,
-  'cat6-patch-panel': cat6Panel,
-  'cat6-panel': cat6Panel,
-  'cpri-patchcord': cpri,
-  cwdm,
-  dwdm,
-  'fanout-patch-cords': fanout,
-  'field-connector': fiberConnector,
-  'fo-patchcords': fiberPigtails,
-  loopback,
-  'mode-conditioning': modeConditioning,
-  'mpo-assembly': mpoCable,
-  'plc-splitter': plcSplitter,
-  'rapid-push': rapidPush,
-  'sc-apc-upc': scAdapter,
-  'smpte-assembly': smpteCable,
-};
-
-const resolveCardImage = (card: CatalogCard, sectionId: string) => {
-  if (PASSIVE_IMAGE_MAP[card.slug]) return PASSIVE_IMAGE_MAP[card.slug];
-  if (card.img && card.img.trim().length > 0) return card.img;
-  return CATEGORY_IMAGE_MAP[sectionId] ?? CATEGORY_IMAGE_MAP.passive;
-};
 
 export function CatalogProductCard({ card, sectionId }: { card: CatalogCard; sectionId: string }) {
   const { addItem } = useRfqCart();
@@ -80,7 +30,7 @@ export function CatalogProductCard({ card, sectionId }: { card: CatalogCard; sec
     addItem({
       title: card.addItem?.title || card.name || 'Product',
       specs: card.addItem?.specs || 'Standard Specs',
-      image: card.addItem?.image || '/placeholder.webp',
+      image: resolveCanonicalProductImage(card.slug, undefined, sectionId),
       qty: 1,
     });
     setAdded(true);
@@ -90,21 +40,23 @@ export function CatalogProductCard({ card, sectionId }: { card: CatalogCard; sec
   return (
     <div className="pr-pcard product-card reveal" data-product={card.slug || 'unknown'}>
       <div className="pr-pcard-art">
-        {card.tag && <span className="pr-prod-tag">{card.tag}</span>}
-        {PASSIVE_IMAGE_MAP[card.slug] || card.slug === 'attenuator' || card.img || CATEGORY_IMAGE_MAP[sectionId] ? (
+        {card.heroSvg && !card.img ? (
+          <span dangerouslySetInnerHTML={{ __html: card.heroSvg }} />
+        ) : (
           <img
-            src={resolveCardImage(card, sectionId)}
+            src={resolveCanonicalProductImage(card.slug, undefined, sectionId)}
             alt={card.name || 'Product Image'}
             className="real-img"
             loading="lazy"
             width="400"
             height="300"
             onError={(event) => {
-              event.currentTarget.src = attenuatorImg || '/placeholder.webp';
+              const fallback = getFallbackImage(sectionId);
+              if (!event.currentTarget.src.endsWith(fallback)) {
+                event.currentTarget.src = fallback;
+              }
             }}
           />
-        ) : (
-          <span dangerouslySetInnerHTML={{ __html: card.heroSvg || '' }} />
         )}
       </div>
       <div className="pr-pcard-body">
@@ -165,16 +117,8 @@ export function CatalogCategorySection({
   alt: boolean;
   omitIntroHead?: boolean;
 }) {
-  const excludedProducts = [
-    'Armoured Patchcord',
-    'POF — Plastic Optical Fiber Patchcord',
-    'Bendiboot Patchcord',
-    'LC Uniboot Patchcord',
-    'Mating Sleeve / Alignment Sleeve',
-  ];
-
   return (
-    <section className={`section reveal${alt ? ' sec-muted' : ''}`} id={section.id}>
+    <section className={`section pr-section reveal${alt ? ' sec-muted' : ''}`} id={section.id}>
       <div className="container">
         {!omitIntroHead && (
           <div className="sec-head">
@@ -185,12 +129,11 @@ export function CatalogCategorySection({
         )}
         {section.groups && section.groups.length > 0 ? (
           section.groups.map((g, i) => (
-            <div key={i}>
+            <div key={i} className="pr-group">
               {g.subhead && <h3 className="pr-sub-head">{g.subhead}</h3>}
               <div className="pr-grid">
                 {g.cards && g.cards.length > 0 ? (
                   g.cards
-                    .filter((c) => !excludedProducts.includes(c.name))
                     .map((c, idx) => <CatalogProductCard key={c.slug || idx} card={c} sectionId={section.id} />)
                 ) : (
                   <div>No products available in this category.</div>
@@ -208,7 +151,7 @@ export function CatalogCategorySection({
 
 export function ProductsTrustBand() {
   return (
-    <section className="section reveal pr-trust-band">
+    <section className="section pr-section reveal pr-trust-band">
       <div className="container">
         <div className="pr-trust-layout">
           <div>
@@ -248,7 +191,7 @@ export function ProductsTrustBand() {
 
 export function ProductsCustomCta() {
   return (
-    <section className="section">
+    <section className="section pr-section">
       <div className="container">
         <div className="pr-custom-cta">
           <div className="eyebrow pr-custom-eyebrow">Need a Custom Configuration?</div>

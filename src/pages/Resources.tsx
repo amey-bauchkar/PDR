@@ -75,8 +75,7 @@ export default function Resources() {
 
           <div className="rs-media-grid">
             <a href="https://www.youtube.com/channel/UCTOAYCstGJNZulaOF0TXGlg" target="_blank" rel="noopener noreferrer" className="rs-video-card">
-              <div className="rs-video-thumb">
-                <span className="pr-prod-tag" style={{ position: 'absolute', bottom: 16, left: 16, zIndex: 2, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }}>Fusion Splicer</span>
+              <div className="rs-video-thumb" style={{ backgroundImage: 'url("/images/live/fusion-splicer-pdr618h.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="rs-play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z" /></svg></div>
               </div>
               <div className="rs-video-info">
@@ -86,8 +85,7 @@ export default function Resources() {
             </a>
 
             <a href="https://www.youtube.com/channel/UCTOAYCstGJNZulaOF0TXGlg" target="_blank" rel="noopener noreferrer" className="rs-video-card">
-              <div className="rs-video-thumb">
-                <span className="pr-prod-tag" style={{ position: 'absolute', bottom: 16, left: 16, zIndex: 2, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }}>OTDR</span>
+              <div className="rs-video-thumb" style={{ backgroundImage: 'url("/images/live/mini-otdr-pdr4402s.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="rs-play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z" /></svg></div>
               </div>
               <div className="rs-video-info">
@@ -97,8 +95,7 @@ export default function Resources() {
             </a>
 
             <a href="https://www.youtube.com/channel/UCTOAYCstGJNZulaOF0TXGlg" target="_blank" rel="noopener noreferrer" className="rs-video-card">
-              <div className="rs-video-thumb">
-                <span className="pr-prod-tag" style={{ position: 'absolute', bottom: 16, left: 16, zIndex: 2, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }}>Factory Tour</span>
+              <div className="rs-video-thumb" style={{ backgroundImage: 'url("/images/factory-modern.webp")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="rs-play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z" /></svg></div>
               </div>
               <div className="rs-video-info">
