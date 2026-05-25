@@ -1,12 +1,25 @@
 import { useState, useEffect } from 'react';
 import { useRfqCart } from './RfqCartProvider';
 import { getFallbackImage } from '../lib/imageResolution';
+import productsData from '../data/products.json';
+import { mergeWithProducts } from '../lib/productSync';
 
 export default function RfqCartWidget() {
   const { items, isOpen, removeItem, updateQty, open, close, submit } = useRfqCart();
   const [submitting, setSubmitting] = useState(false);
   const [step, setStep] = useState<1 | 2>(1);
   const total = items.reduce((s, i) => s + i.qty, 0);
+  const [products, setProducts] = useState(() => mergeWithProducts(productsData));
+
+  useEffect(() => {
+    const handleStorage = () => setProducts(mergeWithProducts(productsData));
+    window.addEventListener('storage', handleStorage);
+    window.addEventListener('pdrworld-product-update', handleStorage);
+    return () => {
+      window.removeEventListener('storage', handleStorage);
+      window.removeEventListener('pdrworld-product-update', handleStorage);
+    };
+  }, []);
 
   useEffect(() => {
     if (!isOpen) {
@@ -93,10 +106,18 @@ export default function RfqCartWidget() {
             items.length === 0 ? (
               <p style={{ textAlign: 'center', color: 'var(--muted)', padding: '40px 0' }}>Your cart is empty.</p>
             ) : (
-              items.map((item, idx) => (
+              items.map((item, idx) => {
+                let displayImage = item.image;
+                if (item.image === '/placeholder.webp') {
+                  const matchedProduct = products.find(p => p.name === item.title);
+                  if (matchedProduct && matchedProduct.imageUrl) {
+                    displayImage = matchedProduct.imageUrl;
+                  }
+                }
+                return (
                 <div key={`${item.title}-${item.specs}`} className="rfq-item">
                   <img
-                    src={item.image}
+                    src={displayImage}
                     className="rfq-item-img"
                     alt={item.title}
                     onError={(e) => {
@@ -119,7 +140,8 @@ export default function RfqCartWidget() {
                     </div>
                   </div>
                 </div>
-              ))
+                );
+              })
             )
           ) : (
             <div className="rfq-step2">
@@ -129,10 +151,18 @@ export default function RfqCartWidget() {
                   <button onClick={() => setStep(1)} style={{ background: 'none', border: 'none', color: 'var(--accent)', cursor: 'pointer', fontSize: 13, fontWeight: 600 }}>Edit Cart</button>
                 </div>
                 <div style={{ display: 'flex', gap: 12, overflowX: 'auto', padding: '8px 0' }}>
-                  {items.map((item, idx) => (
+                  {items.map((item, idx) => {
+                     let displayImage = item.image;
+                     if (item.image === '/placeholder.webp') {
+                       const matchedProduct = products.find(p => p.name === item.title);
+                       if (matchedProduct && matchedProduct.imageUrl) {
+                         displayImage = matchedProduct.imageUrl;
+                       }
+                     }
+                     return (
                      <div key={idx} style={{ position: 'relative', flexShrink: 0, width: 48, height: 48, background: '#fff', borderRadius: 6, border: '1px solid var(--line)', padding: 4 }} title={`${item.qty}x ${item.title}`}>
                         <img
-                          src={item.image}
+                          src={displayImage}
                           alt={item.title}
                           style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                           onError={(e) => {
@@ -144,7 +174,8 @@ export default function RfqCartWidget() {
                         />
                         <div style={{ position: 'absolute', top: -6, right: -6, background: 'var(--accent)', color: '#fff', fontSize: 10, fontWeight: 'bold', padding: '2px 6px', borderRadius: 99, boxShadow: '0 2px 4px rgba(0,0,0,0.15)', zIndex: 2 }}>{item.qty}</div>
                      </div>
-                  ))}
+                     );
+                  })}
                 </div>
               </div>
               <form id="rfq-form" className="rfq-form" onSubmit={handleSubmit}>

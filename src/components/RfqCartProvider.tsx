@@ -43,7 +43,11 @@ export function RfqCartProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    } catch (error) {
+      console.warn('Failed to save RFQ cart to localStorage (likely quota exceeded):', error);
+    }
   }, [items]);
 
   useEffect(() => {
@@ -65,14 +69,17 @@ export function RfqCartProvider({ children }: { children: React.ReactNode }) {
   }, [isOpen]);
 
   const addItem = useCallback((item: QuoteItem) => {
+    const safeImage = item.image && item.image.startsWith('data:') ? '/placeholder.webp' : item.image;
+    const safeItem = { ...item, image: safeImage };
+    
     setItems((prev) => {
-      const idx = prev.findIndex((p) => p.title === item.title && p.specs === item.specs);
+      const idx = prev.findIndex((p) => p.title === safeItem.title && p.specs === safeItem.specs);
       if (idx >= 0) {
         const next = prev.slice();
-        next[idx] = { ...next[idx], qty: next[idx].qty + item.qty };
+        next[idx] = { ...next[idx], qty: next[idx].qty + safeItem.qty };
         return next;
       }
-      return [...prev, item];
+      return [...prev, safeItem];
     });
     setIsOpen(true);
   }, []);
