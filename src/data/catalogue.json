@@ -57,10 +57,6 @@
     {
       "target": "specialty",
       "label": "Optical Fiber Drone"
-    },
-    {
-      "target": "tools",
-      "label": "Maintenance Tools"
     }
   ],
   "sections": [
@@ -73,25 +69,6 @@
         {
           "subhead": "SFP Transceivers",
           "cards": [
-            {
-              "slug": "sfp-transceivers",
-              "tag": "SFP",
-              "img": "/images/live/fiber-optic-transceivers-sfp.png",
-              "heroSvg": "",
-              "name": "Fiber Optic Transceivers (SFP)",
-              "blurb": "High performance and cost effective modules for serial optical data communication applications.",
-              "pills": [
-                "Multi-Rate",
-                "Hot-Swappable",
-                "DOM Support"
-              ],
-              "detailsSlug": "sfp-transceivers",
-              "addItem": {
-                "title": "SFP Transceivers",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/fiber-optic-transceivers-sfp.webp"
-              }
-            },
             {
               "slug": "smart-sfp",
               "tag": "Smart SFP",
@@ -363,52 +340,6 @@
                 "title": "Aoc",
                 "specs": "Standard Factory Specs",
                 "image": "/images/fiber-patch-panel.webp"
-              }
-            }
-          ]
-        },
-        {
-          "subhead": "HD-SDI Optical Transceiver",
-          "cards": [
-            {
-              "slug": "hd-sdi",
-              "tag": "HD-SDI",
-              "img": "/images/fiber-patch-panel.webp",
-              "heroSvg": "",
-              "name": "HD-SDI Optical Transceiver",
-              "blurb": "PDR8010SG SD/HD/3G-SDI broadcasting grade HD Transceiver which can interconvert SD/HD/3G-SDI signals.",
-              "pills": [
-                "SD/HD/3G-SDI",
-                "Broadcast"
-              ],
-              "detailsSlug": "hd-sdi",
-              "addItem": {
-                "title": "Hd Sdi",
-                "specs": "Standard Factory Specs",
-                "image": "/images/fiber-patch-panel.webp"
-              }
-            }
-          ]
-        },
-        {
-          "subhead": "PoE Injector",
-          "cards": [
-            {
-              "slug": "poe-injector",
-              "tag": "PoE",
-              "img": "/images/live/poe-injector.png",
-              "heroSvg": "",
-              "name": "PoE Injector",
-              "blurb": "Power over Ethernet injector for optical networking and broadcasting applications.",
-              "pills": [
-                "PoE",
-                "Networking"
-              ],
-              "detailsSlug": "poe-injector",
-              "addItem": {
-                "title": "Poe Injector",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/poe-injector.webp"
               }
             }
           ]
@@ -843,6 +774,106 @@
               }
             }
           ]
+        },
+        {
+          "subhead": "Maintenance",
+          "cards": [
+            {
+              "slug": "cleaner-pen",
+              "tag": "Cleaner",
+              "img": "/images/live/fiber-optic-cleaner-pen.png",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"18\" y=\"10\" width=\"12\" height=\"28\" rx=\"2\"></rect><path d=\"M22 10V6h4v4\"></path></svg>",
+              "name": "Fiber Optic Cleaner Pen",
+              "blurb": "One-click cleaner pen available in 1.25mm (LC/MU) and 2.5mm (SC/FC/ST) ferrule types.",
+              "pills": [
+                "1.25mm / 2.5mm",
+                "800+ Cleans"
+              ],
+              "detailsSlug": "cleaner-pen",
+              "addItem": {
+                "title": "Cleaner Pen",
+                "specs": "Standard Factory Specs",
+                "image": "/images/live/fiber-optic-cleaner-pen.webp"
+              }
+            },
+            {
+              "slug": "cassette-cleaner",
+              "tag": "Cassette",
+              "img": "/images/live/cassette-cleaner.png",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"10\" y=\"12\" width=\"28\" height=\"24\" rx=\"4\"></rect><circle cx=\"18\" cy=\"24\" r=\"4\"></circle><circle cx=\"30\" cy=\"24\" r=\"4\"></circle></svg>",
+              "name": "Cassette Cleaner",
+              "blurb": "High-performance cassette cleaner with replacement reels providing 400+ clean cycles.",
+              "pills": [
+                "400+ Cycles",
+                "Dry Cloth"
+              ],
+              "detailsSlug": "cassette-cleaner",
+              "addItem": {
+                "title": "Cassette Cleaner",
+                "specs": "Standard Factory Specs",
+                "image": "/images/live/cassette-cleaner.webp"
+              }
+            },
+            {
+              "slug": "mpo-cleaner",
+              "tag": "MPO",
+              "img": "/images/live/fiber-optic-cleaner-pen-mpo.png",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"14\" width=\"20\" height=\"20\" rx=\"2\"></rect><path d=\"M14 24h20\"></path></svg>",
+              "name": "Fiber Optic Cleaner Pen MPO",
+              "blurb": "Specialized one-click cleaner for multi-fiber MPO/MTP ports and assemblies.",
+              "pills": [
+                "MPO/MTP",
+                "600+ Cleans"
+              ],
+              "detailsSlug": "mpo-cleaner",
+              "addItem": {
+                "title": "Mpo Cleaner",
+                "specs": "Standard Factory Specs",
+                "image": "/images/live/fiber-optic-cleaner-pen-mpo.webp"
+              }
+            },
+            {
+              "slug": "vfl",
+              "tag": "VFL",
+              "img": "/images/live/fiber-optic-cleaner-pen.png",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M24 10l4 8 8 4-8 4-4 8-4-8-8-4 8-4z\"></path><circle cx=\"24\" cy=\"24\" r=\"2\"></circle></svg>",
+              "name": "VFL - Visual Fault Locator",
+              "blurb": "650nm visible red laser (1mW) to detect breaks, micro-bends, and faults up to 10km.",
+              "pills": [
+                "650nm Laser",
+                "Up to 10km"
+              ],
+              "detailsSlug": "vfl",
+              "addItem": {
+                "title": "Vfl",
+                "specs": "Standard Factory Specs",
+                "image": "/images/fiber-patch-panel.webp"
+              }
+            }
+          ]
+        },
+        {
+          "subhead": "Fiber Spool",
+          "cards": [
+            {
+              "slug": "fiber-spool",
+              "tag": "Spool",
+              "img": "/images/live/rapid-push-cable-assembly.png",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><circle cx=\"24\" cy=\"24\" r=\"16\"></circle><circle cx=\"24\" cy=\"24\" r=\"6\"></circle><path d=\"M24 8v16\"></path><path d=\"M8 24h16\"></path></svg>",
+              "name": "Fiber Spool / Fiber Drum",
+              "blurb": "Precision-wound fiber optic spool for storage, testing, and emergency field restoration. Available in SM and MM, 100m – 2km lengths.",
+              "pills": [
+                "SM / MM",
+                "100m - 2km"
+              ],
+              "detailsSlug": "fiber-spool",
+              "addItem": {
+                "title": "Fiber Spool",
+                "specs": "Standard Factory Specs",
+                "image": "/images/fiber-patch-panel.webp"
+              }
+            }
+          ]
         }
       ]
     },
@@ -853,7 +884,7 @@
       "intro": "Indoor and outdoor enclosures built for telecom, ISP, and data centre installations.",
       "groups": [
         {
-          "subhead": "Indoor Termination",
+          "subhead": "Fiber Termination Box (Indoor)",
           "cards": [
             {
               "slug": "rack-mount-fms",
@@ -948,7 +979,7 @@
           ]
         },
         {
-          "subhead": "Outdoor Termination",
+          "subhead": "Fiber Termination Box (Outdoor)",
           "cards": [
             {
               "slug": "heat-shrink-closure",
@@ -1003,118 +1034,6 @@
                 "specs": "Standard Factory Specs",
                 "image": "/images/live/fiber-optic-splitter-closure-gjs-2016.webp"
               }
-            },
-            {
-              "slug": "wall-mount-enclosure-model-ftb-r24",
-              "tag": "",
-              "img": "/images/live/wall-mount-enclosure-model-ftb-r24.png",
-              "heroSvg": "",
-              "name": "Wall Mount Enclosure – Model FTB-R24",
-              "blurb": "PDR introduces multi-purpose wall mount fiberoptic enclosures.",
-              "pills": [
-                "Protection Class",
-                "Box Size",
-                "Splice Capacity"
-              ],
-              "detailsSlug": "wall-mount-enclosure-model-ftb-r24",
-              "addItem": {
-                "title": "Wall Mount Enclosure – Model FTB-R24",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/wall-mount-enclosure-model-ftb-r24.webp"
-              }
-            },
-            {
-              "slug": "fiber-optic-termination-box-model-tb-c08",
-              "tag": "",
-              "img": "/images/live/fiber-optic-termination-box-model-tb-c08.png",
-              "heroSvg": "",
-              "name": "Fiber Optic Termination Box – Model TB-C08",
-              "blurb": "FTB-C08 is Snap-in type, compact, easy to open and Close – fiber optic termination Box used in data communication networks, CATV networks or FTTH access network.",
-              "pills": [
-                "Protection Class",
-                "Splice Capacity"
-              ],
-              "detailsSlug": "fiber-optic-termination-box-model-tb-c08",
-              "addItem": {
-                "title": "Fiber Optic Termination Box – Model TB-C08",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/fiber-optic-termination-box-model-tb-c08.webp"
-              }
-            },
-            {
-              "slug": "fiber-optic-termination-box-model-din-fb",
-              "tag": "",
-              "img": "/images/live/fiber-optic-termination-box-model-din-fb.png",
-              "heroSvg": "",
-              "name": "Fiber Optic Termination Box – Model DIN-FB",
-              "blurb": "Fiber optic Din terminal box is available for the distribution and terminal connection for various kinds of optical fiber system, especially suitable for mini-network terminal dist",
-              "pills": [
-                "Standard size",
-                "Material",
-                "Flame Rating"
-              ],
-              "detailsSlug": "fiber-optic-termination-box-model-din-fb",
-              "addItem": {
-                "title": "Fiber Optic Termination Box – Model DIN-FB",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/fiber-optic-termination-box-model-din-fb.webp"
-              }
-            },
-            {
-              "slug": "fiber-termination-and-distribution-box",
-              "tag": "",
-              "img": "/images/live/fiber-termination-and-distribution-box.png",
-              "heroSvg": "",
-              "name": "Fiber Termination And Distribution Box",
-              "blurb": "PDR’s Fiber Termination And Distribution Box are specially designed to provide reliable and long-lasting protection for optical fibers and splices, combined with maximum ease of installation and maintenance.",
-              "pills": [
-                "Standard Fiber Count",
-                "Splice Trays are Retractable"
-              ],
-              "detailsSlug": "fiber-termination-and-distribution-box",
-              "addItem": {
-                "title": "Fiber Termination And Distribution Box",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/fiber-termination-and-distribution-box.webp"
-              }
-            },
-            {
-              "slug": "fiber-optic-termination-box-ftb-08b-2",
-              "tag": "",
-              "img": "/images/live/fiber-optic-termination-box-ftb-08b-2.png",
-              "heroSvg": "",
-              "name": "Fiber Optic Termination Box FTB-08B-2",
-              "blurb": "The Fiber Distribution Box (FDB) is a compact termination box used at the building premises such as residence, offices etc.",
-              "pills": [
-                "outdoor natural environments",
-                "With double-page design",
-                "completely separated"
-              ],
-              "detailsSlug": "fiber-optic-termination-box-ftb-08b-2",
-              "addItem": {
-                "title": "Fiber Optic Termination Box FTB-08B-2",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/fiber-optic-termination-box-ftb-08b-2.webp"
-              }
-            },
-            {
-              "slug": "fiber-distribution-box-fdb-32",
-              "tag": "",
-              "img": "/images/live/fiber-distribution-box-fdb-32.png",
-              "heroSvg": "",
-              "name": "Fiber Distribution Box (FDB) – 32",
-              "blurb": "PDR Model No.:HT-FTB-48A can connect the drop cable with feeder cable as the termination point in the Fttx network, which is cable to meet at least 48 users requirements.",
-              "pills": [
-                "performance",
-                "With double-page design",
-                "Package Information"
-              ],
-              "detailsSlug": "fiber-distribution-box-fdb-32",
-              "addItem": {
-                "title": "Fiber Distribution Box (FDB) – 32",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/fiber-distribution-box-fdb-32.webp"
-              }
             }
           ]
         }
@@ -1166,24 +1085,6 @@
               }
             },
             {
-              "slug": "5in1-opm",
-              "tag": "5-in-1",
-              "img": "/images/live/5-in-1-optical-power-meter.jpg",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"12\" y=\"8\" width=\"24\" height=\"32\" rx=\"3\"></rect><rect x=\"16\" y=\"14\" width=\"16\" height=\"8\" rx=\"1\"></rect><circle cx=\"24\" cy=\"30\" r=\"4\"></circle><line x1=\"18\" y1=\"28\" x2=\"20\" y2=\"28\"></line><line x1=\"28\" y1=\"28\" x2=\"30\" y2=\"28\"></line><line x1=\"18\" y1=\"32\" x2=\"20\" y2=\"32\"></line><line x1=\"28\" y1=\"32\" x2=\"30\" y2=\"32\"></line></svg>",
-              "name": "5 IN 1 Optical Power Meter",
-              "blurb": "Display Range 1310/1490/1550/1625: +10 to -70dBm, Accuracy +- 0.2 dB.",
-              "pills": [
-                "Multi-Wavelength",
-                "+-0.2dB Accuracy"
-              ],
-              "detailsSlug": "5in1-opm",
-              "addItem": {
-                "title": "5In1 Opm",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/5-in-1-optical-power-meter.webp"
-              }
-            },
-            {
               "slug": "regular-opm",
               "tag": "OPM",
               "img": "/images/live/mini-optical-power-meter.jpg",
@@ -1206,24 +1107,6 @@
         {
           "subhead": "OTDR",
           "cards": [
-            {
-              "slug": "mini-otdr",
-              "tag": "OTDR",
-              "img": "/images/live/mini-otdr-pdr4402s.png",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"10\" y=\"12\" width=\"28\" height=\"24\" rx=\"3\"></rect><rect x=\"14\" y=\"16\" width=\"20\" height=\"12\" rx=\"1\"></rect><circle cx=\"16\" cy=\"32\" r=\"1\"></circle><circle cx=\"20\" cy=\"32\" r=\"1\"></circle><circle cx=\"24\" cy=\"32\" r=\"1\"></circle><circle cx=\"32\" cy=\"32\" r=\"2\"></circle></svg>",
-              "name": "Mini OTDR PDR4402S",
-              "blurb": "On-Line Mini Pro-OTDR used for installation and maintenance of Optical Fiber Network especially in FTTx and Data Centers.",
-              "pills": [
-                "Pro-OTDR",
-                "FTTx/Data Center"
-              ],
-              "detailsSlug": "mini-otdr",
-              "addItem": {
-                "title": "Mini Otdr",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/mini-otdr-pdr4402s.webp"
-              }
-            },
             {
               "slug": "pocket-otdr",
               "tag": "Pocket",
@@ -1323,100 +1206,6 @@
                 "specs": "Standard Factory Specs",
                 "image": "/images/live/easycheck-v2-digital-fiber-endface-inspector.webp"
               }
-            },
-            {
-              "slug": "autoget-wifi-intelligent-fiber-endface-microscope",
-              "tag": "",
-              "img": "/images/live/autoget-wifi-intelligent-fiber-endface-microscope.png",
-              "heroSvg": "",
-              "name": "AutoGet Wifi Intelligent Fiber Endface Microscope",
-              "blurb": "The primary cause of optical network problems is that the connector’s endface is dirty or damaged, so, how to quickly and efficiently diagnose is particularly important.",
-              "pills": [
-                "Fully automatic",
-                "All in one design",
-                "Excellent analysis ability"
-              ],
-              "detailsSlug": "autoget-wifi-intelligent-fiber-endface-microscope",
-              "addItem": {
-                "title": "AutoGet Wifi Intelligent Fiber Endface Microscope",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/autoget-wifi-intelligent-fiber-endface-microscope.webp"
-              }
-            }
-          ]
-        },
-        {
-          "subhead": "Other Test Equipment",
-          "cards": [
-            {
-              "slug": "laser-source",
-              "tag": "",
-              "img": "/images/live/laser-source.png",
-              "heroSvg": "",
-              "name": "Laser Source",
-              "blurb": "Stable and accurate single-mode optical laser source for fiber link testing and OTDR loss reference.",
-              "pills": [
-                "1310/1550 nm",
-                "Single Mode",
-                "Compact"
-              ],
-              "detailsSlug": "laser-source",
-              "addItem": {
-                "title": "Laser Source",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/laser-source.webp"
-              }
-            },
-            {
-              "slug": "e1-ber-tester",
-              "tag": "",
-              "img": "/images/live/e1-ber-tester.png",
-              "heroSvg": "",
-              "name": "E1 BER Tester",
-              "blurb": "This E1 BER (Bit Error Rate) tester is a compact, multi-functional, handheld E1 line test instrument, specially designed for installation and maintenance.",
-              "pills": [
-                "Large space for data storage",
-                "One time slot monitored",
-                "Real-time clock"
-              ],
-              "detailsSlug": "e1-ber-tester",
-              "addItem": {
-                "title": "E1 BER Tester",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/e1-ber-tester.webp"
-              }
-            },
-            {
-              "slug": "twoway-fiber-polarity-and-return-loss-meter",
-              "tag": "",
-              "img": "/images/live/twoway-fiber-polarity-and-return-loss-meter.png",
-              "heroSvg": "",
-              "name": "TwoWay Fiber Polarity and Return Loss Meter",
-              "blurb": "TwoWay fiber polarity and return Loss meter is a new product that PDR uses innovative design concepts to solve the problems encountered in the current duplex fiber jumper test, whi",
-              "pills": [
-                "RL mandrel-free test"
-              ],
-              "detailsSlug": "twoway-fiber-polarity-and-return-loss-meter",
-              "addItem": {
-                "title": "TwoWay Fiber Polarity and Return Loss Meter",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/twoway-fiber-polarity-and-return-loss-meter.webp"
-              }
-            },
-            {
-              "slug": "optical-talk-set",
-              "tag": "",
-              "img": "/images/live/optical-talk-set.jpg",
-              "heroSvg": "",
-              "name": "Optical Talk Set",
-              "blurb": "Standard: Carrying Bag, User’s manual, Calibration certificate, Ear phone & mic – 1 no.",
-              "pills": [],
-              "detailsSlug": "optical-talk-set",
-              "addItem": {
-                "title": "Optical Talk Set",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/optical-talk-set.webp"
-              }
             }
           ]
         }
@@ -1431,25 +1220,6 @@
         {
           "subhead": "",
           "cards": [
-            {
-              "slug": "high-power-patchcord",
-              "tag": "",
-              "img": "/images/live/high-power-patch-cord.png",
-              "heroSvg": "",
-              "name": "High power patch cord",
-              "blurb": "PDR provides the broadest choice of patchcords to the industry.",
-              "pills": [
-                "Available is short boot",
-                "IEC",
-                "Simplex"
-              ],
-              "detailsSlug": "high-power-patchcord",
-              "addItem": {
-                "title": "High power patch cord",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/high-power-patch-cord.webp"
-              }
-            },
             {
               "slug": "drone",
               "tag": "Drone",
@@ -1467,172 +1237,6 @@
                 "title": "Optical Fiber Drone",
                 "specs": "Standard Factory Specs",
                 "image": "/images/live/optical-fiber-drone.webp"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tools",
-      "eyebrow": "Maintenance & Cleaning",
-      "heading": "Maintenance Tools",
-      "intro": "Professional cleaning and maintenance tools for optical fiber infrastructure.",
-      "groups": [
-        {
-          "subhead": "Cleaning Tools",
-          "cards": [
-            {
-              "slug": "cleaner-pen",
-              "tag": "Cleaner",
-              "img": "/images/live/fiber-optic-cleaner-pen.png",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"18\" y=\"10\" width=\"12\" height=\"28\" rx=\"2\"></rect><path d=\"M22 10V6h4v4\"></path></svg>",
-              "name": "Fiber Optic Cleaner Pen",
-              "blurb": "One-click cleaner pen available in 1.25mm (LC/MU) and 2.5mm (SC/FC/ST) ferrule types.",
-              "pills": [
-                "1.25mm / 2.5mm",
-                "800+ Cleans"
-              ],
-              "detailsSlug": "cleaner-pen",
-              "addItem": {
-                "title": "Cleaner Pen",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/fiber-optic-cleaner-pen.webp"
-              }
-            },
-            {
-              "slug": "cassette-cleaner",
-              "tag": "Cassette",
-              "img": "/images/live/cassette-cleaner.png",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"10\" y=\"12\" width=\"28\" height=\"24\" rx=\"4\"></rect><circle cx=\"18\" cy=\"24\" r=\"4\"></circle><circle cx=\"30\" cy=\"24\" r=\"4\"></circle></svg>",
-              "name": "Cassette Cleaner",
-              "blurb": "High-performance cassette cleaner with replacement reels providing 400+ clean cycles.",
-              "pills": [
-                "400+ Cycles",
-                "Dry Cloth"
-              ],
-              "detailsSlug": "cassette-cleaner",
-              "addItem": {
-                "title": "Cassette Cleaner",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/cassette-cleaner.webp"
-              }
-            },
-            {
-              "slug": "mpo-cleaner",
-              "tag": "MPO",
-              "img": "/images/live/fiber-optic-cleaner-pen-mpo.png",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"14\" width=\"20\" height=\"20\" rx=\"2\"></rect><path d=\"M14 24h20\"></path></svg>",
-              "name": "Fiber Optic Cleaner Pen MPO",
-              "blurb": "Specialized one-click cleaner for multi-fiber MPO/MTP ports and assemblies.",
-              "pills": [
-                "MPO/MTP",
-                "600+ Cleans"
-              ],
-              "detailsSlug": "mpo-cleaner",
-              "addItem": {
-                "title": "Mpo Cleaner",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/fiber-optic-cleaner-pen-mpo.webp"
-              }
-            }
-          ]
-        },
-        {
-          "subhead": "Fault Locators",
-          "cards": [
-            {
-              "slug": "vfl",
-              "tag": "VFL",
-              "img": "/images/live/fiber-optic-cleaner-pen.png",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M24 10l4 8 8 4-8 4-4 8-4-8-8-4 8-4z\"></path><circle cx=\"24\" cy=\"24\" r=\"2\"></circle></svg>",
-              "name": "VFL - Visual Fault Locator",
-              "blurb": "650nm visible red laser (1mW) to detect breaks, micro-bends, and faults up to 10km.",
-              "pills": [
-                "650nm Laser",
-                "Up to 10km"
-              ],
-              "detailsSlug": "vfl",
-              "addItem": {
-                "title": "Vfl",
-                "specs": "Standard Factory Specs",
-                "image": "/images/fiber-patch-panel.webp"
-              }
-            }
-          ]
-        },
-        {
-          "subhead": "Splicing Tools & Accessories",
-          "cards": [
-            {
-              "slug": "fiber-cleaver-clv-b1",
-              "tag": "",
-              "img": "/images/live/fiber-cleaver-clv-b1.png",
-              "heroSvg": "",
-              "name": "Fiber Cleaver CLV-B1",
-              "blurb": "Specifications • Applications: Fast Connector • Bare Fiber Diameter: 125um • Coating Fiber Diameter: 250um, 900um • Cleaving length 250um: 9~16mm, 900um: 10~16mm • Blade Life: 1800",
-              "pills": [],
-              "detailsSlug": "fiber-cleaver-clv-b1",
-              "addItem": {
-                "title": "Fiber Cleaver CLV-B1",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/fiber-cleaver-clv-b1.webp"
-              }
-            },
-            {
-              "slug": "splice-sleeves",
-              "tag": "Sleeves",
-              "img": "/images/live/cold-shrink-sleeve.png",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"20\" width=\"20\" height=\"8\" rx=\"4\"></rect><line x1=\"8\" y1=\"24\" x2=\"40\" y2=\"24\"></line></svg>",
-              "name": "Splice Sleeves",
-              "blurb": "Heat-shrink protection for fusion splices, available in standard 60mm and 40mm lengths.",
-              "pills": [
-                "60mm / 40mm",
-                "Heat-Shrink"
-              ],
-              "detailsSlug": "splice-sleeves",
-              "addItem": {
-                "title": "Splice Sleeves",
-                "specs": "Standard Factory Specs",
-                "image": "/images/fiber-patch-panel.webp"
-              }
-            },
-            {
-              "slug": "cold-shrink-sleeve",
-              "tag": "",
-              "img": "/images/live/cold-shrink-sleeve.png",
-              "heroSvg": "",
-              "name": "Cold Shrink Sleeve",
-              "blurb": "This product was developed particularly for Electrical Industry to carry out environmental protection in cabling installation done in explosive area, whereby usage of heat has been prohibited.",
-              "pills": [],
-              "detailsSlug": "cold-shrink-sleeve",
-              "addItem": {
-                "title": "Cold Shrink Sleeve",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/cold-shrink-sleeve.webp"
-              }
-            }
-          ]
-        },
-        {
-          "subhead": "Spools",
-          "cards": [
-            {
-              "slug": "fiber-spool",
-              "tag": "Spool",
-              "img": "/images/live/rapid-push-cable-assembly.png",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><circle cx=\"24\" cy=\"24\" r=\"16\"></circle><circle cx=\"24\" cy=\"24\" r=\"6\"></circle><path d=\"M24 8v16\"></path><path d=\"M8 24h16\"></path></svg>",
-              "name": "Fiber Spool / Fiber Drum",
-              "blurb": "Precision-wound fiber optic spool for storage, testing, and emergency field restoration. Available in SM and MM, 100m – 2km lengths.",
-              "pills": [
-                "SM / MM",
-                "100m - 2km"
-              ],
-              "detailsSlug": "fiber-spool",
-              "addItem": {
-                "title": "Fiber Spool",
-                "specs": "Standard Factory Specs",
-                "image": "/images/fiber-patch-panel.webp"
               }
             }
           ]

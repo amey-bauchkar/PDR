@@ -101,10 +101,6 @@ export default function Header() {
                     <strong>Specialty &amp; Drones</strong>
                     <span>Optical Fiber Drone · High-Power Patchcord · Custom Assemblies</span>
                   </Link>
-                  <Link to="/products/maintenance-tools" onClick={() => setOpenMega(null)}>
-                    <strong>Maintenance Tools</strong>
-                    <span>Cleavers · Cleaners · Splice Sleeves</span>
-                  </Link>
                 </div>
               </div>
             </div>
@@ -119,7 +115,7 @@ export default function Header() {
                   <path d="M3 5l3 3 3-3" />
                 </svg>
               </NavLink>
-              <div className="mega" role="menu" style={{ width: 320, right: 'auto', left: 0, transform: 'translateX(-20%)' }}>
+              <div className="mega" role="menu" style={{ width: 320, right: 'auto', left: 0, transform: 'translateX(-20%)', minHeight: 'unset', height: 'max-content' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                   <Link
                     to="/cable-configurator"
@@ -200,7 +196,6 @@ export default function Header() {
             <Link to="/products/cable-management">Cable Management Devices</Link>
             <Link to="/products/test-measuring">Test &amp; Measuring Equipment</Link>
             <Link to="/products/specialty-drones">Specialty &amp; Drones</Link>
-            <Link to="/products/maintenance-tools">Maintenance Tools</Link>
           </div>
         </details>
         <details>

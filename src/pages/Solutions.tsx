@@ -30,7 +30,6 @@ export default function Solutions() {
               <p>We engineer specialized infrastructure for link integrity, acoustic sensing, and thermal profiling. Our solutions focus on fault localization and network survivability in the world's most demanding industrial environments.</p>
               <div className="sl-hero-actions">
                 <a href="#sensing" className="sl-hero-btn">View Sensing Systems</a>
-                <a href="#industries" className="sl-hero-link">Deployment Use Cases →</a>
               </div>
             </div>
           </div>

@@ -55,24 +55,10 @@ export default function Footer() {
             <li><Link to="/products/cable-management">Cable Management</Link></li>
             <li><Link to="/products/test-measuring">Test &amp; Measuring</Link></li>
             <li><Link to="/products/specialty-drones">Specialty &amp; Drones</Link></li>
-            <li><Link to="/products/maintenance-tools">Maintenance Tools</Link></li>
           </ul>
         </div>
 
-        <div>
-          <h4>Industries</h4>
-          <ul>
-            <li><Link to="/solutions#telecom">Telecom Operators</Link></li>
-            <li><Link to="/solutions#defence">Defence &amp; Govt</Link></li>
-            <li><Link to="/solutions#datacentre">Data Centres</Link></li>
-            <li><Link to="/solutions#5g">5G &amp; Wireless</Link></li>
-            <li><Link to="/solutions#metro">Metro &amp; Railway</Link></li>
-            <li><Link to="/solutions#power">Power &amp; Utilities</Link></li>
-            <li><Link to="/solutions#ftth">FTTH &amp; Broadband</Link></li>
-            <li><Link to="/solutions#broadcast">Broadcast &amp; CCTV</Link></li>
-            <li><Link to="/solutions#enterprise">Enterprise &amp; Campus</Link></li>
-          </ul>
-        </div>
+
 
         <div>
           <h4>Resources</h4>

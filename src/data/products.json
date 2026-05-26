@@ -34,10 +34,6 @@
     ],
     "related": [
       {
-        "slug": "sfp-transceivers",
-        "name": "Fiber Optic Transceivers (SFP)"
-      },
-      {
         "slug": "smart-sfp",
         "name": "Smart SFP Transceiver"
       },
@@ -282,10 +278,6 @@
     ],
     "related": [
       {
-        "slug": "sfp-transceivers",
-        "name": "Fiber Optic Transceivers (SFP)"
-      },
-      {
         "slug": "smart-sfp",
         "name": "Smart SFP Transceiver"
       },
@@ -299,7 +291,7 @@
   {
     "slug": "cassette-cleaner",
     "name": "Cassette Cleaner",
-    "category": "Maintenance Tools",
+    "category": "Passive Components",
     "title": "Cassette Cleaner | PDR World",
     "description": "High-performance dry cleaning technology",
     "canonical": "https://pdrworld.com/cassette-cleaner.html",
@@ -446,7 +438,7 @@
   {
     "slug": "cleaner-pen",
     "name": "Fiber Optic Cleaner Pen",
-    "category": "Maintenance Tools",
+    "category": "Passive Components",
     "title": "Fiber Optic Cleaner Pen | PDR World",
     "description": "One-click cleaning mechanism",
     "canonical": "https://pdrworld.com/cleaner-pen.html",
@@ -625,10 +617,6 @@
     ],
     "related": [
       {
-        "slug": "sfp-transceivers",
-        "name": "Fiber Optic Transceivers (SFP)"
-      },
-      {
         "slug": "smart-sfp",
         "name": "Smart SFP Transceiver"
       },
@@ -672,12 +660,7 @@
         "value": "High-speed aerial stringing"
       }
     ],
-    "related": [
-      {
-        "slug": "high-power-patchcord",
-        "name": "High-Power Patchcord"
-      }
-    ]
+    "related": []
   },
   {
     "slug": "dwdm",
@@ -1119,55 +1102,6 @@
     "datasheetUrl": "/datasheets/fusion-splicer.pdf"
   },
   {
-    "slug": "hd-sdi",
-    "name": "HD-SDI Optical Transceiver",
-    "category": "Active Components",
-    "title": "HD-SDI Optical Transceiver | PDR World",
-    "description": "Broadcasting grade HD transceiver",
-    "canonical": "https://pdrworld.com/hd-sdi.html",
-    "tagline": "Broadcasting grade HD transceiver",
-    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"8\" y=\"14\" width=\"32\" height=\"20\" rx=\"3\"></rect><circle cx=\"24\" cy=\"24\" r=\"5\"></circle><line x1=\"14\" y1=\"30\" x2=\"34\" y2=\"30\"></line></svg>",
-    "features": [
-      "Broadcasting grade HD transceiver",
-      "Interconverts SD/HD/3G-SDI signals",
-      "Uncompressed digital video transmission"
-    ],
-    "applications": [
-      "TV Broadcasting",
-      "Live Event Production",
-      "Security Surveillance"
-    ],
-    "specs": [
-      {
-        "label": "Signal Format",
-        "value": "SD/HD/3G-SDI"
-      },
-      {
-        "label": "Video Bandwidth",
-        "value": "Up to 2.97Gbps"
-      },
-      {
-        "label": "Fiber Type",
-        "value": "Single-mode"
-      }
-    ],
-    "related": [
-      {
-        "slug": "sfp-transceivers",
-        "name": "Fiber Optic Transceivers (SFP)"
-      },
-      {
-        "slug": "smart-sfp",
-        "name": "Smart SFP Transceiver"
-      },
-      {
-        "slug": "sfp-400g",
-        "name": "400G"
-      }
-    ],
-    "datasheetUrl": "/datasheets/hd-sdi.pdf"
-  },
-  {
     "slug": "heat-shrink-closure",
     "name": "Heat Shrink Splice Closure",
     "category": "Cable Management Devices",
@@ -1215,47 +1149,6 @@
       }
     ],
     "datasheetUrl": "/datasheets/heat-shrink-closure.pdf"
-  },
-  {
-    "slug": "high-power-patchcord",
-    "name": "High-Power Patchcord",
-    "category": "Specialty Products",
-    "title": "High-Power Patchcord | PDR World",
-    "description": "Designed for laser delivery and sensing",
-    "canonical": "https://pdrworld.com/high-power-patchcord.html",
-    "tagline": "Designed for laser delivery and sensing",
-    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><circle cx=\"24\" cy=\"24\" r=\"8\"></circle><path d=\"M24 16v16\"></path></svg>",
-    "features": [
-      "Designed for laser delivery and sensing",
-      "High power handling capacity up to 50W",
-      "Customizable lengths and connector options"
-    ],
-    "applications": [
-      "Laser Delivery",
-      "Industrial Sensing",
-      "Medical Equipment"
-    ],
-    "specs": [
-      {
-        "label": "Power Handling",
-        "value": "1W to 50W"
-      },
-      {
-        "label": "Fiber Type",
-        "value": "Single-mode (SM) / Specialty"
-      },
-      {
-        "label": "Connector Options",
-        "value": "SMA, FC, LC"
-      }
-    ],
-    "related": [
-      {
-        "slug": "drone",
-        "name": "Optical Fiber Drone"
-      }
-    ],
-    "datasheetUrl": "/datasheets/high-power-patchcord.pdf"
   },
   {
     "slug": "horizontal-closure",
@@ -1598,55 +1491,6 @@
     ]
   },
   {
-    "slug": "mini-otdr",
-    "name": "Mini OTDR PDR4402S",
-    "category": "Test & Measuring Equipment",
-    "title": "Mini OTDR PDR4402S | PDR World",
-    "description": "On-Line Mini Pro-OTDR",
-    "canonical": "https://pdrworld.com/mini-otdr.html",
-    "tagline": "On-Line Mini Pro-OTDR",
-    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"10\" y=\"12\" width=\"28\" height=\"24\" rx=\"3\"></rect><rect x=\"14\" y=\"16\" width=\"20\" height=\"12\" rx=\"1\"></rect><circle cx=\"16\" cy=\"32\" r=\"1\"></circle><circle cx=\"20\" cy=\"32\" r=\"1\"></circle><circle cx=\"24\" cy=\"32\" r=\"1\"></circle><circle cx=\"32\" cy=\"32\" r=\"2\"></circle></svg>",
-    "features": [
-      "On-Line Mini Pro-OTDR",
-      "Event Map display for easy analysis",
-      "Integrated VFL and OPM"
-    ],
-    "applications": [
-      "FTTx Installation",
-      "Data Center Characterization",
-      "Fiber Fault Location"
-    ],
-    "specs": [
-      {
-        "label": "Wavelengths",
-        "value": "1310/1550nm"
-      },
-      {
-        "label": "Dynamic Range",
-        "value": "24/22dB"
-      },
-      {
-        "label": "Dead Zone",
-        "value": "Event < 1.5m"
-      }
-    ],
-    "related": [
-      {
-        "slug": "regular-opm",
-        "name": "Regular Optical Power Meter"
-      },
-      {
-        "slug": "pocket-otdr",
-        "name": "Pocket OTDR"
-      },
-      {
-        "slug": "next-gen-splicer",
-        "name": "Next Gen Optical Fusion Splicer (OPM + VFL)"
-      }
-    ],
-    "datasheetUrl": "/datasheets/mini-otdr.pdf"
-  },
-  {
     "slug": "mode-conditioning",
     "name": "Mode Conditioning Patchcord",
     "category": "Passive Components",
@@ -1747,7 +1591,7 @@
   {
     "slug": "mpo-cleaner",
     "name": "Fiber Optic Cleaner Pen MPO",
-    "category": "Maintenance Tools",
+    "category": "Passive Components",
     "title": "Fiber Optic Cleaner Pen MPO | PDR World",
     "description": "Designed specifically for multi-fiber connectors",
     "canonical": "https://pdrworld.com/mpo-cleaner.html",
@@ -1925,10 +1769,6 @@
     ],
     "related": [
       {
-        "slug": "sfp-transceivers",
-        "name": "Fiber Optic Transceivers (SFP)"
-      },
-      {
         "slug": "smart-sfp",
         "name": "Smart SFP Transceiver"
       },
@@ -2035,55 +1875,6 @@
         "name": "PON Power Meter"
       }
     ]
-  },
-  {
-    "slug": "poe-injector",
-    "name": "PoE Injector",
-    "category": "Active Components",
-    "title": "PoE Injector | PDR World",
-    "description": "Delivers data and power over single Ethernet cable",
-    "canonical": "https://pdrworld.com/poe-injector.html",
-    "tagline": "Delivers data and power over single Ethernet cable",
-    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"10\" y=\"14\" width=\"28\" height=\"20\" rx=\"3\"></rect><path d=\"M20 20v8\"></path><path d=\"M28 20v8\"></path><path d=\"M24 17v14\"></path></svg>",
-    "features": [
-      "Delivers data and power over single Ethernet cable",
-      "IEEE 802.3af/at compliant",
-      "Plug and play installation"
-    ],
-    "applications": [
-      "IP Cameras",
-      "Wireless Access Points",
-      "VoIP Phones"
-    ],
-    "specs": [
-      {
-        "label": "Standard",
-        "value": "IEEE 802.3af/at"
-      },
-      {
-        "label": "Data Rate",
-        "value": "10/100/1000Mbps"
-      },
-      {
-        "label": "Output Power",
-        "value": "15.4W / 30W"
-      }
-    ],
-    "related": [
-      {
-        "slug": "sfp-transceivers",
-        "name": "Fiber Optic Transceivers (SFP)"
-      },
-      {
-        "slug": "smart-sfp",
-        "name": "Smart SFP Transceiver"
-      },
-      {
-        "slug": "sfp-400g",
-        "name": "400G"
-      }
-    ],
-    "datasheetUrl": "/datasheets/poe-injector.pdf"
   },
   {
     "slug": "pof-patchcord",
@@ -2375,10 +2166,6 @@
     ],
     "related": [
       {
-        "slug": "sfp-transceivers",
-        "name": "Fiber Optic Transceivers (SFP)"
-      },
-      {
         "slug": "smart-sfp",
         "name": "Smart SFP Transceiver"
       },
@@ -2434,10 +2221,6 @@
       }
     ],
     "related": [
-      {
-        "slug": "sfp-transceivers",
-        "name": "Fiber Optic Transceivers (SFP)"
-      },
       {
         "slug": "smart-sfp",
         "name": "Smart SFP Transceiver"
@@ -2495,10 +2278,6 @@
     ],
     "related": [
       {
-        "slug": "sfp-transceivers",
-        "name": "Fiber Optic Transceivers (SFP)"
-      },
-      {
         "slug": "smart-sfp",
         "name": "Smart SFP Transceiver"
       },
@@ -2554,10 +2333,6 @@
       }
     ],
     "related": [
-      {
-        "slug": "sfp-transceivers",
-        "name": "Fiber Optic Transceivers (SFP)"
-      },
       {
         "slug": "smart-sfp",
         "name": "Smart SFP Transceiver"
@@ -2615,10 +2390,6 @@
     ],
     "related": [
       {
-        "slug": "sfp-transceivers",
-        "name": "Fiber Optic Transceivers (SFP)"
-      },
-      {
         "slug": "smart-sfp",
         "name": "Smart SFP Transceiver"
       },
@@ -2674,10 +2445,6 @@
       }
     ],
     "related": [
-      {
-        "slug": "sfp-transceivers",
-        "name": "Fiber Optic Transceivers (SFP)"
-      },
       {
         "slug": "smart-sfp",
         "name": "Smart SFP Transceiver"
@@ -2735,10 +2502,6 @@
     ],
     "related": [
       {
-        "slug": "sfp-transceivers",
-        "name": "Fiber Optic Transceivers (SFP)"
-      },
-      {
         "slug": "smart-sfp",
         "name": "Smart SFP Transceiver"
       },
@@ -2794,10 +2557,6 @@
       }
     ],
     "related": [
-      {
-        "slug": "sfp-transceivers",
-        "name": "Fiber Optic Transceivers (SFP)"
-      },
       {
         "slug": "smart-sfp",
         "name": "Smart SFP Transceiver"
@@ -2855,10 +2614,6 @@
     ],
     "related": [
       {
-        "slug": "sfp-transceivers",
-        "name": "Fiber Optic Transceivers (SFP)"
-      },
-      {
         "slug": "smart-sfp",
         "name": "Smart SFP Transceiver"
       },
@@ -2867,60 +2622,6 @@
         "name": "400G"
       }
     ]
-  },
-  {
-    "slug": "sfp-transceivers",
-    "name": "Fiber Optic Transceivers (SFP)",
-    "category": "Active Components",
-    "title": "Fiber Optic Transceivers (SFP) | PDR World",
-    "description": "High performance serial optical data communication",
-    "canonical": "https://pdrworld.com/sfp-transceivers.html",
-    "tagline": "High performance serial optical data communication",
-    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"></rect><rect x=\"4\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"></rect><rect x=\"38\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"></rect><line x1=\"14\" y1=\"24\" x2=\"34\" y2=\"24\"></line></svg>",
-    "features": [
-      "High performance serial optical data communication",
-      "Cost effective modules",
-      "Compatible with major OEM switches"
-    ],
-    "applications": [
-      "Telecom Networks",
-      "Data Centers",
-      "Enterprise IT",
-      "ISP Infrastructure"
-    ],
-    "specs": [
-      {
-        "label": "Form Factor",
-        "value": "SFP / SFP+ / QSFP"
-      },
-      {
-        "label": "Data Rate",
-        "value": "155M to 400G"
-      },
-      {
-        "label": "Connector",
-        "value": "LC / SC Duplex"
-      },
-      {
-        "label": "DOM Support",
-        "value": "Yes"
-      }
-    ],
-    "related": [
-      {
-        "slug": "smart-sfp",
-        "name": "Smart SFP Transceiver"
-      },
-      {
-        "slug": "sfp-400g",
-        "name": "400G"
-      },
-      {
-        "slug": "sfp-100g-bidi",
-        "name": "100G & 100G BIDI"
-      }
-    ],
-    "datasheetUrl": "/datasheets/sfp-transceivers.pdf"
   },
   {
     "slug": "smart-sfp",
@@ -2960,10 +2661,6 @@
       }
     ],
     "related": [
-      {
-        "slug": "sfp-transceivers",
-        "name": "Fiber Optic Transceivers (SFP)"
-      },
       {
         "slug": "sfp-400g",
         "name": "400G"
@@ -3072,57 +2769,9 @@
     ]
   },
   {
-    "slug": "splice-sleeves",
-    "name": "Splice Sleeves",
-    "category": "Maintenance Tools",
-    "title": "Splice Sleeves | PDR World",
-    "description": "Clear outer tube for visual inspection",
-    "canonical": "https://pdrworld.com/splice-sleeves.html",
-    "tagline": "Clear outer tube for visual inspection",
-    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"14\" y=\"20\" width=\"20\" height=\"8\" rx=\"4\"></rect><line x1=\"8\" y1=\"24\" x2=\"40\" y2=\"24\"></line></svg>",
-    "features": [
-      "Clear outer tube for visual inspection",
-      "Stainless steel strength member",
-      "Moisture-resistant environmental seal"
-    ],
-    "applications": [
-      "Fusion Splicing",
-      "ODF Terminations",
-      "Drop Cable Assembly"
-    ],
-    "specs": [
-      {
-        "label": "Lengths",
-        "value": "60mm, 40mm"
-      },
-      {
-        "label": "Shrink Method",
-        "value": "Heat shrinkable"
-      },
-      {
-        "label": "Outer Diameter",
-        "value": "2.5mm / 3.0mm post-shrink"
-      }
-    ],
-    "related": [
-      {
-        "slug": "cleaner-pen",
-        "name": "Fiber Optic Cleaner Pen"
-      },
-      {
-        "slug": "cassette-cleaner",
-        "name": "Cassette Cleaner"
-      },
-      {
-        "slug": "mpo-cleaner",
-        "name": "Fiber Optic Cleaner Pen MPO"
-      }
-    ]
-  },
-  {
     "slug": "vfl",
     "name": "VFL — Visual Fault Locator",
-    "category": "Maintenance Tools",
+    "category": "Passive Components",
     "title": "VFL — Visual Fault Locator | PDR World",
     "description": "Bright 650nm visible red laser",
     "canonical": "https://pdrworld.com/vfl.html",
