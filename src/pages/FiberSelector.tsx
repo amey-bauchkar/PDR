@@ -24,7 +24,7 @@ const CATALOG: CatalogItem[] = [
     env: 'Indoor',
     mount: 'Rack Mount',
     cap: 24,
-    ports: ['LC Duplex', 'SC Simplex', 'ST Simplex'],
+    ports: ['LC Duplex', 'SC Duplex', 'FC Duplex', 'APC Duplex', 'SC Simplex', 'ST Simplex'],
     accessories: ['Splice Trays Only', 'Pre-loaded Pigtails', 'Fully Loaded (Adapters + Pigtails)'],
   },
   {
@@ -35,7 +35,7 @@ const CATALOG: CatalogItem[] = [
     env: 'Indoor',
     mount: 'Rack Mount',
     cap: 48,
-    ports: ['LC Duplex', 'SC Duplex'],
+    ports: ['LC Duplex', 'SC Duplex', 'FC Duplex', 'APC Duplex'],
     accessories: ['Splice Trays Only', 'Fully Loaded (Adapters + Pigtails)'],
   },
   {
@@ -46,7 +46,7 @@ const CATALOG: CatalogItem[] = [
     env: 'Outdoor',
     mount: 'Pole Mount',
     cap: 24,
-    ports: ['SC Simplex', 'LC Duplex'],
+    ports: ['SC Simplex', 'LC Duplex', 'FC Duplex', 'APC Duplex'],
     accessories: ['Splitter Installed', 'Empty'],
   },
   {
@@ -57,7 +57,7 @@ const CATALOG: CatalogItem[] = [
     env: 'Indoor',
     mount: 'Wall Mount',
     cap: 48,
-    ports: ['LC Duplex', 'SC Simplex'],
+    ports: ['LC Duplex', 'SC Duplex', 'FC Duplex', 'APC Duplex', 'SC Simplex'],
     accessories: ['Splice Trays Only', 'Fully Loaded'],
   },
   {
@@ -68,7 +68,7 @@ const CATALOG: CatalogItem[] = [
     env: 'Indoor',
     mount: 'Rack Mount',
     cap: 144,
-    ports: ['LC Duplex', 'MPO Cassettes'],
+    ports: ['LC Duplex', 'SC Duplex', 'FC Duplex', 'APC Duplex', 'MPO Cassettes'],
     accessories: ['Empty Frame', 'Loaded with Cassettes'],
   },
 ];

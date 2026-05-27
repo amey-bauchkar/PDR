@@ -35,6 +35,9 @@ const FIBERS: Record<string, FiberDef> = {
       'SC/APC': { sub: 'Angled · lowest back-reflection', shape: 'sc', apc: true },
       'LC/APC': { sub: 'Small form · high density panels', shape: 'lc', apc: true },
       'FC/APC': { sub: 'Threaded · lab & test equipment', shape: 'fc', apc: true },
+      'FC/PC':  { sub: 'Physical contact · standard SM', shape: 'fc', apc: false },
+      'ST/APC': { sub: 'Bayonet · angled polish', shape: 'st', apc: true },
+      'ST/PC':  { sub: 'Bayonet · standard polish', shape: 'st', apc: false },
       'SC/UPC': { sub: 'Flat polish · general SM use', shape: 'sc', apc: false },
       'LC/UPC': { sub: 'Small form · datacom links', shape: 'lc', apc: false },
     },
@@ -45,6 +48,50 @@ const FIBERS: Record<string, FiberDef> = {
       'Outdoor PE': { sub: 'UV stable · external runs' },
     },
     sp: { core: '9/125 µm', wl: '1310/1550 nm', att: '0.36 dB/km', std: 'G.652D' },
+  },
+  mm_om1: {
+    label: 'Multimode OM1',
+    sub: '62.5/125 µm · Legacy LAN',
+    dot: '#F59E0B',
+    tagBg: '#FFF4DB',
+    tagColor: '#B45309',
+    cableColor: 0xf59e0b,
+    cableR: 0.092,
+    jacketColor: 0xb45309,
+    connectors: {
+      'SC/UPC': { sub: 'Standard · legacy datacom', shape: 'sc', apc: false },
+      'LC/UPC': { sub: 'Small form factor', shape: 'lc', apc: false },
+      'FC/PC':  { sub: 'Physical contact · screw lock', shape: 'fc', apc: false },
+      'ST/PC':  { sub: 'Bayonet · classic LAN', shape: 'st', apc: false },
+    },
+    jackets: {
+      LSZH: { sub: 'Orange jacket · plenum rated' },
+      PVC: { sub: 'Standard indoor · LAN runs' },
+      'Riser': { sub: 'Vertical pathway · CMR rated' },
+    },
+    sp: { core: '62.5/125 µm', wl: '850/1300 nm', att: '3.5 dB/km', std: 'TIA-492AAAA' },
+  },
+  mm_om2: {
+    label: 'Multimode OM2',
+    sub: '50/125 µm · 1G–10G LAN',
+    dot: '#F97316',
+    tagBg: '#FFE7D6',
+    tagColor: '#9A3412',
+    cableColor: 0xf97316,
+    cableR: 0.088,
+    jacketColor: 0x9a3412,
+    connectors: {
+      'SC/UPC': { sub: 'Standard · short-range LAN', shape: 'sc', apc: false },
+      'LC/UPC': { sub: 'Small form · most common', shape: 'lc', apc: false },
+      'FC/PC':  { sub: 'Physical contact · lab use', shape: 'fc', apc: false },
+      'ST/PC':  { sub: 'Bayonet · LAN & CCTV', shape: 'st', apc: false },
+    },
+    jackets: {
+      LSZH: { sub: 'Orange jacket · plenum rated' },
+      PVC: { sub: 'Standard indoor · LAN runs' },
+      'Riser': { sub: 'Vertical pathway · CMR rated' },
+    },
+    sp: { core: '50/125 µm', wl: '850/1300 nm', att: '3.0 dB/km', std: 'TIA-492AAAB' },
   },
   mm_om3: {
     label: 'Multimode OM3',
@@ -59,6 +106,8 @@ const FIBERS: Record<string, FiberDef> = {
       'SC/UPC': { sub: 'Standard · short-range LAN', shape: 'sc', apc: false },
       'LC/UPC': { sub: 'Most common · SFP/SFP+ modules', shape: 'lc', apc: false },
       'ST/UPC': { sub: 'Bayonet · legacy LAN & CCTV', shape: 'st', apc: false },
+      'ST/PC':  { sub: 'Bayonet · standard polish', shape: 'st', apc: false },
+      'FC/PC':  { sub: 'Physical contact · test rigs', shape: 'fc', apc: false },
       'MPO/MTP': { sub: '12-fibre · parallel optics', shape: 'mpo', apc: false },
     },
     jackets: {
@@ -81,6 +130,8 @@ const FIBERS: Record<string, FiberDef> = {
     connectors: {
       'LC/UPC': { sub: 'Dominant · 40G/100G transceivers', shape: 'lc', apc: false },
       'SC/UPC': { sub: 'Duplex · switch uplinks', shape: 'sc', apc: false },
+      'ST/PC':  { sub: 'Bayonet · legacy support', shape: 'st', apc: false },
+      'FC/PC':  { sub: 'Physical contact · test gear', shape: 'fc', apc: false },
       'MPO/MTP': { sub: 'High density · 100G SR4', shape: 'mpo', apc: false },
       'E2000/APC': { sub: 'Spring loaded · clean connection', shape: 'sc', apc: true },
     },
@@ -123,35 +174,32 @@ function buildSC(side: number, _fc: number, bc: number, apc: boolean, multimode 
     g.add(ring);
   }
 
-  // Square housing body (the signature SC look)
-  const body = new THREE.Mesh(new THREE.BoxGeometry(0.27, 0.45, 0.27), pm(housing, 70, 0x222244));
-  body.position.y = 0.5;
+  // Square housing body — cleaner, beveled top corners to read as the SC silhouette
+  const body = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.5, 0.28), pm(housing, 90, 0x223355));
+  body.position.y = 0.55;
   g.add(body);
 
-  // Recessed channel along top for grip
-  const channel = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.04, 0.27), pm(0x111111, 30));
-  channel.position.set(0, 0.62, 0);
-  g.add(channel);
+  // Side wing recesses (grip indents) — matte black to define the body edges
+  [0.142, -0.142].forEach((z) => {
+    const recess = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.42, 0.01), pm(0x0a0a18, 20));
+    recess.position.set(0, 0.55, z);
+    g.add(recess);
+  });
 
-  // Squeeze-release tab on top (slightly raised wing)
-  const tab = new THREE.Mesh(new THREE.BoxGeometry(0.31, 0.16, 0.08), pm(housing, 60));
-  tab.position.set(0, 0.55, 0.14);
-  g.add(tab);
-
-  // Ferrule guard (raised collar at front)
-  const guard = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.08, 0.16), pm(housing, 70, 0x222244));
-  guard.position.y = 0.78;
+  // Ferrule guard collar — slightly recessed (the SC nose ring before the ferrule)
+  const guard = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.07, 0.08, 24), pm(housing, 100, 0x223355));
+  guard.position.y = 0.82;
   g.add(guard);
 
-  // White ceramic ferrule
-  const fer = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.22, 24), pm(0xf5f5f5, 180, 0xffffff));
-  if (apc) fer.rotation.z = 0.14; // angled APC face
-  fer.position.y = 0.93;
+  // White ceramic ferrule (2.5mm equivalent)
+  const fer = new THREE.Mesh(new THREE.CylinderGeometry(0.048, 0.048, 0.22, 24), pm(0xf5f5f5, 180, 0xffffff));
+  if (apc) fer.rotation.z = 0.14;
+  fer.position.y = 0.97;
   g.add(fer);
 
-  // Ferrule tip (slightly different shade)
-  const tip = new THREE.Mesh(new THREE.CylinderGeometry(0.046, 0.046, 0.02, 24), pm(0xeaeaea, 200));
-  tip.position.y = 1.04;
+  // Ferrule tip
+  const tip = new THREE.Mesh(new THREE.CylinderGeometry(0.044, 0.044, 0.02, 24), pm(0xeaeaea, 200));
+  tip.position.y = 1.09;
   g.add(tip);
 
   g.rotation.z = side > 0 ? -Math.PI / 2 : Math.PI / 2;
@@ -175,21 +223,28 @@ function buildLC(side: number, _fc: number, bc: number, apc: boolean, multimode 
   }
 
   // Small square housing
-  const body = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.32, 0.16), pm(housing, 70, 0x222244));
+  const body = new THREE.Mesh(new THREE.BoxGeometry(0.17, 0.34, 0.17), pm(housing, 90, 0x223355));
   body.position.y = 0.4;
   g.add(body);
 
-  // Hinged release tab on top (LC signature)
-  const tabHinge = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.02, 0.06), pm(housing, 50));
-  tabHinge.position.set(0, 0.5, 0.08);
-  g.add(tabHinge);
-  const tabArm = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.16, 0.04), pm(housing, 50));
-  tabArm.position.set(0, 0.42, 0.09);
-  tabArm.rotation.x = -0.4;
-  g.add(tabArm);
+  // Hinged release latch — anchored at the front of the body, arm extends BACK toward the boot.
+  // This is the LC signature: an angled lever you press toward the body to unlatch.
+  const latchAnchor = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.02, 0.04), pm(housing, 70));
+  latchAnchor.position.set(0, 0.56, 0.06);
+  g.add(latchAnchor);
+  const latchArm = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.04, 0.18), pm(housing, 70));
+  latchArm.position.set(0, 0.5, -0.02);
+  latchArm.rotation.x = 0.22;
+  g.add(latchArm);
+  // Two release wings at the back of the latch arm (you pinch these to unlatch)
+  [-0.06, 0.06].forEach((x) => {
+    const wing = new THREE.Mesh(new THREE.BoxGeometry(0.015, 0.05, 0.06), pm(housing, 70));
+    wing.position.set(x, 0.46, -0.1);
+    g.add(wing);
+  });
 
-  // Ferrule guard
-  const guard = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.06, 0.1), pm(housing, 70, 0x222244));
+  // Ferrule guard (small collar before the ferrule)
+  const guard = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.05, 0.06, 18), pm(housing, 100, 0x223355));
   guard.position.y = 0.6;
   g.add(guard);
 
@@ -270,8 +325,8 @@ function buildFC(side: number, _fc: number, bc: number, apc = false) {
   return g;
 }
 
-// ST (Straight Tip) — round body with bayonet quarter-turn mount
-function buildST(side: number, _fc: number, bc: number) {
+// ST (Straight Tip) — round body with knurled bayonet quarter-turn coupling
+function buildST(side: number, _fc: number, bc: number, apc = false) {
   const g = new THREE.Group();
 
   // Strain-relief boot
@@ -279,97 +334,127 @@ function buildST(side: number, _fc: number, bc: number) {
   boot.position.y = 0.12;
   g.add(boot);
 
-  // Black backbone
+  // Black backbone behind sleeve
   const backbone = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.1, 20), pm(0x1a1a1a, 80));
   backbone.position.y = 0.28;
   g.add(backbone);
 
-  // Bayonet coupling sleeve (chrome-finish, smooth + flared)
-  const sleeve = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.14, 0.32, 28), pm(0xb8b8b8, 200, 0x888888));
-  sleeve.position.y = 0.5;
+  // Bayonet coupling sleeve (chrome-finish metal)
+  const sleeve = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.36, 32), pm(0xc8c8c8, 200, 0x9a9a9a));
+  sleeve.position.y = 0.52;
   g.add(sleeve);
 
-  // Sleeve rim
-  const flange = new THREE.Mesh(new THREE.CylinderGeometry(0.165, 0.165, 0.06, 28), pm(0xa0a0a0, 160));
-  flange.position.y = 0.68;
-  g.add(flange);
+  // Knurled grip ridges around the sleeve — vertical lines define the metal grip
+  for (let i = 0; i < 24; i++) {
+    const angle = (i / 24) * Math.PI * 2;
+    const ridge = new THREE.Mesh(
+      new THREE.BoxGeometry(0.014, 0.34, 0.01),
+      pm(0xa8a8a8, 160, 0x888888),
+    );
+    ridge.position.set(Math.sin(angle) * 0.149, 0.52, Math.cos(angle) * 0.149);
+    ridge.rotation.y = -angle;
+    g.add(ridge);
+  }
 
-  // Bayonet slots (two L-shaped cutouts represented as small dark recesses on either side)
+  // Top + bottom rims of the sleeve (slightly bulged to define the knurled section)
+  [0.36, 0.7].forEach((y) => {
+    const rim = new THREE.Mesh(new THREE.CylinderGeometry(0.158, 0.158, 0.05, 32), pm(0xb8b8b8, 160));
+    rim.position.y = y;
+    g.add(rim);
+  });
+
+  // Two bayonet keyway slots (L-shaped — represented as small dark notches on the sleeve)
   [0, Math.PI].forEach((a) => {
-    const slot = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.12, 0.015), pm(0x222222, 40));
-    slot.position.set(Math.sin(a) * 0.151, 0.5, Math.cos(a) * 0.151);
+    const slot = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.12, 0.012), pm(0x222222, 30));
+    slot.position.set(Math.sin(a) * 0.156, 0.5, Math.cos(a) * 0.156);
     slot.rotation.y = -a;
     g.add(slot);
-    const slotHook = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.02, 0.015), pm(0x222222, 40));
-    slotHook.position.set(Math.sin(a) * 0.151, 0.43, Math.cos(a) * 0.151);
-    slotHook.rotation.y = -a;
-    g.add(slotHook);
   });
 
   // Ferrule guard
-  const guard = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.085, 0.06, 24), pm(0xb0b0b0, 130));
-  guard.position.y = 0.76;
+  const guard = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.085, 0.06, 24), pm(0xb0b0b0, 130));
+  guard.position.y = 0.78;
   g.add(guard);
 
   // 2.5mm ceramic ferrule
-  const fer = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.18, 24), pm(0xf5f5f5, 180, 0xffffff));
-  fer.position.y = 0.9;
+  const fer = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.2, 24), pm(0xf5f5f5, 180, 0xffffff));
+  if (apc) fer.rotation.z = 0.14;
+  fer.position.y = 0.93;
   g.add(fer);
 
   const tip = new THREE.Mesh(new THREE.CylinderGeometry(0.046, 0.046, 0.02, 24), pm(0xeaeaea, 200));
-  tip.position.y = 1.0;
+  tip.position.y = 1.04;
   g.add(tip);
 
   g.rotation.z = side > 0 ? -Math.PI / 2 : Math.PI / 2;
   return g;
 }
 
-// MPO/MTP (Multi-fiber Push-On) — rectangular face with guide pins, pull tab
-function buildMPO(side: number, fc: number, bc: number, apc = false) {
+// MPO/MTP (Multi-fiber Push-On) — black rectangular body, aqua boot, white pull-tab from rear
+function buildMPO(side: number, _fc: number, _bc: number, apc = false) {
   const g = new THREE.Group();
-  const housing = apc ? 0x16a34a : 0x1d4ed8;
+  // MPO body is matte black regardless of fiber type; APC variant has a key indicator
+  const body_c = 0x1a1a1a;
+  // Boot is industry-standard aqua/teal for MPO (matches OM3/OM4 ribbon cable convention)
+  const bootColor = 0x2dd4bf;
 
-  // Strain-relief boot (wider for MPO ribbon cable)
-  const boot = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.09, 0.28, 16), pm(bc, 25));
-  boot.position.y = 0.14;
+  // Strain-relief boot — aqua/teal, wider than single-fiber connectors
+  const boot = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.1, 0.3, 18), pm(bootColor, 50));
+  boot.position.y = 0.15;
   g.add(boot);
+  // Boot ribbed texture
+  for (let i = 0; i < 3; i++) {
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.14 - i * 0.01, 0.01, 6, 24), pm(0x14b8a6, 80));
+    ring.rotation.x = Math.PI / 2;
+    ring.position.y = 0.07 + i * 0.07;
+    g.add(ring);
+  }
 
-  // Housing body — rectangular (taller than wide)
-  const body = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.5, 0.26), pm(housing, 70, 0x111133));
-  body.position.y = 0.53;
+  // Pull-tab — extends OUT the back (toward the boot), the MPO signature
+  const tabBase = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.04, 0.12), pm(0xf0f0f0, 60));
+  tabBase.position.set(0, 0.34, 0);
+  g.add(tabBase);
+
+  // Housing body — matte black rectangle (taller than wide)
+  const body = new THREE.Mesh(new THREE.BoxGeometry(0.44, 0.5, 0.28), pm(body_c, 60, 0x222222));
+  body.position.y = 0.58;
   g.add(body);
 
+  // Top latch / housing top accent
+  const topAccent = new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.04, 0.3), pm(0x0a0a0a, 40));
+  topAccent.position.y = 0.81;
+  g.add(topAccent);
+
   // Side grip recesses
-  [0.18, -0.18].forEach((x) => {
-    const recess = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.34, 0.27), pm(0x0a0a2a, 40));
-    recess.position.set(x, 0.53, 0);
+  [0.21, -0.21].forEach((x) => {
+    const recess = new THREE.Mesh(new THREE.BoxGeometry(0.01, 0.4, 0.29), pm(0x0a0a0a, 30));
+    recess.position.set(x, 0.58, 0);
     g.add(recess);
   });
 
-  // Pull tab on top (the MPO signature)
-  const pullTab = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.04, 0.18), pm(0xeeeeee, 60));
-  pullTab.position.y = 0.8;
-  g.add(pullTab);
-  const pullTabRibs = new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.02, 0.12), pm(fc, 80));
-  pullTabRibs.position.y = 0.82;
-  g.add(pullTabRibs);
+  // APC key indicator (small green dot on top to mark angled polish)
+  if (apc) {
+    const key = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.02, 0.04), pm(0x16a34a, 60));
+    key.position.set(0, 0.83, 0.12);
+    g.add(key);
+  }
 
-  // Ferrule face (white ceramic block)
-  const face = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.1, 0.16), pm(0xfafafa, 200, 0xffffff));
-  face.position.y = 0.85;
+  // Ferrule face (white ceramic block) at the very top
+  const face = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.06, 0.18), pm(0xfafafa, 200, 0xffffff));
+  face.position.y = 0.87;
   g.add(face);
 
-  // Two precision alignment guide pins
-  [-0.13, 0.13].forEach((x) => {
-    const pin = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.08, 12), pm(0xcccccc, 200, 0xaaaaaa));
+  // Two precision alignment guide pins flanking the 12-fiber row
+  [-0.155, 0.155].forEach((x) => {
+    const pin = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.06, 12), pm(0xdddddd, 200, 0xaaaaaa));
     pin.position.set(x, 0.92, 0);
     g.add(pin);
   });
 
-  // 12 fiber holes (visualized as small dark dots in a single row)
+  // 12 fiber holes
   for (let i = 0; i < 12; i++) {
-    const hole = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.025, 8), pm(0x111111, 10));
-    hole.position.set(-0.11 + i * 0.02, 0.91, 0);
+    const hole = new THREE.Mesh(new THREE.CylinderGeometry(0.009, 0.009, 0.025, 8), pm(0x111111, 10));
+    hole.position.set(-0.115 + i * 0.021, 0.91, 0);
     g.add(hole);
   }
 
@@ -383,7 +468,8 @@ function getBuilder(s: Connector['shape']) {
 
 export default function CableConfigurator() {
   const [fiberKey, setFiberKey] = useState<keyof typeof FIBERS>('sm_os2');
-  const [connector, setConnector] = useState('SC/APC');
+  const [connectorA, setConnectorA] = useState('SC/APC');
+  const [connectorB, setConnectorB] = useState('SC/APC');
   const [jacket, setJacket] = useState('LSZH');
   const [length, setLength] = useState(3);
   const [localCart, setLocalCart] = useState<string[]>([]);
@@ -501,10 +587,11 @@ export default function CableConfigurator() {
     }
 
     const f = FIBERS[fiberKey];
-    const cd = f.connectors[connector] || Object.values(f.connectors)[0];
+    const cdA = f.connectors[connectorA] || Object.values(f.connectors)[0];
+    const cdB = f.connectors[connectorB] || cdA;
     const cLen = 1.1 + length * 0.13;
     const isArm = jacket === 'Armoured';
-    const isMPO = cd.shape === 'mpo';
+    const isMPO = cdA.shape === 'mpo' || cdB.shape === 'mpo';
     const cr = isMPO ? f.cableR * 1.4 : f.cableR;
 
     const cable = new THREE.Mesh(
@@ -536,21 +623,31 @@ export default function CableConfigurator() {
     }
 
     const multimode = fiberKey.startsWith('mm_');
-    [1, -1].forEach((side) => {
+    // side=+1 is the RIGHT end (Connector A), side=-1 is the LEFT end (Connector B)
+    [
+      { side: 1 as 1 | -1, cd: cdA },
+      { side: -1 as 1 | -1, cd: cdB },
+    ].forEach(({ side, cd }) => {
       const c = getBuilder(cd.shape)(side, f.cableColor, f.jacketColor, cd.apc, multimode);
-      c.position.x = side * (cLen / 2 + (isMPO ? 0.09 : 0.06));
+      c.position.x = side * (cLen / 2 + (cd.shape === 'mpo' ? 0.09 : 0.06));
       group.add(c);
     });
-  }, [fiberKey, connector, jacket, length]);
+  }, [fiberKey, connectorA, connectorB, jacket, length]);
 
-  // When fiber changes, default connector and jacket to first option
+  // When fiber changes, default both connectors and jacket to first option
   const onFiberChange = (key: keyof typeof FIBERS) => {
     setFiberKey(key);
-    setConnector(Object.keys(FIBERS[key].connectors)[0]);
+    const firstConn = Object.keys(FIBERS[key].connectors)[0];
+    setConnectorA(firstConn);
+    setConnectorB(firstConn);
     setJacket(Object.keys(FIBERS[key].jackets)[0]);
   };
 
-  const cd = fiber.connectors[connector] || Object.values(fiber.connectors)[0];
+  const cdA = fiber.connectors[connectorA] || Object.values(fiber.connectors)[0];
+  const cdB = fiber.connectors[connectorB] || cdA;
+
+  const polishLabel = (apc: boolean) => (apc ? 'APC — 8° angle' : 'UPC/PC — flat');
+  const connectorSummary = connectorA === connectorB ? connectorA : `${connectorA} → ${connectorB}`;
 
   const specCells: [string, string, boolean][] = useMemo(
     () => [
@@ -559,21 +656,23 @@ export default function CableConfigurator() {
       ['Wavelength', fiber.sp.wl, false],
       ['Attenuation', fiber.sp.att, false],
       ['Standard', fiber.sp.std, false],
-      ['Connector', connector, true],
-      ['Polish', cd.apc ? 'APC — 8° angle' : 'UPC — flat', false],
+      ['Connector A', connectorA, true],
+      ['Connector B', connectorB, true],
+      ['Polish A', polishLabel(cdA.apc), false],
+      ['Polish B', polishLabel(cdB.apc), false],
       ['Jacket', jacket, false],
       ['Length', `${length} m`, true],
-      ['Ins. loss', cd.apc ? '≤ 0.3 dB' : '≤ 0.2 dB', false],
+      ['Ins. loss', cdA.apc || cdB.apc ? '≤ 0.3 dB' : '≤ 0.2 dB', false],
     ],
-    [fiber, connector, jacket, length, cd],
+    [fiber, connectorA, connectorB, jacket, length, cdA, cdB],
   );
 
   const handleAdd = () => {
-    const item = `${fiber.label} · ${connector} · ${jacket} · ${length}m`;
+    const item = `${fiber.label} · ${connectorSummary} · ${jacket} · ${length}m`;
     setLocalCart((prev) => [...prev, item]);
     addItem({
       title: `Custom ${fiber.label} Patchcord`,
-      specs: `${connector} · ${jacket} · ${length} m`,
+      specs: `${connectorSummary} · ${jacket} · ${length} m`,
       image: '/images/fiber-patchcord.webp',
       qty: 1,
     });
@@ -679,13 +778,51 @@ export default function CableConfigurator() {
             </div>
 
             <div className="cfg3-step-card">
-              <div className="cfg3-step-head">Step 2 — Connector</div>
+              <div className="cfg3-step-head">
+                Step 2 — Connectors
+                <button
+                  type="button"
+                  onClick={() => setConnectorB(connectorA)}
+                  style={{
+                    float: 'right',
+                    fontSize: 11,
+                    fontWeight: 600,
+                    padding: '2px 8px',
+                    border: '1px solid var(--adm-border, #e5e7eb)',
+                    background: 'transparent',
+                    color: 'inherit',
+                    borderRadius: 6,
+                    cursor: 'pointer',
+                  }}
+                  title="Use the same connector on both ends"
+                >
+                  Mirror A → B
+                </button>
+              </div>
+              <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--cfg3-muted, #64748b)', marginBottom: 6, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+                Connector A (left end)
+              </div>
               <div className="cfg3-conn-grid">
                 {Object.entries(fiber.connectors).map(([key, val]) => (
                   <div
-                    key={key}
-                    className={`cfg3-copt${connector === key ? ' on' : ''}`}
-                    onClick={() => setConnector(key)}
+                    key={`a-${key}`}
+                    className={`cfg3-copt${connectorA === key ? ' on' : ''}`}
+                    onClick={() => setConnectorA(key)}
+                  >
+                    <div className="cfg3-cname">{key}</div>
+                    <div className="cfg3-csub">{val.sub}</div>
+                  </div>
+                ))}
+              </div>
+              <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--cfg3-muted, #64748b)', margin: '14px 0 6px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+                Connector B (right end)
+              </div>
+              <div className="cfg3-conn-grid">
+                {Object.entries(fiber.connectors).map(([key, val]) => (
+                  <div
+                    key={`b-${key}`}
+                    className={`cfg3-copt${connectorB === key ? ' on' : ''}`}
+                    onClick={() => setConnectorB(key)}
                   >
                     <div className="cfg3-cname">{key}</div>
                     <div className="cfg3-csub">{val.sub}</div>
