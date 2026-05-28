@@ -53,7 +53,7 @@ export default function About() {
 
       {/* STATS BAR */}
       <div className="ab-stats-bar reveal">
-        <div className="container" style={{ display: 'flex', width: '100%', padding: 0 }}>
+        <div className="container" style={{ display: 'flex', width: '100%', padding: 0, flexWrap: 'wrap' }}>
           <div className="ab-stat">
             <div className="ab-stat-num">3,000+</div>
             <div className="ab-stat-label">Enterprise Customers</div>
