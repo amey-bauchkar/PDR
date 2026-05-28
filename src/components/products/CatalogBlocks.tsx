@@ -228,6 +228,7 @@ export function ProductsCustomCta() {
               marginTop: 28,
               fontSize: 13,
               color: 'var(--muted)',
+              flexWrap: 'wrap',
             }}
           >
             <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
