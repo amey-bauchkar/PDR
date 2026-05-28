@@ -976,9 +976,9 @@
 .sl-hero .eyebrow::before { display: none; }
 
 .sl-hero-actions { display: flex; justify-content: center; gap: 20px; align-items: center; }
-.sl-hero-btn { display: inline-flex; align-items: center; gap: 12px; background: var(--accent); color: #fff; padding: 18px 36px; border-radius: 10px; font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 700; transition: all var(--dur-smooth) var(--ease-smooth); text-decoration: none; box-shadow: 0 8px 24px -8px rgba(74,159,216,.55); }
+.sl-hero-btn { display: inline-flex; justify-content: center; align-items: center; gap: 12px; background: var(--accent); color: #fff; padding: 18px 36px; border-radius: 10px; font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 700; transition: all var(--dur-smooth) var(--ease-smooth); text-decoration: none; box-shadow: 0 8px 24px -8px rgba(74,159,216,.55); }
 .sl-hero-btn:hover { background: #07008F; transform: translateY(-2px); box-shadow: 0 14px 30px -8px rgba(74,159,216,.7); }
-.sl-hero-link { font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap var(--dur-fast) var(--ease-in-out); }
+.sl-hero-link { font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; display: inline-flex; justify-content: center; align-items: center; gap: 6px; transition: gap var(--dur-fast) var(--ease-in-out); }
 .sl-hero-link:hover { gap: 10px; color: #07008F; }
 
 /* Section Overrides */
