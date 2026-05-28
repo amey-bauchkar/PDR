@@ -967,6 +967,7 @@
 
 /* ===== ABOUT PAGE SCOPED STYLES (ab- prefix) ===== */
 .ab-hero { padding: 140px 0 80px; background: #FFFFFF; position: relative; overflow: hidden; }
+.ab-hero h1 { font-size: clamp(40px, 5vw, 56px); line-height: 1.1; letter-spacing: -0.03em; font-weight: 800; color: #07008F; margin-bottom: 24px; }
 .ab-hero::before { content: ""; position: absolute; top: 0; right: 0; width: 600px; height: 600px; background: radial-gradient(circle, rgba(74,159,216,0.08), transparent 70%); pointer-events: none; }
 .ab-hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: center; }
 .ab-hero-img { border-radius: 20px; overflow: hidden; border: 1px solid var(--line); position: relative; aspect-ratio: 4/3; background: #18181B; }
