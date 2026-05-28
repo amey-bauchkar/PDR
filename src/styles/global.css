@@ -2294,7 +2294,17 @@ body {
 }
 
 .hp-cat-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 900px) {
+  .hp-cat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+@media (max-width: 640px) {
+  .hp-cat-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 .hp-cat-media {
   aspect-ratio: 16 / 10;
