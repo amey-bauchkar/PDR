@@ -251,7 +251,7 @@ export function downloadProductDatasheet(product: ProductDatasheetInput) {
     doc.text(`Page ${i} of ${totalPages}`, 190, 286, { align: 'right' });
   }
 
-  // Return the document as an inline preview blob URL
-  const pdfBlobUrl = doc.output('bloburl');
-  return typeof pdfBlobUrl === 'string' ? pdfBlobUrl : (pdfBlobUrl as any).toString();
+  // Natively save the PDF to the user's machine using jsPDF's built-in robust downloader
+  doc.save(`${product.slug}-datasheet.pdf`);
+  return '';
 }

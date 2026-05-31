@@ -6,6 +6,7 @@ import { ProductSchema, BreadcrumbSchema } from '../components/Schema';
 import productsData from '../data/products.json';
 import { mergeWithProducts } from '../lib/productSync';
 import { resolveCanonicalProductImage, getFallbackImage } from '../lib/imageResolution';
+import { downloadProductDatasheet } from '../lib/datasheetPdf';
 
 type Product = {
   slug: string;
@@ -174,34 +175,42 @@ export default function ProductDetail() {
                 >
                   {added ? '✓ Added' : 'Add to Quote'}
                 </button>
-                {datasheetHref ? (
-                  <a
-                    href={datasheetHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-outline"
-                    style={{ padding: '16px 32px', fontSize: 16, display: 'flex', alignItems: 'center', gap: 8 }}
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                      <polyline points="14 2 14 8 20 8" />
-                      <line x1="16" y1="13" x2="8" y2="13" />
-                      <line x1="16" y1="17" x2="8" y2="17" />
-                      <polyline points="10 9 9 9 8 9" />
-                    </svg>
-                    Datasheet (PDF)
-                  </a>
-                ) : (
-                  <button
+                <button
                     type="button"
                     onClick={() => {
-                      const newWindow = window.open('', '_blank');
-                      if (newWindow) {
-                        newWindow.document.write('<div style="font-family:sans-serif;padding:40px;text-align:center;color:#475569;">Generating datasheet...</div>');
-                      }
-                      
-                      import('../lib/datasheetPdf').then(({ downloadProductDatasheet }) => {
-                        const pdfUrl = downloadProductDatasheet({
+                      if (product.datasheetUrl) {
+                        // Static PDF: fetch as blob then force-download to bypass browser restrictions
+                        fetch(product.datasheetUrl)
+                          .then(res => res.blob())
+                          .then(blob => {
+                            const url = URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = `${product.slug}-datasheet.pdf`;
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                            setTimeout(() => URL.revokeObjectURL(url), 10000);
+                          })
+                          .catch(() => {
+                            // Fallback: generate PDF on the fly
+                            downloadProductDatasheet({
+                              slug: product.slug,
+                              name: product.name,
+                              category: product.category,
+                              title: product.title || `${product.name} | PDR World`,
+                              description: product.description || '',
+                              canonical: `https://pdrworld.com/products/${product.slug}`,
+                              tagline: product.tagline || '',
+                              features: product.features || [],
+                              applications: product.applications || [],
+                              specs: product.specs || [],
+                              related: product.related || [],
+                            });
+                          });
+                      } else {
+                        // No static PDF: generate it on the fly with jsPDF
+                        downloadProductDatasheet({
                           slug: product.slug,
                           name: product.name,
                           category: product.category,
@@ -214,13 +223,7 @@ export default function ProductDetail() {
                           specs: product.specs || [],
                           related: product.related || [],
                         });
-                        
-                        if (newWindow) {
-                          newWindow.location.href = pdfUrl;
-                        } else {
-                          window.location.href = pdfUrl;
-                        }
-                      });
+                      }
                     }}
                     className="btn btn-outline"
                     style={{ padding: '16px 32px', fontSize: 16, display: 'flex', alignItems: 'center', gap: 8 }}
@@ -234,7 +237,6 @@ export default function ProductDetail() {
                     </svg>
                     Datasheet (PDF)
                   </button>
-                )}
               </div>
             </div>
           </div>
