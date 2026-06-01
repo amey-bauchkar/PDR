@@ -311,6 +311,19 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  position: relative;
+}
+
+/* Desktop: show full actions, hide mobile dots */
+.admin-desktop-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Desktop: hide three-dot menu */
+.admin-mobile-actions {
+  display: none;
 }
 
 .admin-user-info {
