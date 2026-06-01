@@ -645,6 +645,13 @@ export default function AdminNew() {
       <div className={`admin-enhanced-shell ${darkMode ? 'dark' : ''}`}>
         <header className="admin-header">
           <div className="admin-header-left">
+            <button className="admin-mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+            </button>
             <h1>Admin Dashboard</h1>
             <span className="admin-role-badge">{session.role.toUpperCase()}</span>
           </div>
@@ -656,26 +663,13 @@ export default function AdminNew() {
             <button className="admin-btn-logout" onClick={handleLogout}>
               Logout
             </button>
-            <button className="admin-mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-              {isMobileMenuOpen ? (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              ) : (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                  <circle cx="12" cy="5" r="2"></circle>
-                  <circle cx="12" cy="12" r="2"></circle>
-                  <circle cx="12" cy="19" r="2"></circle>
-                </svg>
-              )}
-            </button>
           </div>
         </header>
 
         <div className="admin-container">
-          <aside className="admin-sidebar">
-            <nav className={`admin-nav ${isMobileMenuOpen ? 'open' : ''}`}>
+          <div className={`admin-mobile-overlay ${isMobileMenuOpen ? 'open' : ''}`} onClick={() => setIsMobileMenuOpen(false)}></div>
+          <aside className={`admin-sidebar ${isMobileMenuOpen ? 'open' : ''}`}>
+            <nav className="admin-nav">
               {checkPermission(session, 'view_dashboard') && (
                 <button
                   className={`admin-nav-item ${activeTab === 'dashboard' ? 'active' : ''}`}
