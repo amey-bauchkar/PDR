@@ -159,6 +159,7 @@ export default function AdminNew() {
   });
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileSettingsOpen, setIsMobileSettingsOpen] = useState(false);
   const [rfqs, setRfqs] = useState<RFQRequest[]>(() => {
     if (typeof window === 'undefined') return [];
     const raw = window.localStorage.getItem(STORAGE_KEYS.rfqs);
@@ -656,13 +657,54 @@ export default function AdminNew() {
             <span className="admin-role-badge">{session.role.toUpperCase()}</span>
           </div>
           <div className="admin-header-right">
-            <button className="admin-theme-toggle" onClick={() => setDarkMode(!darkMode)} title="Toggle dark mode">
-              {darkMode ? '☀️' : '🌙'}
-            </button>
-            <span className="admin-user-info">{session.email}</span>
-            <button className="admin-btn-logout" onClick={handleLogout}>
-              Logout
-            </button>
+            <div className="admin-desktop-actions">
+              <button className="admin-theme-toggle" onClick={() => setDarkMode(!darkMode)} title="Toggle dark mode">
+                {darkMode ? '☀️' : '🌙'}
+              </button>
+              <span className="admin-user-info">{session.email}</span>
+              <button className="admin-btn-logout" onClick={handleLogout}>
+                Logout
+              </button>
+            </div>
+            <div className="admin-mobile-actions">
+              <button 
+                className="admin-settings-dots" 
+                onClick={() => setIsMobileSettingsOpen(!isMobileSettingsOpen)}
+                title="Open settings menu"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="1"></circle>
+                  <circle cx="12" cy="5" r="1"></circle>
+                  <circle cx="12" cy="19" r="1"></circle>
+                </svg>
+              </button>
+              {isMobileSettingsOpen && (
+                <div className="admin-mobile-dropdown">
+                  <div className="admin-dropdown-item admin-user-info-mobile">
+                    {session.email}
+                  </div>
+                  <button 
+                    className="admin-dropdown-item toggle-theme-item" 
+                    onClick={() => {
+                      setDarkMode(!darkMode);
+                      setIsMobileSettingsOpen(false);
+                    }}
+                  >
+                    Dark Mode
+                    <span>{darkMode ? '☀️' : '🌙'}</span>
+                  </button>
+                  <button 
+                    className="admin-dropdown-item" 
+                    onClick={() => {
+                      handleLogout();
+                      setIsMobileSettingsOpen(false);
+                    }}
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </header>
 
