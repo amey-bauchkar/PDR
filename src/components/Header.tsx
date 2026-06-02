@@ -57,7 +57,7 @@ export default function Header() {
     <>
       <header className={`site-header${scrolled ? ' scrolled' : ''}`} id="top">
         <div className="container nav">
-          <Link className="brand site-header-brand" to="/" aria-label="PDR World home">
+          <Link className="brand site-header-brand" to="/" aria-label="PDR Videotronics India home">
             <img src={logo} alt="" className="logo site-header-logo" />
           </Link>
 
@@ -98,8 +98,8 @@ export default function Header() {
                     <span>OPM · Laser Source · OTDR · Microscopes · BERT</span>
                   </Link>
                   <Link to="/products/specialty-drones" onClick={() => setOpenMega(null)}>
-                    <strong>Specialty &amp; Drones</strong>
-                    <span>Optical Fiber Drone · High-Power Patchcord · Custom Assemblies</span>
+                    <strong>Drones</strong>
+                    <span>Optical Fiber Drone · Aerial Deployment, Inspection &amp; Surveillance</span>
                   </Link>
                 </div>
               </div>

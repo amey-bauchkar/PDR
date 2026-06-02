@@ -1308,7 +1308,12 @@ textarea:focus {
 @media (max-width: 768px) {
   .footer .logo-container {
     padding-top: 0;
+  }
+  .footer .logo-container .footer-logo {
     max-width: 140px;
+  }
+  .footer .brand-text small {
+    white-space: nowrap;
   }
 }
 

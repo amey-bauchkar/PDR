@@ -7,8 +7,8 @@ export default function Solutions() {
   return (
     <>
       <Seo
-        title="Fiber Optic Infrastructure Solutions | DAS, DTS & Network Monitoring — PDR World"
-        description="Custom-engineered fiber optic infrastructure: Distributed Acoustic Sensing, Distributed Temperature Sensing, and fiber link monitoring. Field-proven for telecom, defence, and utilities."
+        title="Fiber Optic Infrastructure Solutions | Remote Fiber Monitoring, DAS & DTS — PDR"
+        description="Custom-engineered fiber optic infrastructure: remote fiber monitoring with automated rerouting, plus Distributed Acoustic Sensing and Distributed Temperature Sensing. Field-proven for telecom, defence, and utilities."
         canonical="https://pdrworld.com/solutions"
       />
       <BreadcrumbSchema items={[
@@ -17,7 +17,7 @@ export default function Solutions() {
       ]} />
       <ServiceSchema 
         name="Fiber Optic Infrastructure Solutions"
-        description="Custom-engineered fiber optic infrastructure: Distributed Acoustic Sensing, Distributed Temperature Sensing, and fiber link monitoring. Field-proven for telecom, defence, and utilities."
+        description="Custom-engineered fiber optic infrastructure: remote fiber monitoring with automated rerouting, plus Distributed Acoustic Sensing and Distributed Temperature Sensing. Field-proven for telecom, defence, and utilities."
         serviceType="Telecommunications Infrastructure"
       />
       {/* Removed nested <main> — Layout already provides <main> */}
@@ -40,97 +40,22 @@ export default function Solutions() {
           <div className="container">
             <div className="sl-section-head">
               <div className="eyebrow">MONITORING SYSTEMS</div>
-              <h2>Real-time link integrity and distributed sensing.</h2>
-              <p>We convert existing fiber optic infrastructure into a continuous, high-fidelity sensing instrument for structural health and operational visibility.</p>
+              <h2>Remote fiber monitoring and distributed sensing.</h2>
+              <p>We convert existing fiber optic infrastructure into a continuous, high-fidelity sensing instrument for link integrity, structural health, and operational visibility.</p>
             </div>
 
-            {/* DAS */}
-            <div className="sl-solution-row sl-split-2-1 reveal">
-              <div className="sl-text-block">
-                <div className="eyebrow">ACOUSTIC DETECTION</div>
-                <h3>Distributed Acoustic Sensing (DAS)</h3>
-                <p>Convert installed fiber routes into a continuous acoustic detection layer for perimeter security, leak monitoring, and intrusion alerts. Our DAS platform classifies vibrations with pinpoint accuracy, filtering environmental noise to identify real threats.</p>
-                <div className="sl-use-case">
-                  <strong>Key Outcome:</strong> Instant localization of unauthorized activity or physical breaches along 50km+ corridors.
-                </div>
-                <Link to="/contact?inquiry=DAS" className="sl-hero-btn" style={{ padding: '14px 28px' }}>Request Engineering Specs</Link>
-              </div>
-              <div className="sl-metrics-grid">
-                <div className="sl-metric-card">
-                  <span className="sl-metric-val">50km+</span>
-                  <span className="sl-metric-label">Range per channel</span>
-                  <span className="sl-metric-sub">Continuous monitoring</span>
-                </div>
-                <div className="sl-metric-card">
-                  <span className="sl-metric-val">±5m</span>
-                  <span className="sl-metric-label">Spatial Resolution</span>
-                  <span className="sl-metric-sub">Event localization</span>
-                </div>
-                <div className="sl-metric-card">
-                  <span className="sl-metric-val">10kHz</span>
-                  <span className="sl-metric-label">Sampling Rate</span>
-                  <span className="sl-metric-sub">Acoustic fidelity</span>
-                </div>
-                <div className="sl-metric-card">
-                  <span className="sl-metric-val">AI/ML</span>
-                  <span className="sl-metric-label">Classification</span>
-                  <span className="sl-metric-sub">Pattern recognition</span>
-                </div>
-              </div>
-            </div>
-
-            <div style={{ height: 1, background: 'var(--line)', marginBottom: 100 }}></div>
-
-            {/* DTS */}
-            <div className="sl-solution-row sl-full-width reveal">
-              <div className="sl-text-block" style={{ maxWidth: 800 }}>
-                <div className="eyebrow">THERMAL PROFILING</div>
-                <h3>Distributed Temperature Sensing (DTS)</h3>
-                <p>Proactive thermal risk detection for high-voltage power cables, utility tunnels, and chemical pipelines. DTS provides continuous temperature profiles, identifying hot spots before they lead to catastrophic equipment failure or outages.</p>
-                <div className="sl-use-case" style={{ maxWidth: 600 }}>
-                  <strong>Key Outcome:</strong> SIL-2 compliant fire detection and real-time thermal rating for power transmission lines.
-                </div>
-              </div>
-              <div className="sl-metrics-row">
-                <div className="sl-metric-card">
-                  <span className="sl-metric-val">±1°C</span>
-                  <span className="sl-metric-label">Sensitivity</span>
-                  <span className="sl-metric-sub">High-precision sensing</span>
-                </div>
-                <div className="sl-metric-card">
-                  <span className="sl-metric-val">&lt;10s</span>
-                  <span className="sl-metric-label">Scan Time</span>
-                  <span className="sl-metric-sub">Rapid refresh rate</span>
-                </div>
-                <div className="sl-metric-card">
-                  <span className="sl-metric-val">16 ch</span>
-                  <span className="sl-metric-label">Capacity</span>
-                  <span className="sl-metric-sub">Multi-zone monitoring</span>
-                </div>
-                <div className="sl-metric-card">
-                  <span className="sl-metric-val">24/7</span>
-                  <span className="sl-metric-label">Operation</span>
-                  <span className="sl-metric-sub">Uninterrupted uptime</span>
-                </div>
-              </div>
-              <div style={{ marginTop: 32 }}>
-                <Link to="/contact?inquiry=DTS" className="sl-hero-link">Review Thermal Performance Data →</Link>
-              </div>
-            </div>
-
-            <div style={{ height: 1, background: 'var(--line)', marginBottom: 100 }}></div>
-
-            {/* MONITORING */}
+            {/* REMOTE FIBER MONITORING — primary */}
             <div className="sl-solution-row sl-split-1-1 reveal">
               <div className="sl-text-block">
                 <div className="eyebrow">SURVIVABILITY</div>
-                <h3>Fiber Link Monitoring & Rerouting</h3>
-                <p>Maintain continuous corridor visibility and prevent service downtime. Our automated monitoring suite combines live OTDR analytics with high-speed optical switching to detect cable cuts and micro-bends in under 10ms.</p>
+                <h3>Remote Fiber Monitoring</h3>
+                <p>Maintain continuous corridor visibility and prevent service downtime. Our automated monitoring suite combines live OTDR analytics with high-speed optical switching to detect cable cuts and micro-bends in under 10ms — then localizes and reroutes around the fault automatically.</p>
                 <ul className="sl-feat-list" style={{ marginTop: -12, marginBottom: 32 }}>
                   <li className="sl-feat-item">Automated fault localization via live GIS mapping</li>
                   <li className="sl-feat-item">Event-triggered optical path rerouting</li>
+                  <li className="sl-feat-item">SCADA / NMS / NOC integration out of the box</li>
                 </ul>
-                <Link to="/contact?inquiry=Monitoring" className="btn btn-outline" style={{ padding: '14px 28px' }}>Inquire About System Deployment</Link>
+                <Link to="/contact?inquiry=Remote+Fiber+Monitoring" className="sl-hero-btn" style={{ padding: '14px 28px' }}>Inquire About System Deployment</Link>
               </div>
               <div className="sl-metrics-grid">
                 <div className="sl-metric-card" style={{ background: '#F8FAFC' }}>
@@ -152,6 +77,50 @@ export default function Solutions() {
                   <span className="sl-metric-val">GIS</span>
                   <span className="sl-metric-label">Mapping</span>
                   <span className="sl-metric-sub">Live fault overlays</span>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ height: 1, background: 'var(--line)', margin: '56px 0' }}></div>
+
+            {/* DAS — secondary, minimal */}
+            <div className="sl-solution-row sl-split-2-1 reveal">
+              <div className="sl-text-block">
+                <div className="eyebrow">ACOUSTIC DETECTION</div>
+                <h3>Distributed Acoustic Sensing (DAS)</h3>
+                <p>Convert installed fiber routes into a continuous acoustic detection layer for perimeter security, leak monitoring, and intrusion alerts — with AI/ML classification along 50km+ corridors.</p>
+                <Link to="/contact?inquiry=DAS" className="sl-hero-link">Request DAS Specs →</Link>
+              </div>
+              <div className="sl-metrics-row">
+                <div className="sl-metric-card">
+                  <span className="sl-metric-val">50km+</span>
+                  <span className="sl-metric-label">Range per channel</span>
+                </div>
+                <div className="sl-metric-card">
+                  <span className="sl-metric-val">±5m</span>
+                  <span className="sl-metric-label">Spatial Resolution</span>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ height: 1, background: 'var(--line)', margin: '56px 0' }}></div>
+
+            {/* DTS — secondary, minimal */}
+            <div className="sl-solution-row sl-split-2-1 reveal">
+              <div className="sl-text-block">
+                <div className="eyebrow">THERMAL PROFILING</div>
+                <h3>Distributed Temperature Sensing (DTS)</h3>
+                <p>Proactive thermal risk detection for high-voltage power cables, utility tunnels, and pipelines — continuous temperature profiles that flag hot spots before failure.</p>
+                <Link to="/contact?inquiry=DTS" className="sl-hero-link">Review Thermal Data →</Link>
+              </div>
+              <div className="sl-metrics-row">
+                <div className="sl-metric-card">
+                  <span className="sl-metric-val">±1°C</span>
+                  <span className="sl-metric-label">Sensitivity</span>
+                </div>
+                <div className="sl-metric-card">
+                  <span className="sl-metric-val">&lt;10s</span>
+                  <span className="sl-metric-label">Scan Time</span>
                 </div>
               </div>
             </div>

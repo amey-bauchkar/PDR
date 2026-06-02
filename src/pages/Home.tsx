@@ -34,10 +34,10 @@ const homeCategories = [
   },
   {
     id: 'specialty',
-    title: 'Specialty',
-    description: 'Specialized high-power and custom optical products for critical applications.',
-    count: 'Custom Builds',
-    image: '/images/hero-infrastructure.webp',
+    title: 'Drones',
+    description: 'Optical fiber drones for rapid aerial deployment, inspection, and surveillance in inaccessible terrain.',
+    count: 'Aerial Solutions',
+    image: '/images/fiber-drone.webp',
   },
   {
     id: 'tools',
@@ -124,7 +124,7 @@ export default function Home() {
             <div className="hp-stat-label">Export Markets</div>
           </div>
           <div className="hp-stat-item reveal d-3">
-            <div className="hp-stat-num">500<span>+</span></div>
+            <div className="hp-stat-num">5000<span>+</span></div>
             <div className="hp-stat-label">Project Deployments</div>
           </div>
           <div className="hp-stat-item reveal d-4">
@@ -193,8 +193,8 @@ export default function Home() {
             </div>
             <div className="why-card reveal d-3">
               <div className="num">03</div>
-              <h3>Vertical Integration</h3>
-              <p>We control the entire supply chain, from raw materials to final QC, ensuring supply stability.</p>
+              <h3>Manufacturing Control</h3>
+              <p>Critical production and quality processes are managed internally for greater consistency and traceability.</p>
             </div>
           </div>
         </div>

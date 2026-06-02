@@ -264,7 +264,7 @@ const HUB_TAB_META: Record<string, string> = {
   passive: '40+ SKUs',
   cable: '12+ SKUs',
   test: '10+ SKUs',
-  specialty: 'Custom',
+  specialty: 'Drone',
   tools: 'Tooling',
 };
 
