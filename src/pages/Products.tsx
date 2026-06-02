@@ -8,7 +8,7 @@ import {
   CatalogCategorySection
 } from '../components/products/CatalogBlocks';
 import { BreadcrumbSchema } from '../components/Schema';
-import { productsCategoryHref } from '../data/productCategoryRoutes';
+import { productsCategoryHrefDeep } from '../data/productCategoryRoutes';
 import { mergeWithCatalogue, getAdminProducts } from '../lib/productSync';
 import rawCatalogue from '../data/catalogue.json';
 import '../styles/products.css';
@@ -111,7 +111,7 @@ export default function Products() {
                 <Link className="btn btn-primary" to="/contact">
                   Request a Quote
                 </Link>
-                <Link className="btn btn-outline" to={productsCategoryHref('passive')}>
+                <Link className="btn btn-outline" to={productsCategoryHrefDeep('passive')}>
                   Browse Passive Components →
                 </Link>
               </div>

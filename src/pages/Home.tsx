@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
 import { OrganizationSchema, WebSiteSchema } from '../components/Schema';
-import { productsCategoryHref } from '../data/productCategoryRoutes';
+import { productsCategoryHrefDeep } from '../data/productCategoryRoutes';
 
 const homeCategories = [
   {
@@ -163,7 +163,7 @@ export default function Home() {
                 <h3>{category.title}</h3>
                 <p>{category.description}</p>
                 <div className="hp-cat-count">{category.count}</div>
-                <Link className="btn-link" to={productsCategoryHref(category.id)}>
+                <Link className="btn-link" to={productsCategoryHrefDeep(category.id)}>
                   View {category.title} →
                 </Link>
               </div>

@@ -38,6 +38,13 @@ export function productsCategoryHref(sectionId: string): string {
   return p ? `/products/${p}` : '/products';
 }
 
+/** Same as productsCategoryHref but with a hash to the product listing, so navigation
+ *  lands directly on the products instead of the category hero. */
+export function productsCategoryHrefDeep(sectionId: string): string {
+  const p = SECTION_TO_PATH[sectionId];
+  return p ? `/products/${p}#${sectionId}` : '/products';
+}
+
 export function categoryCanonical(path: ProductCategoryPath): string {
   return `https://pdrworld.com/products/${path}`;
 }

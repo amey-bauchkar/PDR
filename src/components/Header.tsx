@@ -81,23 +81,23 @@ export default function Header() {
               </NavLink>
               <div className="mega" role="menu">
                 <div className="mega-grid">
-                  <Link to="/products/passive-components" onClick={() => setOpenMega(null)}>
+                  <Link to="/products/passive-components#passive" onClick={() => setOpenMega(null)}>
                     <strong>Passive Components</strong>
                     <span>Patchcords · Armoured · CPRI · FanOut · Rapid Push · Splitters · WDM · Adapters</span>
                   </Link>
-                  <Link to="/products/active-components" onClick={() => setOpenMega(null)}>
+                  <Link to="/products/active-components#active" onClick={() => setOpenMega(null)}>
                     <strong>Active Components</strong>
                     <span>SFP Transceivers · OLP · DAC/AOC · Bypass Switch</span>
                   </Link>
-                  <Link to="/products/cable-management" onClick={() => setOpenMega(null)}>
+                  <Link to="/products/cable-management#cable" onClick={() => setOpenMega(null)}>
                     <strong>Cable Management</strong>
                     <span>ODF · FDB · Closures · Termination Boxes</span>
                   </Link>
-                  <Link to="/products/test-measuring" onClick={() => setOpenMega(null)}>
+                  <Link to="/products/test-measuring#test" onClick={() => setOpenMega(null)}>
                     <strong>Test &amp; Measuring</strong>
                     <span>OPM · Laser Source · OTDR · Microscopes · BERT</span>
                   </Link>
-                  <Link to="/products/specialty-drones" onClick={() => setOpenMega(null)}>
+                  <Link to="/products/specialty-drones#specialty" onClick={() => setOpenMega(null)}>
                     <strong>Drones</strong>
                     <span>Optical Fiber Drone · Aerial Deployment, Inspection &amp; Surveillance</span>
                   </Link>
