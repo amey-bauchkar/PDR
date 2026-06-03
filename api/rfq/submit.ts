@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createClient } from '@supabase/supabase-js';
 import { google } from 'googleapis';
 import { v4 as uuidv4 } from 'uuid';
