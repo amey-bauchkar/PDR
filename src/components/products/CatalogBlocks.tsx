@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRfqCart } from '../RfqCartProvider';
 import catalogue from '../../data/catalogue.json';
-import { productsCategoryHref } from '../../data/productCategoryRoutes';
+import { productsCategoryHrefDeep } from '../../data/productCategoryRoutes';
 import { resolveCanonicalProductImage, getFallbackImage } from '../../lib/imageResolution';
 
 export type CatalogCard = {
@@ -96,7 +96,7 @@ export function CatalogStickyNav({ activeSectionId }: { activeSectionId: string 
             <Link
               key={t.target}
               className={`pr-tab${activeSectionId === t.target ? ' active' : ''}`}
-              to={productsCategoryHref(t.target)}
+              to={productsCategoryHrefDeep(t.target)}
               data-target={t.target}
             >
               {t.label}
@@ -118,7 +118,7 @@ export function CatalogCategorySection({
   omitIntroHead?: boolean;
 }) {
   return (
-    <section className={`section pr-section reveal${alt ? ' sec-muted' : ''}`} id={section.id}>
+    <section className={`section pr-section reveal${alt ? ' sec-muted' : ''}`} id={section.id} style={{ scrollMarginTop: 130 }}>
       <div className="container">
         {!omitIntroHead && (
           <div className="sec-head">
@@ -264,7 +264,7 @@ const HUB_TAB_META: Record<string, string> = {
   passive: '40+ SKUs',
   cable: '12+ SKUs',
   test: '10+ SKUs',
-  specialty: 'Custom',
+  specialty: 'Drone',
   tools: 'Tooling',
 };
 
@@ -272,7 +272,7 @@ export function CatalogHubCategoryPills() {
   return (
     <>
       {(catalogue.tabs as { target: string; label: string }[]).map((t) => (
-        <Link key={t.target} className="pr-cat-pill" to={productsCategoryHref(t.target)}>
+        <Link key={t.target} className="pr-cat-pill" to={productsCategoryHrefDeep(t.target)}>
           <span className="pr-cat-pill-left">
             <span className="pr-cat-dot"></span>
             <span className="pr-cat-pill-name">{t.label}</span>

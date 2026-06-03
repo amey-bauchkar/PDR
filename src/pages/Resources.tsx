@@ -54,12 +54,6 @@ export default function Resources() {
               <p>Comprehensive training sessions on fiber optic splicing, testing equipment operation, and network deployment best practices conducted by our experts.</p>
               <Link className="rs-link" to="/contact?inquiry=Training">Inquire About Training →</Link>
             </div>
-            <div className="rs-card" id="factory">
-              <div className="rs-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" /></svg></div>
-              <h3>Setup a Fiber Factory</h3>
-              <p>PDR offers complete turnkey consultation for establishing fiber optic assembly and testing facilities — including equipment procurement, calibration, staff training, and quality systems setup.</p>
-              <Link className="rs-link" to="/contact?inquiry=Factory+Setup">Enquire About Factory Setup →</Link>
-            </div>
           </div>
         </div>
       </section>
@@ -116,8 +110,8 @@ export default function Resources() {
         <div className="container">
           <div className="sec-head center">
             <div className="eyebrow" style={{ justifyContent: 'center' }}>In The News</div>
-            <h2>Media &amp; Press</h2>
-            <p>Stay updated with the latest breakthroughs, corporate announcements, and industry features from PDR World.</p>
+            <h2>Media</h2>
+            <p>Stay updated with the latest breakthroughs, corporate announcements, and industry features from PDR.</p>
           </div>
 
           <div className="rs-media-grid">
@@ -152,47 +146,6 @@ export default function Resources() {
                 <h4 style={{ margin: '8px 0' }}>PDR Expands to 20+ Global Export Markets</h4>
                 <p style={{ fontSize: 14, color: 'var(--muted)' }}>New strategic distribution partnerships established across the EU and Southeast Asia regions.</p>
                 <Link to="/contact?inquiry=Media" style={{ display: 'inline-block', marginTop: 14, fontWeight: 600, color: 'var(--ink)', fontSize: 14 }}>Read More →</Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* EVENTS */}
-      <section className="section reveal" id="events">
-        <div className="container">
-          <div className="sec-head">
-            <div className="eyebrow">Upcoming</div>
-            <h2>Events &amp; Exhibitions</h2>
-            <p>Meet the PDR team at industry trade shows and exhibitions across India.</p>
-          </div>
-
-          <div className="rs-events-list">
-            <div className="rs-event">
-              <div className="rs-event-date">
-                <div className="rs-event-month">Sep</div>
-                <div className="rs-event-day">18</div>
-              </div>
-              <div className="rs-event-details">
-                <h4>Convergence India Expo 2026</h4>
-                <p>Bharat Mandapam, New Delhi — Showcasing our latest 5G and FTTH passive infrastructure solutions.</p>
-              </div>
-              <div className="rs-event-action">
-                <Link className="btn btn-outline" to="/contact">Book a Meeting</Link>
-              </div>
-            </div>
-
-            <div className="rs-event">
-              <div className="rs-event-date">
-                <div className="rs-event-month">Nov</div>
-                <div className="rs-event-day">14</div>
-              </div>
-              <div className="rs-event-details">
-                <h4>InfoComm India 2026</h4>
-                <p>Jio World Convention Centre, Mumbai — Live demonstrations of our SMPTE and Broadcast AV solutions.</p>
-              </div>
-              <div className="rs-event-action">
-                <Link className="btn btn-outline" to="/contact">Book a Meeting</Link>
               </div>
             </div>
           </div>

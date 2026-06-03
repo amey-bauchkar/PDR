@@ -9,10 +9,10 @@ export default function Footer() {
         <div className="footer-brand">
           <Link className="brand" to="/">
             <div className="logo-container">
-              <img src={logo} alt="PDR World" className="logo footer-logo" />
+              <img src={logo} alt="PDR Videotronics India Pvt. Ltd." className="logo footer-logo" />
               <span className="brand-text" style={{ display: 'flex', flexDirection: 'column' }}>
-                PDR World
-                <small>Videotronics India · Since 1985</small>
+                PDR Videotronics India
+                <small>Pvt. Ltd. · Since 1985</small>
               </span>
             </div>
           </Link>
@@ -67,11 +67,9 @@ export default function Footer() {
             <li><Link to="/resources#support">Technical Support</Link></li>
             <li><Link to="/resources#custom">Custom Manufacturing</Link></li>
             <li><Link to="/resources#partners">Channel Partner Program</Link></li>
-            <li><Link to="/resources#factory">Setup a Factory</Link></li>
             <li><Link to="/resources#training">Training</Link></li>
             <li><Link to="/contact">Submit RFQ / Enquiry</Link></li>
             <li><Link to="/resources#media">Media</Link></li>
-            <li><Link to="/resources#events">Events &amp; Exhibitions</Link></li>
             <li><Link to="/resources#videos">Video Gallery</Link></li>
             <li><Link to="/about#compliance">Certifications</Link></li>
             <li><Link to="/about#careers">Careers</Link></li>

@@ -472,6 +472,9 @@ export default function CableConfigurator() {
   const [connectorB, setConnectorB] = useState('SC/APC');
   const [jacket, setJacket] = useState('LSZH');
   const [length, setLength] = useState(3);
+  const [useCustomLen, setUseCustomLen] = useState(false);
+  const [customLenValue, setCustomLenValue] = useState('100');
+  const [customLenUnit, setCustomLenUnit] = useState<'m' | 'km'>('m');
   const [localCart, setLocalCart] = useState<string[]>([]);
   const [confirmation, setConfirmation] = useState('');
 
@@ -648,6 +651,7 @@ export default function CableConfigurator() {
 
   const polishLabel = (apc: boolean) => (apc ? 'APC — 8° angle' : 'UPC/PC — flat');
   const connectorSummary = connectorA === connectorB ? connectorA : `${connectorA} → ${connectorB}`;
+  const lengthLabel = useCustomLen && customLenValue.trim() ? `${customLenValue.trim()} ${customLenUnit}` : `${length} m`;
 
   const specCells: [string, string, boolean][] = useMemo(
     () => [
@@ -661,18 +665,18 @@ export default function CableConfigurator() {
       ['Polish A', polishLabel(cdA.apc), false],
       ['Polish B', polishLabel(cdB.apc), false],
       ['Jacket', jacket, false],
-      ['Length', `${length} m`, true],
+      ['Length', lengthLabel, true],
       ['Ins. loss', cdA.apc || cdB.apc ? '≤ 0.3 dB' : '≤ 0.2 dB', false],
     ],
     [fiber, connectorA, connectorB, jacket, length, cdA, cdB],
   );
 
   const handleAdd = () => {
-    const item = `${fiber.label} · ${connectorSummary} · ${jacket} · ${length}m`;
+    const item = `${fiber.label} · ${connectorSummary} · ${jacket} · ${lengthLabel}`;
     setLocalCart((prev) => [...prev, item]);
     addItem({
       title: `Custom ${fiber.label} Patchcord`,
-      specs: `${connectorSummary} · ${jacket} · ${length} m`,
+      specs: `${connectorSummary} · ${jacket} · ${lengthLabel}`,
       image: '/images/fiber-patchcord.webp',
       qty: 1,
     });
@@ -849,17 +853,56 @@ export default function CableConfigurator() {
 
             <div className="cfg3-step-card">
               <div className="cfg3-step-head">Step 4 — Length</div>
-              <div className="cfg3-len-row">
-                <input
-                  type="range"
-                  min={1}
-                  max={20}
-                  value={length}
-                  step={1}
-                  onChange={(e) => setLength(parseInt(e.target.value, 10))}
-                />
-                <div className="cfg3-len-val">{length} m</div>
-              </div>
+              {!useCustomLen ? (
+                <>
+                  <div className="cfg3-len-row">
+                    <input
+                      type="range"
+                      min={1}
+                      max={20}
+                      value={length}
+                      step={1}
+                      onChange={(e) => setLength(parseInt(e.target.value, 10))}
+                    />
+                    <div className="cfg3-len-val">{length} m</div>
+                  </div>
+                  <button
+                    type="button"
+                    className="cfg3-len-custom-toggle"
+                    onClick={() => setUseCustomLen(true)}
+                  >
+                    Need a custom length? (up to 100s of km) →
+                  </button>
+                </>
+              ) : (
+                <>
+                  <div className="cfg3-len-custom-row">
+                    <input
+                      type="number"
+                      min={1}
+                      className="cfg3-len-input"
+                      value={customLenValue}
+                      placeholder="Enter length"
+                      onChange={(e) => setCustomLenValue(e.target.value)}
+                    />
+                    <select
+                      className="cfg3-len-unit"
+                      value={customLenUnit}
+                      onChange={(e) => setCustomLenUnit(e.target.value as 'm' | 'km')}
+                    >
+                      <option value="m">m</option>
+                      <option value="km">km</option>
+                    </select>
+                  </div>
+                  <button
+                    type="button"
+                    className="cfg3-len-custom-toggle"
+                    onClick={() => setUseCustomLen(false)}
+                  >
+                    ← Back to standard lengths
+                  </button>
+                </>
+              )}
             </div>
 
             <button className="cfg3-add-btn" onClick={handleAdd}>
