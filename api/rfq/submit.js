@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { createClient } from '@supabase/supabase-js';
 import { google } from 'googleapis';
 import { v4 as uuidv4 } from 'uuid';
@@ -24,7 +23,10 @@ function getSheetsContext() {
   const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
   const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
   const rawKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
-  if (!spreadsheetId || !email || !rawKey) return null;
+  if (!spreadsheetId || !email || !rawKey) {
+    console.log('Google Sheets not configured:', { spreadsheetId: !!spreadsheetId, email: !!email, rawKey: !!rawKey });
+    return null;
+  }
   const key = rawKey.replace(/\\n/g, '\n');
   const auth = new google.auth.JWT({ email, key, scopes: ['https://www.googleapis.com/auth/spreadsheets'] });
   return { spreadsheetId, sheetName: process.env.GOOGLE_SHEETS_TAB_NAME || 'Sheet1', sheets: google.sheets({ version: 'v4', auth }) };
@@ -59,12 +61,12 @@ async function logToGoogleSheets(rfqData, items) {
     });
     return { success: true };
   } catch (err) {
+    console.error('Google Sheets error:', err.message);
     return { success: false, error: err.message };
   }
 }
 
 export default async function handler(req, res) {
-  // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -117,6 +119,7 @@ export default async function handler(req, res) {
 
     // Log to Google Sheets
     const sheetsResult = await logToGoogleSheets(rfqRecord, items);
+    console.log('Sheets result:', sheetsResult);
 
     return res.status(201).json({
       success: true,
