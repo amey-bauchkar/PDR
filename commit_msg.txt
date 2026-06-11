@@ -1,0 +1,10 @@
+﻿feat: Merge all final features, sync media, and clean 14MB unused assets
+
+- Merged Resources page (Jun 8) with YouTube embeds and media gallery from pdr-vercel-deploy
+- Migrated 13 media images to public/images/media/
+- Removed empty .ab-hero-copy h1 CSS rule to fix lint warning
+- Cleaned up 10.55 MB of unused images from public/frames/
+- Deleted 19 unused legacy images from public/images/live/
+- Deleted unused archive scripts, .kiro config, and obsolete deployment docs
+- Successfully retained Google Sheets integration (rfqService.ts)
+- Maintained responsive admin dashboard, product deep-links, and deployment configurations
