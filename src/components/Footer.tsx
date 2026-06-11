@@ -53,8 +53,8 @@ export default function Footer() {
             <li><Link to="/products/passive-components">Passive Components</Link></li>
             <li><Link to="/products/active-components">Active Components</Link></li>
             <li><Link to="/products/cable-management">Cable Management</Link></li>
-            <li><Link to="/products/test-measuring">Test &amp; Measuring</Link></li>
-            <li><Link to="/products/specialty-drones">Specialty &amp; Drones</Link></li>
+            <li><Link to="/products/test-measuring">Test and Measurement</Link></li>
+            <li><Link to="/products/specialty-drones">Drone Optical Fiber Kit</Link></li>
           </ul>
         </div>
 

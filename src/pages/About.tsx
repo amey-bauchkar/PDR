@@ -29,11 +29,10 @@ export default function About() {
         <div className="container">
           <div className="ab-hero-grid">
             <div className="reveal ab-hero-copy">
-              <div className="eyebrow">Our Story · Since 1985</div>
-              <h1>Leading Fiber Optic Manufacturer in India — PDR Videotronics</h1>
+              <div className="eyebrow">Our Story - Since 1974 (company incorporated in 1974, fiber optics started in 1985)</div>
+              <h1>Leading Fiber Optic Manufacturer in India — PDR Videotronics India Pvt Ltd</h1>
               <p>
-                For nearly four decades, PDR Videotronics has been at the forefront of manufacturing active and passive fiber optic
-                infrastructure, empowering India&apos;s digital backbone from our Mumbai headquarters.
+                For nearly four decades, PDR has been at the forefront of manufacturing and supplying active and passive fiber optic infrastructure, empowering India's digital backbone from our Mumbai headquarters.
               </p>
             </div>
             <div className="ab-hero-img reveal" style={{ transitionDelay: '0.1s' }}>
@@ -43,7 +42,7 @@ export default function About() {
               </picture>
               <div className="ab-hero-img-overlay" />
               <div className="ab-est">
-                <div className="ab-est-year">1985</div>
+                <div className="ab-est-year">1974</div>
                 <div className="ab-est-text">Year Established</div>
               </div>
             </div>
@@ -80,9 +79,8 @@ export default function About() {
             <div>
               <h2 className="ab-story-title">Building the foundation of modern connectivity.</h2>
               <div className="ab-story-content">
-                <p>Established in 1985 in Mumbai, PDR Videotronics India Pvt. Ltd. began with a vision to build reliable, high-quality electronic and optical components for the emerging telecommunications sector. As technology evolved, so did we.</p>
-                <p>Today, we are a leading manufacturer and supplier of Active and Passive Fiber Optic Components, Cable Management Devices, and Test &amp; Measuring Equipment. Our product portfolio is trusted by Telecom Operators, Defence forces, ISPs, OEMs, and Research Institutions globally.</p>
-                <p>Our philosophy is simple: complete vertical integration. By keeping manufacturing, testing, and distribution entirely in-house, we ensure zero supply chain gaps and unparalleled quality control. We don&apos;t just assemble; we engineer solutions that withstand the harshest environments and the most demanding data loads.</p>
+                <p>Established in 1974 in Mumbai, PDR began with a vision to build reliable, high-quality electronic and optical components for the emerging telecommunications sector. As technology evolved, so did we.</p>
+                <p>Our philosophy is simple: engineering excellence through manufacturing control. With in-house design, production, testing, and quality assurance, we deliver consistent quality, faster turnaround times, and dependable performance. Every solution is developed with a focus on precision, reliability, and long-term operational success.</p>
               </div>
             </div>
             <div>
@@ -126,37 +124,44 @@ export default function About() {
         <div className="container">
           <div className="sec-head center">
             <div className="eyebrow ab-center-eyebrow">Our Journey</div>
-            <h2>40 Years of Innovation</h2>
-            <p>From a small R&amp;D lab in 1985 to a global leader in fiber optic technology.</p>
+            <h2>Over 50 Years of Engineering & Manufacturing Excellence</h2>
+            <p>From our beginnings in 1974 to becoming one of India's trusted manufacturers of fiber optic and communication solutions.</p>
           </div>
 
           <div className="timeline">
             <div className="tm-item left">
               <div className="tm-content">
-                <h3>1985</h3>
-                <h4>The Inception</h4>
-                <p>PDR Videotronics India was established in Mumbai with a vision to pioneer domestic research and development in optical communication.</p>
+                <h3>1974</h3>
+                <h4>The Foundation</h4>
+                <p>PDR Videotronics India Pvt. Ltd. was established in Mumbai with a vision to develop and manufacture advanced electronic and communication technologies.</p>
               </div>
             </div>
             <div className="tm-item right">
               <div className="tm-content">
-                <h3>1995</h3>
-                <h4>Manufacturing Scale-up</h4>
-                <p>Expanded operations to a dedicated facility to meet the surging demand for high-quality patch cords and termination boxes from national telecom operators.</p>
+                <h3>1985</h3>
+                <h4>Fiber Optics Division Established</h4>
+                <p>PDR launched its Fiber Optics Division to support the emerging optical communication industry in India. This milestone marked the beginning of our journey in fiber optic connectivity, telecom infrastructure, and network solutions.</p>
               </div>
             </div>
             <div className="tm-item left">
               <div className="tm-content">
-                <h3>2010</h3>
-                <h4>Going Global</h4>
-                <p>Achieved ISO 9001:2015 certification and expanded export operations to over 15 countries, establishing PDR as a trusted international B2B partner.</p>
+                <h3>1995</h3>
+                <h4>Manufacturing Expansion</h4>
+                <p>To meet the growing demand from telecom operators and enterprise networks, PDR expanded its manufacturing capabilities, strengthening production of fiber optic patch cords, termination boxes, and passive networking solutions.</p>
               </div>
             </div>
             <div className="tm-item right">
               <div className="tm-content">
-                <h3>2024</h3>
-                <h4>Next-Gen Horizons</h4>
-                <p>Launched the Optical Fiber Drone and 400G transceiver portfolio, continuing to lead India&apos;s &quot;Make in India&quot; initiative in high-speed networking.</p>
+                <h3>2010</h3>
+                <h4>Global Recognition</h4>
+                <p>Achieved ISO 9001:2015 certification and expanded exports to over 15 countries. This milestone established PDR as a trusted international partner for fiber optic products, telecom infrastructure, and connectivity solutions.</p>
+              </div>
+            </div>
+            <div className="tm-item left">
+              <div className="tm-content">
+                <h3>2025 and Beyond</h3>
+                <h4>Next-Generation Innovation</h4>
+                <p>Pioneering the next era of connectivity with Optical Fiber Drone Communication Solutions, 400G networking technologies, and Remote Fiber Monitoring Systems, enabling secure, reliable, and intelligent network infrastructure across diverse applications.</p>
               </div>
             </div>
           </div>
@@ -197,26 +202,6 @@ export default function About() {
               <div className="ab-cert-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10" /><path d="M2 12h20" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg></div>
               <h4>IEC Certificate</h4>
               <p>Compliant with International Electrotechnical Commission standards.</p>
-            </a>
-            <a href={nsicPdf} target="_blank" rel="noopener noreferrer" className="ab-cert-card" style={{ display: 'block' }}>
-              <div className="ab-cert-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M20 7h-9l-3-3h-5v16h22v-13z" /></svg></div>
-              <h4>NSIC Certificate</h4>
-              <p>Registered with National Small Industries Corporation for quality manufacturing.</p>
-            </a>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginTop: '1.5rem', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
-            <a href={udyamPdf} target="_blank" rel="noopener noreferrer" className="ab-cert-card" style={{ padding: '1.25rem 1.5rem', display: 'flex', alignItems: 'center', gap: '1rem', textAlign: 'left', minHeight: 'auto' }}>
-              <div className="ab-cert-icon" style={{ marginBottom: 0, width: '40px', height: '40px', display: 'grid', placeItems: 'center' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg></div>
-              <div>
-                <h4 style={{ margin: 0, fontSize: '1rem' }}>Udyam Registration</h4>
-              </div>
-            </a>
-            <a href={mpcbPdf} target="_blank" rel="noopener noreferrer" className="ab-cert-card" style={{ padding: '1.25rem 1.5rem', display: 'flex', alignItems: 'center', gap: '1rem', textAlign: 'left', minHeight: 'auto' }}>
-              <div className="ab-cert-icon" style={{ marginBottom: 0, width: '40px', height: '40px', display: 'grid', placeItems: 'center' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg></div>
-              <div>
-                <h4 style={{ margin: 0, fontSize: '1rem' }}>MPCB Certificate</h4>
-              </div>
             </a>
           </div>
         </div>

@@ -27,7 +27,7 @@ export const CATEGORY_IMAGE_MAP: Record<string, string> = {
   'Active Components': '/images/sfp-transceiver.webp',
   'Passive Components': '/images/fiber-patchcord.webp',
   'Cable Management Devices': '/images/fiber-patch-panel.webp',
-  'Test & Measuring Equipment': '/images/fiber-patch-panel.webp',
+  'Test and Measurement': '/images/fiber-patch-panel.webp',
   'Maintenance Tools': '/images/fiber-patch-panel.webp',
   'Specialty Products': '/images/hero-infrastructure.webp',
 };

@@ -1,7 +1,7 @@
 {
   "hero": {
     "eyebrow": "Product Catalogue · 50+ Families",
-    "title": "The complete fibre optic stack. Made in Mumbai.",
+    "title": "The complete fibre optic stack. Made in India.",
     "subtitle": "Active components, passive assemblies, cable management, and test equipment — manufactured and tested in-house since 1985.",
     "stats": [
       "50+ Product Families",
@@ -27,12 +27,12 @@
       },
       {
         "href": "/products/test-measuring",
-        "name": "Test & Measuring Equipment",
+        "name": "Test and Measurement Equipment",
         "meta": "10+ SKUs"
       },
       {
         "href": "/products/specialty-drones",
-        "name": "Optical Fiber Drone",
+        "name": "Drone Optical Fiber Kit",
         "meta": ""
       }
     ]
@@ -52,11 +52,11 @@
     },
     {
       "target": "test",
-      "label": "Test & Measuring"
+      "label": "Test and Measurement"
     },
     {
       "target": "specialty",
-      "label": "Optical Fiber Drone"
+      "label": "Drone Optical Fiber Kit"
     }
   ],
   "sections": [
@@ -1041,7 +1041,7 @@
     },
     {
       "id": "test",
-      "eyebrow": "Test & Measuring Equipment",
+      "eyebrow": "Test and Measurement Equipment",
       "heading": "OTDR, Power Meters, Splicers & Inspectors",
       "intro": "Professional-grade fiber test instruments manufactured and calibrated in-house.",
       "groups": [
@@ -1213,7 +1213,7 @@
     },
     {
       "id": "specialty",
-      "eyebrow": "Optical Fiber Drone",
+      "eyebrow": "Drone Optical Fiber Kit",
       "heading": "Aerial Deployment Solutions",
       "intro": "Next-generation aerial fiber deployment, inspection, and surveillance solutions.",
       "groups": [
@@ -1225,7 +1225,7 @@
               "tag": "Drone",
               "img": "/images/live/optical-fiber-drone.webp",
               "heroSvg": "",
-              "name": "Optical Fiber Drone",
+              "name": "Drone Optical Fiber Kit",
               "blurb": "Rapid aerial deployment in inaccessible areas.",
               "pills": [
                 "Aerial Deployment",
@@ -1234,7 +1234,7 @@
               ],
               "detailsSlug": "drone",
               "addItem": {
-                "title": "Optical Fiber Drone",
+                "title": "Drone Optical Fiber Kit",
                 "specs": "Standard Factory Specs",
                 "image": "/images/live/optical-fiber-drone.webp"
               }

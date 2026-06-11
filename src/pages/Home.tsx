@@ -27,14 +27,14 @@ const homeCategories = [
   },
   {
     id: 'test',
-    title: 'Test & Measuring',
+    title: 'Test and Measurement',
     description: 'OTDRs, optical power meters, fusion splicers, and inspection tools.',
     count: '10+ SKUs',
     image: '/images/fiber-patch-panel.webp',
   },
   {
     id: 'specialty',
-    title: 'Drones',
+    title: 'Drone Optical Fiber Kit',
     description: 'Optical fiber drones for rapid aerial deployment, inspection, and surveillance in inaccessible terrain.',
     count: 'Aerial Solutions',
     image: '/images/fiber-drone.webp',
@@ -53,7 +53,7 @@ export default function Home() {
     <>
       <Seo
         title="Fiber Optic Manufacturer in India | Active & Passive Components — PDR World"
-        description="PDR World is an ISO 9001:2015 certified manufacturer of fiber optic components since 1985. SFP transceivers, patch cords, ODFs, OTDRs, and more. Made in Mumbai."
+        description="PDR World is an ISO 9001:2015 certified manufacturer of fiber optic components since 1985. SFP transceivers, patch cords, ODFs, OTDRs, and more. Made in India."
         canonical="https://pdrworld.com/"
       />
       <OrganizationSchema />
@@ -72,7 +72,7 @@ export default function Home() {
               <p style={{ fontSize: '1.125rem', lineHeight: 1.6, marginTop: '24px', opacity: 0.85, maxWidth: '600px' }}>
                 <strong>Smart Fiber Monitoring &amp; Telecom Infrastructure Solutions.</strong>
                 <br />
-                <span style={{ display: 'inline-block', marginTop: '8px' }}>Make in India Fiber Optic Technology for Next-Gen Networks.</span>
+                <span style={{ display: 'inline-block', marginTop: '8px' }}>Made in India Fiber Optic Technology for Next-Gen Networks.</span>
               </p>
               <div className="hp-cta-row">
                 <Link className="btn btn-primary" to="/contact">Request Quote</Link>

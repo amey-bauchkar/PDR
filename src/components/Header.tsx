@@ -94,11 +94,11 @@ export default function Header() {
                     <span>ODF · FDB · Closures · Termination Boxes</span>
                   </Link>
                   <Link to="/products/test-measuring#test" onClick={() => setOpenMega(null)}>
-                    <strong>Test &amp; Measuring</strong>
+                    <strong>Test and Measurement</strong>
                     <span>OPM · Laser Source · OTDR · Microscopes · BERT</span>
                   </Link>
                   <Link to="/products/specialty-drones#specialty" onClick={() => setOpenMega(null)}>
-                    <strong>Drones</strong>
+                    <strong>Drone Optical Fiber Kit</strong>
                     <span>Optical Fiber Drone · Aerial Deployment, Inspection &amp; Surveillance</span>
                   </Link>
                 </div>
@@ -205,8 +205,8 @@ export default function Header() {
             <Link to="/products/passive-components">Passive Components</Link>
             <Link to="/products/active-components">Active Components</Link>
             <Link to="/products/cable-management">Cable Management Devices</Link>
-            <Link to="/products/test-measuring">Test &amp; Measuring Equipment</Link>
-            <Link to="/products/specialty-drones">Specialty &amp; Drones</Link>
+            <Link to="/products/test-measuring">Test and Measurement</Link>
+            <Link to="/products/specialty-drones">Drone Optical Fiber Kit</Link>
           </div>
         </details>
         <details>

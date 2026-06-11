@@ -97,16 +97,11 @@ export default function Products() {
         <div className="container">
           <div className="pr-hero-grid">
             <div className="pr-hero-copy">
-              <div className="eyebrow">{catalogue.hero.eyebrow || 'Product Catalogue · 50+ Families'}</div>
+              <div className="eyebrow">{catalogue.hero.eyebrow || 'Product Catalogue'}</div>
               <h1>{catalogue.hero.title || 'The Complete Fiber Optic Ecosystem. Engineered in Mumbai.'}</h1>
               <p className="pr-hero-subtitle">
-                {catalogue.hero.subtitle || 'Delivering high-performance active and passive optical solutions with precision manufacturing and rigorous in-house testing since 1985.'}
+                {catalogue.hero.subtitle || 'Founded in 1974, PDR Videotronics India Pvt. Ltd. is a leading name in the optical communication industry. Since launching our Fiber Optics Division in 1985, we have been dedicated to designing and manufacturing high-quality active and passive components that drive reliable, next-generation connectivity.'}
               </p>
-              <ul className="pr-hero-points">
-                <li>Engineered &amp; tested in-house in Mumbai</li>
-                <li>End-to-end product stack (Active → Maintenance)</li>
-                <li>Fast RFQ &amp; enterprise-grade deployment support</li>
-              </ul>
               <div className="pr-hero-cta-row">
                 <Link className="btn btn-primary" to="/contact">
                   Request a Quote
@@ -114,11 +109,6 @@ export default function Products() {
                 <Link className="btn btn-outline" to={productsCategoryHrefDeep('passive')}>
                   Browse Passive Components →
                 </Link>
-              </div>
-              <div className="pr-hero-stats">
-                {(catalogue.hero.stats || ['50+ Product Families', '3,000+ Buyers', 'ISO 9001:2015 Certified', 'Same-day shipping']).map((s: string, i: number) => (
-                  <span key={i}>{s}</span>
-                ))}
               </div>
             </div>
             <div className="pr-cat-nav-panel">

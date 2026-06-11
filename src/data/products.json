@@ -629,9 +629,9 @@
   },
   {
     "slug": "drone",
-    "name": "Optical Fiber Drone",
+    "name": "Drone Optical Fiber Kit",
     "category": "Specialty Products",
-    "title": "Optical Fiber Drone | PDR World",
+    "title": "Drone Optical Fiber Kit | PDR World",
     "description": "Rapid aerial deployment in inaccessible areas",
     "canonical": "https://pdrworld.com/drone.html",
     "tagline": "Rapid aerial deployment in inaccessible areas",
@@ -714,7 +714,7 @@
   {
     "slug": "easycheck-v2",
     "name": "EasyCheck V2 Digital Fiber Endface Inspector",
-    "category": "Test & Measuring Equipment",
+    "category": "Test and Measurement Equipment",
     "title": "EasyCheck V2 Digital Fiber Endface Inspector | PDR World",
     "description": "Desktop digital fiber inspector",
     "canonical": "https://pdrworld.com/easycheck-v2.html",
@@ -763,7 +763,7 @@
   {
     "slug": "easyget-wifi",
     "name": "EasyGet WiFi Wireless Fiber Endface Microscope",
-    "category": "Test & Measuring Equipment",
+    "category": "Test and Measurement Equipment",
     "title": "EasyGet WiFi Wireless Fiber Endface Microscope | PDR World",
     "description": "Wireless transmission to smartphone/tablet",
     "canonical": "https://pdrworld.com/easyget-wifi.html",
@@ -1055,7 +1055,7 @@
   {
     "slug": "fusion-splicer",
     "name": "Fusion Splicer PDR618H",
-    "category": "Test & Measuring Equipment",
+    "category": "Test and Measurement Equipment",
     "title": "Fusion Splicer PDR618H | PDR World",
     "description": "Handheld, small and light",
     "canonical": "https://pdrworld.com/fusion-splicer.html",
@@ -1445,7 +1445,7 @@
   {
     "slug": "mini-opm",
     "name": "Mini Optical Power Meter",
-    "category": "Test & Measuring Equipment",
+    "category": "Test and Measurement Equipment",
     "title": "Mini Optical Power Meter | PDR World",
     "description": "Pocket-sized, lightweight design",
     "canonical": "https://pdrworld.com/mini-opm.html",
@@ -1640,7 +1640,7 @@
   {
     "slug": "next-gen-splicer",
     "name": "Next Gen Optical Fusion Splicer (OPM + VFL)",
-    "category": "Test & Measuring Equipment",
+    "category": "Test and Measurement Equipment",
     "title": "Next Gen Optical Fusion Splicer (OPM + VFL) | PDR World",
     "description": "Integrated OPM and VFL modules",
     "canonical": "https://pdrworld.com/next-gen-splicer.html",
@@ -1831,7 +1831,7 @@
   {
     "slug": "pocket-otdr",
     "name": "Pocket OTDR",
-    "category": "Test & Measuring Equipment",
+    "category": "Test and Measurement Equipment",
     "title": "Pocket OTDR | PDR World",
     "description": "Ultra-compact smartphone-sized form factor",
     "canonical": "https://pdrworld.com/pocket-otdr.html",
@@ -1927,7 +1927,7 @@
   {
     "slug": "pon-power-meter",
     "name": "PON Power Meter",
-    "category": "Test & Measuring Equipment",
+    "category": "Test and Measurement Equipment",
     "title": "PON Power Meter | PDR World",
     "description": "Pass-through measurement for live PON",
     "canonical": "https://pdrworld.com/pon-power-meter.html",
@@ -2074,7 +2074,7 @@
   {
     "slug": "regular-opm",
     "name": "Regular Optical Power Meter",
-    "category": "Test & Measuring Equipment",
+    "category": "Test and Measurement Equipment",
     "title": "Regular Optical Power Meter | PDR World",
     "description": "Auto-wavelength recognition capability",
     "canonical": "https://pdrworld.com/regular-opm.html",

@@ -155,7 +155,7 @@ export function ProductsTrustBand() {
       <div className="container">
         <div className="pr-trust-layout">
           <div>
-            <div className="eyebrow">Made in Mumbai</div>
+            <div className="eyebrow">Made in India</div>
             <h2>Manufactured, tested and dispatched from one floor.</h2>
             <p className="pr-trust-copy">
               PDR operates a vertically integrated production facility at Filmcity Complex, Goregaon East — ensuring zero supply chain gaps
