@@ -87,6 +87,17 @@ export default async function handler(req, res) {
     const rfqId = uuidv4();
     const submittedAt = new Date().toISOString();
 
+    const rfqRecord = {
+      id: rfqId,
+      session_hash: sessionHash || `live-${Date.now()}`,
+      full_name: name,
+      email,
+      company,
+      notes: notes || '',
+      status: 'new',
+      submitted_at: submittedAt,
+    };
+
     // Save to Supabase using the existing RPC
     const supabase = getSupabase();
     if (supabase) {
