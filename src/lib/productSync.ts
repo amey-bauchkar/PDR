@@ -1,5 +1,5 @@
-// Product synchronization between admin panel and main products page
 import seedProducts from '../data/products.json';
+import { get, set } from 'idb-keyval';
 
 export type AdminProduct = {
   slug: string;
@@ -24,21 +24,59 @@ export type AdminProduct = {
 
 const STORAGE_KEY = 'pdrworld-admin-products-v2';
 
+let memoryCache: AdminProduct[] | null = null;
+
 /**
- * Get all products from localStorage (admin-managed products)
+ * Initialize product store from IndexedDB on startup
+ */
+export const initializeProductStore = async (): Promise<void> => {
+  try {
+    const idbProducts = await get<AdminProduct[]>(STORAGE_KEY);
+    if (idbProducts) {
+      memoryCache = idbProducts;
+    } else {
+      // Migrate from localStorage if present
+      const raw = localStorage.getItem(STORAGE_KEY);
+      const localProducts = raw ? JSON.parse(raw) : [];
+      memoryCache = localProducts;
+      await set(STORAGE_KEY, localProducts);
+    }
+  } catch (err) {
+    console.error("Failed to read from IDB:", err);
+  }
+  // Dispatch update to sync React state immediately after loading
+  window.dispatchEvent(new Event('pdrworld-product-update'));
+};
+
+/**
+ * Get all products from memory cache (or fallback to localStorage if not initialized)
  */
 export const getAdminProducts = (): AdminProduct[] => {
+  if (memoryCache !== null) return memoryCache;
   if (typeof window === 'undefined') return [];
   const raw = localStorage.getItem(STORAGE_KEY);
   return raw ? JSON.parse(raw) : [];
 };
 
 /**
- * Save products to localStorage
+ * Save products to IDB and memory cache
  */
-export const saveAdminProducts = (products: AdminProduct[]): void => {
+export const saveAdminProducts = async (products: AdminProduct[]): Promise<void> => {
   if (typeof window === 'undefined') return;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+  memoryCache = products;
+  
+  try {
+    await set(STORAGE_KEY, products);
+  } catch (err) {
+    console.error("Failed to save to IDB:", err);
+    // Fallback if IDB fails
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+    } catch(e) {
+      console.warn("localStorage quota exceeded");
+    }
+  }
+  
   window.dispatchEvent(new Event('pdrworld-product-update'));
 };
 
@@ -56,7 +94,7 @@ export const saveProduct = async (product: AdminProduct): Promise<void> => {
   }
   
   // Save to local cache first for instant feedback
-  saveAdminProducts(products);
+  await saveAdminProducts(products);
 
   // Sync to database in background
   try {
@@ -96,7 +134,7 @@ export const saveProduct = async (product: AdminProduct): Promise<void> => {
  */
 export const deleteProduct = async (slug: string): Promise<void> => {
   const products = getAdminProducts().filter((p) => p.slug !== slug);
-  saveAdminProducts(products);
+  await saveAdminProducts(products);
 
   try {
     const res = await fetch(`/api/products/${slug}`, {
@@ -131,7 +169,7 @@ export const fetchAndSyncProducts = async (): Promise<AdminProduct[]> => {
       const unsyncedProducts = localProducts.filter((p) => !dbSlugs.has(p.slug));
       const mergedProducts = [...items, ...unsyncedProducts];
       
-      saveAdminProducts(mergedProducts);
+      await saveAdminProducts(mergedProducts);
       return mergedProducts;
     }
     return items;

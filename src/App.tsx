@@ -18,15 +18,15 @@ import AdminNew from './pages/AdminNew';
 import AdminProductForm from './pages/AdminProductForm';
 import NotFound from './pages/NotFound';
 import ScrollToHash from './components/ScrollToHash';
-import { fetchAndSyncProducts } from './lib/productSync';
+import { fetchAndSyncProducts, initializeProductStore } from './lib/productSync';
 
 // Three.js is heavy — load the configurator on demand
 const CableConfigurator = lazy(() => import('./pages/CableConfigurator'));
 
 export default function App() {
   useEffect(() => {
-    // Sync local product cache with direct Supabase database updates in the background
-    fetchAndSyncProducts();
+    // Initialize IDB and sync local product cache with direct Supabase database updates in the background
+    initializeProductStore().then(() => fetchAndSyncProducts());
   }, []);
 
   return (
