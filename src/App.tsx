@@ -11,6 +11,7 @@ import Solutions from './pages/Solutions';
 import Resources from './pages/Resources';
 import Contact from './pages/Contact';
 import FiberSelector from './pages/FiberSelector';
+
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import AdminNew from './pages/AdminNew';
@@ -49,6 +50,7 @@ export default function App() {
             }
           />
           <Route path="fiber-selector" element={<FiberSelector />} />
+
           <Route path="terms" element={<Terms />} />
           <Route path="privacy" element={<Privacy />} />
           <Route path="dashboard-admin" element={<AdminNew />} />

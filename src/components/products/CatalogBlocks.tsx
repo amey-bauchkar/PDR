@@ -45,7 +45,7 @@ export function CatalogProductCard({ card, sectionId }: { card: CatalogCard; sec
         ) : (
           <img
             src={resolveCanonicalProductImage(card.slug, card.img, sectionId)}
-            alt={card.name || 'Product Image'}
+            alt={card.name ? `${card.name} — PDR World` : 'PDR World Product'}
             className="real-img"
             loading="lazy"
             width="400"
@@ -156,32 +156,13 @@ export function ProductsTrustBand() {
         <div className="pr-trust-layout">
           <div>
             <div className="eyebrow">Made in India</div>
-            <h2>Manufactured, tested and dispatched from one floor.</h2>
+            <h2>Manufactured, tested, and delivered with confidence.</h2>
             <p className="pr-trust-copy">
-              PDR operates a vertically integrated production facility at Filmcity Complex, Goregaon East — ensuring zero supply chain gaps
-              and full quality ownership.
+              From India, PDR combines in-house manufacturing capabilities, rigorous testing, and decades of fiber optic expertise to deliver reliable solutions for critical communication networks.
             </p>
             <Link className="btn btn-outline pr-trust-link" to="/about">
               About Our Manufacturing →
             </Link>
-          </div>
-          <div className="pr-trust-grid">
-            <div className="pr-trust-tile">
-              <div className="stat-num">40+</div>
-              <div className="stat-label">Years Heritage</div>
-            </div>
-            <div className="pr-trust-tile">
-              <div className="stat-num">50+</div>
-              <div className="stat-label">Product Families</div>
-            </div>
-            <div className="pr-trust-tile">
-              <div className="stat-num">ISO</div>
-              <div className="stat-label">9001:2015</div>
-            </div>
-            <div className="pr-trust-tile">
-              <div className="stat-num">100%</div>
-              <div className="stat-label">Factory Tested</div>
-            </div>
           </div>
         </div>
       </div>

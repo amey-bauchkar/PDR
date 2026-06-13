@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import Seo from '../components/Seo';
 import { BreadcrumbSchema, SoftwareApplicationSchema } from '../components/Schema';
 import { useRfqCart } from '../components/RfqCartProvider';
+import { generatePartNumber, lengthToCode } from '../data/orderingCodes';
 import '../styles/configurator-3d.css';
 
 type Connector = { sub: string; shape: 'sc' | 'lc' | 'fc' | 'st' | 'mpo'; apc: boolean };
@@ -653,6 +654,31 @@ export default function CableConfigurator() {
   const connectorSummary = connectorA === connectorB ? connectorA : `${connectorA} → ${connectorB}`;
   const lengthLabel = useCustomLen && customLenValue.trim() ? `${customLenValue.trim()} ${customLenUnit}` : `${length} m`;
 
+  // Map configurator state to ordering code
+  const orderingCode = useMemo(() => {
+    // Assembly mapping
+    const asmMap: Record<string, string> = {
+      sm_os2: 'S1', mm_om1: 'M1', mm_om2: 'M2', mm_om3: 'M3', mm_om4: 'M4',
+    };
+    // Connector mapping (configurator label → ordering code)
+    const connMap: Record<string, string> = {
+      'SC/APC': 'C6', 'LC/APC': 'L6', 'FC/APC': 'F6', 'ST/APC': 'T2',
+      'SC/UPC': 'C2', 'LC/UPC': 'L2', 'FC/PC': 'F2', 'ST/PC': 'T2', 'ST/UPC': 'T2',
+      'MPO/MTP': 'M5', 'E2000/APC': 'E6',
+    };
+    // Cable type: default mapping based on fiber + jacket
+    const asm = asmMap[fiberKey] || 'S1';
+    const c1 = connMap[connectorA] || 'L2';
+    const c2 = connMap[connectorB] || c1;
+    const cab = asm.startsWith('S') ? '01' : '07';
+    const effectiveLen = useCustomLen && customLenValue.trim()
+      ? (customLenUnit === 'km'
+        ? lengthToCode(parseFloat(customLenValue) * 1000)
+        : lengthToCode(parseFloat(customLenValue)))
+      : lengthToCode(length);
+    return generatePartNumber({ assembly: asm, connector1: c1, connector2: c2, cableType: cab, lengthCode: effectiveLen });
+  }, [fiberKey, connectorA, connectorB, jacket, length, useCustomLen, customLenValue, customLenUnit]);
+
   const specCells: [string, string, boolean][] = useMemo(
     () => [
       ['Fiber type', fiber.label, true],
@@ -667,8 +693,9 @@ export default function CableConfigurator() {
       ['Jacket', jacket, false],
       ['Length', lengthLabel, true],
       ['Ins. loss', cdA.apc || cdB.apc ? '≤ 0.3 dB' : '≤ 0.2 dB', false],
+      ['Part No.', orderingCode, true],
     ],
-    [fiber, connectorA, connectorB, jacket, length, cdA, cdB],
+    [fiber, connectorA, connectorB, jacket, length, cdA, cdB, orderingCode],
   );
 
   const handleAdd = () => {

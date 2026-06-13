@@ -213,7 +213,7 @@ export default function About() {
           <div className="ab-mfg-grid">
             <div>
               <div className="eyebrow">Manufacturing Facility</div>
-              <h2 className="ab-mfg-title">Engineered in Mumbai. Deployed Worldwide.</h2>
+              <h2 className="ab-mfg-title">Made in India. Deployed Worldwide.</h2>
               <p className="ab-mfg-copy">
                 Our state-of-the-art manufacturing facility at Filmcity Complex, Goregaon East, is the heart of PDR operations.
                 Equipped with clean rooms, precision polishing machines, and advanced interferometers, we maintain absolute control

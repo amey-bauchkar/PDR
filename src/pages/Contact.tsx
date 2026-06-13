@@ -12,7 +12,7 @@ export default function Contact() {
     const fd = new FormData(formElement);
     setSubmitting(true);
 
-    const object = Object.fromEntries(fd);
+    const object = Object.fromEntries(fd as any);
     // Add Web3Forms access key (replace with your actual key in .env)
     object.access_key = import.meta.env.VITE_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE";
     object.subject = `New Inquiry: ${object.inquiryType} from ${object.fname} ${object.lname}`;
@@ -61,7 +61,7 @@ export default function Contact() {
       <section className="ct-hero">
         <div className="container">
           <div className="eyebrow">Contact Us</div>
-          <h1 style={{ color: '#07008F' }}>Contact PDR World — Fiber Optic Manufacturer in Mumbai</h1>
+          <h1 style={{ color: '#07008F' }}>Contact PDR — Fiber Optic Manufacturer in Mumbai</h1>
           <p style={{ fontSize: 18, color: '#475569', marginTop: 16, maxWidth: 600 }}>Whether you need a custom manufacturing quote, technical support, or distribution details, our team in Mumbai is ready to assist.</p>
 
           <div className="ct-grid">

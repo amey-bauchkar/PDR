@@ -98,9 +98,9 @@ export default function Products() {
           <div className="pr-hero-grid">
             <div className="pr-hero-copy">
               <div className="eyebrow">{catalogue.hero.eyebrow || 'Product Catalogue'}</div>
-              <h1>{catalogue.hero.title || 'The Complete Fiber Optic Ecosystem. Engineered in Mumbai.'}</h1>
+              <h1>{catalogue.hero.title || 'The complete fiber optic stack. Made in India.'}</h1>
               <p className="pr-hero-subtitle">
-                {catalogue.hero.subtitle || 'Founded in 1974, PDR Videotronics India Pvt. Ltd. is a leading name in the optical communication industry. Since launching our Fiber Optics Division in 1985, we have been dedicated to designing and manufacturing high-quality active and passive components that drive reliable, next-generation connectivity.'}
+                {catalogue.hero.subtitle || 'A trusted provider of fiber optic components, optical networking solutions, cable management systems, and test equipment since 1985.'}
               </p>
               <div className="pr-hero-cta-row">
                 <Link className="btn btn-primary" to="/contact">

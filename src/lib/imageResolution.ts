@@ -88,6 +88,10 @@ for (const section of (catalogueData as { sections?: { groups?: { cards?: { slug
  * 4. CATEGORY_IMAGE_MAP (fallback)
  */
 export const resolveCanonicalProductImage = (slug?: string, productImageUrl?: string, categoryOrSectionId?: string): string => {
+  if (productImageUrl && productImageUrl.trim()) {
+    return productImageUrl;
+  }
+
   if (slug && PASSIVE_IMAGE_MAP[slug]) {
     return PASSIVE_IMAGE_MAP[slug];
   }
@@ -97,10 +101,6 @@ export const resolveCanonicalProductImage = (slug?: string, productImageUrl?: st
     if (catalogImg && catalogImg.trim()) {
       return catalogImg;
     }
-  }
-
-  if (productImageUrl && productImageUrl.trim()) {
-    return productImageUrl;
   }
 
   if (categoryOrSectionId && CATEGORY_IMAGE_MAP[categoryOrSectionId]) {

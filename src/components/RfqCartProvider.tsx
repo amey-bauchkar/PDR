@@ -61,6 +61,21 @@ export function RfqCartProvider({ children }: { children: React.ReactNode }) {
     return () => window.clearTimeout(timer);
   }, [items, sessionHash]);
 
+  // Add cross-tab sync listener
+  useEffect(() => {
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === STORAGE_KEY && e.newValue) {
+        try {
+          setItems(JSON.parse(e.newValue) as QuoteItem[]);
+        } catch (err) {
+          console.error("Failed to parse cart sync", err);
+        }
+      }
+    };
+    window.addEventListener('storage', handleStorage);
+    return () => window.removeEventListener('storage', handleStorage);
+  }, []);
+
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => {

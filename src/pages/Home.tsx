@@ -72,7 +72,7 @@ export default function Home() {
               <p style={{ fontSize: '1.125rem', lineHeight: 1.6, marginTop: '24px', opacity: 0.85, maxWidth: '600px' }}>
                 <strong>Smart Fiber Monitoring &amp; Telecom Infrastructure Solutions.</strong>
                 <br />
-                <span style={{ display: 'inline-block', marginTop: '8px' }}>Made in India Fiber Optic Technology for Next-Gen Networks.</span>
+                <span style={{ display: 'inline-block', marginTop: '8px' }}>Make in India Fiber Optic Technology for Next-Gen Networks.</span>
               </p>
               <div className="hp-cta-row">
                 <Link className="btn btn-primary" to="/contact">Request Quote</Link>
@@ -141,7 +141,7 @@ export default function Home() {
             <div className="eyebrow">Product Portfolio</div>
             <h2>Engineered for every layer of the network.</h2>
             <p>
-              From high-speed transceivers to ruggedized outdoor enclosures — PDR manufactures the complete fiber optic stack.
+              From high-speed transceivers to ruggedized outdoor enclosures — PDR supplies the complete fiber optic stack.
             </p>
           </div>
           <div className="hp-cat-grid">

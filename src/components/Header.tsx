@@ -44,6 +44,9 @@ export default function Header() {
   // Mobile body class
   useEffect(() => {
     document.body.classList.toggle('menu-open', menuOpen);
+    return () => {
+      document.body.classList.remove('menu-open');
+    };
   }, [menuOpen]);
 
   useEffect(
@@ -137,6 +140,7 @@ export default function Header() {
                     </strong>
                     <span style={{ fontSize: 13, color: 'var(--muted)' }}>Filter panels, racks &amp; closures</span>
                   </Link>
+
                 </div>
               </div>
             </div>
@@ -219,6 +223,7 @@ export default function Header() {
           <div className="submenu">
             <Link to="/cable-configurator">Custom Cable Builder</Link>
             <Link to="/fiber-selector">Fiber Management Selector</Link>
+
           </div>
         </details>
         <Link to="/solutions">Solutions</Link>

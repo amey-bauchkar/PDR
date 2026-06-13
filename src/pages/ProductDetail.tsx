@@ -179,35 +179,7 @@ export default function ProductDetail() {
                     type="button"
                     onClick={() => {
                       if (product.datasheetUrl) {
-                        // Static PDF: fetch as blob then force-download to bypass browser restrictions
-                        fetch(product.datasheetUrl)
-                          .then(res => res.blob())
-                          .then(blob => {
-                            const url = URL.createObjectURL(blob);
-                            const a = document.createElement('a');
-                            a.href = url;
-                            a.download = `${product.slug}-datasheet.pdf`;
-                            document.body.appendChild(a);
-                            a.click();
-                            document.body.removeChild(a);
-                            setTimeout(() => URL.revokeObjectURL(url), 10000);
-                          })
-                          .catch(() => {
-                            // Fallback: generate PDF on the fly
-                            downloadProductDatasheet({
-                              slug: product.slug,
-                              name: product.name,
-                              category: product.category,
-                              title: product.title || `${product.name} | PDR World`,
-                              description: product.description || '',
-                              canonical: `https://pdrworld.com/products/${product.slug}`,
-                              tagline: product.tagline || '',
-                              features: product.features || [],
-                              applications: product.applications || [],
-                              specs: product.specs || [],
-                              related: product.related || [],
-                            });
-                          });
+                        window.open(datasheetHref, '_blank');
                       } else {
                         // No static PDF: generate it on the fly with jsPDF
                         downloadProductDatasheet({
