@@ -3,7 +3,6 @@
   "outputDirectory": "dist",
   "framework": "vite",
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/_/backend/api/$1" },
     { "source": "/((?!api/).*)", "destination": "/" }
   ],
   "headers": [
@@ -19,16 +18,5 @@
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     }
-  ],
-  "experimentalServices": {
-    "frontend": {
-      "routePrefix": "/",
-      "framework": "vite"
-    },
-    "backend": {
-      "root": "backend",
-      "entrypoint": "src/index.ts",
-      "routePrefix": "/_/backend"
-    }
-  }
+  ]
 }
