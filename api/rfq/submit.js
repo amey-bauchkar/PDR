@@ -94,8 +94,7 @@ export default async function handler(req, res) {
       email,
       company,
       notes: notes || '',
-      status: 'submitted',
-      submitted_at: submittedAt,
+      status: 'new',
     };
 
     // Save to Supabase
@@ -108,9 +107,9 @@ export default async function handler(req, res) {
         id: uuidv4(),
         quote_request_id: rfqId,
         product_id: item.productId,
-        product_name: item.productName,
+        product_title: item.productName,
+        product_specs: item.configuration?.specs || '',
         quantity: item.quantity,
-        configuration: item.configuration || {},
         sort_order: idx,
       }));
       const { error: itemsError } = await supabase.from('quote_request_items').insert(itemsToInsert);
