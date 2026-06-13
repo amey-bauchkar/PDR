@@ -1,0 +1,575 @@
+/* ===== Part Number Builder Page ===== */
+
+.pnb-page {
+  background: #F5F6F8;
+  color: #1A1A1A;
+  min-height: 100vh;
+  padding-top: 76px;
+}
+
+.pnb-wrap {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+/* ─── Hero / Header ─── */
+.pnb-hero {
+  text-align: center;
+  margin-bottom: 36px;
+}
+.pnb-hero h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #07008F;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+.pnb-hero p {
+  font-size: 15px;
+  color: #64748b;
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ─── Mode Toggle ─── */
+.pnb-mode-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 28px;
+  background: #fff;
+  border: 1px solid #E2E4E8;
+  border-radius: 10px;
+  padding: 4px;
+  width: fit-content;
+  margin-inline: auto;
+}
+.pnb-mode-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  color: #64748b;
+}
+.pnb-mode-btn.active {
+  background: #0066CC;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.25);
+}
+.pnb-mode-btn:not(.active):hover {
+  background: #F0F4FF;
+  color: #0066CC;
+}
+
+/* ─── Live Part Number Display ─── */
+.pnb-code-display {
+  background: #fff;
+  border: 1px solid #E2E4E8;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  text-align: center;
+  position: sticky;
+  top: 82px;
+  z-index: 50;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+.pnb-code-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #888;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.pnb-code-segments {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.pnb-seg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.pnb-seg-code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 22px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 8px;
+  min-width: 52px;
+  text-align: center;
+  transition: all 0.25s;
+  letter-spacing: 0.02em;
+}
+.pnb-seg-label {
+  font-size: 9px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.pnb-seg-dash {
+  font-size: 22px;
+  font-weight: 300;
+  color: #CBD5E1;
+  margin-top: -16px;
+}
+
+/* Segment colors */
+.pnb-seg--assembly .pnb-seg-code { background: #EBF3FF; color: #0055BB; border: 1px solid #B8D4F0; }
+.pnb-seg--conn1 .pnb-seg-code { background: #E4F7EF; color: #116644; border: 1px solid #A3DFC4; }
+.pnb-seg--conn2 .pnb-seg-code { background: #FFF4DB; color: #92400E; border: 1px solid #F5D78E; }
+.pnb-seg--cable .pnb-seg-code { background: #F0EAFF; color: #5522AA; border: 1px solid #C9B8F0; }
+.pnb-seg--length .pnb-seg-code { background: #FFE7D6; color: #9A3412; border: 1px solid #F5C9A8; }
+.pnb-seg--empty .pnb-seg-code { background: #F1F5F9; color: #CBD5E1; border: 1px dashed #CBD5E1; }
+
+.pnb-code-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+.pnb-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid #E2E4E8;
+  border-radius: 7px;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.pnb-copy-btn:hover {
+  border-color: #0066CC;
+  color: #0066CC;
+  background: #F0F7FF;
+}
+.pnb-copy-btn.copied {
+  border-color: #10B981;
+  color: #10B981;
+  background: #ECFDF5;
+}
+.pnb-quote-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 7px;
+  background: #0066CC;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.pnb-quote-btn:hover {
+  background: #0052A8;
+}
+
+/* ─── Build Mode Steps ─── */
+.pnb-steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 700px) {
+  .pnb-steps { grid-template-columns: 1fr; }
+}
+.pnb-step-card {
+  background: #fff;
+  border: 1px solid #E2E4E8;
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+.pnb-step-card--full {
+  grid-column: 1 / -1;
+}
+.pnb-step-head {
+  font-size: 10px;
+  font-weight: 700;
+  color: #888;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pnb-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #0066CC;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* Option grid for Build mode */
+.pnb-opt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  max-height: 320px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #DDE2EA transparent;
+}
+.pnb-opt-grid::-webkit-scrollbar { width: 4px; }
+.pnb-opt-grid::-webkit-scrollbar-thumb { background: #DDE2EA; border-radius: 4px; }
+
+.pnb-opt {
+  padding: 9px 11px;
+  border: 1px solid #E2E4E8;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: #fff;
+}
+.pnb-opt:hover {
+  border-color: #AABDD8;
+  background: #F7FAFF;
+}
+.pnb-opt.on {
+  border-color: #0066CC;
+  background: #EBF3FF;
+}
+.pnb-opt-code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0055BB;
+  margin-bottom: 2px;
+}
+.pnb-opt.on .pnb-opt-code { color: #003D8F; }
+.pnb-opt-label {
+  font-size: 10px;
+  color: #64748b;
+  line-height: 1.3;
+}
+.pnb-opt-group {
+  grid-column: 1 / -1;
+  font-size: 9px;
+  font-weight: 700;
+  color: #94A3B8;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 6px 4px 2px;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+/* Length slider area */
+.pnb-len-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pnb-len-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.pnb-len-chip {
+  padding: 6px 12px;
+  border: 1px solid #E2E4E8;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.pnb-len-chip:hover { border-color: #AABDD8; background: #F7FAFF; }
+.pnb-len-chip.on { border-color: #0066CC; background: #EBF3FF; color: #0055BB; }
+
+.pnb-len-custom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+.pnb-len-custom label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  white-space: nowrap;
+}
+.pnb-len-input {
+  width: 100px;
+  padding: 8px 10px;
+  border: 1px solid #DDE2EA;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0b1736;
+  outline: none;
+}
+.pnb-len-input:focus { border-color: #0066CC; box-shadow: 0 0 0 1px #0066CC; }
+.pnb-len-meters {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0066CC;
+}
+
+/* ─── Decode Mode ─── */
+.pnb-decode-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.pnb-decode-input-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.pnb-decode-input {
+  flex: 1;
+  padding: 14px 18px;
+  border: 2px solid #E2E4E8;
+  border-radius: 10px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0b1736;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.pnb-decode-input::placeholder {
+  color: #CBD5E1;
+  font-weight: 400;
+  text-transform: none;
+}
+.pnb-decode-input:focus {
+  border-color: #0066CC;
+  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.12);
+}
+.pnb-decode-btn {
+  padding: 14px 24px;
+  border: none;
+  border-radius: 10px;
+  background: #0066CC;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.pnb-decode-btn:hover { background: #0052A8; }
+
+/* Decode Result */
+.pnb-decode-result {
+  background: #fff;
+  border: 1px solid #E2E4E8;
+  border-radius: 12px;
+  overflow: hidden;
+  animation: pnb-fadeIn 0.3s ease;
+}
+.pnb-decode-result--error {
+  border-color: #FECACA;
+}
+.pnb-decode-result-header {
+  padding: 16px 20px;
+  background: #F8F9FB;
+  border-bottom: 1px solid #E2E4E8;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pnb-decode-result--error .pnb-decode-result-header {
+  background: #FFF1F2;
+  border-color: #FECACA;
+}
+.pnb-decode-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.pnb-decode-status--valid { color: #059669; }
+.pnb-decode-status--invalid { color: #DC2626; }
+.pnb-decode-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.pnb-decode-status--valid .pnb-decode-status-dot { background: #10B981; }
+.pnb-decode-status--invalid .pnb-decode-status-dot { background: #EF4444; }
+
+.pnb-decode-rows {
+  padding: 4px 0;
+}
+.pnb-decode-row {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid #F1F5F9;
+  gap: 14px;
+}
+.pnb-decode-row:last-child { border-bottom: none; }
+.pnb-decode-row-code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  min-width: 48px;
+  text-align: center;
+}
+.pnb-decode-row-info {
+  flex: 1;
+}
+.pnb-decode-row-segment {
+  font-size: 10px;
+  font-weight: 700;
+  color: #94A3B8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.pnb-decode-row-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1E293B;
+  margin-top: 2px;
+}
+
+/* Row segment colors (reusing segment palette) */
+.pnb-decode-row--assembly .pnb-decode-row-code { background: #EBF3FF; color: #0055BB; }
+.pnb-decode-row--conn1 .pnb-decode-row-code { background: #E4F7EF; color: #116644; }
+.pnb-decode-row--conn2 .pnb-decode-row-code { background: #FFF4DB; color: #92400E; }
+.pnb-decode-row--cable .pnb-decode-row-code { background: #F0EAFF; color: #5522AA; }
+.pnb-decode-row--length .pnb-decode-row-code { background: #FFE7D6; color: #9A3412; }
+
+.pnb-decode-errors {
+  padding: 16px 20px;
+}
+.pnb-decode-error-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 13px;
+  color: #DC2626;
+  line-height: 1.4;
+}
+.pnb-decode-error-item::before {
+  content: '✕';
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ─── Animations ─── */
+@keyframes pnb-fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── How It Works (inline reference) ─── */
+.pnb-howto {
+  background: #fff;
+  border: 1px solid #E2E4E8;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 32px;
+}
+.pnb-howto summary {
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pnb-howto summary::-webkit-details-marker { display: none; }
+.pnb-howto summary::before {
+  content: '▸';
+  font-size: 11px;
+  transition: transform 0.2s;
+}
+.pnb-howto[open] summary::before { transform: rotate(90deg); }
+.pnb-howto-body {
+  margin-top: 16px;
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.7;
+}
+.pnb-howto-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  font-size: 12px;
+}
+.pnb-howto-body th {
+  text-align: left;
+  padding: 8px 10px;
+  background: #F8F9FB;
+  border: 1px solid #E2E4E8;
+  font-weight: 700;
+  color: #475569;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.pnb-howto-body td {
+  padding: 7px 10px;
+  border: 1px solid #F1F5F9;
+  color: #334155;
+}
+.pnb-howto-body code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  background: #F1F5F9;
+  padding: 2px 5px;
+  border-radius: 4px;
+  color: #0055BB;
+}
+
+/* ─── Confirmation Toast ─── */
+.pnb-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #065F46;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  z-index: 9000;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.pnb-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
