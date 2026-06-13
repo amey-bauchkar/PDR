@@ -87,33 +87,31 @@ export default async function handler(req, res) {
     const rfqId = uuidv4();
     const submittedAt = new Date().toISOString();
 
-    const rfqRecord = {
-      id: rfqId,
-      session_hash: sessionHash || '',
-      full_name: name,
-      email,
-      company,
-      notes: notes || '',
-      status: 'new',
-    };
-
-    // Save to Supabase
+    // Save to Supabase using the existing RPC
     const supabase = getSupabase();
     if (supabase) {
-      const { error: rfqError } = await supabase.from('quote_requests').insert([rfqRecord]);
-      if (rfqError) console.warn('Supabase RFQ insert error:', rfqError.message);
-
-      const itemsToInsert = items.map((item, idx) => ({
-        id: uuidv4(),
-        quote_request_id: rfqId,
-        product_id: item.productId,
-        product_title: item.productName,
-        product_specs: item.configuration?.specs || '',
-        quantity: item.quantity,
-        sort_order: idx,
+      const rpcItems = items.map((item) => ({
+        slug: item.productId,
+        title: item.productName,
+        specs: item.configuration?.specs || '',
+        image: item.configuration?.image || '',
+        qty: item.quantity,
       }));
-      const { error: itemsError } = await supabase.from('quote_request_items').insert(itemsToInsert);
-      if (itemsError) console.warn('Supabase items insert error:', itemsError.message);
+
+      const { error: rpcError } = await supabase.rpc('submit_quote_request', {
+        p_session_hash: sessionHash || `live-${Date.now()}`,
+        p_contact: {
+          name,
+          email,
+          company,
+          notes: notes || '',
+        },
+        p_items: rpcItems,
+      });
+
+      if (rpcError) {
+        console.warn('Supabase RPC submit_quote_request error:', rpcError.message);
+      }
     }
 
     // Log to Google Sheets
