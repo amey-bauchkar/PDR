@@ -734,6 +734,22 @@
   font-size: 13px;
 }
 
+/* Product tags on cards — subtle blue-tinted variant */
+.sel-tag {
+  background: rgba(2, 132, 199, 0.06);
+  border-color: rgba(2, 132, 199, 0.18);
+  color: #0369A1;
+}
+/* Single-value config display (when only 1 option, show as text) */
+.sel-config-single {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  font-size: 13px;
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
 @media (max-width: 900px) {
   .sel-layout {
     grid-template-columns: 1fr;
