@@ -619,8 +619,9 @@
 .sel-layout {
   display: grid;
   grid-template-columns: 280px 1fr;
-  gap: 40px;
+  gap: 64px;
   align-items: start;
+  margin-top: 56px;
 }
 .sel-sidebar {
   position: sticky;
@@ -628,36 +629,36 @@
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 14px;
-  padding: 24px;
+  padding: 32px;
 }
 .sel-filter-group {
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 .sel-filter-group h4 {
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--muted);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 .sel-checkbox {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
+  gap: 12px;
+  margin-bottom: 10px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--ink);
 }
 .sel-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 32px;
 }
 .sel-card {
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s;
 }
@@ -667,8 +668,8 @@
   transform: translateY(-4px);
 }
 .sel-card-img {
-  height: 180px;
-  padding: 20px;
+  height: 200px;
+  padding: 24px;
   background: #F8FAFC;
   display: flex;
   align-items: center;
@@ -679,29 +680,30 @@
   mix-blend-mode: multiply;
 }
 .sel-card-body {
-  padding: 20px;
+  padding: 28px;
 }
 .sel-card-body h3 {
-  font-size: 16px;
-  margin-bottom: 8px;
+  font-size: 18px;
+  margin-bottom: 12px;
 }
 .sel-card-body p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
-  margin-bottom: 16px;
+  margin-bottom: 24px;
+  line-height: 1.6;
 }
 .sel-badges {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 10px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
 }
 .sel-badge {
   background: var(--surface-2);
   border: 1px solid var(--line);
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 11px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--ink);
 }

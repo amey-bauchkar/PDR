@@ -206,6 +206,28 @@ create policy "Public read product specs" on public.catalog_product_specs for se
 drop policy if exists "Public read product relations" on public.catalog_product_relations;
 create policy "Public read product relations" on public.catalog_product_relations for select using (true);
 
+-- RLS for quote and contact tables
+alter table public.quote_sessions enable row level security;
+alter table public.quote_session_items enable row level security;
+alter table public.quote_requests enable row level security;
+alter table public.quote_request_items enable row level security;
+alter table public.contact_inquiries enable row level security;
+
+drop policy if exists "Public read quote sessions" on public.quote_sessions;
+create policy "Public read quote sessions" on public.quote_sessions for select using (true);
+
+drop policy if exists "Public read quote session items" on public.quote_session_items;
+create policy "Public read quote session items" on public.quote_session_items for select using (true);
+
+drop policy if exists "Public read quote requests" on public.quote_requests;
+create policy "Public read quote requests" on public.quote_requests for select using (true);
+
+drop policy if exists "Public read quote request items" on public.quote_request_items;
+create policy "Public read quote request items" on public.quote_request_items for select using (true);
+
+drop policy if exists "Public read contact inquiries" on public.contact_inquiries;
+create policy "Public read contact inquiries" on public.contact_inquiries for select using (true);
+
 create or replace function public.sync_quote_session(p_session_hash text, p_items jsonb default '[]'::jsonb)
 returns uuid
 language plpgsql

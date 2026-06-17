@@ -29,7 +29,27 @@ create policy "Allow anon read quote_request_items"
   using (true);
 
 -- ============================================================
--- FIX 4: Fix digest() function not found in quote functions
+-- FIX 4: Allow admin (anon key) to READ quote_sessions
+-- ============================================================
+alter table public.quote_sessions enable row level security;
+
+drop policy if exists "Allow anon read quote_sessions" on public.quote_sessions;
+create policy "Allow anon read quote_sessions"
+  on public.quote_sessions for select
+  using (true);
+
+-- ============================================================
+-- FIX 5: Allow admin (anon key) to READ quote_session_items
+-- ============================================================
+alter table public.quote_session_items enable row level security;
+
+drop policy if exists "Allow anon read quote_session_items" on public.quote_session_items;
+create policy "Allow anon read quote_session_items"
+  on public.quote_session_items for select
+  using (true);
+
+-- ============================================================
+-- FIX 6: Fix digest() function not found in quote functions
 -- ============================================================
 alter function public.sync_quote_session(text, jsonb)
   set search_path = public, extensions;
