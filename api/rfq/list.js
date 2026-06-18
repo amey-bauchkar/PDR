@@ -27,32 +27,45 @@ export default async function handler(req, res) {
       return res.status(500).json({ success: false, error: 'Google Sheets not configured' });
     }
 
+    // Fetch ALL columns A through J, starting from row 2 (skip header)
     const response = await ctx.sheets.spreadsheets.values.get({
       spreadsheetId: ctx.spreadsheetId,
       range: `${ctx.sheetName}!A2:J`,
     });
 
     const rows = response.data.values || [];
-    
-    const rfqs = rows
-      .filter(row => row.length > 0 && row[0] && row[0].trim() !== '') // Safely ignore empty rows
-      .map((row, index) => ({
-      createdAt: row[0] || new Date().toISOString(),
-      id: row[1] || `sheet-rfq-${index}`,
-      sessionHash: row[2] || '',
-      name: row[3] || 'Unknown',
-      email: row[4] || 'N/A',
-      company: row[5] || 'N/A',
-      notes: row[6] || '',
-      itemCount: parseInt(row[7], 10) || 1,
-      // Map the items summary string back into an array for the AdminPanel UI
-      items: row[8] ? [row[8]] : [],
-      status: row[9] || 'submitted',
-    })).reverse(); // Show newest first
+
+    // Build RFQs from every row - only skip rows that are 100% empty
+    const rfqs = [];
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i];
+
+      // Skip ONLY if the row is completely empty (no data in any cell)
+      const hasAnyData = row && row.length > 0 && row.some(cell => cell && String(cell).trim() !== '');
+      if (!hasAnyData) continue;
+
+      rfqs.push({
+        createdAt: (row[0] || '').trim() || new Date().toISOString(),
+        id: (row[1] || '').trim() || `sheet-rfq-${i}`,
+        sessionHash: (row[2] || '').trim(),
+        name: (row[3] || '').trim() || 'Unknown',
+        email: (row[4] || '').trim() || 'N/A',
+        company: (row[5] || '').trim() || 'N/A',
+        notes: (row[6] || '').trim(),
+        itemCount: parseInt(row[7], 10) || 1,
+        items: row[8] ? [row[8].trim()] : [],
+        status: (row[9] || '').trim() || 'submitted',
+      });
+    }
+
+    // Newest first
+    rfqs.reverse();
 
     return res.status(200).json({
       success: true,
       data: rfqs,
+      total: rfqs.length,
+      rawRowCount: rows.length,
       timestamp: Date.now(),
     });
   } catch (err) {
