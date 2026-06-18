@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prerender": "node prerender.js",
+    "prerender": "npx puppeteer browsers install chrome && node prerender.js",
     "build:full": "npm run build && npm run prerender",
     "verify-deployment": "node scripts/verify-deployment.js"
   },
