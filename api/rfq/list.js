@@ -35,7 +35,7 @@ export default async function handler(req, res) {
     const rows = response.data.values || [];
     
     const rfqs = rows
-      .filter(row => row.length > 2 && row[3] && row[3].trim() !== '') // Ignore empty rows
+      .filter(row => row.length > 0 && row[0] && row[0].trim() !== '') // Safely ignore empty rows
       .map((row, index) => ({
       createdAt: row[0] || new Date().toISOString(),
       id: row[1] || `sheet-rfq-${index}`,
