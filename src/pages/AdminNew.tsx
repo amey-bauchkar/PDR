@@ -210,11 +210,8 @@ export default function AdminNew() {
         if (rfqRes.ok) {
           const { data } = await rfqRes.json();
           if (data && Array.isArray(data)) {
-            setRfqs(prev => {
-              const localIds = new Set(prev.map(r => r.id));
-              const uniqueDb = data.filter((r: any) => !localIds.has(r.id));
-              return [...uniqueDb, ...prev];
-            });
+            // Overwrite with API data so deleted rows in Google Sheets are actually removed
+            setRfqs(data);
           }
         }
       } catch (apiErr) {
