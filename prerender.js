@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import puppeteer from 'puppeteer';
 import express from 'express';
+// We use dynamic imports for Puppeteer and Chromium to handle Vercel environment
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -54,7 +54,25 @@ async function run() {
   const server = app.listen(PORT, async () => {
     console.log(`Server listening on port ${PORT}`);
 
-    const browser = await puppeteer.launch({ headless: true });
+    const isVercel = process.env.VERCEL === '1';
+    let browser;
+    
+    if (isVercel) {
+      console.log('Running in Vercel environment. Using @sparticuz/chromium...');
+      const chromium = (await import('@sparticuz/chromium')).default;
+      const puppeteerCore = (await import('puppeteer-core')).default;
+      browser = await puppeteerCore.launch({
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath(),
+        headless: chromium.headless,
+      });
+    } else {
+      console.log('Running locally. Using standard puppeteer...');
+      const puppeteer = (await import('puppeteer')).default;
+      browser = await puppeteer.launch({ headless: true });
+    }
+
     const page = await browser.newPage();
 
     for (const route of routes) {

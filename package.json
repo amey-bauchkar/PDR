@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prerender": "npx puppeteer browsers install chrome && node prerender.js",
+    "prerender": "node prerender.js",
     "build:full": "npm run build && npm run prerender",
     "verify-deployment": "node scripts/verify-deployment.js"
   },
@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@sparticuz/chromium": "^149.0.0",
     "@types/node": "^24.12.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -38,6 +39,7 @@
     "express": "^5.2.1",
     "globals": "^17.5.0",
     "puppeteer": "^25.0.2",
+    "puppeteer-core": "^25.1.0",
     "sharp": "^0.34.5",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.58.2",
