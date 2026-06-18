@@ -175,7 +175,7 @@ export default function AdminNew() {
     }
   });
   useEffect(() => {
-    async function fetchFromSupabase() {
+    async function fetchInquiries() {
       if (!supabase) return;
       try {
         const { data: dbInquiries, error: inqError } = await supabase
@@ -199,36 +199,31 @@ export default function AdminNew() {
             return [...uniqueDb, ...prev]; // DB items first
           });
         }
-
-        const { data: dbRfqs, error: rfqError } = await supabase
-          .from('quote_requests')
-          .select('*, quote_request_items(*)')
-          .order('created_at', { ascending: false });
-
-        if (!rfqError && dbRfqs) {
-          const mappedRfqs = dbRfqs.map((rfq: any) => ({
-            id: rfq.id,
-            name: rfq.full_name,
-            email: rfq.email,
-            company: rfq.company,
-            status: rfq.status,
-            createdAt: rfq.created_at,
-            items: rfq.quote_request_items ? rfq.quote_request_items.map((item: any) => `${item.quantity}x ${item.product_title} (${item.product_specs})`) : [],
-            notes: rfq.notes
-          }));
-
-          setRfqs(prev => {
-            const localIds = new Set(prev.map(r => r.id));
-            const uniqueDb = mappedRfqs.filter((r: any) => !localIds.has(r.id));
-            return [...uniqueDb, ...prev];
-          });
-        }
       } catch (err) {
-        console.error('Failed to fetch from Supabase', err);
+        console.error('Failed to fetch inquiries from Supabase', err);
       }
     }
 
-    fetchFromSupabase();
+    async function fetchRfqs() {
+      try {
+        const rfqRes = await fetch('/api/rfq/list');
+        if (rfqRes.ok) {
+          const { data } = await rfqRes.json();
+          if (data && Array.isArray(data)) {
+            setRfqs(prev => {
+              const localIds = new Set(prev.map(r => r.id));
+              const uniqueDb = data.filter((r: any) => !localIds.has(r.id));
+              return [...uniqueDb, ...prev];
+            });
+          }
+        }
+      } catch (apiErr) {
+        console.error('Failed to fetch RFQs from API', apiErr);
+      }
+    }
+
+    fetchInquiries();
+    fetchRfqs();
   }, []);
 
   useEffect(() => {
