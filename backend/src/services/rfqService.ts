@@ -44,16 +44,19 @@ export class RfqService {
       const rfqId = uuidv4();
       const submittedAt = new Date().toISOString();
 
+      const totalQuantity = items.reduce((acc, item) => acc + (item.quantity || 1), 0);
+
       const rfqRecord = {
         id: rfqId,
-        session_hash: sessionHash,
+        session_hash: sessionHash || '',
         full_name: name,
         email,
         company,
         notes: notes || '',
         status: 'submitted',
-        submitted_at: submittedAt,
-      } as any;
+        item_count: items.length,
+        total_quantity: totalQuantity,
+      };
 
       // Store RFQ in database
       let rfqData: any = rfqRecord;
@@ -72,15 +75,23 @@ export class RfqService {
       }
 
       // Store RFQ items
-      const itemsToInsert = items.map((item, index) => ({
-        id: uuidv4(),
-        quote_request_id: rfqId,
-        product_id: item.productId,
-        product_name: item.productName,
-        quantity: item.quantity,
-        configuration: item.configuration || {},
-        sort_order: index,
-      }));
+      const itemsToInsert = items.map((item, index) => {
+        const title = item.productName || item.productId || 'Unknown Product';
+        const specs = item.configuration?.specs || '';
+        const rawHashString = `${sessionHash || ''}:request:${title}:${specs}:${index + 1}`;
+        const itemHash = Buffer.from(rawHashString).toString('base64'); // Simple hash alternative if crypto isn't used
+        
+        return {
+          request_id: rfqId,
+          line_number: index + 1,
+          product_slug: item.productId || null,
+          product_title: title,
+          product_specs: specs,
+          image_url: item.configuration?.image || '',
+          quantity: item.quantity || 1,
+          item_hash: itemHash,
+        };
+      });
 
       const { error: itemsError } = await supabaseServiceClient
         .from('quote_request_items')
@@ -141,23 +152,23 @@ export class RfqService {
       }
 
       const items: QuoteItem[] = (itemsData || []).map((item: any) => ({
-        productId: item.product_id,
-        productName: item.product_name,
+        productId: item.product_slug || '',
+        productName: item.product_title,
         quantity: item.quantity,
-        configuration: item.configuration,
+        configuration: { specs: item.product_specs, image: item.image_url },
       }));
 
       return {
         id: rfqData.id,
         sessionHash: rfqData.session_hash,
-        name: rfqData.full_name || rfqData.name,
+        name: rfqData.full_name,
         email: rfqData.email,
         company: rfqData.company,
         items,
         status: rfqData.status,
-        submittedAt: rfqData.submitted_at,
+        submittedAt: rfqData.created_at,
         createdAt: rfqData.created_at,
-        updatedAt: rfqData.updated_at,
+        updatedAt: rfqData.created_at,
       };
     } catch (error: any) {
       if (error instanceof AppError) throw error;
@@ -178,7 +189,7 @@ export class RfqService {
         .from('quote_requests')
         .select('*', { count: 'exact' })
         .range(from, to)
-        .order('submitted_at', { ascending: false });
+        .order('created_at', { ascending: false });
 
       if (error) throw error;
 
