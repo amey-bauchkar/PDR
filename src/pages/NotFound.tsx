@@ -6,7 +6,7 @@ import '../styles/notfound.css';
 export default function NotFound() {
   return (
     <>
-      <Seo title="Page Not Found | PDR World" description="The page you're looking for doesn't exist." canonical="https://pdrworld.com/404" />
+      <Seo title="Page Not Found | PDR World" description="The page you're looking for doesn't exist." canonical="https://pdr-sable.vercel.app/404" />
       <div className="nf-wrap">
         <img src={logo} alt="PDR World" className="logo" style={{ marginBottom: 24, height: 48 }} />
         <h1>404</h1>

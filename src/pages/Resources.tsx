@@ -9,11 +9,11 @@ export default function Resources() {
       <Seo
         title="Fiber Optic Technical Resources & Support | Training & Partner Programs — PDR World"
         description="Technical documentation, training videos, partner programs, and industry news from PDR Videotronics. Supporting India's fiber optic infrastructure ecosystem."
-        canonical="https://pdrworld.com/resources"
+        canonical="https://pdr-sable.vercel.app/resources"
       />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://pdrworld.com/' },
-        { name: 'Resources', url: 'https://pdrworld.com/resources' },
+        { name: 'Home', url: 'https://pdr-sable.vercel.app/' },
+        { name: 'Resources', url: 'https://pdr-sable.vercel.app/resources' },
       ]} />
       {/* HERO */}
       <section className="rs-hero reveal" style={{ width: '100%' }}>

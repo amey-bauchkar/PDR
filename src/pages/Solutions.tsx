@@ -9,11 +9,11 @@ export default function Solutions() {
       <Seo
         title="Fiber Optic Infrastructure Solutions | Remote Fiber Monitoring, DAS & DTS — PDR"
         description="Custom-engineered fiber optic infrastructure: remote fiber monitoring with automated rerouting, plus Distributed Acoustic Sensing and Distributed Temperature Sensing. Field-proven for telecom, defence, and utilities."
-        canonical="https://pdrworld.com/solutions"
+        canonical="https://pdr-sable.vercel.app/solutions"
       />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://pdrworld.com/' },
-        { name: 'Solutions', url: 'https://pdrworld.com/solutions' },
+        { name: 'Home', url: 'https://pdr-sable.vercel.app/' },
+        { name: 'Solutions', url: 'https://pdr-sable.vercel.app/solutions' },
       ]} />
       <ServiceSchema 
         name="Fiber Optic Infrastructure Solutions"

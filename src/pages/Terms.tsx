@@ -8,11 +8,11 @@ export default function Terms() {
       <Seo
         title="Terms of Sale & Use | PDR World — Fiber Optic Components"
         description="Terms of sale, warranty, return policy, and conditions of use for PDR World fiber optic products. Read our complete terms before placing orders."
-        canonical="https://pdrworld.com/terms"
+        canonical="https://pdr-sable.vercel.app/terms"
       />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://pdrworld.com/' },
-        { name: 'Terms of Sale', url: 'https://pdrworld.com/terms' },
+        { name: 'Home', url: 'https://pdr-sable.vercel.app/' },
+        { name: 'Terms of Sale', url: 'https://pdr-sable.vercel.app/terms' },
       ]} />
 
       <section className="section" style={{ paddingTop: 160, paddingBottom: 80 }}>

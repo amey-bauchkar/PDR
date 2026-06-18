@@ -568,7 +568,7 @@ export default function AdminNew() {
   if (!session) {
     return (
       <>
-        <Seo title="Admin Login | PDR World" description="PDR World admin login." canonical="https://pdrworld.com/dashboard-admin" />
+        <Seo title="Admin Login | PDR World" description="PDR World admin login." canonical="https://pdr-sable.vercel.app/dashboard-admin" />
         <div className={`admin-login-shell ${darkMode ? 'dark' : ''}`}>
           <div className="admin-login-container">
             <div className="admin-login-card">
@@ -633,7 +633,7 @@ export default function AdminNew() {
 
   return (
     <>
-      <Seo title="Admin Dashboard | PDR World" description="PDR World admin dashboard." canonical="https://pdrworld.com/dashboard-admin" />
+      <Seo title="Admin Dashboard | PDR World" description="PDR World admin dashboard." canonical="https://pdr-sable.vercel.app/dashboard-admin" />
 
       <div className={`admin-enhanced-shell ${darkMode ? 'dark' : ''}`}>
         <header className="admin-header">

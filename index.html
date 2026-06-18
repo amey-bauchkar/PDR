@@ -5,22 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#07008F" />
     
+    <!-- SEO: Robots directive -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    
+    <!-- SEO: Author & Publisher -->
+    <meta name="author" content="PDR Videotronics India Pvt. Ltd." />
+    
+    <!-- SEO: Geo-targeting for India/Mumbai -->
+    <meta name="geo.region" content="IN-MH" />
+    <meta name="geo.placename" content="Mumbai" />
+    <meta name="geo.position" content="19.0144;72.8295" />
+    <meta name="ICBM" content="19.0144, 72.8295" />
+    
+    <!-- SEO: Language alternates -->
+    <link rel="alternate" hreflang="en-in" href="https://pdr-sable.vercel.app/" />
+    <link rel="alternate" hreflang="en" href="https://pdr-sable.vercel.app/" />
+    <link rel="alternate" hreflang="x-default" href="https://pdr-sable.vercel.app/" />
+    
     <!-- Deployment version tracking for cache busting -->
     <meta name="deployment-version" content="{{COMMIT_SHA}}" />
     
-    <!-- Cache control directives to prevent aggressive caching -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Performance: DNS prefetch for external domains -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    
+    <!-- Performance: Preconnect + Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <title>PDR World — Industrial Fiber Optic Solutions</title>
+    
+    <!-- Performance: Preload LCP hero image -->
+    <link rel="preload" as="image" type="image/webp" href="/images/hero-infrastructure.webp" />
+    
+    <title>PDR World — Industrial Fiber Optic Solutions | Manufacturer India</title>
+    <meta name="description" content="PDR World is an ISO 9001:2015 certified manufacturer of fiber optic components since 1985. SFP transceivers, patch cords, ODFs, OTDRs, and more. Made in India." />
   </head>
   <body>
     <div id="root"></div>

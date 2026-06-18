@@ -722,13 +722,13 @@ export default function CableConfigurator() {
       <Seo
         title="Custom Cable Configurator | PDR World"
         description="Configure custom fiber optic cable assemblies with a real-time 3D preview. Choose fiber type, connector, jacket, and length — instant quote."
-        canonical="https://pdrworld.com/cable-configurator"
+        canonical="https://pdr-sable.vercel.app/cable-configurator"
       />
 
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://pdrworld.com/' },
-        { name: 'Configurator Tools', url: 'https://pdrworld.com/cable-configurator' },
-        { name: 'Custom Cable Builder', url: 'https://pdrworld.com/cable-configurator' },
+        { name: 'Home', url: 'https://pdr-sable.vercel.app/' },
+        { name: 'Configurator Tools', url: 'https://pdr-sable.vercel.app/cable-configurator' },
+        { name: 'Custom Cable Builder', url: 'https://pdr-sable.vercel.app/cable-configurator' },
       ]} />
       <SoftwareApplicationSchema 
         name="PDR World Custom Cable Builder"

@@ -8,11 +8,11 @@ export default function Privacy() {
       <Seo
         title="Privacy Policy | PDR World — Data Protection & Cookie Policy"
         description="PDR World privacy policy covering data collection, cookie usage, and your rights under Indian data protection law. Read how we protect your personal information."
-        canonical="https://pdrworld.com/privacy"
+        canonical="https://pdr-sable.vercel.app/privacy"
       />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://pdrworld.com/' },
-        { name: 'Privacy Policy', url: 'https://pdrworld.com/privacy' },
+        { name: 'Home', url: 'https://pdr-sable.vercel.app/' },
+        { name: 'Privacy Policy', url: 'https://pdr-sable.vercel.app/privacy' },
       ]} />
 
       <section className="section" style={{ paddingTop: 160, paddingBottom: 80 }}>

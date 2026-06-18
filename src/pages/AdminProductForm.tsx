@@ -276,7 +276,7 @@ export default function AdminProductForm() {
         .map((s) => s.trim())
         .filter(Boolean)
         .join('. '),
-      canonical: existingProduct?.canonical || `https://pdrworld.com/products/${nextSlug}`,
+      canonical: existingProduct?.canonical || `https://pdr-sable.vercel.app/products/${nextSlug}`,
       tagline: form.tagline.trim(),
       status: form.status,
       imageUrl: form.imageUrl.trim(),
@@ -323,7 +323,7 @@ export default function AdminProductForm() {
   if (!session) {
     return (
       <>
-        <Seo title="Admin Login | PDR World" description="PDR World admin login." canonical="https://pdrworld.com/admin" />
+        <Seo title="Admin Login | PDR World" description="PDR World admin login." canonical="https://pdr-sable.vercel.app/admin" />
         <div className={`admin-login-shell ${darkMode ? 'dark' : ''}`}>
           <div className="admin-login-container">
             <div className="admin-login-card">
@@ -388,7 +388,7 @@ export default function AdminProductForm() {
 
   return (
     <>
-      <Seo title={`${slug ? 'Edit Product' : 'Add Product'} | PDR World`} description="Manage catalog products." canonical="https://pdrworld.com/admin" />
+      <Seo title={`${slug ? 'Edit Product' : 'Add Product'} | PDR World`} description="Manage catalog products." canonical="https://pdr-sable.vercel.app/admin" />
 
       <div className={`admin-enhanced-shell ${darkMode ? 'dark' : ''}`}>
         <header className="admin-header">

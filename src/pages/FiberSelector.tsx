@@ -474,12 +474,12 @@ export default function FiberSelector() {
       <Seo
         title="Cable Management Selector | PDR World"
         description="Filter, configure, and specify PDR cable management products — patch panels, ODFs, splice closures, termination boxes, and networking racks for your network build."
-        canonical="https://pdrworld.com/fiber-selector"
+        canonical="https://pdr-sable.vercel.app/fiber-selector"
       />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://pdrworld.com/' },
-        { name: 'Products', url: 'https://pdrworld.com/products' },
-        { name: 'Cable Management Selector', url: 'https://pdrworld.com/fiber-selector' },
+        { name: 'Home', url: 'https://pdr-sable.vercel.app/' },
+        { name: 'Products', url: 'https://pdr-sable.vercel.app/products' },
+        { name: 'Cable Management Selector', url: 'https://pdr-sable.vercel.app/fiber-selector' },
       ]} />
       <SoftwareApplicationSchema
         name="PDR World Cable Management Selector"

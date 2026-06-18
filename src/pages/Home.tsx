@@ -54,7 +54,7 @@ export default function Home() {
       <Seo
         title="Fiber Optic Manufacturer in India | Active & Passive Components — PDR World"
         description="PDR World is an ISO 9001:2015 certified manufacturer of fiber optic components since 1985. SFP transceivers, patch cords, ODFs, OTDRs, and more. Made in India."
-        canonical="https://pdrworld.com/"
+        canonical="https://pdr-sable.vercel.app/"
       />
       <OrganizationSchema />
       <WebSiteSchema />
@@ -105,7 +105,7 @@ export default function Home() {
             <div className="hp-hero-visual hero-image-card reveal d-2">
               <picture>
                 <source srcSet="/images/hero-infrastructure.webp" type="image/webp" />
-                <img src="/images/hero-infrastructure.webp" alt="PDR Fiber Optic Infrastructure" loading="eager" width="800" height="600" />
+                <img src="/images/hero-infrastructure.webp" alt="PDR Fiber Optic Infrastructure" loading="eager" fetchPriority="high" width="800" height="600" />
               </picture>
             </div>
           </div>

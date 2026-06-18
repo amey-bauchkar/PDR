@@ -17,12 +17,12 @@ export default function About() {
       <Seo
         title="About PDR World | Fiber Optic Manufacturer in India Since 1985"
         description="PDR Videotronics India — ISO 9001:2015 certified fiber optic manufacturer in Mumbai. 40+ years building active and passive optical components for telecom and defence."
-        canonical="https://pdrworld.com/about"
+        canonical="https://pdr-sable.vercel.app/about"
       />
       <OrganizationSchema />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://pdrworld.com/' },
-        { name: 'About', url: 'https://pdrworld.com/about' },
+        { name: 'Home', url: 'https://pdr-sable.vercel.app/' },
+        { name: 'About', url: 'https://pdr-sable.vercel.app/about' },
       ]} />
       {/* HERO SECTION */}
       <section className="ab-hero">

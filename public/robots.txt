@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /api/
 
-Sitemap: https://pdrworld.com/sitemap.xml
+Sitemap: https://pdr-sable.vercel.app/sitemap.xml

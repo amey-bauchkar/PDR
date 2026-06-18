@@ -19,7 +19,7 @@ export function JsonLd({ data }: JsonLdProps) {
 /*  Pre-built schema generators                                       */
 /* ------------------------------------------------------------------ */
 
-const SITE = 'https://pdrworld.com';
+const SITE = 'https://pdr-sable.vercel.app';
 const LOGO = `${SITE}/favicon.png`;
 
 /** Organization schema — use once in Layout or Home */
@@ -185,7 +185,7 @@ export function BreadcrumbSchema({ items }: { items: { name: string; url: string
   );
 }
 
-/** WebSite schema with search — use on homepage */
+/** WebSite schema with SearchAction — enables Google sitelinks search box */
 export function WebSiteSchema() {
   return (
     <JsonLd
@@ -198,6 +198,14 @@ export function WebSiteSchema() {
         publisher: {
           '@type': 'Organization',
           name: 'PDR Videotronics India Pvt. Ltd.',
+        },
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: {
+            '@type': 'EntryPoint',
+            urlTemplate: `${SITE}/products?q={search_term_string}`,
+          },
+          'query-input': 'required name=search_term_string',
         },
       }}
     />
@@ -240,6 +248,24 @@ export function ServiceSchema({ name, description, serviceType }: { name: string
           name: 'PDR World',
           url: SITE,
         },
+      }}
+    />
+  );
+}
+
+/** ItemList schema — for product listing/catalog pages */
+export function ItemListSchema({ items }: { items: { name: string; url: string; position: number }[] }) {
+  return (
+    <JsonLd
+      data={{
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        itemListElement: items.map((item) => ({
+          '@type': 'ListItem',
+          position: item.position,
+          name: item.name,
+          url: item.url,
+        })),
       }}
     />
   );

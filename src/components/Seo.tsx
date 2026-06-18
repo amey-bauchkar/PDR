@@ -15,7 +15,7 @@ type SeoProps = {
   ogType?: string;
 };
 
-const SITE = 'https://pdrworld.com';
+const SITE = 'https://pdr-sable.vercel.app';
 
 export default function Seo({
   title,

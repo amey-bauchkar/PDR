@@ -1,0 +1,16 @@
+{
+  "name": "PDR World",
+  "short_name": "PDR",
+  "description": "Industrial Fiber Optic Solutions — SFP Transceivers, Patch Cords, ODFs, OTDRs. ISO 9001:2015 Certified Manufacturer Since 1985.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#07008F",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

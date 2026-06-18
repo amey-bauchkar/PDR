@@ -396,7 +396,7 @@ export const mergeWithProducts = (rawProducts: any[]): any[] => {
       category: p.category,
       title: p.title || `${p.name} | PDR World`,
       description: finalDescription,
-      canonical: p.canonical || `https://pdrworld.com/products/${p.slug}`,
+      canonical: p.canonical || `https://pdr-sable.vercel.app/products/${p.slug}`,
       tagline: finalTagline,
       imageUrl: finalImage,
       features: finalFeatures,

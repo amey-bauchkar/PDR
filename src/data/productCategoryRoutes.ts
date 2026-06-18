@@ -46,5 +46,5 @@ export function productsCategoryHrefDeep(sectionId: string): string {
 }
 
 export function categoryCanonical(path: ProductCategoryPath): string {
-  return `https://pdrworld.com/products/${path}`;
+  return `https://pdr-sable.vercel.app/products/${path}`;
 }

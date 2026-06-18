@@ -7,7 +7,8 @@ import {
   ProductsTrustBand,
   CatalogCategorySection
 } from '../components/products/CatalogBlocks';
-import { BreadcrumbSchema } from '../components/Schema';
+import { BreadcrumbSchema, ItemListSchema } from '../components/Schema';
+import productsData from '../data/products.json';
 import { productsCategoryHrefDeep } from '../data/productCategoryRoutes';
 import { mergeWithCatalogue, getAdminProducts } from '../lib/productSync';
 import rawCatalogue from '../data/catalogue.json';
@@ -86,12 +87,17 @@ export default function Products() {
       <Seo
         title="Fiber Optic Product Catalogue | SFP Transceivers, Patch Cords, ODFs — PDR World"
         description="Browse PDR World's complete fiber optic catalogue: SFP transceivers, patch cords, ODFs, OTDRs, drones, and maintenance tools. ISO 9001:2015 certified. Made in India."
-        canonical="https://pdrworld.com/products"
+        canonical="https://pdr-sable.vercel.app/products"
       />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://pdrworld.com/' },
-        { name: 'Products', url: 'https://pdrworld.com/products' },
+        { name: 'Home', url: 'https://pdr-sable.vercel.app/' },
+        { name: 'Products', url: 'https://pdr-sable.vercel.app/products' },
       ]} />
+      <ItemListSchema items={(productsData as any[]).map((p: any, i: number) => ({
+        name: p.name,
+        url: `https://pdr-sable.vercel.app/products/${p.slug}`,
+        position: i + 1,
+      }))} />
 
       <section className="pr-hero">
         <div className="container">

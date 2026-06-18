@@ -49,12 +49,12 @@ export default function Contact() {
       <Seo
         title="Contact PDR World | Fiber Optic Manufacturer in Mumbai — Request a Quote"
         description="Contact PDR Videotronics India for RFQs, engineering consultation, or partnership inquiries. ISO 9001:2015 certified fiber optic manufacturer in Mumbai since 1985."
-        canonical="https://pdrworld.com/contact"
+        canonical="https://pdr-sable.vercel.app/contact"
       />
       <LocalBusinessSchema />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://pdrworld.com/' },
-        { name: 'Contact', url: 'https://pdrworld.com/contact' },
+        { name: 'Home', url: 'https://pdr-sable.vercel.app/' },
+        { name: 'Contact', url: 'https://pdr-sable.vercel.app/contact' },
       ]} />
 
       {/* HERO & MAIN GRID */}

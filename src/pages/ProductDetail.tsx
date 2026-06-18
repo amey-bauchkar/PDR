@@ -82,10 +82,10 @@ export default function ProductDetail() {
       <Seo
         title={product.title}
         description={product.description}
-        canonical={`https://pdrworld.com/products/${product.slug}`}
+        canonical={`https://pdr-sable.vercel.app/products/${product.slug}`}
         ogTitle={`${product.name} — ${product.category} | PDR World`}
         ogDescription={product.description}
-        ogUrl={`https://pdrworld.com/products/${product.slug}`}
+        ogUrl={`https://pdr-sable.vercel.app/products/${product.slug}`}
         ogImage={detailImage}
         ogType="product"
       />
@@ -98,10 +98,10 @@ export default function ProductDetail() {
         image={detailImage}
       />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://pdrworld.com/' },
-        { name: 'Products', url: 'https://pdrworld.com/products' },
-        { name: product.category, url: 'https://pdrworld.com/products' },
-        { name: product.name, url: `https://pdrworld.com/products/${product.slug}` },
+        { name: 'Home', url: 'https://pdr-sable.vercel.app/' },
+        { name: 'Products', url: 'https://pdr-sable.vercel.app/products' },
+        { name: product.category, url: 'https://pdr-sable.vercel.app/products' },
+        { name: product.name, url: `https://pdr-sable.vercel.app/products/${product.slug}` },
       ]} />
 
       {/* HERO */}
@@ -188,7 +188,7 @@ export default function ProductDetail() {
                           category: product.category,
                           title: product.title || `${product.name} | PDR World`,
                           description: product.description || '',
-                          canonical: `https://pdrworld.com/products/${product.slug}`,
+                          canonical: `https://pdr-sable.vercel.app/products/${product.slug}`,
                           tagline: product.tagline || '',
                           features: product.features || [],
                           applications: product.applications || [],
