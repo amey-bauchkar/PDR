@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import Seo from '../components/Seo';
 import { BreadcrumbSchema, SoftwareApplicationSchema } from '../components/Schema';
 import { useRfqCart } from '../components/RfqCartProvider';
-import { generatePartNumber, lengthToCode } from '../data/orderingCodes';
+import { generatePartNumber, lengthToCode, getCableOptions } from '../data/orderingCodes';
 import '../styles/configurator-3d.css';
 
 type Connector = { sub: string; shape: 'sc' | 'lc' | 'fc' | 'st' | 'mpo'; apc: boolean };
@@ -467,11 +467,16 @@ function getBuilder(s: Connector['shape']) {
   return ({ sc: buildSC, lc: buildLC, fc: buildFC, st: buildST, mpo: buildMPO } as const)[s] || buildSC;
 }
 
+const asmMap: Record<string, string> = {
+  sm_os2: 'S1', mm_om1: 'M1', mm_om2: 'M2', mm_om3: 'M3', mm_om4: 'M4',
+};
+
 export default function CableConfigurator() {
   const [fiberKey, setFiberKey] = useState<keyof typeof FIBERS>('sm_os2');
   const [connectorA, setConnectorA] = useState('SC/APC');
   const [connectorB, setConnectorB] = useState('SC/APC');
   const [jacket, setJacket] = useState('LSZH');
+  const [cableTypeCode, setCableTypeCode] = useState('01');
   const [length, setLength] = useState(3);
   const [useCustomLen, setUseCustomLen] = useState(false);
   const [customLenValue, setCustomLenValue] = useState('100');
@@ -645,6 +650,8 @@ export default function CableConfigurator() {
     setConnectorA(firstConn);
     setConnectorB(firstConn);
     setJacket(Object.keys(FIBERS[key].jackets)[0]);
+    const asm = asmMap[key] || 'S1';
+    setCableTypeCode(getCableOptions(asm)[0].code);
   };
 
   const cdA = fiber.connectors[connectorA] || Object.values(fiber.connectors)[0];
@@ -656,10 +663,6 @@ export default function CableConfigurator() {
 
   // Map configurator state to ordering code
   const orderingCode = useMemo(() => {
-    // Assembly mapping
-    const asmMap: Record<string, string> = {
-      sm_os2: 'S1', mm_om1: 'M1', mm_om2: 'M2', mm_om3: 'M3', mm_om4: 'M4',
-    };
     // Connector mapping (configurator label → ordering code)
     const connMap: Record<string, string> = {
       'SC/APC': 'C6', 'LC/APC': 'L6', 'FC/APC': 'F6', 'ST/APC': 'T2',
@@ -670,14 +673,18 @@ export default function CableConfigurator() {
     const asm = asmMap[fiberKey] || 'S1';
     const c1 = connMap[connectorA] || 'L2';
     const c2 = connMap[connectorB] || c1;
-    const cab = asm.startsWith('S') ? '01' : '07';
+    const cab = cableTypeCode;
     const effectiveLen = useCustomLen && customLenValue.trim()
       ? (customLenUnit === 'km'
         ? lengthToCode(parseFloat(customLenValue) * 1000)
         : lengthToCode(parseFloat(customLenValue)))
       : lengthToCode(length);
     return generatePartNumber({ assembly: asm, connector1: c1, connector2: c2, cableType: cab, lengthCode: effectiveLen });
-  }, [fiberKey, connectorA, connectorB, jacket, length, useCustomLen, customLenValue, customLenUnit]);
+  }, [fiberKey, connectorA, connectorB, cableTypeCode, length, useCustomLen, customLenValue, customLenUnit]);
+
+  const currentAsm = asmMap[fiberKey] || 'S1';
+  const cableOptions = getCableOptions(currentAsm);
+  const cableLabel = cableOptions.find(c => c.code === cableTypeCode)?.label || '';
 
   const specCells: [string, string, boolean][] = useMemo(
     () => [
@@ -691,19 +698,20 @@ export default function CableConfigurator() {
       ['Polish A', polishLabel(cdA.apc), false],
       ['Polish B', polishLabel(cdB.apc), false],
       ['Jacket', jacket, false],
+      ['Cable Type', cableLabel, false],
       ['Length', lengthLabel, true],
       ['Ins. loss', cdA.apc || cdB.apc ? '≤ 0.3 dB' : '≤ 0.2 dB', false],
       ['Part No.', orderingCode, true],
     ],
-    [fiber, connectorA, connectorB, jacket, length, cdA, cdB, orderingCode],
+    [fiber, connectorA, connectorB, jacket, cableLabel, lengthLabel, cdA, cdB, orderingCode],
   );
 
   const handleAdd = () => {
-    const item = `${fiber.label} · ${connectorSummary} · ${jacket} · ${lengthLabel}`;
+    const item = `${fiber.label} · ${connectorSummary} · ${jacket} · ${cableLabel} · ${lengthLabel}`;
     setLocalCart((prev) => [...prev, item]);
     addItem({
       title: `Custom ${fiber.label} Patchcord`,
-      specs: `${connectorSummary} · ${jacket} · ${lengthLabel}`,
+      specs: `${connectorSummary} · ${jacket} · ${cableLabel} · ${lengthLabel}`,
       image: '/images/fiber-patchcord.webp',
       qty: 1,
     });
@@ -879,7 +887,23 @@ export default function CableConfigurator() {
             </div>
 
             <div className="cfg3-step-card">
-              <div className="cfg3-step-head">Step 4 — Length</div>
+              <div className="cfg3-step-head">Step 4 — Cable Type</div>
+              <div className="cfg3-jack-grid">
+                {cableOptions.map((opt) => (
+                  <div
+                    key={opt.code}
+                    className={`cfg3-jopt${cableTypeCode === opt.code ? ' on' : ''}`}
+                    onClick={() => setCableTypeCode(opt.code)}
+                  >
+                    <div className="cfg3-jname">{opt.label}</div>
+                    <div className="cfg3-jsub">Code: {opt.code}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="cfg3-step-card">
+              <div className="cfg3-step-head">Step 5 — Length</div>
               {!useCustomLen ? (
                 <>
                   <div className="cfg3-len-row">
