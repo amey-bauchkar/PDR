@@ -8,7 +8,6 @@ import {
   CatalogStickyNav,
   type CatalogSection,
   ProductsCustomCta,
-  ProductsTrustBand,
 } from '../components/products/CatalogBlocks';
 import rawCatalogue from '../data/catalogue.json';
 import type { ProductCategoryPath } from '../data/productCategoryRoutes';
@@ -98,7 +97,6 @@ export default function ProductsCategory({ categoryPath }: Props) {
 
       <CatalogStickyNav activeSectionId={sectionId} />
       <CatalogCategorySection section={section} alt={idx % 2 === 0} omitIntroHead />
-      <ProductsTrustBand />
       <ProductsCustomCta />
     </>
   );
