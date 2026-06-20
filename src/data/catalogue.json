@@ -1,14 +1,8 @@
 {
   "hero": {
     "eyebrow": "Product Catalogue · 50+ Families",
-    "title": "The complete fibre optic stack. Made in India.",
-    "subtitle": "Active components, passive assemblies, cable management, and test equipment — manufactured and tested in-house since 1985.",
-    "stats": [
-      "50+ Product Families",
-      "3,000+ Buyers",
-      "ISO 9001:2015",
-      "Ships Same Day"
-    ],
+    "title": "The complete fiber optic stack. Made in India.",
+    "subtitle": "A trusted provider of fiber optic components, optical networking solutions, cable management systems, and test equipment since 1985.",
     "pills": [
       {
         "href": "/products/active-components",
@@ -64,7 +58,7 @@
       "id": "active",
       "eyebrow": "Active Components",
       "heading": "SFP Transceivers, OLP & High-Speed Interfaces",
-      "intro": "Manufactured and tested at our Mumbai facility. Compatible with major OEM switches, routers, and DWDM platforms.",
+      "intro": "Manufactured and tested at our facility in India. Compatible with major OEM switches, routers, and DWDM platforms.",
       "groups": [
         {
           "subhead": "SFP Transceivers",

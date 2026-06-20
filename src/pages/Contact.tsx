@@ -47,8 +47,8 @@ export default function Contact() {
   return (
     <>
       <Seo
-        title="Contact PDR World | Fiber Optic Manufacturer in Mumbai — Request a Quote"
-        description="Contact PDR Videotronics India for RFQs, engineering consultation, or partnership inquiries. ISO 9001:2015 certified fiber optic manufacturer in Mumbai since 1985."
+        title="Contact PDR World | Fiber Optic Manufacturer in India — Request a Quote"
+        description="Contact PDR Videotronics India for RFQs, engineering consultation, or partnership inquiries. ISO 9001:2015 certified fiber optic manufacturer in India since 1985."
         canonical="https://pdr-sable.vercel.app/contact"
       />
       <LocalBusinessSchema />
@@ -61,7 +61,7 @@ export default function Contact() {
       <section className="ct-hero">
         <div className="container">
           <div className="eyebrow">Contact Us</div>
-          <h1 style={{ color: '#07008F' }}>Contact PDR — Fiber Optic Manufacturer in Mumbai</h1>
+          <h1 style={{ color: '#07008F' }}>Contact PDR — Fiber Optic Manufacturer in India</h1>
           <p style={{ fontSize: 18, color: '#475569', marginTop: 16, maxWidth: 600 }}>Whether you need a custom manufacturing quote, technical support, or distribution details, our team in Mumbai is ready to assist.</p>
 
           <div className="ct-grid">

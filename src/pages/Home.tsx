@@ -72,7 +72,7 @@ export default function Home() {
               <p style={{ fontSize: '1.125rem', lineHeight: 1.6, marginTop: '24px', opacity: 0.85, maxWidth: '600px' }}>
                 <strong>Smart Fiber Monitoring &amp; Telecom Infrastructure Solutions.</strong>
                 <br />
-                <span style={{ display: 'inline-block', marginTop: '8px' }}>Make in India Fiber Optic Technology for Next-Gen Networks.</span>
+                <span style={{ display: 'inline-block', marginTop: '8px' }}>Made in India Fiber Optic Technology for Next-Gen Networks.</span>
               </p>
               <div className="hp-cta-row">
                 <Link className="btn btn-primary" to="/contact">Request Quote</Link>
@@ -211,7 +211,7 @@ export default function Home() {
                 We&rsquo;ll engineer the solution.
               </h2>
               <p>
-                24-hour RFQ turnaround. Direct technical support from our Mumbai facility. Samples available for qualified
+                24-hour RFQ turnaround. Direct technical support from our facility in India. Samples available for qualified
                 infrastructure projects.
               </p>
               <div className="hp-cta-row hp-final-cta-row">

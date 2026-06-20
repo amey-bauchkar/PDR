@@ -149,26 +149,6 @@ export function CatalogCategorySection({
   );
 }
 
-export function ProductsTrustBand() {
-  return (
-    <section className="section pr-section reveal pr-trust-band">
-      <div className="container">
-        <div className="pr-trust-layout">
-          <div>
-            <div className="eyebrow">Made in India</div>
-            <h2>Manufactured, tested, and delivered with confidence.</h2>
-            <p className="pr-trust-copy">
-              From India, PDR combines in-house manufacturing capabilities, rigorous testing, and decades of fiber optic expertise to deliver reliable solutions for critical communication networks.
-            </p>
-            <Link className="btn btn-outline pr-trust-link" to="/about">
-              About Our Manufacturing →
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 export function ProductsCustomCta() {
   return (

@@ -4,7 +4,6 @@ import Seo from '../components/Seo';
 import {
   CatalogHubCategoryPills,
   ProductsCustomCta,
-  ProductsTrustBand,
   CatalogCategorySection
 } from '../components/products/CatalogBlocks';
 import { BreadcrumbSchema, ItemListSchema } from '../components/Schema';
@@ -130,7 +129,7 @@ export default function Products() {
         </div>
       )}
 
-      <ProductsTrustBand />
+
       <ProductsCustomCta />
     </>
   );

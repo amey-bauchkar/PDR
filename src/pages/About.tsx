@@ -16,7 +16,7 @@ export default function About() {
     <>
       <Seo
         title="About PDR World | Fiber Optic Manufacturer in India Since 1985"
-        description="PDR Videotronics India — ISO 9001:2015 certified fiber optic manufacturer in Mumbai. 40+ years building active and passive optical components for telecom and defence."
+        description="PDR Videotronics India — ISO 9001:2015 certified fiber optic manufacturer in India. 40+ years building active and passive optical components for telecom and defence."
         canonical="https://pdr-sable.vercel.app/about"
       />
       <OrganizationSchema />
