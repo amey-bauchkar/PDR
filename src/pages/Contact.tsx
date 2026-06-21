@@ -48,7 +48,7 @@ export default function Contact() {
     <>
       <Seo
         title="Contact PDR World | Fiber Optic Manufacturer in India — Request a Quote"
-        description="Contact PDR Videotronics India for RFQs, engineering consultation, or partnership inquiries. ISO 9001:2015 certified fiber optic manufacturer in India since 1985."
+        description="Contact PDR Videotronics India for RFQs, engineering consultation, or partnership inquiries. ISO 9001:2015 certified fiber optic manufacturer in India since 1974."
         canonical="https://pdr-sable.vercel.app/contact"
       />
       <LocalBusinessSchema />

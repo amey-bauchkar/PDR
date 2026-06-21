@@ -98,7 +98,7 @@ export default function Header() {
                   </Link>
                   <Link to="/products/test-measuring#test" onClick={() => setOpenMega(null)}>
                     <strong>Test and Measurement</strong>
-                    <span>OPM · Laser Source · OTDR · Microscopes · BERT</span>
+                    <span>OPM · OTDR · Microscopes</span>
                   </Link>
                   <Link to="/products/specialty-drones#specialty" onClick={() => setOpenMega(null)}>
                     <strong>Drone Optical Fiber Kit</strong>

@@ -1014,3 +1014,52 @@
   .rs-icon { width: 48px; height: 48px; margin-bottom: 18px; }
   .rs-ad-gallery { grid-template-columns: 1fr; }
 }
+
+/* Events & Exhibitions Gallery */
+.events-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.event-section-minimal {
+  margin-bottom: 24px;
+}
+.event-title-minimal {
+  font-family: 'Manrope', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 32px;
+  text-align: center;
+}
+.event-gallery-minimal {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+.event-card-minimal {
+  cursor: zoom-in;
+  overflow: hidden;
+  position: relative;
+}
+.event-card-minimal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.event-card-minimal:hover img {
+  transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+  .event-title-minimal {
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+  .event-gallery-minimal {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+

@@ -630,34 +630,40 @@
   {
     "slug": "drone",
     "name": "Drone Optical Fiber Kit",
-    "category": "Specialty Products",
+    "category": "Specialty Drones",
     "title": "Drone Optical Fiber Kit | PDR World",
-    "description": "Rapid aerial deployment in inaccessible areas",
-    "canonical": "https://pdrworld.com/drone.html",
-    "tagline": "Rapid aerial deployment in inaccessible areas",
-    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M12 12l24 24M12 36l24-24\"></path><circle cx=\"12\" cy=\"12\" r=\"4\"></circle><circle cx=\"36\" cy=\"36\" r=\"4\"></circle><circle cx=\"12\" cy=\"36\" r=\"4\"></circle><circle cx=\"36\" cy=\"12\" r=\"4\"></circle><rect x=\"20\" y=\"20\" width=\"8\" height=\"8\" rx=\"2\"></rect></svg>",
+    "description": "Secure, jam-proof fiber-optic communication for defence and FPV drones.",
+    "canonical": "https://pdr-sable.vercel.app/products/drone",
+    "tagline": "Secure, jam-proof fiber-optic communication for defence and FPV drones.",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" strokeWidth=\"1.5\"><path d=\"M2 12h4l2-8 4 16 2-8h4\"/></svg>",
     "features": [
-      "Rapid aerial deployment in inaccessible areas",
-      "High-resolution optical infrastructure inspection",
-      "Real-time secure surveillance feed"
+      "Fiber-tethered data link — immune to jamming, interception, and RF interference",
+      "Secure real-time HD / 4K + thermal video downlink",
+      "Lightweight payload spool for FPV and tactical UAVs",
+      "Selectable fiber length from 1 km to 50 km (custom lengths on request)"
     ],
     "applications": [
-      "Mountain/River Fiber Crossing",
-      "Post-Disaster Reconnaissance",
-      "Infrastructure Audits"
+      "Defence ISR & secure communications",
+      "FPV reconnaissance & tactical missions",
+      "Perimeter / border surveillance",
+      "EW / jam-resistant operations"
     ],
     "specs": [
       {
-        "label": "Flight Time",
-        "value": "Extended"
+        "label": "Fiber Length",
+        "value": "1–50 km, selectable (custom available)"
       },
       {
         "label": "Camera",
         "value": "4K / Thermal"
       },
       {
-        "label": "Deployment Rate",
-        "value": "High-speed aerial stringing"
+        "label": "Data Link",
+        "value": "Secure fiber-optic — EW / jam-resistant"
+      },
+      {
+        "label": "Deployment",
+        "value": "High-speed aerial spooling"
       }
     ],
     "related": []
@@ -2027,12 +2033,12 @@
     "name": "Rapid Push Cable Assembly",
     "category": "Passive Components",
     "title": "Rapid Push Cable Assembly | PDR World",
-    "description": "FTTXsmart pushable preterminated drop solution",
+    "description": "FTTX smart pushable preterminated drop solution",
     "canonical": "https://pdrworld.com/rapid-push.html",
-    "tagline": "FTTXsmart pushable preterminated drop solution",
+    "tagline": "FTTX smart pushable preterminated drop solution",
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M10 24h28\"></path><path d=\"M34 20l4 4-4 4\"></path></svg>",
     "features": [
-      "FTTXsmart pushable preterminated drop solution",
+      "FTTX smart pushable preterminated drop solution",
       "Eliminates field splicing",
       "Designed for microduct deployment"
     ],

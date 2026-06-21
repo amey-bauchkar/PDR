@@ -20,7 +20,7 @@
   <url><loc>https://pdr-sable.vercel.app/products/specialty-drones</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/maintenance-tools</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
-  <!-- Product Detail Pages (64 products) -->
+  <!-- Product Detail Pages (58 products) -->
   <url><loc>https://pdr-sable.vercel.app/products/aoc</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/armoured-patchcord</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/attenuator</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -44,9 +44,7 @@
   <url><loc>https://pdr-sable.vercel.app/products/field-connector</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/fo-patchcords</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/fusion-splicer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://pdr-sable.vercel.app/products/hd-sdi</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/heat-shrink-closure</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://pdr-sable.vercel.app/products/high-power-patchcord</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/horizontal-closure</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/htb</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/hybrid-adapter</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -54,7 +52,6 @@
   <url><loc>https://pdr-sable.vercel.app/products/loopback</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/mating-sleeve</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/mini-opm</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://pdr-sable.vercel.app/products/mini-otdr</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/mode-conditioning</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/mpo-assembly</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/mpo-cleaner</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -63,7 +60,6 @@
   <url><loc>https://pdr-sable.vercel.app/products/olps</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/plc-splitter</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/pocket-otdr</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://pdr-sable.vercel.app/products/poe-injector</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/pof-patchcord</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/pon-power-meter</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/rack-mount-fms</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -78,11 +74,9 @@
   <url><loc>https://pdr-sable.vercel.app/products/sfp-400g</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/sfp-40g</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/sfp-copper</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://pdr-sable.vercel.app/products/sfp-transceivers</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/smart-sfp</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/smpte-assembly</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/soc</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://pdr-sable.vercel.app/products/splice-sleeves</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/vfl</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdr-sable.vercel.app/products/wall-mount</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>

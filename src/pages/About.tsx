@@ -15,7 +15,7 @@ export default function About() {
   return (
     <>
       <Seo
-        title="About PDR World | Fiber Optic Manufacturer in India Since 1985"
+        title="About PDR World | Fiber Optic Manufacturer in India Since 1974"
         description="PDR Videotronics India — ISO 9001:2015 certified fiber optic manufacturer in India. 40+ years building active and passive optical components for telecom and defence."
         canonical="https://pdr-sable.vercel.app/about"
       />
@@ -29,7 +29,7 @@ export default function About() {
         <div className="container">
           <div className="ab-hero-grid">
             <div className="reveal ab-hero-copy">
-              <div className="eyebrow">Our Story - Since 1974 (company incorporated in 1974, fiber optics started in 1985)</div>
+              <div className="eyebrow">Our Story - Since 1974.</div>
               <h1>Leading Fiber Optic Manufacturer in India — PDR Videotronics India Pvt Ltd</h1>
               <p>
                 For nearly four decades, PDR has been at the forefront of manufacturing and supplying active and passive fiber optic infrastructure, empowering India's digital backbone from our Mumbai headquarters.
@@ -37,8 +37,7 @@ export default function About() {
             </div>
             <div className="ab-hero-img reveal" style={{ transitionDelay: '0.1s' }}>
               <picture>
-                <source srcSet="/images/factory-modern.webp" type="image/webp" />
-                <img src="/images/factory-modern.webp" alt="PDR Manufacturing Facility" width="800" height="600" />
+                <img src="/images/factory-new.jpeg" alt="PDR Manufacturing Facility" width="800" height="600" />
               </picture>
               <div className="ab-hero-img-overlay" />
               <div className="ab-est">
@@ -246,8 +245,7 @@ export default function About() {
             </div>
             <div className="ab-hero-img ab-mfg-image">
               <picture>
-                <source srcSet="/images/factory-modern.webp" type="image/webp" />
-                <img src="/images/factory-modern.webp" alt="PDR Manufacturing Facility Mumbai" width="800" height="600" />
+                <img src="/images/factory-new.jpeg" alt="PDR Manufacturing Facility Mumbai" width="800" height="600" />
               </picture>
               <div className="ab-hero-img-overlay" />
             </div>

@@ -654,10 +654,7 @@ export default function CableConfigurator() {
     setCableTypeCode(getCableOptions(asm)[0].code);
   };
 
-  const cdA = fiber.connectors[connectorA] || Object.values(fiber.connectors)[0];
-  const cdB = fiber.connectors[connectorB] || cdA;
 
-  const polishLabel = (apc: boolean) => (apc ? 'APC — 8° angle' : 'UPC/PC — flat');
   const connectorSummary = connectorA === connectorB ? connectorA : `${connectorA} → ${connectorB}`;
   const lengthLabel = useCustomLen && customLenValue.trim() ? `${customLenValue.trim()} ${customLenUnit}` : `${length} m`;
 
@@ -689,21 +686,13 @@ export default function CableConfigurator() {
   const specCells: [string, string, boolean][] = useMemo(
     () => [
       ['Fiber type', fiber.label, true],
-      ['Core/Clad', fiber.sp.core, false],
-      ['Wavelength', fiber.sp.wl, false],
-      ['Attenuation', fiber.sp.att, false],
-      ['Standard', fiber.sp.std, false],
       ['Connector A', connectorA, true],
       ['Connector B', connectorB, true],
-      ['Polish A', polishLabel(cdA.apc), false],
-      ['Polish B', polishLabel(cdB.apc), false],
-      ['Jacket', jacket, false],
       ['Cable Type', cableLabel, false],
       ['Length', lengthLabel, true],
-      ['Ins. loss', cdA.apc || cdB.apc ? '≤ 0.3 dB' : '≤ 0.2 dB', false],
       ['Part No.', orderingCode, true],
     ],
-    [fiber, connectorA, connectorB, jacket, cableLabel, lengthLabel, cdA, cdB, orderingCode],
+    [fiber, connectorA, connectorB, cableLabel, lengthLabel, orderingCode],
   );
 
   const handleAdd = () => {

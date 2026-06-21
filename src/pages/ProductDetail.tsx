@@ -31,6 +31,8 @@ export default function ProductDetail() {
   const { addItem } = useRfqCart();
   const [added, setAdded] = useState(false);
   const [products, setProducts] = useState<Product[]>(() => mergeWithProducts(productsData));
+  const [droneLength, setDroneLength] = useState('1 km');
+  const [customDroneLength, setCustomDroneLength] = useState('');
 
   useEffect(() => {
     const handleStorage = () => {
@@ -157,6 +159,47 @@ export default function ProductDetail() {
               </h1>
               <p style={{ color: '#475569', fontSize: 20, lineHeight: 1.6, marginBottom: 24 }}>{product.tagline}</p>
 
+              {product.slug === 'drone' && (
+                <div style={{ marginBottom: 24 }}>
+                  <label style={{ display: 'block', marginBottom: 8, fontWeight: 600, color: '#475569' }}>Select Fiber Length</label>
+                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 12 }}>
+                    {['1 km', '2 km', '3 km', '5 km', '10 km', '15 km', '20 km', '25 km', '30 km', '40 km', '50 km'].map(len => (
+                      <button
+                        key={len}
+                        onClick={() => { setDroneLength(len); setCustomDroneLength(''); }}
+                        style={{
+                          padding: '8px 12px',
+                          border: `1px solid ${droneLength === len && !customDroneLength ? '#07008F' : '#E2E8F0'}`,
+                          background: droneLength === len && !customDroneLength ? '#07008F' : '#FFF',
+                          color: droneLength === len && !customDroneLength ? '#FFF' : '#475569',
+                          borderRadius: 6,
+                          cursor: 'pointer',
+                          fontSize: 14
+                        }}
+                      >
+                        {len}
+                      </button>
+                    ))}
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <span style={{ color: '#475569', fontSize: 14 }}>Or Custom:</span>
+                    <input
+                      type="text"
+                      placeholder="e.g. 7.5 km"
+                      value={customDroneLength}
+                      onChange={(e) => { setCustomDroneLength(e.target.value); setDroneLength(''); }}
+                      style={{
+                        padding: '8px 12px',
+                        border: '1px solid #E2E8F0',
+                        borderRadius: 6,
+                        fontSize: 14,
+                        width: '120px'
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
+
               <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
                 <button
                   type="button"
@@ -165,7 +208,7 @@ export default function ProductDetail() {
                   onClick={() => {
                     addItem({
                       title: product.name,
-                      specs: product.specs?.[0] ? `${product.specs[0].label}: ${product.specs[0].value}` : 'Standard Specs',
+                      specs: product.slug === 'drone' ? `Fiber Length: ${customDroneLength || droneLength}` : (product.specs?.[0] ? `${product.specs[0].label}: ${product.specs[0].value}` : 'Standard Specs'),
                       image: detailImage || '/placeholder.webp',
                       qty: 1,
                     });

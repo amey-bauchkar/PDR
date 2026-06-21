@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
 import { BreadcrumbSchema } from '../components/Schema';
+import eventsData from '../data/events.json';
 import '../styles/resources.css';
 
 export default function Resources() {
+  const [lightboxImg, setLightboxImg] = useState<string | null>(null);
+
   return (
     <>
       <Seo
@@ -111,7 +115,7 @@ export default function Resources() {
         </div>
       </section>
 
-      {/* MEDIA */}
+            {/* MEDIA */}
       <section className="section reveal" id="media" style={{ borderTop: '1px solid var(--line-dark)' }}>
         <div className="container">
           <div className="sec-head center">
@@ -136,13 +140,90 @@ export default function Resources() {
               'PDR-FttH-June-Ad-CT-scaled.jpg',
               'PDR-June-Ad-for-Satelite-Cable-scaled.jpg'
             ].map((img, i) => (
-              <a key={i} href={`/images/media/${img}`} target="_blank" rel="noopener noreferrer" className="rs-ad-card">
+              <div key={i} className="rs-ad-card" onClick={() => setLightboxImg(`/images/media/${img}`)} style={{ cursor: 'zoom-in' }}>
                 <img src={`/images/media/${img}`} alt={`PDR Advertisement ${i + 1}`} loading="lazy" />
-              </a>
+              </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* GALLERY & EXHIBITIONS */}
+      <section className="section reveal" id="gallery" style={{ borderTop: '1px solid var(--line-dark)' }}>
+        <div className="container">
+          <div className="sec-head center">
+            <div className="eyebrow" style={{ justifyContent: 'center' }}>Exhibitions & Events</div>
+            <h2>Gallery</h2>
+            <p>Highlights from our recent industry events and exhibitions.</p>
+          </div>
+
+          <div className="events-container" style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
+            {eventsData.map((event, eventIdx) => (
+              <div key={eventIdx} className="event-section-minimal">
+                <h3 className="event-title-minimal">{event.title}</h3>
+                <div className="event-gallery-minimal">
+                  {event.images.map((img, imgIdx) => (
+                    <div key={imgIdx} className="event-card-minimal" onClick={() => setLightboxImg(img)}>
+                      <img src={img} alt={`${event.title} Image ${imgIdx + 1}`} loading="lazy" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PRODUCT GALLERY */}
+      <section className="section reveal" id="product-gallery" style={{ borderTop: '1px solid var(--line-dark)', paddingBottom: '4rem' }}>
+        <div className="container">
+          <div className="sec-head center">
+            <div className="eyebrow" style={{ justifyContent: 'center' }}>Product Gallery</div>
+            <h2>Factory &amp; Product Slabs</h2>
+            <p>A closer look at our manufacturing facilities and high-quality product slabs.</p>
+          </div>
+
+          <div className="event-gallery-minimal" style={{ marginTop: '2rem' }}>
+            {[
+              'gallery-1.jpg', 'gallery-2.jpg', 'gallery-3.jpg', 'gallery-4.jpg',
+              'gallery-5.jpg', 'gallery-6.jpg', 'gallery-7.jpg', 'gallery-8.jpg'
+            ].map((img, i) => (
+              <div key={i} className="event-card-minimal" onClick={() => setLightboxImg(`/images/gallery/${img}`)}>
+                <img src={`/images/gallery/${img}`} alt={`Product Gallery ${i + 1}`} loading="lazy" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+{/* LIGHTBOX */}
+      {lightboxImg && (
+        <div 
+          className="rs-lightbox-overlay" 
+          onClick={() => setLightboxImg(null)}
+          style={{
+            position: 'fixed',
+            top: 0, left: 0, right: 0, bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.85)',
+            zIndex: 99999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'zoom-out'
+          }}
+        >
+          <img 
+            src={lightboxImg} 
+            alt="Fullscreen view" 
+            style={{
+              maxHeight: '90vh',
+              maxWidth: '90vw',
+              objectFit: 'contain',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+            }} 
+          />
+        </div>
+      )}
     </>
   );
 }

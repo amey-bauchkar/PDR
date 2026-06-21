@@ -35,7 +35,7 @@ const homeCategories = [
   {
     id: 'specialty',
     title: 'Drone Optical Fiber Kit',
-    description: 'Optical fiber drones for rapid aerial deployment, inspection, and surveillance in inaccessible terrain.',
+    description: 'Fiber-tethered drone systems for secure, jam-proof communication — built for defence and FPV operations.',
     count: 'Aerial Solutions',
     image: '/images/fiber-drone.webp',
   },
@@ -53,7 +53,7 @@ export default function Home() {
     <>
       <Seo
         title="Fiber Optic Manufacturer in India | Active & Passive Components — PDR World"
-        description="PDR World is an ISO 9001:2015 certified manufacturer of fiber optic components since 1985. SFP transceivers, patch cords, ODFs, OTDRs, and more. Made in India."
+        description="PDR World is an ISO 9001:2015 certified manufacturer of fiber optic components since 1974. SFP transceivers, patch cords, ODFs, OTDRs, and more. Made in India."
         canonical="https://pdr-sable.vercel.app/"
       />
       <OrganizationSchema />
@@ -70,7 +70,7 @@ export default function Home() {
                 Engineered for <span style={{ color: '#4A9FD8' }}>Reliability.</span>
               </h1>
               <p style={{ fontSize: '1.125rem', lineHeight: 1.6, marginTop: '24px', opacity: 0.85, maxWidth: '600px' }}>
-                <strong>Smart Fiber Monitoring &amp; Telecom Infrastructure Solutions.</strong>
+                <strong>Fiber optic solutions for every network, every industry.</strong>
                 <br />
                 <span style={{ display: 'inline-block', marginTop: '8px' }}>Made in India Fiber Optic Technology for Next-Gen Networks.</span>
               </p>

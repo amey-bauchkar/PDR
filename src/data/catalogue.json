@@ -2,7 +2,7 @@
   "hero": {
     "eyebrow": "Product Catalogue · 50+ Families",
     "title": "The complete fiber optic stack. Made in India.",
-    "subtitle": "A trusted provider of fiber optic components, optical networking solutions, cable management systems, and test equipment since 1985.",
+    "subtitle": "A trusted provider of fiber optic components, optical networking solutions, cable management systems, and test equipment since 1974.",
     "pills": [
       {
         "href": "/products/active-components",
@@ -51,6 +51,10 @@
     {
       "target": "specialty",
       "label": "Drone Optical Fiber Kit"
+    },
+    {
+      "target": "tools",
+      "label": "Maintenance Tools"
     }
   ],
   "sections": [
@@ -58,7 +62,7 @@
       "id": "active",
       "eyebrow": "Active Components",
       "heading": "SFP Transceivers, OLP & High-Speed Interfaces",
-      "intro": "Manufactured and tested at our facility in India. Compatible with major OEM switches, routers, and DWDM platforms.",
+      "intro": "Rigorously tested and OEM-coded for plug-and-play compatibility across major switch, router, and DWDM platforms.",
       "groups": [
         {
           "subhead": "SFP Transceivers",
@@ -254,7 +258,7 @@
               "img": "/images/live/bypass-switch.png",
               "heroSvg": "",
               "name": "Bypass Switch",
-              "blurb": "Optical path control equipment which can automatic bypass the optical path in case the protected optical device is failure.",
+              "blurb": "Optical path control equipment which automatically bypasses the optical path if the protected device fails.",
               "pills": [
                 "Auto Bypass",
                 "Path Control"
@@ -481,7 +485,7 @@
               "img": "/images/live/rapid-push-cable-assembly.png",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M10 24h28\"></path><path d=\"M34 20l4 4-4 4\"></path></svg>",
               "name": "Rapid Push Cable Assembly",
-              "blurb": "FTTXsmart pushable preterminated fiber optic drop solution for fast deployment.",
+              "blurb": "FTTX smart pushable preterminated fiber optic drop solution for fast deployment.",
               "pills": [
                 "Pushable",
                 "Pre-terminated"
@@ -765,83 +769,6 @@
                 "title": "Splice-On Connector",
                 "specs": "Standard Factory Specs",
                 "image": "/images/live/splice-on-connector.webp"
-              }
-            }
-          ]
-        },
-        {
-          "subhead": "Maintenance",
-          "cards": [
-            {
-              "slug": "cleaner-pen",
-              "tag": "Cleaner",
-              "img": "/images/live/fiber-optic-cleaner-pen.png",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"18\" y=\"10\" width=\"12\" height=\"28\" rx=\"2\"></rect><path d=\"M22 10V6h4v4\"></path></svg>",
-              "name": "Fiber Optic Cleaner Pen",
-              "blurb": "One-click cleaner pen available in 1.25mm (LC/MU) and 2.5mm (SC/FC/ST) ferrule types.",
-              "pills": [
-                "1.25mm / 2.5mm",
-                "800+ Cleans"
-              ],
-              "detailsSlug": "cleaner-pen",
-              "addItem": {
-                "title": "Cleaner Pen",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/fiber-optic-cleaner-pen.webp"
-              }
-            },
-            {
-              "slug": "cassette-cleaner",
-              "tag": "Cassette",
-              "img": "/images/live/cassette-cleaner.png",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"10\" y=\"12\" width=\"28\" height=\"24\" rx=\"4\"></rect><circle cx=\"18\" cy=\"24\" r=\"4\"></circle><circle cx=\"30\" cy=\"24\" r=\"4\"></circle></svg>",
-              "name": "Cassette Cleaner",
-              "blurb": "High-performance cassette cleaner with replacement reels providing 400+ clean cycles.",
-              "pills": [
-                "400+ Cycles",
-                "Dry Cloth"
-              ],
-              "detailsSlug": "cassette-cleaner",
-              "addItem": {
-                "title": "Cassette Cleaner",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/cassette-cleaner.webp"
-              }
-            },
-            {
-              "slug": "mpo-cleaner",
-              "tag": "MPO",
-              "img": "/images/live/fiber-optic-cleaner-pen-mpo.png",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"14\" width=\"20\" height=\"20\" rx=\"2\"></rect><path d=\"M14 24h20\"></path></svg>",
-              "name": "Fiber Optic Cleaner Pen MPO",
-              "blurb": "Specialized one-click cleaner for multi-fiber MPO/MTP ports and assemblies.",
-              "pills": [
-                "MPO/MTP",
-                "600+ Cleans"
-              ],
-              "detailsSlug": "mpo-cleaner",
-              "addItem": {
-                "title": "Mpo Cleaner",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/fiber-optic-cleaner-pen-mpo.webp"
-              }
-            },
-            {
-              "slug": "vfl",
-              "tag": "VFL",
-              "img": "/images/live/fiber-optic-cleaner-pen.png",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M24 10l4 8 8 4-8 4-4 8-4-8-8-4 8-4z\"></path><circle cx=\"24\" cy=\"24\" r=\"2\"></circle></svg>",
-              "name": "VFL - Visual Fault Locator",
-              "blurb": "650nm visible red laser (1mW) to detect breaks, micro-bends, and faults up to 10km.",
-              "pills": [
-                "650nm Laser",
-                "Up to 10km"
-              ],
-              "detailsSlug": "vfl",
-              "addItem": {
-                "title": "Vfl",
-                "specs": "Standard Factory Specs",
-                "image": "/images/fiber-patch-panel.webp"
               }
             }
           ]
@@ -1209,7 +1136,7 @@
       "id": "specialty",
       "eyebrow": "Drone Optical Fiber Kit",
       "heading": "Aerial Deployment Solutions",
-      "intro": "Next-generation aerial fiber deployment, inspection, and surveillance solutions.",
+      "intro": "Fiber-tethered drone systems for secure, jam-proof communication — built for defence and FPV operations.",
       "groups": [
         {
           "subhead": "",
@@ -1231,6 +1158,91 @@
                 "title": "Drone Optical Fiber Kit",
                 "specs": "Standard Factory Specs",
                 "image": "/images/live/optical-fiber-drone.webp"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "eyebrow": "Maintenance Tools",
+      "heading": "Cleaning Kits & Fault Locators",
+      "intro": "Field-ready cleaning kits, visual fault locators, sleeves, and support accessories to keep your fiber network pristine.",
+      "groups": [
+        {
+          "subhead": "Maintenance",
+          "cards": [
+            {
+              "slug": "cleaner-pen",
+              "tag": "Cleaner",
+              "img": "/images/live/fiber-optic-cleaner-pen.png",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"18\" y=\"10\" width=\"12\" height=\"28\" rx=\"2\"></rect><path d=\"M22 10V6h4v4\"></path></svg>",
+              "name": "Fiber Optic Cleaner Pen",
+              "blurb": "One-click cleaner pen available in 1.25mm (LC/MU) and 2.5mm (SC/FC/ST) ferrule types.",
+              "pills": [
+                "1.25mm / 2.5mm",
+                "800+ Cleans"
+              ],
+              "detailsSlug": "cleaner-pen",
+              "addItem": {
+                "title": "Cleaner Pen",
+                "specs": "Standard Factory Specs",
+                "image": "/images/live/fiber-optic-cleaner-pen.webp"
+              }
+            },
+            {
+              "slug": "cassette-cleaner",
+              "tag": "Cassette",
+              "img": "/images/live/cassette-cleaner.png",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"10\" y=\"12\" width=\"28\" height=\"24\" rx=\"4\"></rect><circle cx=\"18\" cy=\"24\" r=\"4\"></circle><circle cx=\"30\" cy=\"24\" r=\"4\"></circle></svg>",
+              "name": "Cassette Cleaner",
+              "blurb": "High-performance cassette cleaner with replacement reels providing 400+ clean cycles.",
+              "pills": [
+                "400+ Cycles",
+                "Dry Cloth"
+              ],
+              "detailsSlug": "cassette-cleaner",
+              "addItem": {
+                "title": "Cassette Cleaner",
+                "specs": "Standard Factory Specs",
+                "image": "/images/live/cassette-cleaner.webp"
+              }
+            },
+            {
+              "slug": "mpo-cleaner",
+              "tag": "MPO",
+              "img": "/images/live/fiber-optic-cleaner-pen-mpo.png",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"14\" width=\"20\" height=\"20\" rx=\"2\"></rect><path d=\"M14 24h20\"></path></svg>",
+              "name": "Fiber Optic Cleaner Pen MPO",
+              "blurb": "Specialized one-click cleaner for multi-fiber MPO/MTP ports and assemblies.",
+              "pills": [
+                "MPO/MTP",
+                "600+ Cleans"
+              ],
+              "detailsSlug": "mpo-cleaner",
+              "addItem": {
+                "title": "Mpo Cleaner",
+                "specs": "Standard Factory Specs",
+                "image": "/images/live/fiber-optic-cleaner-pen-mpo.webp"
+              }
+            },
+            {
+              "slug": "vfl",
+              "tag": "VFL",
+              "img": "/images/live/fiber-optic-cleaner-pen.png",
+              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M24 10l4 8 8 4-8 4-4 8-4-8-8-4 8-4z\"></path><circle cx=\"24\" cy=\"24\" r=\"2\"></circle></svg>",
+              "name": "VFL - Visual Fault Locator",
+              "blurb": "650nm visible red laser (1mW) to detect breaks, micro-bends, and faults up to 10km.",
+              "pills": [
+                "650nm Laser",
+                "Up to 10km"
+              ],
+              "detailsSlug": "vfl",
+              "addItem": {
+                "title": "Vfl",
+                "specs": "Standard Factory Specs",
+                "image": "/images/fiber-patch-panel.webp"
               }
             }
           ]

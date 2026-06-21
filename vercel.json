@@ -1,10 +1,14 @@
 {
   "buildCommand": "npm run build:full",
   "outputDirectory": "dist",
-  "framework": "vite",
+  "framework": null,
   "rewrites": [
-    { "source": "/((?!api/).*)", "destination": "/" }
+    { "source": "/products/(.*)", "destination": "/index.html" },
+    { "source": "/admin(.*)", "destination": "/index.html" },
+    { "source": "/dashboard-admin(.*)", "destination": "/index.html" },
+    { "source": "/admin-new(.*)", "destination": "/index.html" }
   ],
+  "cleanUrls": true,
   "headers": [
     {
       "source": "/assets/(.*)",

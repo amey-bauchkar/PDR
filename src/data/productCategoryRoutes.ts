@@ -5,6 +5,7 @@ export const PRODUCT_CATEGORY_PATHS = [
   'cable-management',
   'test-measuring',
   'specialty-drones',
+  'maintenance-tools',
 ] as const;
 
 export type ProductCategoryPath = (typeof PRODUCT_CATEGORY_PATHS)[number];
@@ -15,6 +16,7 @@ const PATH_TO_SECTION: Record<ProductCategoryPath, string> = {
   'cable-management': 'cable',
   'test-measuring': 'test',
   'specialty-drones': 'specialty',
+  'maintenance-tools': 'tools',
 };
 
 const SECTION_TO_PATH = Object.fromEntries(

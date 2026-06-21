@@ -12,13 +12,13 @@ export default function Footer() {
               <img src={logo} alt="PDR Videotronics India Pvt. Ltd." className="logo footer-logo" />
               <span className="brand-text" style={{ display: 'flex', flexDirection: 'column' }}>
                 PDR Videotronics India
-                <small>Pvt. Ltd. · Since 1985</small>
+                <small>Pvt. Ltd. · Since 1974</small>
               </span>
             </div>
           </Link>
           <p>
             <strong>Together in Progress</strong> — India's longstanding manufacturer of active &amp; passive fiber optic infrastructure —
-            supplying telecom operators, defence, hyperscale, ISPs, OEMs, researchers and global distributors from Mumbai since 1985.
+            supplying telecom operators, defence, hyperscale, ISPs, OEMs, researchers and global distributors from Mumbai since 1974.
             Products available through a growing nationwide reseller and distributor network.
           </p>
           <span className="made-in">🇮🇳 Engineered &amp; Made in India</span>

@@ -28,6 +28,7 @@ const routes = [
   '/products/test-measuring',
   '/products/specialty-drones',
   '/products/maintenance-tools',
+  '/404',
 ];
 
 // Product routes
@@ -43,12 +44,15 @@ const DIST_DIR = path.join(__dirname, 'dist');
 async function run() {
   console.log(`Starting prerender for ${routes.length} routes...`);
 
+  const originalIndexHtml = fs.readFileSync(path.join(DIST_DIR, 'index.html'), 'utf8');
+
   // Start a local server to serve the React SPA
   const app = express();
-  app.use(express.static(DIST_DIR));
-  // Fallback to index.html for SPA routing
+  // Serve static assets but NOT index.html to avoid serving the modified homepage
+  app.use(express.static(DIST_DIR, { index: false }));
+  // Fallback to the original index.html for SPA routing
   app.use((req, res) => {
-    res.sendFile(path.join(DIST_DIR, 'index.html'));
+    res.send(originalIndexHtml);
   });
 
   const server = app.listen(PORT, async () => {
@@ -90,6 +94,8 @@ async function run() {
         let outputPath;
         if (route === '/') {
           outputPath = path.join(DIST_DIR, 'index.html');
+        } else if (route === '/404') {
+          outputPath = path.join(DIST_DIR, '404.html');
         } else {
           const routeDir = path.join(DIST_DIR, route);
           if (!fs.existsSync(routeDir)) {

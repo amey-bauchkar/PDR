@@ -33,9 +33,9 @@ export function OrganizationSchema() {
         legalName: 'PDR Videotronics India Pvt. Ltd.',
         url: SITE,
         logo: LOGO,
-        foundingDate: '1985',
+        foundingDate: '1974',
         description:
-          'ISO 9001:2015 certified manufacturer of active and passive fiber optic components, test equipment, and enterprise infrastructure solutions since 1985.',
+          'ISO 9001:2015 certified manufacturer of active and passive fiber optic components, test equipment, and enterprise infrastructure solutions since 1974.',
         address: {
           '@type': 'PostalAddress',
           streetAddress: '99, Old Prabhadevi Road',
@@ -194,7 +194,7 @@ export function WebSiteSchema() {
         '@type': 'WebSite',
         name: 'PDR World',
         url: SITE,
-        description: 'Industrial fiber optic solutions manufacturer since 1985.',
+        description: 'Industrial fiber optic solutions manufacturer since 1974.',
         publisher: {
           '@type': 'Organization',
           name: 'PDR Videotronics India Pvt. Ltd.',
