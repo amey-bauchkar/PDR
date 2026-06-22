@@ -152,16 +152,12 @@ export default function ProductDetail() {
                 />
               </div>
               {product.galleryUrls && product.galleryUrls.length > 0 && (
-                <div style={{ display: 'flex', gap: '12px', overflowX: 'auto', paddingBottom: '8px' }}>
+                <div style={{ display: 'flex', gap: '12px', overflowX: 'auto', paddingBottom: '12px', marginTop: '16px', WebkitOverflowScrolling: 'touch' }}>
                   <img
                     src={detailImage}
                     alt="Main"
                     onClick={() => setSelectedImage(null)}
-                    style={{
-                      width: '80px', height: '80px', objectFit: 'contain', borderRadius: '8px', cursor: 'pointer', background: '#F8FAFC',
-                      border: !selectedImage ? '2px solid #07008F' : '1px solid #E2E8F0',
-                      padding: '4px'
-                    }}
+                    className={`pd-thumbnail ${!selectedImage ? 'active' : ''}`}
                   />
                   {product.galleryUrls.map((url, idx) => (
                     <img
@@ -169,11 +165,7 @@ export default function ProductDetail() {
                       src={url}
                       alt={`Gallery ${idx + 1}`}
                       onClick={() => setSelectedImage(url)}
-                      style={{
-                        width: '80px', height: '80px', objectFit: 'contain', borderRadius: '8px', cursor: 'pointer', background: '#F8FAFC',
-                        border: selectedImage === url ? '2px solid #07008F' : '1px solid #E2E8F0',
-                        padding: '4px'
-                      }}
+                      className={`pd-thumbnail ${selectedImage === url ? 'active' : ''}`}
                     />
                   ))}
                 </div>
