@@ -232,16 +232,26 @@ export default function AdminNew() {
       const rawInq = window.localStorage.getItem('pdrworld-pending-contact-inquiries');
       if (rawInq) {
         try { setInquiries(JSON.parse(rawInq)); } catch {}
-      }    };
+      }    
+    };
+
+    const handleProductUpdate = () => {
+      const updatedProducts = getAdminProducts();
+      if (updatedProducts && updatedProducts.length > 0) {
+        setProducts(updatedProducts);
+      }
+    };
 
     window.addEventListener('local-storage-update', handleStorageUpdate);
     window.addEventListener('storage', handleStorageUpdate);
     window.addEventListener('focus', handleStorageUpdate);
+    window.addEventListener('pdrworld-product-update', handleProductUpdate);
     
     return () => {
       window.removeEventListener('local-storage-update', handleStorageUpdate);
       window.removeEventListener('storage', handleStorageUpdate);
       window.removeEventListener('focus', handleStorageUpdate);
+      window.removeEventListener('pdrworld-product-update', handleProductUpdate);
     };
   }, []);
 
@@ -279,9 +289,7 @@ export default function AdminNew() {
     }
   }, []);
 
-  useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEYS.products, JSON.stringify(products));
-  }, [products]);
+  // Removed local storage sync for products to prevent overwriting IDB data with stale state.
 
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEYS.rfqs, JSON.stringify(rfqs));
