@@ -32,6 +32,7 @@ type ProductFormState = {
   applicationsText: string;
   specs: { label: string; value: string }[];
   datasheetUrl: string;
+  galleryUrls: string[];
 };
 
 const DEFAULT_FORM: ProductFormState = {
@@ -48,6 +49,7 @@ const DEFAULT_FORM: ProductFormState = {
   applicationsText: '',
   specs: [],
   datasheetUrl: '',
+  galleryUrls: [],
 };
 
 const COMMON_SPEC_LABELS = [
@@ -134,6 +136,7 @@ export default function AdminProductForm() {
           applicationsText: (prod.applications ?? []).join('\n'),
           specs: prod.specs ?? [],
           datasheetUrl: prod.datasheetUrl ?? '',
+          galleryUrls: prod.galleryUrls ?? [],
         });
         setImagePreview(prod.imageUrl ?? '');
       } else {
@@ -203,6 +206,62 @@ export default function AdminProductForm() {
       setNoticeType('error');
     };
     reader.readAsDataURL(file);
+  };
+
+  const handleGalleryUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(event.target.files || []);
+    if (!files.length) return;
+
+    if (form.galleryUrls.length + files.length > 10) {
+      setNotice('You can upload a maximum of 10 additional images.');
+      setNoticeType('error');
+      return;
+    }
+
+    const newUrls: string[] = [];
+    let processed = 0;
+    let hasError = false;
+
+    files.forEach(file => {
+      if (!file.type.startsWith('image/')) {
+        hasError = true;
+        setNotice('Please select only valid image files.');
+        setNoticeType('error');
+        processed++;
+        return;
+      }
+
+      if (file.size > 5 * 1024 * 1024) {
+        hasError = true;
+        setNotice('Each image size must be less than 5MB.');
+        setNoticeType('error');
+        processed++;
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const dataUrl = e.target?.result as string;
+        newUrls.push(dataUrl);
+        processed++;
+        
+        if (processed === files.length && !hasError) {
+          setForm(prev => ({
+            ...prev,
+            galleryUrls: [...prev.galleryUrls, ...newUrls].slice(0, 10)
+          }));
+          setNotice('Gallery images uploaded successfully!');
+          setNoticeType('success');
+        }
+      };
+      reader.onerror = () => {
+        processed++;
+        hasError = true;
+        setNotice('Failed to read one or more image files.');
+        setNoticeType('error');
+      };
+      reader.readAsDataURL(file);
+    });
   };
 
   const handlePdfUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -286,6 +345,7 @@ export default function AdminProductForm() {
       related: existingProduct?.related || [],
       heroIcon: existingProduct?.heroIcon || `<svg width="120" height="120" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="14" y="14" width="20" height="20" rx="3"></rect><circle cx="24" cy="24" r="4"></circle></svg>`,
       datasheetUrl: form.datasheetUrl.trim(),
+      galleryUrls: form.galleryUrls,
       updatedAt: new Date().toISOString(),
       updatedBy: session.email,
     };
@@ -808,6 +868,40 @@ export default function AdminProductForm() {
                           >
                             ✕ Remove Image
                           </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="admin-form-group">
+                    <label>Gallery Images (Up to 10)</label>
+                    <div className="admin-image-upload-section" style={{ border: '2px dashed var(--admin-border)', borderRadius: '12px', padding: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', background: 'var(--admin-surface-2)' }}>
+                      <input 
+                        type="file" 
+                        accept="image/*"
+                        multiple
+                        onChange={handleGalleryUpload}
+                        className="admin-file-input"
+                        style={{ display: 'none' }}
+                        id="gallery-file-input"
+                      />
+                      <label htmlFor="gallery-file-input" style={{ cursor: 'pointer', padding: '10px 20px', background: 'var(--admin-primary)', color: '#FFFFFF', borderRadius: '8px', fontSize: '14px', fontWeight: 600 }}>
+                        Choose Additional Images
+                      </label>
+                      {form.galleryUrls && form.galleryUrls.length > 0 && (
+                        <div className="admin-image-preview" style={{ marginTop: '12px', display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
+                          {form.galleryUrls.map((url, i) => (
+                            <div key={i} style={{ position: 'relative' }}>
+                              <img src={url} alt={`Gallery ${i}`} style={{ width: '80px', height: '80px', borderRadius: '8px', objectFit: 'cover', border: '1px solid var(--admin-border)' }} />
+                              <button 
+                                type="button" 
+                                onClick={() => setForm(prev => ({...prev, galleryUrls: prev.galleryUrls.filter((_, index) => index !== i)}))}
+                                style={{ position: 'absolute', top: '-6px', right: '-6px', background: '#ef4444', color: '#FFFFFF', border: 'none', borderRadius: '50%', width: '20px', height: '20px', cursor: 'pointer', fontSize: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0 }}
+                              >
+                                ✕
+                              </button>
+                            </div>
+                          ))}
                         </div>
                       )}
                     </div>

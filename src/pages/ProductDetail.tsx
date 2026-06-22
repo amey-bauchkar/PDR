@@ -23,6 +23,7 @@ type Product = {
   related: { slug: string; name: string }[];
   imageUrl?: string;
   datasheetUrl?: string;
+  galleryUrls?: string[];
 };
 
 
@@ -33,6 +34,12 @@ export default function ProductDetail() {
   const [products, setProducts] = useState<Product[]>(() => mergeWithProducts(productsData));
   const [droneLength, setDroneLength] = useState('1 km');
   const [customDroneLength, setCustomDroneLength] = useState('');
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  // Reset selected image when product changes
+  useEffect(() => {
+    setSelectedImage(null);
+  }, [slug]);
 
   useEffect(() => {
     const handleStorage = () => {
@@ -128,20 +135,49 @@ export default function ProductDetail() {
             <span style={{ color: '#07008F', fontWeight: 600 }}>{product.name}</span>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 80, alignItems: 'center' }}>
-            <div className="pd-image-frame">
-              <img
-                src={detailImage}
-                alt={`${product.name} — ${product.category} by PDR World`}
-                className="pd-image"
-                loading="eager"
-                onError={(event) => {
-                  const fallback = getFallbackImage(product?.category);
-                  if (!event.currentTarget.src.endsWith(fallback)) {
-                    event.currentTarget.src = fallback;
-                  }
-                }}
-              />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 80, alignItems: 'start' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div className="pd-image-frame">
+                <img
+                  src={selectedImage || detailImage}
+                  alt={`${product.name} — ${product.category} by PDR World`}
+                  className="pd-image"
+                  loading="eager"
+                  onError={(event) => {
+                    const fallback = getFallbackImage(product?.category);
+                    if (!event.currentTarget.src.endsWith(fallback)) {
+                      event.currentTarget.src = fallback;
+                    }
+                  }}
+                />
+              </div>
+              {product.galleryUrls && product.galleryUrls.length > 0 && (
+                <div style={{ display: 'flex', gap: '12px', overflowX: 'auto', paddingBottom: '8px' }}>
+                  <img
+                    src={detailImage}
+                    alt="Main"
+                    onClick={() => setSelectedImage(null)}
+                    style={{
+                      width: '80px', height: '80px', objectFit: 'contain', borderRadius: '8px', cursor: 'pointer', background: '#F8FAFC',
+                      border: !selectedImage ? '2px solid #07008F' : '1px solid #E2E8F0',
+                      padding: '4px'
+                    }}
+                  />
+                  {product.galleryUrls.map((url, idx) => (
+                    <img
+                      key={idx}
+                      src={url}
+                      alt={`Gallery ${idx + 1}`}
+                      onClick={() => setSelectedImage(url)}
+                      style={{
+                        width: '80px', height: '80px', objectFit: 'contain', borderRadius: '8px', cursor: 'pointer', background: '#F8FAFC',
+                        border: selectedImage === url ? '2px solid #07008F' : '1px solid #E2E8F0',
+                        padding: '4px'
+                      }}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
 
             <div>

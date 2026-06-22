@@ -20,6 +20,7 @@ export type AdminProduct = {
   related?: { slug: string; name: string }[];
   heroIcon?: string;
   datasheetUrl?: string;
+  galleryUrls?: string[];
 };
 
 const STORAGE_KEY = 'pdrworld-admin-products-v2';
@@ -360,6 +361,7 @@ export const mergeWithProducts = (rawProducts: any[]): any[] => {
         related: adminProd.related || p.related || [],
         heroIcon: adminProd.heroIcon || p.heroIcon,
         datasheetUrl: adminProd.datasheetUrl || p.datasheetUrl || '',
+        galleryUrls: adminProd.galleryUrls || p.galleryUrls || [],
       };
     }
     return p;
@@ -408,6 +410,7 @@ export const mergeWithProducts = (rawProducts: any[]): any[] => {
       ],
       heroIcon: p.heroIcon || '<svg width="120" height="120" viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="1.5"><rect x="8" y="16" width="32" height="16" rx="3"></rect><rect x="4" y="20" width="6" height="8" rx="1"></rect><rect x="38" y="20" width="6" height="8" rx="1"></rect><line x1="14" y1="24" x2="34" y2="24"></line></svg>',
       datasheetUrl: p.datasheetUrl || '',
+      galleryUrls: p.galleryUrls || [],
     });
   }
 
