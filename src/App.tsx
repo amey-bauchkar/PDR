@@ -20,6 +20,8 @@ import NotFound from './pages/NotFound';
 import ScrollToHash from './components/ScrollToHash';
 import { fetchAndSyncProducts, initializeProductStore } from './lib/productSync';
 
+import CookieConsent from './components/CookieConsent';
+
 // Three.js is heavy — load the configurator on demand
 const CableConfigurator = lazy(() => import('./pages/CableConfigurator'));
 
@@ -63,6 +65,7 @@ export default function App() {
         </Route>
       </Routes>
       <RfqCartWidget />
+      <CookieConsent />
     </RfqCartProvider>
   );
 }

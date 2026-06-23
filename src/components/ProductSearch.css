@@ -1,0 +1,126 @@
+.ps-container {
+  position: relative;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.ps-trigger {
+  background: none;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.ps-trigger:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.ps-overlay {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  width: 320px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--line);
+  z-index: 9999;
+  overflow: hidden;
+  animation: psFadeIn 0.2s ease-out;
+}
+
+@keyframes psFadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ps-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.ps-search-icon {
+  color: var(--muted);
+  margin-right: 12px;
+}
+
+.ps-input {
+  border: none;
+  background: transparent;
+  flex: 1;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--ink);
+  outline: none;
+}
+
+.ps-clear {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.ps-results {
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.ps-results-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ps-result-item {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.2s;
+}
+
+.ps-result-item:hover {
+  background: #f8fafc;
+}
+
+.ps-result-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.ps-result-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.ps-result-cat {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.ps-no-results {
+  padding: 16px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}

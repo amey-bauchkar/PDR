@@ -36,7 +36,7 @@ export default function Solutions() {
         </section>
 
         {/* SENSING & MONITORING */}
-        <section className="section reveal" id="sensing">
+        <section className="section reveal" id="sensing" style={{ paddingBottom: 0 }}>
           <div className="container">
             <div className="sl-section-head">
               <div className="eyebrow">MONITORING SYSTEMS</div>
@@ -106,7 +106,7 @@ export default function Solutions() {
             <div style={{ height: 1, background: 'var(--line)', margin: '56px 0' }}></div>
 
             {/* DTS — secondary, minimal */}
-            <div className="sl-solution-row sl-split-2-1 reveal">
+            <div className="sl-solution-row sl-split-2-1 reveal" style={{ marginBottom: 0 }}>
               <div className="sl-text-block">
                 <div className="eyebrow">THERMAL PROFILING</div>
                 <h3>Distributed Temperature Sensing (DTS)</h3>
@@ -143,7 +143,7 @@ export default function Solutions() {
 
 
         {/* CTA */}
-        <section className="section" style={{ paddingTop: 20, paddingBottom: 120 }}>
+        <section className="section" style={{ paddingTop: 0, paddingBottom: 120 }}>
           <div className="container">
             <div style={{ background: '#FFFFFF', border: '1px solid var(--line)', padding: '80px 40px', textAlign: 'center', maxWidth: 960, margin: '0 auto', boxShadow: 'var(--shadow-sm)', borderRadius: 'var(--rad)' }}>
               <div className="eyebrow" style={{ justifyContent: 'center' }}>ENGINEERING CONSULTATION</div>

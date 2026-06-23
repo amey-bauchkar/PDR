@@ -1,11 +1,17 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
+import CertificationStrip from './CertificationStrip';
+import DownloadCatalogueModal from './DownloadCatalogueModal';
 
 export default function Footer() {
+  const [isCatalogueModalOpen, setIsCatalogueModalOpen] = useState(false);
   const year = new Date().getFullYear();
   return (
-    <footer className="footer">
-      <div className="container footer-grid">
+    <>
+      <CertificationStrip />
+      <footer className="footer">
+        <div className="container footer-grid">
         <div className="footer-brand">
           <Link className="brand" to="/">
             <div className="logo-container">
@@ -63,6 +69,7 @@ export default function Footer() {
         <div>
           <h4>Resources</h4>
           <ul>
+            <li><button onClick={() => setIsCatalogueModalOpen(true)} style={{ background: 'none', border: 'none', padding: 0, color: 'inherit', font: 'inherit', cursor: 'pointer', textAlign: 'left', opacity: 0.7 }}>Download Catalogue</button></li>
             <li><Link to="/about">About Us</Link></li>
             <li><Link to="/resources#support">Technical Support</Link></li>
             <li><Link to="/resources#custom">Custom Manufacturing</Link></li>
@@ -191,5 +198,7 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+      <DownloadCatalogueModal isOpen={isCatalogueModalOpen} onClose={() => setIsCatalogueModalOpen(false)} />
+    </>
   );
 }

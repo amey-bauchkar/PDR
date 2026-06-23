@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
 import { OrganizationSchema, WebSiteSchema } from '../components/Schema';
 import { productsCategoryHrefDeep } from '../data/productCategoryRoutes';
+import CertificationStrip from '../components/CertificationStrip';
 
 const homeCategories = [
   {
@@ -28,14 +29,14 @@ const homeCategories = [
   {
     id: 'test',
     title: 'Test and Measurement',
-    description: 'OTDRs, optical power meters, fusion splicers, and inspection tools.',
+    description: 'OPM · OTDR · Fusion Splicer',
     count: '10+ SKUs',
     image: '/images/fiber-patch-panel.webp',
   },
   {
     id: 'specialty',
     title: 'Drone Optical Fiber Kit',
-    description: 'Fiber-tethered drone systems for secure, jam-proof communication — built for defence and FPV operations.',
+    description: 'Optical Fiber Spool · Ground Unit · Sky Unit',
     count: 'Aerial Solutions',
     image: '/images/fiber-drone.webp',
   },
@@ -113,6 +114,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 2: TRUST STRIP */}
+      <CertificationStrip />
       <section className="hp-stats-strip">
         <div className="container hp-stats-grid">
           <div className="hp-stat-item reveal d-1">

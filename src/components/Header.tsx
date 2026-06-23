@@ -2,10 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 
 import logo from '../assets/logo.png';
+import DownloadCatalogueModal from './DownloadCatalogueModal';
+import ProductSearch from './ProductSearch';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isCatalogueModalOpen, setIsCatalogueModalOpen] = useState(false);
   const [openMega, setOpenMega] = useState<string | null>(null);
   const location = useLocation();
   const closeTimer = useRef<number | null>(null);
@@ -98,11 +101,11 @@ export default function Header() {
                   </Link>
                   <Link to="/products/test-measuring#test" onClick={() => setOpenMega(null)}>
                     <strong>Test and Measurement</strong>
-                    <span>OPM · OTDR · Microscopes</span>
+                    <span>OPM · OTDR · Fusion Splicer</span>
                   </Link>
                   <Link to="/products/specialty-drones#specialty" onClick={() => setOpenMega(null)}>
                     <strong>Drone Optical Fiber Kit</strong>
-                    <span>Optical Fiber Drone · Aerial Deployment, Inspection &amp; Surveillance</span>
+                    <span>Optical Fiber Spool · Ground Unit · Sky Unit</span>
                   </Link>
                 </div>
               </div>
@@ -157,6 +160,7 @@ export default function Header() {
           </nav>
 
           <div className="nav-right">
+            <ProductSearch />
             <a
               className="icon-btn"
               href="https://wa.me/918419916460"
@@ -169,6 +173,9 @@ export default function Header() {
                 <path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.5-4.1-3.5-.3-.5.3-.5.9-1.6.1-.2.1-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.2-.2-.5-.3zM12 0a12 12 0 0 0-10.4 18l-1.6 6 6.1-1.6A12 12 0 1 0 12 0zm0 22a10 10 0 0 1-5.4-1.6l-.4-.2-3.7 1 1-3.6-.2-.4A10 10 0 1 1 12 22z" />
               </svg>
             </a>
+            <button className="btn btn-outline" onClick={() => setIsCatalogueModalOpen(true)} style={{ marginRight: '8px' }}>
+              Download Catalogue
+            </button>
             <Link className="btn btn-primary" to="/contact">
               Request Quote
             </Link>
@@ -248,6 +255,8 @@ export default function Header() {
       <Link className="float-cta" to="/contact">
         Get a Quote →
       </Link>
+      
+      <DownloadCatalogueModal isOpen={isCatalogueModalOpen} onClose={() => setIsCatalogueModalOpen(false)} />
     </>
   );
 }

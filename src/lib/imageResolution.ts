@@ -51,7 +51,7 @@ export const PASSIVE_IMAGE_MAP: Record<string, string> = {
   'rapid-push': rapidPush,
   'hybrid-adapter': scAdapter,
   'smpte-assembly': smpteCable,
-  soc: '/images/live/fiber-optic-connector-field-installable.png',
+  soc: '/images/live/fiber-optic-connector-field-installable.webp',
   drone: '/images/hero-infrastructure.webp',
   // --- Previously missing products (Layer 1 canonical fix) ---
   'armoured-patchcord': fiberPigtails,
@@ -59,12 +59,12 @@ export const PASSIVE_IMAGE_MAP: Record<string, string> = {
   'bendiboot-patchcord': fiberPigtails,
   'lc-uniboot': fiberPigtails,
   'mating-sleeve': bareFiber,
-  'regular-opm': '/images/live/mini-optical-power-meter.jpg',
-  'pocket-otdr': '/images/live/mini-otdr-pdr4402s.png',
-  'next-gen-splicer': '/images/live/fusion-splicer-pdr618h.png',
-  vfl: '/images/live/fiber-optic-cleaner-pen.png',
-  'splice-sleeves': '/images/live/cold-shrink-sleeve.png',
-  'fiber-spool': '/images/live/rapid-push-cable-assembly.png',
+  'regular-opm': '/images/live/mini-optical-power-meter.webp',
+  'pocket-otdr': '/images/live/mini-otdr-pdr4402s.webp',
+  'next-gen-splicer': '/images/live/fusion-splicer-pdr618h.webp',
+  vfl: '/images/live/fiber-optic-cleaner-pen.webp',
+  'splice-sleeves': '/images/live/cold-shrink-sleeve.webp',
+  'fiber-spool': '/images/live/rapid-push-cable-assembly.webp',
 };
 
 const catalogueImageBySlug = new Map<string, string>();
