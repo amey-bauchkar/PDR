@@ -282,11 +282,12 @@ function ResultCard({ item }: { item: CatalogItem }) {
   };
 
   // FMS dynamic Fiber Count
+  const rackHeight = extras['Rack Height'];
   const fmsFiberOptions = useMemo(() => {
     if (!item.fmsDynamic) return null;
-    const rackHeight = extras['Rack Height'] || 'Rack 1U';
-    return getFmsFiberCounts(rackHeight, port);
-  }, [item.fmsDynamic, extras['Rack Height'], port]);
+    const currentRackHeight = rackHeight || 'Rack 1U';
+    return getFmsFiberCounts(currentRackHeight, port);
+  }, [item.fmsDynamic, rackHeight, port]);
 
   const [fmsFiber, setFmsFiber] = useState('');
 

@@ -36,10 +36,11 @@ export default function ProductDetail() {
   const [customDroneLength, setCustomDroneLength] = useState('');
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  // Reset selected image when product changes
-  useEffect(() => {
+  const [prevSlug, setPrevSlug] = useState(slug);
+  if (slug !== prevSlug) {
+    setPrevSlug(slug);
     setSelectedImage(null);
-  }, [slug]);
+  }
 
   useEffect(() => {
     const handleStorage = () => {
@@ -56,13 +57,12 @@ export default function ProductDetail() {
   const product = products.find((p) => p.slug === slug);
   const detailImage = resolveCanonicalProductImage(product?.slug, product?.imageUrl, product?.category);
 
-  if (!product) return <Navigate to="/404" replace />;
-
   // Convert base64 data: URLs to blob: URLs for browser compatibility.
   // Browsers block opening data: URLs via target="_blank" for security.
   // Static products with file paths like '/datasheets/x.pdf' pass through unchanged.
+  const datasheetUrl = product?.datasheetUrl;
   const datasheetHref = useMemo(() => {
-    const url = product.datasheetUrl;
+    const url = datasheetUrl;
     if (!url || !url.startsWith('data:')) return url || '';
     try {
       const [header, base64] = url.split(',');
@@ -75,7 +75,7 @@ export default function ProductDetail() {
     } catch {
       return url;
     }
-  }, [product.datasheetUrl]);
+  }, [datasheetUrl]);
 
   // Revoke blob URL on unmount or when datasheetUrl changes to prevent memory leaks
   useEffect(() => {
@@ -85,6 +85,8 @@ export default function ProductDetail() {
       }
     };
   }, [datasheetHref]);
+
+  if (!product) return <Navigate to="/404" replace />;
 
   return (
     <>

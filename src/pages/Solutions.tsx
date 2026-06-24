@@ -89,6 +89,10 @@ export default function Solutions() {
                 <div className="eyebrow">ACOUSTIC DETECTION</div>
                 <h3>Distributed Acoustic Sensing (DAS)</h3>
                 <p>Convert installed fiber routes into a continuous acoustic detection layer for perimeter security, leak monitoring, and intrusion alerts — with AI/ML classification along 50km+ corridors.</p>
+                <ul className="sl-feat-list" style={{ marginTop: -12, marginBottom: 32 }}>
+                  <li className="sl-feat-item">AI/ML pattern classification for vehicle &amp; foot traffic</li>
+                  <li className="sl-feat-item">Real-time pipeline leak &amp; intrusion alarms</li>
+                </ul>
                 <Link to="/contact?inquiry=DAS" className="sl-hero-link">Request DAS Specs →</Link>
               </div>
               <div className="sl-metrics-row">
@@ -111,6 +115,10 @@ export default function Solutions() {
                 <div className="eyebrow">THERMAL PROFILING</div>
                 <h3>Distributed Temperature Sensing (DTS)</h3>
                 <p>Proactive thermal risk detection for high-voltage power cables, utility tunnels, and pipelines — continuous temperature profiles that flag hot spots before failure.</p>
+                <ul className="sl-feat-list" style={{ marginTop: -12, marginBottom: 32 }}>
+                  <li className="sl-feat-item">Continuous real-time temperature profiles along 10km+ links</li>
+                  <li className="sl-feat-item">Automated hot-spot localization for high-voltage grid protection</li>
+                </ul>
                 <Link to="/contact?inquiry=DTS" className="sl-hero-link">Review Thermal Data →</Link>
               </div>
               <div className="sl-metrics-row">

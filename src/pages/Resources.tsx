@@ -157,7 +157,7 @@ export default function Resources() {
               'PDR-June-Ad-for-Satelite-Cable-scaled'
             ].map((img, i) => (
               <div key={i} className="rs-ad-card" onClick={() => setLightboxImg(`/images/media/${img}.webp`)} style={{ cursor: 'zoom-in' }}>
-                <img src={`/images/media/${img}.webp`} alt={`PDR Advertisement ${i + 1}`} loading="lazy" />
+                <img src={`/images/media/${img}-thumb.webp`} alt={`PDR Advertisement ${i + 1}`} loading="lazy" />
               </div>
             ))}
           </div>

@@ -78,6 +78,7 @@ async function run() {
     }
 
     const page = await browser.newPage();
+    await new Promise(r => setTimeout(r, 1000));
 
     for (const route of routes) {
       console.log(`Prerendering ${route}...`);

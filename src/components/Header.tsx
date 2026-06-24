@@ -255,7 +255,7 @@ export default function Header() {
       <Link className="float-cta" to="/contact">
         Get a Quote →
       </Link>
-      
+
       <DownloadCatalogueModal isOpen={isCatalogueModalOpen} onClose={() => setIsCatalogueModalOpen(false)} />
     </>
   );

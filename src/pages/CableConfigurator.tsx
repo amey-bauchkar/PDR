@@ -692,7 +692,7 @@ export default function CableConfigurator() {
       ['Length', lengthLabel, true],
       ['Part No.', orderingCode, true],
     ],
-    [fiber, connectorA, connectorB, cableLabel, lengthLabel, orderingCode],
+    [fiber.label, connectorA, connectorB, cableLabel, lengthLabel, orderingCode],
   );
 
   const handleAdd = () => {
