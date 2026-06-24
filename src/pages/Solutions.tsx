@@ -132,26 +132,25 @@ export default function Solutions() {
                 </div>
               </div>
             </div>
-
-            {/* Industry anchor targets for footer hash links */}
-            <div id="telecom" style={{ scrollMarginTop: 120 }} />
-            <div id="defence" style={{ scrollMarginTop: 120 }} />
-            <div id="datacentre" style={{ scrollMarginTop: 120 }} />
-            <div id="datacenter" style={{ scrollMarginTop: 120 }} />
-            <div id="5g" style={{ scrollMarginTop: 120 }} />
-            <div id="metro" style={{ scrollMarginTop: 120 }} />
-            <div id="power" style={{ scrollMarginTop: 120 }} />
-            <div id="utilities" style={{ scrollMarginTop: 120 }} />
-            <div id="ftth" style={{ scrollMarginTop: 120 }} />
-            <div id="broadcast" style={{ scrollMarginTop: 120 }} />
-            <div id="enterprise" style={{ scrollMarginTop: 120 }} />
-            <div id="industries" style={{ scrollMarginTop: 120 }} />
           </div>
         </section>
 
+        {/* Industry anchor targets for footer hash links */}
+        <div id="telecom" style={{ scrollMarginTop: 120 }} />
+        <div id="defence" style={{ scrollMarginTop: 120 }} />
+        <div id="datacentre" style={{ scrollMarginTop: 120 }} />
+        <div id="datacenter" style={{ scrollMarginTop: 120 }} />
+        <div id="5g" style={{ scrollMarginTop: 120 }} />
+        <div id="metro" style={{ scrollMarginTop: 120 }} />
+        <div id="power" style={{ scrollMarginTop: 120 }} />
+        <div id="utilities" style={{ scrollMarginTop: 120 }} />
+        <div id="ftth" style={{ scrollMarginTop: 120 }} />
+        <div id="broadcast" style={{ scrollMarginTop: 120 }} />
+        <div id="enterprise" style={{ scrollMarginTop: 120 }} />
+        <div id="industries" style={{ scrollMarginTop: 120 }} />
 
         {/* CTA */}
-        <section className="section" style={{ paddingTop: 0, paddingBottom: 120 }}>
+        <section className="section" style={{ paddingBottom: 120 }}>
           <div className="container">
             <div style={{ background: '#FFFFFF', border: '1px solid var(--line)', padding: '80px 40px', textAlign: 'center', maxWidth: 960, margin: '0 auto', boxShadow: 'var(--shadow-sm)', borderRadius: 'var(--rad)' }}>
               <div className="eyebrow" style={{ justifyContent: 'center' }}>ENGINEERING CONSULTATION</div>

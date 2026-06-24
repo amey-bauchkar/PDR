@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "prerender": "node prerender.js",
-    "build:full": "npm run build && npm run prerender",
+    "generate-catalogue": "node scripts/generate-catalogue.js",
+    "build:full": "npm run generate-catalogue && npm run build && npm run prerender",
     "verify-deployment": "node scripts/verify-deployment.js"
   },
   "dependencies": {

@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import './DownloadCatalogueModal.css';
+
+const CATALOGUE_PATH = '/files/PDR-Catalogue-2024.pdf';
 
 interface DownloadCatalogueModalProps {
   isOpen: boolean;
@@ -9,8 +11,25 @@ interface DownloadCatalogueModalProps {
 export default function DownloadCatalogueModal({ isOpen, onClose }: DownloadCatalogueModalProps) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const downloadRef = useRef<HTMLAnchorElement>(null);
 
   if (!isOpen) return null;
+
+  /** Trigger download via a hidden anchor — works reliably without pop-up blockers */
+  const triggerDownload = () => {
+    if (downloadRef.current) {
+      downloadRef.current.click();
+    } else {
+      // Fallback: create a temporary anchor
+      const a = document.createElement('a');
+      a.href = CATALOGUE_PATH;
+      a.download = 'PDR-Catalogue-2024.pdf';
+      a.rel = 'noopener noreferrer';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,30 +38,45 @@ export default function DownloadCatalogueModal({ isOpen, onClose }: DownloadCata
     setSubmitting(true);
 
     const object = Object.fromEntries(fd as any);
-    object.access_key = import.meta.env.VITE_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE";
+    const accessKey = import.meta.env.VITE_WEB3FORMS_KEY;
+
+    // Always trigger download — lead capture is best-effort
+    const doDownload = () => {
+      triggerDownload();
+      setSubmitted(true);
+      setSubmitting(false);
+    };
+
+    // If no access key configured, skip API call but still download
+    if (!accessKey || accessKey === 'YOUR_ACCESS_KEY_HERE') {
+      console.warn('[DownloadCatalogue] VITE_WEB3FORMS_KEY not configured — skipping lead capture');
+      doDownload();
+      return;
+    }
+
+    object.access_key = accessKey;
     object.subject = `Catalogue Download Request from ${object.name}`;
     object.from_name = object.name;
 
     try {
-      await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
-        body: JSON.stringify(object)
+        body: JSON.stringify(object),
       });
-      // Always trigger download
-      window.open('/files/PDR-Catalogue-2024.pdf', '_blank');
-      setSubmitted(true);
+
+      if (!res.ok) {
+        console.warn('[DownloadCatalogue] Web3Forms returned', res.status);
+      }
     } catch (error) {
-      console.error('Failed to submit form', error);
-      // Still let them download
-      window.open('/files/PDR-Catalogue-2024.pdf', '_blank');
-      setSubmitted(true);
-    } finally {
-      setSubmitting(false);
+      console.error('[DownloadCatalogue] Lead capture failed:', error);
     }
+
+    // Download regardless of whether lead capture succeeded
+    doDownload();
   };
 
   return (
@@ -51,10 +85,28 @@ export default function DownloadCatalogueModal({ isOpen, onClose }: DownloadCata
         <button className="dc-modal-close" onClick={onClose}>
           &times;
         </button>
+
+        {/* Hidden anchor for reliable download — avoids pop-up blockers */}
+        <a
+          ref={downloadRef}
+          href={CATALOGUE_PATH}
+          download="PDR-Catalogue-2024.pdf"
+          style={{ display: 'none' }}
+          aria-hidden="true"
+          tabIndex={-1}
+        >
+          download
+        </a>
+
         {submitted ? (
           <div className="dc-modal-success">
             <h3>Thank You!</h3>
-            <p>Your catalogue download should have started. If it didn't, <a href="/files/PDR-Catalogue-2024.pdf" target="_blank" rel="noopener noreferrer">click here</a>.</p>
+            <p>
+              Your catalogue download should have started. If it didn't,{' '}
+              <a href={CATALOGUE_PATH} download="PDR-Catalogue-2024.pdf">
+                click here to download
+              </a>.
+            </p>
             <button className="btn btn-primary" onClick={onClose}>Close</button>
           </div>
         ) : (
