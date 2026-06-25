@@ -7,6 +7,7 @@ import DownloadCatalogueModal from '../components/DownloadCatalogueModal';
 import '../styles/resources.css';
 
 export default function Resources() {
+  const [lightboxImg, setLightboxImg] = useState<string | null>(null);
   const [isCatalogueModalOpen, setIsCatalogueModalOpen] = useState(false);
 
   return (
@@ -192,6 +193,35 @@ export default function Resources() {
           </div>
         </div>
       </section>
+
+      {/* LIGHTBOX */}
+      {lightboxImg && (
+        <div 
+          className="rs-lightbox-overlay" 
+          onClick={() => setLightboxImg(null)}
+          style={{
+            position: 'fixed',
+            top: 0, left: 0, right: 0, bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.85)',
+            zIndex: 99999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'zoom-out'
+          }}
+        >
+          <img 
+            src={lightboxImg} 
+            alt="Fullscreen view" 
+            style={{
+              maxHeight: '90vh',
+              maxWidth: '90vw',
+              objectFit: 'contain',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+            }} 
+          />
+        </div>
+      )}
 
       <DownloadCatalogueModal isOpen={isCatalogueModalOpen} onClose={() => setIsCatalogueModalOpen(false)} />
     </>
