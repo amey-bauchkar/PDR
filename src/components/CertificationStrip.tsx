@@ -5,7 +5,7 @@ const badges = [
   { name: "ISO 14001:2015", src: "/images/certi/iso-14001.png" },
   { name: "RoHS", src: "/images/certi/rohs.png" },
   { name: "IEC", src: "/images/certi/iec.svg" },
-  { name: "CACT", src: "/images/certi/cact.svg" },
+  { name: "CACT", src: "/images/certi/cact.jpeg" },
   { name: "Made in India", src: "/images/certi/made-in-india.webp" },
   { name: "GeM", src: "/images/certi/gem.png" }
 ];
