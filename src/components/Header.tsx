@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.jpeg';
 import DownloadCatalogueModal from './DownloadCatalogueModal';
 import ProductSearch from './ProductSearch';
 
