@@ -2,7 +2,7 @@
 
 ![Live Website](https://img.shields.io/badge/Live-Website-success?style=for-the-badge&logo=vercel)
 **Live Website:** [https://pdr-sable.vercel.app/](https://pdr-sable.vercel.app/)
-**Repository:** [https://github.com/shubhamcodes56/pdr-world](https://github.com/shubhamcodes56/pdr-world)
+**Repository:** [https://github.com/amey-bauchkar/PDR](https://github.com/amey-bauchkar/PDR)
 
 Modern enterprise-grade product catalogue and RFQ platform built for PDR World, focused on fiber optic infrastructure, active/passive networking components, cable management, testing equipment, and industrial optical solutions.
 
@@ -93,7 +93,7 @@ src/
 # ⚙️ Installation
 
 ```bash
-git clone https://github.com/Foremark-Technologies/pdr.git
+git clone https://github.com/amey-bauchkar/PDR.git
 
 cd pdr
 
