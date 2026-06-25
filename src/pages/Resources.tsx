@@ -7,7 +7,6 @@ import DownloadCatalogueModal from '../components/DownloadCatalogueModal';
 import '../styles/resources.css';
 
 export default function Resources() {
-  const [lightboxImg, setLightboxImg] = useState<string | null>(null);
   const [isCatalogueModalOpen, setIsCatalogueModalOpen] = useState(false);
 
   return (
@@ -194,56 +193,6 @@ export default function Resources() {
         </div>
       </section>
 
-      {/* PRODUCT GALLERY */}
-      <section className="section reveal" id="product-gallery" style={{ borderTop: '1px solid var(--line-dark)', paddingBottom: '4rem' }}>
-        <div className="container">
-          <div className="sec-head center">
-            <div className="eyebrow" style={{ justifyContent: 'center' }}>Product Gallery</div>
-            <h2>Factory &amp; Product Slabs</h2>
-            <p>A closer look at our manufacturing facilities and high-quality product slabs.</p>
-          </div>
-
-          <div className="event-gallery-minimal" style={{ marginTop: '2rem' }}>
-            {[
-              'gallery-1', 'gallery-2', 'gallery-3', 'gallery-4',
-              'gallery-5', 'gallery-6', 'gallery-7', 'gallery-8'
-            ].map((img, i) => (
-              <div key={i} className="event-card-minimal" onClick={() => setLightboxImg(`/images/gallery/${img}.webp`)}>
-                <img src={`/images/gallery/${img}-thumb.webp`} alt={`Product Gallery ${i + 1}`} loading="lazy" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-{/* LIGHTBOX */}
-      {lightboxImg && (
-        <div 
-          className="rs-lightbox-overlay" 
-          onClick={() => setLightboxImg(null)}
-          style={{
-            position: 'fixed',
-            top: 0, left: 0, right: 0, bottom: 0,
-            backgroundColor: 'rgba(0,0,0,0.85)',
-            zIndex: 99999,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'zoom-out'
-          }}
-        >
-          <img 
-            src={lightboxImg} 
-            alt="Fullscreen view" 
-            style={{
-              maxHeight: '90vh',
-              maxWidth: '90vw',
-              objectFit: 'contain',
-              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
-            }} 
-          />
-        </div>
-      )}
       <DownloadCatalogueModal isOpen={isCatalogueModalOpen} onClose={() => setIsCatalogueModalOpen(false)} />
     </>
   );
