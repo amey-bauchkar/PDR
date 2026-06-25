@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo.jpeg';
+import logo from '../assets/logo.png';
 import CertificationStrip from './CertificationStrip';
 import DownloadCatalogueModal from './DownloadCatalogueModal';
 

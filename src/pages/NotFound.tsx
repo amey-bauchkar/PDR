@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
-import logo from '../assets/logo.jpeg';
+import logo from '../assets/logo.png';
 import '../styles/notfound.css';
 
 export default function NotFound() {
