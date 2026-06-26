@@ -104,7 +104,7 @@ export function downloadProductDatasheet(product: ProductDatasheetInput) {
     doc.setTextColor(30, 41, 59);
 
     for (const feature of product.features) {
-      const wrappedFeature = doc.splitTextToSize(feature, 160);
+      const wrappedFeature = doc.splitTextToSize(feature || '', 160);
       checkSpace(wrappedFeature.length * 5 + 2);
       
       // Draw custom beautiful circular bullet
@@ -136,7 +136,7 @@ export function downloadProductDatasheet(product: ProductDatasheetInput) {
     doc.setTextColor(30, 41, 59);
 
     for (const app of product.applications) {
-      const wrappedApp = doc.splitTextToSize(app, 160);
+      const wrappedApp = doc.splitTextToSize(app || '', 160);
       checkSpace(wrappedApp.length * 5 + 2);
       
       doc.setFillColor(100, 116, 139);
@@ -179,8 +179,8 @@ export function downloadProductDatasheet(product: ProductDatasheetInput) {
     
     let isRowEven = false;
     for (const spec of product.specs) {
-      const labelLines = doc.splitTextToSize(spec.label, 65);
-      const valLines = doc.splitTextToSize(spec.value, 95);
+      const labelLines = doc.splitTextToSize(spec.label || '', 65);
+      const valLines = doc.splitTextToSize(spec.value || '', 95);
       const rowHeight = Math.max(labelLines.length, valLines.length) * 5 + 4;
       
       checkSpace(rowHeight);

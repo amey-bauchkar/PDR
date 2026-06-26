@@ -57,34 +57,7 @@ export default function ProductDetail() {
   const product = products.find((p) => p.slug === slug);
   const detailImage = resolveCanonicalProductImage(product?.slug, product?.imageUrl, product?.category);
 
-  // Convert base64 data: URLs to blob: URLs for browser compatibility.
-  // Browsers block opening data: URLs via target="_blank" for security.
-  // Static products with file paths like '/datasheets/x.pdf' pass through unchanged.
   const datasheetUrl = product?.datasheetUrl;
-  const datasheetHref = useMemo(() => {
-    const url = datasheetUrl;
-    if (!url || !url.startsWith('data:')) return url || '';
-    try {
-      const [header, base64] = url.split(',');
-      const mime = header.match(/:(.*?);/)?.[1] || 'application/pdf';
-      const binary = atob(base64);
-      const bytes = new Uint8Array(binary.length);
-      for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-      const blob = new Blob([bytes], { type: mime });
-      return URL.createObjectURL(blob);
-    } catch {
-      return url;
-    }
-  }, [datasheetUrl]);
-
-  // Revoke blob URL on unmount or when datasheetUrl changes to prevent memory leaks
-  useEffect(() => {
-    return () => {
-      if (datasheetHref && datasheetHref.startsWith('blob:')) {
-        URL.revokeObjectURL(datasheetHref);
-      }
-    };
-  }, [datasheetHref]);
 
   if (!product) return <Navigate to="/404" replace />;
 
@@ -252,7 +225,26 @@ export default function ProductDetail() {
                     type="button"
                     onClick={() => {
                       if (product.datasheetUrl) {
-                        window.open(datasheetHref, '_blank');
+                        const url = product.datasheetUrl;
+                        if (url.startsWith('data:')) {
+                          try {
+                            const [header, base64] = url.split(',');
+                            const mime = header.match(/:(.*?);/)?.[1] || 'application/pdf';
+                            const binary = atob(base64);
+                            const bytes = new Uint8Array(binary.length);
+                            for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+                            const blob = new Blob([bytes], { type: mime });
+                            const blobUrl = URL.createObjectURL(blob);
+                            window.open(blobUrl, '_blank');
+                            // Revoke safely after navigating
+                            setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+                          } catch (e) {
+                            console.error('Failed to parse datasheet URL', e);
+                            window.open(url, '_blank');
+                          }
+                        } else {
+                          window.open(url, '_blank');
+                        }
                       } else {
                         // No static PDF: generate it on the fly with jsPDF
                         downloadProductDatasheet({
