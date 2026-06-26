@@ -25,6 +25,13 @@ export type AdminProduct = {
 
 const STORAGE_KEY = 'pdrworld-admin-products-v2';
 
+const getDefaultProducts = (): AdminProduct[] => {
+  return (seedProducts as Omit<AdminProduct, 'status' | 'updatedAt' | 'updatedBy'>[]).map((item) => ({
+    ...item,
+    status: 'Active',
+  }));
+};
+
 let memoryCache: AdminProduct[] | null = null;
 
 /**
@@ -33,14 +40,21 @@ let memoryCache: AdminProduct[] | null = null;
 export const initializeProductStore = async (): Promise<void> => {
   try {
     const idbProducts = await get<AdminProduct[]>(STORAGE_KEY);
-    if (idbProducts) {
+    if (idbProducts && idbProducts.length > 0) {
       memoryCache = idbProducts;
     } else {
       // Migrate from localStorage if present
       const raw = localStorage.getItem(STORAGE_KEY);
       const localProducts = raw ? JSON.parse(raw) : [];
-      memoryCache = localProducts;
-      await set(STORAGE_KEY, localProducts);
+      
+      if (localProducts.length > 0) {
+        memoryCache = localProducts;
+        await set(STORAGE_KEY, localProducts);
+      } else {
+        const defaultProducts = getDefaultProducts();
+        memoryCache = defaultProducts;
+        await set(STORAGE_KEY, defaultProducts);
+      }
     }
   } catch (err) {
     console.error("Failed to read from IDB:", err);
@@ -54,9 +68,12 @@ export const initializeProductStore = async (): Promise<void> => {
  */
 export const getAdminProducts = (): AdminProduct[] => {
   if (memoryCache !== null) return memoryCache;
-  if (typeof window === 'undefined') return [];
+  if (typeof window === 'undefined') return getDefaultProducts();
   const raw = localStorage.getItem(STORAGE_KEY);
-  return raw ? JSON.parse(raw) : [];
+  const products = raw ? JSON.parse(raw) : [];
+  if (products.length > 0) return products;
+
+  return getDefaultProducts();
 };
 
 /**
@@ -173,7 +190,7 @@ export const fetchAndSyncProducts = async (): Promise<AdminProduct[]> => {
       await saveAdminProducts(mergedProducts);
       return mergedProducts;
     }
-    return items;
+    return getAdminProducts();
   } catch (err) {
     console.error('Error fetching and syncing products:', err);
     return getAdminProducts();

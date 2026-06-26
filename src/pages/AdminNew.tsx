@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import type { FormEvent } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Seo from '../components/Seo';
-import seedProducts from '../data/products.json';
 import type { AdminSession } from '../lib/adminAuth';
 import {
   createSession,
@@ -115,14 +114,6 @@ const toSlug = (value: string) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 
-const asAdminProducts = (items: typeof seedProducts): AdminProduct[] =>
-  (items as Omit<AdminProduct, 'status' | 'updatedAt' | 'updatedBy'>[]).map((item) => ({
-    ...item,
-    status: 'Active' as AdminStatus,
-    updatedAt: new Date().toISOString(),
-    updatedBy: 'system',
-  }));
-
 const COMMON_SPEC_LABELS = [
   "Cable Type",
   "Data Rate",
@@ -153,9 +144,7 @@ export default function AdminNew() {
   const [activeTab, setActiveTab] = useState<'dashboard' | 'products' | 'rfqs' | 'activity' | 'settings'>('dashboard');
 
   const [products, setProducts] = useState<AdminProduct[]>(() => {
-    if (typeof window === 'undefined') return asAdminProducts(seedProducts as typeof seedProducts);
-    const adminProducts = getAdminProducts();
-    return adminProducts.length > 0 ? adminProducts : asAdminProducts(seedProducts as typeof seedProducts);
+    return getAdminProducts();
   });
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
