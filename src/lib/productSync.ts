@@ -23,7 +23,7 @@ export type AdminProduct = {
   galleryUrls?: string[];
 };
 
-const STORAGE_KEY = 'pdrworld-admin-products-v2';
+const STORAGE_KEY = 'pdrworld-admin-products-v3';
 
 const getDefaultProducts = (): AdminProduct[] => {
   return (seedProducts as Omit<AdminProduct, 'status' | 'updatedAt' | 'updatedBy'>[]).map((item) => ({
