@@ -44,9 +44,24 @@ export const initializeProductStore = async (): Promise<void> => {
       memoryCache = idbProducts;
     } else {
       // Migrate from localStorage if present
-      const raw = localStorage.getItem(STORAGE_KEY);
-      const localProducts = raw ? JSON.parse(raw) : [];
+      let raw = localStorage.getItem(STORAGE_KEY);
+      let localProducts = raw ? JSON.parse(raw) : [];
       
+      // If v3 is empty, try to migrate from v2 to restore lost data
+      if (localProducts.length === 0) {
+        const rawV2 = localStorage.getItem('pdrworld-admin-products-v2');
+        if (rawV2) {
+          const v2Products = JSON.parse(rawV2) as AdminProduct[];
+          // Fix categories using seedProducts
+          const seedMap = new Map(seedProducts.map(p => [p.slug, p.category]));
+          localProducts = v2Products.map(p => ({
+            ...p,
+            category: seedMap.get(p.slug) || p.category // restore category if it was corrupted
+          }));
+          console.log('Migrated data from v2 and restored categories.');
+        }
+      }
+
       if (localProducts.length > 0) {
         memoryCache = localProducts;
         await set(STORAGE_KEY, localProducts);
@@ -58,6 +73,7 @@ export const initializeProductStore = async (): Promise<void> => {
     }
   } catch (err) {
     console.error("Failed to read from IDB:", err);
+    memoryCache = getDefaultProducts();
   }
   // Dispatch update to sync React state immediately after loading
   window.dispatchEvent(new Event('pdrworld-product-update'));
@@ -72,6 +88,17 @@ export const getAdminProducts = (): AdminProduct[] => {
   const raw = localStorage.getItem(STORAGE_KEY);
   const products = raw ? JSON.parse(raw) : [];
   if (products.length > 0) return products;
+
+  // Fallback to v2 for synchronous render if v3 is empty
+  const rawV2 = localStorage.getItem('pdrworld-admin-products-v2');
+  if (rawV2) {
+    const v2Products = JSON.parse(rawV2) as AdminProduct[];
+    const seedMap = new Map(seedProducts.map(p => [p.slug, p.category]));
+    return v2Products.map(p => ({
+      ...p,
+      category: seedMap.get(p.slug) || p.category
+    }));
+  }
 
   return getDefaultProducts();
 };
