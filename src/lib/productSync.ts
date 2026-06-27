@@ -140,38 +140,6 @@ export const saveProduct = async (product: AdminProduct): Promise<void> => {
   
   // Save to local cache first for instant feedback
   await saveAdminProducts(products);
-
-  // Sync to database in background
-  try {
-    // If it's a create, check if the original products catalog has this slug to decide POST vs PUT
-    const originalExists = seedProducts.some((p) => p.slug === product.slug);
-    const dbExists = index >= 0 || originalExists;
-
-    let url = dbExists ? `/api/products/${product.slug}` : '/api/products';
-    let method = dbExists ? 'PUT' : 'POST';
-
-    let res = await fetch(url, {
-      method,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(product),
-    });
-
-    // Fallback: If PUT fails (e.g. product is in local cache but not in database yet), retry as a POST to create it
-    if (!res.ok && method === 'PUT') {
-      console.warn(`PUT failed (status ${res.status}). Retrying with POST...`);
-      res = await fetch('/api/products', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(product),
-      });
-    }
-
-    if (!res.ok) {
-      console.error('Database sync failed:', await res.text());
-    }
-  } catch (err) {
-    console.error('Network error during database sync:', err);
-  }
 };
 
 /**
@@ -180,48 +148,14 @@ export const saveProduct = async (product: AdminProduct): Promise<void> => {
 export const deleteProduct = async (slug: string): Promise<void> => {
   const products = getAdminProducts().filter((p) => p.slug !== slug);
   await saveAdminProducts(products);
-
-  try {
-    const res = await fetch(`/api/products/${slug}`, {
-      method: 'DELETE',
-    });
-
-    if (!res.ok) {
-      console.error('Database delete failed:', await res.text());
-    }
-  } catch (err) {
-    console.error('Network error during database delete:', err);
-  }
 };
 
 /**
  * Fetch all products from backend database and sync to localStorage cache
  */
 export const fetchAndSyncProducts = async (): Promise<AdminProduct[]> => {
-  try {
-    const res = await fetch('/api/products');
-    if (!res.ok) throw new Error('Failed to fetch products');
-    const data = await res.json();
-    
-    // Backend returns { success: true, data: [...] } or direct array
-    const items = Array.isArray(data) ? data : (data.data || []);
-    
-    if (items.length > 0) {
-      // Merge items from backend with items in local storage so unsynced local products are NOT wiped out
-      const localProducts = getAdminProducts();
-      const dbSlugs = new Set(items.map((p: any) => p.slug));
-      
-      const unsyncedProducts = localProducts.filter((p) => !dbSlugs.has(p.slug));
-      const mergedProducts = [...items, ...unsyncedProducts];
-      
-      await saveAdminProducts(mergedProducts);
-      return mergedProducts;
-    }
-    return getAdminProducts();
-  } catch (err) {
-    console.error('Error fetching and syncing products:', err);
-    return getAdminProducts();
-  }
+  // Database sync removed - return local products only
+  return getAdminProducts();
 };
 
 /**
