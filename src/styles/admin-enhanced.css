@@ -544,6 +544,12 @@
 .admin-metric:nth-child(4) { border-top: 3px solid var(--admin-info); }
 .admin-metric:nth-child(4) strong { color: var(--admin-info); }
 
+/* Dark Mode Overrides for legible metric numbers */
+.admin-enhanced-shell.dark .admin-metric:nth-child(1) strong { color: #4a9fd8; }
+.admin-enhanced-shell.dark .admin-metric:nth-child(2) strong { color: #34d399; }
+.admin-enhanced-shell.dark .admin-metric:nth-child(3) strong { color: #fbbf24; }
+.admin-enhanced-shell.dark .admin-metric:nth-child(4) strong { color: #60a5fa; }
+
 /* Section */
 .admin-section {
   background: var(--admin-surface);

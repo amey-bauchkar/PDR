@@ -1,6 +1,8 @@
 import Seo from '../components/Seo';
 import { BreadcrumbSchema } from '../components/Schema';
 import { Link } from 'react-router-dom';
+import '../styles/legal.css';
+
 
 export default function Terms() {
   return (
@@ -15,14 +17,18 @@ export default function Terms() {
         { name: 'Terms of Sale', url: 'https://pdr-sable.vercel.app/terms' },
       ]} />
 
-      <section className="section" style={{ paddingTop: 160, paddingBottom: 80 }}>
-        <div className="container" style={{ maxWidth: 800 }}>
-          <h1 style={{ color: '#07008F', marginBottom: 32 }}>Terms of Sale &amp; Use</h1>
-          <p style={{ color: '#475569', marginBottom: 32 }}>
-            Effective Date: January 1, 2025 | Last Updated: January 1, 2025
-          </p>
+      <section className="legal-hero grid-bg">
+        <div className="container">
+          <div className="eyebrow">Legal</div>
+          <h1 style={{ color: '#07008F' }}>Terms of Sale &amp; Use</h1>
+          <p>Effective Date: January 1, 2025 | Last Updated: January 1, 2025</p>
+        </div>
+      </section>
 
-          <article style={{ lineHeight: 1.8, color: '#334155' }}>
+      <section className="legal-content-section">
+        <div className="container">
+          <div className="legal-card">
+            <article className="legal-article">
             <h2>1. General Terms</h2>
             <p>
               These Terms of Sale govern all purchases of products and services from PDR Videotronics India Pvt. Ltd.
@@ -88,14 +94,15 @@ export default function Terms() {
             <h2>10. Contact</h2>
             <p>
               For questions about these terms, please contact us at{' '}
-              <a href="mailto:info@pdrworld.com" style={{ color: '#07008F' }}>info@pdrworld.com</a> or call
+              <a href="mailto:info@pdrworld.com">info@pdrworld.com</a> or call
               +91-22-24306494.
             </p>
           </article>
 
-          <div style={{ marginTop: 60, padding: '32px', background: '#F8FAFC', borderRadius: 'var(--rad)', border: '1px solid var(--line)', textAlign: 'center' }}>
-            <p style={{ marginBottom: 16, color: '#475569' }}>Have questions about an existing order or need a formal quotation?</p>
-            <Link className="btn btn-primary" to="/contact">Contact Our Team</Link>
+            <div className="legal-contact">
+              <p>Have questions about an existing order or need a formal quotation?</p>
+              <Link className="btn btn-primary" to="/contact">Contact Our Team</Link>
+            </div>
           </div>
         </div>
       </section>

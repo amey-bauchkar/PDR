@@ -583,31 +583,32 @@ export default function AdminProductForm() {
                         type="button"
                         className="btn btn-outline"
                         style={{ padding: '6px 12px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '6px', borderRadius: '6px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface-2)', cursor: 'pointer', color: 'var(--admin-primary)', fontWeight: 600 }}
-                        onClick={() => setForm({ ...form, descriptionText: form.descriptionText ? form.descriptionText + '\nNew point' : 'New point' })}
+                        onClick={() => setForm({ ...form, descriptionText: form.descriptionText ? form.descriptionText + '\n' : ' ' })}
                       >
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                         Add Point
                       </button>
                     </label>
 
-                    {form.descriptionText.trim() === '' ? (
+                    {form.descriptionText === '' ? (
                       <div style={{ padding: '24px', background: 'rgba(7,0,143,0.02)', border: '1px dashed #07008F', borderRadius: '8px', textAlign: 'center', color: '#64748B', marginTop: '8px', fontSize: '13px' }}>
                         No description points added. Click "Add Point" to start.
                       </div>
                     ) : (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '8px' }}>
                         {form.descriptionText.split('\n').map((point, index) => (
-                          <div key={index} style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '8px', alignItems: 'center' }}>
+                          <div key={index} style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '8px', alignItems: 'center', width: '100%' }}>
                             <input
                               type="text"
-                              value={point}
+                              autoFocus
+                              value={point === ' ' ? '' : point}
                               placeholder={`Point ${index + 1}`}
                               onChange={(e) => {
                                 const lines = form.descriptionText.split('\n');
                                 lines[index] = e.target.value;
                                 setForm({ ...form, descriptionText: lines.join('\n') });
                               }}
-                              style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)', color: 'var(--admin-text)', fontSize: '14px', boxSizing: 'border-box' }}
+                              style={{ width: '100%', minWidth: 0, padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)', color: 'var(--admin-text)', fontSize: '14px', boxSizing: 'border-box' }}
                             />
                             <button
                               type="button"
@@ -644,31 +645,32 @@ export default function AdminProductForm() {
                         type="button"
                         className="btn btn-outline"
                         style={{ padding: '6px 12px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '6px', borderRadius: '6px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface-2)', cursor: 'pointer', color: 'var(--admin-primary)', fontWeight: 600 }}
-                        onClick={() => setForm({ ...form, featuresText: form.featuresText ? form.featuresText + '\nNew feature' : 'New feature' })}
+                        onClick={() => setForm({ ...form, featuresText: form.featuresText ? form.featuresText + '\n' : ' ' })}
                       >
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                         Add Feature
                       </button>
                     </label>
 
-                    {form.featuresText.trim() === '' ? (
+                    {form.featuresText === '' ? (
                       <div style={{ padding: '24px', background: 'rgba(7,0,143,0.02)', border: '1px dashed #07008F', borderRadius: '8px', textAlign: 'center', color: '#64748B', marginTop: '8px', fontSize: '13px' }}>
                         No features added. Click "Add Feature" to start.
                       </div>
                     ) : (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '8px' }}>
                         {form.featuresText.split('\n').map((feature, index) => (
-                          <div key={index} style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '8px', alignItems: 'center' }}>
+                          <div key={index} style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '8px', alignItems: 'center', width: '100%' }}>
                             <input
                               type="text"
-                              value={feature}
+                              autoFocus
+                              value={feature === ' ' ? '' : feature}
                               placeholder={`Feature ${index + 1}`}
                               onChange={(e) => {
                                 const lines = form.featuresText.split('\n');
                                 lines[index] = e.target.value;
                                 setForm({ ...form, featuresText: lines.join('\n') });
                               }}
-                              style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)', color: 'var(--admin-text)', fontSize: '14px', boxSizing: 'border-box' }}
+                              style={{ width: '100%', minWidth: 0, padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)', color: 'var(--admin-text)', fontSize: '14px', boxSizing: 'border-box' }}
                             />
                             <button
                               type="button"
@@ -693,31 +695,32 @@ export default function AdminProductForm() {
                         type="button"
                         className="btn btn-outline"
                         style={{ padding: '6px 12px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '6px', borderRadius: '6px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface-2)', cursor: 'pointer', color: 'var(--admin-primary)', fontWeight: 600 }}
-                        onClick={() => setForm({ ...form, applicationsText: form.applicationsText ? form.applicationsText + '\nNew application' : 'New application' })}
+                        onClick={() => setForm({ ...form, applicationsText: form.applicationsText ? form.applicationsText + '\n' : ' ' })}
                       >
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                         Add Application
                       </button>
                     </label>
 
-                    {form.applicationsText.trim() === '' ? (
+                    {form.applicationsText === '' ? (
                       <div style={{ padding: '24px', background: 'rgba(7,0,143,0.02)', border: '1px dashed #07008F', borderRadius: '8px', textAlign: 'center', color: '#64748B', marginTop: '8px', fontSize: '13px' }}>
                         No applications added. Click "Add Application" to start.
                       </div>
                     ) : (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '8px' }}>
                         {form.applicationsText.split('\n').map((app, index) => (
-                          <div key={index} style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '8px', alignItems: 'center' }}>
+                          <div key={index} style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '8px', alignItems: 'center', width: '100%' }}>
                             <input
                               type="text"
-                              value={app}
+                              autoFocus
+                              value={app === ' ' ? '' : app}
                               placeholder={`Application ${index + 1}`}
                               onChange={(e) => {
                                 const lines = form.applicationsText.split('\n');
                                 lines[index] = e.target.value;
                                 setForm({ ...form, applicationsText: lines.join('\n') });
                               }}
-                              style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)', color: 'var(--admin-text)', fontSize: '14px', boxSizing: 'border-box' }}
+                              style={{ width: '100%', minWidth: 0, padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)', color: 'var(--admin-text)', fontSize: '14px', boxSizing: 'border-box' }}
                             />
                             <button
                               type="button"
@@ -758,8 +761,8 @@ export default function AdminProductForm() {
                         {form.specs.map((spec, index) => {
                           const isCustom = !COMMON_SPEC_LABELS.includes(spec.label);
                           return (
-                            <div key={index} style={{ display: 'grid', gridTemplateColumns: '1fr 2fr auto', gap: '12px', alignItems: 'start' }}>
-                              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                            <div key={index} style={{ display: 'grid', gridTemplateColumns: '1fr 2fr auto', gap: '12px', alignItems: 'start', width: '100%' }}>
+                              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', minWidth: 0 }}>
                                 <select
                                   value={isCustom ? "custom" : spec.label}
                                   onChange={(e) => {
@@ -772,7 +775,7 @@ export default function AdminProductForm() {
                                     }
                                     setForm({ ...form, specs: newSpecs });
                                   }}
-                                  style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)', color: 'var(--admin-text)', fontSize: '14px' }}
+                                  style={{ width: '100%', minWidth: 0, padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)', color: 'var(--admin-text)', fontSize: '14px' }}
                                 >
                                   {!COMMON_SPEC_LABELS.includes(spec.label) && spec.label !== "" && (
                                     <option value={spec.label}>{spec.label}</option>
@@ -794,7 +797,7 @@ export default function AdminProductForm() {
                                       newSpecs[index] = { ...newSpecs[index], label: e.target.value };
                                       setForm({ ...form, specs: newSpecs });
                                     }}
-                                    style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)', color: 'var(--admin-text)', fontSize: '14px' }}
+                                    style={{ width: '100%', minWidth: 0, padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)', color: 'var(--admin-text)', fontSize: '14px' }}
                                   />
                                 )}
                               </div>
@@ -802,6 +805,7 @@ export default function AdminProductForm() {
                               <input
                                 type="text"
                                 required
+                                autoFocus
                                 placeholder="Specification value (e.g. Multimode Fiber, 10G)"
                                 value={spec.value}
                                 onChange={(e) => {
@@ -809,7 +813,7 @@ export default function AdminProductForm() {
                                   newSpecs[index] = { ...newSpecs[index], value: e.target.value };
                                   setForm({ ...form, specs: newSpecs });
                                 }}
-                                style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)', color: 'var(--admin-text)', fontSize: '14px' }}
+                                style={{ width: '100%', minWidth: 0, padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)', color: 'var(--admin-text)', fontSize: '14px' }}
                               />
 
                               <button

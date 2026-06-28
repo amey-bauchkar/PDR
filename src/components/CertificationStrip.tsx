@@ -33,15 +33,8 @@ const BadgeItem = ({ badge }: { badge: { name: string, src: string } }) => {
       style={{ 
         height: '32px', 
         objectFit: 'contain', 
-        filter: 'grayscale(100%) opacity(70%)', 
         transition: 'all 0.3s ease',
         cursor: 'default'
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.filter = 'grayscale(0%) opacity(100%)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.filter = 'grayscale(100%) opacity(70%)';
       }}
       onError={() => setImgError(true)}
     />
