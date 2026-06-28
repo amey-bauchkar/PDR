@@ -58,47 +58,39 @@ export class RfqService {
         total_quantity: totalQuantity,
       };
 
-      // Store RFQ in database
+      // Store RFQ in database through the public RPC so local dev also works when RLS is enabled.
       let rfqData: any = rfqRecord;
       if (supabaseServiceClient) {
-        const { data, error } = await supabaseServiceClient
-          .from('quote_requests')
-          .insert([rfqRecord])
-          .select()
-          .single();
+        const rpcItems = items.map((item) => ({
+          slug: item.productId,
+          title: item.productName,
+          specs: item.configuration?.specs || '',
+          image: item.configuration?.image || '',
+          qty: item.quantity,
+        }));
 
-        if (error || !data) {
-          console.warn('Failed to create RFQ in Supabase, continuing with Google Sheets only:', error);
+        const { data: createdId, error: rpcError } = await supabaseServiceClient.rpc('submit_quote_request', {
+          p_session_hash: sessionHash || '',
+          p_contact: {
+            name,
+            email,
+            company,
+            notes: notes || '',
+          },
+          p_items: rpcItems,
+        });
+
+        if (rpcError || !createdId) {
+          console.warn('Failed to create RFQ in Supabase, continuing with Google Sheets only:', rpcError);
         } else {
-          rfqData = data;
+          const { data } = await supabaseServiceClient
+            .from('quote_requests')
+            .select('*')
+            .eq('id', createdId)
+            .single();
+
+          rfqData = data || { ...rfqRecord, id: createdId };
         }
-      }
-
-      // Store RFQ items
-      const itemsToInsert = items.map((item, index) => {
-        const title = item.productName || item.productId || 'Unknown Product';
-        const specs = item.configuration?.specs || '';
-        const rawHashString = `${sessionHash || ''}:request:${title}:${specs}:${index + 1}`;
-        const itemHash = Buffer.from(rawHashString).toString('base64'); // Simple hash alternative if crypto isn't used
-        
-        return {
-          request_id: rfqId,
-          line_number: index + 1,
-          product_slug: item.productId || null,
-          product_title: title,
-          product_specs: specs,
-          image_url: item.configuration?.image || '',
-          quantity: item.quantity || 1,
-          item_hash: itemHash,
-        };
-      });
-
-      const { error: itemsError } = await supabaseServiceClient
-        .from('quote_request_items')
-        .insert(itemsToInsert);
-
-      if (itemsError) {
-        console.warn('Failed to store RFQ items in Supabase, continuing with Google Sheets only:', itemsError);
       }
 
       // Trigger downstream integrations
@@ -106,7 +98,7 @@ export class RfqService {
       await this.logToGoogleSheets(rfqData, items);
 
       return {
-        id: rfqId,
+        id: rfqData.id || rfqId,
         sessionHash,
         name,
         email,
@@ -114,9 +106,9 @@ export class RfqService {
         notes,
         items,
         status: 'submitted',
-        submittedAt: new Date().toISOString(),
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
+        submittedAt: rfqData.created_at || submittedAt,
+        createdAt: rfqData.created_at || submittedAt,
+        updatedAt: rfqData.created_at || submittedAt,
       };
     } catch (error: any) {
       if (error instanceof AppError) throw error;
@@ -144,8 +136,8 @@ export class RfqService {
       const { data: itemsData, error: itemsError } = await supabaseServiceClient
         .from('quote_request_items')
         .select('*')
-        .eq('quote_request_id', rfqId)
-        .order('sort_order', { ascending: true });
+        .eq('request_id', rfqId)
+        .order('line_number', { ascending: true });
 
       if (itemsError) {
         throw new AppError(500, 'ITEMS_FETCH_ERROR', 'Failed to fetch RFQ items');
@@ -206,6 +198,60 @@ export class RfqService {
     } catch (error: any) {
       console.error('Error fetching RFQs:', error);
       throw new AppError(500, 'RFQ_FETCH_ERROR', 'Failed to fetch RFQs', error.message);
+    }
+  }
+
+  /**
+   * Get RFQs in the shape expected by the Vite admin panel.
+   */
+  async getAdminRfqList() {
+    try {
+      const { data: rfqRows, error: rfqError } = await supabaseServiceClient
+        .from('quote_requests')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (rfqError) throw rfqError;
+
+      const requestIds = (rfqRows || []).map((rfq: any) => rfq.id);
+      let itemsByRequestId = new Map<string, any[]>();
+
+      if (requestIds.length > 0) {
+        const { data: itemRows, error: itemError } = await supabaseServiceClient
+          .from('quote_request_items')
+          .select('*')
+          .in('request_id', requestIds)
+          .order('line_number', { ascending: true });
+
+        if (itemError) throw itemError;
+
+        itemsByRequestId = (itemRows || []).reduce((map: Map<string, any[]>, item: any) => {
+          const current = map.get(item.request_id) || [];
+          current.push(item);
+          map.set(item.request_id, current);
+          return map;
+        }, new Map<string, any[]>());
+      }
+
+      return (rfqRows || []).map((rfq: any) => {
+        const items = itemsByRequestId.get(rfq.id) || [];
+
+        return {
+          createdAt: rfq.created_at || new Date().toISOString(),
+          id: rfq.id,
+          sessionHash: rfq.session_hash || '',
+          name: rfq.full_name || 'Unknown',
+          email: rfq.email || 'N/A',
+          company: rfq.company || 'N/A',
+          notes: rfq.notes || '',
+          itemCount: rfq.item_count || items.length,
+          items: items.map((item: any) => `${item.product_title || item.product_slug || 'Item'} (${item.quantity || 1})`),
+          status: rfq.status || 'submitted',
+        };
+      });
+    } catch (error: any) {
+      console.error('Error fetching admin RFQ list:', error);
+      throw new AppError(500, 'RFQ_LIST_ERROR', 'Failed to fetch RFQs for admin', error.message);
     }
   }
 

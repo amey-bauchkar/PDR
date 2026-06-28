@@ -56,3 +56,18 @@ export const getAllRfqs = asyncHandler(async (req: AuthRequest, res: Response) =
     timestamp: Date.now(),
   });
 });
+
+/**
+ * GET /api/rfq/list
+ * Get all RFQs for the Vite admin panel
+ */
+export const listRfqsForAdminPanel = asyncHandler(async (_req: AuthRequest, res: Response) => {
+  const rfqs = await rfqService.getAdminRfqList();
+
+  res.json({
+    success: true,
+    data: rfqs,
+    total: rfqs.length,
+    timestamp: Date.now(),
+  });
+});

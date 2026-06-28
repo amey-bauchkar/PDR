@@ -363,7 +363,7 @@ export default function AdminNew() {
     setImagePreview('');
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!session) return;
@@ -425,19 +425,28 @@ export default function AdminNew() {
       return;
     }
 
-    if (editorMode === 'edit' && editingSlug) {
-      setProducts((current) => current.map((p) => (p.slug === editingSlug ? payload : p)));
-      saveProduct(payload);
-      pushActivity('Product updated', `${payload.name}`, 'info', 'update');
-      setNotice('Product updated successfully.');
-    } else {
-      setProducts((current) => [payload, ...current]);
-      saveProduct(payload);
-      pushActivity('Product created', `${payload.name}`, 'success', 'create');
-      setNotice('Product added successfully.');
+    setNotice(editorMode === 'edit' ? 'Saving product changes...' : 'Creating product...');
+    setNoticeType('info');
+
+    try {
+      await saveProduct(payload, editingSlug || payload.slug);
+      const updatedProducts = getAdminProducts();
+      setProducts(updatedProducts);
+
+      if (editorMode === 'edit' && editingSlug) {
+        pushActivity('Product updated', `${payload.name}`, 'info', 'update');
+        setNotice('Product updated successfully.');
+      } else {
+        pushActivity('Product created', `${payload.name}`, 'success', 'create');
+        setNotice('Product added successfully.');
+      }
+      setNoticeType('success');
+      resetForm();
+    } catch (err) {
+      console.error(err);
+      setNotice(err instanceof Error ? err.message : 'Failed to save product.');
+      setNoticeType('error');
     }
-    setNoticeType('success');
-    resetForm();
   };
 
   const handleEdit = (product: AdminProduct) => {
@@ -464,7 +473,7 @@ export default function AdminNew() {
     setImagePreview(product.imageUrl ?? '');
   };
 
-  const handleDelete = (slug: string) => {
+  const handleDelete = async (slug: string) => {
     if (!session || !checkPermission(session, 'delete_products')) {
       setNotice('Permission denied.');
       setNoticeType('error');
@@ -472,10 +481,16 @@ export default function AdminNew() {
     }
     const target = products.find((p) => p.slug === slug);
     if (!target) return;
-    setProducts((current) => current.filter((p) => p.slug !== slug));
-    deleteProduct(slug);
-    if (editingSlug === slug) resetForm();
-    pushActivity('Product deleted', `${target.name}`, 'warning', 'delete');
+    try {
+      await deleteProduct(slug);
+      setProducts((current) => current.filter((p) => p.slug !== slug));
+      if (editingSlug === slug) resetForm();
+      pushActivity('Product deleted', `${target.name}`, 'warning', 'delete');
+    } catch (err) {
+      console.error(err);
+      setNotice(err instanceof Error ? err.message : 'Failed to delete product.');
+      setNoticeType('error');
+    }
   };
 
   const handleStatusChange = (rfqId: string, newStatus: RFQRequest['status']) => {

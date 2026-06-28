@@ -24,6 +24,7 @@ export type AdminProduct = {
 };
 
 const STORAGE_KEY = 'pdrworld-admin-products-v3';
+const PRODUCTS_API_URL = '/api/products';
 
 const getDefaultProducts = (): AdminProduct[] => {
   return (seedProducts as Omit<AdminProduct, 'status' | 'updatedAt' | 'updatedBy'>[]).map((item) => ({
@@ -79,6 +80,23 @@ export const initializeProductStore = async (): Promise<void> => {
   window.dispatchEvent(new Event('pdrworld-product-update'));
 };
 
+async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
+  const response = await fetch(url, {
+    ...init,
+    headers: {
+      'Content-Type': 'application/json',
+      ...(init?.headers || {}),
+    },
+  });
+
+  const payload = await response.json().catch(() => null);
+  if (!response.ok || !payload?.success) {
+    throw new Error(payload?.message || payload?.error || `Request failed: ${response.status}`);
+  }
+
+  return payload.data as T;
+}
+
 /**
  * Get all products from memory cache (or fallback to localStorage if not initialized)
  */
@@ -128,17 +146,25 @@ export const saveAdminProducts = async (products: AdminProduct[]): Promise<void>
 /**
  * Add or update a product in local cache AND backend database
  */
-export const saveProduct = async (product: AdminProduct): Promise<void> => {
+export const saveProduct = async (product: AdminProduct, previousSlug = product.slug): Promise<void> => {
   const products = getAdminProducts();
-  const index = products.findIndex((p) => p.slug === product.slug);
+  const index = products.findIndex((p) => p.slug === previousSlug || p.slug === product.slug);
+  const isUpdate = index >= 0;
+
+  const savedProduct = await requestJson<AdminProduct>(
+    isUpdate ? `${PRODUCTS_API_URL}/${encodeURIComponent(previousSlug)}` : PRODUCTS_API_URL,
+    {
+      method: isUpdate ? 'PUT' : 'POST',
+      body: JSON.stringify(product),
+    }
+  );
   
   if (index >= 0) {
-    products[index] = product;
+    products[index] = savedProduct;
   } else {
-    products.unshift(product);
+    products.unshift(savedProduct);
   }
   
-  // Save to local cache first for instant feedback
   await saveAdminProducts(products);
 };
 
@@ -146,6 +172,10 @@ export const saveProduct = async (product: AdminProduct): Promise<void> => {
  * Delete a product by slug in local cache AND backend database
  */
 export const deleteProduct = async (slug: string): Promise<void> => {
+  await requestJson<{ slug: string }>(`${PRODUCTS_API_URL}/${encodeURIComponent(slug)}`, {
+    method: 'DELETE',
+  });
+
   const products = getAdminProducts().filter((p) => p.slug !== slug);
   await saveAdminProducts(products);
 };
@@ -154,8 +184,14 @@ export const deleteProduct = async (slug: string): Promise<void> => {
  * Fetch all products from backend database and sync to localStorage cache
  */
 export const fetchAndSyncProducts = async (): Promise<AdminProduct[]> => {
-  // Database sync removed - return local products only
-  return getAdminProducts();
+  try {
+    const products = await requestJson<AdminProduct[]>(PRODUCTS_API_URL);
+    await saveAdminProducts(products);
+    return products;
+  } catch (err) {
+    console.warn('Failed to sync products from backend, using local cache:', err);
+    return getAdminProducts();
+  }
 };
 
 /**

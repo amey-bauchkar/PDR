@@ -361,7 +361,7 @@ export default function AdminProductForm() {
     setNoticeType('info');
 
     try {
-      await saveProduct(payload);
+      await saveProduct(payload, slug || payload.slug);
       setNotice('Product saved successfully! Redirecting...');
       setNoticeType('success');
 

@@ -51,18 +51,36 @@ function mapDbProduct(db) {
 }
 
 async function getCategoryIdFromName(supabase, categoryName) {
+  const name = (categoryName || 'Active Components').trim();
+  const slug = name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'active-components';
+
   try {
     const { data, error } = await supabase
       .from('product_categories')
       .select('id')
-      .ilike('name', categoryName)
+      .ilike('name', name)
       .limit(1);
 
-    if (error || !data || data.length === 0) return null;
-    return data[0].id;
+    if (!error && data && data.length > 0) return data[0].id;
   } catch {
+    // Try to create the category below.
+  }
+
+  const { data: created, error: createError } = await supabase
+    .from('product_categories')
+    .upsert({ slug, name, description: `Category for ${name}` }, { onConflict: 'slug' })
+    .select('id')
+    .single();
+
+  if (createError) {
+    console.warn('Failed to create product category:', createError.message);
     return null;
   }
+
+  return created?.id || null;
 }
 
 async function handleGet(req, res, slug) {
