@@ -265,8 +265,13 @@ export default function AdminNew() {
   
   const [editingSlug, setEditingSlug] = useState<string | null>(null);
   const [form, setForm] = useState<ProductFormState>(DEFAULT_FORM);
-  const [notice, setNotice] = useState('');
-  const [noticeType, setNoticeType] = useState<'success' | 'error' | 'info'>('success');
+  const [notices, setNotices] = useState<{
+    global?: { message: string; type: 'success' | 'error' | 'info' };
+    title?: { message: string; type: 'success' | 'error' | 'info' };
+    image?: { message: string; type: 'success' | 'error' | 'info' };
+    gallery?: { message: string; type: 'success' | 'error' | 'info' };
+    pdf?: { message: string; type: 'success' | 'error' | 'info' };
+  }>({});
   const [imagePreview, setImagePreview] = useState<string>('');
   const googleSheetUrl = import.meta.env.VITE_GOOGLE_SHEETS_URL || (import.meta.env.VITE_GOOGLE_SHEETS_ID ? `https://docs.google.com/spreadsheets/d/${import.meta.env.VITE_GOOGLE_SHEETS_ID}/edit` : '');
 
@@ -359,7 +364,7 @@ export default function AdminNew() {
     setEditorMode('create');
     setEditingSlug(null);
     setForm(DEFAULT_FORM);
-    setNotice('');
+    setNotices({});
     setImagePreview('');
   };
 
@@ -368,15 +373,13 @@ export default function AdminNew() {
 
     if (!session) return;
     if (!checkPermission(session, 'manage_products')) {
-      setNotice('You do not have permission to manage products.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, global: { message: 'You do not have permission to manage products.', type: 'error' } }));
       return;
     }
 
     const nextSlug = form.slug.trim() ? toSlug(form.slug) : toSlug(form.name);
     if (!nextSlug || !form.name.trim() || !form.category.trim()) {
-      setNotice('Name, category, and slug are required.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, title: { message: 'Name, category, and slug are required.', type: 'error' } }));
       return;
     }
 
@@ -420,8 +423,7 @@ export default function AdminNew() {
 
     const duplicateSlug = products.some((p) => p.slug === payload.slug && p.slug !== editingSlug);
     if (duplicateSlug) {
-      setNotice('Slug already exists.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, title: { message: 'Title of Product already exists. Please choose a different name.', type: 'error' } }));
       return;
     }
 
@@ -429,14 +431,13 @@ export default function AdminNew() {
       setProducts((current) => current.map((p) => (p.slug === editingSlug ? payload : p)));
       saveProduct(payload);
       pushActivity('Product updated', `${payload.name}`, 'info', 'update');
-      setNotice('Product updated successfully.');
+      setNotices(prev => ({ ...prev, global: { message: 'Product updated successfully.', type: 'success' } }));
     } else {
       setProducts((current) => [payload, ...current]);
       saveProduct(payload);
       pushActivity('Product created', `${payload.name}`, 'success', 'create');
-      setNotice('Product added successfully.');
+      setNotices(prev => ({ ...prev, global: { message: 'Product added successfully.', type: 'success' } }));
     }
-    setNoticeType('success');
     resetForm();
   };
 
@@ -466,8 +467,7 @@ export default function AdminNew() {
 
   const handleDelete = (slug: string) => {
     if (!session || !checkPermission(session, 'delete_products')) {
-      setNotice('Permission denied.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, global: { message: 'Permission denied.', type: 'error' } }));
       return;
     }
     const target = products.find((p) => p.slug === slug);
@@ -492,8 +492,7 @@ export default function AdminNew() {
 
   const openGoogleSheet = () => {
     if (!googleSheetUrl) {
-      setNotice('Set VITE_GOOGLE_SHEETS_URL to open the live RFQ sheet.');
-      setNoticeType('info');
+      setNotices(prev => ({ ...prev, global: { message: 'Set VITE_GOOGLE_SHEETS_URL to open the live RFQ sheet.', type: 'info' } }));
       return;
     }
 
@@ -506,14 +505,12 @@ export default function AdminNew() {
     if (!file) return;
 
     if (!file.type.startsWith('image/')) {
-      setNotice('Please select a valid image file.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, image: { message: 'Please select a valid image file.', type: 'error' } }));
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
-      setNotice('Image size must be less than 5MB.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, image: { message: 'Image size must be less than 5MB.', type: 'error' } }));
       return;
     }
 
@@ -522,12 +519,10 @@ export default function AdminNew() {
       const dataUrl = e.target?.result as string;
       setImagePreview(dataUrl);
       setForm({ ...form, imageUrl: dataUrl });
-      setNotice('Image uploaded successfully!');
-      setNoticeType('success');
+      setNotices(prev => ({ ...prev, image: { message: 'Image uploaded successfully!', type: 'success' } }));
     };
     reader.onerror = () => {
-      setNotice('Failed to read image file.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, image: { message: 'Failed to read image file.', type: 'error' } }));
     };
     reader.readAsDataURL(file);
   };
@@ -537,14 +532,12 @@ export default function AdminNew() {
     if (!file) return;
 
     if (file.type !== 'application/pdf') {
-      setNotice('Please select a valid PDF file.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, pdf: { message: 'Please select a valid PDF file.', type: 'error' } }));
       return;
     }
 
     if (file.size > 10 * 1024 * 1024) {
-      setNotice('PDF size must be less than 10MB.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, pdf: { message: 'PDF size must be less than 10MB.', type: 'error' } }));
       return;
     }
 
@@ -552,12 +545,10 @@ export default function AdminNew() {
     reader.onload = (e) => {
       const dataUrl = e.target?.result as string;
       setForm({ ...form, datasheetUrl: dataUrl });
-      setNotice('Datasheet PDF uploaded successfully!');
-      setNoticeType('success');
+      setNotices(prev => ({ ...prev, pdf: { message: 'Datasheet PDF uploaded successfully!', type: 'success' } }));
     };
     reader.onerror = () => {
-      setNotice('Failed to read PDF file.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, pdf: { message: 'Failed to read PDF file.', type: 'error' } }));
     };
     reader.readAsDataURL(file);
   };

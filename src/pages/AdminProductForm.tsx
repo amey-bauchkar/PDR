@@ -105,8 +105,13 @@ export default function AdminProductForm() {
   });
 
   const [form, setForm] = useState<ProductFormState>(DEFAULT_FORM);
-  const [notice, setNotice] = useState('');
-  const [noticeType, setNoticeType] = useState<'success' | 'error' | 'info'>('success');
+  const [notices, setNotices] = useState<{
+    global?: { message: string; type: 'success' | 'error' | 'info' };
+    title?: { message: string; type: 'success' | 'error' | 'info' };
+    image?: { message: string; type: 'success' | 'error' | 'info' };
+    gallery?: { message: string; type: 'success' | 'error' | 'info' };
+    pdf?: { message: string; type: 'success' | 'error' | 'info' };
+  }>({});
   const [imagePreview, setImagePreview] = useState<string>('');
 
   useEffect(() => {
@@ -140,8 +145,7 @@ export default function AdminProductForm() {
         });
         setImagePreview(prod.imageUrl ?? '');
       } else {
-        setNotice('Product not found.');
-        setNoticeType('error');
+        setNotices(prev => ({ ...prev, global: { message: 'Product not found.', type: 'error' } }));
       }
     } else if (!slug) {
       setForm(DEFAULT_FORM);
@@ -182,14 +186,12 @@ export default function AdminProductForm() {
     if (!file) return;
 
     if (!file.type.startsWith('image/')) {
-      setNotice('Please select a valid image file.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, image: { message: 'Please select a valid image file.', type: 'error' } }));
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
-      setNotice('Image size must be less than 5MB.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, image: { message: 'Image size must be less than 5MB.', type: 'error' } }));
       return;
     }
 
@@ -198,12 +200,10 @@ export default function AdminProductForm() {
       const dataUrl = e.target?.result as string;
       setImagePreview(dataUrl);
       setForm({ ...form, imageUrl: dataUrl });
-      setNotice('Image uploaded successfully!');
-      setNoticeType('success');
+      setNotices(prev => ({ ...prev, image: { message: 'Image uploaded successfully!', type: 'success' } }));
     };
     reader.onerror = () => {
-      setNotice('Failed to read image file.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, image: { message: 'Failed to read image file.', type: 'error' } }));
     };
     reader.readAsDataURL(file);
   };
@@ -213,8 +213,7 @@ export default function AdminProductForm() {
     if (!files.length) return;
 
     if (form.galleryUrls.length + files.length > 10) {
-      setNotice('You can upload a maximum of 10 additional images.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, gallery: { message: 'You can upload a maximum of 10 additional images.', type: 'error' } }));
       return;
     }
 
@@ -225,16 +224,14 @@ export default function AdminProductForm() {
     files.forEach(file => {
       if (!file.type.startsWith('image/')) {
         hasError = true;
-        setNotice('Please select only valid image files.');
-        setNoticeType('error');
+        setNotices(prev => ({ ...prev, gallery: { message: 'Please select only valid image files.', type: 'error' } }));
         processed++;
         return;
       }
 
       if (file.size > 5 * 1024 * 1024) {
         hasError = true;
-        setNotice('Each image size must be less than 5MB.');
-        setNoticeType('error');
+        setNotices(prev => ({ ...prev, gallery: { message: 'Each image size must be less than 5MB.', type: 'error' } }));
         processed++;
         return;
       }
@@ -250,15 +247,13 @@ export default function AdminProductForm() {
             ...prev,
             galleryUrls: [...prev.galleryUrls, ...newUrls].slice(0, 10)
           }));
-          setNotice('Gallery images uploaded successfully!');
-          setNoticeType('success');
+          setNotices(prev => ({ ...prev, gallery: { message: 'Gallery images uploaded successfully!', type: 'success' } }));
         }
       };
       reader.onerror = () => {
         processed++;
         hasError = true;
-        setNotice('Failed to read one or more image files.');
-        setNoticeType('error');
+        setNotices(prev => ({ ...prev, gallery: { message: 'Failed to read one or more image files.', type: 'error' } }));
       };
       reader.readAsDataURL(file);
     });
@@ -269,14 +264,12 @@ export default function AdminProductForm() {
     if (!file) return;
 
     if (file.type !== 'application/pdf') {
-      setNotice('Please select a valid PDF file.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, pdf: { message: 'Please select a valid PDF file.', type: 'error' } }));
       return;
     }
 
     if (file.size > 10 * 1024 * 1024) {
-      setNotice('PDF size must be less than 10MB.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, pdf: { message: 'PDF size must be less than 10MB.', type: 'error' } }));
       return;
     }
 
@@ -284,12 +277,10 @@ export default function AdminProductForm() {
     reader.onload = (e) => {
       const dataUrl = e.target?.result as string;
       setForm({ ...form, datasheetUrl: dataUrl });
-      setNotice('Datasheet PDF uploaded successfully!');
-      setNoticeType('success');
+      setNotices(prev => ({ ...prev, pdf: { message: 'Datasheet PDF uploaded successfully!', type: 'success' } }));
     };
     reader.onerror = () => {
-      setNotice('Failed to read PDF file.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, pdf: { message: 'Failed to read PDF file.', type: 'error' } }));
     };
     reader.readAsDataURL(file);
   };
@@ -299,15 +290,13 @@ export default function AdminProductForm() {
 
     if (!session) return;
     if (!checkPermission(session, 'manage_products')) {
-      setNotice('You do not have permission to manage products.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, global: { message: 'You do not have permission to manage products.', type: 'error' } }));
       return;
     }
 
     const nextSlug = form.slug.trim() ? toSlug(form.slug) : toSlug(form.name);
     if (!nextSlug || !form.name.trim() || !form.category.trim()) {
-      setNotice('Name and category are required.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, title: { message: 'Name and category are required.', type: 'error' } }));
       return;
     }
 
@@ -352,18 +341,15 @@ export default function AdminProductForm() {
 
     const duplicateSlug = products.some((p) => p.slug === payload.slug && p.slug !== (slug || ''));
     if (duplicateSlug) {
-      setNotice('Slug already exists.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, title: { message: 'Title of Product already exists. Please choose a different name.', type: 'error' } }));
       return;
     }
 
-    setNotice('Saving product...');
-    setNoticeType('info');
+    setNotices(prev => ({ ...prev, global: { message: 'Saving product...', type: 'info' } }));
 
     try {
       await saveProduct(payload);
-      setNotice('Product saved successfully! Redirecting...');
-      setNoticeType('success');
+      setNotices(prev => ({ ...prev, global: { message: 'Product saved successfully! Redirecting...', type: 'success' } }));
 
       // Dispatch local sync event
       window.dispatchEvent(new Event('local-storage-update'));
@@ -373,8 +359,7 @@ export default function AdminProductForm() {
       }, 1000);
     } catch (err) {
       console.error(err);
-      setNotice('Failed to save product.');
-      setNoticeType('error');
+      setNotices(prev => ({ ...prev, global: { message: 'Failed to save product.', type: 'error' } }));
     }
   };
 
@@ -506,11 +491,7 @@ export default function AdminProductForm() {
                 </button>
               </div>
 
-              {notice && (
-                <div className={`admin-message ${noticeType}`} style={{ marginBottom: '20px', borderRadius: '8px', padding: '14px 18px' }}>
-                  {notice}
-                </div>
-              )}
+
 
               <div className="admin-card" style={{ background: 'var(--admin-surface)', border: '1px solid var(--admin-border)', borderRadius: '12px', padding: '32px', boxShadow: 'var(--admin-shadow)' }}>
                 <form 
@@ -898,6 +879,7 @@ export default function AdminProductForm() {
                             onClick={() => {
                               setImagePreview('');
                               setForm({...form, imageUrl: ''});
+                              setNotices(prev => ({...prev, image: undefined}));
                             }}
                             style={{ 
                               background: '#ef4444', 
@@ -918,6 +900,11 @@ export default function AdminProductForm() {
                           >
                             ✕ Remove Image
                           </button>
+                        </div>
+                      )}
+                      {notices.image && (
+                        <div className={`admin-message ${notices.image.type}`} style={{ width: '100%', marginTop: '10px', padding: '10px 14px', borderRadius: '6px', fontSize: '13px' }}>
+                          {notices.image.message}
                         </div>
                       )}
                     </div>
@@ -945,7 +932,7 @@ export default function AdminProductForm() {
                               <img src={url} alt={`Gallery ${i}`} style={{ width: '80px', height: '80px', borderRadius: '8px', objectFit: 'cover', border: '1px solid var(--admin-border)' }} />
                               <button 
                                 type="button" 
-                                onClick={() => setForm(prev => ({...prev, galleryUrls: prev.galleryUrls.filter((_, index) => index !== i)}))}
+                                onClick={() => { setForm(prev => ({...prev, galleryUrls: prev.galleryUrls.filter((_, index) => index !== i)})); setNotices(prev => ({...prev, gallery: undefined})); }}
                                 style={{ 
                                   position: 'absolute', 
                                   top: '-8px', 
@@ -979,6 +966,11 @@ export default function AdminProductForm() {
                           ))}
                         </div>
                       )}
+                      {notices.gallery && (
+                        <div className={`admin-message ${notices.gallery.type}`} style={{ width: '100%', marginTop: '10px', padding: '10px 14px', borderRadius: '6px', fontSize: '13px' }}>
+                          {notices.gallery.message}
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -1010,10 +1002,15 @@ export default function AdminProductForm() {
                           <button 
                             type="button" 
                             style={{ margin: 0, background: '#ef4444', color: '#FFFFFF', border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 600, whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center', gap: '6px', lineHeight: '1', boxSizing: 'border-box' }}
-                            onClick={() => setForm({...form, datasheetUrl: ''})}
+                            onClick={() => { setForm({...form, datasheetUrl: ''}); setNotices(prev => ({...prev, pdf: undefined})); }}
                           >
                             ✕ Remove PDF
                           </button>
+                        </div>
+                      )}
+                      {notices.pdf && (
+                        <div className={`admin-message ${notices.pdf.type}`} style={{ width: '100%', marginTop: '10px', padding: '10px 14px', borderRadius: '6px', fontSize: '13px' }}>
+                          {notices.pdf.message}
                         </div>
                       )}
                     </div>
@@ -1032,6 +1029,12 @@ export default function AdminProductForm() {
                       <option value="Archived">Archived (Hidden)</option>
                     </select>
                   </div>
+
+                  {notices.global && (
+                    <div className={`admin-message ${notices.global.type}`} style={{ marginTop: '4px', borderRadius: '8px', padding: '14px 18px', textAlign: 'center' }}>
+                      {notices.global.message}
+                    </div>
+                  )}
 
                   <div style={{ display: 'flex', gap: '16px', marginTop: '24px' }}>
                     <button type="submit" className="admin-btn-primary" style={{ flex: 1, padding: '14px', fontSize: '16px', borderRadius: '8px', fontWeight: 700 }}>

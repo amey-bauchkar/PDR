@@ -22,14 +22,16 @@ export const CATEGORY_IMAGE_MAP: Record<string, string> = {
   passive: '/images/fiber-patchcord.webp',
   cable: '/images/fiber-patch-panel.webp',
   test: '/images/fiber-patch-panel.webp',
-  specialty: '/images/hero-infrastructure.webp',
+  specialty: '/images/fiber-drone.webp',
   tools: '/images/fiber-patch-panel.webp',
   'Active Components': '/images/sfp-transceiver.webp',
   'Passive Components': '/images/fiber-patchcord.webp',
   'Cable Management Devices': '/images/fiber-patch-panel.webp',
   'Test and Measurement': '/images/fiber-patch-panel.webp',
   'Maintenance Tools': '/images/fiber-patch-panel.webp',
-  'Specialty Products': '/images/hero-infrastructure.webp',
+  'Specialty Products': '/images/fiber-drone.webp',
+  'Specialty Drones': '/images/fiber-drone.webp',
+  'Drone Optical Fiber Kit': '/images/fiber-drone.webp',
 };
 
 export const PASSIVE_IMAGE_MAP: Record<string, string> = {
@@ -52,7 +54,7 @@ export const PASSIVE_IMAGE_MAP: Record<string, string> = {
   'hybrid-adapter': scAdapter,
   'smpte-assembly': smpteCable,
   soc: '/images/live/fiber-optic-connector-field-installable.webp',
-  drone: '/images/hero-infrastructure.webp',
+  drone: '/images/fiber-drone.webp',
   // --- Previously missing products (Layer 1 canonical fix) ---
   'armoured-patchcord': fiberPigtails,
   'pof-patchcord': fiberPigtails,
