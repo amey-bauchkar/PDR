@@ -937,7 +937,8 @@ export default function AdminNew() {
                           color: 'white',
                           fontWeight: 600,
                           cursor: 'pointer',
-                          borderRadius: '6px'
+                          borderRadius: '8px',
+                          height: '42px'
                         }}
                       >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

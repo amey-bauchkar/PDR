@@ -513,7 +513,11 @@ export default function AdminProductForm() {
               )}
 
               <div className="admin-card" style={{ background: 'var(--admin-surface)', border: '1px solid var(--admin-border)', borderRadius: '12px', padding: '32px', boxShadow: 'var(--admin-shadow)' }}>
-                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <form 
+                  onSubmit={handleSubmit} 
+                  onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
+                  style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}
+                >
                   <div className="admin-form-group">
                     <label>Product Name</label>
                     <input 
@@ -540,7 +544,7 @@ export default function AdminProductForm() {
                         }
                       }}
                       className="admin-select"
-                      style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)' }}
+                      style={{ width: '100%', height: 'auto', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)' }}
                     >
                       <option value="">Select Category...</option>
                       {categories.map((cat) => (
@@ -597,18 +601,24 @@ export default function AdminProductForm() {
                     ) : (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '8px' }}>
                         {form.descriptionText.split('\n').map((point, index) => (
-                          <div key={index} style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '8px', alignItems: 'center', width: '100%' }}>
+                          <div key={index} className="dyn-list-row">
                             <input
                               type="text"
                               autoFocus
                               value={point === ' ' ? '' : point}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                  e.preventDefault();
+                                  setForm({ ...form, descriptionText: form.descriptionText ? form.descriptionText + '\n' : ' ' });
+                                }
+                              }}
                               placeholder={`Point ${index + 1}`}
                               onChange={(e) => {
                                 const lines = form.descriptionText.split('\n');
                                 lines[index] = e.target.value;
                                 setForm({ ...form, descriptionText: lines.join('\n') });
                               }}
-                              style={{ width: '100%', minWidth: 0, padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)', color: 'var(--admin-text)', fontSize: '14px', boxSizing: 'border-box' }}
+                              className="dyn-list-input"
                             />
                             <button
                               type="button"
@@ -616,7 +626,7 @@ export default function AdminProductForm() {
                                 const lines = form.descriptionText.split('\n').filter((_, i) => i !== index);
                                 setForm({ ...form, descriptionText: lines.join('\n') });
                               }}
-                              style={{ padding: '8px 10px', border: '1px solid #ef4444', color: '#ef4444', background: 'rgba(239,68,68,0.05)', borderRadius: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '40px', width: '40px', flexShrink: 0 }}
+                              className="dyn-list-del"
                             >
                               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                             </button>
@@ -659,18 +669,24 @@ export default function AdminProductForm() {
                     ) : (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '8px' }}>
                         {form.featuresText.split('\n').map((feature, index) => (
-                          <div key={index} style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '8px', alignItems: 'center', width: '100%' }}>
+                          <div key={index} className="dyn-list-row">
                             <input
                               type="text"
                               autoFocus
                               value={feature === ' ' ? '' : feature}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                  e.preventDefault();
+                                  setForm({ ...form, featuresText: form.featuresText ? form.featuresText + '\n' : ' ' });
+                                }
+                              }}
                               placeholder={`Feature ${index + 1}`}
                               onChange={(e) => {
                                 const lines = form.featuresText.split('\n');
                                 lines[index] = e.target.value;
                                 setForm({ ...form, featuresText: lines.join('\n') });
                               }}
-                              style={{ width: '100%', minWidth: 0, padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)', color: 'var(--admin-text)', fontSize: '14px', boxSizing: 'border-box' }}
+                              className="dyn-list-input"
                             />
                             <button
                               type="button"
@@ -678,7 +694,7 @@ export default function AdminProductForm() {
                                 const lines = form.featuresText.split('\n').filter((_, i) => i !== index);
                                 setForm({ ...form, featuresText: lines.join('\n') });
                               }}
-                              style={{ padding: '8px 10px', border: '1px solid #ef4444', color: '#ef4444', background: 'rgba(239,68,68,0.05)', borderRadius: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '40px', width: '40px', flexShrink: 0 }}
+                              className="dyn-list-del"
                             >
                               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                             </button>
@@ -709,18 +725,24 @@ export default function AdminProductForm() {
                     ) : (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '8px' }}>
                         {form.applicationsText.split('\n').map((app, index) => (
-                          <div key={index} style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '8px', alignItems: 'center', width: '100%' }}>
+                          <div key={index} className="dyn-list-row">
                             <input
                               type="text"
                               autoFocus
                               value={app === ' ' ? '' : app}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                  e.preventDefault();
+                                  setForm({ ...form, applicationsText: form.applicationsText ? form.applicationsText + '\n' : ' ' });
+                                }
+                              }}
                               placeholder={`Application ${index + 1}`}
                               onChange={(e) => {
                                 const lines = form.applicationsText.split('\n');
                                 lines[index] = e.target.value;
                                 setForm({ ...form, applicationsText: lines.join('\n') });
                               }}
-                              style={{ width: '100%', minWidth: 0, padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)', color: 'var(--admin-text)', fontSize: '14px', boxSizing: 'border-box' }}
+                              className="dyn-list-input"
                             />
                             <button
                               type="button"
@@ -728,7 +750,7 @@ export default function AdminProductForm() {
                                 const lines = form.applicationsText.split('\n').filter((_, i) => i !== index);
                                 setForm({ ...form, applicationsText: lines.join('\n') });
                               }}
-                              style={{ padding: '8px 10px', border: '1px solid #ef4444', color: '#ef4444', background: 'rgba(239,68,68,0.05)', borderRadius: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '40px', width: '40px', flexShrink: 0 }}
+                              className="dyn-list-del"
                             >
                               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                             </button>
@@ -775,7 +797,7 @@ export default function AdminProductForm() {
                                     }
                                     setForm({ ...form, specs: newSpecs });
                                   }}
-                                  style={{ width: '100%', minWidth: 0, padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)', color: 'var(--admin-text)', fontSize: '14px' }}
+                                  className="dyn-list-input"
                                 >
                                   {!COMMON_SPEC_LABELS.includes(spec.label) && spec.label !== "" && (
                                     <option value={spec.label}>{spec.label}</option>
@@ -797,7 +819,7 @@ export default function AdminProductForm() {
                                       newSpecs[index] = { ...newSpecs[index], label: e.target.value };
                                       setForm({ ...form, specs: newSpecs });
                                     }}
-                                    style={{ width: '100%', minWidth: 0, padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)', color: 'var(--admin-text)', fontSize: '14px' }}
+                                    className="dyn-list-input"
                                   />
                                 )}
                               </div>
@@ -808,27 +830,37 @@ export default function AdminProductForm() {
                                 autoFocus
                                 placeholder="Specification value (e.g. Multimode Fiber, 10G)"
                                 value={spec.value}
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter') {
+                                    e.preventDefault();
+                                    setForm({ ...form, specs: [...form.specs, { label: 'Cable Type', value: '' }] });
+                                  }
+                                }}
                                 onChange={(e) => {
                                   const newSpecs = [...form.specs];
                                   newSpecs[index] = { ...newSpecs[index], value: e.target.value };
                                   setForm({ ...form, specs: newSpecs });
                                 }}
-                                style={{ width: '100%', minWidth: 0, padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)', color: 'var(--admin-text)', fontSize: '14px' }}
+                                className="dyn-list-input"
                               />
 
                               <button
                                 type="button"
                                 className="btn btn-outline"
                                 style={{ 
-                                  padding: '8px 12px', 
+                                  padding: '0',
+                                  margin: '0',
+                                  boxSizing: 'border-box',
+                                  width: '38px',
                                   border: '1px solid #ef4444', 
                                   color: '#ef4444', 
-                                  height: '42px',
+                                  height: '38px',
                                   display: 'flex',
                                   alignItems: 'center',
                                   justifyContent: 'center',
                                   borderRadius: '8px',
-                                  cursor: 'pointer'
+                                  cursor: 'pointer',
+                                  flexShrink: 0
                                 }}
                                 onClick={() => {
                                   const newSpecs = form.specs.filter((_, i) => i !== index);
@@ -863,12 +895,26 @@ export default function AdminProductForm() {
                           <img src={imagePreview} alt="Preview" style={{ maxWidth: '240px', maxHeight: '180px', borderRadius: '8px', objectFit: 'contain', border: '1px solid var(--admin-border)' }} />
                           <button 
                             type="button" 
-                            className="admin-btn-remove-image"
                             onClick={() => {
                               setImagePreview('');
                               setForm({...form, imageUrl: ''});
                             }}
-                            style={{ background: '#ef4444', color: '#FFFFFF', border: 'none', padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}
+                            style={{ 
+                              background: '#ef4444', 
+                              color: '#FFFFFF', 
+                              border: 'none', 
+                              padding: '8px 16px', 
+                              borderRadius: '6px', 
+                              cursor: 'pointer', 
+                              fontSize: '13px', 
+                              fontWeight: 600,
+                              whiteSpace: 'nowrap',
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '6px',
+                              lineHeight: '1',
+                              boxSizing: 'border-box'
+                            }}
                           >
                             ✕ Remove Image
                           </button>
@@ -893,14 +939,39 @@ export default function AdminProductForm() {
                         Choose Additional Images
                       </label>
                       {form.galleryUrls && form.galleryUrls.length > 0 && (
-                        <div className="admin-image-preview" style={{ marginTop: '12px', display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
+                        <div className="admin-image-preview" style={{ marginTop: '12px', display: 'flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'center', overflow: 'visible', padding: '10px' }}>
                           {form.galleryUrls.map((url, i) => (
-                            <div key={i} style={{ position: 'relative' }}>
+                            <div key={i} style={{ position: 'relative', overflow: 'visible' }}>
                               <img src={url} alt={`Gallery ${i}`} style={{ width: '80px', height: '80px', borderRadius: '8px', objectFit: 'cover', border: '1px solid var(--admin-border)' }} />
                               <button 
                                 type="button" 
                                 onClick={() => setForm(prev => ({...prev, galleryUrls: prev.galleryUrls.filter((_, index) => index !== i)}))}
-                                style={{ position: 'absolute', top: '-6px', right: '-6px', background: '#ef4444', color: '#FFFFFF', border: 'none', borderRadius: '50%', width: '20px', height: '20px', cursor: 'pointer', fontSize: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0 }}
+                                style={{ 
+                                  position: 'absolute', 
+                                  top: '-8px', 
+                                  right: '-8px', 
+                                  background: '#ef4444', 
+                                  color: '#FFFFFF', 
+                                  border: '2px solid #fff', 
+                                  borderRadius: '50%', 
+                                  width: '24px', 
+                                  height: '24px', 
+                                  minWidth: '24px',
+                                  minHeight: '24px',
+                                  maxWidth: '24px',
+                                  maxHeight: '24px',
+                                  cursor: 'pointer', 
+                                  fontSize: '12px', 
+                                  display: 'flex', 
+                                  alignItems: 'center', 
+                                  justifyContent: 'center', 
+                                  padding: 0,
+                                  margin: 0,
+                                  lineHeight: '1',
+                                  boxSizing: 'border-box',
+                                  boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+                                  zIndex: 2
+                                }}
                               >
                                 ✕
                               </button>
@@ -938,8 +1009,7 @@ export default function AdminProductForm() {
                           </div>
                           <button 
                             type="button" 
-                            className="admin-btn-remove-image"
-                            style={{ margin: 0, background: '#ef4444', color: '#FFFFFF', border: 'none', padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}
+                            style={{ margin: 0, background: '#ef4444', color: '#FFFFFF', border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 600, whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center', gap: '6px', lineHeight: '1', boxSizing: 'border-box' }}
                             onClick={() => setForm({...form, datasheetUrl: ''})}
                           >
                             ✕ Remove PDF
@@ -955,7 +1025,7 @@ export default function AdminProductForm() {
                       value={form.status} 
                       onChange={(e) => setForm({...form, status: e.target.value as AdminStatus})}
                       className="admin-select"
-                      style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)' }}
+                      style={{ width: '100%', height: 'auto', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)' }}
                     >
                       <option value="Active">Active (Visible in Storefront)</option>
                       <option value="Draft">Draft (Internal Only)</option>
