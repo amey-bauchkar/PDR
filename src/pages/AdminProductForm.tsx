@@ -96,7 +96,13 @@ export default function AdminProductForm() {
   const [loginEmail, setLoginEmail] = useState('admin@pdrworld.com');
   const [loginPassword, setLoginPassword] = useState('Admin@123');
   const [loginError, setLoginError] = useState('');
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem('admin_dark_mode') === 'true';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('admin_dark_mode', darkMode.toString());
+  }, [darkMode]);
 
   const [products, setProducts] = useState<AdminProduct[]>(() => {
     if (typeof window === 'undefined') return asAdminProducts(seedProducts as typeof seedProducts);
@@ -339,9 +345,22 @@ export default function AdminProductForm() {
       updatedBy: session.email,
     };
 
-    const duplicateSlug = products.some((p) => p.slug === payload.slug && p.slug !== (slug || ''));
+    // Refresh products from the latest data to avoid stale state
+    const latestProducts = getAdminProducts();
+
+    // Check for duplicate by product name (case-insensitive)
+    const duplicateName = latestProducts.some(
+      (p) => p.name.toLowerCase().trim() === payload.name.toLowerCase().trim() && p.slug !== (slug || '')
+    );
+    if (duplicateName) {
+      setNotices(prev => ({ ...prev, title: { message: `Product "${payload.name}" already exists. Please choose a different name.`, type: 'error' } }));
+      return;
+    }
+
+    // Check for duplicate by slug
+    const duplicateSlug = latestProducts.some((p) => p.slug === payload.slug && p.slug !== (slug || ''));
     if (duplicateSlug) {
-      setNotices(prev => ({ ...prev, title: { message: 'Title of Product already exists. Please choose a different name.', type: 'error' } }));
+      setNotices(prev => ({ ...prev, title: { message: `A product with a similar name already exists (slug: "${payload.slug}"). Please choose a different name.`, type: 'error' } }));
       return;
     }
 
@@ -504,11 +523,19 @@ export default function AdminProductForm() {
                     <input 
                       required 
                       value={form.name} 
-                      onChange={(e) => setForm({...form, name: e.target.value})} 
+                      onChange={(e) => {
+                        setForm({...form, name: e.target.value});
+                        setNotices(prev => ({...prev, title: undefined}));
+                      }} 
                       placeholder="e.g. Active Optical Cable (AOC)"
                       className="admin-search"
                       style={{ width: '100%' }}
                     />
+                    {notices.title && (
+                      <div className={`admin-message ${notices.title.type}`} style={{ width: '100%', marginTop: '10px', padding: '10px 14px', borderRadius: '6px', fontSize: '13px' }}>
+                        {notices.title.message}
+                      </div>
+                    )}
                   </div>
 
                   <div className="admin-form-group">

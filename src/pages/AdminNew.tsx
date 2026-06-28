@@ -140,7 +140,13 @@ export default function AdminNew() {
   const [loginEmail, setLoginEmail] = useState('admin@pdrworld.com');
   const [loginPassword, setLoginPassword] = useState('Admin@123');
   const [loginError, setLoginError] = useState('');
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem('admin_dark_mode') === 'true';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('admin_dark_mode', darkMode.toString());
+  }, [darkMode]);
   const [activeTab, setActiveTab] = useState<'dashboard' | 'products' | 'rfqs' | 'activity' | 'settings'>('dashboard');
 
   const [products, setProducts] = useState<AdminProduct[]>(() => {

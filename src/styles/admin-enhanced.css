@@ -1710,3 +1710,23 @@
   line-height: 1 !important;
   font-size: 0 !important;
 }
+/* Dark Mode Readability Overrides */
+.admin-enhanced-shell.dark .admin-header-left h1,
+.admin-enhanced-shell.dark .admin-role-badge,
+.admin-enhanced-shell.dark .admin-nav-item.active {
+  color: #818cf8;
+}
+.admin-enhanced-shell.dark .admin-role-badge {
+  background: rgba(129, 140, 248, 0.15);
+}
+.admin-enhanced-shell.dark .admin-nav-item.active {
+  background: rgba(129, 140, 248, 0.1);
+}
+.admin-enhanced-shell.dark .admin-nav-item.active::before {
+  background: #818cf8;
+}
+
+.admin-enhanced-shell.dark h2, 
+.admin-enhanced-shell.dark h3 {
+  color: #ffffff;
+}
