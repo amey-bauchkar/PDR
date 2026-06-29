@@ -83,8 +83,10 @@ export const initializeProductStore = async (): Promise<void> => {
 async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
   const response = await fetch(url, {
     ...init,
+    cache: 'no-store',
     headers: {
       'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache',
       ...(init?.headers || {}),
     },
   });

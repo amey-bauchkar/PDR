@@ -4,7 +4,7 @@ import { useRfqCart } from '../components/RfqCartProvider';
 import Seo from '../components/Seo';
 import { ProductSchema, BreadcrumbSchema } from '../components/Schema';
 import productsData from '../data/products.json';
-import { mergeWithProducts } from '../lib/productSync';
+import { fetchAndSyncProducts, mergeWithProducts } from '../lib/productSync';
 import { resolveCanonicalProductImage, getFallbackImage } from '../lib/imageResolution';
 import { downloadProductDatasheet } from '../lib/datasheetPdf';
 
@@ -32,6 +32,7 @@ export default function ProductDetail() {
   const { addItem } = useRfqCart();
   const [added, setAdded] = useState(false);
   const [products, setProducts] = useState<Product[]>(() => mergeWithProducts(productsData));
+  const [syncComplete, setSyncComplete] = useState(false);
   const [droneLength, setDroneLength] = useState('1 km');
   const [customDroneLength, setCustomDroneLength] = useState('');
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -46,9 +47,22 @@ export default function ProductDetail() {
     const handleStorage = () => {
       setProducts(mergeWithProducts(productsData));
     };
+
+    let cancelled = false;
+    fetchAndSyncProducts()
+      .then(() => {
+        if (!cancelled) {
+          setProducts(mergeWithProducts(productsData));
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setSyncComplete(true);
+      });
+
     window.addEventListener('storage', handleStorage);
     window.addEventListener('pdrworld-product-update', handleStorage);
     return () => {
+      cancelled = true;
       window.removeEventListener('storage', handleStorage);
       window.removeEventListener('pdrworld-product-update', handleStorage);
     };
@@ -58,6 +72,14 @@ export default function ProductDetail() {
   const detailImage = resolveCanonicalProductImage(product?.slug, product?.imageUrl, product?.category);
 
   const datasheetUrl = product?.datasheetUrl;
+
+  if (!product && !syncComplete) {
+    return (
+      <section className="section" style={{ paddingTop: 180, paddingBottom: 120, background: '#FFFFFF' }}>
+        <div className="container" style={{ color: '#475569' }}>Loading product...</div>
+      </section>
+    );
+  }
 
   if (!product) return <Navigate to="/404" replace />;
 

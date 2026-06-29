@@ -9,7 +9,7 @@ import {
 import { BreadcrumbSchema, ItemListSchema } from '../components/Schema';
 import productsData from '../data/products.json';
 import { productsCategoryHrefDeep } from '../data/productCategoryRoutes';
-import { mergeWithCatalogue, getAdminProducts } from '../lib/productSync';
+import { fetchAndSyncProducts, mergeWithCatalogue, getAdminProducts } from '../lib/productSync';
 import rawCatalogue from '../data/catalogue.json';
 import '../styles/products.css';
 
@@ -22,10 +22,16 @@ export default function Products() {
     const handleStorageChange = () => {
       setCatalogue(mergeWithCatalogue(rawCatalogue));
     };
+
+    let cancelled = false;
+    fetchAndSyncProducts().then(() => {
+      if (!cancelled) setCatalogue(mergeWithCatalogue(rawCatalogue));
+    });
     
     window.addEventListener('storage', handleStorageChange);
     window.addEventListener('pdrworld-product-update', handleStorageChange);
     return () => {
+      cancelled = true;
       window.removeEventListener('storage', handleStorageChange);
       window.removeEventListener('pdrworld-product-update', handleStorageChange);
     };

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useRfqCart } from './RfqCartProvider';
 import { getFallbackImage } from '../lib/imageResolution';
 import productsData from '../data/products.json';
-import { mergeWithProducts } from '../lib/productSync';
+import { fetchAndSyncProducts, mergeWithProducts } from '../lib/productSync';
 
 export default function RfqCartWidget() {
   const { items, isOpen, removeItem, updateQty, open, close, submit } = useRfqCart();
@@ -13,9 +13,16 @@ export default function RfqCartWidget() {
 
   useEffect(() => {
     const handleStorage = () => setProducts(mergeWithProducts(productsData));
+
+    let cancelled = false;
+    fetchAndSyncProducts().then(() => {
+      if (!cancelled) setProducts(mergeWithProducts(productsData));
+    });
+
     window.addEventListener('storage', handleStorage);
     window.addEventListener('pdrworld-product-update', handleStorage);
     return () => {
+      cancelled = true;
       window.removeEventListener('storage', handleStorage);
       window.removeEventListener('pdrworld-product-update', handleStorage);
     };

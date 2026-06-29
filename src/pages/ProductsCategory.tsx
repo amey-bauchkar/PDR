@@ -12,7 +12,7 @@ import {
 import rawCatalogue from '../data/catalogue.json';
 import type { ProductCategoryPath } from '../data/productCategoryRoutes';
 import { categoryCanonical, categoryPathToSectionId } from '../data/productCategoryRoutes';
-import { mergeWithCatalogue } from '../lib/productSync';
+import { fetchAndSyncProducts, mergeWithCatalogue } from '../lib/productSync';
 import '../styles/products.css';
 
 type Props = { categoryPath: ProductCategoryPath };
@@ -24,9 +24,16 @@ export default function ProductsCategory({ categoryPath }: Props) {
     const handleStorageChange = () => {
       setCatalogue(mergeWithCatalogue(rawCatalogue));
     };
+
+    let cancelled = false;
+    fetchAndSyncProducts().then(() => {
+      if (!cancelled) setCatalogue(mergeWithCatalogue(rawCatalogue));
+    });
+
     window.addEventListener('storage', handleStorageChange);
     window.addEventListener('pdrworld-product-update', handleStorageChange);
     return () => {
+      cancelled = true;
       window.removeEventListener('storage', handleStorageChange);
       window.removeEventListener('pdrworld-product-update', handleStorageChange);
     };
