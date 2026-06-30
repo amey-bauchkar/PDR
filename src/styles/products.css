@@ -133,7 +133,7 @@
     .icon-btn:hover{background:rgba(255,255,255,.12)}
 
     /* Mega menu */
-    .has-mega{position:relative}
+    .has-mega{position:static}
     .mega{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(-6px);width:min(900px,90vw);background:#FFFFFF;border:1px solid #E2E8F0;border-radius:16px;padding:24px;box-shadow:0 20px 60px -15px rgba(7,0,143,.12);opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease}
     .has-mega:hover .mega, .has-mega.open .mega{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
     .mega-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}

@@ -544,6 +544,12 @@
 .admin-metric:nth-child(4) { border-top: 3px solid var(--admin-info); }
 .admin-metric:nth-child(4) strong { color: var(--admin-info); }
 
+/* Dark Mode Overrides for legible metric numbers */
+.admin-enhanced-shell.dark .admin-metric:nth-child(1) strong { color: #4a9fd8; }
+.admin-enhanced-shell.dark .admin-metric:nth-child(2) strong { color: #34d399; }
+.admin-enhanced-shell.dark .admin-metric:nth-child(3) strong { color: #fbbf24; }
+.admin-enhanced-shell.dark .admin-metric:nth-child(4) strong { color: #60a5fa; }
+
 /* Section */
 .admin-section {
   background: var(--admin-surface);
@@ -1656,4 +1662,71 @@
   font-weight: 600;
   color: var(--admin-text);
   margin: 0;
+}
+
+/* ===== Dynamic list rows (Features / Applications / Description Points) ===== */
+.dyn-list-row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+
+.dyn-list-input {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  max-height: 40px !important;
+  padding: 0 14px !important;
+  margin: 0 !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--admin-border) !important;
+  background: var(--admin-surface) !important;
+  color: var(--admin-text) !important;
+  font-size: 14px !important;
+  box-sizing: border-box !important;
+  line-height: 40px !important;
+}
+
+.dyn-list-del {
+  flex: 0 0 40px !important;
+  width: 40px !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  max-height: 40px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  border: 1px solid #ef4444 !important;
+  border-radius: 8px !important;
+  background: rgba(239,68,68,0.05) !important;
+  color: #ef4444 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  font-size: 0 !important;
+}
+/* Dark Mode Readability Overrides */
+.admin-enhanced-shell.dark .admin-header-left h1,
+.admin-enhanced-shell.dark .admin-role-badge,
+.admin-enhanced-shell.dark .admin-nav-item.active {
+  color: #818cf8;
+}
+.admin-enhanced-shell.dark .admin-role-badge {
+  background: rgba(129, 140, 248, 0.15);
+}
+.admin-enhanced-shell.dark .admin-nav-item.active {
+  background: rgba(129, 140, 248, 0.1);
+}
+.admin-enhanced-shell.dark .admin-nav-item.active::before {
+  background: #818cf8;
+}
+
+.admin-enhanced-shell.dark h2, 
+.admin-enhanced-shell.dark h3 {
+  color: #ffffff;
 }

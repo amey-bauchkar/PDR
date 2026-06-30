@@ -1,6 +1,8 @@
 import Seo from '../components/Seo';
 import { BreadcrumbSchema } from '../components/Schema';
 import { Link } from 'react-router-dom';
+import '../styles/legal.css';
+
 
 export default function Privacy() {
   return (
@@ -15,14 +17,18 @@ export default function Privacy() {
         { name: 'Privacy Policy', url: 'https://pdr-sable.vercel.app/privacy' },
       ]} />
 
-      <section className="section" style={{ paddingTop: 160, paddingBottom: 80 }}>
-        <div className="container" style={{ maxWidth: 800 }}>
-          <h1 style={{ color: '#07008F', marginBottom: 32 }}>Privacy Policy</h1>
-          <p style={{ color: '#475569', marginBottom: 32 }}>
-            Effective Date: January 1, 2025 | Last Updated: January 1, 2025
-          </p>
+      <section className="legal-hero grid-bg">
+        <div className="container">
+          <div className="eyebrow">Legal</div>
+          <h1 style={{ color: '#07008F' }}>Privacy Policy</h1>
+          <p>Effective Date: January 1, 2025 | Last Updated: January 1, 2025</p>
+        </div>
+      </section>
 
-          <article style={{ lineHeight: 1.8, color: '#334155' }}>
+      <section className="legal-content-section">
+        <div className="container">
+          <div className="legal-card">
+            <article className="legal-article">
             <h2>1. Introduction</h2>
             <p>
               PDR Videotronics India Pvt. Ltd. ("PDR World", "we", "us") respects your privacy and is committed to
@@ -33,7 +39,7 @@ export default function Privacy() {
 
             <h2>2. Information We Collect</h2>
             <p>We collect information in the following ways:</p>
-            <ul style={{ paddingLeft: 24, marginBottom: 24 }}>
+            <ul>
               <li><strong>Contact Forms:</strong> Name, email, phone number, company name, and inquiry details when you submit a quote request or contact form.</li>
               <li><strong>RFQ Submissions:</strong> Product specifications, quantities, and project details submitted through our request for quotation process.</li>
               <li><strong>Website Analytics:</strong> IP address, browser type, pages visited, and interaction patterns via standard analytics tools.</li>
@@ -42,7 +48,7 @@ export default function Privacy() {
 
             <h2>3. How We Use Your Information</h2>
             <p>We use collected information to:</p>
-            <ul style={{ paddingLeft: 24, marginBottom: 24 }}>
+            <ul>
               <li>Respond to RFQs and technical inquiries within our committed 24-hour response window</li>
               <li>Process orders and manage customer accounts</li>
               <li>Provide technical support and engineering consultation</li>
@@ -54,7 +60,7 @@ export default function Privacy() {
             <p>
               PDR World does not sell, rent, or trade your personal information to third parties. We may share data with:
             </p>
-            <ul style={{ paddingLeft: 24, marginBottom: 24 }}>
+            <ul>
               <li><strong>Logistics partners:</strong> Shipping details necessary for order fulfillment</li>
               <li><strong>Legal authorities:</strong> When required by Indian law or court order</li>
               <li><strong>Service providers:</strong> Web hosting, analytics, and email delivery services operating under strict data processing agreements</li>
@@ -82,7 +88,7 @@ export default function Privacy() {
 
             <h2>8. Your Rights</h2>
             <p>Under applicable Indian data protection laws, you have the right to:</p>
-            <ul style={{ paddingLeft: 24, marginBottom: 24 }}>
+            <ul>
               <li>Access the personal data we hold about you</li>
               <li>Request correction of inaccurate data</li>
               <li>Request deletion of your data (subject to legal retention requirements)</li>
@@ -106,9 +112,9 @@ export default function Privacy() {
             <h2>11. Contact Us</h2>
             <p>
               For privacy-related inquiries, data access requests, or to exercise your rights, contact us at{' '}
-              <a href="mailto:info@pdrworld.com" style={{ color: '#07008F' }}>info@pdrworld.com</a> or write to:
+              <a href="mailto:info@pdrworld.com">info@pdrworld.com</a> or write to:
             </p>
-            <address style={{ fontStyle: 'normal', padding: '16px 24px', background: '#F8FAFC', borderRadius: 8, marginTop: 12 }}>
+            <address style={{ fontStyle: 'normal', padding: '16px 24px', background: 'var(--surface-3)', borderRadius: 'var(--rad)', marginTop: 12 }}>
               PDR Videotronics India Pvt. Ltd.<br />
               99, Old Prabhadevi Road<br />
               Mumbai 400025, Maharashtra, India<br />
@@ -116,9 +122,10 @@ export default function Privacy() {
             </address>
           </article>
 
-          <div style={{ marginTop: 60, padding: '32px', background: '#F8FAFC', borderRadius: 'var(--rad)', border: '1px solid var(--line)', textAlign: 'center' }}>
-            <p style={{ marginBottom: 16, color: '#475569' }}>Have questions about your data or privacy?</p>
-            <Link className="btn btn-primary" to="/contact">Contact Our Team</Link>
+            <div className="legal-contact">
+              <p>Have questions about your data or privacy?</p>
+              <Link className="btn btn-primary" to="/contact">Contact Our Team</Link>
+            </div>
           </div>
         </div>
       </section>

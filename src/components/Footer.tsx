@@ -191,10 +191,7 @@ export default function Footer() {
         </p>
         <div className="links">
           <Link to="/terms">Terms of Sale</Link>
-          <Link to="/terms">Terms of Use</Link>
           <Link to="/privacy">Privacy Policy</Link>
-          <Link to="/privacy">Disclaimer</Link>
-          <a href="mailto:info@pdrworld.com?subject=Subscriptions">Subscriptions</a>
         </div>
       </div>
     </footer>

@@ -114,6 +114,7 @@ export default function Header() {
               className={`has-mega${openMega === 'tools' ? ' open' : ''}`}
               onMouseEnter={() => openWithDelayCancel('tools')}
               onMouseLeave={closeWithDelay}
+              style={{ position: 'relative' }}
             >
               <NavLink to="/cable-configurator" className={({ isActive }) => (isActive ? 'active' : undefined)} aria-haspopup="true">
                 Configurator Tools
