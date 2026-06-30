@@ -16,16 +16,21 @@ import '../styles/products.css';
 export default function Products() {
   const location = useLocation();
   const [catalogue, setCatalogue] = useState(() => mergeWithCatalogue(rawCatalogue));
+  const [adminProducts, setAdminProducts] = useState(() => getAdminProducts().filter((p) => p.status === 'Active'));
 
   useEffect(() => {
     // Refresh catalogue when admin makes changes
     const handleStorageChange = () => {
       setCatalogue(mergeWithCatalogue(rawCatalogue));
+      setAdminProducts(getAdminProducts().filter((p) => p.status === 'Active'));
     };
 
     let cancelled = false;
     fetchAndSyncProducts().then(() => {
-      if (!cancelled) setCatalogue(mergeWithCatalogue(rawCatalogue));
+      if (!cancelled) {
+        setCatalogue(mergeWithCatalogue(rawCatalogue));
+        setAdminProducts(getAdminProducts().filter((p) => p.status === 'Active'));
+      }
     });
     
     window.addEventListener('storage', handleStorageChange);
@@ -43,8 +48,7 @@ export default function Products() {
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, [location.hash]);
 
-  // Extract recently added admin products
-  const adminProducts = getAdminProducts().filter((p) => p.status === 'Active');
+  // Extract recently added admin products (now reactive via state)
   const catalogueSlugs = new Set<string>();
   if (rawCatalogue && rawCatalogue.sections) {
     rawCatalogue.sections.forEach((section: any) => {

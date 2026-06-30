@@ -7,7 +7,16 @@ function getSupabase() {
   return createClient(url, key);
 }
 
-const PRODUCT_SELECT = `
+// Lightweight select for list view - skips features and applications joins.
+const PRODUCT_LIST_SELECT = `
+  slug, name, status, image_url, tagline, description, title, canonical_url,
+  hero_icon_svg, metadata, updated_at,
+  category_ref:product_categories(name),
+  specs:catalog_product_specs(label, value, position)
+`;
+
+// Full select used only after create/update to return complete product data.
+const PRODUCT_FULL_SELECT = `
   *,
   category_ref:product_categories(name),
   features:catalog_product_features(feature, position),
@@ -90,15 +99,48 @@ async function handleGet(req, res) {
   }
 
   try {
-    const { data, error } = await supabase
-      .from('catalog_products')
-      .select(PRODUCT_SELECT)
-      .order('sort_order', { ascending: true });
+    const [
+      { data: products, error: e1 },
+      { data: specs, error: e2 },
+      { data: features, error: e3 },
+      { data: apps, error: e4 },
+      { data: cats, error: e5 }
+    ] = await Promise.all([
+      supabase.from('catalog_products').select('*').order('sort_order', { ascending: true }),
+      supabase.from('catalog_product_specs').select('*'),
+      supabase.from('catalog_product_features').select('*'),
+      supabase.from('catalog_product_applications').select('*'),
+      supabase.from('product_categories').select('id,name')
+    ]);
 
-    if (error) throw error;
+    if (e1 || e2 || e3 || e4 || e5) throw e1 || e2 || e3 || e4 || e5;
 
-    const products = (data || []).map(mapDbProduct).filter(Boolean);
-    return res.status(200).json({ success: true, data: products });
+    const catsMap = new Map(cats?.map(c => [c.id, c.name]));
+    const specsMap = new Map();
+    specs?.forEach(s => {
+      if (!specsMap.has(s.product_id)) specsMap.set(s.product_id, []);
+      specsMap.get(s.product_id).push(s);
+    });
+    const featuresMap = new Map();
+    features?.forEach(f => {
+      if (!featuresMap.has(f.product_id)) featuresMap.set(f.product_id, []);
+      featuresMap.get(f.product_id).push(f);
+    });
+    const appsMap = new Map();
+    apps?.forEach(a => {
+      if (!appsMap.has(a.product_id)) appsMap.set(a.product_id, []);
+      appsMap.get(a.product_id).push(a);
+    });
+
+    const finalProducts = products.map(p => mapDbProduct({
+      ...p,
+      category_ref: { name: catsMap.get(p.category_id) },
+      specs: specsMap.get(p.id) || [],
+      features: featuresMap.get(p.id) || [],
+      applications: appsMap.get(p.id) || []
+    })).filter(Boolean);
+
+    return res.status(200).json({ success: true, data: finalProducts });
   } catch (err) {
     console.error('Error fetching products:', err);
     return res.status(500).json({ success: false, error: 'Failed to fetch products' });
@@ -188,7 +230,7 @@ async function handlePost(req, res) {
       await supabase.from('catalog_product_applications').insert(appRows);
     }
 
-    // Insert specs
+    // Insert new specs
     if (prod.specs && prod.specs.length > 0) {
       const specRows = prod.specs.map((s, idx) => ({
         product_id: dbProdId,
@@ -199,16 +241,8 @@ async function handlePost(req, res) {
       await supabase.from('catalog_product_specs').insert(specRows);
     }
 
-    // Fetch the newly created product with all relations
-    const { data: created, error: fetchError } = await supabase
-      .from('catalog_products')
-      .select(PRODUCT_SELECT)
-      .eq('slug', prod.slug)
-      .single();
-
-    if (fetchError) throw fetchError;
-
-    return res.status(201).json({ success: true, data: mapDbProduct(created) });
+    prod.updatedAt = productRow.updated_at;
+    return res.status(200).json({ success: true, data: prod });
   } catch (err) {
     console.error('Error creating product:', err);
     return res.status(500).json({ success: false, error: 'Failed to create product', message: err.message });

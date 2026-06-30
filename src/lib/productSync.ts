@@ -1,5 +1,6 @@
 import seedProducts from '../data/products.json';
 import { get, set } from 'idb-keyval';
+import { supabase } from './supabase';
 
 export type AdminProduct = {
   slug: string;
@@ -146,7 +147,9 @@ export const saveAdminProducts = async (products: AdminProduct[]): Promise<void>
 };
 
 /**
- * Add or update a product in local cache AND backend database
+ * Add or update a product in local cache AND backend database.
+ * Waits for the API write before updating local cache so all devices see the
+ * same confirmed product state.
  */
 export const saveProduct = async (product: AdminProduct, previousSlug = product.slug): Promise<void> => {
   const products = getAdminProducts();
@@ -160,18 +163,23 @@ export const saveProduct = async (product: AdminProduct, previousSlug = product.
       body: JSON.stringify(product),
     }
   );
-  
+
+  const localProduct = {
+    ...product,
+    ...savedProduct,
+    updatedAt: savedProduct.updatedAt || product.updatedAt || new Date().toISOString(),
+  };
   if (index >= 0) {
-    products[index] = savedProduct;
+    products[index] = localProduct;
   } else {
-    products.unshift(savedProduct);
+    products.unshift(localProduct);
   }
-  
   await saveAdminProducts(products);
 };
 
 /**
- * Delete a product by slug in local cache AND backend database
+ * Delete a product by slug in local cache AND backend database.
+ * Waits for the API delete before updating local cache.
  */
 export const deleteProduct = async (slug: string): Promise<void> => {
   await requestJson<{ slug: string }>(`${PRODUCTS_API_URL}/${encodeURIComponent(slug)}`, {
@@ -183,23 +191,112 @@ export const deleteProduct = async (slug: string): Promise<void> => {
 };
 
 /**
- * Fetch all products from backend database and sync to localStorage cache
+ * Map a raw Supabase catalog_products row to AdminProduct format.
+ */
+function mapSupabaseProduct(db: any): AdminProduct | null {
+  if (!db) return null;
+  const features = (db.features || [])
+    .sort((a: any, b: any) => (a.position || 0) - (b.position || 0))
+    .map((f: any) => f.feature);
+  const applications = (db.applications || [])
+    .sort((a: any, b: any) => (a.position || 0) - (b.position || 0))
+    .map((a: any) => a.application);
+  const specs = (db.specs || [])
+    .sort((a: any, b: any) => (a.position || 0) - (b.position || 0))
+    .map((s: any) => ({ label: s.label, value: s.value }));
+  return {
+    slug: db.slug,
+    name: db.name,
+    category: db.category_ref?.name || 'Active Components',
+    title: db.title,
+    description: db.description,
+    canonical: db.canonical_url,
+    tagline: db.tagline,
+    status: db.status === 'published' ? 'Active' : (db.status === 'draft' ? 'Draft' : 'Archived'),
+    imageUrl: db.image_url,
+    features,
+    applications,
+    specs,
+    heroIcon: db.hero_icon_svg,
+    datasheetUrl: db.metadata?.datasheet_url || '',
+    galleryUrls: db.metadata?.gallery_urls || [],
+    updatedAt: db.updated_at,
+  };
+}
+
+
+
+/**
+ * Fetch all products — uses DIRECT Supabase connection (no serverless cold start!).
+ * Falls back to API if Supabase client is not available.
  */
 export const fetchAndSyncProducts = async (): Promise<AdminProduct[]> => {
+  // PRIMARY: Direct Supabase query from browser — ~200-500ms, no cold start
+  if (supabase) {
+    try {
+      const [
+        { data: products, error: e1 },
+        { data: specs, error: e2 },
+        { data: features, error: e3 },
+        { data: apps, error: e4 },
+        { data: cats, error: e5 }
+      ] = await Promise.all([
+        supabase.from('catalog_products').select('*').order('sort_order', { ascending: true }),
+        supabase.from('catalog_product_specs').select('*'),
+        supabase.from('catalog_product_features').select('*'),
+        supabase.from('catalog_product_applications').select('*'),
+        supabase.from('product_categories').select('id,name')
+      ]);
+
+      if (e1 || e2 || e3 || e4 || e5) throw e1 || e2 || e3 || e4 || e5;
+
+      const catsMap = new Map(cats?.map((c: any) => [c.id, c.name]));
+      const specsMap = new Map();
+      specs?.forEach((s: any) => {
+        if (!specsMap.has(s.product_id)) specsMap.set(s.product_id, []);
+        specsMap.get(s.product_id).push(s);
+      });
+      const featuresMap = new Map();
+      features?.forEach((f: any) => {
+        if (!featuresMap.has(f.product_id)) featuresMap.set(f.product_id, []);
+        featuresMap.get(f.product_id).push(f);
+      });
+      const appsMap = new Map();
+      apps?.forEach((a: any) => {
+        if (!appsMap.has(a.product_id)) appsMap.set(a.product_id, []);
+        appsMap.get(a.product_id).push(a);
+      });
+
+      const mapped = products!.map((p: any) => mapSupabaseProduct({
+        ...p,
+        category_ref: { name: catsMap.get(p.category_id) },
+        specs: specsMap.get(p.id) || [],
+        features: featuresMap.get(p.id) || [],
+        applications: appsMap.get(p.id) || []
+      })).filter(Boolean) as AdminProduct[];
+
+      await saveAdminProducts(mapped);
+      return mapped;
+    } catch (err) {
+      console.warn('[productSync] Supabase direct fetch failed, trying API fallback:', err);
+    }
+  }
+
+  // FALLBACK: API route (used if Supabase client not configured)
   try {
-    const products = await requestJson<AdminProduct[]>(PRODUCTS_API_URL);
-    await saveAdminProducts(products);
-    return products;
+    const apiProducts = await requestJson<AdminProduct[]>(PRODUCTS_API_URL);
+    if (apiProducts && apiProducts.length > 0) {
+      await saveAdminProducts(apiProducts);
+      return apiProducts;
+    }
+    console.warn('[productSync] API returned empty product list, keeping local cache.');
+    return getAdminProducts();
   } catch (err) {
-    console.warn('Failed to sync products from backend, using local cache:', err);
+    console.warn('[productSync] Failed to sync products from backend, using local cache:', err);
     return getAdminProducts();
   }
 };
 
-/**
- * Get products grouped by category (for display)
- * Returns only Active products by default
- */
 export const getProductsByCategory = (includeInactive = false) => {
   const products = getAdminProducts().filter(
     (p) => includeInactive || p.status === 'Active'

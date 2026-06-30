@@ -7,6 +7,7 @@ function getSupabase() {
   return createClient(url, key);
 }
 
+// Full select for individual product detail pages.
 const PRODUCT_SELECT = `
   *,
   category_ref:product_categories(name),
@@ -205,16 +206,8 @@ async function handlePut(req, res, slug) {
       await supabase.from('catalog_product_specs').insert(specRows);
     }
 
-    // Fetch the updated product with all relations
-    const { data: updated, error: fetchError } = await supabase
-      .from('catalog_products')
-      .select(PRODUCT_SELECT)
-      .eq('slug', prod.slug)
-      .single();
-
-    if (fetchError) throw fetchError;
-
-    return res.status(200).json({ success: true, data: mapDbProduct(updated) });
+    prod.updatedAt = productRow.updated_at;
+    return res.status(200).json({ success: true, data: prod });
   } catch (err) {
     console.error('Error updating product:', err);
     return res.status(500).json({ success: false, error: 'Failed to update product', message: err.message });
