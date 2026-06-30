@@ -4,7 +4,7 @@ import { useRfqCart } from '../components/RfqCartProvider';
 import Seo from '../components/Seo';
 import { ProductSchema, BreadcrumbSchema } from '../components/Schema';
 import productsData from '../data/products.json';
-import { fetchAndSyncProducts, mergeWithProducts } from '../lib/productSync';
+import { fetchAndSyncProducts, fetchProductBySlug, mergeWithProducts } from '../lib/productSync';
 import { resolveCanonicalProductImage, getFallbackImage } from '../lib/imageResolution';
 import { downloadProductDatasheet } from '../lib/datasheetPdf';
 
@@ -50,7 +50,10 @@ export default function ProductDetail() {
 
     let cancelled = false;
     fetchAndSyncProducts()
-      .then(() => {
+      .then(async () => {
+        if (slug) {
+          await fetchProductBySlug(slug);
+        }
         if (!cancelled) {
           setProducts(mergeWithProducts(productsData));
         }
@@ -66,7 +69,7 @@ export default function ProductDetail() {
       window.removeEventListener('storage', handleStorage);
       window.removeEventListener('pdrworld-product-update', handleStorage);
     };
-  }, []);
+  }, [slug]);
 
   const product = products.find((p) => p.slug === slug);
   const detailImage = resolveCanonicalProductImage(product?.slug, product?.imageUrl, product?.category);

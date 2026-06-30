@@ -300,6 +300,24 @@ export const fetchAndSyncProducts = async (): Promise<AdminProduct[]> => {
   }
 };
 
+export const fetchProductBySlug = async (slug: string): Promise<AdminProduct | null> => {
+  try {
+    const product = await requestJson<AdminProduct>(`${PRODUCTS_API_URL}/${encodeURIComponent(slug)}`);
+    const products = getAdminProducts();
+    const index = products.findIndex((p) => p.slug === product.slug);
+    if (index >= 0) {
+      products[index] = { ...products[index], ...product };
+    } else {
+      products.unshift(product);
+    }
+    await saveAdminProducts(products);
+    return product;
+  } catch (err) {
+    console.warn('[productSync] Failed to fetch full product detail:', err);
+    return null;
+  }
+};
+
 export const getProductsByCategory = (includeInactive = false) => {
   const products = getAdminProducts().filter(
     (p) => includeInactive || p.status === 'Active'
