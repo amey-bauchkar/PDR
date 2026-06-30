@@ -53,7 +53,7 @@ function mapDbProduct(db) {
     applications,
     specs,
     heroIcon: db.hero_icon_svg,
-    datasheetUrl: db.metadata?.datasheet_url || '',
+    datasheetUrl: db.metadata?.datasheet_url?.startsWith?.('data:') ? '' : (db.metadata?.datasheet_url || ''),
     galleryUrls: db.metadata?.gallery_urls || [],
     updatedAt: db.updated_at,
   };
@@ -106,7 +106,10 @@ async function handleGet(req, res) {
       { data: apps, error: e4 },
       { data: cats, error: e5 }
     ] = await Promise.all([
-      supabase.from('catalog_products').select('*').order('sort_order', { ascending: true }),
+      supabase
+        .from('catalog_products')
+        .select('id, slug, category_id, name, title, tagline, description, canonical_url, hero_icon_svg, image_url, sort_order, status, updated_at')
+        .order('sort_order', { ascending: true }),
       supabase.from('catalog_product_specs').select('*'),
       supabase.from('catalog_product_features').select('*'),
       supabase.from('catalog_product_applications').select('*'),
