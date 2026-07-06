@@ -6,7 +6,6 @@ import { ProductSchema, BreadcrumbSchema } from '../components/Schema';
 import productsData from '../data/products.json';
 import { fetchAndSyncProducts, fetchProductBySlug, mergeWithProducts } from '../lib/productSync';
 import { resolveCanonicalProductImage, getFallbackImage } from '../lib/imageResolution';
-import { downloadProductDatasheet } from '../lib/datasheetPdf';
 
 type Product = {
   slug: string;
@@ -246,45 +245,28 @@ export default function ProductDetail() {
                 >
                   {added ? '✓ Added' : 'Add to Quote'}
                 </button>
-                <button
+                {product.datasheetUrl && (
+                  <button
                     type="button"
                     onClick={() => {
-                      if (product.datasheetUrl) {
-                        const url = product.datasheetUrl;
-                        if (url.startsWith('data:')) {
-                          try {
-                            const [header, base64] = url.split(',');
-                            const mime = header.match(/:(.*?);/)?.[1] || 'application/pdf';
-                            const binary = atob(base64);
-                            const bytes = new Uint8Array(binary.length);
-                            for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-                            const blob = new Blob([bytes], { type: mime });
-                            const blobUrl = URL.createObjectURL(blob);
-                            window.open(blobUrl, '_blank');
-                            // Revoke safely after navigating
-                            setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
-                          } catch (e) {
-                            console.error('Failed to parse datasheet URL', e);
-                            window.open(url, '_blank');
-                          }
-                        } else {
+                      const url = product.datasheetUrl || '';
+                      if (url.startsWith('data:')) {
+                        try {
+                          const [header, base64] = url.split(',');
+                          const mime = header.match(/:(.*?);/)?.[1] || 'application/pdf';
+                          const binary = atob(base64);
+                          const bytes = new Uint8Array(binary.length);
+                          for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+                          const blob = new Blob([bytes], { type: mime });
+                          const blobUrl = URL.createObjectURL(blob);
+                          window.open(blobUrl, '_blank');
+                          setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+                        } catch (e) {
+                          console.error('Failed to parse datasheet URL', e);
                           window.open(url, '_blank');
                         }
                       } else {
-                        // No static PDF: generate it on the fly with jsPDF
-                        downloadProductDatasheet({
-                          slug: product.slug,
-                          name: product.name,
-                          category: product.category,
-                          title: product.title || `${product.name} | PDR World`,
-                          description: product.description || '',
-                          canonical: `https://pdr-sable.vercel.app/products/${product.slug}`,
-                          tagline: product.tagline || '',
-                          features: product.features || [],
-                          applications: product.applications || [],
-                          specs: product.specs || [],
-                          related: product.related || [],
-                        });
+                        window.open(url, '_blank');
                       }
                     }}
                     className="btn btn-outline"
@@ -299,6 +281,7 @@ export default function ProductDetail() {
                     </svg>
                     Datasheet (PDF)
                   </button>
+                )}
               </div>
             </div>
           </div>
