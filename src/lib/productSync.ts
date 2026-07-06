@@ -146,6 +146,15 @@ export const saveAdminProducts = async (products: AdminProduct[]): Promise<void>
   window.dispatchEvent(new Event('pdrworld-product-update'));
 };
 
+const mergePreservingDatasheets = (incoming: AdminProduct[]): AdminProduct[] => {
+  const currentBySlug = new Map(getAdminProducts().map((product) => [product.slug, product]));
+  return incoming.map((product) => {
+    const existing = currentBySlug.get(product.slug);
+    if (!existing?.datasheetUrl || product.datasheetUrl) return product;
+    return { ...product, datasheetUrl: existing.datasheetUrl };
+  });
+};
+
 /**
  * Add or update a product in local cache AND backend database.
  * Waits for the API write before updating local cache so all devices see the
@@ -278,8 +287,9 @@ export const fetchAndSyncProducts = async (): Promise<AdminProduct[]> => {
         applications: appsMap.get(p.id) || []
       })).filter(Boolean) as AdminProduct[];
 
-      await saveAdminProducts(mapped);
-      return mapped;
+      const merged = mergePreservingDatasheets(mapped);
+      await saveAdminProducts(merged);
+      return merged;
     } catch (err) {
       console.warn('[productSync] Supabase direct fetch failed, trying API fallback:', err);
     }
@@ -289,8 +299,9 @@ export const fetchAndSyncProducts = async (): Promise<AdminProduct[]> => {
   try {
     const apiProducts = await requestJson<AdminProduct[]>(PRODUCTS_API_URL);
     if (apiProducts && apiProducts.length > 0) {
-      await saveAdminProducts(apiProducts);
-      return apiProducts;
+      const merged = mergePreservingDatasheets(apiProducts);
+      await saveAdminProducts(merged);
+      return merged;
     }
     console.warn('[productSync] API returned empty product list, keeping local cache.');
     return getAdminProducts();
