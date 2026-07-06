@@ -35,11 +35,15 @@ export default function ProductDetail() {
   const [droneLength, setDroneLength] = useState('1 km');
   const [customDroneLength, setCustomDroneLength] = useState('');
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [currentDatasheetUrl, setCurrentDatasheetUrl] = useState('');
+  const [datasheetReady, setDatasheetReady] = useState(false);
 
   const [prevSlug, setPrevSlug] = useState(slug);
   if (slug !== prevSlug) {
     setPrevSlug(slug);
     setSelectedImage(null);
+    setCurrentDatasheetUrl('');
+    setDatasheetReady(false);
   }
 
   useEffect(() => {
@@ -48,13 +52,18 @@ export default function ProductDetail() {
     };
 
     let cancelled = false;
+    setCurrentDatasheetUrl('');
+    setDatasheetReady(false);
     fetchAndSyncProducts()
       .then(async () => {
+        let fullProduct = null;
         if (slug) {
-          await fetchProductBySlug(slug);
+          fullProduct = await fetchProductBySlug(slug);
         }
         if (!cancelled) {
           setProducts(mergeWithProducts(productsData));
+          setCurrentDatasheetUrl(fullProduct?.datasheetUrl || '');
+          setDatasheetReady(true);
         }
       })
       .finally(() => {
@@ -72,8 +81,6 @@ export default function ProductDetail() {
 
   const product = products.find((p) => p.slug === slug);
   const detailImage = resolveCanonicalProductImage(product?.slug, product?.imageUrl, product?.category);
-
-  const datasheetUrl = product?.datasheetUrl;
 
   if (!product && !syncComplete) {
     return (
@@ -248,7 +255,7 @@ export default function ProductDetail() {
                 <button
                   type="button"
                   onClick={() => {
-                    const url = product.datasheetUrl || '';
+                    const url = currentDatasheetUrl;
                     if (!url) return;
                     if (url.startsWith('data:')) {
                         try {
@@ -270,7 +277,17 @@ export default function ProductDetail() {
                       }
                   }}
                   className="btn btn-outline"
-                  style={{ padding: '16px 32px', fontSize: 16, display: 'flex', alignItems: 'center', gap: 8 }}
+                  aria-disabled={!datasheetReady || !currentDatasheetUrl}
+                  title={currentDatasheetUrl ? 'Open datasheet' : 'Datasheet is not uploaded yet'}
+                  style={{
+                    padding: '16px 32px',
+                    fontSize: 16,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    opacity: datasheetReady && currentDatasheetUrl ? 1 : 0.6,
+                    cursor: datasheetReady && currentDatasheetUrl ? 'pointer' : 'not-allowed',
+                  }}
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
