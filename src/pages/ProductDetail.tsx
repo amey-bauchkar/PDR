@@ -35,15 +35,11 @@ export default function ProductDetail() {
   const [droneLength, setDroneLength] = useState('1 km');
   const [customDroneLength, setCustomDroneLength] = useState('');
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [currentDatasheetUrl, setCurrentDatasheetUrl] = useState('');
-  const [datasheetReady, setDatasheetReady] = useState(false);
 
   const [prevSlug, setPrevSlug] = useState(slug);
   if (slug !== prevSlug) {
     setPrevSlug(slug);
     setSelectedImage(null);
-    setCurrentDatasheetUrl('');
-    setDatasheetReady(false);
   }
 
   useEffect(() => {
@@ -52,19 +48,11 @@ export default function ProductDetail() {
     };
 
     let cancelled = false;
-    setCurrentDatasheetUrl('');
-    setDatasheetReady(false);
+    
     fetchAndSyncProducts()
       .then(async () => {
-        let fullProduct = null;
-        if (slug) {
-          fullProduct = await fetchProductBySlug(slug);
-        }
-        if (!cancelled) {
-          setProducts(mergeWithProducts(productsData));
-          setCurrentDatasheetUrl(fullProduct?.datasheetUrl || '');
-          setDatasheetReady(true);
-        }
+        if (cancelled) return;
+        setProducts(mergeWithProducts(productsData));
       })
       .finally(() => {
         if (!cancelled) setSyncComplete(true);
@@ -252,52 +240,78 @@ export default function ProductDetail() {
                 >
                   {added ? '✓ Added' : 'Add to Quote'}
                 </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    const url = currentDatasheetUrl;
-                    if (!url) return;
-                    if (url.startsWith('data:')) {
-                        try {
-                          const [header, base64] = url.split(',');
-                          const mime = header.match(/:(.*?);/)?.[1] || 'application/pdf';
-                          const binary = atob(base64);
-                          const bytes = new Uint8Array(binary.length);
-                          for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-                          const blob = new Blob([bytes], { type: mime });
-                          const blobUrl = URL.createObjectURL(blob);
-                          window.open(blobUrl, '_blank');
-                          setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
-                        } catch (e) {
-                          console.error('Failed to parse datasheet URL', e);
-                          window.open(url, '_blank');
-                        }
-                      } else {
-                        window.open(url, '_blank');
-                      }
-                  }}
-                  className="btn btn-outline"
-                  aria-disabled={!datasheetReady || !currentDatasheetUrl}
-                  title={currentDatasheetUrl ? 'Open datasheet' : 'Datasheet is not uploaded yet'}
-                  style={{
-                    padding: '16px 32px',
-                    fontSize: 16,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 8,
-                    opacity: datasheetReady && currentDatasheetUrl ? 1 : 0.6,
-                    cursor: datasheetReady && currentDatasheetUrl ? 'pointer' : 'not-allowed',
-                  }}
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <line x1="16" y1="13" x2="8" y2="13" />
-                    <line x1="16" y1="17" x2="8" y2="17" />
-                    <polyline points="10 9 9 9 8 9" />
-                  </svg>
-                  Datasheet (PDF)
-                </button>
+                {product.datasheetUrl ? (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      window.open(product.datasheetUrl, '_blank', 'noopener,noreferrer');
+                    }}
+                    style={{
+                      padding: '16px 32px',
+                      fontSize: 16,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 8,
+                      textDecoration: 'none',
+                      border: '1px solid #0f172a',
+                      background: '#fff',
+                      color: '#0f172a',
+                      borderRadius: '8px',
+                      cursor: 'pointer',
+                      fontWeight: 600,
+                      transition: 'all 0.2s ease',
+                      fontFamily: "'Manrope', sans-serif",
+                      WebkitTapHighlightColor: 'transparent',
+                      touchAction: 'manipulation',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.borderColor = '#07008F';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.borderColor = '#0f172a';
+                    }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="16" y1="13" x2="8" y2="13" />
+                      <line x1="16" y1="17" x2="8" y2="17" />
+                      <polyline points="10 9 9 9 8 9" />
+                    </svg>
+                    Datasheet (PDF)
+                  </button>
+                ) : (
+                  <span
+                    style={{
+                      padding: '16px 32px',
+                      fontSize: 16,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 8,
+                      opacity: 0.5,
+                      cursor: 'not-allowed',
+                      border: '1px solid #d6dee8',
+                      background: '#f8f9fa',
+                      color: '#94A3B8',
+                      borderRadius: '8px',
+                      fontWeight: 600,
+                      fontFamily: "'Manrope', sans-serif",
+                    }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="16" y1="13" x2="8" y2="13" />
+                      <line x1="16" y1="17" x2="8" y2="17" />
+                      <polyline points="10 9 9 9 8 9" />
+                    </svg>
+                    Datasheet (PDF)
+                  </span>
+                )}
               </div>
             </div>
           </div>

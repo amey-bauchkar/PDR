@@ -505,7 +505,7 @@ export const mergeWithProducts = (rawProducts: any[]): any[] => {
         specs: finalSpecs,
         related: adminProd.related || p.related || [],
         heroIcon: adminProd.heroIcon || p.heroIcon,
-        datasheetUrl: adminProd.datasheetUrl || '',
+        datasheetUrl: adminProd.datasheetUrl || p.datasheetUrl || '',
         galleryUrls: adminProd.galleryUrls || p.galleryUrls || [],
       };
     }
