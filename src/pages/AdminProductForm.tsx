@@ -275,31 +275,7 @@ export default function AdminProductForm() {
       return;
     }
 
-    if (file.size > 25 * 1024 * 1024) {
-      setNotices(prev => ({ ...prev, pdf: { message: 'PDF size must be less than 25MB.', type: 'error' } }));
-      return;
-    }
-
-    const uploadSlug = toSlug(form.slug || form.name || file.name.replace(/\.pdf$/i, 'datasheet'));
-    if (!uploadSlug) {
-      setNotices(prev => ({ ...prev, pdf: { message: 'Add a product name before uploading the datasheet.', type: 'error' } }));
-      return;
-    }
-
-    setNotices(prev => ({ ...prev, pdf: { message: 'Uploading datasheet...', type: 'info' } }));
-    try {
-      const url = await uploadProductDatasheet(file, uploadSlug);
-      setForm(prev => ({ ...prev, datasheetUrl: url }));
-      setNotices(prev => ({ ...prev, pdf: { message: 'Datasheet PDF uploaded successfully!', type: 'success' } }));
-    } catch (err) {
-      setNotices(prev => ({
-        ...prev,
-        pdf: { message: err instanceof Error ? err.message : 'Failed to upload PDF file.', type: 'error' },
-      }));
-    } finally {
-      event.target.value = '';
-    }
-  };
+\n  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
