@@ -246,7 +246,11 @@ export default function ProductDetail() {
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
-                      window.open(product.datasheetUrl, '_blank', 'noopener,noreferrer');
+                      // Add timestamp to bypass browser cache and always load latest datasheet
+                      const freshUrl = product.datasheetUrl.includes('?') 
+                        ? `${product.datasheetUrl}&t=${Date.now()}` 
+                        : `${product.datasheetUrl}?t=${Date.now()}`;
+                      window.open(freshUrl, '_blank', 'noopener,noreferrer');
                     }}
                     style={{
                       padding: '16px 32px',
