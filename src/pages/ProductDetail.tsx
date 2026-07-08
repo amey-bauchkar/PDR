@@ -247,9 +247,10 @@ export default function ProductDetail() {
                       e.preventDefault();
                       e.stopPropagation();
                       // Add timestamp to bypass browser cache and always load latest datasheet
-                      const freshUrl = product.datasheetUrl.includes('?') 
-                        ? `${product.datasheetUrl}&t=${Date.now()}` 
-                        : `${product.datasheetUrl}?t=${Date.now()}`;
+                      const datasheetUrl = product.datasheetUrl || '';
+                      const freshUrl = datasheetUrl.includes('?') 
+                        ? `${datasheetUrl}&t=${Date.now()}` 
+                        : `${datasheetUrl}?t=${Date.now()}`;
                       window.open(freshUrl, '_blank', 'noopener,noreferrer');
                     }}
                     style={{
