@@ -30,7 +30,22 @@ export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
   const { addItem } = useRfqCart();
   const [added, setAdded] = useState(false);
-  const [products, setProducts] = useState<Product[]>(() => mergeWithProducts(productsData));
+  // Initialize with fresh data from cache immediately
+  const [products, setProducts] = useState<Product[]>(() => {
+    // Try to get fresh data from localStorage first (has latest datasheets)
+    try {
+      const cached = localStorage.getItem('pdrworld-admin-products-v3');
+      if (cached) {
+        const adminProducts = JSON.parse(cached);
+        if (adminProducts && adminProducts.length > 0) {
+          return mergeWithProducts(productsData);
+        }
+      }
+    } catch (e) {
+      console.warn('Failed to read cached products:', e);
+    }
+    return mergeWithProducts(productsData);
+  });
   const [syncComplete, setSyncComplete] = useState(false);
   const [droneLength, setDroneLength] = useState('1 km');
   const [customDroneLength, setCustomDroneLength] = useState('');
@@ -49,12 +64,14 @@ export default function ProductDetail() {
 
     let cancelled = false;
     
+    // Immediately sync and update products on mount - don't wait
     fetchAndSyncProducts()
       .then(async () => {
         if (cancelled) return;
         setProducts(mergeWithProducts(productsData));
+        setSyncComplete(true);
       })
-      .finally(() => {
+      .catch(() => {
         if (!cancelled) setSyncComplete(true);
       });
 
