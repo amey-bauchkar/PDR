@@ -58,25 +58,36 @@ export default function ProductDetail() {
   }
 
   useEffect(() => {
+    let cancelled = false;
+    
+    // CRITICAL: Force fetch fresh products from API on EVERY mount to ensure all devices see latest datasheets
+    const loadFreshProducts = async () => {
+      try {
+        // Fetch latest from backend immediately - don't trust localStorage cache
+        const freshProducts = await fetchAndSyncProducts();
+        if (!cancelled && freshProducts && freshProducts.length > 0) {
+          setProducts(mergeWithProducts(productsData));
+          setSyncComplete(true);
+        }
+      } catch (error) {
+        console.warn('Failed to fetch fresh products:', error);
+        if (!cancelled) {
+          setProducts(mergeWithProducts(productsData));
+          setSyncComplete(true);
+        }
+      }
+    };
+
+    // Start fetching immediately
+    loadFreshProducts();
+
     const handleStorage = () => {
       setProducts(mergeWithProducts(productsData));
     };
 
-    let cancelled = false;
-    
-    // Immediately sync and update products on mount - don't wait
-    fetchAndSyncProducts()
-      .then(async () => {
-        if (cancelled) return;
-        setProducts(mergeWithProducts(productsData));
-        setSyncComplete(true);
-      })
-      .catch(() => {
-        if (!cancelled) setSyncComplete(true);
-      });
-
     window.addEventListener('storage', handleStorage);
     window.addEventListener('pdrworld-product-update', handleStorage);
+    
     return () => {
       cancelled = true;
       window.removeEventListener('storage', handleStorage);

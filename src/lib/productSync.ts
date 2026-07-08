@@ -24,7 +24,7 @@ export type AdminProduct = {
   galleryUrls?: string[];
 };
 
-const STORAGE_KEY = 'pdrworld-admin-products-v3';
+const STORAGE_KEY = 'pdrworld-admin-products-v4'; // Bumped to v4 to force fresh datasheet sync on all devices
 const PRODUCTS_API_URL = '/api/products';
 
 const getDefaultProducts = (): AdminProduct[] => {
@@ -49,18 +49,27 @@ export const initializeProductStore = async (): Promise<void> => {
       let raw = localStorage.getItem(STORAGE_KEY);
       let localProducts = raw ? JSON.parse(raw) : [];
       
-      // If v3 is empty, try to migrate from v2 to restore lost data
+      // If v4 is empty, try to migrate from v3/v2 to restore data
       if (localProducts.length === 0) {
-        const rawV2 = localStorage.getItem('pdrworld-admin-products-v2');
-        if (rawV2) {
-          const v2Products = JSON.parse(rawV2) as AdminProduct[];
-          // Fix categories using seedProducts
-          const seedMap = new Map(seedProducts.map(p => [p.slug, p.category]));
-          localProducts = v2Products.map(p => ({
-            ...p,
-            category: seedMap.get(p.slug) || p.category // restore category if it was corrupted
-          }));
-          console.log('Migrated data from v2 and restored categories.');
+        // Try v3 first
+        const rawV3 = localStorage.getItem('pdrworld-admin-products-v3');
+        if (rawV3) {
+          const v3Products = JSON.parse(rawV3) as AdminProduct[];
+          localProducts = v3Products;
+          console.log('Migrated data from v3 to v4 for fresh datasheet sync.');
+        } else {
+          // Fallback to v2
+          const rawV2 = localStorage.getItem('pdrworld-admin-products-v2');
+          if (rawV2) {
+            const v2Products = JSON.parse(rawV2) as AdminProduct[];
+            // Fix categories using seedProducts
+            const seedMap = new Map(seedProducts.map(p => [p.slug, p.category]));
+            localProducts = v2Products.map(p => ({
+              ...p,
+              category: seedMap.get(p.slug) || p.category // restore category if it was corrupted
+            }));
+            console.log('Migrated data from v2 and restored categories.');
+          }
         }
       }
 
@@ -110,7 +119,13 @@ export const getAdminProducts = (): AdminProduct[] => {
   const products = raw ? JSON.parse(raw) : [];
   if (products.length > 0) return products;
 
-  // Fallback to v2 for synchronous render if v3 is empty
+  // Fallback to v3 first, then v2 for synchronous render if v4 is empty
+  const rawV3 = localStorage.getItem('pdrworld-admin-products-v3');
+  if (rawV3) {
+    const v3Products = JSON.parse(rawV3) as AdminProduct[];
+    return v3Products;
+  }
+  
   const rawV2 = localStorage.getItem('pdrworld-admin-products-v2');
   if (rawV2) {
     const v2Products = JSON.parse(rawV2) as AdminProduct[];
