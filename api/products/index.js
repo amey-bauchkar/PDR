@@ -108,7 +108,7 @@ async function handleGet(req, res) {
     ] = await Promise.all([
       supabase
         .from('catalog_products')
-        .select('id, slug, category_id, name, title, tagline, description, canonical_url, hero_icon_svg, image_url, sort_order, status, updated_at')
+        .select('id, slug, category_id, name, title, tagline, description, canonical_url, hero_icon_svg, image_url, sort_order, status, metadata, updated_at')
         .order('sort_order', { ascending: true }),
       supabase.from('catalog_product_specs').select('*'),
       supabase.from('catalog_product_features').select('*'),

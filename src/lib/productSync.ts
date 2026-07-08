@@ -180,18 +180,104 @@ export const saveProduct = async (product: AdminProduct, previousSlug = product.
   const index = products.findIndex((p) => p.slug === previousSlug || p.slug === product.slug);
   const isUpdate = index >= 0;
 
-  const savedProduct = await requestJson<AdminProduct>(
-    isUpdate ? `${PRODUCTS_API_URL}/${encodeURIComponent(previousSlug)}` : PRODUCTS_API_URL,
-    {
-      method: isUpdate ? 'PUT' : 'POST',
-      body: JSON.stringify(product),
+  let savedProduct: AdminProduct | null = null;
+  try {
+    savedProduct = await requestJson<AdminProduct>(
+      isUpdate ? `${PRODUCTS_API_URL}/${encodeURIComponent(previousSlug)}` : PRODUCTS_API_URL,
+      {
+        method: isUpdate ? 'PUT' : 'POST',
+        body: JSON.stringify(product),
+      }
+    );
+  } catch (err) {
+    console.error("Vercel API failed to save product, trying direct Supabase fallback...", err);
+    if (supabase) {
+      try {
+        let categoryId = null;
+        const catName = product.category || 'Active Components';
+        const { data: catData } = await supabase.from('product_categories').select('id').ilike('name', catName).limit(1);
+        
+        if (catData && catData.length > 0) {
+          categoryId = catData[0].id;
+        } else {
+          const { data: newCat } = await supabase.from('product_categories').upsert({
+            slug: catName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''),
+            name: catName,
+            description: `Category for ${catName}`
+          }, { onConflict: 'slug' }).select('id').single();
+          if (newCat) categoryId = newCat.id;
+        }
+
+        const specsMap = (product.specs || []).reduce((acc, s) => { acc[s.label] = s.value; return acc; }, {} as any);
+        const productRow = {
+          slug: product.slug,
+          category_id: categoryId,
+          name: product.name,
+          title: product.title || `${product.name} | PDR World`,
+          tagline: product.tagline || '',
+          description: product.description || '',
+          canonical_url: product.canonical || `https://pdr-sable.vercel.app/products/${product.slug}`,
+          hero_icon_svg: product.heroIcon || '',
+          image_url: product.imageUrl || '',
+          status: product.status === 'Active' ? 'published' : (product.status === 'Draft' ? 'draft' : 'archived'),
+          metadata: {
+            environment: specsMap['Environment'] || specsMap['Installation'] || 'Indoor/Outdoor',
+            mount_type: specsMap['Mount Type'] || specsMap['Mounting'] || 'Rack Mount',
+            capacity: parseInt(specsMap['Capacity'] || specsMap['Ports'] || '0') || 0,
+            specs: specsMap,
+            datasheet_url: product.datasheetUrl || '',
+            gallery_urls: product.galleryUrls || [],
+          },
+          updated_at: new Date().toISOString(),
+        };
+
+        if (isUpdate) {
+          const { data: orig } = await supabase.from('catalog_products').select('id').eq('slug', previousSlug).single();
+          if (orig) {
+            await supabase.from('catalog_products').update(productRow).eq('id', orig.id);
+            const dbProdId = orig.id;
+            await supabase.from('catalog_product_features').delete().eq('product_id', dbProdId);
+            await supabase.from('catalog_product_applications').delete().eq('product_id', dbProdId);
+            await supabase.from('catalog_product_specs').delete().eq('product_id', dbProdId);
+            
+            if (product.features?.length) await supabase.from('catalog_product_features').insert(product.features.map((f, i) => ({ product_id: dbProdId, position: i, feature: f })));
+            if (product.applications?.length) await supabase.from('catalog_product_applications').insert(product.applications.map((a, i) => ({ product_id: dbProdId, position: i, application: a })));
+            if (product.specs?.length) await supabase.from('catalog_product_specs').insert(product.specs.map((s, i) => ({ product_id: dbProdId, position: i, label: s.label, value: s.value })));
+          } else {
+             const { data: inserted } = await supabase.from('catalog_products').insert(productRow).select().single();
+             if (inserted) {
+                const dbProdId = inserted.id;
+                if (product.features?.length) await supabase.from('catalog_product_features').insert(product.features.map((f, i) => ({ product_id: dbProdId, position: i, feature: f })));
+                if (product.applications?.length) await supabase.from('catalog_product_applications').insert(product.applications.map((a, i) => ({ product_id: dbProdId, position: i, application: a })));
+                if (product.specs?.length) await supabase.from('catalog_product_specs').insert(product.specs.map((s, i) => ({ product_id: dbProdId, position: i, label: s.label, value: s.value })));
+             }
+          }
+        } else {
+          const { data: maxSortData } = await supabase.from('catalog_products').select('sort_order').order('sort_order', { ascending: false }).limit(1);
+          const nextSortOrder = maxSortData && maxSortData.length > 0 ? (maxSortData[0].sort_order + 1) : 0;
+          const { data: inserted } = await supabase.from('catalog_products').insert({ ...productRow, sort_order: nextSortOrder }).select().single();
+          if (inserted) {
+            const dbProdId = inserted.id;
+            if (product.features?.length) await supabase.from('catalog_product_features').insert(product.features.map((f, i) => ({ product_id: dbProdId, position: i, feature: f })));
+            if (product.applications?.length) await supabase.from('catalog_product_applications').insert(product.applications.map((a, i) => ({ product_id: dbProdId, position: i, application: a })));
+            if (product.specs?.length) await supabase.from('catalog_product_specs').insert(product.specs.map((s, i) => ({ product_id: dbProdId, position: i, label: s.label, value: s.value })));
+          }
+        }
+        
+        savedProduct = product;
+      } catch (sbErr) {
+        console.error("Direct Supabase fallback also failed:", sbErr);
+        throw sbErr;
+      }
+    } else {
+      throw err;
     }
-  );
+  }
 
   const localProduct = {
     ...product,
-    ...savedProduct,
-    updatedAt: savedProduct.updatedAt || product.updatedAt || new Date().toISOString(),
+    ...(savedProduct || {}),
+    updatedAt: savedProduct?.updatedAt || product.updatedAt || new Date().toISOString(),
   };
   if (index >= 0) {
     products[index] = localProduct;
@@ -206,9 +292,24 @@ export const saveProduct = async (product: AdminProduct, previousSlug = product.
  * Waits for the API delete before updating local cache.
  */
 export const deleteProduct = async (slug: string): Promise<void> => {
-  await requestJson<{ slug: string }>(`${PRODUCTS_API_URL}/${encodeURIComponent(slug)}`, {
-    method: 'DELETE',
-  });
+  try {
+    await requestJson<{ slug: string }>(`${PRODUCTS_API_URL}/${encodeURIComponent(slug)}`, {
+      method: 'DELETE',
+    });
+  } catch (err) {
+    console.error("Vercel API failed to delete product, trying direct Supabase fallback...", err);
+    if (supabase) {
+      try {
+        const { error } = await supabase.from('catalog_products').delete().eq('slug', slug);
+        if (error) throw error;
+      } catch (sbErr) {
+        console.error("Direct Supabase delete fallback failed:", sbErr);
+        throw sbErr;
+      }
+    } else {
+      throw err;
+    }
+  }
 
   const products = getAdminProducts().filter((p) => p.slug !== slug);
   await saveAdminProducts(products);
@@ -267,7 +368,7 @@ export const fetchAndSyncProducts = async (): Promise<AdminProduct[]> => {
       ] = await Promise.all([
         supabase
           .from('catalog_products')
-          .select('id, slug, category_id, name, title, tagline, description, canonical_url, hero_icon_svg, image_url, sort_order, status, updated_at')
+          .select('id, slug, category_id, name, title, tagline, description, canonical_url, hero_icon_svg, image_url, sort_order, status, metadata, updated_at')
           .order('sort_order', { ascending: true }),
         supabase.from('catalog_product_specs').select('*'),
         supabase.from('catalog_product_features').select('*'),

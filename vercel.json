@@ -3,13 +3,7 @@
   "outputDirectory": "dist",
   "framework": null,
   "rewrites": [
-    { "source": "/products/:path*", "destination": "/index.html" },
-    { "source": "/admin/:path*", "destination": "/index.html" },
-    { "source": "/admin", "destination": "/index.html" },
-    { "source": "/dashboard-admin/:path*", "destination": "/index.html" },
-    { "source": "/dashboard-admin", "destination": "/index.html" },
-    { "source": "/admin-new/:path*", "destination": "/index.html" },
-    { "source": "/admin-new", "destination": "/index.html" }
+    { "source": "/:path*", "destination": "/" }
   ],
   "cleanUrls": true,
   "headers": [
