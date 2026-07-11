@@ -434,7 +434,7 @@ export default function AdminNew() {
       return;
     }
 
-\n  };
+  };
 
   const handleEdit = (product: AdminProduct) => {
     setEditorMode('edit');
@@ -539,7 +539,7 @@ export default function AdminNew() {
       return;
     }
 
-\n  };
+  };
 
   if (!session) {
     return (

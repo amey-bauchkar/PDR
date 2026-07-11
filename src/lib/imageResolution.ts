@@ -1,5 +1,5 @@
 import catalogueData from '../data/catalogue.json';
-import attenuatorImg from '../assets/images/products/passive/attenuator.webp';
+
 import bareFiber from '../assets/images/products/passive/bare-fiber-adapter.webp';
 import cat6Cord from '../assets/images/products/passive/cat6-patch-cord.webp';
 import cat6Panel from '../assets/images/products/passive/cat6-patch-panel.webp';
@@ -31,11 +31,11 @@ export const CATEGORY_IMAGE_MAP: Record<string, string> = {
   'Maintenance Tools': '/images/fiber-patch-panel.webp',
   'Specialty Products': '/images/fiber-drone.webp',
   'Specialty Drones': '/images/fiber-drone.webp',
-  'Drone Optical Fiber Kit': '/images/fiber-drone.webp',
+  'Test and Measurement Equipment': '/images/fiber-patchcord.webp',
 };
 
 export const PASSIVE_IMAGE_MAP: Record<string, string> = {
-  attenuator: attenuatorImg,
+  attenuator: '/images/live/variable-fiber-attenuator.webp',
   'bare-fiber-adapter': bareFiber,
   'cat6-patch-cord': cat6Cord,
   'cat6-patch-panel': cat6Panel,
@@ -61,6 +61,7 @@ export const PASSIVE_IMAGE_MAP: Record<string, string> = {
   'bendiboot-patchcord': fiberPigtails,
   'lc-uniboot': fiberPigtails,
   'mating-sleeve': bareFiber,
+  'mini-opm': '/images/fiber-patchcord.webp',
   'regular-opm': '/images/live/mini-optical-power-meter.webp',
   'pocket-otdr': '/images/live/mini-otdr-pdr4402s.webp',
   'next-gen-splicer': '/images/live/fusion-splicer-pdr618h.webp',

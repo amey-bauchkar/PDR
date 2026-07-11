@@ -990,7 +990,7 @@
             {
               "slug": "mini-opm",
               "tag": "Mini",
-              "img": "/images/live/mini-optical-power-meter.jpg",
+              "img": "/images/fiber-patchcord.webp",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"16\" y=\"10\" width=\"16\" height=\"28\" rx=\"3\"></rect><rect x=\"20\" y=\"14\" width=\"8\" height=\"6\" rx=\"1\"></rect><circle cx=\"24\" cy=\"28\" r=\"4\"></circle></svg>",
               "name": "Mini Optical Power Meter",
               "blurb": "Essential tool for all technicians installing or maintaining optical fiber networks.",
@@ -1002,13 +1002,13 @@
               "addItem": {
                 "title": "Mini Opm",
                 "specs": "Standard Factory Specs",
-                "image": "/images/live/mini-optical-power-meter.webp"
+                "image": "/images/fiber-patchcord.webp"
               }
             },
             {
               "slug": "regular-opm",
               "tag": "OPM",
-              "img": "/images/live/mini-optical-power-meter.jpg",
+              "img": "/images/live/mini-optical-power-meter.webp",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"12\" y=\"8\" width=\"24\" height=\"32\" rx=\"4\"></rect><rect x=\"16\" y=\"14\" width=\"16\" height=\"10\" rx=\"1\"></rect><circle cx=\"24\" cy=\"32\" r=\"3\"></circle></svg>",
               "name": "Regular Optical Power Meter",
               "blurb": "Standard bench/field OPM for 800-1700nm range, auto-wavelength detection, LCD display.",
@@ -1020,7 +1020,7 @@
               "addItem": {
                 "title": "Regular Opm",
                 "specs": "Standard Factory Specs",
-                "image": "/images/fiber-patch-panel.webp"
+                "image": "/images/live/mini-optical-power-meter.webp"
               }
             }
           ]

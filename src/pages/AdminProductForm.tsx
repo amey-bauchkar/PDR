@@ -275,7 +275,7 @@ export default function AdminProductForm() {
       return;
     }
 
-\n  };
+  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
