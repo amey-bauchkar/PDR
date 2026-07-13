@@ -426,24 +426,6 @@
               }
             },
             {
-              "slug": "loopback",
-              "tag": "Test",
-              "img": "/images/live/loop-back-patch-cord.webp",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M14 24a10 10 0 0 1 20 0 10 10 0 0 1-20 0\"></path></svg>",
-              "name": "Loop Back Patch Cord",
-              "blurb": "Used in fiber optic network testing and diagnostics applications.",
-              "pills": [
-                "Testing",
-                "Diagnostics"
-              ],
-              "detailsSlug": "loopback",
-              "addItem": {
-                "title": "Loopback",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/loop-back-patch-cord.webp"
-              }
-            },
-            {
               "slug": "mode-conditioning",
               "tag": "MCP",
               "img": "/images/live/mode-conditioning-patchcord.jpg",
@@ -565,24 +547,6 @@
               "detailsSlug": "bendiboot-patchcord",
               "addItem": {
                 "title": "Bendiboot Patchcord",
-                "specs": "Standard Factory Specs",
-                "image": "/images/fiber-patch-panel.webp"
-              }
-            },
-            {
-              "slug": "lc-uniboot",
-              "tag": "Uniboot",
-              "img": "/images/live/fiber-optic-patch-cords-and-pigtails.webp",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h20\"></path><rect x=\"28\" y=\"20\" width=\"12\" height=\"8\" rx=\"2\"></rect></svg>",
-              "name": "LC Uniboot Patchcord",
-              "blurb": "Single-jacket duplex LC connector for reversible polarity in high-density OM3/OM4 environments.",
-              "pills": [
-                "Reversible",
-                "OM3/OM4"
-              ],
-              "detailsSlug": "lc-uniboot",
-              "addItem": {
-                "title": "Lc Uniboot",
                 "specs": "Standard Factory Specs",
                 "image": "/images/fiber-patch-panel.webp"
               }
@@ -750,25 +714,6 @@
                 "title": "Field Connector",
                 "specs": "Standard Factory Specs",
                 "image": "/images/live/fiber-optic-connector-field-installable.webp"
-              }
-            },
-            {
-              "slug": "soc",
-              "tag": "SOC",
-              "img": "/images/live/splice-on-connector.webp",
-              "heroSvg": "",
-              "name": "Splice-On Connector (SOC)",
-              "blurb": "Field installable connector without epoxy or polishing.",
-              "pills": [
-                "IL < 0.2dB",
-                "No Epoxy",
-                "Fusion Splicing"
-              ],
-              "detailsSlug": "soc",
-              "addItem": {
-                "title": "Splice-On Connector",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/splice-on-connector.webp"
               }
             }
           ]
@@ -988,24 +933,6 @@
               }
             },
             {
-              "slug": "mini-opm",
-              "tag": "Mini",
-              "img": "/images/fiber-patchcord.webp",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"16\" y=\"10\" width=\"16\" height=\"28\" rx=\"3\"></rect><rect x=\"20\" y=\"14\" width=\"8\" height=\"6\" rx=\"1\"></rect><circle cx=\"24\" cy=\"28\" r=\"4\"></circle></svg>",
-              "name": "Mini Optical Power Meter",
-              "blurb": "Essential tool for all technicians installing or maintaining optical fiber networks.",
-              "pills": [
-                "Compact",
-                "Testing"
-              ],
-              "detailsSlug": "mini-opm",
-              "addItem": {
-                "title": "Mini Opm",
-                "specs": "Standard Factory Specs",
-                "image": "/images/fiber-patchcord.webp"
-              }
-            },
-            {
               "slug": "regular-opm",
               "tag": "OPM",
               "img": "/images/live/mini-optical-power-meter.webp",
@@ -1085,47 +1012,6 @@
                 "title": "Next Gen Splicer",
                 "specs": "Standard Factory Specs",
                 "image": "/images/fiber-patch-panel.webp"
-              }
-            }
-          ]
-        },
-        {
-          "subhead": "Endface Inspector",
-          "cards": [
-            {
-              "slug": "easyget-wifi",
-              "tag": "WiFi",
-              "img": "/images/live/easyget-wifi-wireless-fiber-endface-microscope.webp",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"18\" y=\"10\" width=\"12\" height=\"28\" rx=\"2\"></rect><path d=\"M22 10V6h4v4\"></path><circle cx=\"24\" cy=\"18\" r=\"3\"></circle><circle cx=\"24\" cy=\"30\" r=\"1\"></circle></svg>",
-              "name": "EasyGet WiFi Wireless Fiber Endface Microscope",
-              "blurb": "Inspect dirt and damage on fiber endfaces of optical connectors directly to prevent attenuation.",
-              "pills": [
-                "Wireless",
-                "Microscope"
-              ],
-              "detailsSlug": "easyget-wifi",
-              "addItem": {
-                "title": "Easyget Wifi",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/easyget-wifi-wireless-fiber-endface-microscope.webp"
-              }
-            },
-            {
-              "slug": "easycheck-v2",
-              "tag": "Digital",
-              "img": "/images/live/easycheck-v2-digital-fiber-endface-inspector.webp",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"10\" y=\"12\" width=\"28\" height=\"24\" rx=\"3\"></rect><rect x=\"14\" y=\"16\" width=\"20\" height=\"14\" rx=\"1\"></rect><path d=\"M20 40l4-4 4 4\"></path></svg>",
-              "name": "EasyCheck V2 Digital Fiber Endface Inspector",
-              "blurb": "Digital inspection of dirt and damage on fiber endface to resolve optical attenuation causes.",
-              "pills": [
-                "Digital",
-                "Inspection"
-              ],
-              "detailsSlug": "easycheck-v2",
-              "addItem": {
-                "title": "Easycheck V2",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/easycheck-v2-digital-fiber-endface-inspector.webp"
               }
             }
           ]

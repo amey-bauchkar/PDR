@@ -35,6 +35,12 @@ const getDefaultProducts = (): AdminProduct[] => {
 };
 
 let memoryCache: AdminProduct[] | null = null;
+let dbSyncSucceeded = false;
+
+/**
+ * Check if the DB sync has succeeded (DB is authoritative)
+ */
+export const isDbSynced = (): boolean => dbSyncSucceeded;
 
 /**
  * Initialize product store from IndexedDB on startup
@@ -405,6 +411,7 @@ export const fetchAndSyncProducts = async (): Promise<AdminProduct[]> => {
 
       const merged = mergePreservingDatasheets(mapped);
       await saveAdminProducts(merged);
+      dbSyncSucceeded = true;
       return merged;
     } catch (err) {
       console.warn('[productSync] Supabase direct fetch failed, trying API fallback:', err);
@@ -417,6 +424,7 @@ export const fetchAndSyncProducts = async (): Promise<AdminProduct[]> => {
     if (apiProducts && apiProducts.length > 0) {
       const merged = mergePreservingDatasheets(apiProducts);
       await saveAdminProducts(merged);
+      dbSyncSucceeded = true;
       return merged;
     }
     console.warn('[productSync] API returned empty product list, keeping local cache.');
@@ -530,7 +538,14 @@ export const mergeWithCatalogue = (catalogue: any): any => {
               }
               return card;
             })
-            .filter((card: any) => !adminMap.has(card.slug) || adminMap.get(card.slug)?.status === 'Active');
+            .filter((card: any) => {
+              // If DB sync succeeded, DB is authoritative — only show products that exist in DB with Active status
+              if (dbSyncSucceeded) {
+                return adminMap.has(card.slug) && adminMap.get(card.slug)?.status === 'Active';
+              }
+              // Fallback: if DB unreachable, show all static products (graceful degradation)
+              return !adminMap.has(card.slug) || adminMap.get(card.slug)?.status === 'Active';
+            });
 
           // If there are new products for this section, append them to the first group
           if (groupIndex === 0 && sectionNewProducts.length > 0) {
@@ -585,8 +600,13 @@ export const mergeWithProducts = (rawProducts: any[]): any[] => {
   const adminProducts = getAdminProducts().filter((p) => p.status === 'Active');
   const adminMap = new Map(adminProducts.map((p) => [p.slug, p]));
 
+  // Filter out products that don't exist in DB (when DB sync succeeded)
+  const filteredRawProducts = dbSyncSucceeded
+    ? rawProducts.filter((p) => adminMap.has(p.slug) && adminMap.get(p.slug)?.status === 'Active')
+    : rawProducts;
+
   // Merge existing products, or add new ones
-  const merged = rawProducts.map((p) => {
+  const merged = filteredRawProducts.map((p) => {
     const adminProd = adminMap.get(p.slug);
     if (adminProd) {
       const finalFeatures = adminProd.features && adminProd.features.length > 0 ? adminProd.features : [

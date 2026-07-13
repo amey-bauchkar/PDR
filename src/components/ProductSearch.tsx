@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import productsData from '../data/products.json';
+import { getAdminProducts, isDbSynced } from '../lib/productSync';
 import './ProductSearch.css';
 
 interface Product {
@@ -21,7 +22,10 @@ export default function ProductSearch() {
   useEffect(() => {
     if (query.trim().length > 1) {
       const lowerQuery = query.toLowerCase();
-      const filtered = (productsData as Product[]).filter(p => 
+      const sourceProducts = isDbSynced()
+        ? getAdminProducts().filter(p => p.status === 'Active')
+        : productsData;
+      const filtered = (sourceProducts as Product[]).filter(p => 
         p.name.toLowerCase().includes(lowerQuery) || 
         p.category.toLowerCase().includes(lowerQuery) || 
         (p.description && p.description.toLowerCase().includes(lowerQuery))

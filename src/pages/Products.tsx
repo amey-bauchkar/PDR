@@ -7,7 +7,7 @@ import {
   CatalogCategorySection
 } from '../components/products/CatalogBlocks';
 import { BreadcrumbSchema, ItemListSchema } from '../components/Schema';
-import productsData from '../data/products.json';
+
 import { productsCategoryHrefDeep } from '../data/productCategoryRoutes';
 import { fetchAndSyncProducts, mergeWithCatalogue, getAdminProducts } from '../lib/productSync';
 import rawCatalogue from '../data/catalogue.json';
@@ -102,7 +102,7 @@ export default function Products() {
         { name: 'Home', url: 'https://pdr-sable.vercel.app/' },
         { name: 'Products', url: 'https://pdr-sable.vercel.app/products' },
       ]} />
-      <ItemListSchema items={(productsData as any[]).map((p: any, i: number) => ({
+      <ItemListSchema items={adminProducts.map((p: any, i: number) => ({
         name: p.name,
         url: `https://pdr-sable.vercel.app/products/${p.slug}`,
         position: i + 1,
