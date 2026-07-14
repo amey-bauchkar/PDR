@@ -6,6 +6,7 @@ export type AdminProduct = {
   slug: string;
   name: string;
   category: string;
+  subcategory?: string;
   title?: string;
   description?: string;
   canonical?: string;
@@ -225,6 +226,7 @@ export const saveProduct = async (product: AdminProduct, previousSlug = product.
             mount_type: specsMap['Mount Type'] || specsMap['Mounting'] || 'Rack Mount',
             capacity: parseInt(specsMap['Capacity'] || specsMap['Ports'] || '0') || 0,
             specs: specsMap,
+            subcategory: product.subcategory || '',
             datasheet_url: product.datasheetUrl || '',
             gallery_urls: product.galleryUrls || [],
           },
@@ -343,6 +345,7 @@ function mapSupabaseProduct(db: any): AdminProduct | null {
     applications,
     specs,
     heroIcon: db.hero_icon_svg,
+    subcategory: db.metadata?.subcategory || '',
     datasheetUrl: db.metadata?.datasheet_url || '',
     galleryUrls: db.metadata?.gallery_urls || [],
     updatedAt: db.updated_at,
@@ -512,66 +515,121 @@ export const mergeWithCatalogue = (catalogue: any): any => {
         (p) => getSectionId(p.category) === section.id
       );
 
-      return {
-        ...section,
-        groups: section.groups.map((group: any, groupIndex: number) => {
-          const existingCards = group.cards
-            .map((card: any) => {
-              const adminProduct = adminMap.get(card.slug);
-              if (adminProduct) {
-                // Override with admin data
-                return {
-                  ...card,
-                  name: adminProduct.name,
-                  blurb: adminProduct.description || card.blurb,
-                  img: adminProduct.imageUrl || card.img,
-                  tag: adminProduct.tagline || card.tag,
-                };
-              }
-              return card;
-            })
-            .filter((card: any) => !adminMap.has(card.slug) || adminMap.get(card.slug)?.status === 'Active');
+      const existingGroupSubheads = new Set<string>();
 
-          // If there are new products for this section, append them to the first group
-          if (groupIndex === 0 && sectionNewProducts.length > 0) {
-            const newCards = sectionNewProducts.map((p) => {
-              const finalTagline = p.tagline || 'High performance serial optical data communication';
-              const finalDescription = p.description || 'High performance serial optical data communication\nCost effective modules\nCompatible with major OEM switches';
-              const finalSpecs = p.specs && p.specs.length > 0 ? p.specs : [
-                { label: 'Form Factor', value: 'SFP / SFP+ / QSFP' },
-                { label: 'Data Rate', value: '155M to 400G' },
-                { label: 'Connector', value: 'LC / SC Duplex' },
-                { label: 'DOM Support', value: 'Yes' },
-              ];
-              const finalImage = p.imageUrl || 'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=900&q=80';
-
+      const mappedGroups = section.groups.map((group: any) => {
+        existingGroupSubheads.add(group.subhead || '');
+        const existingCards = group.cards
+          .map((card: any) => {
+            const adminProduct = adminMap.get(card.slug);
+            if (adminProduct) {
+              // Override with admin data
               return {
-                slug: p.slug,
-                tag: finalTagline,
-                img: finalImage,
-                heroSvg: p.heroIcon || '<svg width="120" height="120" viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="1.5"><rect x="8" y="16" width="32" height="16" rx="3"></rect><rect x="4" y="20" width="6" height="8" rx="1"></rect><rect x="38" y="20" width="6" height="8" rx="1"></rect><line x1="14" y1="24" x2="34" y2="24"></line></svg>',
-                name: p.name,
-                blurb: finalDescription,
-                pills: finalSpecs.slice(0, 3).map((s) => s.value),
-                detailsSlug: p.slug,
-                addItem: {
-                  title: p.name,
-                  specs: `${finalSpecs[0].label}: ${finalSpecs[0].value}`,
-                  image: finalImage,
-                },
+                ...card,
+                name: adminProduct.name,
+                blurb: adminProduct.description || card.blurb,
+                img: adminProduct.imageUrl || card.img,
+                tag: adminProduct.tagline || card.tag,
               };
-            });
-            return {
-              ...group,
-              cards: [...newCards, ...existingCards],
-            };
-          }
+            }
+            return card;
+          })
+          .filter((card: any) => !adminMap.has(card.slug) || adminMap.get(card.slug)?.status === 'Active');
+
+        // Append new products that match this group's subhead
+        // Default to the first group if the product doesn't have a subcategory or if we want a fallback
+        const matchingNewProducts = sectionNewProducts.filter(p => {
+            const sub = (p.subcategory || '').trim();
+            if (sub && sub === group.subhead) return true;
+            if (!sub && group === section.groups[0]) return true;
+            return false;
+        });
+
+        const newCards = matchingNewProducts.map((p) => {
+          const finalTagline = p.tagline || 'High performance serial optical data communication';
+          const finalDescription = p.description || 'High performance serial optical data communication\nCost effective modules\nCompatible with major OEM switches';
+          const finalSpecs = p.specs && p.specs.length > 0 ? p.specs : [
+            { label: 'Form Factor', value: 'SFP / SFP+ / QSFP' },
+            { label: 'Data Rate', value: '155M to 400G' },
+            { label: 'Connector', value: 'LC / SC Duplex' },
+            { label: 'DOM Support', value: 'Yes' },
+          ];
+          const finalImage = p.imageUrl || 'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=900&q=80';
 
           return {
-            ...group,
-            cards: existingCards,
+            slug: p.slug,
+            tag: finalTagline,
+            img: finalImage,
+            heroSvg: p.heroIcon || '<svg width="120" height="120" viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="1.5"><rect x="8" y="16" width="32" height="16" rx="3"></rect><rect x="4" y="20" width="6" height="8" rx="1"></rect><rect x="38" y="20" width="6" height="8" rx="1"></rect><line x1="14" y1="24" x2="34" y2="24"></line></svg>',
+            name: p.name,
+            blurb: finalDescription,
+            pills: finalSpecs.slice(0, 3).map((s) => s.value),
+            detailsSlug: p.slug,
+            addItem: {
+              title: p.name,
+              specs: `${finalSpecs[0].label}: ${finalSpecs[0].value}`,
+              image: finalImage,
+            },
           };
-        }),
+        });
+
+        return {
+          ...group,
+          cards: [...newCards, ...existingCards],
+        };
+      });
+
+      // Find products that have a subcategory not matching any existing group
+      const orphanedProducts = sectionNewProducts.filter(p => {
+          const sub = (p.subcategory || '').trim();
+          return sub && !existingGroupSubheads.has(sub);
+      });
+
+      // Group orphaned products by their new subcategory
+      const newGroupsMap = new Map<string, any[]>();
+      orphanedProducts.forEach(p => {
+          const sub = p.subcategory!.trim();
+          if (!newGroupsMap.has(sub)) newGroupsMap.set(sub, []);
+          newGroupsMap.get(sub)!.push(p);
+      });
+
+      // Create new groups for them
+      newGroupsMap.forEach((prods, subhead) => {
+          mappedGroups.push({
+              subhead,
+              cards: prods.map(p => {
+                const finalTagline = p.tagline || 'High performance serial optical data communication';
+                const finalDescription = p.description || 'High performance serial optical data communication\nCost effective modules\nCompatible with major OEM switches';
+                const finalSpecs = p.specs && p.specs.length > 0 ? p.specs : [
+                  { label: 'Form Factor', value: 'SFP / SFP+ / QSFP' },
+                  { label: 'Data Rate', value: '155M to 400G' },
+                  { label: 'Connector', value: 'LC / SC Duplex' },
+                  { label: 'DOM Support', value: 'Yes' },
+                ];
+                const finalImage = p.imageUrl || 'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=900&q=80';
+      
+                return {
+                  slug: p.slug,
+                  tag: finalTagline,
+                  img: finalImage,
+                  heroSvg: p.heroIcon || '<svg width="120" height="120" viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="1.5"><rect x="8" y="16" width="32" height="16" rx="3"></rect><rect x="4" y="20" width="6" height="8" rx="1"></rect><rect x="38" y="20" width="6" height="8" rx="1"></rect><line x1="14" y1="24" x2="34" y2="24"></line></svg>',
+                  name: p.name,
+                  blurb: finalDescription,
+                  pills: finalSpecs.slice(0, 3).map((s: any) => s.value),
+                  detailsSlug: p.slug,
+                  addItem: {
+                    title: p.name,
+                    specs: `${finalSpecs[0].label}: ${finalSpecs[0].value}`,
+                    image: finalImage,
+                  },
+                };
+              })
+          });
+      });
+
+      return {
+        ...section,
+        groups: mappedGroups,
       };
     }),
   };

@@ -27,6 +27,7 @@ type ProductFormState = {
   description: string;
   descriptionText: string;
   tagline: string;
+  subcategory: string;
   status: AdminStatus;
   imageUrl: string;
   featuresText: string;
@@ -44,6 +45,7 @@ const DEFAULT_FORM: ProductFormState = {
   description: '',
   descriptionText: '',
   tagline: '',
+  subcategory: '',
   status: 'Active',
   imageUrl: '',
   featuresText: '',
@@ -136,6 +138,7 @@ export default function AdminProductForm() {
           slug: prod.slug,
           name: prod.name,
           category: prod.category,
+          subcategory: prod.subcategory ?? '',
           title: prod.title ?? '',
           description: prod.description ?? '',
           descriptionText: prod.description
@@ -275,7 +278,7 @@ export default function AdminProductForm() {
       return;
     }
 
-\n  };
+  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -310,6 +313,7 @@ export default function AdminProductForm() {
       slug: nextSlug,
       name: form.name.trim(),
       category: form.category.trim(),
+      subcategory: form.subcategory.trim(),
       title: form.title.trim(),
       description: form.descriptionText
         .split('\n')
@@ -369,6 +373,13 @@ export default function AdminProductForm() {
   };
 
   const categories = Array.from(new Set(products.map((p) => p.category).filter(Boolean))).sort();
+  const subcategories = Array.from(
+    new Set(
+      products
+        .filter((p) => p.category === form.category && p.subcategory)
+        .map((p) => p.subcategory as string)
+    )
+  ).sort();
 
   if (!session) {
     return (
@@ -562,6 +573,27 @@ export default function AdminProductForm() {
                     )}
                   </div>
 
+
+                  <div className="admin-form-group">
+                    <label>Subheading / Subcategory</label>
+                    <input
+                      type="text"
+                      list="subcategories-list"
+                      placeholder="e.g. SFP Transceivers"
+                      value={form.subcategory}
+                      onChange={(e) => setForm({ ...form, subcategory: e.target.value })}
+                      style={{ width: '100%' }}
+                      className="admin-search"
+                    />
+                    <datalist id="subcategories-list">
+                      {subcategories.map((sub) => (
+                        <option key={sub} value={sub} />
+                      ))}
+                    </datalist>
+                    <small style={{ color: 'var(--admin-text-muted)', marginTop: '4px', display: 'block', fontSize: '12px' }}>
+                      Select an existing subheading or type a new one to create a new group.
+                    </small>
+                  </div>
 
                   <div className="admin-form-group">
                     <label>Tagline</label>
