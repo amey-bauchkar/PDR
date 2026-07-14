@@ -37,6 +37,19 @@ const getDefaultProducts = (): AdminProduct[] => {
 let memoryCache: AdminProduct[] | null = null;
 let dbSyncSucceeded = false;
 
+// Hardcoded list of slugs that were permanently removed but might still exist in local IndexedDB caches or Supabase.
+// This guarantees they never show up on the frontend again.
+const DELETED_SLUGS = new Set([
+  'lc-uniboot',
+  'loop-back-patch-cord',
+  'loopback',
+  'mini-optical-power-meter',
+  'fiber-optic-adapter',
+  'easyget-wifi',
+  'splice-on-connector',
+  'splice-on'
+]);
+
 /**
  * Check if the DB sync has succeeded (DB is authoritative)
  */
@@ -119,17 +132,17 @@ async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
  * Get all products from memory cache (or fallback to localStorage if not initialized)
  */
 export const getAdminProducts = (): AdminProduct[] => {
-  if (memoryCache !== null) return memoryCache;
-  if (typeof window === 'undefined') return getDefaultProducts();
+  if (memoryCache !== null) return memoryCache.filter(p => !DELETED_SLUGS.has(p.slug));
+  if (typeof window === 'undefined') return getDefaultProducts().filter(p => !DELETED_SLUGS.has(p.slug));
   const raw = localStorage.getItem(STORAGE_KEY);
   const products = raw ? JSON.parse(raw) : [];
-  if (products.length > 0) return products;
+  if (products.length > 0) return products.filter((p: AdminProduct) => !DELETED_SLUGS.has(p.slug));
 
   // Fallback to v3 first, then v2 for synchronous render if v4 is empty
   const rawV3 = localStorage.getItem('pdrworld-admin-products-v3');
   if (rawV3) {
     const v3Products = JSON.parse(rawV3) as AdminProduct[];
-    return v3Products;
+    return v3Products.filter(p => !DELETED_SLUGS.has(p.slug));
   }
   
   const rawV2 = localStorage.getItem('pdrworld-admin-products-v2');
@@ -139,10 +152,10 @@ export const getAdminProducts = (): AdminProduct[] => {
     return v2Products.map(p => ({
       ...p,
       category: seedMap.get(p.slug) || p.category
-    }));
+    })).filter(p => !DELETED_SLUGS.has(p.slug));
   }
 
-  return getDefaultProducts();
+  return getDefaultProducts().filter(p => !DELETED_SLUGS.has(p.slug));
 };
 
 /**
