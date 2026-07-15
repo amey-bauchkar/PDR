@@ -1,2330 +1,2328 @@
-﻿[
-    {
-        "slug":  "armoured-patchcord",
-        "name":  "Armoured Patchcord",
-        "category":  "Passive Components",
-        "title":  "Armoured Patchcord | PDR World",
-        "description":  "Stainless steel interlocking armour protection",
-        "canonical":  "https://pdrworld.com/armoured-patchcord.html",
-        "tagline":  "Stainless steel interlocking armour protection",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003cpath d=\"M8 24h32\"\u003e\u003c/path\u003e\u003cpath d=\"M12 20v8M16 20v8M20 20v8M24 20v8M28 20v8M32 20v8M36 20v8\"\u003e\u003c/path\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Stainless steel interlocking armour protection",
-                         "High crush and rodent resistance",
-                         "Retains flexibility of standard patchcords"
-                     ],
-        "applications":  [
-                             "Harsh Environments",
-                             "Industrial Plants",
-                             "Direct Burial / Outdoor"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Armour Material",
-                          "value":  "Stainless Steel"
-                      },
-                      {
-                          "label":  "Fiber Type",
-                          "value":  "SM / MM"
-                      },
-                      {
-                          "label":  "Jacket Type",
-                          "value":  "LSZH / PVC / PE"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        },
-                        {
-                            "slug":  "bendiboot-patchcord",
-                            "name":  "Bendiboot Patchcord"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/armoured-patchcord.pdf"
-    },
-    {
-        "slug":  "attenuator",
-        "name":  "Variable Fiber Attenuator",
-        "category":  "Passive Components",
-        "title":  "Variable Fiber Attenuator - OVA Series | PDR World",
-        "description":  "Digital variable fiber attenuator with up to 60 dB attenuation range",
-        "canonical":  "https://pdrworld.com/attenuator.html",
-        "tagline":  "Digital variable fiber attenuator with up to 60 dB attenuation range",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003cpath d=\"M8 24h32\"\u003e\u003c/path\u003e\u003cpath d=\"M18 18l6 6-6 6\"\u003e\u003c/path\u003e\u003cpath d=\"M30 18l-6 6 6 6\"\u003e\u003c/path\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Attenuation range up to 60 dB (SM)",
-                         "Calibrated wavelengths: 1310 nm / 1490 nm / 1550 nm",
-                         "Digital attenuating mode"
-                     ],
-        "applications":  [
-                             "Test and Measurement",
-                             "Optical Link Simulation",
-                             "Fiber Optic Lab Use"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Attenuation Range",
-                          "value":  "40 dB / 60 dB"
-                      },
-                      {
-                          "label":  "Calibrated Wavelengths",
-                          "value":  "1310 nm / 1490 nm / 1550 nm"
-                      },
-                      {
-                          "label":  "Fiber Mode",
-                          "value":  "SM"
-                      },
-                      {
-                          "label":  "Attenuating Mode",
-                          "value":  "Digital"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/attenuator.pdf"
-    },
-    {
-        "slug":  "bare-fiber-adapter",
-        "name":  "Bare Fiber Adapter",
-        "category":  "Passive Components",
-        "title":  "Bare Fiber Adapter | PDR World",
-        "description":  "Temporary link for bare optical fiber",
-        "canonical":  "https://pdrworld.com/bare-fiber-adapter.html",
-        "tagline":  "Temporary link for bare optical fiber",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"16\" y=\"14\" width=\"16\" height=\"20\" rx=\"3\"\u003e\u003c/rect\u003e\u003cline x1=\"8\" y1=\"24\" x2=\"16\" y2=\"24\"\u003e\u003c/line\u003e\u003cline x1=\"32\" y1=\"24\" x2=\"40\" y2=\"24\"\u003e\u003c/line\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Temporary link for bare optical fiber",
-                         "Push-button fiber locking mechanism",
-                         "Easy cleaning and maintenance"
-                     ],
-        "applications":  [
-                             "Lab Testing",
-                             "Emergency Field Restoration",
-                             "Fiber Spool Testing"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Interface Types",
-                          "value":  "SC / LC / FC / ST"
-                      },
-                      {
-                          "label":  "Ferrule",
-                          "value":  "Zirconia Ceramic"
-                      },
-                      {
-                          "label":  "Insertion Loss",
-                          "value":  "\u003c 0.2 dB"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/bare-fiber-adapter.pdf"
-    },
-    {
-        "slug":  "bendiboot-patchcord",
-        "name":  "Bendiboot Patchcord",
-        "category":  "Passive Components",
-        "title":  "Bendiboot Patchcord | PDR World",
-        "description":  "90-degree angled boot design",
-        "canonical":  "https://pdrworld.com/bendiboot-patchcord.html",
-        "tagline":  "90-degree angled boot design",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003cpath d=\"M16 32V16h16\"\u003e\u003c/path\u003e\u003c/svg\u003e",
-        "features":  [
-                         "90-degree angled boot design",
-                         "Minimizes cable footprint in tight spaces",
-                         "Prevents micro-bending losses at the connector"
-                     ],
-        "applications":  [
-                             "High-Density Data Centres",
-                             "Wall-Mount Enclosures",
-                             "Tight Space Routing"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Boot Angle",
-                          "value":  "90Â°"
-                      },
-                      {
-                          "label":  "Connector Options",
-                          "value":  "LC, SC"
-                      },
-                      {
-                          "label":  "Cable Diameter",
-                          "value":  "1.6mm / 2.0mm"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        }
-                    ]
-    },
-    {
-        "slug":  "bypass-switch",
-        "name":  "Bypass Switch",
-        "category":  "Active Components",
-        "title":  "Bypass Switch | PDR World",
-        "description":  "Automatic bypass of optical path on failure",
-        "canonical":  "https://pdrworld.com/bypass-switch.html",
-        "tagline":  "Automatic bypass of optical path on failure",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"12\" y=\"12\" width=\"24\" height=\"24\" rx=\"4\"\u003e\u003c/rect\u003e\u003cpath d=\"M18 24h12\"\u003e\u003c/path\u003e\u003cpath d=\"M24 18v12\"\u003e\u003c/path\u003e\u003ccircle cx=\"12\" cy=\"24\" r=\"3\"\u003e\u003c/circle\u003e\u003ccircle cx=\"36\" cy=\"24\" r=\"3\"\u003e\u003c/circle\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Automatic bypass of optical path on failure",
-                         "Maintains network continuity",
-                         "Low insertion loss"
-                     ],
-        "applications":  [
-                             "Network Security Systems",
-                             "Inline Monitoring",
-                             "Fail-safe Architectures"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Function",
-                          "value":  "Optical path control"
-                      },
-                      {
-                          "label":  "Insertion Loss",
-                          "value":  "\u003c 1.0 dB"
-                      },
-                      {
-                          "label":  "Switching Time",
-                          "value":  "\u003c 10ms"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "smart-sfp",
-                            "name":  "Smart SFP Transceiver"
-                        },
-                        {
-                            "slug":  "sfp-400g",
-                            "name":  "400G"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/bypass-switch.pdf"
-    },
-    {
-        "slug":  "cassette-cleaner",
-        "name":  "Cassette Cleaner",
-        "category":  "Passive Components",
-        "title":  "Cassette Cleaner | PDR World",
-        "description":  "High-performance dry cleaning technology",
-        "canonical":  "https://pdrworld.com/cassette-cleaner.html",
-        "tagline":  "High-performance dry cleaning technology",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003crect x=\"10\" y=\"12\" width=\"28\" height=\"24\" rx=\"4\"\u003e\u003c/rect\u003e\u003ccircle cx=\"18\" cy=\"24\" r=\"4\"\u003e\u003c/circle\u003e\u003ccircle cx=\"30\" cy=\"24\" r=\"4\"\u003e\u003c/circle\u003e\u003c/svg\u003e",
-        "features":  [
-                         "High-performance dry cleaning technology",
-                         "Replaceable cleaning tape reels",
-                         "Anti-static properties prevent dust re-accumulation"
-                     ],
-        "applications":  [
-                             "Lab Testing Environments",
-                             "Production Lines",
-                             "Optical Network Maintenance"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Clean Cycles",
-                          "value":  "400+ cleans per reel"
-                      },
-                      {
-                          "label":  "Compatibility",
-                          "value":  "SC, FC, ST, LC, MU, MPO, MTRJ"
-                      },
-                      {
-                          "label":  "Material",
-                          "value":  "Ultra-clean micro-fiber cloth"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "cleaner-pen",
-                            "name":  "Fiber Optic Cleaner Pen"
-                        },
-                        {
-                            "slug":  "mpo-cleaner",
-                            "name":  "Fiber Optic Cleaner Pen MPO"
-                        },
-                        {
-                            "slug":  "vfl",
-                            "name":  "VFL â€” Visual Fault Locator"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/cassette-cleaner.pdf"
-    },
-    {
-        "slug":  "cat6-panel",
-        "name":  "CAT 6 Patch Panel",
-        "category":  "Cable Management Devices",
-        "title":  "CAT 6 Patch Panel | PDR World",
-        "description":  "High speed Network distribution panel",
-        "canonical":  "https://pdrworld.com/cat6-panel.html",
-        "tagline":  "High speed Network distribution panel",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"6\" y=\"16\" width=\"36\" height=\"16\" rx=\"2\"\u003e\u003c/rect\u003e\u003cline x1=\"12\" y1=\"20\" x2=\"16\" y2=\"20\"\u003e\u003c/line\u003e\u003cline x1=\"12\" y1=\"28\" x2=\"16\" y2=\"28\"\u003e\u003c/line\u003e\u003cline x1=\"20\" y1=\"20\" x2=\"24\" y2=\"20\"\u003e\u003c/line\u003e\u003cline x1=\"20\" y1=\"28\" x2=\"24\" y2=\"28\"\u003e\u003c/line\u003e\u003cline x1=\"28\" y1=\"20\" x2=\"32\" y2=\"20\"\u003e\u003c/line\u003e\u003cline x1=\"28\" y1=\"28\" x2=\"32\" y2=\"28\"\u003e\u003c/line\u003e\u003c/svg\u003e",
-        "features":  [
-                         "High speed Network distribution panel",
-                         "Confirms to ISO/IEC standards",
-                         "Cable management bar included"
-                     ],
-        "applications":  [
-                             "Enterprise LAN",
-                             "Server Room Copper Distribution",
-                             "AV over IP setups"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Ports",
-                          "value":  "24 / 48 Port"
-                      },
-                      {
-                          "label":  "Category",
-                          "value":  "Cat 6 UTP/STP"
-                      },
-                      {
-                          "label":  "Size",
-                          "value":  "1U / 2U 19-inch"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "rack-mount-fms",
-                            "name":  "Rack Mount Fiber Management System"
-                        },
-                        {
-                            "slug":  "htb",
-                            "name":  "Home Termination Box (HTB)"
-                        },
-                        {
-                            "slug":  "wall-mount",
-                            "name":  "Optical Fiber Wall Mount Enclosure"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/cat6-panel.pdf"
-    },
-    {
-        "slug":  "cat6-patch-cord",
-        "name":  "CAT 6 Patch Cord",
-        "category":  "Passive Components",
-        "title":  "CAT 6 Patch Cord | PDR World",
-        "description":  "High-speed copper patch cord",
-        "canonical":  "https://pdrworld.com/cat6-patch-cord.html",
-        "tagline":  "High-speed copper patch cord",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003cpath d=\"M12 24h24\"\u003e\u003c/path\u003e\u003crect x=\"6\" y=\"20\" width=\"8\" height=\"8\" rx=\"2\"\u003e\u003c/rect\u003e\u003crect x=\"34\" y=\"20\" width=\"8\" height=\"8\" rx=\"2\"\u003e\u003c/rect\u003e\u003c/svg\u003e",
-        "features":  [
-                         "High-speed copper patch cord",
-                         "Factory terminated and tested",
-                         "Snagless boot design"
-                     ],
-        "applications":  [
-                             "LAN Networking",
-                             "Server Racks",
-                             "Workstation Connectivity"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Category",
-                          "value":  "Cat 6"
-                      },
-                      {
-                          "label":  "Connector",
-                          "value":  "RJ45"
-                      },
-                      {
-                          "label":  "Jacket",
-                          "value":  "PVC / LSZH"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/cat6-patch-cord.pdf"
-    },
-    {
-        "slug":  "cleaner-pen",
-        "name":  "Fiber Optic Cleaner Pen",
-        "category":  "Passive Components",
-        "title":  "Fiber Optic Cleaner Pen | PDR World",
-        "description":  "One-click cleaning mechanism",
-        "canonical":  "https://pdrworld.com/cleaner-pen.html",
-        "tagline":  "One-click cleaning mechanism",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003crect x=\"18\" y=\"10\" width=\"12\" height=\"28\" rx=\"2\"\u003e\u003c/rect\u003e\u003cpath d=\"M22 10V6h4v4\"\u003e\u003c/path\u003e\u003c/svg\u003e",
-        "features":  [
-                         "One-click cleaning mechanism",
-                         "Extendable nozzle for recessed connectors",
-                         "Lint-free anti-static microfiber fabric"
-                     ],
-        "applications":  [
-                             "Field Maintenance",
-                             "Data Centre Operations",
-                             "FTTx Installations"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Ferrule Compatibility",
-                          "value":  "1.25mm (LC/MU) / 2.5mm (SC/FC/ST)"
-                      },
-                      {
-                          "label":  "Clean Cycles",
-                          "value":  "800+ cleans per pen"
-                      },
-                      {
-                          "label":  "Application",
-                          "value":  "In-adapter or standalone connectors"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "cassette-cleaner",
-                            "name":  "Cassette Cleaner"
-                        },
-                        {
-                            "slug":  "mpo-cleaner",
-                            "name":  "Fiber Optic Cleaner Pen MPO"
-                        },
-                        {
-                            "slug":  "vfl",
-                            "name":  "VFL â€” Visual Fault Locator"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/cleaner-pen.pdf"
-    },
-    {
-        "slug":  "cpri-patchcord",
-        "name":  "CPRI Patchcord",
-        "category":  "Passive Components",
-        "title":  "CPRI Patchcord | PDR World",
-        "description":  "Outdoor waterproof fiber optic assembly",
-        "canonical":  "https://pdrworld.com/cpri-patchcord.html",
-        "tagline":  "Outdoor waterproof fiber optic assembly",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003cpath d=\"M12 24h24\"\u003e\u003c/path\u003e\u003ccircle cx=\"10\" cy=\"24\" r=\"4\"\u003e\u003c/circle\u003e\u003ccircle cx=\"38\" cy=\"24\" r=\"4\"\u003e\u003c/circle\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Outdoor waterproof fiber optic assembly",
-                         "Harsh environment protection",
-                         "Compatible with RRU/BBU"
-                     ],
-        "applications":  [
-                             "5G Cell Towers",
-                             "FTTA Deployments",
-                             "Outdoor Broadcast"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Connector Type",
-                          "value":  "ODVA/IP/FX/PDLC/NSN"
-                      },
-                      {
-                          "label":  "Cable Type",
-                          "value":  "Armored / Tactical"
-                      },
-                      {
-                          "label":  "IP Rating",
-                          "value":  "IP67"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/cpri-patchcord.pdf"
-    },
-    {
-        "slug":  "cwdm",
-        "name":  "CWDM Mux / DeMux Module",
-        "category":  "Passive Components",
-        "title":  "CWDM Mux / DeMux Module | PDR World",
-        "description":  "Coarse WDM for cost-effective bandwidth expansion",
-        "canonical":  "https://pdrworld.com/cwdm.html",
-        "tagline":  "Coarse WDM for cost-effective bandwidth expansion",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"14\" y=\"12\" width=\"20\" height=\"24\" rx=\"3\"\u003e\u003c/rect\u003e\u003cline x1=\"6\" y1=\"20\" x2=\"14\" y2=\"20\"\u003e\u003c/line\u003e\u003cline x1=\"6\" y1=\"28\" x2=\"14\" y2=\"28\"\u003e\u003c/line\u003e\u003cline x1=\"34\" y1=\"24\" x2=\"42\" y2=\"24\"\u003e\u003c/line\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Coarse WDM for cost-effective bandwidth expansion",
-                         "High isolation and low insertion loss",
-                         "Passive operation (no power required)"
-                     ],
-        "applications":  [
-                             "Metro Access Networks",
-                             "Enterprise DCI",
-                             "CATV Infrastructure"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Channel Count",
-                          "value":  "4 / 8 / 16 / 18 Ch"
-                      },
-                      {
-                          "label":  "Spacing",
-                          "value":  "20nm"
-                      },
-                      {
-                          "label":  "Operating Temp",
-                          "value":  "-40Ã‚Â°C to +85Ã‚Â°C"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/cwdm.pdf"
-    },
-    {
-        "slug":  "drone",
-        "name":  "Drone Optical Fiber Kit",
-        "category":  "Specialty Drones",
-        "title":  "Drone Optical Fiber Kit | PDR World",
-        "description":  "Secure, jam-proof fiber-optic communication for defence and FPV drones.",
-        "canonical":  "https://pdr-sable.vercel.app/products/drone",
-        "tagline":  "Secure, jam-proof fiber-optic communication for defence and FPV drones.",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" strokeWidth=\"1.5\"\u003e\u003cpath d=\"M2 12h4l2-8 4 16 2-8h4\"/\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Fiber-tethered data link â€” immune to jamming, interception, and RF interference",
-                         "Secure real-time HD / 4K + thermal video downlink",
-                         "Lightweight payload spool for FPV and tactical UAVs",
-                         "Selectable fiber length from 1 km to 50 km (custom lengths on request)"
-                     ],
-        "applications":  [
-                             "Defence ISR \u0026 secure communications",
-                             "FPV reconnaissance \u0026 tactical missions",
-                             "Perimeter / border surveillance",
-                             "EW / jam-resistant operations"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Fiber Length",
-                          "value":  "1â€“50 km, selectable (custom available)"
-                      },
-                      {
-                          "label":  "Camera",
-                          "value":  "4K / Thermal"
-                      },
-                      {
-                          "label":  "Data Link",
-                          "value":  "Secure fiber-optic â€” EW / jam-resistant"
-                      },
-                      {
-                          "label":  "Deployment",
-                          "value":  "High-speed aerial spooling"
-                      }
-                  ],
-        "related":  [
-
-                    ]
-    },
-    {
-        "slug":  "dwdm",
-        "name":  "DWDM Mux/DeMux Module",
-        "category":  "Passive Components",
-        "title":  "DWDM Mux/DeMux Module | PDR World",
-        "description":  "Dense WDM for maximum fiber utilization",
-        "canonical":  "https://pdrworld.com/dwdm.html",
-        "tagline":  "Dense WDM for maximum fiber utilization",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"14\" y=\"12\" width=\"20\" height=\"24\" rx=\"3\"\u003e\u003c/rect\u003e\u003cline x1=\"6\" y1=\"18\" x2=\"14\" y2=\"18\"\u003e\u003c/line\u003e\u003cline x1=\"6\" y1=\"24\" x2=\"14\" y2=\"24\"\u003e\u003c/line\u003e\u003cline x1=\"6\" y1=\"30\" x2=\"14\" y2=\"30\"\u003e\u003c/line\u003e\u003cline x1=\"34\" y1=\"24\" x2=\"42\" y2=\"24\"\u003e\u003c/line\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Dense WDM for maximum fiber utilization",
-                         "Based on thin film filter or AWG technology",
-                         "High channel isolation"
-                     ],
-        "applications":  [
-                             "Long Haul Core Networks",
-                             "High Capacity DCI",
-                             "5G Fronthaul"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Channel Count",
-                          "value":  "8 / 16 / 40 / 80 Ch"
-                      },
-                      {
-                          "label":  "Spacing",
-                          "value":  "100GHz / 50GHz"
-                      },
-                      {
-                          "label":  "Grid",
-                          "value":  "ITU Standard"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/dwdm.pdf"
-    },
-    {
-        "slug":  "fanout-patch-cords",
-        "name":  "FanOut Patch Cords",
-        "category":  "Passive Components",
-        "title":  "FanOut Patch Cords | PDR World",
-        "description":  "Small form factor high-density assembly",
-        "canonical":  "https://pdrworld.com/fanout-patch-cords.html",
-        "tagline":  "Small form factor high-density assembly",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"6\" y=\"20\" width=\"10\" height=\"8\" rx=\"2\"\u003e\u003c/rect\u003e\u003cpath d=\"M16 22l8-6\"\u003e\u003c/path\u003e\u003cpath d=\"M16 24h16\"\u003e\u003c/path\u003e\u003cpath d=\"M16 26l8 6\"\u003e\u003c/path\u003e\u003ccircle cx=\"38\" cy=\"16\" r=\"3\"\u003e\u003c/circle\u003e\u003ccircle cx=\"38\" cy=\"24\" r=\"3\"\u003e\u003c/circle\u003e\u003ccircle cx=\"38\" cy=\"32\" r=\"3\"\u003e\u003c/circle\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Small form factor high-density assembly",
-                         "Breakout multi-fiber to simplex/duplex",
-                         "Precision MT ferrule"
-                     ],
-        "applications":  [
-                             "High-Density Racks",
-                             "SAN Switches",
-                             "Core Routing"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Connector A",
-                          "value":  "MTP/MPO"
-                      },
-                      {
-                          "label":  "Connector B",
-                          "value":  "LC/SC/FC/ST"
-                      },
-                      {
-                          "label":  "Fiber Count",
-                          "value":  "8 / 12 / 24"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        }
-                    ]
-    },
-    {
-        "slug":  "fdb",
-        "name":  "Fiber Distribution Box (FDB)",
-        "category":  "Cable Management Devices",
-        "title":  "Fiber Distribution Box (FDB) | PDR World",
-        "description":  "Compact termination box for building premises",
-        "canonical":  "https://pdrworld.com/fdb.html",
-        "tagline":  "Compact termination box for building premises",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"12\" y=\"10\" width=\"24\" height=\"28\" rx=\"2\"\u003e\u003c/rect\u003e\u003cline x1=\"12\" y1=\"18\" x2=\"36\" y2=\"18\"\u003e\u003c/line\u003e\u003cline x1=\"24\" y1=\"18\" x2=\"24\" y2=\"38\"\u003e\u003c/line\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Compact termination box for building premises",
-                         "Connects drop cable with feeder cable",
-                         "Integrates splicing and splitting"
-                     ],
-        "applications":  [
-                             "FTTx Distribution Nodes",
-                             "Multi-Dwelling Units (MDU)",
-                             "Street Cabinets"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Capacity",
-                          "value":  "4 to 32 Cores"
-                      },
-                      {
-                          "label":  "Environment",
-                          "value":  "Indoor/Outdoor IP65"
-                      },
-                      {
-                          "label":  "Splitter Support",
-                          "value":  "Cassette or Tube PLC"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "rack-mount-fms",
-                            "name":  "Rack Mount Fiber Management System"
-                        },
-                        {
-                            "slug":  "htb",
-                            "name":  "Home Termination Box (HTB)"
-                        },
-                        {
-                            "slug":  "wall-mount",
-                            "name":  "Optical Fiber Wall Mount Enclosure"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/fdb.pdf"
-    },
-    {
-        "slug":  "fiber-spool",
-        "name":  "Fiber Spool / Fiber Drum",
-        "category":  "Passive Components",
-        "title":  "Fiber Spool / Fiber Drum | PDR World",
-        "description":  "Precision low-stress winding technique",
-        "canonical":  "https://pdrworld.com/fiber-spool.html",
-        "tagline":  "Precision low-stress winding technique",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003ccircle cx=\"24\" cy=\"24\" r=\"16\"\u003e\u003c/circle\u003e\u003ccircle cx=\"24\" cy=\"24\" r=\"6\"\u003e\u003c/circle\u003e\u003cpath d=\"M24 8v16\"\u003e\u003c/path\u003e\u003cpath d=\"M8 24h16\"\u003e\u003c/path\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Precision low-stress winding technique",
-                         "Rugged flange design for safe transport",
-                         "Available with custom fiber types and lengths"
-                     ],
-        "applications":  [
-                             "Lab Simulation Testing",
-                             "Field Deployment Dispatch",
-                             "Emergency Network Restoration"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Lengths Available",
-                          "value":  "500m, 1km, 2km, Custom"
-                      },
-                      {
-                          "label":  "Fiber Options",
-                          "value":  "G.652D, G.657A, OM3, OM4"
-                      },
-                      {
-                          "label":  "Spool Material",
-                          "value":  "High-Impact Plastic / Wood"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        },
-                        {
-                            "slug":  "bendiboot-patchcord",
-                            "name":  "Bendiboot Patchcord"
-                        }
-                    ]
-    },
-    {
-        "slug":  "field-connector",
-        "name":  "Fiber Optic Connector, Field Installable",
-        "category":  "Passive Components",
-        "title":  "Fiber Optic Connector, Field Installable | PDR World",
-        "description":  "Fast Field Assembly Optical Connector",
-        "canonical":  "https://pdrworld.com/field-connector.html",
-        "tagline":  "Fast Field Assembly Optical Connector",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"14\" y=\"16\" width=\"20\" height=\"16\" rx=\"2\"\u003e\u003c/rect\u003e\u003cline x1=\"8\" y1=\"24\" x2=\"14\" y2=\"24\"\u003e\u003c/line\u003e\u003cline x1=\"34\" y1=\"24\" x2=\"40\" y2=\"24\"\u003e\u003c/line\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Fast Field Assembly Optical Connector",
-                         "No epoxy or polishing required",
-                         "Index matching gel inside"
-                     ],
-        "applications":  [
-                             "FTTx Drop Cable Termination",
-                             "Emergency Repairs",
-                             "LAN Installations"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Connector Type",
-                          "value":  "SC / LC / FC"
-                      },
-                      {
-                          "label":  "Polishing",
-                          "value":  "UPC / APC"
-                      },
-                      {
-                          "label":  "Assembly Time",
-                          "value":  "\u003c 2 minutes"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/field-connector.pdf"
-    },
-    {
-        "slug":  "fo-patchcords",
-        "name":  "Fiber Optic Patch Cords \u0026 Pigtails",
-        "category":  "Passive Components",
-        "title":  "Fiber Optic Patch Cords \u0026 Pigtails | PDR World",
-        "description":  "Broadest choice of patchcords in the industry",
-        "canonical":  "https://pdrworld.com/fo-patchcords.html",
-        "tagline":  "Broadest choice of patchcords in the industry",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003cpath d=\"M8 24h32\"\u003e\u003c/path\u003e\u003ccircle cx=\"8\" cy=\"24\" r=\"3\"\u003e\u003c/circle\u003e\u003ccircle cx=\"40\" cy=\"24\" r=\"3\"\u003e\u003c/circle\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Broadest choice of patchcords in the industry",
-                         "100% interferometry tested",
-                         "Low insertion and high return loss"
-                     ],
-        "applications":  [
-                             "Telecom Networks",
-                             "FTTH Drop Cables",
-                             "Optical Distribution Frames"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Fiber Type",
-                          "value":  "SM (G.652D/G.657) / MM (OM1-OM5)"
-                      },
-                      {
-                          "label":  "Connectors",
-                          "value":  "LC/SC/FC/ST/E2000"
-                      },
-                      {
-                          "label":  "Insertion Loss",
-                          "value":  "\u003c 0.3 dB"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/fo-patchcords.pdf"
-    },
-    {
-        "slug":  "fusion-splicer",
-        "name":  "Fusion Splicer PDR618H",
-        "category":  "Test and Measurement Equipment",
-        "title":  "Fusion Splicer PDR618H | PDR World",
-        "description":  "Handheld, small and light",
-        "canonical":  "https://pdrworld.com/fusion-splicer.html",
-        "tagline":  "Handheld, small and light",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"12\" y=\"14\" width=\"24\" height=\"20\" rx=\"3\"\u003e\u003c/rect\u003e\u003cpath d=\"M18 14V10h12v4\"\u003e\u003c/path\u003e\u003ccircle cx=\"24\" cy=\"24\" r=\"4\"\u003e\u003c/circle\u003e\u003cpath d=\"M12 24H8\"\u003e\u003c/path\u003e\u003cpath d=\"M40 24h-4\"\u003e\u003c/path\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Handheld, small and light",
-                         "Core alignment technology",
-                         "Fast 8s splicing and 26s tube heating"
-                     ],
-        "applications":  [
-                             "Outside Plant Splicing",
-                             "FTTH Drop Cables",
-                             "Emergency Network Repair"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Alignment",
-                          "value":  "Core to Core"
-                      },
-                      {
-                          "label":  "Battery",
-                          "value":  "5800mAh Pluggable"
-                      },
-                      {
-                          "label":  "Display",
-                          "value":  "High-res LCD"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "regular-opm",
-                            "name":  "Regular Optical Power Meter"
-                        },
-                        {
-                            "slug":  "pocket-otdr",
-                            "name":  "Pocket OTDR"
-                        },
-                        {
-                            "slug":  "next-gen-splicer",
-                            "name":  "Next Gen Optical Fusion Splicer (OPM + VFL)"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/fusion-splicer.pdf"
-    },
-    {
-        "slug":  "heat-shrink-closure",
-        "name":  "Heat Shrink Splice Closure",
-        "category":  "Cable Management Devices",
-        "title":  "Heat Shrink Splice Closure | PDR World",
-        "description":  "Heat shrink sealing for harsh environments",
-        "canonical":  "https://pdrworld.com/heat-shrink-closure.html",
-        "tagline":  "Heat shrink sealing for harsh environments",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003cpath d=\"M12 16h24a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4v-8a4 4 0 0 1 4-4z\"\u003e\u003c/path\u003e\u003cpath d=\"M8 20h32\"\u003e\u003c/path\u003e\u003cpath d=\"M8 28h32\"\u003e\u003c/path\u003e\u003cline x1=\"20\" y1=\"16\" x2=\"20\" y2=\"32\"\u003e\u003c/line\u003e\u003cline x1=\"28\" y1=\"16\" x2=\"28\" y2=\"32\"\u003e\u003c/line\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Heat shrink sealing for harsh environments",
-                         "Excellent waterproof and dustproof performance",
-                         "Accommodates multiple splice trays"
-                     ],
-        "applications":  [
-                             "Outside Plant (OSP) Networks",
-                             "Underground Splicing",
-                             "Long Haul Routes"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Sealing Type",
-                          "value":  "Heat Shrink"
-                      },
-                      {
-                          "label":  "Capacity",
-                          "value":  "Up to 288 Cores"
-                      },
-                      {
-                          "label":  "Environment",
-                          "value":  "Aerial/Buried/Manhole (IP68)"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "rack-mount-fms",
-                            "name":  "Rack Mount Fiber Management System"
-                        },
-                        {
-                            "slug":  "htb",
-                            "name":  "Home Termination Box (HTB)"
-                        },
-                        {
-                            "slug":  "wall-mount",
-                            "name":  "Optical Fiber Wall Mount Enclosure"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/heat-shrink-closure.pdf"
-    },
-    {
-        "slug":  "horizontal-closure",
-        "name":  "Fiber Optic Splitter Closure GJS 2016",
-        "category":  "Cable Management Devices",
-        "title":  "Fiber Optic Splitter Closure GJS 2016 | PDR World",
-        "description":  "Mechanical sealing structure",
-        "canonical":  "https://pdrworld.com/horizontal-closure.html",
-        "tagline":  "Mechanical sealing structure",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"8\"\u003e\u003c/rect\u003e\u003cline x1=\"16\" y1=\"16\" x2=\"16\" y2=\"32\"\u003e\u003c/line\u003e\u003cline x1=\"32\" y1=\"16\" x2=\"32\" y2=\"32\"\u003e\u003c/line\u003e\u003cline x1=\"8\" y1=\"24\" x2=\"40\" y2=\"24\"\u003e\u003c/line\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Mechanical sealing structure",
-                         "Oval shaped cable port entrances in base",
-                         "Supports direct splicing and branching"
-                     ],
-        "applications":  [
-                             "FTTx Distribution Splicing",
-                             "Aerial Messenger Wire",
-                             "Wall/Pole Mount Splices"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Sealing Type",
-                          "value":  "Mechanical"
-                      },
-                      {
-                          "label":  "Shape",
-                          "value":  "Horizontal / Dome"
-                      },
-                      {
-                          "label":  "Ports",
-                          "value":  "Multiple entry/exit"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "rack-mount-fms",
-                            "name":  "Rack Mount Fiber Management System"
-                        },
-                        {
-                            "slug":  "htb",
-                            "name":  "Home Termination Box (HTB)"
-                        },
-                        {
-                            "slug":  "wall-mount",
-                            "name":  "Optical Fiber Wall Mount Enclosure"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/horizontal-closure.pdf"
-    },
-    {
-        "slug":  "htb",
-        "name":  "Home Termination Box (HTB)",
-        "category":  "Cable Management Devices",
-        "title":  "Home Termination Box (HTB) | PDR World",
-        "description":  "Aesthetic design for indoor customer premises",
-        "canonical":  "https://pdrworld.com/htb.html",
-        "tagline":  "Aesthetic design for indoor customer premises",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"14\" y=\"12\" width=\"20\" height=\"24\" rx=\"2\"\u003e\u003c/rect\u003e\u003cpath d=\"M14 24h20\"\u003e\u003c/path\u003e\u003ccircle cx=\"24\" cy=\"18\" r=\"2\"\u003e\u003c/circle\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Aesthetic design for indoor customer premises",
-                         "Provides fiber termination points and housing",
-                         "Wall mountable"
-                     ],
-        "applications":  [
-                             "FTTH Customer Premises",
-                             "Residential Broadband",
-                             "Office Workstations"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Capacity",
-                          "value":  "1 to 4 Cores"
-                      },
-                      {
-                          "label":  "Material",
-                          "value":  "ABS plastic"
-                      },
-                      {
-                          "label":  "Size",
-                          "value":  "Compact footprint"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "rack-mount-fms",
-                            "name":  "Rack Mount Fiber Management System"
-                        },
-                        {
-                            "slug":  "wall-mount",
-                            "name":  "Optical Fiber Wall Mount Enclosure"
-                        },
-                        {
-                            "slug":  "fdb",
-                            "name":  "Fiber Distribution Box (FDB)"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/htb.pdf"
-    },
-    {
-        "slug":  "hybrid-adapter",
-        "name":  "SC/APC to SC/UPC Adapter",
-        "category":  "Passive Components",
-        "title":  "SC/APC to SC/UPC Adapter | PDR World",
-        "description":  "Hybrid fixed type adapter converter",
-        "canonical":  "https://pdrworld.com/hybrid-adapter.html",
-        "tagline":  "Hybrid fixed type adapter converter",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"14\" y=\"14\" width=\"20\" height=\"20\" rx=\"3\"\u003e\u003c/rect\u003e\u003cline x1=\"6\" y1=\"24\" x2=\"14\" y2=\"24\"\u003e\u003c/line\u003e\u003cline x1=\"34\" y1=\"24\" x2=\"42\" y2=\"24\"\u003e\u003c/line\u003e\u003cline x1=\"24\" y1=\"14\" x2=\"24\" y2=\"34\"\u003e\u003c/line\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Hybrid fixed type adapter converter",
-                         "Converts APC polish to UPC polish",
-                         "Zero attenuation design"
-                     ],
-        "applications":  [
-                             "Network Integration",
-                             "Test Equipment Interfacing",
-                             "Cross-connection"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Fiber Type",
-                          "value":  "Single Mode 9/125"
-                      },
-                      {
-                          "label":  "Loss",
-                          "value":  "0dB"
-                      },
-                      {
-                          "label":  "Housing",
-                          "value":  "Plastic/Metal"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/hybrid-adapter.pdf"
-    },
-    {
-        "slug":  "mating-sleeve",
-        "name":  "Mating Sleeve / Alignment Sleeve",
-        "category":  "Passive Components",
-        "title":  "Mating Sleeve / Alignment Sleeve | PDR World",
-        "description":  "Precision split sleeve for accurate alignment",
-        "canonical":  "https://pdrworld.com/mating-sleeve.html",
-        "tagline":  "Precision split sleeve for accurate alignment",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003crect x=\"20\" y=\"12\" width=\"8\" height=\"24\" rx=\"2\"\u003e\u003c/rect\u003e\u003cline x1=\"8\" y1=\"24\" x2=\"20\" y2=\"24\"\u003e\u003c/line\u003e\u003cline x1=\"28\" y1=\"24\" x2=\"40\" y2=\"24\"\u003e\u003c/line\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Precision split sleeve for accurate alignment",
-                         "Available in Zirconia Ceramic or Phosphor Bronze",
-                         "Low insertion loss coupling"
-                     ],
-        "applications":  [
-                             "Adapter Manufacturing",
-                             "Bare Fiber Testing",
-                             "Temporary Splicing"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Material",
-                          "value":  "Ceramic / Bronze"
-                      },
-                      {
-                          "label":  "Inner Diameter",
-                          "value":  "2.5mm (SC/FC/ST) / 1.25mm (LC)"
-                      },
-                      {
-                          "label":  "Durability",
-                          "value":  "\u003e1000 matings"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        }
-                    ]
-    },
-    {
-        "slug":  "mode-conditioning",
-        "name":  "Mode Conditioning Patchcord",
-        "category":  "Passive Components",
-        "title":  "Mode Conditioning Patchcord | PDR World",
-        "description":  "Eliminates differential mode delay (DMD) effects",
-        "canonical":  "https://pdrworld.com/mode-conditioning.html",
-        "tagline":  "Eliminates differential mode delay (DMD) effects",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003cpath d=\"M8 24c8-8 24 8 32 0\"\u003e\u003c/path\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Eliminates differential mode delay (DMD) effects",
-                         "Enables Gigabit Ethernet over legacy MM fiber",
-                         "Offset single-mode to multi-mode splice"
-                     ],
-        "applications":  [
-                             "Gigabit Ethernet LX/LH",
-                             "Legacy Fiber Upgrades",
-                             "Campus Networks"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Offset",
-                          "value":  "Precision core alignment"
-                      },
-                      {
-                          "label":  "Cable Type",
-                          "value":  "Duplex zipcord"
-                      },
-                      {
-                          "label":  "Connectors",
-                          "value":  "SC/LC/FC"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/mode-conditioning.pdf"
-    },
-    {
-        "slug":  "mpo-assembly",
-        "name":  "MPO Cable Assembly",
-        "category":  "Passive Components",
-        "title":  "MPO Cable Assembly | PDR World",
-        "description":  "High-density multi-fiber connector system",
-        "canonical":  "https://pdrworld.com/mpo-assembly.html",
-        "tagline":  "High-density multi-fiber connector system",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"8\" y=\"18\" width=\"14\" height=\"12\" rx=\"2\"\u003e\u003c/rect\u003e\u003crect x=\"26\" y=\"18\" width=\"14\" height=\"12\" rx=\"2\"\u003e\u003c/rect\u003e\u003cpath d=\"M22 24h4\"\u003e\u003c/path\u003e\u003c/svg\u003e",
-        "features":  [
-                         "High-density multi-fiber connector system",
-                         "Precision molded MT ferrule",
-                         "Push-pull latching mechanism"
-                     ],
-        "applications":  [
-                             "40G/100G Networks",
-                             "Data Center Backbone",
-                             "High-Density Interconnects"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Fiber Count",
-                          "value":  "8/12/24/48"
-                      },
-                      {
-                          "label":  "Polarity",
-                          "value":  "Type A / B / C"
-                      },
-                      {
-                          "label":  "Insertion Loss",
-                          "value":  "Standard / Low Loss"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/mpo-assembly.pdf"
-    },
-    {
-        "slug":  "mpo-cleaner",
-        "name":  "Fiber Optic Cleaner Pen MPO",
-        "category":  "Passive Components",
-        "title":  "Fiber Optic Cleaner Pen MPO | PDR World",
-        "description":  "Designed specifically for multi-fiber connectors",
-        "canonical":  "https://pdrworld.com/mpo-cleaner.html",
-        "tagline":  "Designed specifically for multi-fiber connectors",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003crect x=\"14\" y=\"14\" width=\"20\" height=\"20\" rx=\"2\"\u003e\u003c/rect\u003e\u003cpath d=\"M14 24h20\"\u003e\u003c/path\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Designed specifically for multi-fiber connectors",
-                         "Cleans both male (with pins) and female (without pins) MPO/MTP",
-                         "Easy pushing motion engagement"
-                     ],
-        "applications":  [
-                             "Hyperscale Data Centres",
-                             "40G/100G/400G Networks",
-                             "Backbone Cabling"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Connector Type",
-                          "value":  "MPO / MTP"
-                      },
-                      {
-                          "label":  "Clean Cycles",
-                          "value":  "600+ cleans"
-                      },
-                      {
-                          "label":  "Cleaning Action",
-                          "value":  "Dry cloth sweep"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "cleaner-pen",
-                            "name":  "Fiber Optic Cleaner Pen"
-                        },
-                        {
-                            "slug":  "cassette-cleaner",
-                            "name":  "Cassette Cleaner"
-                        },
-                        {
-                            "slug":  "vfl",
-                            "name":  "VFL â€” Visual Fault Locator"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/mpo-cleaner.pdf"
-    },
-    {
-        "slug":  "next-gen-splicer",
-        "name":  "Next Gen Optical Fusion Splicer (OPM + VFL)",
-        "category":  "Test and Measurement Equipment",
-        "title":  "Next Gen Optical Fusion Splicer (OPM + VFL) | PDR World",
-        "description":  "Integrated OPM and VFL modules",
-        "canonical":  "https://pdrworld.com/next-gen-splicer.html",
-        "tagline":  "Integrated OPM and VFL modules",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003crect x=\"10\" y=\"14\" width=\"28\" height=\"20\" rx=\"3\"\u003e\u003c/rect\u003e\u003cpath d=\"M16 14V10h16v4\"\u003e\u003c/path\u003e\u003ccircle cx=\"24\" cy=\"24\" r=\"4\"\u003e\u003c/circle\u003e\u003cpath d=\"M10 24H6\"\u003e\u003c/path\u003e\u003cpath d=\"M42 24h-4\"\u003e\u003c/path\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Integrated OPM and VFL modules",
-                         "Core alignment technology for ultra-low loss",
-                         "Fast 8s splicing and 18s heating times"
-                     ],
-        "applications":  [
-                             "Backbone Network Construction",
-                             "High-Precision Laboratory Splicing",
-                             "Advanced Field Maintenance"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Alignment Method",
-                          "value":  "Core-to-Core"
-                      },
-                      {
-                          "label":  "Integrated Tools",
-                          "value":  "OPM (-70~+6dBm), VFL (10mW)"
-                      },
-                      {
-                          "label":  "Battery Capacity",
-                          "value":  "\u003e250 splice/heat cycles"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "regular-opm",
-                            "name":  "Regular Optical Power Meter"
-                        },
-                        {
-                            "slug":  "pocket-otdr",
-                            "name":  "Pocket OTDR"
-                        },
-                        {
-                            "slug":  "pon-power-meter",
-                            "name":  "PON Power Meter"
-                        }
-                    ]
-    },
-    {
-        "slug":  "odf",
-        "name":  "Optical Distribution Frames",
-        "category":  "Cable Management Devices",
-        "title":  "Optical Distribution Frames | PDR World",
-        "description":  "Multi-purpose high-capacity distribution frame",
-        "canonical":  "https://pdrworld.com/odf.html",
-        "tagline":  "Multi-purpose high-capacity distribution frame",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"12\" y=\"6\" width=\"24\" height=\"36\" rx=\"2\"\u003e\u003c/rect\u003e\u003cline x1=\"12\" y1=\"18\" x2=\"36\" y2=\"18\"\u003e\u003c/line\u003e\u003cline x1=\"12\" y1=\"30\" x2=\"36\" y2=\"30\"\u003e\u003c/line\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Multi-purpose high-capacity distribution frame",
-                         "High-quality ABS plastic or metal build",
-                         "Efficient cable routing and protection"
-                     ],
-        "applications":  [
-                             "Telecom Central Office",
-                             "Main Distribution Area (MDA)",
-                             "Large Data Centers"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Capacity",
-                          "value":  "Up to 576 Cores"
-                      },
-                      {
-                          "label":  "Type",
-                          "value":  "Floor standing / Rack mount"
-                      },
-                      {
-                          "label":  "Pigtail Management",
-                          "value":  "Integrated"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "rack-mount-fms",
-                            "name":  "Rack Mount Fiber Management System"
-                        },
-                        {
-                            "slug":  "htb",
-                            "name":  "Home Termination Box (HTB)"
-                        },
-                        {
-                            "slug":  "wall-mount",
-                            "name":  "Optical Fiber Wall Mount Enclosure"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/odf.pdf"
-    },
-    {
-        "slug":  "plc-splitter",
-        "name":  "PLC Splitter",
-        "category":  "Passive Components",
-        "title":  "PLC Splitter | PDR World",
-        "description":  "Planar Lightwave Circuit technology",
-        "canonical":  "https://pdrworld.com/plc-splitter.html",
-        "tagline":  "Planar Lightwave Circuit technology",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003cline x1=\"8\" y1=\"24\" x2=\"20\" y2=\"24\"\u003e\u003c/line\u003e\u003cpath d=\"M20 24l10-8\"\u003e\u003c/path\u003e\u003cpath d=\"M20 24l10 0\"\u003e\u003c/path\u003e\u003cpath d=\"M20 24l10 8\"\u003e\u003c/path\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Planar Lightwave Circuit technology",
-                         "Uniform power splitting",
-                         "Broad operating wavelength"
-                     ],
-        "applications":  [
-                             "FTTH/PON Networks",
-                             "CATV Links",
-                             "Optical Signal Distribution"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Split Ratio",
-                          "value":  "1x2 up to 1x128"
-                      },
-                      {
-                          "label":  "Wavelength",
-                          "value":  "1260nm - 1650nm"
-                      },
-                      {
-                          "label":  "Packaging",
-                          "value":  "Bare fiber / Blockless / Cassette"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/plc-splitter.pdf"
-    },
-    {
-        "slug":  "pocket-otdr",
-        "name":  "Pocket OTDR",
-        "category":  "Test and Measurement Equipment",
-        "title":  "Pocket OTDR | PDR World",
-        "description":  "Ultra-compact smartphone-sized form factor",
-        "canonical":  "https://pdrworld.com/pocket-otdr.html",
-        "tagline":  "Ultra-compact smartphone-sized form factor",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003crect x=\"14\" y=\"10\" width=\"20\" height=\"28\" rx=\"2\"\u003e\u003c/rect\u003e\u003crect x=\"16\" y=\"14\" width=\"16\" height=\"12\" rx=\"1\"\u003e\u003c/rect\u003e\u003ccircle cx=\"24\" cy=\"32\" r=\"2\"\u003e\u003c/circle\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Ultra-compact smartphone-sized form factor",
-                         "Fast boot-up and auto-test functionality",
-                         "Event map view for intuitive fault location"
-                     ],
-        "applications":  [
-                             "Last-Mile FTTx Troubleshooting",
-                             "Quick Field Checks",
-                             "Access Network Installation"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Dynamic Range",
-                          "value":  "22dB to 26dB"
-                      },
-                      {
-                          "label":  "Fiber Type",
-                          "value":  "Single-mode / Multimode Options"
-                      },
-                      {
-                          "label":  "Display",
-                          "value":  "Touchscreen LCD"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "regular-opm",
-                            "name":  "Regular Optical Power Meter"
-                        },
-                        {
-                            "slug":  "next-gen-splicer",
-                            "name":  "Next Gen Optical Fusion Splicer (OPM + VFL)"
-                        },
-                        {
-                            "slug":  "pon-power-meter",
-                            "name":  "PON Power Meter"
-                        }
-                    ]
-    },
-    {
-        "slug":  "pof-patchcord",
-        "name":  "POF â€” Plastic Optical Fiber Patchcord",
-        "category":  "Passive Components",
-        "title":  "POF â€” Plastic Optical Fiber Patchcord | PDR World",
-        "description":  "Large PMMA core for easy alignment",
-        "canonical":  "https://pdrworld.com/pof-patchcord.html",
-        "tagline":  "Large PMMA core for easy alignment",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003cpath d=\"M8 24h32\"\u003e\u003c/path\u003e\u003ccircle cx=\"24\" cy=\"24\" r=\"6\"\u003e\u003c/circle\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Large PMMA core for easy alignment",
-                         "Immune to electromagnetic interference (EMI)",
-                         "Cost-effective for short-range links"
-                     ],
-        "applications":  [
-                             "Automotive Networking",
-                             "Industrial Control Systems",
-                             "Home AV Connections"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Core Material",
-                          "value":  "Polymethyl Methacrylate (PMMA)"
-                      },
-                      {
-                          "label":  "Wavelength",
-                          "value":  "650nm"
-                      },
-                      {
-                          "label":  "Core Diameter",
-                          "value":  "1mm (Typical)"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "bendiboot-patchcord",
-                            "name":  "Bendiboot Patchcord"
-                        }
-                    ]
-    },
-    {
-        "slug":  "pon-power-meter",
-        "name":  "PON Power Meter",
-        "category":  "Test and Measurement Equipment",
-        "title":  "PON Power Meter | PDR World",
-        "description":  "Pass-through measurement for live PON",
-        "canonical":  "https://pdrworld.com/pon-power-meter.html",
-        "tagline":  "Pass-through measurement for live PON",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"14\" y=\"8\" width=\"20\" height=\"32\" rx=\"3\"\u003e\u003c/rect\u003e\u003crect x=\"18\" y=\"14\" width=\"12\" height=\"8\" rx=\"1\"\u003e\u003c/rect\u003e\u003ccircle cx=\"24\" cy=\"30\" r=\"3\"\u003e\u003c/circle\u003e\u003ccircle cx=\"20\" cy=\"26\" r=\"1\"\u003e\u003c/circle\u003e\u003ccircle cx=\"28\" cy=\"26\" r=\"1\"\u003e\u003c/circle\u003e\u003ccircle cx=\"20\" cy=\"34\" r=\"1\"\u003e\u003c/circle\u003e\u003ccircle cx=\"28\" cy=\"34\" r=\"1\"\u003e\u003c/circle\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Pass-through measurement for live PON",
-                         "Simultaneous testing of 1310/1490/1550nm",
-                         "Burst mode measurement for 1310nm upstream"
-                     ],
-        "applications":  [
-                             "FTTx Network Turn-up",
-                             "PON Maintenance",
-                             "OLT/ONT Verification"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Wavelengths",
-                          "value":  "1310/1490/1550nm"
-                      },
-                      {
-                          "label":  "Network Type",
-                          "value":  "BPON/EPON/GPON"
-                      },
-                      {
-                          "label":  "Display",
-                          "value":  "Color LCD"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "regular-opm",
-                            "name":  "Regular Optical Power Meter"
-                        },
-                        {
-                            "slug":  "pocket-otdr",
-                            "name":  "Pocket OTDR"
-                        },
-                        {
-                            "slug":  "next-gen-splicer",
-                            "name":  "Next Gen Optical Fusion Splicer (OPM + VFL)"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/pon-power-meter.pdf"
-    },
-    {
-        "slug":  "rack-mount-fms",
-        "name":  "Rack Mount Fiber Management System",
-        "category":  "Cable Management Devices",
-        "title":  "Rack Mount Fiber Management System | PDR World",
-        "description":  "19",
-        "canonical":  "https://pdrworld.com/rack-mount-fms.html",
-        "tagline":  "19\" Rack Mount fiber-optic enclosure",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"6\" y=\"16\" width=\"36\" height=\"16\" rx=\"2\"\u003e\u003c/rect\u003e\u003cline x1=\"12\" y1=\"24\" x2=\"16\" y2=\"24\"\u003e\u003c/line\u003e\u003cline x1=\"20\" y1=\"24\" x2=\"24\" y2=\"24\"\u003e\u003c/line\u003e\u003cline x1=\"28\" y1=\"24\" x2=\"32\" y2=\"24\"\u003e\u003c/line\u003e\u003ccircle cx=\"8\" cy=\"20\" r=\"1\"\u003e\u003c/circle\u003e\u003ccircle cx=\"8\" cy=\"28\" r=\"1\"\u003e\u003c/circle\u003e\u003ccircle cx=\"40\" cy=\"20\" r=\"1\"\u003e\u003c/circle\u003e\u003ccircle cx=\"40\" cy=\"28\" r=\"1\"\u003e\u003c/circle\u003e\u003c/svg\u003e",
-        "features":  [
-                         "19\" Rack Mount fiber-optic enclosure",
-                         "Slide-out drawer for easy access",
-                         "Modular adapter panels"
-                     ],
-        "applications":  [
-                             "Data Center Racks",
-                             "Telecom Central Office",
-                             "Enterprise Server Rooms"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Capacity",
-                          "value":  "Up to 144 cores (4U)"
-                      },
-                      {
-                          "label":  "Material",
-                          "value":  "Cold rolled steel"
-                      },
-                      {
-                          "label":  "Mounting",
-                          "value":  "Standard 19-inch rack"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "htb",
-                            "name":  "Home Termination Box (HTB)"
-                        },
-                        {
-                            "slug":  "wall-mount",
-                            "name":  "Optical Fiber Wall Mount Enclosure"
-                        },
-                        {
-                            "slug":  "fdb",
-                            "name":  "Fiber Distribution Box (FDB)"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/rack-mount-fms.pdf"
-    },
-    {
-        "slug":  "rapid-push",
-        "name":  "Rapid Push Cable Assembly",
-        "category":  "Passive Components",
-        "title":  "Rapid Push Cable Assembly | PDR World",
-        "description":  "FTTX smart pushable preterminated drop solution",
-        "canonical":  "https://pdrworld.com/rapid-push.html",
-        "tagline":  "FTTX smart pushable preterminated drop solution",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003cpath d=\"M10 24h28\"\u003e\u003c/path\u003e\u003cpath d=\"M34 20l4 4-4 4\"\u003e\u003c/path\u003e\u003c/svg\u003e",
-        "features":  [
-                         "FTTX smart pushable preterminated drop solution",
-                         "Eliminates field splicing",
-                         "Designed for microduct deployment"
-                     ],
-        "applications":  [
-                             "FTTH Last Mile",
-                             "Microduct Installations",
-                             "MDU Deployments"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Cable Outer Dia",
-                          "value":  "2.0mm to 5.0mm"
-                      },
-                      {
-                          "label":  "Connector",
-                          "value":  "SC/APC Pushable"
-                      },
-                      {
-                          "label":  "Tensile Strength",
-                          "value":  "High"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/rapid-push.pdf"
-    },
-    {
-        "slug":  "regular-opm",
-        "name":  "Regular Optical Power Meter",
-        "category":  "Test and Measurement Equipment",
-        "title":  "Regular Optical Power Meter | PDR World",
-        "description":  "Auto-wavelength recognition capability",
-        "canonical":  "https://pdrworld.com/regular-opm.html",
-        "tagline":  "Auto-wavelength recognition capability",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003crect x=\"12\" y=\"8\" width=\"24\" height=\"32\" rx=\"4\"\u003e\u003c/rect\u003e\u003crect x=\"16\" y=\"14\" width=\"16\" height=\"10\" rx=\"1\"\u003e\u003c/rect\u003e\u003ccircle cx=\"24\" cy=\"32\" r=\"3\"\u003e\u003c/circle\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Auto-wavelength recognition capability",
-                         "Wide dynamic measurement range",
-                         "Backlit LCD for low-light environments"
-                     ],
-        "applications":  [
-                             "Link Acceptance Testing",
-                             "Power Level Monitoring",
-                             "Optical Loss Measurement"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Wavelength Range",
-                          "value":  "800nm to 1700nm"
-                      },
-                      {
-                          "label":  "Calibrated Wavelengths",
-                          "value":  "850/1300/1310/1490/1550/1625nm"
-                      },
-                      {
-                          "label":  "Power Range",
-                          "value":  "-70 to +10 dBm / -50 to +26 dBm"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "pocket-otdr",
-                            "name":  "Pocket OTDR"
-                        },
-                        {
-                            "slug":  "next-gen-splicer",
-                            "name":  "Next Gen Optical Fusion Splicer (OPM + VFL)"
-                        },
-                        {
-                            "slug":  "pon-power-meter",
-                            "name":  "PON Power Meter"
-                        }
-                    ]
-    },
-    {
-        "slug":  "sfp-10g-dual",
-        "name":  "SFP+ 10G Dual Fiber",
-        "category":  "Active Components",
-        "title":  "SFP+ 10G Dual Fiber | PDR World",
-        "description":  "Standard dual-fiber 10G transmission",
-        "canonical":  "https://pdrworld.com/sfp-10g-dual.html",
-        "tagline":  "Standard dual-fiber 10G transmission",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003crect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"\u003e\u003c/rect\u003e\u003crect x=\"4\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"\u003e\u003c/rect\u003e\u003crect x=\"38\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"\u003e\u003c/rect\u003e\u003cline x1=\"14\" y1=\"24\" x2=\"34\" y2=\"24\"\u003e\u003c/line\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Standard dual-fiber 10G transmission",
-                         "Broad vendor compatibility",
-                         "High reliability"
-                     ],
-        "applications":  [
-                             "SAN / NAS",
-                             "Edge Routing",
-                             "Data Center Racks"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Form Factor",
-                          "value":  "SFP+"
-                      },
-                      {
-                          "label":  "Data Rate",
-                          "value":  "10G"
-                      },
-                      {
-                          "label":  "Connector",
-                          "value":  "LC Duplex"
-                      },
-                      {
-                          "label":  "DOM Support",
-                          "value":  "Yes"
-                      },
-                      {
-                          "label":  "Wavelength",
-                          "value":  "850nm / 1310nm / 1550nm"
-                      },
-                      {
-                          "label":  "Operating Temp",
-                          "value":  "0Â°C to 70Â°C"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "smart-sfp",
-                            "name":  "Smart SFP Transceiver"
-                        },
-                        {
-                            "slug":  "sfp-400g",
-                            "name":  "400G"
-                        }
-                    ]
-    },
-    {
-        "slug":  "sfp-1g-bidi",
-        "name":  "1G SFP BIDI",
-        "category":  "Active Components",
-        "title":  "1G SFP BIDI | PDR World",
-        "description":  "Cost-effective 1G bi-directional link",
-        "canonical":  "https://pdrworld.com/sfp-1g-bidi.html",
-        "tagline":  "Cost-effective 1G bi-directional link",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003crect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"\u003e\u003c/rect\u003e\u003crect x=\"4\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"\u003e\u003c/rect\u003e\u003crect x=\"38\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"\u003e\u003c/rect\u003e\u003cline x1=\"14\" y1=\"24\" x2=\"34\" y2=\"24\"\u003e\u003c/line\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Cost-effective 1G bi-directional link",
-                         "Single fiber optimization",
-                         "Low power dissipation"
-                     ],
-        "applications":  [
-                             "FTTH",
-                             "Access Rings",
-                             "CPE Equipment"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Form Factor",
-                          "value":  "SFP"
-                      },
-                      {
-                          "label":  "Data Rate",
-                          "value":  "1.25G"
-                      },
-                      {
-                          "label":  "Connector",
-                          "value":  "LC Simplex / SC Simplex"
-                      },
-                      {
-                          "label":  "DOM Support",
-                          "value":  "Yes"
-                      },
-                      {
-                          "label":  "Wavelength",
-                          "value":  "1310nm/1550nm"
-                      },
-                      {
-                          "label":  "Operating Temp",
-                          "value":  "-40Â°C to +85Â°C"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "smart-sfp",
-                            "name":  "Smart SFP Transceiver"
-                        },
-                        {
-                            "slug":  "sfp-400g",
-                            "name":  "400G"
-                        }
-                    ]
-    },
-    {
-        "slug":  "sfp-1g-dual",
-        "name":  "1G SFP Dual Fiber",
-        "category":  "Active Components",
-        "title":  "1G SFP Dual Fiber | PDR World",
-        "description":  "Legacy compatible 1G module",
-        "canonical":  "https://pdrworld.com/sfp-1g-dual.html",
-        "tagline":  "Legacy compatible 1G module",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003crect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"\u003e\u003c/rect\u003e\u003crect x=\"4\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"\u003e\u003c/rect\u003e\u003crect x=\"38\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"\u003e\u003c/rect\u003e\u003cline x1=\"14\" y1=\"24\" x2=\"34\" y2=\"24\"\u003e\u003c/line\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Legacy compatible 1G module",
-                         "Wide operating temperature range",
-                         "Cost-effective"
-                     ],
-        "applications":  [
-                             "Legacy Switching",
-                             "Industrial Ethernet",
-                             "Enterprise Access"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Form Factor",
-                          "value":  "SFP"
-                      },
-                      {
-                          "label":  "Data Rate",
-                          "value":  "1.25G"
-                      },
-                      {
-                          "label":  "Connector",
-                          "value":  "LC Duplex"
-                      },
-                      {
-                          "label":  "DOM Support",
-                          "value":  "Yes"
-                      },
-                      {
-                          "label":  "Wavelength",
-                          "value":  "850nm / 1310nm"
-                      },
-                      {
-                          "label":  "Operating Temp",
-                          "value":  "-40Â°C to +85Â°C"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "smart-sfp",
-                            "name":  "Smart SFP Transceiver"
-                        },
-                        {
-                            "slug":  "sfp-400g",
-                            "name":  "400G"
-                        }
-                    ]
-    },
-    {
-        "slug":  "sfp-25g-bidi",
-        "name":  "25G \u0026 25G BIDI",
-        "category":  "Active Components",
-        "title":  "25G \u0026 25G BIDI | PDR World",
-        "description":  "Optimized for 5G fronthaul",
-        "canonical":  "https://pdrworld.com/sfp-25g-bidi.html",
-        "tagline":  "Optimized for 5G fronthaul",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003crect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"\u003e\u003c/rect\u003e\u003crect x=\"4\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"\u003e\u003c/rect\u003e\u003crect x=\"38\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"\u003e\u003c/rect\u003e\u003cline x1=\"14\" y1=\"24\" x2=\"34\" y2=\"24\"\u003e\u003c/line\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Optimized for 5G fronthaul",
-                         "Single fiber bi-directional transmission (BIDI)",
-                         "Low latency"
-                     ],
-        "applications":  [
-                             "5G Fronthaul",
-                             "Server Connectivity",
-                             "High-Speed Access"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Form Factor",
-                          "value":  "SFP28"
-                      },
-                      {
-                          "label":  "Data Rate",
-                          "value":  "25G"
-                      },
-                      {
-                          "label":  "Connector",
-                          "value":  "LC Duplex / Simplex"
-                      },
-                      {
-                          "label":  "DOM Support",
-                          "value":  "Yes"
-                      },
-                      {
-                          "label":  "Wavelength",
-                          "value":  "850nm / 1310nm"
-                      },
-                      {
-                          "label":  "Operating Temp",
-                          "value":  "-40Â°C to +85Â°C"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "smart-sfp",
-                            "name":  "Smart SFP Transceiver"
-                        },
-                        {
-                            "slug":  "sfp-400g",
-                            "name":  "400G"
-                        }
-                    ]
-    },
-    {
-        "slug":  "sfp-400g",
-        "name":  "400G",
-        "category":  "Active Components",
-        "title":  "400G | PDR World",
-        "description":  "Next-generation high-capacity throughput",
-        "canonical":  "https://pdrworld.com/sfp-400g.html",
-        "tagline":  "Next-generation high-capacity throughput",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003crect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"\u003e\u003c/rect\u003e\u003crect x=\"4\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"\u003e\u003c/rect\u003e\u003crect x=\"38\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"\u003e\u003c/rect\u003e\u003cline x1=\"14\" y1=\"24\" x2=\"34\" y2=\"24\"\u003e\u003c/line\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Next-generation high-capacity throughput",
-                         "Low power consumption",
-                         "Hot-pluggable form factor"
-                     ],
-        "applications":  [
-                             "Hyperscale Data Centers",
-                             "Core Routing",
-                             "5G Backhaul"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Form Factor",
-                          "value":  "QSFP-DD / OSFP"
-                      },
-                      {
-                          "label":  "Data Rate",
-                          "value":  "400G"
-                      },
-                      {
-                          "label":  "Connector",
-                          "value":  "LC / MPO"
-                      },
-                      {
-                          "label":  "DOM Support",
-                          "value":  "Yes"
-                      },
-                      {
-                          "label":  "Wavelength",
-                          "value":  "850nm / 1310nm"
-                      },
-                      {
-                          "label":  "Operating Temp",
-                          "value":  "0Â°C to 70Â°C"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "smart-sfp",
-                            "name":  "Smart SFP Transceiver"
-                        }
-                    ]
-    },
-    {
-        "slug":  "sfp-40g",
-        "name":  "40G",
-        "category":  "Active Components",
-        "title":  "40G | PDR World",
-        "description":  "Reliable mid-tier aggregation",
-        "canonical":  "https://pdrworld.com/sfp-40g.html",
-        "tagline":  "Reliable mid-tier aggregation",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003crect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"\u003e\u003c/rect\u003e\u003crect x=\"4\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"\u003e\u003c/rect\u003e\u003crect x=\"38\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"\u003e\u003c/rect\u003e\u003cline x1=\"14\" y1=\"24\" x2=\"34\" y2=\"24\"\u003e\u003c/line\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Reliable mid-tier aggregation",
-                         "IEEE 802.3ba compliant",
-                         "Hot-pluggable"
-                     ],
-        "applications":  [
-                             "Mid-tier Aggregation",
-                             "SAN Switches",
-                             "Data Center Edge"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Form Factor",
-                          "value":  "QSFP+"
-                      },
-                      {
-                          "label":  "Data Rate",
-                          "value":  "40G"
-                      },
-                      {
-                          "label":  "Connector",
-                          "value":  "LC / MPO"
-                      },
-                      {
-                          "label":  "DOM Support",
-                          "value":  "Yes"
-                      },
-                      {
-                          "label":  "Wavelength",
-                          "value":  "850nm / 1310nm"
-                      },
-                      {
-                          "label":  "Operating Temp",
-                          "value":  "0Â°C to 70Â°C"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "smart-sfp",
-                            "name":  "Smart SFP Transceiver"
-                        },
-                        {
-                            "slug":  "sfp-400g",
-                            "name":  "400G"
-                        }
-                    ]
-    },
-    {
-        "slug":  "sfp-copper",
-        "name":  "Copper SFP+",
-        "category":  "Active Components",
-        "title":  "Copper SFP+ | PDR World",
-        "description":  "RJ-45 interface for twisted pair copper",
-        "canonical":  "https://pdrworld.com/sfp-copper.html",
-        "tagline":  "RJ-45 interface for twisted pair copper",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003crect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"\u003e\u003c/rect\u003e\u003crect x=\"4\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"\u003e\u003c/rect\u003e\u003crect x=\"38\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"\u003e\u003c/rect\u003e\u003cline x1=\"14\" y1=\"24\" x2=\"34\" y2=\"24\"\u003e\u003c/line\u003e\u003c/svg\u003e",
-        "features":  [
-                         "RJ-45 interface for twisted pair copper",
-                         "Up to 30m reach on Cat6a/7",
-                         "Auto-negotiation"
-                     ],
-        "applications":  [
-                             "Server Connectivity",
-                             "ToR Switches",
-                             "Legacy Copper Infrastructure"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Form Factor",
-                          "value":  "SFP+"
-                      },
-                      {
-                          "label":  "Data Rate",
-                          "value":  "10G Base-T"
-                      },
-                      {
-                          "label":  "Connector",
-                          "value":  "RJ-45"
-                      },
-                      {
-                          "label":  "DOM Support",
-                          "value":  "No"
-                      },
-                      {
-                          "label":  "Wavelength",
-                          "value":  "N/A"
-                      },
-                      {
-                          "label":  "Operating Temp",
-                          "value":  "0Â°C to 70Â°C"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "smart-sfp",
-                            "name":  "Smart SFP Transceiver"
-                        },
-                        {
-                            "slug":  "sfp-400g",
-                            "name":  "400G"
-                        }
-                    ]
-    },
-    {
-        "slug":  "smart-sfp",
-        "name":  "Smart SFP Transceiver",
-        "category":  "Active Components",
-        "title":  "Smart SFP Transceiver | PDR World",
-        "description":  "Integrated OAM (Operations, Administration, and Maintenance)",
-        "canonical":  "https://pdrworld.com/smart-sfp.html",
-        "tagline":  "Integrated OAM (Operations, Administration, and Maintenance)",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"\u003e\u003c/rect\u003e\u003ccircle cx=\"24\" cy=\"24\" r=\"4\"\u003e\u003c/circle\u003e\u003cpath d=\"M12 24h24\"\u003e\u003c/path\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Integrated OAM (Operations, Administration, and Maintenance)",
-                         "Real-time performance monitoring",
-                         "Micro-loopback capability"
-                     ],
-        "applications":  [
-                             "Service Provider Edge",
-                             "Mobile Backhaul",
-                             "SLA Monitoring"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Interface",
-                          "value":  "1G / 10G SFP"
-                      },
-                      {
-                          "label":  "Protocol",
-                          "value":  "IEEE 802.3ah / 802.1ag"
-                      },
-                      {
-                          "label":  "Diagnostics",
-                          "value":  "DDM/DOM"
-                      },
-                      {
-                          "label":  "Latency",
-                          "value":  "Ultra-Low"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "sfp-400g",
-                            "name":  "400G"
-                        }
-                    ]
-    },
-    {
-        "slug":  "smpte-assembly",
-        "name":  "SMPTE Cable Assembly",
-        "category":  "Passive Components",
-        "title":  "SMPTE Cable Assembly | PDR World",
-        "description":  "Hybrid fiber and copper camera cable",
-        "canonical":  "https://pdrworld.com/smpte-assembly.html",
-        "tagline":  "Hybrid fiber and copper camera cable",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"\u003e\u003c/rect\u003e\u003ccircle cx=\"18\" cy=\"24\" r=\"3\"\u003e\u003c/circle\u003e\u003ccircle cx=\"30\" cy=\"24\" r=\"3\"\u003e\u003c/circle\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Hybrid fiber and copper camera cable",
-                         "Ruggedized and dirt protected connectors",
-                         "Compliant with SMPTE 311M and 304M"
-                     ],
-        "applications":  [
-                             "HDTV Broadcasting",
-                             "Stadium Infrastructure",
-                             "Mobile OB Vans"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Components",
-                          "value":  "2 SM Fibers + 4 Copper Conductors"
-                      },
-                      {
-                          "label":  "Jacket",
-                          "value":  "PUR / Lemo"
-                      },
-                      {
-                          "label":  "Durability",
-                          "value":  "\u003e 2000 Mating Cycles"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "fiber-spool",
-                            "name":  "Fiber Spool / Fiber Drum"
-                        },
-                        {
-                            "slug":  "armoured-patchcord",
-                            "name":  "Armoured Patchcord"
-                        },
-                        {
-                            "slug":  "pof-patchcord",
-                            "name":  "POF â€” Plastic Optical Fiber Patchcord"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/smpte-assembly.pdf"
-    },
-    {
-        "slug":  "vfl",
-        "name":  "VFL â€” Visual Fault Locator",
-        "category":  "Passive Components",
-        "title":  "VFL â€” Visual Fault Locator | PDR World",
-        "description":  "Bright 650nm visible red laser",
-        "canonical":  "https://pdrworld.com/vfl.html",
-        "tagline":  "Bright 650nm visible red laser",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"\u003e\u003cpath d=\"M24 10l4 8 8 4-8 4-4 8-4-8-8-4 8-4z\"\u003e\u003c/path\u003e\u003ccircle cx=\"24\" cy=\"24\" r=\"2\"\u003e\u003c/circle\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Bright 650nm visible red laser",
-                         "Continuous and flashing modes",
-                         "Ruggedized metal housing for field use"
-                     ],
-        "applications":  [
-                             "Fault Location",
-                             "Continuity Testing",
-                             "Fiber Identification"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Output Power",
-                          "value":  "1mW (Standard)"
-                      },
-                      {
-                          "label":  "Wavelength",
-                          "value":  "650nm"
-                      },
-                      {
-                          "label":  "Detection Range",
-                          "value":  "Up to 10km"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "cleaner-pen",
-                            "name":  "Fiber Optic Cleaner Pen"
-                        },
-                        {
-                            "slug":  "cassette-cleaner",
-                            "name":  "Cassette Cleaner"
-                        },
-                        {
-                            "slug":  "mpo-cleaner",
-                            "name":  "Fiber Optic Cleaner Pen MPO"
-                        }
-                    ]
-    },
-    {
-        "slug":  "wall-mount",
-        "name":  "Optical Fiber Wall Mount Enclosure",
-        "category":  "Cable Management Devices",
-        "title":  "Optical Fiber Wall Mount Enclosure | PDR World",
-        "description":  "Two door wall mounted enclosure",
-        "canonical":  "https://pdrworld.com/wall-mount.html",
-        "tagline":  "Two door wall mounted enclosure",
-        "heroIcon":  "\u003csvg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"\u003e\u003crect x=\"10\" y=\"8\" width=\"28\" height=\"32\" rx=\"3\"\u003e\u003c/rect\u003e\u003cline x1=\"24\" y1=\"8\" x2=\"24\" y2=\"40\"\u003e\u003c/line\u003e\u003ccircle cx=\"20\" cy=\"24\" r=\"1\"\u003e\u003c/circle\u003e\u003ccircle cx=\"28\" cy=\"24\" r=\"1\"\u003e\u003c/circle\u003e\u003c/svg\u003e",
-        "features":  [
-                         "Two door wall mounted enclosure",
-                         "Separate compartments for splicing and patching",
-                         "Secure lockable doors"
-                     ],
-        "applications":  [
-                             "Building Distribution",
-                             "Campus Networks",
-                             "Security Camera Hubs"
-                         ],
-        "specs":  [
-                      {
-                          "label":  "Capacity",
-                          "value":  "Up to 96 Cores"
-                      },
-                      {
-                          "label":  "Type",
-                          "value":  "Indoor Wall Mount"
-                      },
-                      {
-                          "label":  "Security",
-                          "value":  "Keyed locks"
-                      }
-                  ],
-        "related":  [
-                        {
-                            "slug":  "rack-mount-fms",
-                            "name":  "Rack Mount Fiber Management System"
-                        },
-                        {
-                            "slug":  "htb",
-                            "name":  "Home Termination Box (HTB)"
-                        },
-                        {
-                            "slug":  "fdb",
-                            "name":  "Fiber Distribution Box (FDB)"
-                        }
-                    ],
-        "datasheetUrl":  "/datasheets/wall-mount.pdf"
-    }
+[
+  {
+    "slug": "armoured-patchcord",
+    "name": "Armoured Patchcord",
+    "category": "Passive Components",
+    "title": "Armoured Patchcord | PDR World",
+    "description": "Stainless steel interlocking armour protection",
+    "canonical": "https://pdrworld.com/armoured-patchcord.html",
+    "tagline": "Stainless steel interlocking armour protection",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><path d=\"M12 20v8M16 20v8M20 20v8M24 20v8M28 20v8M32 20v8M36 20v8\"></path></svg>",
+    "features": [
+      "Stainless steel interlocking armour protection",
+      "High crush and rodent resistance",
+      "Retains flexibility of standard patchcords"
+    ],
+    "applications": [
+      "Harsh Environments",
+      "Industrial Plants",
+      "Direct Burial / Outdoor"
+    ],
+    "specs": [
+      {
+        "label": "Armour Material",
+        "value": "Stainless Steel"
+      },
+      {
+        "label": "Fiber Type",
+        "value": "SM / MM"
+      },
+      {
+        "label": "Jacket Type",
+        "value": "LSZH / PVC / PE"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      },
+      {
+        "slug": "bendiboot-patchcord",
+        "name": "Bendiboot Patchcord"
+      }
+    ],
+    "datasheetUrl": "/datasheets/armoured-patchcord.pdf"
+  },
+  {
+    "slug": "attenuator",
+    "name": "Variable Fiber Attenuator",
+    "category": "Passive Components",
+    "title": "Variable Fiber Attenuator - OVA Series | PDR World",
+    "description": "Digital variable fiber attenuator with up to 60 dB attenuation range",
+    "canonical": "https://pdrworld.com/attenuator.html",
+    "tagline": "Digital variable fiber attenuator with up to 60 dB attenuation range",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><path d=\"M18 18l6 6-6 6\"></path><path d=\"M30 18l-6 6 6 6\"></path></svg>",
+    "features": [
+      "Attenuation range up to 60 dB (SM)",
+      "Calibrated wavelengths: 1310 nm / 1490 nm / 1550 nm",
+      "Digital attenuating mode"
+    ],
+    "applications": [
+      "Test and Measurement",
+      "Optical Link Simulation",
+      "Fiber Optic Lab Use"
+    ],
+    "specs": [
+      {
+        "label": "Attenuation Range",
+        "value": "40 dB / 60 dB"
+      },
+      {
+        "label": "Calibrated Wavelengths",
+        "value": "1310 nm / 1490 nm / 1550 nm"
+      },
+      {
+        "label": "Fiber Mode",
+        "value": "SM"
+      },
+      {
+        "label": "Attenuating Mode",
+        "value": "Digital"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      }
+    ],
+    "datasheetUrl": "/datasheets/attenuator.pdf"
+  },
+  {
+    "slug": "bare-fiber-adapter",
+    "name": "Bare Fiber Adapter",
+    "category": "Passive Components",
+    "title": "Bare Fiber Adapter | PDR World",
+    "description": "Temporary link for bare optical fiber",
+    "canonical": "https://pdrworld.com/bare-fiber-adapter.html",
+    "tagline": "Temporary link for bare optical fiber",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"16\" y=\"14\" width=\"16\" height=\"20\" rx=\"3\"></rect><line x1=\"8\" y1=\"24\" x2=\"16\" y2=\"24\"></line><line x1=\"32\" y1=\"24\" x2=\"40\" y2=\"24\"></line></svg>",
+    "features": [
+      "Temporary link for bare optical fiber",
+      "Push-button fiber locking mechanism",
+      "Easy cleaning and maintenance"
+    ],
+    "applications": [
+      "Lab Testing",
+      "Emergency Field Restoration",
+      "Fiber Spool Testing"
+    ],
+    "specs": [
+      {
+        "label": "Interface Types",
+        "value": "SC / LC / FC / ST"
+      },
+      {
+        "label": "Ferrule",
+        "value": "Zirconia Ceramic"
+      },
+      {
+        "label": "Insertion Loss",
+        "value": "< 0.2 dB"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      }
+    ],
+    "datasheetUrl": "/datasheets/bare-fiber-adapter.pdf"
+  },
+  {
+    "slug": "bendiboot-patchcord",
+    "name": "Bendiboot Patchcord",
+    "category": "Passive Components",
+    "title": "Bendiboot Patchcord | PDR World",
+    "description": "90-degree angled boot design",
+    "canonical": "https://pdrworld.com/bendiboot-patchcord.html",
+    "tagline": "90-degree angled boot design",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M16 32V16h16\"></path></svg>",
+    "features": [
+      "90-degree angled boot design",
+      "Minimizes cable footprint in tight spaces",
+      "Prevents micro-bending losses at the connector"
+    ],
+    "applications": [
+      "High-Density Data Centres",
+      "Wall-Mount Enclosures",
+      "Tight Space Routing"
+    ],
+    "specs": [
+      {
+        "label": "Boot Angle",
+        "value": "90Â°"
+      },
+      {
+        "label": "Connector Options",
+        "value": "LC, SC"
+      },
+      {
+        "label": "Cable Diameter",
+        "value": "1.6mm / 2.0mm"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      }
+    ]
+  },
+  {
+    "slug": "bypass-switch",
+    "name": "Bypass Switch",
+    "category": "Active Components",
+    "title": "Bypass Switch | PDR World",
+    "description": "Automatic bypass of optical path on failure",
+    "canonical": "https://pdrworld.com/bypass-switch.html",
+    "tagline": "Automatic bypass of optical path on failure",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"12\" y=\"12\" width=\"24\" height=\"24\" rx=\"4\"></rect><path d=\"M18 24h12\"></path><path d=\"M24 18v12\"></path><circle cx=\"12\" cy=\"24\" r=\"3\"></circle><circle cx=\"36\" cy=\"24\" r=\"3\"></circle></svg>",
+    "features": [
+      "Automatic bypass of optical path on failure",
+      "Maintains network continuity",
+      "Low insertion loss"
+    ],
+    "applications": [
+      "Network Security Systems",
+      "Inline Monitoring",
+      "Fail-safe Architectures"
+    ],
+    "specs": [
+      {
+        "label": "Function",
+        "value": "Optical path control"
+      },
+      {
+        "label": "Insertion Loss",
+        "value": "< 1.0 dB"
+      },
+      {
+        "label": "Switching Time",
+        "value": "< 10ms"
+      }
+    ],
+    "related": [
+      {
+        "slug": "smart-sfp",
+        "name": "Smart SFP Transceiver"
+      },
+      {
+        "slug": "sfp-400g",
+        "name": "400G"
+      }
+    ],
+    "datasheetUrl": "/datasheets/bypass-switch.pdf"
+  },
+  {
+    "slug": "cassette-cleaner",
+    "name": "Cassette Cleaner",
+    "category": "Passive Components",
+    "title": "Cassette Cleaner | PDR World",
+    "description": "High-performance dry cleaning technology",
+    "canonical": "https://pdrworld.com/cassette-cleaner.html",
+    "tagline": "High-performance dry cleaning technology",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"10\" y=\"12\" width=\"28\" height=\"24\" rx=\"4\"></rect><circle cx=\"18\" cy=\"24\" r=\"4\"></circle><circle cx=\"30\" cy=\"24\" r=\"4\"></circle></svg>",
+    "features": [
+      "High-performance dry cleaning technology",
+      "Replaceable cleaning tape reels",
+      "Anti-static properties prevent dust re-accumulation"
+    ],
+    "applications": [
+      "Lab Testing Environments",
+      "Production Lines",
+      "Optical Network Maintenance"
+    ],
+    "specs": [
+      {
+        "label": "Clean Cycles",
+        "value": "400+ cleans per reel"
+      },
+      {
+        "label": "Compatibility",
+        "value": "SC, FC, ST, LC, MU, MPO, MTRJ"
+      },
+      {
+        "label": "Material",
+        "value": "Ultra-clean micro-fiber cloth"
+      }
+    ],
+    "related": [
+      {
+        "slug": "cleaner-pen",
+        "name": "Fiber Optic Cleaner Pen"
+      },
+      {
+        "slug": "mpo-cleaner",
+        "name": "Fiber Optic Cleaner Pen MPO"
+      },
+      {
+        "slug": "vfl",
+        "name": "VFL â€” Visual Fault Locator"
+      }
+    ],
+    "datasheetUrl": "/datasheets/cassette-cleaner.pdf"
+  },
+  {
+    "slug": "cat6-panel",
+    "name": "CAT 6 Patch Panel",
+    "category": "Cable Management Devices",
+    "title": "CAT 6 Patch Panel | PDR World",
+    "description": "High speed Network distribution panel",
+    "canonical": "https://pdrworld.com/cat6-panel.html",
+    "tagline": "High speed Network distribution panel",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"6\" y=\"16\" width=\"36\" height=\"16\" rx=\"2\"></rect><line x1=\"12\" y1=\"20\" x2=\"16\" y2=\"20\"></line><line x1=\"12\" y1=\"28\" x2=\"16\" y2=\"28\"></line><line x1=\"20\" y1=\"20\" x2=\"24\" y2=\"20\"></line><line x1=\"20\" y1=\"28\" x2=\"24\" y2=\"28\"></line><line x1=\"28\" y1=\"20\" x2=\"32\" y2=\"20\"></line><line x1=\"28\" y1=\"28\" x2=\"32\" y2=\"28\"></line></svg>",
+    "features": [
+      "High speed Network distribution panel",
+      "Confirms to ISO/IEC standards",
+      "Cable management bar included"
+    ],
+    "applications": [
+      "Enterprise LAN",
+      "Server Room Copper Distribution",
+      "AV over IP setups"
+    ],
+    "specs": [
+      {
+        "label": "Ports",
+        "value": "24 / 48 Port"
+      },
+      {
+        "label": "Category",
+        "value": "Cat 6 UTP/STP"
+      },
+      {
+        "label": "Size",
+        "value": "1U / 2U 19-inch"
+      }
+    ],
+    "related": [
+      {
+        "slug": "rack-mount-fms",
+        "name": "Rack Mount Fiber Management System"
+      },
+      {
+        "slug": "htb",
+        "name": "Home Termination Box (HTB)"
+      },
+      {
+        "slug": "wall-mount",
+        "name": "Optical Fiber Wall Mount Enclosure"
+      }
+    ],
+    "datasheetUrl": "/datasheets/cat6-panel.pdf"
+  },
+  {
+    "slug": "cat6-patch-cord",
+    "name": "CAT 6 Patch Cord",
+    "category": "Passive Components",
+    "title": "CAT 6 Patch Cord | PDR World",
+    "description": "High-speed copper patch cord",
+    "canonical": "https://pdrworld.com/cat6-patch-cord.html",
+    "tagline": "High-speed copper patch cord",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M12 24h24\"></path><rect x=\"6\" y=\"20\" width=\"8\" height=\"8\" rx=\"2\"></rect><rect x=\"34\" y=\"20\" width=\"8\" height=\"8\" rx=\"2\"></rect></svg>",
+    "features": [
+      "High-speed copper patch cord",
+      "Factory terminated and tested",
+      "Snagless boot design"
+    ],
+    "applications": [
+      "LAN Networking",
+      "Server Racks",
+      "Workstation Connectivity"
+    ],
+    "specs": [
+      {
+        "label": "Category",
+        "value": "Cat 6"
+      },
+      {
+        "label": "Connector",
+        "value": "RJ45"
+      },
+      {
+        "label": "Jacket",
+        "value": "PVC / LSZH"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      }
+    ],
+    "datasheetUrl": "/datasheets/cat6-patch-cord.pdf"
+  },
+  {
+    "slug": "cleaner-pen",
+    "name": "Fiber Optic Cleaner Pen",
+    "category": "Passive Components",
+    "title": "Fiber Optic Cleaner Pen | PDR World",
+    "description": "One-click cleaning mechanism",
+    "canonical": "https://pdrworld.com/cleaner-pen.html",
+    "tagline": "One-click cleaning mechanism",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"18\" y=\"10\" width=\"12\" height=\"28\" rx=\"2\"></rect><path d=\"M22 10V6h4v4\"></path></svg>",
+    "features": [
+      "One-click cleaning mechanism",
+      "Extendable nozzle for recessed connectors",
+      "Lint-free anti-static microfiber fabric"
+    ],
+    "applications": [
+      "Field Maintenance",
+      "Data Centre Operations",
+      "FTTx Installations"
+    ],
+    "specs": [
+      {
+        "label": "Ferrule Compatibility",
+        "value": "1.25mm (LC/MU) / 2.5mm (SC/FC/ST)"
+      },
+      {
+        "label": "Clean Cycles",
+        "value": "800+ cleans per pen"
+      },
+      {
+        "label": "Application",
+        "value": "In-adapter or standalone connectors"
+      }
+    ],
+    "related": [
+      {
+        "slug": "cassette-cleaner",
+        "name": "Cassette Cleaner"
+      },
+      {
+        "slug": "mpo-cleaner",
+        "name": "Fiber Optic Cleaner Pen MPO"
+      },
+      {
+        "slug": "vfl",
+        "name": "VFL â€” Visual Fault Locator"
+      }
+    ],
+    "datasheetUrl": "/datasheets/cleaner-pen.pdf"
+  },
+  {
+    "slug": "cpri-patchcord",
+    "name": "CPRI Patchcord",
+    "category": "Passive Components",
+    "title": "CPRI Patchcord | PDR World",
+    "description": "Outdoor waterproof fiber optic assembly",
+    "canonical": "https://pdrworld.com/cpri-patchcord.html",
+    "tagline": "Outdoor waterproof fiber optic assembly",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M12 24h24\"></path><circle cx=\"10\" cy=\"24\" r=\"4\"></circle><circle cx=\"38\" cy=\"24\" r=\"4\"></circle></svg>",
+    "features": [
+      "Outdoor waterproof fiber optic assembly",
+      "Harsh environment protection",
+      "Compatible with RRU/BBU"
+    ],
+    "applications": [
+      "5G Cell Towers",
+      "FTTA Deployments",
+      "Outdoor Broadcast"
+    ],
+    "specs": [
+      {
+        "label": "Connector Type",
+        "value": "ODVA/IP/FX/PDLC/NSN"
+      },
+      {
+        "label": "Cable Type",
+        "value": "Armored / Tactical"
+      },
+      {
+        "label": "IP Rating",
+        "value": "IP67"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      }
+    ],
+    "datasheetUrl": "/datasheets/cpri-patchcord.pdf"
+  },
+  {
+    "slug": "cwdm",
+    "name": "CWDM Mux / DeMux Module",
+    "category": "Passive Components",
+    "title": "CWDM Mux / DeMux Module | PDR World",
+    "description": "Coarse WDM for cost-effective bandwidth expansion",
+    "canonical": "https://pdrworld.com/cwdm.html",
+    "tagline": "Coarse WDM for cost-effective bandwidth expansion",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"12\" width=\"20\" height=\"24\" rx=\"3\"></rect><line x1=\"6\" y1=\"20\" x2=\"14\" y2=\"20\"></line><line x1=\"6\" y1=\"28\" x2=\"14\" y2=\"28\"></line><line x1=\"34\" y1=\"24\" x2=\"42\" y2=\"24\"></line></svg>",
+    "features": [
+      "Coarse WDM for cost-effective bandwidth expansion",
+      "High isolation and low insertion loss",
+      "Passive operation (no power required)"
+    ],
+    "applications": [
+      "Metro Access Networks",
+      "Enterprise DCI",
+      "CATV Infrastructure"
+    ],
+    "specs": [
+      {
+        "label": "Channel Count",
+        "value": "4 / 8 / 16 / 18 Ch"
+      },
+      {
+        "label": "Spacing",
+        "value": "20nm"
+      },
+      {
+        "label": "Operating Temp",
+        "value": "-40Ã‚Â°C to +85Ã‚Â°C"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      }
+    ],
+    "datasheetUrl": "/datasheets/cwdm.pdf"
+  },
+  {
+    "slug": "drone",
+    "name": "Drone Optical Fiber Kit",
+    "category": "Specialty Drones",
+    "title": "Drone Optical Fiber Kit | PDR World",
+    "description": "Secure, jam-proof fiber-optic communication for defence and FPV drones.",
+    "canonical": "https://pdr-sable.vercel.app/products/drone",
+    "tagline": "Secure, jam-proof fiber-optic communication for defence and FPV drones.",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" strokeWidth=\"1.5\"><path d=\"M2 12h4l2-8 4 16 2-8h4\"/></svg>",
+    "features": [
+      "Fiber-tethered data link â€” immune to jamming, interception, and RF interference",
+      "Secure real-time HD / 4K + thermal video downlink",
+      "Lightweight payload spool for FPV and tactical UAVs",
+      "Selectable fiber length from 1 km to 50 km (custom lengths on request)"
+    ],
+    "applications": [
+      "Defence ISR & secure communications",
+      "FPV reconnaissance & tactical missions",
+      "Perimeter / border surveillance",
+      "EW / jam-resistant operations"
+    ],
+    "specs": [
+      {
+        "label": "Fiber Length",
+        "value": "1â€“50 km, selectable (custom available)"
+      },
+      {
+        "label": "Camera",
+        "value": "4K / Thermal"
+      },
+      {
+        "label": "Data Link",
+        "value": "Secure fiber-optic â€” EW / jam-resistant"
+      },
+      {
+        "label": "Deployment",
+        "value": "High-speed aerial spooling"
+      }
+    ],
+    "related": []
+  },
+  {
+    "slug": "dwdm",
+    "name": "DWDM Mux/DeMux Module",
+    "category": "Passive Components",
+    "title": "DWDM Mux/DeMux Module | PDR World",
+    "description": "Dense WDM for maximum fiber utilization",
+    "canonical": "https://pdrworld.com/dwdm.html",
+    "tagline": "Dense WDM for maximum fiber utilization",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"12\" width=\"20\" height=\"24\" rx=\"3\"></rect><line x1=\"6\" y1=\"18\" x2=\"14\" y2=\"18\"></line><line x1=\"6\" y1=\"24\" x2=\"14\" y2=\"24\"></line><line x1=\"6\" y1=\"30\" x2=\"14\" y2=\"30\"></line><line x1=\"34\" y1=\"24\" x2=\"42\" y2=\"24\"></line></svg>",
+    "features": [
+      "Dense WDM for maximum fiber utilization",
+      "Based on thin film filter or AWG technology",
+      "High channel isolation"
+    ],
+    "applications": [
+      "Long Haul Core Networks",
+      "High Capacity DCI",
+      "5G Fronthaul"
+    ],
+    "specs": [
+      {
+        "label": "Channel Count",
+        "value": "8 / 16 / 40 / 80 Ch"
+      },
+      {
+        "label": "Spacing",
+        "value": "100GHz / 50GHz"
+      },
+      {
+        "label": "Grid",
+        "value": "ITU Standard"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      }
+    ],
+    "datasheetUrl": "/datasheets/dwdm.pdf"
+  },
+  {
+    "slug": "fanout-patch-cords",
+    "name": "FanOut Patch Cords",
+    "category": "Passive Components",
+    "title": "FanOut Patch Cords | PDR World",
+    "description": "Small form factor high-density assembly",
+    "canonical": "https://pdrworld.com/fanout-patch-cords.html",
+    "tagline": "Small form factor high-density assembly",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"6\" y=\"20\" width=\"10\" height=\"8\" rx=\"2\"></rect><path d=\"M16 22l8-6\"></path><path d=\"M16 24h16\"></path><path d=\"M16 26l8 6\"></path><circle cx=\"38\" cy=\"16\" r=\"3\"></circle><circle cx=\"38\" cy=\"24\" r=\"3\"></circle><circle cx=\"38\" cy=\"32\" r=\"3\"></circle></svg>",
+    "features": [
+      "Small form factor high-density assembly",
+      "Breakout multi-fiber to simplex/duplex",
+      "Precision MT ferrule"
+    ],
+    "applications": [
+      "High-Density Racks",
+      "SAN Switches",
+      "Core Routing"
+    ],
+    "specs": [
+      {
+        "label": "Connector A",
+        "value": "MTP/MPO"
+      },
+      {
+        "label": "Connector B",
+        "value": "LC/SC/FC/ST"
+      },
+      {
+        "label": "Fiber Count",
+        "value": "8 / 12 / 24"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      }
+    ]
+  },
+  {
+    "slug": "fdb",
+    "name": "Fiber Distribution Box (FDB)",
+    "category": "Cable Management Devices",
+    "title": "Fiber Distribution Box (FDB) | PDR World",
+    "description": "Compact termination box for building premises",
+    "canonical": "https://pdrworld.com/fdb.html",
+    "tagline": "Compact termination box for building premises",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"12\" y=\"10\" width=\"24\" height=\"28\" rx=\"2\"></rect><line x1=\"12\" y1=\"18\" x2=\"36\" y2=\"18\"></line><line x1=\"24\" y1=\"18\" x2=\"24\" y2=\"38\"></line></svg>",
+    "features": [
+      "Compact termination box for building premises",
+      "Connects drop cable with feeder cable",
+      "Integrates splicing and splitting"
+    ],
+    "applications": [
+      "FTTx Distribution Nodes",
+      "Multi-Dwelling Units (MDU)",
+      "Street Cabinets"
+    ],
+    "specs": [
+      {
+        "label": "Capacity",
+        "value": "4 to 32 Cores"
+      },
+      {
+        "label": "Environment",
+        "value": "Indoor/Outdoor IP65"
+      },
+      {
+        "label": "Splitter Support",
+        "value": "Cassette or Tube PLC"
+      }
+    ],
+    "related": [
+      {
+        "slug": "rack-mount-fms",
+        "name": "Rack Mount Fiber Management System"
+      },
+      {
+        "slug": "htb",
+        "name": "Home Termination Box (HTB)"
+      },
+      {
+        "slug": "wall-mount",
+        "name": "Optical Fiber Wall Mount Enclosure"
+      }
+    ],
+    "datasheetUrl": "/datasheets/fdb.pdf"
+  },
+  {
+    "slug": "fiber-spool",
+    "name": "Fiber Spool / Fiber Drum",
+    "category": "Passive Components",
+    "title": "Fiber Spool / Fiber Drum | PDR World",
+    "description": "Precision low-stress winding technique",
+    "canonical": "https://pdrworld.com/fiber-spool.html",
+    "tagline": "Precision low-stress winding technique",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><circle cx=\"24\" cy=\"24\" r=\"16\"></circle><circle cx=\"24\" cy=\"24\" r=\"6\"></circle><path d=\"M24 8v16\"></path><path d=\"M8 24h16\"></path></svg>",
+    "features": [
+      "Precision low-stress winding technique",
+      "Rugged flange design for safe transport",
+      "Available with custom fiber types and lengths"
+    ],
+    "applications": [
+      "Lab Simulation Testing",
+      "Field Deployment Dispatch",
+      "Emergency Network Restoration"
+    ],
+    "specs": [
+      {
+        "label": "Lengths Available",
+        "value": "500m, 1km, 2km, Custom"
+      },
+      {
+        "label": "Fiber Options",
+        "value": "G.652D, G.657A, OM3, OM4"
+      },
+      {
+        "label": "Spool Material",
+        "value": "High-Impact Plastic / Wood"
+      }
+    ],
+    "related": [
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      },
+      {
+        "slug": "bendiboot-patchcord",
+        "name": "Bendiboot Patchcord"
+      }
+    ]
+  },
+  {
+    "slug": "field-connector",
+    "name": "Fiber Optic Connector, Field Installable",
+    "category": "Passive Components",
+    "title": "Fiber Optic Connector, Field Installable | PDR World",
+    "description": "Fast Field Assembly Optical Connector",
+    "canonical": "https://pdrworld.com/field-connector.html",
+    "tagline": "Fast Field Assembly Optical Connector",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"16\" width=\"20\" height=\"16\" rx=\"2\"></rect><line x1=\"8\" y1=\"24\" x2=\"14\" y2=\"24\"></line><line x1=\"34\" y1=\"24\" x2=\"40\" y2=\"24\"></line></svg>",
+    "features": [
+      "Fast Field Assembly Optical Connector",
+      "No epoxy or polishing required",
+      "Index matching gel inside"
+    ],
+    "applications": [
+      "FTTx Drop Cable Termination",
+      "Emergency Repairs",
+      "LAN Installations"
+    ],
+    "specs": [
+      {
+        "label": "Connector Type",
+        "value": "SC / LC / FC"
+      },
+      {
+        "label": "Polishing",
+        "value": "UPC / APC"
+      },
+      {
+        "label": "Assembly Time",
+        "value": "< 2 minutes"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      }
+    ],
+    "datasheetUrl": "/datasheets/field-connector.pdf"
+  },
+  {
+    "slug": "fo-patchcords",
+    "name": "Fiber Optic Patch Cords & Pigtails",
+    "category": "Passive Components",
+    "title": "Fiber Optic Patch Cords & Pigtails | PDR World",
+    "description": "Broadest choice of patchcords in the industry",
+    "canonical": "https://pdrworld.com/fo-patchcords.html",
+    "tagline": "Broadest choice of patchcords in the industry",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><circle cx=\"8\" cy=\"24\" r=\"3\"></circle><circle cx=\"40\" cy=\"24\" r=\"3\"></circle></svg>",
+    "features": [
+      "Broadest choice of patchcords in the industry",
+      "100% interferometry tested",
+      "Low insertion and high return loss"
+    ],
+    "applications": [
+      "Telecom Networks",
+      "FTTH Drop Cables",
+      "Optical Distribution Frames"
+    ],
+    "specs": [
+      {
+        "label": "Fiber Type",
+        "value": "SM (G.652D/G.657) / MM (OM1-OM5)"
+      },
+      {
+        "label": "Connectors",
+        "value": "LC/SC/FC/ST/E2000"
+      },
+      {
+        "label": "Insertion Loss",
+        "value": "< 0.3 dB"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      }
+    ],
+    "datasheetUrl": "/datasheets/fo-patchcords.pdf"
+  },
+  {
+    "slug": "fusion-splicer",
+    "name": "Fusion Splicer PDR618H",
+    "category": "Test and Measurement Equipment",
+    "title": "Fusion Splicer PDR618H | PDR World",
+    "description": "Handheld, small and light",
+    "canonical": "https://pdrworld.com/fusion-splicer.html",
+    "tagline": "Handheld, small and light",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"12\" y=\"14\" width=\"24\" height=\"20\" rx=\"3\"></rect><path d=\"M18 14V10h12v4\"></path><circle cx=\"24\" cy=\"24\" r=\"4\"></circle><path d=\"M12 24H8\"></path><path d=\"M40 24h-4\"></path></svg>",
+    "features": [
+      "Handheld, small and light",
+      "Core alignment technology",
+      "Fast 8s splicing and 26s tube heating"
+    ],
+    "applications": [
+      "Outside Plant Splicing",
+      "FTTH Drop Cables",
+      "Emergency Network Repair"
+    ],
+    "specs": [
+      {
+        "label": "Alignment",
+        "value": "Core to Core"
+      },
+      {
+        "label": "Battery",
+        "value": "5800mAh Pluggable"
+      },
+      {
+        "label": "Display",
+        "value": "High-res LCD"
+      }
+    ],
+    "related": [
+      {
+        "slug": "regular-opm",
+        "name": "Regular Optical Power Meter"
+      },
+      {
+        "slug": "pocket-otdr",
+        "name": "Pocket OTDR"
+      },
+      {
+        "slug": "next-gen-splicer",
+        "name": "Next Gen Optical Fusion Splicer (OPM + VFL)"
+      }
+    ],
+    "datasheetUrl": "/datasheets/fusion-splicer.pdf"
+  },
+  {
+    "slug": "heat-shrink-closure",
+    "name": "Heat Shrink Splice Closure",
+    "category": "Cable Management Devices",
+    "title": "Heat Shrink Splice Closure | PDR World",
+    "description": "Heat shrink sealing for harsh environments",
+    "canonical": "https://pdrworld.com/heat-shrink-closure.html",
+    "tagline": "Heat shrink sealing for harsh environments",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M12 16h24a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4v-8a4 4 0 0 1 4-4z\"></path><path d=\"M8 20h32\"></path><path d=\"M8 28h32\"></path><line x1=\"20\" y1=\"16\" x2=\"20\" y2=\"32\"></line><line x1=\"28\" y1=\"16\" x2=\"28\" y2=\"32\"></line></svg>",
+    "features": [
+      "Heat shrink sealing for harsh environments",
+      "Excellent waterproof and dustproof performance",
+      "Accommodates multiple splice trays"
+    ],
+    "applications": [
+      "Outside Plant (OSP) Networks",
+      "Underground Splicing",
+      "Long Haul Routes"
+    ],
+    "specs": [
+      {
+        "label": "Sealing Type",
+        "value": "Heat Shrink"
+      },
+      {
+        "label": "Capacity",
+        "value": "Up to 288 Cores"
+      },
+      {
+        "label": "Environment",
+        "value": "Aerial/Buried/Manhole (IP68)"
+      }
+    ],
+    "related": [
+      {
+        "slug": "rack-mount-fms",
+        "name": "Rack Mount Fiber Management System"
+      },
+      {
+        "slug": "htb",
+        "name": "Home Termination Box (HTB)"
+      },
+      {
+        "slug": "wall-mount",
+        "name": "Optical Fiber Wall Mount Enclosure"
+      }
+    ],
+    "datasheetUrl": "/datasheets/heat-shrink-closure.pdf"
+  },
+  {
+    "slug": "horizontal-closure",
+    "name": "Fiber Optic Splitter Closure GJS 2016",
+    "category": "Cable Management Devices",
+    "title": "Fiber Optic Splitter Closure GJS 2016 | PDR World",
+    "description": "Mechanical sealing structure",
+    "canonical": "https://pdrworld.com/horizontal-closure.html",
+    "tagline": "Mechanical sealing structure",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"8\"></rect><line x1=\"16\" y1=\"16\" x2=\"16\" y2=\"32\"></line><line x1=\"32\" y1=\"16\" x2=\"32\" y2=\"32\"></line><line x1=\"8\" y1=\"24\" x2=\"40\" y2=\"24\"></line></svg>",
+    "features": [
+      "Mechanical sealing structure",
+      "Oval shaped cable port entrances in base",
+      "Supports direct splicing and branching"
+    ],
+    "applications": [
+      "FTTx Distribution Splicing",
+      "Aerial Messenger Wire",
+      "Wall/Pole Mount Splices"
+    ],
+    "specs": [
+      {
+        "label": "Sealing Type",
+        "value": "Mechanical"
+      },
+      {
+        "label": "Shape",
+        "value": "Horizontal / Dome"
+      },
+      {
+        "label": "Ports",
+        "value": "Multiple entry/exit"
+      }
+    ],
+    "related": [
+      {
+        "slug": "rack-mount-fms",
+        "name": "Rack Mount Fiber Management System"
+      },
+      {
+        "slug": "htb",
+        "name": "Home Termination Box (HTB)"
+      },
+      {
+        "slug": "wall-mount",
+        "name": "Optical Fiber Wall Mount Enclosure"
+      }
+    ],
+    "datasheetUrl": "/datasheets/horizontal-closure.pdf"
+  },
+  {
+    "slug": "htb",
+    "name": "Home Termination Box (HTB)",
+    "category": "Cable Management Devices",
+    "title": "Home Termination Box (HTB) | PDR World",
+    "description": "Aesthetic design for indoor customer premises",
+    "canonical": "https://pdrworld.com/htb.html",
+    "tagline": "Aesthetic design for indoor customer premises",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"12\" width=\"20\" height=\"24\" rx=\"2\"></rect><path d=\"M14 24h20\"></path><circle cx=\"24\" cy=\"18\" r=\"2\"></circle></svg>",
+    "features": [
+      "Aesthetic design for indoor customer premises",
+      "Provides fiber termination points and housing",
+      "Wall mountable"
+    ],
+    "applications": [
+      "FTTH Customer Premises",
+      "Residential Broadband",
+      "Office Workstations"
+    ],
+    "specs": [
+      {
+        "label": "Capacity",
+        "value": "1 to 4 Cores"
+      },
+      {
+        "label": "Material",
+        "value": "ABS plastic"
+      },
+      {
+        "label": "Size",
+        "value": "Compact footprint"
+      }
+    ],
+    "related": [
+      {
+        "slug": "rack-mount-fms",
+        "name": "Rack Mount Fiber Management System"
+      },
+      {
+        "slug": "wall-mount",
+        "name": "Optical Fiber Wall Mount Enclosure"
+      },
+      {
+        "slug": "fdb",
+        "name": "Fiber Distribution Box (FDB)"
+      }
+    ],
+    "datasheetUrl": "/datasheets/htb.pdf"
+  },
+  {
+    "slug": "hybrid-adapter",
+    "name": "SC/APC to SC/UPC Adapter",
+    "category": "Passive Components",
+    "title": "SC/APC to SC/UPC Adapter | PDR World",
+    "description": "Hybrid fixed type adapter converter",
+    "canonical": "https://pdrworld.com/hybrid-adapter.html",
+    "tagline": "Hybrid fixed type adapter converter",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"14\" width=\"20\" height=\"20\" rx=\"3\"></rect><line x1=\"6\" y1=\"24\" x2=\"14\" y2=\"24\"></line><line x1=\"34\" y1=\"24\" x2=\"42\" y2=\"24\"></line><line x1=\"24\" y1=\"14\" x2=\"24\" y2=\"34\"></line></svg>",
+    "features": [
+      "Hybrid fixed type adapter converter",
+      "Converts APC polish to UPC polish",
+      "Zero attenuation design"
+    ],
+    "applications": [
+      "Network Integration",
+      "Test Equipment Interfacing",
+      "Cross-connection"
+    ],
+    "specs": [
+      {
+        "label": "Fiber Type",
+        "value": "Single Mode 9/125"
+      },
+      {
+        "label": "Loss",
+        "value": "0dB"
+      },
+      {
+        "label": "Housing",
+        "value": "Plastic/Metal"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      }
+    ],
+    "datasheetUrl": "/datasheets/hybrid-adapter.pdf"
+  },
+  {
+    "slug": "mating-sleeve",
+    "name": "Mating Sleeve / Alignment Sleeve",
+    "category": "Passive Components",
+    "title": "Mating Sleeve / Alignment Sleeve | PDR World",
+    "description": "Precision split sleeve for accurate alignment",
+    "canonical": "https://pdrworld.com/mating-sleeve.html",
+    "tagline": "Precision split sleeve for accurate alignment",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"20\" y=\"12\" width=\"8\" height=\"24\" rx=\"2\"></rect><line x1=\"8\" y1=\"24\" x2=\"20\" y2=\"24\"></line><line x1=\"28\" y1=\"24\" x2=\"40\" y2=\"24\"></line></svg>",
+    "features": [
+      "Precision split sleeve for accurate alignment",
+      "Available in Zirconia Ceramic or Phosphor Bronze",
+      "Low insertion loss coupling"
+    ],
+    "applications": [
+      "Adapter Manufacturing",
+      "Bare Fiber Testing",
+      "Temporary Splicing"
+    ],
+    "specs": [
+      {
+        "label": "Material",
+        "value": "Ceramic / Bronze"
+      },
+      {
+        "label": "Inner Diameter",
+        "value": "2.5mm (SC/FC/ST) / 1.25mm (LC)"
+      },
+      {
+        "label": "Durability",
+        "value": ">1000 matings"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      }
+    ]
+  },
+  {
+    "slug": "mode-conditioning",
+    "name": "Mode Conditioning Patchcord",
+    "category": "Passive Components",
+    "title": "Mode Conditioning Patchcord | PDR World",
+    "description": "Eliminates differential mode delay (DMD) effects",
+    "canonical": "https://pdrworld.com/mode-conditioning.html",
+    "tagline": "Eliminates differential mode delay (DMD) effects",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24c8-8 24 8 32 0\"></path></svg>",
+    "features": [
+      "Eliminates differential mode delay (DMD) effects",
+      "Enables Gigabit Ethernet over legacy MM fiber",
+      "Offset single-mode to multi-mode splice"
+    ],
+    "applications": [
+      "Gigabit Ethernet LX/LH",
+      "Legacy Fiber Upgrades",
+      "Campus Networks"
+    ],
+    "specs": [
+      {
+        "label": "Offset",
+        "value": "Precision core alignment"
+      },
+      {
+        "label": "Cable Type",
+        "value": "Duplex zipcord"
+      },
+      {
+        "label": "Connectors",
+        "value": "SC/LC/FC"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      }
+    ],
+    "datasheetUrl": "/datasheets/mode-conditioning.pdf"
+  },
+  {
+    "slug": "mpo-assembly",
+    "name": "MPO Cable Assembly",
+    "category": "Passive Components",
+    "title": "MPO Cable Assembly | PDR World",
+    "description": "High-density multi-fiber connector system",
+    "canonical": "https://pdrworld.com/mpo-assembly.html",
+    "tagline": "High-density multi-fiber connector system",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"8\" y=\"18\" width=\"14\" height=\"12\" rx=\"2\"></rect><rect x=\"26\" y=\"18\" width=\"14\" height=\"12\" rx=\"2\"></rect><path d=\"M22 24h4\"></path></svg>",
+    "features": [
+      "High-density multi-fiber connector system",
+      "Precision molded MT ferrule",
+      "Push-pull latching mechanism"
+    ],
+    "applications": [
+      "40G/100G Networks",
+      "Data Center Backbone",
+      "High-Density Interconnects"
+    ],
+    "specs": [
+      {
+        "label": "Fiber Count",
+        "value": "8/12/24/48"
+      },
+      {
+        "label": "Polarity",
+        "value": "Type A / B / C"
+      },
+      {
+        "label": "Insertion Loss",
+        "value": "Standard / Low Loss"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      }
+    ],
+    "datasheetUrl": "/datasheets/mpo-assembly.pdf"
+  },
+  {
+    "slug": "mpo-cleaner",
+    "name": "Fiber Optic Cleaner Pen MPO",
+    "category": "Passive Components",
+    "title": "Fiber Optic Cleaner Pen MPO | PDR World",
+    "description": "Designed specifically for multi-fiber connectors",
+    "canonical": "https://pdrworld.com/mpo-cleaner.html",
+    "tagline": "Designed specifically for multi-fiber connectors",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"14\" y=\"14\" width=\"20\" height=\"20\" rx=\"2\"></rect><path d=\"M14 24h20\"></path></svg>",
+    "features": [
+      "Designed specifically for multi-fiber connectors",
+      "Cleans both male (with pins) and female (without pins) MPO/MTP",
+      "Easy pushing motion engagement"
+    ],
+    "applications": [
+      "Hyperscale Data Centres",
+      "40G/100G/400G Networks",
+      "Backbone Cabling"
+    ],
+    "specs": [
+      {
+        "label": "Connector Type",
+        "value": "MPO / MTP"
+      },
+      {
+        "label": "Clean Cycles",
+        "value": "600+ cleans"
+      },
+      {
+        "label": "Cleaning Action",
+        "value": "Dry cloth sweep"
+      }
+    ],
+    "related": [
+      {
+        "slug": "cleaner-pen",
+        "name": "Fiber Optic Cleaner Pen"
+      },
+      {
+        "slug": "cassette-cleaner",
+        "name": "Cassette Cleaner"
+      },
+      {
+        "slug": "vfl",
+        "name": "VFL â€” Visual Fault Locator"
+      }
+    ],
+    "datasheetUrl": "/datasheets/mpo-cleaner.pdf"
+  },
+  {
+    "slug": "next-gen-splicer",
+    "name": "Next Gen Optical Fusion Splicer (OPM + VFL)",
+    "category": "Test and Measurement Equipment",
+    "title": "Next Gen Optical Fusion Splicer (OPM + VFL) | PDR World",
+    "description": "Integrated OPM and VFL modules",
+    "canonical": "https://pdrworld.com/next-gen-splicer.html",
+    "tagline": "Integrated OPM and VFL modules",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"10\" y=\"14\" width=\"28\" height=\"20\" rx=\"3\"></rect><path d=\"M16 14V10h16v4\"></path><circle cx=\"24\" cy=\"24\" r=\"4\"></circle><path d=\"M10 24H6\"></path><path d=\"M42 24h-4\"></path></svg>",
+    "features": [
+      "Integrated OPM and VFL modules",
+      "Core alignment technology for ultra-low loss",
+      "Fast 8s splicing and 18s heating times"
+    ],
+    "applications": [
+      "Backbone Network Construction",
+      "High-Precision Laboratory Splicing",
+      "Advanced Field Maintenance"
+    ],
+    "specs": [
+      {
+        "label": "Alignment Method",
+        "value": "Core-to-Core"
+      },
+      {
+        "label": "Integrated Tools",
+        "value": "OPM (-70~+6dBm), VFL (10mW)"
+      },
+      {
+        "label": "Battery Capacity",
+        "value": ">250 splice/heat cycles"
+      }
+    ],
+    "related": [
+      {
+        "slug": "regular-opm",
+        "name": "Regular Optical Power Meter"
+      },
+      {
+        "slug": "pocket-otdr",
+        "name": "Pocket OTDR"
+      },
+      {
+        "slug": "pon-power-meter",
+        "name": "PON Power Meter"
+      }
+    ]
+  },
+  {
+    "slug": "odf",
+    "name": "Optical Distribution Frames",
+    "category": "Cable Management Devices",
+    "title": "Optical Distribution Frames | PDR World",
+    "description": "Multi-purpose high-capacity distribution frame",
+    "canonical": "https://pdrworld.com/odf.html",
+    "tagline": "Multi-purpose high-capacity distribution frame",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"12\" y=\"6\" width=\"24\" height=\"36\" rx=\"2\"></rect><line x1=\"12\" y1=\"18\" x2=\"36\" y2=\"18\"></line><line x1=\"12\" y1=\"30\" x2=\"36\" y2=\"30\"></line></svg>",
+    "features": [
+      "Multi-purpose high-capacity distribution frame",
+      "High-quality ABS plastic or metal build",
+      "Efficient cable routing and protection"
+    ],
+    "applications": [
+      "Telecom Central Office",
+      "Main Distribution Area (MDA)",
+      "Large Data Centers"
+    ],
+    "specs": [
+      {
+        "label": "Capacity",
+        "value": "Up to 576 Cores"
+      },
+      {
+        "label": "Type",
+        "value": "Floor standing / Rack mount"
+      },
+      {
+        "label": "Pigtail Management",
+        "value": "Integrated"
+      }
+    ],
+    "related": [
+      {
+        "slug": "rack-mount-fms",
+        "name": "Rack Mount Fiber Management System"
+      },
+      {
+        "slug": "htb",
+        "name": "Home Termination Box (HTB)"
+      },
+      {
+        "slug": "wall-mount",
+        "name": "Optical Fiber Wall Mount Enclosure"
+      }
+    ],
+    "datasheetUrl": "/datasheets/odf.pdf"
+  },
+  {
+    "slug": "plc-splitter",
+    "name": "PLC Splitter",
+    "category": "Passive Components",
+    "title": "PLC Splitter | PDR World",
+    "description": "Planar Lightwave Circuit technology",
+    "canonical": "https://pdrworld.com/plc-splitter.html",
+    "tagline": "Planar Lightwave Circuit technology",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><line x1=\"8\" y1=\"24\" x2=\"20\" y2=\"24\"></line><path d=\"M20 24l10-8\"></path><path d=\"M20 24l10 0\"></path><path d=\"M20 24l10 8\"></path></svg>",
+    "features": [
+      "Planar Lightwave Circuit technology",
+      "Uniform power splitting",
+      "Broad operating wavelength"
+    ],
+    "applications": [
+      "FTTH/PON Networks",
+      "CATV Links",
+      "Optical Signal Distribution"
+    ],
+    "specs": [
+      {
+        "label": "Split Ratio",
+        "value": "1x2 up to 1x128"
+      },
+      {
+        "label": "Wavelength",
+        "value": "1260nm - 1650nm"
+      },
+      {
+        "label": "Packaging",
+        "value": "Bare fiber / Blockless / Cassette"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      }
+    ],
+    "datasheetUrl": "/datasheets/plc-splitter.pdf"
+  },
+  {
+    "slug": "pocket-otdr",
+    "name": "Pocket OTDR",
+    "category": "Test and Measurement Equipment",
+    "title": "Pocket OTDR | PDR World",
+    "description": "Ultra-compact smartphone-sized form factor",
+    "canonical": "https://pdrworld.com/pocket-otdr.html",
+    "tagline": "Ultra-compact smartphone-sized form factor",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"14\" y=\"10\" width=\"20\" height=\"28\" rx=\"2\"></rect><rect x=\"16\" y=\"14\" width=\"16\" height=\"12\" rx=\"1\"></rect><circle cx=\"24\" cy=\"32\" r=\"2\"></circle></svg>",
+    "features": [
+      "Ultra-compact smartphone-sized form factor",
+      "Fast boot-up and auto-test functionality",
+      "Event map view for intuitive fault location"
+    ],
+    "applications": [
+      "Last-Mile FTTx Troubleshooting",
+      "Quick Field Checks",
+      "Access Network Installation"
+    ],
+    "specs": [
+      {
+        "label": "Dynamic Range",
+        "value": "22dB to 26dB"
+      },
+      {
+        "label": "Fiber Type",
+        "value": "Single-mode / Multimode Options"
+      },
+      {
+        "label": "Display",
+        "value": "Touchscreen LCD"
+      }
+    ],
+    "related": [
+      {
+        "slug": "regular-opm",
+        "name": "Regular Optical Power Meter"
+      },
+      {
+        "slug": "next-gen-splicer",
+        "name": "Next Gen Optical Fusion Splicer (OPM + VFL)"
+      },
+      {
+        "slug": "pon-power-meter",
+        "name": "PON Power Meter"
+      }
+    ]
+  },
+  {
+    "slug": "pof-patchcord",
+    "name": "POF â€” Plastic Optical Fiber Patchcord",
+    "category": "Passive Components",
+    "title": "POF â€” Plastic Optical Fiber Patchcord | PDR World",
+    "description": "Large PMMA core for easy alignment",
+    "canonical": "https://pdrworld.com/pof-patchcord.html",
+    "tagline": "Large PMMA core for easy alignment",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><circle cx=\"24\" cy=\"24\" r=\"6\"></circle></svg>",
+    "features": [
+      "Large PMMA core for easy alignment",
+      "Immune to electromagnetic interference (EMI)",
+      "Cost-effective for short-range links"
+    ],
+    "applications": [
+      "Automotive Networking",
+      "Industrial Control Systems",
+      "Home AV Connections"
+    ],
+    "specs": [
+      {
+        "label": "Core Material",
+        "value": "Polymethyl Methacrylate (PMMA)"
+      },
+      {
+        "label": "Wavelength",
+        "value": "650nm"
+      },
+      {
+        "label": "Core Diameter",
+        "value": "1mm (Typical)"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "bendiboot-patchcord",
+        "name": "Bendiboot Patchcord"
+      }
+    ]
+  },
+  {
+    "slug": "pon-power-meter",
+    "name": "PON Power Meter",
+    "category": "Test and Measurement Equipment",
+    "title": "PON Power Meter | PDR World",
+    "description": "Pass-through measurement for live PON",
+    "canonical": "https://pdrworld.com/pon-power-meter.html",
+    "tagline": "Pass-through measurement for live PON",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"8\" width=\"20\" height=\"32\" rx=\"3\"></rect><rect x=\"18\" y=\"14\" width=\"12\" height=\"8\" rx=\"1\"></rect><circle cx=\"24\" cy=\"30\" r=\"3\"></circle><circle cx=\"20\" cy=\"26\" r=\"1\"></circle><circle cx=\"28\" cy=\"26\" r=\"1\"></circle><circle cx=\"20\" cy=\"34\" r=\"1\"></circle><circle cx=\"28\" cy=\"34\" r=\"1\"></circle></svg>",
+    "features": [
+      "Pass-through measurement for live PON",
+      "Simultaneous testing of 1310/1490/1550nm",
+      "Burst mode measurement for 1310nm upstream"
+    ],
+    "applications": [
+      "FTTx Network Turn-up",
+      "PON Maintenance",
+      "OLT/ONT Verification"
+    ],
+    "specs": [
+      {
+        "label": "Wavelengths",
+        "value": "1310/1490/1550nm"
+      },
+      {
+        "label": "Network Type",
+        "value": "BPON/EPON/GPON"
+      },
+      {
+        "label": "Display",
+        "value": "Color LCD"
+      }
+    ],
+    "related": [
+      {
+        "slug": "regular-opm",
+        "name": "Regular Optical Power Meter"
+      },
+      {
+        "slug": "pocket-otdr",
+        "name": "Pocket OTDR"
+      },
+      {
+        "slug": "next-gen-splicer",
+        "name": "Next Gen Optical Fusion Splicer (OPM + VFL)"
+      }
+    ],
+    "datasheetUrl": "/datasheets/pon-power-meter.pdf"
+  },
+  {
+    "slug": "rack-mount-fms",
+    "name": "Rack Mount Fiber Management System",
+    "category": "Cable Management Devices",
+    "title": "Rack Mount Fiber Management System | PDR World",
+    "description": "19",
+    "canonical": "https://pdrworld.com/rack-mount-fms.html",
+    "tagline": "19\" Rack Mount fiber-optic enclosure",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"6\" y=\"16\" width=\"36\" height=\"16\" rx=\"2\"></rect><line x1=\"12\" y1=\"24\" x2=\"16\" y2=\"24\"></line><line x1=\"20\" y1=\"24\" x2=\"24\" y2=\"24\"></line><line x1=\"28\" y1=\"24\" x2=\"32\" y2=\"24\"></line><circle cx=\"8\" cy=\"20\" r=\"1\"></circle><circle cx=\"8\" cy=\"28\" r=\"1\"></circle><circle cx=\"40\" cy=\"20\" r=\"1\"></circle><circle cx=\"40\" cy=\"28\" r=\"1\"></circle></svg>",
+    "features": [
+      "19\" Rack Mount fiber-optic enclosure",
+      "Slide-out drawer for easy access",
+      "Modular adapter panels"
+    ],
+    "applications": [
+      "Data Center Racks",
+      "Telecom Central Office",
+      "Enterprise Server Rooms"
+    ],
+    "specs": [
+      {
+        "label": "Capacity",
+        "value": "Up to 144 cores (4U)"
+      },
+      {
+        "label": "Material",
+        "value": "Cold rolled steel"
+      },
+      {
+        "label": "Mounting",
+        "value": "Standard 19-inch rack"
+      }
+    ],
+    "related": [
+      {
+        "slug": "htb",
+        "name": "Home Termination Box (HTB)"
+      },
+      {
+        "slug": "wall-mount",
+        "name": "Optical Fiber Wall Mount Enclosure"
+      },
+      {
+        "slug": "fdb",
+        "name": "Fiber Distribution Box (FDB)"
+      }
+    ],
+    "datasheetUrl": "/datasheets/rack-mount-fms.pdf"
+  },
+  {
+    "slug": "rapid-push",
+    "name": "Rapid Push Cable Assembly",
+    "category": "Passive Components",
+    "title": "Rapid Push Cable Assembly | PDR World",
+    "description": "FTTX smart pushable preterminated drop solution",
+    "canonical": "https://pdrworld.com/rapid-push.html",
+    "tagline": "FTTX smart pushable preterminated drop solution",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M10 24h28\"></path><path d=\"M34 20l4 4-4 4\"></path></svg>",
+    "features": [
+      "FTTX smart pushable preterminated drop solution",
+      "Eliminates field splicing",
+      "Designed for microduct deployment"
+    ],
+    "applications": [
+      "FTTH Last Mile",
+      "Microduct Installations",
+      "MDU Deployments"
+    ],
+    "specs": [
+      {
+        "label": "Cable Outer Dia",
+        "value": "2.0mm to 5.0mm"
+      },
+      {
+        "label": "Connector",
+        "value": "SC/APC Pushable"
+      },
+      {
+        "label": "Tensile Strength",
+        "value": "High"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      }
+    ],
+    "datasheetUrl": "/datasheets/rapid-push.pdf"
+  },
+  {
+    "slug": "regular-opm",
+    "name": "Regular Optical Power Meter",
+    "category": "Test and Measurement Equipment",
+    "title": "Regular Optical Power Meter | PDR World",
+    "description": "Auto-wavelength recognition capability",
+    "canonical": "https://pdrworld.com/regular-opm.html",
+    "tagline": "Auto-wavelength recognition capability",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"12\" y=\"8\" width=\"24\" height=\"32\" rx=\"4\"></rect><rect x=\"16\" y=\"14\" width=\"16\" height=\"10\" rx=\"1\"></rect><circle cx=\"24\" cy=\"32\" r=\"3\"></circle></svg>",
+    "features": [
+      "Auto-wavelength recognition capability",
+      "Wide dynamic measurement range",
+      "Backlit LCD for low-light environments"
+    ],
+    "applications": [
+      "Link Acceptance Testing",
+      "Power Level Monitoring",
+      "Optical Loss Measurement"
+    ],
+    "specs": [
+      {
+        "label": "Wavelength Range",
+        "value": "800nm to 1700nm"
+      },
+      {
+        "label": "Calibrated Wavelengths",
+        "value": "850/1300/1310/1490/1550/1625nm"
+      },
+      {
+        "label": "Power Range",
+        "value": "-70 to +10 dBm / -50 to +26 dBm"
+      }
+    ],
+    "related": [
+      {
+        "slug": "pocket-otdr",
+        "name": "Pocket OTDR"
+      },
+      {
+        "slug": "next-gen-splicer",
+        "name": "Next Gen Optical Fusion Splicer (OPM + VFL)"
+      },
+      {
+        "slug": "pon-power-meter",
+        "name": "PON Power Meter"
+      }
+    ]
+  },
+  {
+    "slug": "sfp-10g-dual",
+    "name": "SFP+ 10G Dual Fiber",
+    "category": "Active Components",
+    "title": "SFP+ 10G Dual Fiber | PDR World",
+    "description": "Standard dual-fiber 10G transmission",
+    "canonical": "https://pdrworld.com/sfp-10g-dual.html",
+    "tagline": "Standard dual-fiber 10G transmission",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"></rect><rect x=\"4\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"></rect><rect x=\"38\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"></rect><line x1=\"14\" y1=\"24\" x2=\"34\" y2=\"24\"></line></svg>",
+    "features": [
+      "Standard dual-fiber 10G transmission",
+      "Broad vendor compatibility",
+      "High reliability"
+    ],
+    "applications": [
+      "SAN / NAS",
+      "Edge Routing",
+      "Data Center Racks"
+    ],
+    "specs": [
+      {
+        "label": "Form Factor",
+        "value": "SFP+"
+      },
+      {
+        "label": "Data Rate",
+        "value": "10G"
+      },
+      {
+        "label": "Connector",
+        "value": "LC Duplex"
+      },
+      {
+        "label": "DOM Support",
+        "value": "Yes"
+      },
+      {
+        "label": "Wavelength",
+        "value": "850nm / 1310nm / 1550nm"
+      },
+      {
+        "label": "Operating Temp",
+        "value": "0Â°C to 70Â°C"
+      }
+    ],
+    "related": [
+      {
+        "slug": "smart-sfp",
+        "name": "Smart SFP Transceiver"
+      },
+      {
+        "slug": "sfp-400g",
+        "name": "400G"
+      }
+    ]
+  },
+  {
+    "slug": "sfp-1g-bidi",
+    "name": "1G SFP BIDI",
+    "category": "Active Components",
+    "title": "1G SFP BIDI | PDR World",
+    "description": "Cost-effective 1G bi-directional link",
+    "canonical": "https://pdrworld.com/sfp-1g-bidi.html",
+    "tagline": "Cost-effective 1G bi-directional link",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"></rect><rect x=\"4\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"></rect><rect x=\"38\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"></rect><line x1=\"14\" y1=\"24\" x2=\"34\" y2=\"24\"></line></svg>",
+    "features": [
+      "Cost-effective 1G bi-directional link",
+      "Single fiber optimization",
+      "Low power dissipation"
+    ],
+    "applications": [
+      "FTTH",
+      "Access Rings",
+      "CPE Equipment"
+    ],
+    "specs": [
+      {
+        "label": "Form Factor",
+        "value": "SFP"
+      },
+      {
+        "label": "Data Rate",
+        "value": "1.25G"
+      },
+      {
+        "label": "Connector",
+        "value": "LC Simplex / SC Simplex"
+      },
+      {
+        "label": "DOM Support",
+        "value": "Yes"
+      },
+      {
+        "label": "Wavelength",
+        "value": "1310nm/1550nm"
+      },
+      {
+        "label": "Operating Temp",
+        "value": "-40Â°C to +85Â°C"
+      }
+    ],
+    "related": [
+      {
+        "slug": "smart-sfp",
+        "name": "Smart SFP Transceiver"
+      },
+      {
+        "slug": "sfp-400g",
+        "name": "400G"
+      }
+    ]
+  },
+  {
+    "slug": "sfp-1g-dual",
+    "name": "1G SFP Dual Fiber",
+    "category": "Active Components",
+    "title": "1G SFP Dual Fiber | PDR World",
+    "description": "Legacy compatible 1G module",
+    "canonical": "https://pdrworld.com/sfp-1g-dual.html",
+    "tagline": "Legacy compatible 1G module",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"></rect><rect x=\"4\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"></rect><rect x=\"38\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"></rect><line x1=\"14\" y1=\"24\" x2=\"34\" y2=\"24\"></line></svg>",
+    "features": [
+      "Legacy compatible 1G module",
+      "Wide operating temperature range",
+      "Cost-effective"
+    ],
+    "applications": [
+      "Legacy Switching",
+      "Industrial Ethernet",
+      "Enterprise Access"
+    ],
+    "specs": [
+      {
+        "label": "Form Factor",
+        "value": "SFP"
+      },
+      {
+        "label": "Data Rate",
+        "value": "1.25G"
+      },
+      {
+        "label": "Connector",
+        "value": "LC Duplex"
+      },
+      {
+        "label": "DOM Support",
+        "value": "Yes"
+      },
+      {
+        "label": "Wavelength",
+        "value": "850nm / 1310nm"
+      },
+      {
+        "label": "Operating Temp",
+        "value": "-40Â°C to +85Â°C"
+      }
+    ],
+    "related": [
+      {
+        "slug": "smart-sfp",
+        "name": "Smart SFP Transceiver"
+      },
+      {
+        "slug": "sfp-400g",
+        "name": "400G"
+      }
+    ]
+  },
+  {
+    "slug": "sfp-25g-bidi",
+    "name": "25G & 25G BIDI",
+    "category": "Active Components",
+    "title": "25G & 25G BIDI | PDR World",
+    "description": "Optimized for 5G fronthaul",
+    "canonical": "https://pdrworld.com/sfp-25g-bidi.html",
+    "tagline": "Optimized for 5G fronthaul",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"></rect><rect x=\"4\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"></rect><rect x=\"38\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"></rect><line x1=\"14\" y1=\"24\" x2=\"34\" y2=\"24\"></line></svg>",
+    "features": [
+      "Optimized for 5G fronthaul",
+      "Single fiber bi-directional transmission (BIDI)",
+      "Low latency"
+    ],
+    "applications": [
+      "5G Fronthaul",
+      "Server Connectivity",
+      "High-Speed Access"
+    ],
+    "specs": [
+      {
+        "label": "Form Factor",
+        "value": "SFP28"
+      },
+      {
+        "label": "Data Rate",
+        "value": "25G"
+      },
+      {
+        "label": "Connector",
+        "value": "LC Duplex / Simplex"
+      },
+      {
+        "label": "DOM Support",
+        "value": "Yes"
+      },
+      {
+        "label": "Wavelength",
+        "value": "850nm / 1310nm"
+      },
+      {
+        "label": "Operating Temp",
+        "value": "-40Â°C to +85Â°C"
+      }
+    ],
+    "related": [
+      {
+        "slug": "smart-sfp",
+        "name": "Smart SFP Transceiver"
+      },
+      {
+        "slug": "sfp-400g",
+        "name": "400G"
+      }
+    ]
+  },
+  {
+    "slug": "sfp-400g",
+    "name": "400G",
+    "category": "Active Components",
+    "title": "400G | PDR World",
+    "description": "Next-generation high-capacity throughput",
+    "canonical": "https://pdrworld.com/sfp-400g.html",
+    "tagline": "Next-generation high-capacity throughput",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"></rect><rect x=\"4\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"></rect><rect x=\"38\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"></rect><line x1=\"14\" y1=\"24\" x2=\"34\" y2=\"24\"></line></svg>",
+    "features": [
+      "Next-generation high-capacity throughput",
+      "Low power consumption",
+      "Hot-pluggable form factor"
+    ],
+    "applications": [
+      "Hyperscale Data Centers",
+      "Core Routing",
+      "5G Backhaul"
+    ],
+    "specs": [
+      {
+        "label": "Form Factor",
+        "value": "QSFP-DD / OSFP"
+      },
+      {
+        "label": "Data Rate",
+        "value": "400G"
+      },
+      {
+        "label": "Connector",
+        "value": "LC / MPO"
+      },
+      {
+        "label": "DOM Support",
+        "value": "Yes"
+      },
+      {
+        "label": "Wavelength",
+        "value": "850nm / 1310nm"
+      },
+      {
+        "label": "Operating Temp",
+        "value": "0Â°C to 70Â°C"
+      }
+    ],
+    "related": [
+      {
+        "slug": "smart-sfp",
+        "name": "Smart SFP Transceiver"
+      }
+    ]
+  },
+  {
+    "slug": "sfp-40g",
+    "name": "40G",
+    "category": "Active Components",
+    "title": "40G | PDR World",
+    "description": "Reliable mid-tier aggregation",
+    "canonical": "https://pdrworld.com/sfp-40g.html",
+    "tagline": "Reliable mid-tier aggregation",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"></rect><rect x=\"4\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"></rect><rect x=\"38\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"></rect><line x1=\"14\" y1=\"24\" x2=\"34\" y2=\"24\"></line></svg>",
+    "features": [
+      "Reliable mid-tier aggregation",
+      "IEEE 802.3ba compliant",
+      "Hot-pluggable"
+    ],
+    "applications": [
+      "Mid-tier Aggregation",
+      "SAN Switches",
+      "Data Center Edge"
+    ],
+    "specs": [
+      {
+        "label": "Form Factor",
+        "value": "QSFP+"
+      },
+      {
+        "label": "Data Rate",
+        "value": "40G"
+      },
+      {
+        "label": "Connector",
+        "value": "LC / MPO"
+      },
+      {
+        "label": "DOM Support",
+        "value": "Yes"
+      },
+      {
+        "label": "Wavelength",
+        "value": "850nm / 1310nm"
+      },
+      {
+        "label": "Operating Temp",
+        "value": "0Â°C to 70Â°C"
+      }
+    ],
+    "related": [
+      {
+        "slug": "smart-sfp",
+        "name": "Smart SFP Transceiver"
+      },
+      {
+        "slug": "sfp-400g",
+        "name": "400G"
+      }
+    ]
+  },
+  {
+    "slug": "sfp-copper",
+    "name": "Copper SFP+",
+    "category": "Active Components",
+    "title": "Copper SFP+ | PDR World",
+    "description": "RJ-45 interface for twisted pair copper",
+    "canonical": "https://pdrworld.com/sfp-copper.html",
+    "tagline": "RJ-45 interface for twisted pair copper",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"></rect><rect x=\"4\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"></rect><rect x=\"38\" y=\"20\" width=\"6\" height=\"8\" rx=\"1\"></rect><line x1=\"14\" y1=\"24\" x2=\"34\" y2=\"24\"></line></svg>",
+    "features": [
+      "RJ-45 interface for twisted pair copper",
+      "Up to 30m reach on Cat6a/7",
+      "Auto-negotiation"
+    ],
+    "applications": [
+      "Server Connectivity",
+      "ToR Switches",
+      "Legacy Copper Infrastructure"
+    ],
+    "specs": [
+      {
+        "label": "Form Factor",
+        "value": "SFP+"
+      },
+      {
+        "label": "Data Rate",
+        "value": "10G Base-T"
+      },
+      {
+        "label": "Connector",
+        "value": "RJ-45"
+      },
+      {
+        "label": "DOM Support",
+        "value": "No"
+      },
+      {
+        "label": "Wavelength",
+        "value": "N/A"
+      },
+      {
+        "label": "Operating Temp",
+        "value": "0Â°C to 70Â°C"
+      }
+    ],
+    "related": [
+      {
+        "slug": "smart-sfp",
+        "name": "Smart SFP Transceiver"
+      },
+      {
+        "slug": "sfp-400g",
+        "name": "400G"
+      }
+    ]
+  },
+  {
+    "slug": "smart-sfp",
+    "name": "Smart SFP Transceiver",
+    "category": "Active Components",
+    "title": "Smart SFP Transceiver | PDR World",
+    "description": "Integrated OAM (Operations, Administration, and Maintenance)",
+    "canonical": "https://pdrworld.com/smart-sfp.html",
+    "tagline": "Integrated OAM (Operations, Administration, and Maintenance)",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"></rect><circle cx=\"24\" cy=\"24\" r=\"4\"></circle><path d=\"M12 24h24\"></path></svg>",
+    "features": [
+      "Integrated OAM (Operations, Administration, and Maintenance)",
+      "Real-time performance monitoring",
+      "Micro-loopback capability"
+    ],
+    "applications": [
+      "Service Provider Edge",
+      "Mobile Backhaul",
+      "SLA Monitoring"
+    ],
+    "specs": [
+      {
+        "label": "Interface",
+        "value": "1G / 10G SFP"
+      },
+      {
+        "label": "Protocol",
+        "value": "IEEE 802.3ah / 802.1ag"
+      },
+      {
+        "label": "Diagnostics",
+        "value": "DDM/DOM"
+      },
+      {
+        "label": "Latency",
+        "value": "Ultra-Low"
+      }
+    ],
+    "related": [
+      {
+        "slug": "sfp-400g",
+        "name": "400G"
+      }
+    ]
+  },
+  {
+    "slug": "smpte-assembly",
+    "name": "SMPTE Cable Assembly",
+    "category": "Passive Components",
+    "title": "SMPTE Cable Assembly | PDR World",
+    "description": "Hybrid fiber and copper camera cable",
+    "canonical": "https://pdrworld.com/smpte-assembly.html",
+    "tagline": "Hybrid fiber and copper camera cable",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"></rect><circle cx=\"18\" cy=\"24\" r=\"3\"></circle><circle cx=\"30\" cy=\"24\" r=\"3\"></circle></svg>",
+    "features": [
+      "Hybrid fiber and copper camera cable",
+      "Ruggedized and dirt protected connectors",
+      "Compliant with SMPTE 311M and 304M"
+    ],
+    "applications": [
+      "HDTV Broadcasting",
+      "Stadium Infrastructure",
+      "Mobile OB Vans"
+    ],
+    "specs": [
+      {
+        "label": "Components",
+        "value": "2 SM Fibers + 4 Copper Conductors"
+      },
+      {
+        "label": "Jacket",
+        "value": "PUR / Lemo"
+      },
+      {
+        "label": "Durability",
+        "value": "> 2000 Mating Cycles"
+      }
+    ],
+    "related": [
+      {
+        "slug": "fiber-spool",
+        "name": "Fiber Spool / Fiber Drum"
+      },
+      {
+        "slug": "armoured-patchcord",
+        "name": "Armoured Patchcord"
+      },
+      {
+        "slug": "pof-patchcord",
+        "name": "POF â€” Plastic Optical Fiber Patchcord"
+      }
+    ],
+    "datasheetUrl": "/datasheets/smpte-assembly.pdf"
+  },
+  {
+    "slug": "vfl",
+    "name": "VFL â€” Visual Fault Locator",
+    "category": "Passive Components",
+    "title": "VFL â€” Visual Fault Locator | PDR World",
+    "description": "Bright 650nm visible red laser",
+    "canonical": "https://pdrworld.com/vfl.html",
+    "tagline": "Bright 650nm visible red laser",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M24 10l4 8 8 4-8 4-4 8-4-8-8-4 8-4z\"></path><circle cx=\"24\" cy=\"24\" r=\"2\"></circle></svg>",
+    "features": [
+      "Bright 650nm visible red laser",
+      "Continuous and flashing modes",
+      "Ruggedized metal housing for field use"
+    ],
+    "applications": [
+      "Fault Location",
+      "Continuity Testing",
+      "Fiber Identification"
+    ],
+    "specs": [
+      {
+        "label": "Output Power",
+        "value": "1mW (Standard)"
+      },
+      {
+        "label": "Wavelength",
+        "value": "650nm"
+      },
+      {
+        "label": "Detection Range",
+        "value": "Up to 10km"
+      }
+    ],
+    "related": [
+      {
+        "slug": "cleaner-pen",
+        "name": "Fiber Optic Cleaner Pen"
+      },
+      {
+        "slug": "cassette-cleaner",
+        "name": "Cassette Cleaner"
+      },
+      {
+        "slug": "mpo-cleaner",
+        "name": "Fiber Optic Cleaner Pen MPO"
+      }
+    ]
+  },
+  {
+    "slug": "wall-mount",
+    "name": "Optical Fiber Wall Mount Enclosure",
+    "category": "Cable Management Devices",
+    "title": "Optical Fiber Wall Mount Enclosure | PDR World",
+    "description": "Two door wall mounted enclosure",
+    "canonical": "https://pdrworld.com/wall-mount.html",
+    "tagline": "Two door wall mounted enclosure",
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"10\" y=\"8\" width=\"28\" height=\"32\" rx=\"3\"></rect><line x1=\"24\" y1=\"8\" x2=\"24\" y2=\"40\"></line><circle cx=\"20\" cy=\"24\" r=\"1\"></circle><circle cx=\"28\" cy=\"24\" r=\"1\"></circle></svg>",
+    "features": [
+      "Two door wall mounted enclosure",
+      "Separate compartments for splicing and patching",
+      "Secure lockable doors"
+    ],
+    "applications": [
+      "Building Distribution",
+      "Campus Networks",
+      "Security Camera Hubs"
+    ],
+    "specs": [
+      {
+        "label": "Capacity",
+        "value": "Up to 96 Cores"
+      },
+      {
+        "label": "Type",
+        "value": "Indoor Wall Mount"
+      },
+      {
+        "label": "Security",
+        "value": "Keyed locks"
+      }
+    ],
+    "related": [
+      {
+        "slug": "rack-mount-fms",
+        "name": "Rack Mount Fiber Management System"
+      },
+      {
+        "slug": "htb",
+        "name": "Home Termination Box (HTB)"
+      },
+      {
+        "slug": "fdb",
+        "name": "Fiber Distribution Box (FDB)"
+      }
+    ],
+    "datasheetUrl": "/datasheets/wall-mount.pdf"
+  }
 ]
