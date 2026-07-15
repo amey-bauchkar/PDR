@@ -14,7 +14,6 @@ import {
 } from '../lib/adminAuth';
 import { getAdminProducts, saveProduct } from '../lib/productSync';
 import type { AdminProduct } from '../lib/productSync';
-import { uploadProductDatasheet } from '../lib/datasheetUpload';
 import '../styles/admin-enhanced.css';
 
 type AdminStatus = 'Active' | 'Draft' | 'Archived';
@@ -272,29 +271,33 @@ export default function AdminProductForm() {
 
     if (file.type !== 'application/pdf') {
       setNotices(prev => ({ ...prev, pdf: { message: 'Please select a valid PDF file.', type: 'error' } }));
+      event.target.value = '';
       return;
     }
 
     if (file.size > 25 * 1024 * 1024) {
       setNotices(prev => ({ ...prev, pdf: { message: 'PDF size must be less than 25MB.', type: 'error' } }));
+      event.target.value = '';
       return;
     }
 
-    const uploadSlug = toSlug(form.slug || form.name || file.name.replace(/\.pdf$/i, 'datasheet'));
-    if (!uploadSlug) {
-      setNotices(prev => ({ ...prev, pdf: { message: 'Add a product name before uploading the datasheet.', type: 'error' } }));
-      return;
-    }
-
-    setNotices(prev => ({ ...prev, pdf: { message: 'Uploading datasheet...', type: 'info' } }));
+    setNotices(prev => ({ ...prev, pdf: { message: 'Reading datasheet PDF...', type: 'info' } }));
     try {
-      const url = await uploadProductDatasheet(file, uploadSlug);
-      setForm(prev => ({ ...prev, datasheetUrl: url }));
-      setNotices(prev => ({ ...prev, pdf: { message: 'Datasheet PDF uploaded successfully!', type: 'success' } }));
+      // Convert PDF to base64 and store locally (no API call needed)
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const base64Url = e.target?.result as string;
+        setForm(prev => ({ ...prev, datasheetUrl: base64Url }));
+        setNotices(prev => ({ ...prev, pdf: { message: `Datasheet "${file.name}" loaded successfully!`, type: 'success' } }));
+      };
+      reader.onerror = () => {
+        setNotices(prev => ({ ...prev, pdf: { message: 'Failed to read PDF file.', type: 'error' } }));
+      };
+      reader.readAsDataURL(file);
     } catch (err) {
       setNotices(prev => ({
         ...prev,
-        pdf: { message: err instanceof Error ? err.message : 'Failed to upload PDF file.', type: 'error' },
+        pdf: { message: err instanceof Error ? err.message : 'Failed to load PDF file.', type: 'error' },
       }));
     } finally {
       event.target.value = '';
@@ -392,7 +395,44 @@ export default function AdminProductForm() {
     }
   };
 
-  const categories = Array.from(new Set(products.map((p) => p.category).filter(Boolean))).sort();
+  const [addingNewSub, setAddingNewSub] = useState(false);
+  const [newSubInput, setNewSubInput] = useState('');
+
+  const parsedCategories = products.map((p) => p.category || '');
+  const mainCategoriesSet = new Set<string>(['Active Components', 'Passive Components', 'Cable Management', 'Test & Measuring Equipment', 'Specialty / Drones', 'Tooling']);
+  const subCategoriesByMain = new Map<string, Set<string>>();
+
+  parsedCategories.forEach(cat => {
+    const parts = cat.split(' > ');
+    const main = parts[0]?.trim();
+    const sub = parts.length > 1 ? parts[1]?.trim() : '';
+    
+    if (main) mainCategoriesSet.add(main);
+    if (main && sub) {
+      if (!subCategoriesByMain.has(main)) {
+        subCategoriesByMain.set(main, new Set());
+      }
+      subCategoriesByMain.get(main)!.add(sub);
+    }
+  });
+
+  const mainCategories = Array.from(mainCategoriesSet).sort();
+
+  const formCatParts = form.category.split(' > ');
+  const currentMainCategory = formCatParts[0]?.trim() || '';
+  const currentSubCategory = formCatParts.length > 1 ? formCatParts[1]?.trim() : '';
+
+  const availableSubCategories = currentMainCategory && subCategoriesByMain.has(currentMainCategory)
+    ? Array.from(subCategoriesByMain.get(currentMainCategory)!).sort()
+    : [];
+
+  const updateCategory = (main: string, sub: string) => {
+    if (sub && sub.trim()) {
+      setForm({ ...form, category: `${main} > ${sub.trim()}` });
+    } else {
+      setForm({ ...form, category: main });
+    }
+  };
 
   if (!session) {
     return (
@@ -549,37 +589,81 @@ export default function AdminProductForm() {
                   </div>
 
                   <div className="admin-form-group">
-                    <label>Category</label>
+                    <label>Main Category</label>
                     <select
                       required
-                      value={categories.includes(form.category) ? form.category : (form.category ? "new" : "")}
+                      value={mainCategories.includes(currentMainCategory) ? currentMainCategory : (currentMainCategory ? "new" : "")}
                       onChange={(e) => {
                         const val = e.target.value;
                         if (val === "new") {
-                          setForm({ ...form, category: "" });
+                          updateCategory("", currentSubCategory);
                         } else {
-                          setForm({ ...form, category: val });
+                          updateCategory(val, currentSubCategory);
                         }
                       }}
                       className="admin-select"
                       style={{ width: '100%', height: 'auto', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)' }}
                     >
-                      <option value="">Select Category...</option>
-                      {categories.map((cat) => (
+                      <option value="">Select Main Category...</option>
+                      {mainCategories.map((cat) => (
                         <option key={cat} value={cat}>
                           {cat}
                         </option>
                       ))}
-                      <option value="new">+ Add New Category...</option>
+                      <option value="new">+ Add New Main Category...</option>
                     </select>
                     
-                    {(!categories.includes(form.category) || !form.category) && (
+                    {(!mainCategories.includes(currentMainCategory) || !currentMainCategory) && (
                       <input
                         type="text"
                         required
-                        placeholder="Enter New Category Name"
-                        value={form.category}
-                        onChange={(e) => setForm({ ...form, category: e.target.value })}
+                        placeholder="Enter New Main Category Name"
+                        value={currentMainCategory}
+                        onChange={(e) => updateCategory(e.target.value, currentSubCategory)}
+                        style={{ marginTop: '10px', width: '100%' }}
+                        className="admin-search"
+                      />
+                    )}
+                  </div>
+
+                  <div className="admin-form-group">
+                    <label>Subcategory (Optional)</label>
+                    <select
+                      value={addingNewSub ? "new" : (currentSubCategory || "")}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        if (val === "new") {
+                          setAddingNewSub(true);
+                          setNewSubInput('');
+                          updateCategory(currentMainCategory, '');
+                        } else {
+                          setAddingNewSub(false);
+                          setNewSubInput('');
+                          updateCategory(currentMainCategory, val);
+                        }
+                      }}
+                      className="admin-select"
+                      style={{ width: '100%', height: 'auto', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface)' }}
+                    >
+                      <option value="">None / Select Subcategory...</option>
+                      {availableSubCategories.map((cat) => (
+                        <option key={cat} value={cat}>
+                          {cat}
+                        </option>
+                      ))}
+                      <option value="new">+ Add New Subcategory...</option>
+                    </select>
+                    
+                    {addingNewSub && (
+                      <input
+                        type="text"
+                        autoFocus
+                        placeholder="Enter New Subcategory Name (e.g. Adapters, Connectors)"
+                        value={newSubInput}
+                        onChange={(e) => {
+                          setNewSubInput(e.target.value);
+                          updateCategory(currentMainCategory, e.target.value);
+                        }}
                         style={{ marginTop: '10px', width: '100%' }}
                         className="admin-search"
                       />

@@ -47,7 +47,13 @@ const DELETED_SLUGS = new Set([
   'fiber-optic-adapter',
   'easyget-wifi',
   'splice-on-connector',
-  'splice-on'
+  'splice-on',
+  // Removed per admin request
+  'aoc',
+  'dac',
+  'olps',
+  'sfp-100g-bidi',
+  'sfp-10g-bidi',
 ]);
 
 /**
