@@ -14,7 +14,35 @@ import {
 } from '../lib/adminAuth';
 import { getAdminProducts, saveProduct } from '../lib/productSync';
 import type { AdminProduct } from '../lib/productSync';
+import { uploadProductDatasheet } from '../lib/datasheetUpload';
 import '../styles/admin-enhanced.css';
+
+// Predefined subcategories matching the catalogue structure exactly
+const PREDEFINED_SUBCATEGORIES: Record<string, string[]> = {
+  'Active Components': [
+    'SFP Transceivers',
+    'Bypass Switch',
+  ],
+  'Passive Components': [
+    'Cable Assembly',
+    'Adapters',
+    'Attenuator',
+    'MUX / DEMUX',
+    'Connectors',
+    'Fiber Spool',
+  ],
+  'Cable Management Devices': [
+    'Fiber Termination Box (Indoor)',
+    'Fiber Termination Box (Outdoor)',
+  ],
+  'Test and Measurement Equipment': [
+    'Power Meter',
+    'OTDR',
+    'Splicer',
+  ],
+  'Specialty Drones': [],
+  'Tooling': ['Maintenance'],
+};
 
 type AdminStatus = 'Active' | 'Draft' | 'Archived';
 
@@ -281,23 +309,17 @@ export default function AdminProductForm() {
       return;
     }
 
-    setNotices(prev => ({ ...prev, pdf: { message: 'Reading datasheet PDF...', type: 'info' } }));
+    setNotices(prev => ({ ...prev, pdf: { message: 'Uploading datasheet to cloud...', type: 'info' } }));
     try {
-      // Convert PDF to base64 and store locally (no API call needed)
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const base64Url = e.target?.result as string;
-        setForm(prev => ({ ...prev, datasheetUrl: base64Url }));
-        setNotices(prev => ({ ...prev, pdf: { message: `Datasheet "${file.name}" loaded successfully!`, type: 'success' } }));
-      };
-      reader.onerror = () => {
-        setNotices(prev => ({ ...prev, pdf: { message: 'Failed to read PDF file.', type: 'error' } }));
-      };
-      reader.readAsDataURL(file);
+      // Upload to Supabase Storage so it works on ALL devices
+      const slug = form.slug.trim() || 'product';
+      const publicUrl = await uploadProductDatasheet(file, slug);
+      setForm(prev => ({ ...prev, datasheetUrl: publicUrl }));
+      setNotices(prev => ({ ...prev, pdf: { message: `Datasheet "${file.name}" uploaded successfully!`, type: 'success' } }));
     } catch (err) {
       setNotices(prev => ({
         ...prev,
-        pdf: { message: err instanceof Error ? err.message : 'Failed to load PDF file.', type: 'error' },
+        pdf: { message: err instanceof Error ? err.message : 'Failed to upload PDF. Try again.', type: 'error' },
       }));
     } finally {
       event.target.value = '';
@@ -399,24 +421,38 @@ export default function AdminProductForm() {
   const [newSubInput, setNewSubInput] = useState('');
 
   const parsedCategories = products.map((p) => p.category || '');
-  const mainCategoriesSet = new Set<string>(['Active Components', 'Passive Components', 'Cable Management', 'Test & Measuring Equipment', 'Specialty / Drones', 'Tooling']);
+  const mainCategoriesSet = new Set<string>([
+    'Active Components',
+    'Passive Components',
+    'Cable Management Devices',
+    'Test and Measurement Equipment',
+    'Specialty Drones',
+    'Tooling',
+  ]);
+
+  // Build subcategories map — start with predefined, then add any saved from products
   const subCategoriesByMain = new Map<string, Set<string>>();
 
+  // 1. Seed from PREDEFINED_SUBCATEGORIES
+  Object.entries(PREDEFINED_SUBCATEGORIES).forEach(([main, subs]) => {
+    mainCategoriesSet.add(main);
+    if (!subCategoriesByMain.has(main)) subCategoriesByMain.set(main, new Set());
+    subs.forEach(s => subCategoriesByMain.get(main)!.add(s));
+  });
+
+  // 2. Add any custom subcategories from existing saved products
   parsedCategories.forEach(cat => {
     const parts = cat.split(' > ');
     const main = parts[0]?.trim();
     const sub = parts.length > 1 ? parts[1]?.trim() : '';
-    
     if (main) mainCategoriesSet.add(main);
     if (main && sub) {
-      if (!subCategoriesByMain.has(main)) {
-        subCategoriesByMain.set(main, new Set());
-      }
+      if (!subCategoriesByMain.has(main)) subCategoriesByMain.set(main, new Set());
       subCategoriesByMain.get(main)!.add(sub);
     }
   });
 
-  const mainCategories = Array.from(mainCategoriesSet).sort();
+  const mainCategories = Array.from(mainCategoriesSet);
 
   const formCatParts = form.category.split(' > ');
   const currentMainCategory = formCatParts[0]?.trim() || '';
