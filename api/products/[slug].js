@@ -31,10 +31,14 @@ function mapDbProduct(db) {
     .sort((a, b) => (a.position || 0) - (b.position || 0))
     .map((s) => ({ label: s.label, value: s.value }));
 
+  const mainCategory = db.category_ref?.name || 'Active Components';
+  const subcategory = db.metadata?.subcategory || '';
+  const fullCategory = subcategory ? `${mainCategory} > ${subcategory}` : mainCategory;
+
   return {
     slug: db.slug,
     name: db.name,
-    category: db.category_ref?.name || 'Active Components',
+    category: fullCategory,
     title: db.title,
     description: db.description,
     canonical: db.canonical_url,
@@ -52,7 +56,9 @@ function mapDbProduct(db) {
 }
 
 async function getCategoryIdFromName(supabase, categoryName) {
-  const name = (categoryName || 'Active Components').trim();
+  const fullCategory = (categoryName || 'Active Components').trim();
+  const parts = fullCategory.split(' > ');
+  const name = parts[0].trim();
   const slug = name
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
@@ -132,6 +138,10 @@ async function handlePut(req, res, slug) {
     const dbProdId = orig.id;
     const categoryId = await getCategoryIdFromName(supabase, prod.category);
 
+    // Extract subcategory from "Main Category > Subcategory"
+    const catParts = (prod.category || '').split(' > ');
+    const subcategoryName = catParts.length > 1 ? catParts.slice(1).join(' > ').trim() : '';
+
     const specsMap = (prod.specs || []).reduce((acc, s) => {
       acc[s.label] = s.value;
       return acc;
@@ -157,6 +167,7 @@ async function handlePut(req, res, slug) {
         mount_type: mountType,
         capacity: capacityVal,
         specs: specsMap,
+        subcategory: subcategoryName,
         datasheet_url: prod.datasheetUrl || '',
         gallery_urls: prod.galleryUrls || [],
       },

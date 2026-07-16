@@ -219,16 +219,19 @@ export const saveProduct = async (product: AdminProduct, previousSlug = product.
     if (supabase) {
       try {
         let categoryId = null;
-        const catName = product.category || 'Active Components';
-        const { data: catData } = await supabase.from('product_categories').select('id').ilike('name', catName).limit(1);
+        const fullCategory = product.category || 'Active Components';
+        const catParts = fullCategory.split(' > ');
+        const mainCatName = catParts[0].trim();
+        const subcategoryName = catParts.length > 1 ? catParts.slice(1).join(' > ').trim() : '';
+        const { data: catData } = await supabase.from('product_categories').select('id').ilike('name', mainCatName).limit(1);
         
         if (catData && catData.length > 0) {
           categoryId = catData[0].id;
         } else {
           const { data: newCat } = await supabase.from('product_categories').upsert({
-            slug: catName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''),
-            name: catName,
-            description: `Category for ${catName}`
+            slug: mainCatName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''),
+            name: mainCatName,
+            description: `Category for ${mainCatName}`
           }, { onConflict: 'slug' }).select('id').single();
           if (newCat) categoryId = newCat.id;
         }
@@ -250,6 +253,7 @@ export const saveProduct = async (product: AdminProduct, previousSlug = product.
             mount_type: specsMap['Mount Type'] || specsMap['Mounting'] || 'Rack Mount',
             capacity: parseInt(specsMap['Capacity'] || specsMap['Ports'] || '0') || 0,
             specs: specsMap,
+            subcategory: subcategoryName,
             datasheet_url: product.datasheetUrl || '',
             gallery_urls: product.galleryUrls || [],
           },
@@ -354,10 +358,13 @@ function mapSupabaseProduct(db: any): AdminProduct | null {
   const specs = (db.specs || [])
     .sort((a: any, b: any) => (a.position || 0) - (b.position || 0))
     .map((s: any) => ({ label: s.label, value: s.value }));
+  const mainCategory = db.category_ref?.name || 'Active Components';
+  const subcategory = db.metadata?.subcategory || '';
+  const fullCategory = subcategory ? `${mainCategory} > ${subcategory}` : mainCategory;
   return {
     slug: db.slug,
     name: db.name,
-    category: db.category_ref?.name || 'Active Components',
+    category: fullCategory,
     title: db.title,
     description: db.description,
     canonical: db.canonical_url,
@@ -539,6 +546,28 @@ export const mergeWithCatalogue = (catalogue: any): any => {
         (p) => getSectionId(p.category) === section.id
       );
 
+      // Helper: extract subcategory from "Main Category > Subcategory"
+      const getSubcategory = (category: string): string => {
+        const parts = category.split(' > ');
+        return parts.length > 1 ? parts.slice(1).join(' > ').trim() : '';
+      };
+
+      // Pre-group new products by their subcategory for matching against group.subhead
+      const productsBySubcat = new Map<string, any[]>();
+      const unmatched: any[] = [];
+      for (const p of sectionNewProducts) {
+        const sub = getSubcategory(p.category).toLowerCase();
+        if (sub) {
+          if (!productsBySubcat.has(sub)) productsBySubcat.set(sub, []);
+          productsBySubcat.get(sub)!.push(p);
+        } else {
+          unmatched.push(p);
+        }
+      }
+
+      // Track which products got matched to a group
+      const matchedSubs = new Set<string>();
+
       return {
         ...section,
         groups: section.groups.map((group: any, groupIndex: number) => {
@@ -566,31 +595,56 @@ export const mergeWithCatalogue = (catalogue: any): any => {
               return !adminMap.has(card.slug) || adminMap.get(card.slug)?.status === 'Active';
             });
 
-          // If there are new products for this section, append them to the first group
-          if (groupIndex === 0 && sectionNewProducts.length > 0) {
-            const newCards = sectionNewProducts.map((p) => {
-              const finalTagline = p.tagline || 'High performance serial optical data communication';
-              const finalDescription = p.description || 'High performance serial optical data communication\nCost effective modules\nCompatible with major OEM switches';
-              const finalSpecs = p.specs && p.specs.length > 0 ? p.specs : [
-                { label: 'Form Factor', value: 'SFP / SFP+ / QSFP' },
-                { label: 'Data Rate', value: '155M to 400G' },
-                { label: 'Connector', value: 'LC / SC Duplex' },
-                { label: 'DOM Support', value: 'Yes' },
-              ];
-              const finalImage = p.imageUrl || 'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=900&q=80';
+          // Find new products that match this group's subhead
+          const groupSubhead = (group.subhead || '').toLowerCase().trim();
+          let productsForThisGroup: any[] = [];
+
+          // Match by subcategory → group.subhead
+          for (const [sub, products] of productsBySubcat.entries()) {
+            if (groupSubhead && (groupSubhead.includes(sub) || sub.includes(groupSubhead))) {
+              productsForThisGroup.push(...products);
+              matchedSubs.add(sub);
+            }
+          }
+
+          // For the first group, also add unmatched products and any subcategory products that didn't match any group
+          if (groupIndex === 0) {
+            productsForThisGroup.push(...unmatched);
+            // After all groups are processed, remaining unmatched subcategory products go here too
+            for (const [sub, products] of productsBySubcat.entries()) {
+              if (!matchedSubs.has(sub)) {
+                // Check if any later group would match — if not, add to first group
+                const laterMatch = section.groups.slice(1).some((g: any) => {
+                  const gs = (g.subhead || '').toLowerCase().trim();
+                  return gs && (gs.includes(sub) || sub.includes(gs));
+                });
+                if (!laterMatch) {
+                  productsForThisGroup.push(...products);
+                  matchedSubs.add(sub);
+                }
+              }
+            }
+          }
+
+          if (productsForThisGroup.length > 0) {
+            const newCards = productsForThisGroup.map((p) => {
+              const finalTagline = p.tagline || '';
+              const finalDescription = p.description || '';
+              const finalSpecs = p.specs && p.specs.length > 0 ? p.specs : [];
+              const finalImage = p.imageUrl || '';
 
               return {
                 slug: p.slug,
                 tag: finalTagline,
                 img: finalImage,
-                heroSvg: p.heroIcon || '<svg width="120" height="120" viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="1.5"><rect x="8" y="16" width="32" height="16" rx="3"></rect><rect x="4" y="20" width="6" height="8" rx="1"></rect><rect x="38" y="20" width="6" height="8" rx="1"></rect><line x1="14" y1="24" x2="34" y2="24"></line></svg>',
+                heroSvg: p.heroIcon || '',
                 name: p.name,
                 blurb: finalDescription,
-                pills: finalSpecs.slice(0, 3).map((s) => s.value),
+                pills: finalSpecs.slice(0, 3).map((s: any) => s.value),
                 detailsSlug: p.slug,
                 addItem: {
                   title: p.name,
-                  specs: `${finalSpecs[0].label}: ${finalSpecs[0].value}`,
+                  specs: finalSpecs.length > 0 ? `${finalSpecs[0].label}: ${finalSpecs[0].value}` : '',
                   image: finalImage,
                 },
               };
@@ -628,23 +682,9 @@ export const mergeWithProducts = (rawProducts: any[]): any[] => {
   const merged = filteredRawProducts.map((p) => {
     const adminProd = adminMap.get(p.slug);
     if (adminProd) {
-      const finalFeatures = adminProd.features && adminProd.features.length > 0 ? adminProd.features : [
-        "High performance serial optical data communication",
-        "Cost effective modules",
-        "Compatible with major OEM switches"
-      ];
-      const finalApplications = adminProd.applications && adminProd.applications.length > 0 ? adminProd.applications : [
-        "Telecom Networks",
-        "Data Centers",
-        "Enterprise IT",
-        "ISP Infrastructure"
-      ];
-      const finalSpecs = adminProd.specs && adminProd.specs.length > 0 ? adminProd.specs : [
-        { label: 'Form Factor', value: 'SFP / SFP+ / QSFP' },
-        { label: 'Data Rate', value: '155M to 400G' },
-        { label: 'Connector', value: 'LC / SC Duplex' },
-        { label: 'DOM Support', value: 'Yes' },
-      ];
+      const finalFeatures = adminProd.features && adminProd.features.length > 0 ? adminProd.features : [];
+      const finalApplications = adminProd.applications && adminProd.applications.length > 0 ? adminProd.applications : [];
+      const finalSpecs = adminProd.specs && adminProd.specs.length > 0 ? adminProd.specs : [];
 
       return {
         ...p,
@@ -671,26 +711,12 @@ export const mergeWithProducts = (rawProducts: any[]): any[] => {
   const existingSlugs = new Set(rawProducts.map((p) => p.slug));
   const newAdminProducts = adminProducts.filter((p) => !existingSlugs.has(p.slug));
   for (const p of newAdminProducts) {
-    const finalTagline = p.tagline || 'High performance serial optical data communication';
-    const finalDescription = p.description || 'High performance serial optical data communication\nCost effective modules\nCompatible with major OEM switches';
-    const finalFeatures = p.features && p.features.length > 0 ? p.features : [
-      "High performance serial optical data communication",
-      "Cost effective modules",
-      "Compatible with major OEM switches"
-    ];
-    const finalApplications = p.applications && p.applications.length > 0 ? p.applications : [
-      "Telecom Networks",
-      "Data Centers",
-      "Enterprise IT",
-      "ISP Infrastructure"
-    ];
-    const finalSpecs = p.specs && p.specs.length > 0 ? p.specs : [
-      { label: 'Form Factor', value: 'SFP / SFP+ / QSFP' },
-      { label: 'Data Rate', value: '155M to 400G' },
-      { label: 'Connector', value: 'LC / SC Duplex' },
-      { label: 'DOM Support', value: 'Yes' },
-    ];
-    const finalImage = p.imageUrl || 'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=900&q=80';
+    const finalTagline = p.tagline || '';
+    const finalDescription = p.description || '';
+    const finalFeatures = p.features && p.features.length > 0 ? p.features : [];
+    const finalApplications = p.applications && p.applications.length > 0 ? p.applications : [];
+    const finalSpecs = p.specs && p.specs.length > 0 ? p.specs : [];
+    const finalImage = p.imageUrl || '';
 
     merged.push({
       slug: p.slug,
@@ -704,11 +730,8 @@ export const mergeWithProducts = (rawProducts: any[]): any[] => {
       features: finalFeatures,
       applications: finalApplications,
       specs: finalSpecs,
-      related: p.related && p.related.length > 0 ? p.related : [
-        { slug: 'smart-sfp', name: 'Smart SFP Transceiver' },
-        { slug: 'sfp-400g', name: '400G' },
-      ],
-      heroIcon: p.heroIcon || '<svg width="120" height="120" viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="1.5"><rect x="8" y="16" width="32" height="16" rx="3"></rect><rect x="4" y="20" width="6" height="8" rx="1"></rect><rect x="38" y="20" width="6" height="8" rx="1"></rect><line x1="14" y1="24" x2="34" y2="24"></line></svg>',
+      related: p.related && p.related.length > 0 ? p.related : [],
+      heroIcon: p.heroIcon || '',
       datasheetUrl: p.datasheetUrl || '',
       galleryUrls: p.galleryUrls || [],
     });
