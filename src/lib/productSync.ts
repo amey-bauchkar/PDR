@@ -48,12 +48,6 @@ const DELETED_SLUGS = new Set([
   'easyget-wifi',
   'splice-on-connector',
   'splice-on',
-  // Removed per admin request
-  'aoc',
-  'dac',
-  'olps',
-  'sfp-100g-bidi',
-  'sfp-10g-bidi',
 ]);
 
 /**
