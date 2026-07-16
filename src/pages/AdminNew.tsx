@@ -300,7 +300,8 @@ export default function AdminNew() {
     window.localStorage.setItem(STORAGE_KEYS.activity, JSON.stringify(activity));
   }, [activity]);
 
-  const categories = Array.from(new Set(products.map((p) => p.category).filter(Boolean))).sort();
+  const getMainCategory = (cat: string) => (cat || '').split(' > ')[0].trim();
+  const categories = Array.from(new Set(products.map((p) => getMainCategory(p.category)).filter(Boolean))).sort();
   const activeCount = products.filter((p) => p.status === 'Active').length;
   const draftCount = products.filter((p) => p.status === 'Draft').length;
   const rfqNewCount = rfqs.filter((r) => r.status === 'new').length;
@@ -310,7 +311,7 @@ export default function AdminNew() {
   const filteredProducts = products.filter((product) => {
     const haystack = [product.slug, product.name, product.category, product.description, product.tagline, product.title].join(' ').toLowerCase();
     const matchesQuery = query.trim() ? haystack.includes(query.trim().toLowerCase()) : true;
-    const matchesCategory = category === 'All' ? true : product.category === category;
+    const matchesCategory = category === 'All' ? true : getMainCategory(product.category) === category;
     const matchesStatus = status === 'All' ? true : product.status === status;
     return matchesQuery && matchesCategory && matchesStatus;
   });
@@ -870,7 +871,7 @@ export default function AdminNew() {
                       <p className="admin-empty">No products yet.</p>
                     ) : (
                       categories.map((cat) => {
-                        const productsInCategory = filteredProducts.filter((p) => p.category === cat);
+                        const productsInCategory = filteredProducts.filter((p) => getMainCategory(p.category) === cat);
                         if (productsInCategory.length === 0) return null;
                         return (
                           <div key={cat} className="admin-category-group">
