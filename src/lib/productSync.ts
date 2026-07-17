@@ -19,6 +19,7 @@ export type AdminProduct = {
   applications?: string[];
   specs?: { label: string; value: string }[];
   related?: { slug: string; name: string }[];
+  tags?: string[];
   heroIcon?: string;
   datasheetUrl?: string;
   galleryUrls?: string[];
@@ -250,6 +251,7 @@ export const saveProduct = async (product: AdminProduct, previousSlug = product.
             subcategory: subcategoryName,
             datasheet_url: product.datasheetUrl || '',
             gallery_urls: product.galleryUrls || [],
+            tags: product.tags || [],
           },
           updated_at: new Date().toISOString(),
         };
@@ -576,6 +578,7 @@ export const mergeWithCatalogue = (catalogue: any): any => {
                   blurb: adminProduct.description || card.blurb,
                   img: adminProduct.imageUrl || card.img,
                   tag: adminProduct.tagline || card.tag,
+                  pills: adminProduct.tags && adminProduct.tags.length > 0 ? adminProduct.tags : card.pills,
                 };
               }
               return card;
@@ -634,7 +637,7 @@ export const mergeWithCatalogue = (catalogue: any): any => {
                 heroSvg: p.heroIcon || '',
                 name: p.name,
                 blurb: finalDescription,
-                pills: finalSpecs.slice(0, 3).map((s: any) => s.value),
+                pills: p.tags && p.tags.length > 0 ? p.tags : finalSpecs.slice(0, 3).map((s: any) => s.value),
                 detailsSlug: p.slug,
                 addItem: {
                   title: p.name,

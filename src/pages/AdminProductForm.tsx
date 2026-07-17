@@ -59,6 +59,7 @@ type ProductFormState = {
   featuresText: string;
   applicationsText: string;
   specs: { label: string; value: string }[];
+  tagsText: string;
   datasheetUrl: string;
   galleryUrls: string[];
 };
@@ -76,6 +77,7 @@ const DEFAULT_FORM: ProductFormState = {
   featuresText: '',
   applicationsText: '',
   specs: [],
+  tagsText: '',
   datasheetUrl: '',
   galleryUrls: [],
 };
@@ -174,6 +176,7 @@ export default function AdminProductForm() {
           featuresText: (prod.features ?? []).join('\n'),
           applicationsText: (prod.applications ?? []).join('\n'),
           specs: prod.specs ?? [],
+          tagsText: (prod.tags ?? []).join('\n'),
           datasheetUrl: prod.datasheetUrl ?? '',
           galleryUrls: prod.galleryUrls ?? [],
         });
@@ -372,6 +375,10 @@ export default function AdminProductForm() {
       features,
       applications,
       specs,
+      tags: form.tagsText
+        .split('\n')
+        .map((s) => s.trim())
+        .filter(Boolean),
       related: existingProduct?.related || [],
       heroIcon: existingProduct?.heroIcon || `<svg width="120" height="120" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="14" y="14" width="20" height="20" rx="3"></rect><circle cx="24" cy="24" r="4"></circle></svg>`,
       datasheetUrl: form.datasheetUrl.trim(),
@@ -887,6 +894,62 @@ export default function AdminProductForm() {
                               onClick={() => {
                                 const lines = form.applicationsText.split('\n').filter((_, i) => i !== index);
                                 setForm({ ...form, applicationsText: lines.join('\n') });
+                              }}
+                              className="dyn-list-del"
+                            >
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="admin-form-group">
+                    <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span>Tags <span style={{ fontWeight: 400, fontSize: '12px', color: '#64748B' }}>(grey badges on product cards)</span></span>
+                      <button
+                        type="button"
+                        className="btn btn-outline"
+                        style={{ padding: '6px 12px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '6px', borderRadius: '6px', border: '1px solid var(--admin-border)', background: 'var(--admin-surface-2)', cursor: 'pointer', color: 'var(--admin-primary)', fontWeight: 600 }}
+                        onClick={() => setForm({ ...form, tagsText: form.tagsText ? form.tagsText + '\n' : ' ' })}
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        Add Tag
+                      </button>
+                    </label>
+
+                    {form.tagsText === '' ? (
+                      <div style={{ padding: '24px', background: 'rgba(7,0,143,0.02)', border: '1px dashed #07008F', borderRadius: '8px', textAlign: 'center', color: '#64748B', marginTop: '8px', fontSize: '13px' }}>
+                        No tags added. Click &quot;Add Tag&quot; to start. Tags appear as grey badges on product cards.
+                      </div>
+                    ) : (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '8px' }}>
+                        {form.tagsText.split('\n').map((tag, index) => (
+                          <div key={index} className="dyn-list-row">
+                            <input
+                              type="text"
+                              autoFocus
+                              value={tag === ' ' ? '' : tag}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                  e.preventDefault();
+                                  setForm({ ...form, tagsText: form.tagsText ? form.tagsText + '\n' : ' ' });
+                                }
+                              }}
+                              placeholder={`Tag ${index + 1} (e.g. "Aerial Deployment")`}
+                              onChange={(e) => {
+                                const lines = form.tagsText.split('\n');
+                                lines[index] = e.target.value;
+                                setForm({ ...form, tagsText: lines.join('\n') });
+                              }}
+                              className="dyn-list-input"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const lines = form.tagsText.split('\n').filter((_, i) => i !== index);
+                                setForm({ ...form, tagsText: lines.join('\n') });
                               }}
                               className="dyn-list-del"
                             >

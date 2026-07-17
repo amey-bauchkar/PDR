@@ -79,7 +79,7 @@ export default function Products() {
           heroSvg: p.heroIcon || '',
           name: p.name,
           blurb: p.description || '',
-          pills: p.specs ? p.specs.slice(0, 3).map((s) => s.value) : [],
+          pills: p.tags && p.tags.length > 0 ? p.tags : (p.specs ? p.specs.slice(0, 3).map((s) => s.value) : []),
           detailsSlug: p.slug,
           addItem: {
             title: p.name,

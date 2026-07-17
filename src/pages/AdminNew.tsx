@@ -422,6 +422,7 @@ export default function AdminNew() {
       features,
       applications,
       specs,
+      tags: existingProduct?.tags || [],
       related: existingProduct?.related || [],
       heroIcon: existingProduct?.heroIcon || `<svg width="120" height="120" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="14" y="14" width="20" height="20" rx="3"></rect><circle cx="24" cy="24" r="4"></circle></svg>`,
       datasheetUrl: form.datasheetUrl.trim(),

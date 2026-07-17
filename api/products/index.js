@@ -59,6 +59,7 @@ function mapDbProduct(db) {
     heroIcon: db.hero_icon_svg,
     datasheetUrl: db.metadata?.datasheet_url?.startsWith?.('data:') ? '' : (db.metadata?.datasheet_url || ''),
     galleryUrls: db.metadata?.gallery_urls || [],
+    tags: db.metadata?.tags || [],
     updatedAt: db.updated_at,
   };
 }
@@ -212,6 +213,7 @@ async function handlePost(req, res) {
         subcategory: subcategoryName,
         datasheet_url: prod.datasheetUrl || '',
         gallery_urls: prod.galleryUrls || [],
+        tags: prod.tags || [],
       },
     };
 
