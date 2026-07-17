@@ -203,7 +203,7 @@ export const saveProduct = async (product: AdminProduct, previousSlug = product.
   let savedProduct: AdminProduct | null = null;
   try {
     savedProduct = await requestJson<AdminProduct>(
-      isUpdate ? `${PRODUCTS_API_URL}/${encodeURIComponent(previousSlug)}` : PRODUCTS_API_URL,
+      PRODUCTS_API_URL,
       {
         method: isUpdate ? 'PUT' : 'POST',
         body: JSON.stringify(product),
@@ -318,7 +318,7 @@ export const saveProduct = async (product: AdminProduct, previousSlug = product.
  */
 export const deleteProduct = async (slug: string): Promise<void> => {
   try {
-    await requestJson<{ slug: string }>(`${PRODUCTS_API_URL}/${encodeURIComponent(slug)}`, {
+    await requestJson<{ slug: string }>(`${PRODUCTS_API_URL}?slug=${encodeURIComponent(slug)}`, {
       method: 'DELETE',
     });
   } catch (err) {
