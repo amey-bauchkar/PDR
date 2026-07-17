@@ -36,6 +36,7 @@ type AdminProduct = {
   applications?: string[];
   specs?: { label: string; value: string }[];
   related?: { slug: string; name: string }[];
+  tags?: string[];
   heroIcon?: string;
 };
 
