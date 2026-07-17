@@ -578,7 +578,7 @@ export const mergeWithCatalogue = (catalogue: any): any => {
                   blurb: adminProduct.description || card.blurb,
                   img: adminProduct.imageUrl || card.img,
                   tag: adminProduct.tagline || card.tag,
-                  pills: adminProduct.tags && adminProduct.tags.length > 0 ? adminProduct.tags : card.pills,
+                  pills: adminProduct.tags !== undefined ? adminProduct.tags : card.pills,
                 };
               }
               return card;
@@ -637,7 +637,7 @@ export const mergeWithCatalogue = (catalogue: any): any => {
                 heroSvg: p.heroIcon || '',
                 name: p.name,
                 blurb: finalDescription,
-                pills: p.tags && p.tags.length > 0 ? p.tags : finalSpecs.slice(0, 3).map((s: any) => s.value),
+                pills: p.tags !== undefined ? p.tags : finalSpecs.slice(0, 3).map((s: any) => s.value),
                 detailsSlug: p.slug,
                 addItem: {
                   title: p.name,
@@ -699,6 +699,7 @@ export const mergeWithProducts = (rawProducts: any[]): any[] => {
         heroIcon: adminProd.heroIcon || p.heroIcon,
         datasheetUrl: adminProd.datasheetUrl || p.datasheetUrl || '',
         galleryUrls: adminProd.galleryUrls || p.galleryUrls || [],
+        tags: adminProd.tags !== undefined ? adminProd.tags : (p.tags || []),
       };
     }
     return p;
@@ -731,6 +732,7 @@ export const mergeWithProducts = (rawProducts: any[]): any[] => {
       heroIcon: p.heroIcon || '',
       datasheetUrl: p.datasheetUrl || '',
       galleryUrls: p.galleryUrls || [],
+      tags: p.tags || [],
     });
   }
 
