@@ -373,6 +373,7 @@ function mapSupabaseProduct(db: any): AdminProduct | null {
     heroIcon: db.hero_icon_svg,
     datasheetUrl: db.metadata?.datasheet_url || '',
     galleryUrls: db.metadata?.gallery_urls || [],
+    tags: db.metadata?.tags || [],
     updatedAt: db.updated_at,
   };
 }
