@@ -551,11 +551,16 @@ export const mergeWithCatalogue = (catalogue: any): any => {
 
       // Pre-group new products by their subcategory for matching against group.subhead
       const productsBySubcat = new Map<string, any[]>();
+      const subcatDisplayNames = new Map<string, string>(); // lowercase key -> original casing
       const unmatched: any[] = [];
       for (const p of sectionNewProducts) {
-        const sub = getSubcategory(p.category).toLowerCase();
+        const subOriginal = getSubcategory(p.category).trim();
+        const sub = subOriginal.toLowerCase();
         if (sub) {
-          if (!productsBySubcat.has(sub)) productsBySubcat.set(sub, []);
+          if (!productsBySubcat.has(sub)) {
+            productsBySubcat.set(sub, []);
+            subcatDisplayNames.set(sub, subOriginal);
+          }
           productsBySubcat.get(sub)!.push(p);
         } else {
           unmatched.push(p);
@@ -567,7 +572,7 @@ export const mergeWithCatalogue = (catalogue: any): any => {
 
       return {
         ...section,
-        groups: section.groups.map((group: any, groupIndex: number) => {
+        groups: [...section.groups.map((group: any, groupIndex: number) => {
           const existingCards = group.cards
             .map((card: any) => {
               const adminProduct = adminMap.get(card.slug);
@@ -597,31 +602,17 @@ export const mergeWithCatalogue = (catalogue: any): any => {
           const groupSubhead = (group.subhead || '').toLowerCase().trim();
           let productsForThisGroup: any[] = [];
 
-          // Match by subcategory → group.subhead
+          // Match by subcategory → group.subhead (exact equality match to avoid false positives)
           for (const [sub, products] of productsBySubcat.entries()) {
-            if (groupSubhead && (groupSubhead.includes(sub) || sub.includes(groupSubhead))) {
+            if (groupSubhead && groupSubhead === sub) {
               productsForThisGroup.push(...products);
               matchedSubs.add(sub);
             }
           }
 
-          // For the first group, also add unmatched products and any subcategory products that didn't match any group
+          // For the first group, also add products that have no subcategory
           if (groupIndex === 0) {
             productsForThisGroup.push(...unmatched);
-            // After all groups are processed, remaining unmatched subcategory products go here too
-            for (const [sub, products] of productsBySubcat.entries()) {
-              if (!matchedSubs.has(sub)) {
-                // Check if any later group would match — if not, add to first group
-                const laterMatch = section.groups.slice(1).some((g: any) => {
-                  const gs = (g.subhead || '').toLowerCase().trim();
-                  return gs && (gs.includes(sub) || sub.includes(gs));
-                });
-                if (!laterMatch) {
-                  productsForThisGroup.push(...products);
-                  matchedSubs.add(sub);
-                }
-              }
-            }
           }
 
           if (productsForThisGroup.length > 0) {
@@ -658,6 +649,37 @@ export const mergeWithCatalogue = (catalogue: any): any => {
             cards: existingCards,
           };
         }),
+
+        // Create new groups for subcategories that didn't match any existing group subhead
+        ...Array.from(productsBySubcat.entries())
+          .filter(([sub]) => !matchedSubs.has(sub))
+          .map(([sub, products]) => {
+            // Capitalize the subcategory name for the group heading
+            const subheadDisplay = subcatDisplayNames.get(sub) || sub.replace(/\b\w/g, (c: string) => c.toUpperCase());
+            const newCards = products.map((p: any) => {
+              const finalTagline = p.tagline || '';
+              const finalDescription = p.description || '';
+              const finalSpecs = p.specs && p.specs.length > 0 ? p.specs : [];
+              const finalImage = p.imageUrl || '';
+              return {
+                slug: p.slug,
+                tag: finalTagline,
+                img: finalImage,
+                heroSvg: p.heroIcon || '',
+                name: p.name,
+                blurb: finalDescription,
+                pills: p.tags !== undefined ? p.tags : finalSpecs.slice(0, 3).map((s: any) => s.value),
+                detailsSlug: p.slug,
+                addItem: {
+                  title: p.name,
+                  specs: finalSpecs.length > 0 ? `${finalSpecs[0].label}: ${finalSpecs[0].value}` : '',
+                  image: finalImage,
+                },
+              };
+            });
+            return { subhead: subheadDisplay, cards: newCards };
+          }),
+        ].filter((group) => group.cards && group.cards.length > 0),
       };
     }),
   };
