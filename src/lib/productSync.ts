@@ -391,15 +391,11 @@ function mapSupabaseProduct(db: any): AdminProduct | null {
  */
 export const fetchAndSyncProducts = async (): Promise<AdminProduct[]> => {
   // PRIMARY: Direct Supabase query from browser — ~200-500ms, no cold start
+  // Wrapped in a 5s timeout so blocked/slow connections (e.g. Brave Shields, mobile)
+  // fall through to the same-origin API fallback quickly instead of hanging for minutes.
   if (supabase) {
     try {
-      const [
-        { data: products, error: e1 },
-        { data: specs, error: e2 },
-        { data: features, error: e3 },
-        { data: apps, error: e4 },
-        { data: cats, error: e5 }
-      ] = await Promise.all([
+      const supabaseQuery = Promise.all([
         supabase
           .from('catalog_products')
           .select('id, slug, category_id, name, title, tagline, description, canonical_url, hero_icon_svg, image_url, sort_order, status, metadata, updated_at')
@@ -409,6 +405,16 @@ export const fetchAndSyncProducts = async (): Promise<AdminProduct[]> => {
         supabase.from('catalog_product_applications').select('*'),
         supabase.from('product_categories').select('id,name')
       ]);
+      const timeout = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('Supabase query timed out after 5s')), 5000)
+      );
+      const [
+        { data: products, error: e1 },
+        { data: specs, error: e2 },
+        { data: features, error: e3 },
+        { data: apps, error: e4 },
+        { data: cats, error: e5 }
+      ] = await Promise.race([supabaseQuery, timeout]);
 
       if (e1 || e2 || e3 || e4 || e5) throw e1 || e2 || e3 || e4 || e5;
 
