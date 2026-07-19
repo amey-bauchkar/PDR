@@ -525,13 +525,16 @@ export const mergeWithCatalogue = (catalogue: any): any => {
 
   // Heuristic to map product categories to section IDs in catalogue.json
   const getSectionId = (category: string): string => {
-    const catLower = category.toLowerCase().trim();
-    if (catLower.includes('active')) return 'active';
-    if (catLower.includes('passive')) return 'passive';
-    if (catLower.includes('cable') || catLower.includes('management')) return 'cable';
-    if (catLower.includes('test') || catLower.includes('measuring') || catLower.includes('equipment')) return 'test';
-    if (catLower.includes('specialty') || catLower.includes('drone')) return 'specialty';
-    if (catLower.includes('tool') || catLower.includes('maintenance')) return 'tools';
+    // Extract only the main category (the part before ' > ')
+    const mainCat = category.split(' > ')[0].trim().toLowerCase();
+    
+    if (mainCat === 'active components' || mainCat.includes('active')) return 'active';
+    if (mainCat === 'passive components' || mainCat.includes('passive')) return 'passive';
+    if (mainCat === 'cable management' || mainCat.includes('cable')) return 'cable';
+    if (mainCat === 'test and measurement equipment' || mainCat.includes('test') || mainCat.includes('measuring')) return 'test';
+    if (mainCat === 'specialty drones' || mainCat.includes('specialty') || mainCat.includes('drone')) return 'specialty';
+    if (mainCat === 'tooling' || mainCat.includes('tool') || mainCat.includes('maintenance')) return 'tools';
+    
     return 'passive'; // Fallback to passive
   };
 
