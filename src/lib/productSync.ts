@@ -27,7 +27,6 @@ export type AdminProduct = {
 
 const STORAGE_KEY = 'pdrworld-admin-products-v4'; // Bumped to v4 to force fresh datasheet sync on all devices
 const PRODUCTS_API_URL = '/api/products';
-const CACHE_TTL_MS = 60 * 1000; // 60 seconds — cache older than this is ignored on page load
 const TIMESTAMP_KEY = STORAGE_KEY + '-ts';
 
 const getDefaultProducts = (): AdminProduct[] => {
@@ -64,9 +63,7 @@ export const isDbSynced = (): boolean => dbSyncSucceeded;
 export const initializeProductStore = async (): Promise<void> => {
   try {
     const idbProducts = await get<AdminProduct[]>(STORAGE_KEY);
-    const cachedTimestamp = await get<number>(TIMESTAMP_KEY);
-    const isCacheValid = cachedTimestamp && (Date.now() - cachedTimestamp < CACHE_TTL_MS);
-    if (idbProducts && idbProducts.length > 0 && isCacheValid) {
+    if (idbProducts && idbProducts.length > 0) {
       memoryCache = idbProducts;
     } else {
       // Migrate from localStorage if present
