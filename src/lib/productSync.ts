@@ -112,12 +112,13 @@ export const initializeProductStore = async (): Promise<void> => {
 };
 
 async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
+  const isGet = !init?.method || init.method.toUpperCase() === 'GET';
   const response = await fetch(url, {
     ...init,
-    cache: 'no-store',
+    cache: isGet ? 'default' : 'no-store',
     headers: {
       'Content-Type': 'application/json',
-      'Cache-Control': 'no-cache',
+      ...(isGet ? {} : { 'Cache-Control': 'no-cache' }),
       ...(init?.headers || {}),
     },
   });
