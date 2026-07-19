@@ -25,7 +25,7 @@ export type AdminProduct = {
   galleryUrls?: string[];
 };
 
-const STORAGE_KEY = 'pdrworld-admin-products-v4'; // Bumped to v4 to force fresh datasheet sync on all devices
+const STORAGE_KEY = 'pdrworld-admin-products-v5'; // Bumped to v5 to bust cache after Edge API switch
 const PRODUCTS_API_URL = '/api/products';
 const TIMESTAMP_KEY = STORAGE_KEY + '-ts';
 
