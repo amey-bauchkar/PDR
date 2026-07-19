@@ -1209,19 +1209,19 @@ export default function AdminProductForm() {
                         Choose Datasheet PDF
                       </label>
                       {form.datasheetUrl && (
-                        <div style={{ marginTop: '12px', padding: '12px', background: 'rgba(7,0,143,0.05)', borderRadius: '8px', border: '1px solid rgba(7,0,143,0.1)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', boxSizing: 'border-box' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E21D3C" strokeWidth="2">
+                        <div style={{ marginTop: '12px', padding: '12px', background: 'rgba(7,0,143,0.05)', borderRadius: '8px', border: '1px solid rgba(7,0,143,0.1)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', boxSizing: 'border-box', flexWrap: 'wrap', gap: '12px' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flex: 1, minWidth: 0 }}>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E21D3C" strokeWidth="2" style={{ flexShrink: 0 }}>
                               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                               <polyline points="14 2 14 8 20 8" />
                             </svg>
-                            <span style={{ fontSize: '13px', color: 'var(--admin-text)', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '380px' }}>
+                            <span style={{ fontSize: '13px', color: 'var(--admin-text)', fontWeight: 500, wordBreak: 'break-all' }}>
                               {form.datasheetUrl.startsWith('data:') ? 'Uploaded PDF (Base64 file)' : form.datasheetUrl}
                             </span>
                           </div>
                           <button 
                             type="button" 
-                            style={{ margin: 0, background: '#ef4444', color: '#FFFFFF', border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 600, whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center', gap: '6px', lineHeight: '1', boxSizing: 'border-box' }}
+                            style={{ flexShrink: 0, margin: 0, background: '#ef4444', color: '#FFFFFF', border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 600, whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center', gap: '6px', lineHeight: '1', boxSizing: 'border-box' }}
                             onClick={() => { setForm({...form, datasheetUrl: ''}); setNotices(prev => ({...prev, pdf: undefined})); }}
                           >
                             ✕ Remove PDF
