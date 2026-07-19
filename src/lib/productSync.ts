@@ -383,75 +383,14 @@ function mapSupabaseProduct(db: any): AdminProduct | null {
 
 
 /**
- * Fetch all products — uses DIRECT Supabase connection (no serverless cold start!).
- * Falls back to API if Supabase client is not available.
+ * Fetch all products — uses Edge-cached API for instant loads.
  */
 export const fetchAndSyncProducts = async (): Promise<AdminProduct[]> => {
-  // PRIMARY: Direct Supabase query from browser — ~200-500ms, no cold start
-  // Wrapped in a 5s timeout so blocked/slow connections (e.g. Brave Shields, mobile)
-  // fall through to the same-origin API fallback quickly instead of hanging for minutes.
-  if (supabase) {
-    try {
-      const supabaseQuery = Promise.all([
-        supabase
-          .from('catalog_products')
-          .select('id, slug, category_id, name, title, tagline, description, canonical_url, hero_icon_svg, image_url, sort_order, status, metadata, updated_at')
-          .order('sort_order', { ascending: true }),
-        supabase.from('catalog_product_specs').select('*'),
-        supabase.from('catalog_product_features').select('*'),
-        supabase.from('catalog_product_applications').select('*'),
-        supabase.from('product_categories').select('id,name')
-      ]);
-      const timeout = new Promise<never>((_, reject) =>
-        setTimeout(() => reject(new Error('Supabase query timed out after 5s')), 5000)
-      );
-      const [
-        { data: products, error: e1 },
-        { data: specs, error: e2 },
-        { data: features, error: e3 },
-        { data: apps, error: e4 },
-        { data: cats, error: e5 }
-      ] = await Promise.race([supabaseQuery, timeout]);
-
-      if (e1 || e2 || e3 || e4 || e5) throw e1 || e2 || e3 || e4 || e5;
-
-      const catsMap = new Map(cats?.map((c: any) => [c.id, c.name]));
-      const specsMap = new Map();
-      specs?.forEach((s: any) => {
-        if (!specsMap.has(s.product_id)) specsMap.set(s.product_id, []);
-        specsMap.get(s.product_id).push(s);
-      });
-      const featuresMap = new Map();
-      features?.forEach((f: any) => {
-        if (!featuresMap.has(f.product_id)) featuresMap.set(f.product_id, []);
-        featuresMap.get(f.product_id).push(f);
-      });
-      const appsMap = new Map();
-      apps?.forEach((a: any) => {
-        if (!appsMap.has(a.product_id)) appsMap.set(a.product_id, []);
-        appsMap.get(a.product_id).push(a);
-      });
-
-      const mapped = products!.map((p: any) => mapSupabaseProduct({
-        ...p,
-        category_ref: { name: catsMap.get(p.category_id) },
-        specs: specsMap.get(p.id) || [],
-        features: featuresMap.get(p.id) || [],
-        applications: appsMap.get(p.id) || []
-      })).filter(Boolean) as AdminProduct[];
-
-      const merged = mergePreservingDatasheets(mapped);
-      await saveAdminProducts(merged);
-      dbSyncSucceeded = true;
-      return merged;
-    } catch (err) {
-      console.warn('[productSync] Supabase direct fetch failed, trying API fallback:', err);
-    }
-  }
-
-  // FALLBACK: API route (used if Supabase client not configured)
   try {
-    const apiProducts = await requestJson<AdminProduct[]>(PRODUCTS_API_URL);
+    const isAdmin = typeof window !== 'undefined' && window.location.pathname.includes('admin');
+    const url = isAdmin ? `${PRODUCTS_API_URL}?fresh=true` : PRODUCTS_API_URL;
+    
+    const apiProducts = await requestJson<AdminProduct[]>(url);
     if (apiProducts && apiProducts.length > 0) {
       const merged = mergePreservingDatasheets(apiProducts);
       await saveAdminProducts(merged);

@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "prerender": "node prerender.js",
     "generate-catalogue": "node scripts/generate-catalogue.js",
-    "build:full": "npm run generate-catalogue && npm run build && npm run prerender",
+    "build:full": "node scripts/sync-supabase.js && npm run generate-catalogue && npm run build && npm run prerender",
     "verify-deployment": "node scripts/verify-deployment.js"
   },
   "dependencies": {
