@@ -383,7 +383,7 @@ function mapSupabaseProduct(db: any): AdminProduct | null {
 
 
 
-const LAST_FETCH_KEY = 'pdrworld-products-last-fetch';
+const LAST_FETCH_KEY = 'pdrworld-products-last-fetch-v2';
 const FETCH_COOLDOWN = 60 * 60 * 1000; // 1 hour cooldown
 
 /**
