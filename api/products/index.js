@@ -410,7 +410,8 @@ export default async function handler(req, res) {
   if (req.query && req.query.fresh === 'true') {
     res.setHeader('Cache-Control', 'no-store, max-age=0');
   } else {
-    res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=86400');
+    // Cache for 30s max, then revalidate in background (don't cache for 24h as that hides admin updates)
+    res.setHeader('Cache-Control', 'public, s-maxage=30, stale-while-revalidate=60');
   }
 
   if (req.method === 'OPTIONS') return res.status(200).end();
