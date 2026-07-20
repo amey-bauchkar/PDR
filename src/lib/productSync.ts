@@ -25,7 +25,7 @@ export type AdminProduct = {
   galleryUrls?: string[];
 };
 
-const STORAGE_KEY = 'pdrworld-admin-products-v5'; // Bumped to v5 to bust cache after Edge API switch
+const STORAGE_KEY = 'pdrworld-admin-products-v6'; // Bumped to v6 to force fresh fetch across all devices
 const PRODUCTS_API_URL = '/api/products';
 const TIMESTAMP_KEY = STORAGE_KEY + '-ts';
 
@@ -388,8 +388,8 @@ function mapSupabaseProduct(db: any): AdminProduct | null {
 
 
 
-const LAST_FETCH_KEY = 'pdrworld-products-last-fetch-v2';
-const FETCH_COOLDOWN = 60 * 60 * 1000; // 1 hour cooldown
+const LAST_FETCH_KEY = 'pdrworld-products-last-fetch-v4';
+const FETCH_COOLDOWN = 5 * 60 * 1000; // 5 minute cooldown (was 1 hour — too long, admin updates weren't visible to other users)
 
 /**
  * Fetch all products — uses Edge-cached API for instant loads.
@@ -401,8 +401,12 @@ export const fetchAndSyncProducts = async (force = false): Promise<AdminProduct[
     return getAdminProducts();
   }
 
-  // 1-hour caching cooldown to avoid querying Supabase on every page load
-  if (!force && typeof window !== 'undefined') {
+  // On admin pages, always force-fetch to ensure latest data
+  const isAdmin = typeof window !== 'undefined' && window.location.pathname.includes('admin');
+  const shouldForce = force || isAdmin;
+
+  // 5-minute caching cooldown for regular visitors to reduce Supabase egress
+  if (!shouldForce && typeof window !== 'undefined') {
     const lastFetch = localStorage.getItem(LAST_FETCH_KEY);
     if (lastFetch && Date.now() - parseInt(lastFetch, 10) < FETCH_COOLDOWN) {
       console.log('[productSync] Using cached products. Skipping database fetch.');

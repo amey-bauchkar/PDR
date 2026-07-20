@@ -34,7 +34,7 @@ export default function ProductDetail() {
   const [products, setProducts] = useState<Product[]>(() => {
     // Try to get fresh data from localStorage first (has latest datasheets)
     try {
-      const cached = localStorage.getItem('pdrworld-admin-products-v3');
+      const cached = localStorage.getItem('pdrworld-admin-products-v6');
       if (cached) {
         const adminProducts = JSON.parse(cached);
         if (adminProducts && adminProducts.length > 0) {
