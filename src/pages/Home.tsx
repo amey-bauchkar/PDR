@@ -31,21 +31,21 @@ const homeCategories = [
     title: 'Test and Measurement',
     description: 'OPM · OTDR · Fusion Splicer',
     count: '10+ SKUs',
-    image: '/images/fiber-patch-panel.webp',
+    image: '/images/test-and-measurement.png',
   },
   {
     id: 'specialty',
     title: 'Drone Optical Fiber Kit',
     description: 'Optical Fiber Spool · Ground Unit · Sky Unit',
     count: 'Aerial Solutions',
-    image: '/images/fiber-drone.webp',
+    image: '/images/drone-optical-fiber-kit.png',
   },
   {
     id: 'tools',
     title: 'Maintenance',
     description: 'Field-ready cleaning kits, fault locators, sleeves, and support accessories.',
     count: 'Tooling Range',
-    image: '/images/fiber-patch-panel.webp',
+    image: '/images/maintenance.png',
   },
 ];
 

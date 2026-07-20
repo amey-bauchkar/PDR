@@ -151,7 +151,7 @@ export default function About() {
             </div>
             <div className="tm-item right">
               <div className="tm-content">
-                <h3>2010</h3>
+                <h3>2015</h3>
                 <h4>Global Recognition</h4>
                 <p>Achieved ISO 9001:2015 certification and expanded exports to over 15 countries. This milestone established PDR as a trusted international partner for fiber optic products, telecom infrastructure, and connectivity solutions.</p>
               </div>

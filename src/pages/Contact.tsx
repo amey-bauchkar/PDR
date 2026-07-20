@@ -154,9 +154,9 @@ export default function Contact() {
                       <option value="Active Components">Active Components (SFP, OLP, etc.)</option>
                       <option value="Passive Components">Passive Components (Patchcords, Splitters, etc.)</option>
                       <option value="Cable Management">Cable Management Devices</option>
-                      <option value="Test Equipment">Test &amp; Measuring Equipment</option>
+                      <option value="Test Equipment">Test and Measurement</option>
                       <option value="Custom Manufacturing">Custom Manufacturing / OEM</option>
-                      <option value="Smart Systems">Smart Systems (DAS/DTS/Drone)</option>
+                      <option value="Smart Systems">Drone Optical Fiber Kit</option>
                       <option value="Distributorship">Become a Distributor</option>
                       <option value="Technical Support">Technical Support</option>
                       <option value="Other">Other</option>
