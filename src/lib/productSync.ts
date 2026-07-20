@@ -185,12 +185,9 @@ export const saveAdminProducts = async (products: AdminProduct[]): Promise<void>
 };
 
 const mergePreservingDatasheets = (incoming: AdminProduct[]): AdminProduct[] => {
-  const currentBySlug = new Map(getAdminProducts().map((product) => [product.slug, product]));
-  return incoming.map((product) => {
-    const existing = currentBySlug.get(product.slug);
-    if (!existing?.datasheetUrl || product.datasheetUrl) return product;
-    return { ...product, datasheetUrl: existing.datasheetUrl };
-  });
+  // Always prefer the incoming (fresh from DB) data — do NOT fall back to local cache
+  // for datasheetUrl, because that was preventing admin updates from propagating to other devices.
+  return incoming;
 };
 
 /**
@@ -313,6 +310,14 @@ export const saveProduct = async (product: AdminProduct, previousSlug = product.
     products.unshift(localProduct);
   }
   await saveAdminProducts(products);
+
+  // CRITICAL: Reset the fetch cooldown timer so ALL other users' browsers
+  // fetch fresh data from the DB on their next visit (not serve stale cache).
+  // We do this by removing the timestamp key — next fetchAndSyncProducts() call
+  // will see no timestamp and fetch from Supabase regardless of cooldown.
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem(LAST_FETCH_KEY);
+  }
 };
 
 /**
