@@ -46,5 +46,6 @@ export async function uploadProductDatasheet(file: File, slug: string): Promise<
     throw new Error(error.message || 'Failed to upload datasheet.');
   }
 
-  return ticket.publicUrl;
+  const cdnUrl = ticket.publicUrl.replace('https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public', '/cdn/storage');
+  return cdnUrl;
 }

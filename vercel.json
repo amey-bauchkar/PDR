@@ -3,6 +3,7 @@
   "outputDirectory": "dist",
   "framework": null,
   "rewrites": [
+    { "source": "/cdn/storage/:path*", "destination": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/:path*" },
     { "source": "/:path*", "destination": "/" }
   ],
   "cleanUrls": true,
@@ -45,6 +46,12 @@
     },
     {
       "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/cdn/storage/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
