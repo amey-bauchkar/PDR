@@ -25,7 +25,8 @@ export default async function handler(req, res) {
 
     let updatedCount = 0;
 
-    for (const product of products) {
+    // Filter products that actually need updates
+    const updates = products.map(product => {
       let needsUpdate = false;
       let newImageUrl = product.image_url;
       let newMetadata = { ...product.metadata };
@@ -52,18 +53,27 @@ export default async function handler(req, res) {
       }
 
       if (needsUpdate) {
-        const { error: updateError } = await supabase
-          .from('catalog_products')
-          .update({
-            image_url: newImageUrl,
-            metadata: newMetadata
-          })
-          .eq('id', product.id);
-          
-        if (updateError) throw updateError;
-        updatedCount++;
+        return {
+          id: product.id,
+          image_url: newImageUrl,
+          metadata: newMetadata
+        };
       }
-    }
+      return null;
+    }).filter(Boolean);
+
+    // Update in parallel (Supabase will handle multiple concurrent requests quickly)
+    await Promise.all(updates.map(update => 
+      supabase
+        .from('catalog_products')
+        .update({
+          image_url: update.image_url,
+          metadata: update.metadata
+        })
+        .eq('id', update.id)
+    ));
+
+    updatedCount = updates.length;
 
     return res.status(200).json({ success: true, message: `Migrated ${updatedCount} products to CDN proxy.` });
   } catch (err) {
