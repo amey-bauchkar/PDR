@@ -157,6 +157,7 @@ export default function Contact() {
                       <option value="Test Equipment">Test and Measurement</option>
                       <option value="Custom Manufacturing">Custom Manufacturing / OEM</option>
                       <option value="Smart Systems">Drone Optical Fiber Kit</option>
+                      <option value="Remote Monitoring">Remote Fiber Monitoring, DAS or DTS</option>
                       <option value="Distributorship">Become a Distributor</option>
                       <option value="Technical Support">Technical Support</option>
                       <option value="Other">Other</option>
