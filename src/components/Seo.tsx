@@ -13,6 +13,8 @@ type SeoProps = {
   ogUrl?: string;
   /** Set og:type — defaults to 'website', use 'product' for product pages */
   ogType?: string;
+  /** Prevent search engine indexing for sensitive pages (admin) */
+  noindex?: boolean;
 };
 
 const SITE = 'https://pdr-sable.vercel.app';
@@ -26,6 +28,7 @@ export default function Seo({
   ogDescription,
   ogUrl,
   ogType = 'website',
+  noindex = false,
 }: SeoProps) {
   const url = canonical ?? SITE;
   const resolvedOgTitle = ogTitle ?? title;
@@ -33,6 +36,7 @@ export default function Seo({
   const resolvedOgUrl = ogUrl ?? url;
   return (
     <Helmet>
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />

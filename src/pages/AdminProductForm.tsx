@@ -123,8 +123,8 @@ export default function AdminProductForm() {
   const { slug } = useParams<{ slug: string }>();
 
   const [session, setSession] = useState<AdminSession | null>(null);
-  const [loginEmail, setLoginEmail] = useState('admin@pdrworld.com');
-  const [loginPassword, setLoginPassword] = useState('Admin@123');
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem('admin_dark_mode') === 'true';
@@ -201,7 +201,7 @@ export default function AdminProductForm() {
 
     const role = verifyCredentials(loginEmail, loginPassword);
     if (!role) {
-      setLoginError('Invalid email or password. Demo users: admin@pdrworld.com / Admin@123');
+      setLoginError('Invalid username or password.');
       return;
     }
 
@@ -480,7 +480,7 @@ export default function AdminProductForm() {
   if (!session) {
     return (
       <>
-        <Seo title="Admin Login | PDR World" description="PDR World admin login." canonical="https://pdr-sable.vercel.app/admin" />
+        <Seo title="Admin Login | PDR World" description="PDR World admin login." canonical="https://pdr-sable.vercel.app/admin" noindex />
         <div className={`admin-login-shell ${darkMode ? 'dark' : ''}`}>
           <div className="admin-login-container">
             <div className="admin-login-card">
@@ -491,13 +491,13 @@ export default function AdminProductForm() {
 
               <form onSubmit={handleLogin}>
                 <div className="admin-form-group">
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="email">Username or Email</label>
                   <input
                     id="email"
-                    type="email"
+                    type="text"
                     value={loginEmail}
                     onChange={(e) => setLoginEmail(e.target.value)}
-                    placeholder="admin@pdrworld.com"
+                    placeholder="Enter username or email"
                     required
                   />
                 </div>
@@ -520,14 +520,6 @@ export default function AdminProductForm() {
                   Sign In
                 </button>
               </form>
-
-              <div className="admin-login-footer">
-                <p>Demo Credentials:</p>
-                <ul>
-                  <li><strong>Super Admin:</strong> admin@pdrworld.com / Admin@123</li>
-                  <li><strong>Admin:</strong> manager@pdrworld.com / Manager@123</li>
-                </ul>
-              </div>
             </div>
 
             <button
@@ -596,7 +588,7 @@ export default function AdminProductForm() {
                 <h2 style={{ margin: 0 }}>{slug ? 'Edit Product' : 'Add New Product'}</h2>
                 <button 
                   className="admin-btn-secondary" 
-                  onClick={() => navigate('/admin', { state: { activeTab: 'products' } })}
+                   onClick={() => navigate('/admin', { state: { activeTab: 'products' } })}
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px', borderRadius: '8px' }}
                 >
                   ← Back to Catalogue

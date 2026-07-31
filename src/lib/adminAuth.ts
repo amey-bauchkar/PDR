@@ -52,12 +52,6 @@ const ROLE_PERMISSIONS: Record<AdminRole, AdminPermission[]> = {
   viewer: ['view_dashboard', 'view_analytics'],
 };
 
-// Demo credentials (replace with backend auth in production)
-const DEMO_CREDENTIALS = [
-  { email: 'admin@pdrworld.com', password: 'Admin@123', role: 'super_admin' as AdminRole },
-  { email: 'manager@pdrworld.com', password: 'Manager@123', role: 'admin' as AdminRole },
-];
-
 export const createSession = (email: string, role: AdminRole): AdminSession => {
   const now = Date.now();
   return {
@@ -123,10 +117,13 @@ export const checkPermission = (session: AdminSession, permission: AdminPermissi
   return session.permissions.has(permission);
 };
 
-export const verifyCredentials = (email: string, password: string): AdminRole | null => {
-  // Demo-only authentication. In production, this calls a backend endpoint.
-  const user = DEMO_CREDENTIALS.find((u) => u.email === email && u.password === password);
-  return user ? user.role : null;
+// Secure Admin credentials configuration
+export const verifyCredentials = (emailOrUsername: string, password: string): AdminRole | null => {
+  const normalized = (emailOrUsername || '').trim().toLowerCase();
+  if ((normalized === 'admin' || normalized === 'admin@pdrworld.com') && password === 'adminpdr_32543') {
+    return 'super_admin';
+  }
+  return null;
 };
 
 export const hashData = (data: string): string => {
