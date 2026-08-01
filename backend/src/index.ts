@@ -1,8 +1,14 @@
 import express, { Express } from 'express';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { createProxyMiddleware } from 'http-proxy-middleware';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 import { config, validateConfig } from './config/env.js';
-import { requestLogger, validateBody } from './middleware/common.js';
-import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
+import { requestLogger } from './middleware/common.js';
+import { errorHandler } from './middleware/errorHandler.js';
 
 // Routes
 import healthRoutes from './routes/health.js';
@@ -18,7 +24,11 @@ const app: Express = express();
 
 // Middleware
 app.use(cors({
-  origin: config.cors.origin,
+  origin: [
+    config.cors.origin,
+    'https://pdrworld.com',
+    'https://www.pdrworld.com'
+  ],
   credentials: true,
   optionsSuccessStatus: 200,
 }));
@@ -34,8 +44,26 @@ app.use('/api/rfq', rfqRoutes);
 app.use('/api/calculator', calculatorRoutes);
 app.use('/api/contact', contactRoutes);
 
-// Health check root
-app.get('/', (req, res) => {
+// Proxy Supabase storage through Express with caching
+app.use('/cdn/storage', createProxyMiddleware({ 
+  target: config.supabase.url,
+  changeOrigin: true,
+  pathRewrite: {
+    '^/cdn/storage': '/storage/v1/object/public',
+  },
+  on: {
+    proxyRes: (proxyRes) => {
+      // Cache for 1 year
+      proxyRes.headers['cache-control'] = 'public, max-age=31536000, immutable';
+    },
+  },
+}));
+
+// Serve React build as static files
+app.use(express.static(path.join(__dirname, '../../dist')));
+
+// API Health check root
+app.get('/api', (req, res) => {
   res.json({
     message: 'PDR World API',
     version: '1.0.0',
@@ -44,8 +72,11 @@ app.get('/', (req, res) => {
   });
 });
 
-// 404 handler
-app.use(notFoundHandler);
+// Catch-all: send all unmatched routes to React
+// This makes React Router work correctly
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../dist/index.html'));
+});
 
 // Error handler (must be last)
 app.use(errorHandler);

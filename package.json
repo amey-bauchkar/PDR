@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && cd backend && npm install && npm run build",
     "lint": "eslint .",
     "preview": "vite preview",
     "prerender": "node prerender.js",
     "generate-catalogue": "node scripts/generate-catalogue.js",
     "build:full": "node scripts/sync-supabase.js && npm run generate-catalogue && npm run build && npm run prerender",
+    "start": "node backend/dist/index.js",
     "verify-deployment": "node scripts/verify-deployment.js"
   },
   "dependencies": {
