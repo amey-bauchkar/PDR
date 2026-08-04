@@ -23,20 +23,33 @@ async function requestUploadTicket(file: File, slug: string): Promise<UploadTick
   });
 
   const payload = await response.json().catch(() => null);
+  
   if (!response.ok || !payload?.success) {
     let errorMsg = 'Failed to prepare datasheet upload.';
-    if (payload?.message) {
-      errorMsg = typeof payload.message === 'string' ? payload.message : JSON.stringify(payload.message);
-    } else if (payload?.error) {
-      if (typeof payload.error === 'string') {
-        errorMsg = payload.error;
-      } else if (payload.error.message) {
-        errorMsg = payload.error.message;
-      } else {
-        errorMsg = JSON.stringify(payload.error);
+    
+    // Safely extract error message avoiding [object Object]
+    const extractMsg = (obj: any): string => {
+      if (!obj) return '';
+      if (typeof obj === 'string') return obj;
+      if (obj instanceof Error) return obj.message;
+      if (typeof obj.message === 'string') return obj.message;
+      if (typeof obj.error === 'string') return obj.error;
+      try {
+        return JSON.stringify(obj);
+      } catch (e) {
+        return String(obj);
       }
+    };
+
+    if (!payload) {
+      errorMsg = `Server returned ${response.status} ${response.statusText}`;
+    } else if (payload.message) {
+      errorMsg = extractMsg(payload.message);
+    } else if (payload.error) {
+      errorMsg = extractMsg(payload.error);
     }
-    throw new Error(errorMsg);
+
+    throw new Error(errorMsg || 'Failed to prepare datasheet upload.');
   }
 
   return payload.data as UploadTicket;
@@ -55,7 +68,19 @@ export async function uploadProductDatasheet(file: File, slug: string): Promise<
     });
 
   if (error) {
-    throw new Error(error.message || 'Failed to upload datasheet.');
+    let msg = 'Failed to upload datasheet to storage.';
+    if (error.message && typeof error.message === 'string') {
+      msg = error.message;
+    } else if (typeof error === 'string') {
+      msg = error;
+    } else {
+      try {
+        msg = JSON.stringify(error);
+      } catch (e) {
+        msg = String(error);
+      }
+    }
+    throw new Error(msg);
   }
 
   const cdnUrl = ticket.publicUrl.replace('https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public', '/cdn/storage');
