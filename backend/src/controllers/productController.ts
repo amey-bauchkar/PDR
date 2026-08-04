@@ -2,6 +2,30 @@ import { Response } from 'express';
 import { productService } from '../services/productService.js';
 import { AuthRequest, asyncHandler } from '../middleware/auth.js';
 import { ProductFilter } from '../types/index.js';
+import { supabaseServiceClient } from '../config/database.js';
+
+const BUCKET = 'product-datasheets';
+
+function safeFileName(name = 'datasheet.pdf') {
+  const clean = name
+    .toLowerCase()
+    .replace(/[^a-z0-9.\-_]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return clean.endsWith('.pdf') ? clean : `${clean || 'datasheet'}.pdf`;
+}
+
+async function ensureBucket(supabase: any) {
+  const { data: buckets, error: listError } = await supabase.storage.listBuckets();
+  if (listError) throw listError;
+  if (buckets?.some((bucket: any) => bucket.name === BUCKET)) return;
+
+  const { error } = await supabase.storage.createBucket(BUCKET, {
+    public: true,
+    fileSizeLimit: 25 * 1024 * 1024,
+    allowedMimeTypes: ['application/pdf'],
+  });
+  if (error) throw error;
+}
 
 /**
  * GET /api/products
@@ -125,6 +149,46 @@ export const deleteProduct = asyncHandler(async (req: AuthRequest, res: Response
     success: true,
     data: { slug: req.params.slug },
     timestamp: Date.now(),
+  });
+});
+
+/**
+ * POST /api/products/datasheet-upload-url
+ * Get a signed URL for datasheet upload
+ */
+export const getDatasheetUploadUrl = asyncHandler(async (req: AuthRequest, res: Response) => {
+  const { slug, fileName, fileSize } = req.body || {};
+  
+  if (!slug) {
+    return res.status(400).json({ success: false, error: 'Missing product slug' });
+  }
+  
+  if (fileSize && fileSize > 25 * 1024 * 1024) {
+    return res.status(413).json({ success: false, error: 'PDF size must be less than 25MB.' });
+  }
+
+  if (!supabaseServiceClient) {
+    return res.status(500).json({ success: false, error: 'Storage not configured' });
+  }
+
+  await ensureBucket(supabaseServiceClient);
+
+  const stamp = Date.now();
+  const path = `${slug}/${stamp}-${safeFileName(fileName)}`;
+  
+  const { data, error } = await supabaseServiceClient.storage.from(BUCKET).createSignedUploadUrl(path);
+  if (error) throw error;
+
+  const publicUrl = supabaseServiceClient.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+  
+  res.status(200).json({
+    success: true,
+    data: {
+      bucket: BUCKET,
+      path,
+      token: data.token,
+      publicUrl,
+    },
   });
 });
 

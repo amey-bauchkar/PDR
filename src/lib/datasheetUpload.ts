@@ -24,7 +24,19 @@ async function requestUploadTicket(file: File, slug: string): Promise<UploadTick
 
   const payload = await response.json().catch(() => null);
   if (!response.ok || !payload?.success) {
-    throw new Error(payload?.message || payload?.error || 'Failed to prepare datasheet upload.');
+    let errorMsg = 'Failed to prepare datasheet upload.';
+    if (payload?.message) {
+      errorMsg = typeof payload.message === 'string' ? payload.message : JSON.stringify(payload.message);
+    } else if (payload?.error) {
+      if (typeof payload.error === 'string') {
+        errorMsg = payload.error;
+      } else if (payload.error.message) {
+        errorMsg = payload.error.message;
+      } else {
+        errorMsg = JSON.stringify(payload.error);
+      }
+    }
+    throw new Error(errorMsg);
   }
 
   return payload.data as UploadTicket;
