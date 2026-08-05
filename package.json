@@ -11,6 +11,7 @@
     "prerender": "node prerender.js",
     "generate-catalogue": "node scripts/generate-catalogue.js",
     "build:full": "node scripts/sync-supabase.js && npm run generate-catalogue && npm run build && npm run prerender",
+    "postinstall": "cd backend && npm install --omit=dev",
     "start": "node backend/dist/index.js",
     "verify-deployment": "node scripts/verify-deployment.js"
   },
