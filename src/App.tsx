@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router';
 import Layout from './components/Layout';
 import { RfqCartProvider } from './components/RfqCartProvider';
 import RfqCartWidget from './components/RfqCartWidget';

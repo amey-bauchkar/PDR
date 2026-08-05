@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { FormEvent } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router';
 import Seo from '../components/Seo';
 import seedProducts from '../data/products.json';
 import type { AdminSession } from '../lib/adminAuth';

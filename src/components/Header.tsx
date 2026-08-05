@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { NavLink, Link, useLocation } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router';
 
 import logo from '../assets/logo.png';
 import DownloadCatalogueModal from './DownloadCatalogueModal';

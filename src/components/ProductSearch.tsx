@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import productsData from '../data/products.json';
 import { getAdminProducts, isDbSynced } from '../lib/productSync';
 import './ProductSearch.css';

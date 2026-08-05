@@ -46,7 +46,7 @@ app.use('/api/contact', contactRoutes);
 
 // Proxy Supabase storage through Express with caching
 app.use('/cdn/storage', createProxyMiddleware({ 
-  target: config.supabase.url,
+  target: config.supabase.url.replace(/\/$/, ''),
   changeOrigin: true,
   pathRewrite: {
     '^/cdn/storage': '/storage/v1/object/public',

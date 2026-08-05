@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { useRfqCart } from '../RfqCartProvider';
 import catalogue from '../../data/catalogue.json';
 import { productsCategoryHrefDeep } from '../../data/productCategoryRoutes';

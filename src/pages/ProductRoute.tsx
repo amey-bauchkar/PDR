@@ -1,4 +1,4 @@
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router';
 import ProductDetail from './ProductDetail';
 import ProductsCategory from './ProductsCategory';
 import { isProductCategoryPath } from '../data/productCategoryRoutes';

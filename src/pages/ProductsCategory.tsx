@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router';
 import Seo from '../components/Seo';
 import { BreadcrumbSchema } from '../components/Schema';
 import {

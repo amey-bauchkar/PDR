@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Seo from '../components/Seo';
 import { BreadcrumbSchema } from '../components/Schema';
 import eventsData from '../data/events.json';
