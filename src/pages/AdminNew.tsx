@@ -437,6 +437,28 @@ export default function AdminNew() {
       return;
     }
 
+    setNotices(prev => ({ ...prev, global: { message: 'Saving product...', type: 'info' } }));
+
+    try {
+      await saveProduct(payload);
+      setProducts(getAdminProducts());
+      resetForm();
+      setNotices(prev => ({ ...prev, global: { message: `Product "${payload.name}" saved successfully!`, type: 'success' } }));
+      pushActivity(
+        editorMode === 'edit' ? 'Product updated' : 'Product created',
+        payload.name,
+        'success',
+        editorMode === 'edit' ? 'update' : 'create'
+      );
+      // Dispatch local sync event
+      window.dispatchEvent(new Event('local-storage-update'));
+    } catch (err) {
+      console.error(err);
+      setNotices(prev => ({
+        ...prev,
+        global: { message: err instanceof Error ? err.message : 'Failed to save product.', type: 'error' },
+      }));
+    }
   };
 
   const handleEdit = (product: AdminProduct) => {

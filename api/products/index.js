@@ -396,10 +396,30 @@ async function handleDelete(req, res) {
     const slug = req.query.slug;
     if (!slug) return res.status(400).json({ success: false, error: 'Missing slug in query' });
 
+    // Find the product first to get its ID for cascade deletion
+    const { data: product, error: findError } = await supabase
+      .from('catalog_products')
+      .select('id')
+      .eq('slug', slug)
+      .maybeSingle();
+
+    if (findError) throw findError;
+    if (!product) {
+      return res.status(404).json({ success: false, error: 'Product not found' });
+    }
+
+    const dbProdId = product.id;
+
+    // Cascade-delete child rows first
+    await supabase.from('catalog_product_features').delete().eq('product_id', dbProdId);
+    await supabase.from('catalog_product_applications').delete().eq('product_id', dbProdId);
+    await supabase.from('catalog_product_specs').delete().eq('product_id', dbProdId);
+
+    // Delete the product itself
     const { error } = await supabase
       .from('catalog_products')
       .delete()
-      .eq('slug', slug);
+      .eq('id', dbProdId);
 
     if (error) throw error;
 
