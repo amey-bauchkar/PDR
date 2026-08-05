@@ -43,4 +43,9 @@ export declare const deleteProduct: import("express").RequestHandler<import("exp
  * Get a signed URL for datasheet upload
  */
 export declare const getDatasheetUploadUrl: import("express").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
+/**
+ * GET /api/products/datasheet-download/:slug
+ * Generate a signed download URL for a product's datasheet
+ */
+export declare const getDatasheetDownloadUrl: import("express").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
 //# sourceMappingURL=productController.d.ts.map

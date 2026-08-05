@@ -1,9 +1,18 @@
 import { supabaseServiceClient as rawSupabaseServiceClient } from '../config/database.js';
 const supabaseServiceClient = rawSupabaseServiceClient;
 import { AppError } from '../types/index.js';
+// Helper to extract main category and subcategory from "Main > Sub" format
+function parseCategoryString(fullCategory) {
+    const parts = (fullCategory || '').split(' > ');
+    return {
+        main: parts[0]?.trim() || 'Active Components',
+        sub: parts.length > 1 ? parts.slice(1).join(' > ').trim() : '',
+    };
+}
 // Helper to lookup category ID by name
 async function getCategoryIdFromName(categoryName) {
-    const name = (categoryName || 'Active Components').trim();
+    const { main } = parseCategoryString(categoryName);
+    const name = main;
     const slug = name
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-')
@@ -44,11 +53,14 @@ function mapDbProduct(db) {
     const specs = (db.specs || [])
         .sort((a, b) => (a.position || 0) - (b.position || 0))
         .map((s) => ({ label: s.label, value: s.value }));
+    const mainCategory = db.category_ref?.name || 'Active Components';
+    const subcategory = db.metadata?.subcategory || '';
+    const fullCategory = subcategory ? `${mainCategory} > ${subcategory}` : mainCategory;
     return {
         id: db.id,
         slug: db.slug,
         name: db.name,
-        category: db.category_ref?.name || 'Active Components',
+        category: fullCategory,
         title: db.title,
         description: db.description,
         canonical: db.canonical_url,
@@ -165,6 +177,7 @@ export class ProductService {
      */
     async createProduct(prod) {
         try {
+            const { sub: subcategoryName } = parseCategoryString(prod.category);
             const categoryId = await getCategoryIdFromName(prod.category);
             const specsMap = (prod.specs || []).reduce((acc, s) => {
                 acc[s.label] = s.value;
@@ -197,7 +210,10 @@ export class ProductService {
                     mount_type: mountType,
                     capacity: capacityVal,
                     specs: specsMap,
-                    datasheet_url: prod.datasheetUrl || ''
+                    subcategory: subcategoryName,
+                    datasheet_url: prod.datasheetUrl || '',
+                    gallery_urls: prod.galleryUrls || [],
+                    tags: prod.tags || [],
                 }
             };
             const { data, error } = await supabaseServiceClient
@@ -258,6 +274,7 @@ export class ProductService {
                 throw new AppError(404, 'PRODUCT_NOT_FOUND', 'Product not found');
             }
             const dbProdId = orig.id;
+            const { sub: subcategoryName } = parseCategoryString(prod.category);
             const categoryId = await getCategoryIdFromName(prod.category);
             const specsMap = (prod.specs || []).reduce((acc, s) => {
                 acc[s.label] = s.value;
@@ -282,7 +299,10 @@ export class ProductService {
                     mount_type: mountType,
                     capacity: capacityVal,
                     specs: specsMap,
-                    datasheet_url: prod.datasheetUrl || ''
+                    subcategory: subcategoryName,
+                    datasheet_url: prod.datasheetUrl || '',
+                    gallery_urls: prod.galleryUrls || [],
+                    tags: prod.tags || [],
                 },
                 updated_at: new Date().toISOString()
             };

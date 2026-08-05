@@ -13,8 +13,16 @@ async function ensureBucket(supabase) {
     const { data: buckets, error: listError } = await supabase.storage.listBuckets();
     if (listError)
         throw listError;
-    if (buckets?.some((bucket) => bucket.name === BUCKET))
+    const exists = buckets?.some((bucket) => bucket.name === BUCKET);
+    if (exists) {
+        // Always update to ensure bucket is public
+        await supabase.storage.updateBucket(BUCKET, {
+            public: true,
+            fileSizeLimit: 25 * 1024 * 1024,
+            allowedMimeTypes: ['application/pdf'],
+        });
         return;
+    }
     const { error } = await supabase.storage.createBucket(BUCKET, {
         public: true,
         fileSizeLimit: 25 * 1024 * 1024,
@@ -156,15 +164,51 @@ export const getDatasheetUploadUrl = asyncHandler(async (req, res) => {
     const { data, error } = await supabaseServiceClient.storage.from(BUCKET).createSignedUploadUrl(path);
     if (error)
         throw error;
-    const publicUrl = supabaseServiceClient.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+    // Return the backend download endpoint URL instead of a direct Supabase URL.
+    // The download endpoint generates signed URLs on-demand, avoiding:
+    // 1. Race condition (can't create signed download URL before file is uploaded)
+    // 2. URL expiry issues (signed URLs have limited lifetime)
+    const downloadUrl = `/api/products/datasheet-download/${slug}`;
     res.status(200).json({
         success: true,
         data: {
             bucket: BUCKET,
             path,
             token: data.token,
-            publicUrl,
+            publicUrl: downloadUrl,
         },
     });
+});
+/**
+ * GET /api/products/datasheet-download/:slug
+ * Generate a signed download URL for a product's datasheet
+ */
+export const getDatasheetDownloadUrl = asyncHandler(async (req, res) => {
+    const { slug } = req.params;
+    if (!supabaseServiceClient) {
+        return res.status(500).json({ success: false, error: 'Storage not configured' });
+    }
+    await ensureBucket(supabaseServiceClient);
+    // List files in the slug's folder to find the datasheet
+    const { data: files, error: listError } = await supabaseServiceClient.storage
+        .from(BUCKET)
+        .list(slug, { limit: 10, sortBy: { column: 'created_at', order: 'desc' } });
+    if (listError || !files || files.length === 0) {
+        return res.status(404).json({ success: false, error: 'No datasheet found' });
+    }
+    // Filter out placeholder files and non-PDF entries
+    const pdfFiles = files.filter((f) => f.name && !f.name.startsWith('.') && f.name.toLowerCase().endsWith('.pdf'));
+    if (pdfFiles.length === 0) {
+        return res.status(404).json({ success: false, error: 'No datasheet PDF found' });
+    }
+    const latestFile = pdfFiles[0];
+    const filePath = `${slug}/${latestFile.name}`;
+    const { data: signedData, error: signError } = await supabaseServiceClient.storage
+        .from(BUCKET)
+        .createSignedUrl(filePath, 60 * 60); // 1 hour expiry
+    if (signError || !signedData) {
+        return res.status(500).json({ success: false, error: 'Failed to generate download URL' });
+    }
+    res.redirect(signedData.signedUrl);
 });
 //# sourceMappingURL=productController.js.map

@@ -32,18 +32,7 @@ export default function ProductDetail() {
   const [added, setAdded] = useState(false);
   // Initialize with fresh data from cache immediately
   const [products, setProducts] = useState<Product[]>(() => {
-    // Try to get fresh data from localStorage first (has latest datasheets)
-    try {
-      const cached = localStorage.getItem('pdrworld-admin-products-v6');
-      if (cached) {
-        const adminProducts = JSON.parse(cached);
-        if (adminProducts && adminProducts.length > 0) {
-          return mergeWithProducts(productsData);
-        }
-      }
-    } catch (e) {
-      console.warn('Failed to read cached products:', e);
-    }
+    // Start with fallback to avoid flashing if IDB is not ready
     return mergeWithProducts(productsData);
   });
   const [syncComplete, setSyncComplete] = useState(false);
@@ -274,12 +263,14 @@ export default function ProductDetail() {
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
-                      // Add timestamp to bypass browser cache and always load latest datasheet
-                      const datasheetUrl = product.datasheetUrl || '';
-                      const freshUrl = datasheetUrl.includes('?') 
-                        ? `${datasheetUrl}&t=${Date.now()}` 
-                        : `${datasheetUrl}?t=${Date.now()}`;
-                      window.open(freshUrl, '_blank', 'noopener,noreferrer');
+                      // Use backend signed URL endpoint to bypass storage access issues
+                      // If the stored URL is already an API route (e.g. from a new product upload), use it directly
+                      // This prevents "Not found" errors if the product slug changed after the PDF was uploaded
+                      const storedUrl = product.datasheetUrl || '';
+                      const downloadUrl = storedUrl.startsWith('http') || storedUrl.startsWith('/datasheets/')
+                        ? storedUrl 
+                        : `/api/products/datasheet-download/${product.slug}`;
+                      window.open(downloadUrl, '_blank', 'noopener,noreferrer');
                     }}
                     style={{
                       padding: '16px 32px',

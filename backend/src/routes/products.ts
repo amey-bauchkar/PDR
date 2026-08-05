@@ -8,6 +8,7 @@ const router = Router();
  */
 router.get('/', ProductController.getProducts);
 router.get('/search', ProductController.searchProducts);
+router.get('/datasheet-download/:slug', ProductController.getDatasheetDownloadUrl);
 router.get('/:id', ProductController.getProduct);
 router.get('/:id/configuration-options', ProductController.getProductConfigurationOptions);
 router.get('/category/:categoryId', ProductController.getProductsByCategory);

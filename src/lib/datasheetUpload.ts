@@ -8,7 +8,7 @@ type UploadTicket = {
 };
 
 async function requestUploadTicket(file: File, slug: string): Promise<UploadTicket> {
-  const response = await fetch('/api/products/datasheet-upload-url', {
+  const response = await fetch('https://pdr-sable.vercel.app/api/products/datasheet-upload-url', {
     method: 'POST',
     cache: 'no-store',
     headers: {
@@ -83,6 +83,6 @@ export async function uploadProductDatasheet(file: File, slug: string): Promise<
     throw new Error(msg);
   }
 
-  const cdnUrl = ticket.publicUrl.replace('https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public', '/cdn/storage');
-  return cdnUrl;
+  // Return direct Supabase public URL for maximum compatibility
+  return ticket.publicUrl;
 }

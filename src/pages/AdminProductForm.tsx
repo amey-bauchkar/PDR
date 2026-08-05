@@ -315,8 +315,13 @@ export default function AdminProductForm() {
     setNotices(prev => ({ ...prev, pdf: { message: 'Uploading datasheet to cloud...', type: 'info' } }));
     try {
       // Upload to Supabase Storage so it works on ALL devices
-      const slug = form.slug.trim() || 'product';
-      const publicUrl = await uploadProductDatasheet(file, slug);
+      const slugToUse = form.slug.trim() ? toSlug(form.slug) : (form.name.trim() ? toSlug(form.name) : '');
+      if (!slugToUse) {
+        setNotices(prev => ({ ...prev, pdf: { message: 'Please enter a Product Name before uploading a datasheet.', type: 'error' } }));
+        event.target.value = '';
+        return;
+      }
+      const publicUrl = await uploadProductDatasheet(file, slugToUse);
       setForm(prev => ({ ...prev, datasheetUrl: publicUrl }));
       setNotices(prev => ({ ...prev, pdf: { message: `Datasheet "${file.name}" uploaded successfully!`, type: 'success' } }));
     } catch (err) {

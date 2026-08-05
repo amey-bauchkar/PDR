@@ -184,16 +184,24 @@ async function handlePost(req, res) {
     const mountType = specsMap['Mount Type'] || specsMap['Mounting'] || 'Rack Mount';
     const capacityVal = parseInt(specsMap['Capacity'] || specsMap['Ports'] || '0') || 0;
 
-    // Get current max sort_order
+    // Get current max sort_order and max id
     const { data: maxSortData } = await supabase
       .from('catalog_products')
-      .select('sort_order')
-      .order('sort_order', { ascending: false })
-      .limit(1);
+      .select('sort_order, id')
+      .order('id', { ascending: false })
+      .limit(10); // fetch top 10 to ensure we find max id
 
-    const nextSortOrder = maxSortData && maxSortData.length > 0 ? (maxSortData[0].sort_order + 1) : 0;
+    let maxId = 0;
+    let maxSort = 0;
+    if (maxSortData && maxSortData.length > 0) {
+      maxId = Math.max(...maxSortData.map(r => r.id || 0));
+      maxSort = Math.max(...maxSortData.map(r => r.sort_order || 0));
+    }
+    const nextSortOrder = maxSort + 1;
+    const nextId = maxId > 0 ? maxId + 1 : undefined;
 
     const productRow = {
+      ...(nextId ? { id: nextId } : {}),
       slug: prod.slug,
       category_id: categoryId,
       name: prod.name,

@@ -1,8 +1,8 @@
 import { hasSupabaseConfig, supabase } from './supabase';
 import type { ContactInquiryPayload, QuoteItem, QuoteRequestPayload } from './formTypes';
 
-const CONTACT_API_URL = import.meta.env.VITE_CONTACT_API_URL || '/api/contact';
-const RFQ_API_URL = import.meta.env.VITE_RFQ_API_URL || '/api/rfq/submit';
+const CONTACT_API_URL = import.meta.env.VITE_CONTACT_API_URL || 'https://pdr-sable.vercel.app/api/contact';
+const RFQ_API_URL = import.meta.env.VITE_RFQ_API_URL || 'https://pdr-sable.vercel.app/api/rfq/submit';
 const LOCAL_CONTACT_STORAGE_KEY = 'pdrworld-pending-contact-inquiries';
 
 function saveToLocalFallback(payload: ContactInquiryPayload) {

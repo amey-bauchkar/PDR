@@ -1,4 +1,4 @@
-import seedProducts from '../data/products.json';
+﻿import seedProducts from '../data/products.json';
 import { get, set } from 'idb-keyval';
 import { supabase } from './supabase';
 
@@ -26,7 +26,7 @@ export type AdminProduct = {
 };
 
 const STORAGE_KEY = 'pdrworld-admin-products-v6'; // Bumped to v6 to force fresh fetch across all devices
-const PRODUCTS_API_URL = 'https://pdr-sable.vercel.app/api/products';
+const PRODUCTS_API_URL = '/api/products';
 const TIMESTAMP_KEY = STORAGE_KEY + '-ts';
 
 const getDefaultProducts = (): AdminProduct[] => {
@@ -60,27 +60,8 @@ export const isDbSynced = (): boolean => dbSyncSucceeded;
 /**
  * Initialize product store from IndexedDB on startup
  */
-let initPromise: Promise<void> | null = null;
-export const initializeProductStore = (): Promise<void> => {
-  if (!initPromise) {
-    initPromise = _initializeProductStore();
-  }
-  return initPromise;
-};
-
-const APP_VERSION = '2.1.0'; // Bump this when deploying to invalidate stale fetch caches
-const VERSION_KEY = 'pdrworld-app-version';
-
-const _initializeProductStore = async (): Promise<void> => {
+export const initializeProductStore = async (): Promise<void> => {
   try {
-    // Invalidate the fetch cooldown if the app version has changed (new deploy)
-    const storedVersion = localStorage.getItem(VERSION_KEY);
-    if (storedVersion !== APP_VERSION) {
-      localStorage.setItem(VERSION_KEY, APP_VERSION);
-      localStorage.removeItem(LAST_FETCH_KEY); // Force a fresh Supabase fetch
-      console.log('[productSync] New app version detected. Forcing fresh DB sync.');
-    }
-
     const idbProducts = await get<AdminProduct[]>(STORAGE_KEY);
     if (idbProducts && idbProducts.length > 0) {
       memoryCache = idbProducts;
@@ -116,15 +97,15 @@ const _initializeProductStore = async (): Promise<void> => {
       if (localProducts.length > 0) {
         memoryCache = localProducts;
         await set(STORAGE_KEY, localProducts);
+      } else {
+        const defaultProducts = getDefaultProducts();
+        memoryCache = defaultProducts;
+        await set(STORAGE_KEY, defaultProducts);
       }
-      // IMPORTANT: If no local data at all, leave memoryCache as null.
-      // fetchAndSyncProducts will immediately hit Supabase and populate it.
-      // We NEVER fall back to static seedProducts here, because they contain
-      // products the admin may have deleted from the database.
     }
   } catch (err) {
     console.error("Failed to read from IDB:", err);
-    // Leave memoryCache as null — fetchAndSyncProducts will handle it.
+    memoryCache = getDefaultProducts();
   }
   // Dispatch update to sync React state immediately after loading
   window.dispatchEvent(new Event('pdrworld-product-update'));
@@ -204,7 +185,7 @@ export const saveAdminProducts = async (products: AdminProduct[]): Promise<void>
 };
 
 const mergePreservingDatasheets = (incoming: AdminProduct[]): AdminProduct[] => {
-  // Always prefer the incoming (fresh from DB) data — do NOT fall back to local cache
+  // Always prefer the incoming (fresh from DB) data ΓÇö do NOT fall back to local cache
   // for datasheetUrl, because that was preventing admin updates from propagating to other devices.
   return incoming;
 };
@@ -276,12 +257,9 @@ export const saveProduct = async (product: AdminProduct, previousSlug = product.
         };
 
         if (isUpdate) {
-          const { data: orig, error: origError } = await supabase.from('catalog_products').select('id').eq('slug', previousSlug).single();
-          if (origError && origError.code !== 'PGRST116') throw origError; // Ignore not found error
+          const { data: orig } = await supabase.from('catalog_products').select('id').eq('slug', previousSlug).single();
           if (orig) {
-            const { data: updated, error: updateError } = await supabase.from('catalog_products').update(productRow).eq('id', orig.id).select();
-            if (updateError) throw updateError;
-            if (!updated || updated.length === 0) throw new Error("Update failed: Operation blocked by database security (RLS).");
+            await supabase.from('catalog_products').update(productRow).eq('id', orig.id);
             const dbProdId = orig.id;
             await supabase.from('catalog_product_features').delete().eq('product_id', dbProdId);
             await supabase.from('catalog_product_applications').delete().eq('product_id', dbProdId);
@@ -291,8 +269,7 @@ export const saveProduct = async (product: AdminProduct, previousSlug = product.
             if (product.applications?.length) await supabase.from('catalog_product_applications').insert(product.applications.map((a, i) => ({ product_id: dbProdId, position: i, application: a })));
             if (product.specs?.length) await supabase.from('catalog_product_specs').insert(product.specs.map((s, i) => ({ product_id: dbProdId, position: i, label: s.label, value: s.value })));
           } else {
-             const { data: inserted, error: insertError } = await supabase.from('catalog_products').insert(productRow).select().single();
-             if (insertError) throw insertError;
+             const { data: inserted } = await supabase.from('catalog_products').insert(productRow).select().single();
              if (inserted) {
                 const dbProdId = inserted.id;
                 if (product.features?.length) await supabase.from('catalog_product_features').insert(product.features.map((f, i) => ({ product_id: dbProdId, position: i, feature: f })));
@@ -301,11 +278,9 @@ export const saveProduct = async (product: AdminProduct, previousSlug = product.
              }
           }
         } else {
-          const { data: maxSortData, error: maxSortError } = await supabase.from('catalog_products').select('sort_order').order('sort_order', { ascending: false }).limit(1);
-          if (maxSortError) throw maxSortError;
+          const { data: maxSortData } = await supabase.from('catalog_products').select('sort_order').order('sort_order', { ascending: false }).limit(1);
           const nextSortOrder = maxSortData && maxSortData.length > 0 ? (maxSortData[0].sort_order + 1) : 0;
-          const { data: inserted, error: insertError } = await supabase.from('catalog_products').insert({ ...productRow, sort_order: nextSortOrder }).select().single();
-          if (insertError) throw insertError;
+          const { data: inserted } = await supabase.from('catalog_products').insert({ ...productRow, sort_order: nextSortOrder }).select().single();
           if (inserted) {
             const dbProdId = inserted.id;
             if (product.features?.length) await supabase.from('catalog_product_features').insert(product.features.map((f, i) => ({ product_id: dbProdId, position: i, feature: f })));
@@ -338,7 +313,7 @@ export const saveProduct = async (product: AdminProduct, previousSlug = product.
 
   // CRITICAL: Reset the fetch cooldown timer so ALL other users' browsers
   // fetch fresh data from the DB on their next visit (not serve stale cache).
-  // We do this by removing the timestamp key — next fetchAndSyncProducts() call
+  // We do this by removing the timestamp key ΓÇö next fetchAndSyncProducts() call
   // will see no timestamp and fetch from Supabase regardless of cooldown.
   if (typeof window !== 'undefined') {
     localStorage.removeItem(LAST_FETCH_KEY);
@@ -358,9 +333,8 @@ export const deleteProduct = async (slug: string): Promise<void> => {
     console.error("Vercel API failed to delete product, trying direct Supabase fallback...", err);
     if (supabase) {
       try {
-        const { data: deleted, error } = await supabase.from('catalog_products').delete().eq('slug', slug).select();
+        const { error } = await supabase.from('catalog_products').delete().eq('slug', slug);
         if (error) throw error;
-        if (!deleted || deleted.length === 0) throw new Error("Delete failed: Operation blocked by database security (RLS).");
       } catch (sbErr) {
         console.error("Direct Supabase delete fallback failed:", sbErr);
         throw sbErr;
@@ -415,13 +389,12 @@ function mapSupabaseProduct(db: any): AdminProduct | null {
 
 
 const LAST_FETCH_KEY = 'pdrworld-products-last-fetch-v4';
-const FETCH_COOLDOWN = 5 * 60 * 1000; // 5 minute cooldown (was 1 hour — too long, admin updates weren't visible to other users)
+const FETCH_COOLDOWN = 5 * 60 * 1000; // 5 minute cooldown (was 1 hour ΓÇö too long, admin updates weren't visible to other users)
 
 /**
- * Fetch all products — uses Edge-cached API for instant loads.
+ * Fetch all products ΓÇö uses Edge-cached API for instant loads.
  */
 export const fetchAndSyncProducts = async (force = false): Promise<AdminProduct[]> => {
-  await initializeProductStore(); // Ensure IDB is loaded before ANY fetch logic runs
   // If we are in a prerendering environment (headless browser), skip Supabase fetching entirely to save egress
   if (typeof window !== 'undefined' && (navigator.userAgent.includes('Headless') || window.navigator.webdriver)) {
     console.log('[productSync] Headless browser/prerender detected. Skipping database fetch.');
@@ -437,12 +410,11 @@ export const fetchAndSyncProducts = async (force = false): Promise<AdminProduct[
     const lastFetch = localStorage.getItem(LAST_FETCH_KEY);
     if (lastFetch && Date.now() - parseInt(lastFetch, 10) < FETCH_COOLDOWN) {
       console.log('[productSync] Using cached products. Skipping database fetch.');
-      dbSyncSucceeded = true; // IMPORTANT: Mark DB sync as succeeded since cache is valid DB state
       return getAdminProducts();
     }
   }
 
-  // PRIMARY: Direct Supabase query from browser — ~200-500ms, no cold start
+  // PRIMARY: Direct Supabase query from browser ΓÇö ~200-500ms, no cold start
   if (supabase) {
     try {
       const [
@@ -659,9 +631,7 @@ export const mergeWithCatalogue = (catalogue: any): any => {
               return card;
             })
             .filter((card: any) => {
-              if (DELETED_SLUGS.has(card.slug)) return false; // Never show permanently deleted products
-
-              // If DB sync succeeded, DB is authoritative — only show products that exist in DB with Active status
+              // If DB sync succeeded, DB is authoritative ΓÇö only show products that exist in DB with Active status
               if (dbSyncSucceeded) {
                 return adminMap.has(card.slug) && adminMap.get(card.slug)?.status === 'Active';
               }
@@ -673,7 +643,7 @@ export const mergeWithCatalogue = (catalogue: any): any => {
           const groupSubhead = (group.subhead || '').toLowerCase().trim();
           let productsForThisGroup: any[] = [];
 
-          // Match by subcategory → group.subhead (exact equality match to avoid false positives)
+          // Match by subcategory ΓåÆ group.subhead (exact equality match to avoid false positives)
           for (const [sub, products] of productsBySubcat.entries()) {
             if (groupSubhead && groupSubhead === sub) {
               productsForThisGroup.push(...products);
@@ -764,14 +734,10 @@ export const mergeWithProducts = (rawProducts: any[]): any[] => {
   const adminProducts = getAdminProducts().filter((p) => p.status === 'Active');
   const adminMap = new Map(adminProducts.map((p) => [p.slug, p]));
 
-  // Filter out products that don't exist in DB (when DB sync succeeded), and always remove permanently deleted slugs
-  const filteredRawProducts = rawProducts.filter((p) => {
-    if (DELETED_SLUGS.has(p.slug)) return false;
-    if (dbSyncSucceeded) {
-      return adminMap.has(p.slug) && adminMap.get(p.slug)?.status === 'Active';
-    }
-    return true;
-  });
+  // Filter out products that don't exist in DB (when DB sync succeeded)
+  const filteredRawProducts = dbSyncSucceeded
+    ? rawProducts.filter((p) => adminMap.has(p.slug) && adminMap.get(p.slug)?.status === 'Active')
+    : rawProducts;
 
   // Merge existing products, or add new ones
   const merged = filteredRawProducts.map((p) => {
