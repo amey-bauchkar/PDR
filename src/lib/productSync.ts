@@ -71,7 +71,7 @@ export const initializeProductStore = (): Promise<void> => {
   return initPromise;
 };
 
-const APP_VERSION = '2.1.0'; // Bump this when deploying to invalidate stale fetch caches
+const APP_VERSION = '2.2.0'; // Bump: base64 images migrated to Supabase Storage
 const VERSION_KEY = 'pdrworld-app-version';
 
 const _initializeProductStore = async (): Promise<void> => {

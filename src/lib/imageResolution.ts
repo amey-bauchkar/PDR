@@ -92,7 +92,8 @@ for (const section of (catalogueData as { sections?: { groups?: { cards?: { slug
  * 4. CATEGORY_IMAGE_MAP (fallback)
  */
 export const resolveCanonicalProductImage = (slug?: string, productImageUrl?: string, categoryOrSectionId?: string): string => {
-  if (productImageUrl && productImageUrl.trim()) {
+  // Skip data: URIs — they are massive base64 blobs that break rendering; fall through to proper images
+  if (productImageUrl && productImageUrl.trim() && !productImageUrl.startsWith('data:')) {
     return getAssetUrl(productImageUrl.trim());
   }
 

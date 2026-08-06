@@ -30,6 +30,14 @@ async function ensureBucket(supabase) {
   if (error) throw error;
 }
 
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '25mb',
+    },
+  },
+};
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -47,7 +55,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { slug, fileName, fileSize } = req.body || {};
+    const { slug, fileName, fileSize, fileData } = req.body || {};
     if (!slug) {
       return res.status(400).json({ success: false, error: 'Missing product slug' });
     }
@@ -59,6 +67,25 @@ export default async function handler(req, res) {
 
     const stamp = Date.now();
     const path = `${slug}/${stamp}-${safeFileName(fileName)}`;
+
+    // If fileData (base64) is provided, do server-side upload using service role key (bypasses RLS)
+    if (fileData) {
+      const buffer = Buffer.from(fileData, 'base64');
+      const { error: uploadError } = await supabase.storage.from(BUCKET).upload(path, buffer, {
+        contentType: 'application/pdf',
+        cacheControl: '3600',
+        upsert: true,
+      });
+      if (uploadError) throw uploadError;
+
+      const publicUrl = supabase.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+      return res.status(200).json({
+        success: true,
+        data: { publicUrl },
+      });
+    }
+
+    // Fallback: create signed upload URL (legacy path)
     const { data, error } = await supabase.storage.from(BUCKET).createSignedUploadUrl(path);
     if (error) throw error;
 
@@ -73,10 +100,10 @@ export default async function handler(req, res) {
       },
     });
   } catch (err) {
-    console.error('Error creating datasheet upload URL:', err);
+    console.error('Error handling datasheet upload:', err);
     return res.status(500).json({
       success: false,
-      error: 'Failed to prepare datasheet upload',
+      error: 'Failed to upload datasheet',
       message: err.message,
     });
   }

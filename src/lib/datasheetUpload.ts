@@ -1,14 +1,39 @@
-import { supabase } from './supabase';
+/**
+ * Datasheet upload — sends the PDF to the Vercel serverless API which uploads
+ * it using the service role key (bypassing Supabase RLS).
+ *
+ * This approach works reliably from ANY hosting origin (Hostinger, localhost,
+ * Vercel preview) because:
+ * 1. The API has `Access-Control-Allow-Origin: *` so CORS never blocks it.
+ * 2. The upload is performed server-side with the service role key, so
+ *    Supabase Storage RLS policies don't matter.
+ */
 
-type UploadTicket = {
-  bucket: string;
-  path: string;
-  token: string;
-  publicUrl: string;
-};
+const UPLOAD_API = 'https://pdr-sable.vercel.app/api/products/datasheet-upload-url';
 
-async function requestUploadTicket(file: File, slug: string): Promise<UploadTicket> {
-  const response = await fetch('https://pdr-sable.vercel.app/api/products/datasheet-upload-url', {
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      // Strip the data:application/pdf;base64, prefix
+      const base64 = result.split(',')[1];
+      resolve(base64);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+export async function uploadProductDatasheet(file: File, slug: string): Promise<string> {
+  if (file.size > 25 * 1024 * 1024) {
+    throw new Error('PDF size must be less than 25MB.');
+  }
+
+  // Convert file to base64 and send to Vercel API for server-side upload
+  const fileData = await fileToBase64(file);
+
+  const response = await fetch(UPLOAD_API, {
     method: 'POST',
     cache: 'no-store',
     headers: {
@@ -19,98 +44,23 @@ async function requestUploadTicket(file: File, slug: string): Promise<UploadTick
       slug,
       fileName: file.name,
       fileSize: file.size,
+      fileData,
     }),
   });
 
   const payload = await response.json().catch(() => null);
-  
-  if (!response.ok || !payload?.success) {
-    let errorMsg = 'Failed to prepare datasheet upload.';
-    
-    // Safely extract error message avoiding [object Object]
-    const extractMsg = (obj: any): string => {
-      if (!obj) return '';
-      if (typeof obj === 'string') return obj;
-      if (obj instanceof Error) return obj.message;
-      if (typeof obj.message === 'string') return obj.message;
-      if (typeof obj.error === 'string') return obj.error;
-      try {
-        return JSON.stringify(obj);
-      } catch (e) {
-        return String(obj);
-      }
-    };
 
+  if (!response.ok || !payload?.success) {
+    let errorMsg = 'Failed to upload datasheet.';
     if (!payload) {
       errorMsg = `Server returned ${response.status} ${response.statusText}`;
-    } else if (payload.message) {
-      errorMsg = extractMsg(payload.message);
-    } else if (payload.error) {
-      errorMsg = extractMsg(payload.error);
+    } else if (typeof payload.message === 'string') {
+      errorMsg = payload.message;
+    } else if (typeof payload.error === 'string') {
+      errorMsg = payload.error;
     }
-
-    throw new Error(errorMsg || 'Failed to prepare datasheet upload.');
+    throw new Error(errorMsg);
   }
 
-  return payload.data as UploadTicket;
-}
-
-export async function uploadProductDatasheet(file: File, slug: string): Promise<string> {
-  if (!supabase) {
-    throw new Error('Supabase is not configured for datasheet uploads.');
-  }
-
-  const BUCKET = 'product-datasheets';
-  const stamp = Date.now();
-  const cleanName = file.name.toLowerCase().replace(/[^a-z0-9.\-_]+/g, '-').replace(/^-+|-+$/g, '');
-  const fileName = cleanName.endsWith('.pdf') ? cleanName : `${cleanName || 'datasheet'}.pdf`;
-  const path = `${slug}/${stamp}-${fileName}`;
-
-  // Attempt direct Supabase storage upload first (works natively on Hostinger without requiring CORS to Vercel)
-  try {
-    const { error: uploadError } = await supabase.storage
-      .from(BUCKET)
-      .upload(path, file, {
-        contentType: 'application/pdf',
-        cacheControl: '3600',
-        upsert: true,
-      });
-
-    if (!uploadError) {
-      const { data } = supabase.storage.from(BUCKET).getPublicUrl(path);
-      if (data && data.publicUrl) {
-        return data.publicUrl;
-      }
-    }
-    console.warn('Direct Supabase datasheet upload unsuccessful, falling back to Vercel server ticket...', uploadError);
-  } catch (err) {
-    console.warn('Direct Supabase datasheet upload exception:', err);
-  }
-
-  // Fallback to backend server signed upload ticket
-  const ticket = await requestUploadTicket(file, slug);
-  const { error } = await supabase.storage
-    .from(ticket.bucket)
-    .uploadToSignedUrl(ticket.path, ticket.token, file, {
-      contentType: 'application/pdf',
-    });
-
-  if (error) {
-    let msg = 'Failed to upload datasheet to storage.';
-    if (error.message && typeof error.message === 'string') {
-      msg = error.message;
-    } else if (typeof error === 'string') {
-      msg = error;
-    } else {
-      try {
-        msg = JSON.stringify(error);
-      } catch (e) {
-        msg = String(error);
-      }
-    }
-    throw new Error(msg);
-  }
-
-  // Return direct Supabase public URL for maximum compatibility
-  return ticket.publicUrl;
+  return payload.data.publicUrl;
 }
