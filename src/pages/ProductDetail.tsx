@@ -269,7 +269,7 @@ export default function ProductDetail() {
                       const storedUrl = product.datasheetUrl || '';
                       const downloadUrl = storedUrl.startsWith('http') || storedUrl.startsWith('/datasheets/')
                         ? storedUrl 
-                        : `/api/products/datasheet-download/${product.slug}`;
+                        : `https://pdr-sable.vercel.app/api/products/datasheet-download/${product.slug}`;
                       window.open(downloadUrl, '_blank', 'noopener,noreferrer');
                     }}
                     style={{

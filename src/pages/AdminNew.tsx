@@ -203,7 +203,7 @@ export default function AdminNew() {
 
     async function fetchRfqs() {
       try {
-        const rfqRes = await fetch('/api/rfq/list');
+        const rfqRes = await fetch('https://pdr-sable.vercel.app/api/rfq/list');
         if (rfqRes.ok) {
           const { data } = await rfqRes.json();
           if (data && Array.isArray(data)) {
