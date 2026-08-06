@@ -1,66 +1,65 @@
 /**
- * Datasheet upload — sends the PDF to the Vercel serverless API which uploads
- * it using the service role key (bypassing Supabase RLS).
+ * Datasheet upload — fetches a Signed Upload URL from Vercel API,
+ * then uploads the file directly to Supabase from the browser.
  *
- * This approach works reliably from ANY hosting origin (Hostinger, localhost,
- * Vercel preview) because:
- * 1. The API has `Access-Control-Allow-Origin: *` so CORS never blocks it.
- * 2. The upload is performed server-side with the service role key, so
- *    Supabase Storage RLS policies don't matter.
+ * This approach completely bypasses the 4.5MB Vercel serverless payload limit,
+ * allowing uploads up to 25MB without hitting 413 Payload Too Large errors.
+ * It also bypasses Supabase RLS because Signed URLs grant temporary write access.
  */
 
 const UPLOAD_API = 'https://pdr-sable.vercel.app/api/products/datasheet-upload-url';
-
-function fileToBase64(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const result = reader.result as string;
-      // Strip the data:application/pdf;base64, prefix
-      const base64 = result.split(',')[1];
-      resolve(base64);
-    };
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://gfzknettmaclomxyimjf.supabase.co';
 
 export async function uploadProductDatasheet(file: File, slug: string): Promise<string> {
   if (file.size > 25 * 1024 * 1024) {
     throw new Error('PDF size must be less than 25MB.');
   }
 
-  // Convert file to base64 and send to Vercel API for server-side upload
-  const fileData = await fileToBase64(file);
-
-  const response = await fetch(UPLOAD_API, {
+  // Step 1: Get a Signed Upload URL from our Vercel API
+  // We send the metadata, but NOT the fileData, so the payload is tiny.
+  const tokenRes = await fetch(UPLOAD_API, {
     method: 'POST',
     cache: 'no-store',
-    headers: {
-      'Content-Type': 'application/json',
-      'Cache-Control': 'no-cache',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       slug,
       fileName: file.name,
       fileSize: file.size,
-      fileData,
     }),
   });
 
-  const payload = await response.json().catch(() => null);
+  const tokenPayload = await tokenRes.json().catch(() => null);
 
-  if (!response.ok || !payload?.success) {
-    let errorMsg = 'Failed to upload datasheet.';
-    if (!payload) {
-      errorMsg = `Server returned ${response.status} ${response.statusText}`;
-    } else if (typeof payload.message === 'string') {
-      errorMsg = payload.message;
-    } else if (typeof payload.error === 'string') {
-      errorMsg = payload.error;
-    }
+  if (!tokenRes.ok || !tokenPayload?.success) {
+    let errorMsg = 'Failed to initialize datasheet upload.';
+    if (!tokenPayload) errorMsg = `Server returned ${tokenRes.status} ${tokenRes.statusText}`;
+    else if (typeof tokenPayload.message === 'string') errorMsg = tokenPayload.message;
+    else if (typeof tokenPayload.error === 'string') errorMsg = tokenPayload.error;
     throw new Error(errorMsg);
   }
 
-  return payload.data.publicUrl;
+  const { bucket, path, token, publicUrl } = tokenPayload.data;
+
+  // If the server didn't return a token (e.g. it uploaded it directly), just return the public URL
+  if (!token) return publicUrl;
+
+  // Step 2: Upload directly to Supabase Storage using the signed URL
+  const uploadUrl = `${SUPABASE_URL}/storage/v1/object/upload/sign/${bucket}/${path}?token=${token}`;
+
+  const uploadRes = await fetch(uploadUrl, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/pdf',
+      'Cache-Control': '3600',
+    },
+    body: file,
+  });
+
+  if (!uploadRes.ok) {
+    const errorText = await uploadRes.text().catch(() => '');
+    console.error('Supabase upload failed:', uploadRes.status, errorText);
+    throw new Error('Failed to upload file to storage bucket. Ensure the file is not too large.');
+  }
+
+  return publicUrl;
 }
