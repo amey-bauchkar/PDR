@@ -15,6 +15,7 @@ import {
 import { getAdminProducts, saveProduct } from '../lib/productSync';
 import type { AdminProduct } from '../lib/productSync';
 import { uploadProductDatasheet } from '../lib/datasheetUpload';
+import { uploadProductImage } from '../lib/imageUpload';
 import '../styles/admin-enhanced.css';
 
 // Predefined subcategories matching the catalogue structure exactly
@@ -218,31 +219,50 @@ export default function AdminProductForm() {
     navigate('/admin');
   };
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
     if (!file.type.startsWith('image/')) {
       setNotices(prev => ({ ...prev, image: { message: 'Please select a valid image file.', type: 'error' } }));
+      event.target.value = '';
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
       setNotices(prev => ({ ...prev, image: { message: 'Image size must be less than 5MB.', type: 'error' } }));
+      event.target.value = '';
       return;
     }
 
+    // Show local preview immediately for UX
     const reader = new FileReader();
     reader.onload = (e) => {
-      const dataUrl = e.target?.result as string;
-      setImagePreview(dataUrl);
-      setForm({ ...form, imageUrl: dataUrl });
-      setNotices(prev => ({ ...prev, image: { message: 'Image uploaded successfully!', type: 'success' } }));
-    };
-    reader.onerror = () => {
-      setNotices(prev => ({ ...prev, image: { message: 'Failed to read image file.', type: 'error' } }));
+      setImagePreview(e.target?.result as string);
     };
     reader.readAsDataURL(file);
+
+    // Upload to Supabase Storage (returns proper https:// URL)
+    const slugToUse = form.slug.trim() ? toSlug(form.slug) : (form.name.trim() ? toSlug(form.name) : '');
+    if (!slugToUse) {
+      setNotices(prev => ({ ...prev, image: { message: 'Please enter a Product Name before uploading an image.', type: 'error' } }));
+      event.target.value = '';
+      return;
+    }
+
+    setNotices(prev => ({ ...prev, image: { message: 'Uploading image to cloud...', type: 'info' } }));
+    try {
+      const publicUrl = await uploadProductImage(file, slugToUse);
+      setForm(prev => ({ ...prev, imageUrl: publicUrl }));
+      setNotices(prev => ({ ...prev, image: { message: 'Image uploaded successfully!', type: 'success' } }));
+    } catch (err) {
+      setNotices(prev => ({
+        ...prev,
+        image: { message: err instanceof Error ? err.message : 'Failed to upload image. Try again.', type: 'error' },
+      }));
+    } finally {
+      event.target.value = '';
+    }
   };
 
   const handleGalleryUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
