@@ -1,6 +1,7 @@
 import seedProducts from '../data/products.json';
 import { get, set } from 'idb-keyval';
 import { supabase } from './supabase';
+import { getAssetUrl } from './assetUrl';
 
 export type AdminProduct = {
   slug: string;
@@ -400,13 +401,13 @@ function mapSupabaseProduct(db: any): AdminProduct | null {
     canonical: db.canonical_url,
     tagline: db.tagline,
     status: db.status === 'published' ? 'Active' : (db.status === 'draft' ? 'Draft' : 'Archived'),
-    imageUrl: db.image_url,
+    imageUrl: getAssetUrl(db.image_url),
     features,
     applications,
     specs,
     heroIcon: db.hero_icon_svg,
-    datasheetUrl: db.metadata?.datasheet_url || '',
-    galleryUrls: db.metadata?.gallery_urls || [],
+    datasheetUrl: getAssetUrl(db.metadata?.datasheet_url || ''),
+    galleryUrls: (db.metadata?.gallery_urls || []).map((url: string) => getAssetUrl(url)),
     tags: db.metadata?.tags || [],
     updatedAt: db.updated_at,
   };

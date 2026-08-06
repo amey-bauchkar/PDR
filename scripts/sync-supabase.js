@@ -9,7 +9,23 @@ const __dirname = path.dirname(__filename);
 async function syncProducts() {
   console.log('Syncing products from Supabase for static build...');
 
-  // Use environment variables (which will be present during Vercel build)
+  // Load local .env file if present
+  try {
+    const envPath = path.join(__dirname, '../.env');
+    if (fs.existsSync(envPath)) {
+      const lines = fs.readFileSync(envPath, 'utf-8').split('\n');
+      for (const line of lines) {
+        const parts = line.split('=');
+        if (parts.length >= 2 && !line.startsWith('#')) {
+          process.env[parts[0].trim()] = parts.slice(1).join('=').trim();
+        }
+      }
+    }
+  } catch (e) {
+    // Ignore error if file doesn't exist
+  }
+
+  // Use environment variables (which will be present during Vercel build or loaded from local .env)
   const supabaseUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
 
