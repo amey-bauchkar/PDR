@@ -265,55 +265,58 @@ export default function AdminProductForm() {
     }
   };
 
-  const handleGalleryUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleGalleryUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(event.target.files || []);
     if (!files.length) return;
 
     if (form.galleryUrls.length + files.length > 10) {
       setNotices(prev => ({ ...prev, gallery: { message: 'You can upload a maximum of 10 additional images.', type: 'error' } }));
+      event.target.value = '';
       return;
     }
 
-    const newUrls: string[] = [];
-    let processed = 0;
-    let hasError = false;
-
-    files.forEach(file => {
+    // Validate all files first
+    for (const file of files) {
       if (!file.type.startsWith('image/')) {
-        hasError = true;
         setNotices(prev => ({ ...prev, gallery: { message: 'Please select only valid image files.', type: 'error' } }));
-        processed++;
+        event.target.value = '';
         return;
       }
-
       if (file.size > 5 * 1024 * 1024) {
-        hasError = true;
         setNotices(prev => ({ ...prev, gallery: { message: 'Each image size must be less than 5MB.', type: 'error' } }));
-        processed++;
+        event.target.value = '';
         return;
       }
+    }
 
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const dataUrl = e.target?.result as string;
-        newUrls.push(dataUrl);
-        processed++;
-        
-        if (processed === files.length && !hasError) {
-          setForm(prev => ({
-            ...prev,
-            galleryUrls: [...prev.galleryUrls, ...newUrls].slice(0, 10)
-          }));
-          setNotices(prev => ({ ...prev, gallery: { message: 'Gallery images uploaded successfully!', type: 'success' } }));
-        }
-      };
-      reader.onerror = () => {
-        processed++;
-        hasError = true;
-        setNotices(prev => ({ ...prev, gallery: { message: 'Failed to read one or more image files.', type: 'error' } }));
-      };
-      reader.readAsDataURL(file);
-    });
+    const slugToUse = form.slug.trim() ? toSlug(form.slug) : (form.name.trim() ? toSlug(form.name) : '');
+    if (!slugToUse) {
+      setNotices(prev => ({ ...prev, gallery: { message: 'Please enter a Product Name before uploading gallery images.', type: 'error' } }));
+      event.target.value = '';
+      return;
+    }
+
+    setNotices(prev => ({ ...prev, gallery: { message: `Uploading ${files.length} image(s) to cloud...`, type: 'info' } }));
+
+    try {
+      // Upload all images in parallel to Supabase Storage
+      const uploadResults = await Promise.all(
+        files.map(file => uploadProductImage(file, slugToUse))
+      );
+
+      setForm(prev => ({
+        ...prev,
+        galleryUrls: [...prev.galleryUrls, ...uploadResults].slice(0, 10),
+      }));
+      setNotices(prev => ({ ...prev, gallery: { message: `${uploadResults.length} gallery image(s) uploaded successfully!`, type: 'success' } }));
+    } catch (err) {
+      setNotices(prev => ({
+        ...prev,
+        gallery: { message: err instanceof Error ? err.message : 'Failed to upload gallery images. Try again.', type: 'error' },
+      }));
+    } finally {
+      event.target.value = '';
+    }
   };
 
   const handlePdfUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
