@@ -19,6 +19,17 @@ function getSupabase() {
   return createClient(url, key);
 }
 
+function sanitizePrivateKey(raw) {
+  let key = raw;
+  // Strip wrapping double quotes (Vercel sometimes wraps env vars)
+  if (key.startsWith('"') && key.endsWith('"')) key = key.slice(1, -1);
+  if (key.startsWith("'") && key.endsWith("'")) key = key.slice(1, -1);
+  // Replace all escaped newline variants with actual newlines
+  key = key.replace(/\\\\n/g, '\n');  // double-escaped: \\n → \n
+  key = key.replace(/\\n/g, '\n');    // single-escaped: \n → \n
+  return key;
+}
+
 function getSheetsContext() {
   const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
   const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
@@ -27,7 +38,7 @@ function getSheetsContext() {
     console.log('Google Sheets not configured:', { spreadsheetId: !!spreadsheetId, email: !!email, rawKey: !!rawKey });
     return null;
   }
-  const key = rawKey.replace(/\\n/g, '\n');
+  const key = sanitizePrivateKey(rawKey);
   const auth = new google.auth.JWT({ email, key, scopes: ['https://www.googleapis.com/auth/spreadsheets'] });
   return { spreadsheetId, sheetName: process.env.GOOGLE_SHEETS_TAB_NAME || 'Sheet1', sheets: google.sheets({ version: 'v4', auth }) };
 }

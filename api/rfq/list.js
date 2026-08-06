@@ -1,5 +1,14 @@
 import { google } from 'googleapis';
 
+function sanitizePrivateKey(raw) {
+  let key = raw;
+  if (key.startsWith('"') && key.endsWith('"')) key = key.slice(1, -1);
+  if (key.startsWith("'") && key.endsWith("'")) key = key.slice(1, -1);
+  key = key.replace(/\\\\n/g, '\n');
+  key = key.replace(/\\n/g, '\n');
+  return key;
+}
+
 function getSheetsContext() {
   const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
   const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
@@ -8,7 +17,7 @@ function getSheetsContext() {
     console.log('Google Sheets not configured:', { spreadsheetId: !!spreadsheetId, email: !!email, rawKey: !!rawKey });
     return null;
   }
-  const key = rawKey.replace(/\\n/g, '\n');
+  const key = sanitizePrivateKey(rawKey);
   const auth = new google.auth.JWT({ email, key, scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'] });
   return { spreadsheetId, sheetName: process.env.GOOGLE_SHEETS_TAB_NAME || 'Sheet1', sheets: google.sheets({ version: 'v4', auth }) };
 }
