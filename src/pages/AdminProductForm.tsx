@@ -435,7 +435,7 @@ export default function AdminProductForm() {
       }, 1000);
     } catch (err) {
       console.error(err);
-      setNotices(prev => ({ ...prev, global: { message: 'Failed to save product.', type: 'error' } }));
+      setNotices(prev => ({ ...prev, global: { message: err instanceof Error ? err.message : 'Failed to save product.', type: 'error' } }));
     } finally {
       setIsSaving(false);
     }

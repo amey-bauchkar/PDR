@@ -135,22 +135,34 @@ const _initializeProductStore = async (): Promise<void> => {
 
 async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
   const isGet = !init?.method || init.method.toUpperCase() === 'GET';
-  const response = await fetch(url, {
-    ...init,
-    cache: isGet ? 'default' : 'no-store',
-    headers: {
-      'Content-Type': 'application/json',
-      ...(isGet ? {} : { 'Cache-Control': 'no-cache' }),
-      ...(init?.headers || {}),
-    },
-  });
 
-  const payload = await response.json().catch(() => null);
-  if (!response.ok || !payload?.success) {
-    throw new Error(payload?.message || payload?.error || `Request failed: ${response.status}`);
+  // 15-second timeout to prevent indefinite hangs
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15_000);
+
+  try {
+    const response = await fetch(url, {
+      ...init,
+      signal: controller.signal,
+      cache: isGet ? 'default' : 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+        // NOTE: Do NOT add Cache-Control here — it triggers CORS preflight failures
+        // when called cross-origin (e.g. Hostinger → Vercel). The `cache: 'no-store'`
+        // option above achieves the same cache-busting effect without CORS issues.
+        ...(init?.headers || {}),
+      },
+    });
+
+    const payload = await response.json().catch(() => null);
+    if (!response.ok || !payload?.success) {
+      throw new Error(payload?.message || payload?.error || `Request failed: ${response.status}`);
+    }
+
+    return payload.data as T;
+  } finally {
+    clearTimeout(timeout);
   }
-
-  return payload.data as T;
 }
 
 const cleanProductUrls = (products: AdminProduct[]): AdminProduct[] => {

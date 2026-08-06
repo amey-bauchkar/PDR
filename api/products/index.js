@@ -434,7 +434,7 @@ async function handleDelete(req, res) {
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Cache-Control, Pragma');
   
   if (req.query && req.query.fresh === 'true') {
     res.setHeader('Cache-Control', 'no-store, max-age=0');

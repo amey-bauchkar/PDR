@@ -378,6 +378,7 @@ export default function AdminNew() {
   };
 
   const [isSaving, setIsSaving] = useState(false);
+  const [deletingSlug, setDeletingSlug] = useState<string | null>(null);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -385,15 +386,17 @@ export default function AdminNew() {
     if (isSaving) return;
     setIsSaving(true);
 
-    if (!session) return;
+    if (!session) { setIsSaving(false); return; }
     if (!checkPermission(session, 'manage_products')) {
       setNotices(prev => ({ ...prev, global: { message: 'You do not have permission to manage products.', type: 'error' } }));
+      setIsSaving(false);
       return;
     }
 
     const nextSlug = form.slug.trim() ? toSlug(form.slug) : toSlug(form.name);
     if (!nextSlug || !form.name.trim() || !form.category.trim()) {
       setNotices(prev => ({ ...prev, title: { message: 'Name, category, and slug are required.', type: 'error' } }));
+      setIsSaving(false);
       return;
     }
 
@@ -439,6 +442,7 @@ export default function AdminNew() {
     const duplicateSlug = products.some((p) => p.slug === payload.slug && p.slug !== editingSlug);
     if (duplicateSlug) {
       setNotices(prev => ({ ...prev, title: { message: 'Title of Product already exists. Please choose a different name.', type: 'error' } }));
+      setIsSaving(false);
       return;
     }
 
@@ -499,17 +503,26 @@ export default function AdminNew() {
     }
     const target = products.find((p) => p.slug === slug);
     if (!target) return;
+
+    if (!window.confirm(`Are you sure you want to delete "${target.name}"? This action cannot be undone.`)) {
+      return;
+    }
+
+    setDeletingSlug(slug);
     try {
       await deleteProduct(slug);
       setProducts((current) => current.filter((p) => p.slug !== slug));
       if (editingSlug === slug) resetForm();
       pushActivity('Product deleted', `${target.name}`, 'warning', 'delete');
+      setNotices(prev => ({ ...prev, global: { message: `Product "${target.name}" deleted successfully.`, type: 'success' } }));
     } catch (err) {
       console.error(err);
       setNotices(prev => ({
         ...prev,
         global: { message: err instanceof Error ? err.message : 'Failed to delete product.', type: 'error' },
       }));
+    } finally {
+      setDeletingSlug(null);
     }
   };
 
@@ -932,8 +945,12 @@ export default function AdminNew() {
                                       ✎ Edit
                                     </button>
                                     {checkPermission(session, 'delete_products') && (
-                                      <button className="admin-btn-sm danger" onClick={() => handleDelete(product.slug)}>
-                                        🗑 Delete
+                                      <button 
+                                        className="admin-btn-sm danger" 
+                                        onClick={() => handleDelete(product.slug)}
+                                        disabled={deletingSlug === product.slug}
+                                      >
+                                        {deletingSlug === product.slug ? '⏳ Deleting...' : '🗑 Delete'}
                                       </button>
                                     )}
                                   </div>
