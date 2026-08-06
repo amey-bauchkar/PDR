@@ -12,7 +12,7 @@ import {
   verifyCredentials,
 } from '../lib/adminAuth';
 import { getAdminProducts, saveProduct, deleteProduct } from '../lib/productSync';
-import { resolveCanonicalProductImage } from '../lib/imageResolution';
+import { resolveCanonicalProductImage, getFallbackImage } from '../lib/imageResolution';
 import { uploadProductDatasheet } from '../lib/datasheetUpload';
 import { supabase } from '../lib/supabase';
 import '../styles/admin-enhanced.css';
@@ -897,9 +897,18 @@ export default function AdminNew() {
                                 <div key={product.slug} className="admin-product-card">
                                   {(() => {
                                     const displayImg = resolveCanonicalProductImage(product.slug, product.imageUrl, product.category);
+                                    const fallbackImg = getFallbackImage(product.category);
                                     return displayImg ? (
                                       <div className="admin-product-image">
-                                        <img src={displayImg} alt={product.name} />
+                                        <img
+                                          src={displayImg}
+                                          alt={product.name}
+                                          onError={(e) => {
+                                            if (!e.currentTarget.src.endsWith(fallbackImg)) {
+                                              e.currentTarget.src = fallbackImg;
+                                            }
+                                          }}
+                                        />
                                       </div>
                                     ) : null;
                                   })()}

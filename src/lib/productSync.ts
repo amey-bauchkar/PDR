@@ -1,4 +1,4 @@
-import seedProducts from '../data/products.json';
+import seedProductsRaw from '../data/products.json';
 import { get, set } from 'idb-keyval';
 import { supabase } from './supabase';
 import { getAssetUrl } from './assetUrl';
@@ -26,14 +26,16 @@ export type AdminProduct = {
   galleryUrls?: string[];
 };
 
+const seedProducts = seedProductsRaw as unknown as AdminProduct[];
+
 const STORAGE_KEY = 'pdrworld-admin-products-v6'; // Bumped to v6 to force fresh fetch across all devices
 const PRODUCTS_API_URL = 'https://pdr-sable.vercel.app/api/products';
 const TIMESTAMP_KEY = STORAGE_KEY + '-ts';
 
 const getDefaultProducts = (): AdminProduct[] => {
-  return (seedProducts as Omit<AdminProduct, 'status' | 'updatedAt' | 'updatedBy'>[]).map((item) => ({
+  return seedProducts.map((item) => ({
     ...item,
-    status: 'Active',
+    status: item.status || 'Active',
   }));
 };
 
@@ -151,34 +153,51 @@ async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
   return payload.data as T;
 }
 
+const cleanProductUrls = (products: AdminProduct[]): AdminProduct[] => {
+  return products.map(p => ({
+    ...p,
+    imageUrl: getAssetUrl(p.imageUrl),
+    datasheetUrl: getAssetUrl(p.datasheetUrl || ''),
+    galleryUrls: (p.galleryUrls || []).map(u => getAssetUrl(u)),
+  }));
+};
+
 /**
  * Get all products from memory cache (or fallback to localStorage if not initialized)
  */
 export const getAdminProducts = (): AdminProduct[] => {
-  if (memoryCache !== null) return memoryCache.filter(p => !DELETED_SLUGS.has(p.slug));
-  if (typeof window === 'undefined') return getDefaultProducts().filter(p => !DELETED_SLUGS.has(p.slug));
-  const raw = localStorage.getItem(STORAGE_KEY);
-  const products = raw ? JSON.parse(raw) : [];
-  if (products.length > 0) return products.filter((p: AdminProduct) => !DELETED_SLUGS.has(p.slug));
-
-  // Fallback to v3 first, then v2 for synchronous render if v4 is empty
-  const rawV3 = localStorage.getItem('pdrworld-admin-products-v3');
-  if (rawV3) {
-    const v3Products = JSON.parse(rawV3) as AdminProduct[];
-    return v3Products.filter(p => !DELETED_SLUGS.has(p.slug));
+  let list: AdminProduct[] = [];
+  if (memoryCache !== null) {
+    list = memoryCache.filter(p => !DELETED_SLUGS.has(p.slug));
+  } else if (typeof window === 'undefined') {
+    list = getDefaultProducts().filter(p => !DELETED_SLUGS.has(p.slug));
+  } else {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    const products = raw ? JSON.parse(raw) : [];
+    if (products.length > 0) {
+      list = products.filter((p: AdminProduct) => !DELETED_SLUGS.has(p.slug));
+    } else {
+      // Fallback to v3 first, then v2 for synchronous render if v4 is empty
+      const rawV3 = localStorage.getItem('pdrworld-admin-products-v3');
+      if (rawV3) {
+        const v3Products = JSON.parse(rawV3) as AdminProduct[];
+        list = v3Products.filter(p => !DELETED_SLUGS.has(p.slug));
+      } else {
+        const rawV2 = localStorage.getItem('pdrworld-admin-products-v2');
+        if (rawV2) {
+          const v2Products = JSON.parse(rawV2) as AdminProduct[];
+          const seedMap = new Map(seedProducts.map(p => [p.slug, p.category]));
+          list = v2Products.map(p => ({
+            ...p,
+            category: seedMap.get(p.slug) || p.category
+          })).filter(p => !DELETED_SLUGS.has(p.slug));
+        } else {
+          list = getDefaultProducts().filter(p => !DELETED_SLUGS.has(p.slug));
+        }
+      }
+    }
   }
-  
-  const rawV2 = localStorage.getItem('pdrworld-admin-products-v2');
-  if (rawV2) {
-    const v2Products = JSON.parse(rawV2) as AdminProduct[];
-    const seedMap = new Map(seedProducts.map(p => [p.slug, p.category]));
-    return v2Products.map(p => ({
-      ...p,
-      category: seedMap.get(p.slug) || p.category
-    })).filter(p => !DELETED_SLUGS.has(p.slug));
-  }
-
-  return getDefaultProducts().filter(p => !DELETED_SLUGS.has(p.slug));
+  return cleanProductUrls(list);
 };
 
 /**

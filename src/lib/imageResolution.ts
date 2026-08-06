@@ -1,4 +1,5 @@
 import catalogueData from '../data/catalogue.json';
+import { getAssetUrl } from './assetUrl';
 
 import bareFiber from '../assets/images/products/passive/bare-fiber-adapter.webp';
 import cat6Cord from '../assets/images/products/passive/cat6-patch-cord.webp';
@@ -92,25 +93,25 @@ for (const section of (catalogueData as { sections?: { groups?: { cards?: { slug
  */
 export const resolveCanonicalProductImage = (slug?: string, productImageUrl?: string, categoryOrSectionId?: string): string => {
   if (productImageUrl && productImageUrl.trim()) {
-    return productImageUrl;
+    return getAssetUrl(productImageUrl.trim());
   }
 
   if (slug && PASSIVE_IMAGE_MAP[slug]) {
-    return PASSIVE_IMAGE_MAP[slug];
+    return getAssetUrl(PASSIVE_IMAGE_MAP[slug]);
   }
 
   if (slug) {
     const catalogImg = catalogueImageBySlug.get(slug);
     if (catalogImg && catalogImg.trim()) {
-      return catalogImg;
+      return getAssetUrl(catalogImg.trim());
     }
   }
 
   if (categoryOrSectionId && CATEGORY_IMAGE_MAP[categoryOrSectionId]) {
-    return CATEGORY_IMAGE_MAP[categoryOrSectionId];
+    return getAssetUrl(CATEGORY_IMAGE_MAP[categoryOrSectionId]);
   }
 
-  return CATEGORY_IMAGE_MAP.passive || '/images/fiber-patchcord.webp';
+  return getAssetUrl(CATEGORY_IMAGE_MAP.passive || '/images/fiber-patchcord.webp');
 };
 
 /**
@@ -119,7 +120,7 @@ export const resolveCanonicalProductImage = (slug?: string, productImageUrl?: st
  */
 export const getFallbackImage = (categoryOrSectionId?: string): string => {
   if (categoryOrSectionId && CATEGORY_IMAGE_MAP[categoryOrSectionId]) {
-    return CATEGORY_IMAGE_MAP[categoryOrSectionId];
+    return getAssetUrl(CATEGORY_IMAGE_MAP[categoryOrSectionId]);
   }
-  return CATEGORY_IMAGE_MAP['Passive Components'] || '/images/fiber-patchcord.webp';
+  return getAssetUrl(CATEGORY_IMAGE_MAP['Passive Components'] || '/images/fiber-patchcord.webp');
 };

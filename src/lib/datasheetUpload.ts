@@ -60,6 +60,34 @@ export async function uploadProductDatasheet(file: File, slug: string): Promise<
     throw new Error('Supabase is not configured for datasheet uploads.');
   }
 
+  const BUCKET = 'product-datasheets';
+  const stamp = Date.now();
+  const cleanName = file.name.toLowerCase().replace(/[^a-z0-9.\-_]+/g, '-').replace(/^-+|-+$/g, '');
+  const fileName = cleanName.endsWith('.pdf') ? cleanName : `${cleanName || 'datasheet'}.pdf`;
+  const path = `${slug}/${stamp}-${fileName}`;
+
+  // Attempt direct Supabase storage upload first (works natively on Hostinger without requiring CORS to Vercel)
+  try {
+    const { error: uploadError } = await supabase.storage
+      .from(BUCKET)
+      .upload(path, file, {
+        contentType: 'application/pdf',
+        cacheControl: '3600',
+        upsert: true,
+      });
+
+    if (!uploadError) {
+      const { data } = supabase.storage.from(BUCKET).getPublicUrl(path);
+      if (data && data.publicUrl) {
+        return data.publicUrl;
+      }
+    }
+    console.warn('Direct Supabase datasheet upload unsuccessful, falling back to Vercel server ticket...', uploadError);
+  } catch (err) {
+    console.warn('Direct Supabase datasheet upload exception:', err);
+  }
+
+  // Fallback to backend server signed upload ticket
   const ticket = await requestUploadTicket(file, slug);
   const { error } = await supabase.storage
     .from(ticket.bucket)
