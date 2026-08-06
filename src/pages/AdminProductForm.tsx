@@ -334,18 +334,28 @@ export default function AdminProductForm() {
     }
   };
 
+  const [isSaving, setIsSaving] = useState(false);
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!session) return;
+    if (isSaving) return;
+    setIsSaving(true);
+
+    if (!session) {
+      setIsSaving(false);
+      return;
+    }
     if (!checkPermission(session, 'manage_products')) {
       setNotices(prev => ({ ...prev, global: { message: 'You do not have permission to manage products.', type: 'error' } }));
+      setIsSaving(false);
       return;
     }
 
     const nextSlug = form.slug.trim() ? toSlug(form.slug) : toSlug(form.name);
     if (!nextSlug || !form.name.trim() || !form.category.trim()) {
       setNotices(prev => ({ ...prev, title: { message: 'Name and category are required.', type: 'error' } }));
+      setIsSaving(false);
       return;
     }
 
@@ -395,26 +405,26 @@ export default function AdminProductForm() {
     // Refresh products from the latest data to avoid stale state
     const latestProducts = getAdminProducts();
 
-    // Check for duplicate by product name (case-insensitive)
     const duplicateName = latestProducts.some(
       (p) => p.name.toLowerCase().trim() === payload.name.toLowerCase().trim() && p.slug !== (slug || '')
     );
     if (duplicateName) {
       setNotices(prev => ({ ...prev, title: { message: `Product "${payload.name}" already exists. Please choose a different name.`, type: 'error' } }));
+      setIsSaving(false);
       return;
     }
 
-    // Check for duplicate by slug
     const duplicateSlug = latestProducts.some((p) => p.slug === payload.slug && p.slug !== (slug || ''));
     if (duplicateSlug) {
       setNotices(prev => ({ ...prev, title: { message: `A product with a similar name already exists (slug: "${payload.slug}"). Please choose a different name.`, type: 'error' } }));
+      setIsSaving(false);
       return;
     }
 
     setNotices(prev => ({ ...prev, global: { message: 'Saving product...', type: 'info' } }));
 
     try {
-      await saveProduct(payload);
+      await saveProduct(payload, slug);
       setNotices(prev => ({ ...prev, global: { message: 'Product saved successfully! Redirecting...', type: 'success' } }));
 
       // Dispatch local sync event
@@ -426,6 +436,8 @@ export default function AdminProductForm() {
     } catch (err) {
       console.error(err);
       setNotices(prev => ({ ...prev, global: { message: 'Failed to save product.', type: 'error' } }));
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -1254,8 +1266,8 @@ export default function AdminProductForm() {
                   )}
 
                   <div style={{ display: 'flex', gap: '16px', marginTop: '24px' }}>
-                    <button type="submit" className="admin-btn-primary" style={{ flex: 1, padding: '14px', fontSize: '16px', borderRadius: '8px', fontWeight: 700 }}>
-                      {slug ? 'Save Product Changes' : 'Publish Product'}
+                    <button type="submit" disabled={isSaving} className={`admin-btn-primary ${isSaving ? 'opacity-50 cursor-not-allowed' : ''}`} style={{ flex: 1, padding: '14px', fontSize: '16px', borderRadius: '8px', fontWeight: 700 }}>
+                      {isSaving ? 'Saving...' : (slug ? 'Save Product Changes' : 'Publish Product')}
                     </button>
                     <button 
                       type="button" 

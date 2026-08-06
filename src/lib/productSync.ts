@@ -392,6 +392,10 @@ export const deleteProduct = async (slug: string): Promise<void> => {
 
   const products = getAdminProducts().filter((p) => p.slug !== slug);
   await saveAdminProducts(products);
+  
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem(LAST_FETCH_KEY);
+  }
 };
 
 /**

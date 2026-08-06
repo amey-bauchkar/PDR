@@ -414,6 +414,7 @@ async function handleDelete(req, res) {
     await supabase.from('catalog_product_features').delete().eq('product_id', dbProdId);
     await supabase.from('catalog_product_applications').delete().eq('product_id', dbProdId);
     await supabase.from('catalog_product_specs').delete().eq('product_id', dbProdId);
+    await supabase.from('catalog_product_relations').delete().or(`product_id.eq.${dbProdId},related_product_id.eq.${dbProdId}`);
 
     // Delete the product itself
     const { error } = await supabase

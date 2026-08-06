@@ -377,8 +377,13 @@ export default function AdminNew() {
     setImagePreview('');
   };
 
+  const [isSaving, setIsSaving] = useState(false);
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (isSaving) return;
+    setIsSaving(true);
 
     if (!session) return;
     if (!checkPermission(session, 'manage_products')) {
@@ -440,7 +445,7 @@ export default function AdminNew() {
     setNotices(prev => ({ ...prev, global: { message: 'Saving product...', type: 'info' } }));
 
     try {
-      await saveProduct(payload);
+      await saveProduct(payload, (editorMode === 'edit' ? editingSlug : undefined) ?? undefined);
       setProducts(getAdminProducts());
       resetForm();
       setNotices(prev => ({ ...prev, global: { message: `Product "${payload.name}" saved successfully!`, type: 'success' } }));
@@ -458,6 +463,8 @@ export default function AdminNew() {
         ...prev,
         global: { message: err instanceof Error ? err.message : 'Failed to save product.', type: 'error' },
       }));
+    } finally {
+      setIsSaving(false);
     }
   };
 
