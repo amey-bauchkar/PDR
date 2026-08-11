@@ -6,6 +6,7 @@ import { ProductSchema, BreadcrumbSchema } from '../components/Schema';
 import productsData from '../data/products.json';
 import { fetchAndSyncProducts, fetchProductBySlug, mergeWithProducts } from '../lib/productSync';
 import { resolveCanonicalProductImage, getFallbackImage } from '../lib/imageResolution';
+import { getAssetUrl } from '../lib/assetUrl';
 
 type Product = {
   slug: string;
@@ -266,10 +267,8 @@ export default function ProductDetail() {
                       // Use backend signed URL endpoint to bypass storage access issues
                       // If the stored URL is already an API route (e.g. from a new product upload), use it directly
                       // This prevents "Not found" errors if the product slug changed after the PDF was uploaded
-                      const storedUrl = product.datasheetUrl || '';
-                      const downloadUrl = storedUrl.startsWith('http') || storedUrl.startsWith('/datasheets/')
-                        ? storedUrl 
-                        : `https://pdrworld.com/api/products/datasheet-download/${product.slug}`;
+                      const storedUrl = getAssetUrl(product.datasheetUrl || '');
+                      const downloadUrl = storedUrl || `https://pdrworld.com/api/products/datasheet-download/${product.slug}`;
                       window.open(downloadUrl, '_blank', 'noopener,noreferrer');
                     }}
                     style={{
