@@ -29,7 +29,7 @@ export type AdminProduct = {
 const seedProducts = seedProductsRaw as unknown as AdminProduct[];
 
 const STORAGE_KEY = 'pdrworld-admin-products-v6'; // Bumped to v6 to force fresh fetch across all devices
-const PRODUCTS_API_URL = 'https://pdr-sable.vercel.app/api/products';
+const PRODUCTS_API_URL = 'https://pdrworld.com/api/products';
 const TIMESTAMP_KEY = STORAGE_KEY + '-ts';
 
 const getDefaultProducts = (): AdminProduct[] => {
@@ -290,7 +290,7 @@ export const saveProduct = async (product: AdminProduct, previousSlug = product.
           title: product.title || `${product.name} | PDR World`,
           tagline: product.tagline || '',
           description: product.description || '',
-          canonical_url: product.canonical || `https://pdr-sable.vercel.app/products/${product.slug}`,
+          canonical_url: product.canonical || `https://pdrworld.com/products/${product.slug}`,
           hero_icon_svg: product.heroIcon || '',
           image_url: product.imageUrl || '',
           status: product.status === 'Active' ? 'published' : (product.status === 'Draft' ? 'draft' : 'archived'),
@@ -856,7 +856,7 @@ export const mergeWithProducts = (rawProducts: any[]): any[] => {
       category: p.category,
       title: p.title || `${p.name} | PDR World`,
       description: finalDescription,
-      canonical: p.canonical || `https://pdr-sable.vercel.app/products/${p.slug}`,
+      canonical: p.canonical || `https://pdrworld.com/products/${p.slug}`,
       tagline: finalTagline,
       imageUrl: finalImage,
       features: finalFeatures,

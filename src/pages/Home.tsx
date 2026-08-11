@@ -55,7 +55,7 @@ export default function Home() {
       <Seo
         title="Fiber Optic Manufacturer in India | Active & Passive Components — PDR World"
         description="PDR World is an ISO 9001:2015 certified manufacturer of fiber optic components since 1974. SFP transceivers, patch cords, ODFs, OTDRs, and more. Made in India."
-        canonical="https://pdr-sable.vercel.app/"
+        canonical="https://pdrworld.com/"
       />
       <OrganizationSchema />
       <WebSiteSchema />

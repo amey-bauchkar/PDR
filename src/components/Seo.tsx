@@ -17,7 +17,7 @@ type SeoProps = {
   noindex?: boolean;
 };
 
-const SITE = 'https://pdr-sable.vercel.app';
+const SITE = 'https://pdrworld.com';
 
 export default function Seo({
   title,

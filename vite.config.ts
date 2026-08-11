@@ -8,10 +8,12 @@ export default defineConfig({
     {
       name: 'html-transform',
       transformIndexHtml(html) {
-        // Inject commit SHA from Vercel environment variable
-        // Falls back to 'local-dev' for local development
-        const commitSha = process.env.VERCEL_GIT_COMMIT_SHA || 'local-dev'
-        return html.replace('{{COMMIT_SHA}}', commitSha)
+        // Inject version tag for production builds
+        // Creates a timestamp-based version like prod-20230811-120000
+        const date = new Date();
+        const timestamp = `${date.getFullYear()}${(date.getMonth()+1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}-${date.getHours().toString().padStart(2, '0')}${date.getMinutes().toString().padStart(2, '0')}`;
+        const commitSha = process.env.VERCEL_GIT_COMMIT_SHA || `prod-${timestamp}`;
+        return html.replace('{{COMMIT_SHA}}', commitSha);
       }
     }
   ],

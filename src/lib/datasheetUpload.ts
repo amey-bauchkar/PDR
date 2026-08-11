@@ -7,7 +7,7 @@
  * It also bypasses Supabase RLS because Signed URLs grant temporary write access.
  */
 
-const UPLOAD_API = 'https://pdr-sable.vercel.app/api/products/datasheet-upload-url';
+const UPLOAD_API = 'https://pdrworld.com/api/products/datasheet-upload-url';
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://gfzknettmaclomxyimjf.supabase.co';
 
 export async function uploadProductDatasheet(file: File, slug: string): Promise<string> {

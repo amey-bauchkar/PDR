@@ -6,7 +6,7 @@
  * This ensures images display correctly via resolveCanonicalProductImage().
  */
 
-const UPLOAD_API = 'https://pdr-sable.vercel.app/api/products/image-upload-url';
+const UPLOAD_API = 'https://pdrworld.com/api/products/image-upload-url';
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://gfzknettmaclomxyimjf.supabase.co';
 
 export async function uploadProductImage(file: File, slug: string): Promise<string> {

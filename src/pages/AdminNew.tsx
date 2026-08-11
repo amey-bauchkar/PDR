@@ -202,17 +202,29 @@ export default function AdminNew() {
     }
 
     async function fetchRfqs() {
+      if (!supabase) return;
       try {
-        const rfqRes = await fetch('https://pdr-sable.vercel.app/api/rfq/list');
-        if (rfqRes.ok) {
-          const { data } = await rfqRes.json();
-          if (data && Array.isArray(data)) {
-            // Overwrite with API data so deleted rows in Google Sheets are actually removed
-            setRfqs(data);
-          }
+        const { data: dbRfqs, error: rfqError } = await supabase
+          .from('quote_requests')
+          .select('*, quote_request_items(*)')
+          .order('created_at', { ascending: false });
+        
+        if (!rfqError && dbRfqs) {
+          const mappedRfqs = dbRfqs.map((rfq: any) => ({
+            id: rfq.id,
+            email: rfq.email,
+            name: rfq.full_name,
+            company: rfq.company,
+            status: rfq.status === 'received' ? 'new' : rfq.status,
+            createdAt: rfq.created_at,
+            notes: rfq.notes,
+            items: rfq.quote_request_items?.map((item: any) => `${item.quantity}x ${item.product_title}${item.product_specs ? ` (${item.product_specs})` : ''}`) || []
+          }));
+          
+          setRfqs(mappedRfqs);
         }
       } catch (apiErr) {
-        console.error('Failed to fetch RFQs from API', apiErr);
+        console.error('Failed to fetch RFQs from Supabase', apiErr);
       }
     }
 
@@ -613,7 +625,7 @@ export default function AdminNew() {
   if (!session) {
     return (
       <>
-        <Seo title="Admin Login | PDR World" description="PDR World admin login." canonical="https://pdr-sable.vercel.app/dashboard-admin" noindex />
+        <Seo title="Admin Login | PDR World" description="PDR World admin login." canonical="https://pdrworld.com/dashboard-admin" noindex />
         <div className={`admin-login-shell ${darkMode ? 'dark' : ''}`}>
           <div className="admin-login-container">
             <div className="admin-login-card">
@@ -670,7 +682,7 @@ export default function AdminNew() {
 
   return (
     <>
-      <Seo title="Admin Dashboard | PDR World" description="PDR World admin dashboard." canonical="https://pdr-sable.vercel.app/dashboard-admin" />
+      <Seo title="Admin Dashboard | PDR World" description="PDR World admin dashboard." canonical="https://pdrworld.com/dashboard-admin" />
 
       <div className={`admin-enhanced-shell ${darkMode ? 'dark' : ''}`}>
         <header className="admin-header">

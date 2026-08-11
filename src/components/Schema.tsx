@@ -19,7 +19,7 @@ export function JsonLd({ data }: JsonLdProps) {
 /*  Pre-built schema generators                                       */
 /* ------------------------------------------------------------------ */
 
-const SITE = 'https://pdr-sable.vercel.app';
+const SITE = 'https://pdrworld.com';
 const LOGO = `${SITE}/favicon.png`;
 
 /** Organization schema — use once in Layout or Home */

@@ -2,6 +2,21 @@
   RewriteEngine On
   RewriteBase /
 
+  # 301 Permanent Redirects for legacy WordPress URLs
+  Redirect 301 /about-us /about
+  Redirect 301 /contact-us /contact
+  Redirect 301 /products/cable-management-devices /products/cable-management
+  Redirect 301 /products/test-measuring-equipment /products/test-measuring
+  
+  # Individual Product Redirects
+  Redirect 301 /armoured-patchcord /products/armoured-patchcord
+  Redirect 301 /cpri-patchcord /products/cpri-patchcord
+  Redirect 301 /fan-out-patch-cord /products/fanout-patch-cords
+  Redirect 301 /3u-cassette-splitter-rack /products/rack-mount-fms
+  Redirect 301 /1-6mm-patchcord /products/fo-patchcords
+  Redirect 301 /fiber-distribution-box /products/fdb
+  Redirect 301 /rapid-push-connector /products/rapid-push
+
   # Serve actual asset files (JS, CSS, images, PDFs, etc.) directly
   RewriteCond %{REQUEST_URI} \.(js|css|png|jpg|jpeg|gif|webp|svg|ico|pdf|woff|woff2|ttf|eot|json|xml|txt)$ [NC]
   RewriteRule ^ - [L]

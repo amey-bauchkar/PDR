@@ -55,8 +55,8 @@ export default function ProductsCategory({ categoryPath }: Props) {
         canonical={categoryCanonical(categoryPath)}
       />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://pdr-sable.vercel.app/' },
-        { name: 'Products', url: 'https://pdr-sable.vercel.app/products' },
+        { name: 'Home', url: 'https://pdrworld.com/' },
+        { name: 'Products', url: 'https://pdrworld.com/products' },
         { name: section.eyebrow, url: categoryCanonical(categoryPath) },
       ]} />
 

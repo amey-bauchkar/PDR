@@ -102,10 +102,10 @@ export default function ProductDetail() {
       <Seo
         title={product.title}
         description={product.description}
-        canonical={`https://pdr-sable.vercel.app/products/${product.slug}`}
+        canonical={`https://pdrworld.com/products/${product.slug}`}
         ogTitle={`${product.name} — ${product.category} | PDR World`}
         ogDescription={product.description}
-        ogUrl={`https://pdr-sable.vercel.app/products/${product.slug}`}
+        ogUrl={`https://pdrworld.com/products/${product.slug}`}
         ogImage={detailImage}
         ogType="product"
       />
@@ -118,10 +118,10 @@ export default function ProductDetail() {
         image={detailImage}
       />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://pdr-sable.vercel.app/' },
-        { name: 'Products', url: 'https://pdr-sable.vercel.app/products' },
-        { name: product.category, url: 'https://pdr-sable.vercel.app/products' },
-        { name: product.name, url: `https://pdr-sable.vercel.app/products/${product.slug}` },
+        { name: 'Home', url: 'https://pdrworld.com/' },
+        { name: 'Products', url: 'https://pdrworld.com/products' },
+        { name: product.category, url: 'https://pdrworld.com/products' },
+        { name: product.name, url: `https://pdrworld.com/products/${product.slug}` },
       ]} />
 
       {/* HERO */}
@@ -269,7 +269,7 @@ export default function ProductDetail() {
                       const storedUrl = product.datasheetUrl || '';
                       const downloadUrl = storedUrl.startsWith('http') || storedUrl.startsWith('/datasheets/')
                         ? storedUrl 
-                        : `https://pdr-sable.vercel.app/api/products/datasheet-download/${product.slug}`;
+                        : `https://pdrworld.com/api/products/datasheet-download/${product.slug}`;
                       window.open(downloadUrl, '_blank', 'noopener,noreferrer');
                     }}
                     style={{

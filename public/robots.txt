@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /api/
 
-Sitemap: https://pdr-sable.vercel.app/sitemap.xml
+Sitemap: https://pdrworld.com/sitemap.xml

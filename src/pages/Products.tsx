@@ -96,15 +96,15 @@ export default function Products() {
       <Seo
         title="Fiber Optic Product Catalogue | SFP Transceivers, Patch Cords, ODFs — PDR World"
         description="Browse PDR World's complete fiber optic catalogue: SFP transceivers, patch cords, ODFs, OTDRs, drones, and maintenance tools. ISO 9001:2015 certified. Made in India."
-        canonical="https://pdr-sable.vercel.app/products"
+        canonical="https://pdrworld.com/products"
       />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://pdr-sable.vercel.app/' },
-        { name: 'Products', url: 'https://pdr-sable.vercel.app/products' },
+        { name: 'Home', url: 'https://pdrworld.com/' },
+        { name: 'Products', url: 'https://pdrworld.com/products' },
       ]} />
       <ItemListSchema items={adminProducts.map((p: any, i: number) => ({
         name: p.name,
-        url: `https://pdr-sable.vercel.app/products/${p.slug}`,
+        url: `https://pdrworld.com/products/${p.slug}`,
         position: i + 1,
       }))} />
 
