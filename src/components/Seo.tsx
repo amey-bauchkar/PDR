@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router';
 
 type SeoProps = {
   title: string;
@@ -30,7 +31,8 @@ export default function Seo({
   ogType = 'website',
   noindex = false,
 }: SeoProps) {
-  const url = canonical ?? SITE;
+  const location = useLocation();
+  const url = canonical ?? `${SITE}${location.pathname === '/' ? '' : location.pathname}`;
   const resolvedOgTitle = ogTitle ?? title;
   const resolvedOgDesc = ogDescription ?? description;
   const resolvedOgUrl = ogUrl ?? url;
