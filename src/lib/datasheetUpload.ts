@@ -7,8 +7,8 @@
  * It also bypasses Supabase RLS because Signed URLs grant temporary write access.
  */
 
-const UPLOAD_API = '/api/products/datasheet-upload-url';
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://gfzknettmaclomxyimjf.supabase.co';
+const UPLOAD_API = `${SUPABASE_URL}/functions/v1/upload-url`;
 
 export async function uploadProductDatasheet(file: File, slug: string): Promise<string> {
   if (file.size > 25 * 1024 * 1024) {
@@ -22,6 +22,7 @@ export async function uploadProductDatasheet(file: File, slug: string): Promise<
     cache: 'no-store',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
+      type: 'datasheet',
       slug,
       fileName: file.name,
       fileSize: file.size,

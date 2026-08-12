@@ -6,8 +6,8 @@
  * This ensures images display correctly via resolveCanonicalProductImage().
  */
 
-const UPLOAD_API = '/api/products/image-upload-url';
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://gfzknettmaclomxyimjf.supabase.co';
+const UPLOAD_API = `${SUPABASE_URL}/functions/v1/upload-url`;
 
 export async function uploadProductImage(file: File, slug: string): Promise<string> {
   if (file.size > 5 * 1024 * 1024) {
@@ -20,6 +20,7 @@ export async function uploadProductImage(file: File, slug: string): Promise<stri
     cache: 'no-store',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
+      type: 'image',
       slug,
       fileName: file.name,
       fileSize: file.size,
