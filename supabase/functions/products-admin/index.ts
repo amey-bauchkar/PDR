@@ -113,7 +113,12 @@ serve(async (req) => {
         if (maxSortError) throw maxSortError
         
         const nextSortOrder = maxSortData && maxSortData.length > 0 ? (maxSortData[0].sort_order + 1) : 0
-        const { data: inserted, error: insertError } = await supabase.from('catalog_products').insert({ ...productRow, sort_order: nextSortOrder }).select().single()
+
+        const { data: maxIdData, error: maxIdError } = await supabase.from('catalog_products').select('id').order('id', { ascending: false }).limit(1)
+        if (maxIdError) throw maxIdError
+        const nextId = maxIdData && maxIdData.length > 0 ? (maxIdData[0].id + 1) : 1
+
+        const { data: inserted, error: insertError } = await supabase.from('catalog_products').insert({ ...productRow, id: nextId, sort_order: nextSortOrder }).select().single()
         
         if (insertError) throw insertError
         
