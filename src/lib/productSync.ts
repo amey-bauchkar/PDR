@@ -29,7 +29,8 @@ export type AdminProduct = {
 const seedProducts = seedProductsRaw as unknown as AdminProduct[];
 
 const STORAGE_KEY = 'pdrworld-admin-products-v6'; // Bumped to v6 to force fresh fetch across all devices
-const PRODUCTS_API_URL = '/api/products';
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://gfzknettmaclomxyimjf.supabase.co';
+const PRODUCTS_API_URL = `${SUPABASE_URL}/functions/v1/products-admin`;
 const TIMESTAMP_KEY = STORAGE_KEY + '-ts';
 
 const getDefaultProducts = (): AdminProduct[] => {
