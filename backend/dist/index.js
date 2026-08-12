@@ -17,13 +17,8 @@ import contactRoutes from './routes/contact.js';
 // Validate environment
 validateConfig();
 const app = express();
-// Middleware
 app.use(cors({
-    origin: [
-        config.cors.origin,
-        'https://pdrworld.com',
-        'https://www.pdrworld.com'
-    ],
+    origin: true, // Dynamically reflect request origin so Hostinger and any frontend deployment can access API
     credentials: true,
     optionsSuccessStatus: 200,
 }));

@@ -2,69 +2,21 @@
   {
     "slug": "aoc",
     "name": "Active Optical Cable (AOC)",
-    "category": "Active Components > Active Optical Cable (AOC)",
-    "title": "Active Optical Cable (AOC) | PDR World",
-    "description": "PDR 100G QSFP28 Active Optical Cables are Ethernet, InfiniBand and MSA compliant, feature DDM, secure pull-tab latching, slim 3.0 mm OM3 cable, and are available in lengths from 0.5 m to 100 m.",
-    "canonical": "https://pdrworld.com/aoc.html",
-    "tagline": "100G QSFP28 active optical cable, a reliable, low-power alternative to transceiver assemblies.",
+    "category": "Active Components",
+    "title": "undefined | PDR World",
+    "description": "",
+    "canonical": "https://pdrworld.com/products/undefined",
+    "tagline": "",
     "status": "Active",
-    "imageUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-images/aoc/product-image.png",
-    "features": [
-      "Supports 100G across 4 bi-directional lanes at 25.78 Gbps per channel",
-      "Available in lengths from 0.5 m to 100 m",
-      "Low power consumption, maximum 1.9 W per end",
-      "Hot-swappable QSFP28 form factor with high-strength pull-tab latch",
-      "Digital Diagnostic Monitoring (DDM/DOM) with I²C real-time alerts",
-      "Flexible OM3 multimode fiber with slim 3.0 mm outer diameter"
-    ],
-    "applications": [
-      "Point-to-point connections within data centres",
-      "High-performance computing and storage racks",
-      "Rack-to-rack and inter-row top-of-rack architectures"
-    ],
-    "specs": [
-      {
-        "label": "Form Factor",
-        "value": "QSFP28 (hot-swappable)"
-      },
-      {
-        "label": "Data Rate",
-        "value": "100 Gbps (4 lanes × 25.78 Gbps)"
-      },
-      {
-        "label": "Operating Wavelength",
-        "value": "850 nm"
-      },
-      {
-        "label": "Fiber Type",
-        "value": "OM3 multimode"
-      },
-      {
-        "label": "Cable Diameter (OD)",
-        "value": "3.0 mm ± 0.20"
-      },
-      {
-        "label": "Available Lengths",
-        "value": "0.5 m to 100 m"
-      },
-      {
-        "label": "Max Power Consumption",
-        "value": "1.9 W per end"
-      },
-      {
-        "label": "Operating Temperature",
-        "value": "0°C to 70°C"
-      },
-      {
-        "label": "Compliance",
-        "value": "QSFP28 MSA, IEEE P802.3bm, 100GBASE-SR4, RoHS/REACH, TÜV/UL"
-      }
-    ],
-    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"4\" y=\"18\" width=\"12\" height=\"12\" rx=\"2\"></rect><rect x=\"32\" y=\"18\" width=\"12\" height=\"12\" rx=\"2\"></rect><path d=\"M16 24c4-4 12 4 16 0\"></path></svg>",
-    "datasheetUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-datasheets/aoc/1783598241164-aoc_datasheet_revised.pdf",
+    "imageUrl": "",
+    "features": [],
+    "applications": [],
+    "specs": [],
+    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"14\" y=\"14\" width=\"20\" height=\"20\" rx=\"3\"></rect><circle cx=\"24\" cy=\"24\" r=\"4\"></circle></svg>",
+    "datasheetUrl": "",
     "galleryUrls": [],
     "tags": [],
-    "updatedAt": "2026-08-04T11:19:34.51+00:00"
+    "updatedAt": "2026-08-11T21:53:48.63+00:00"
   },
   {
     "slug": "attenuator",

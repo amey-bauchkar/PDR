@@ -40,7 +40,7 @@ export declare class RfqService {
     /**
      * Log RFQ to Google Sheets (optional)
      */
-    private logToGoogleSheets;
+    logToGoogleSheets(rfqData: any, items: QuoteItem[]): Promise<boolean>;
     private getSheetsContext;
     private ensureSheetHeaders;
     private appendRfqRowToSheet;

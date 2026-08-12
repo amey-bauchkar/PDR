@@ -4,6 +4,11 @@
  */
 export declare const submitRfq: import("express").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
 /**
+ * POST /api/rfq/log-sheets
+ * Log RFQ to Google Sheets directly
+ */
+export declare const logSheetsDirect: import("express").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
+/**
  * GET /api/rfq/:id
  * Get RFQ by ID
  */

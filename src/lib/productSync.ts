@@ -29,7 +29,7 @@ export type AdminProduct = {
 const seedProducts = seedProductsRaw as unknown as AdminProduct[];
 
 const STORAGE_KEY = 'pdrworld-admin-products-v6'; // Bumped to v6 to force fresh fetch across all devices
-const PRODUCTS_API_URL = 'https://pdrworld.com/api/products';
+const PRODUCTS_API_URL = '/api/products';
 const TIMESTAMP_KEY = STORAGE_KEY + '-ts';
 
 const getDefaultProducts = (): AdminProduct[] => {
@@ -253,8 +253,9 @@ export const saveProduct = async (product: AdminProduct, previousSlug = product.
 
   let savedProduct: AdminProduct | null = null;
   try {
+    const apiUrl = isUpdate ? `${PRODUCTS_API_URL}/${previousSlug}` : PRODUCTS_API_URL;
     savedProduct = await requestJson<AdminProduct>(
-      PRODUCTS_API_URL,
+      apiUrl,
       {
         method: isUpdate ? 'PUT' : 'POST',
         body: JSON.stringify(product),
@@ -383,7 +384,7 @@ export const saveProduct = async (product: AdminProduct, previousSlug = product.
  */
 export const deleteProduct = async (slug: string): Promise<void> => {
   try {
-    await requestJson<{ slug: string }>(`${PRODUCTS_API_URL}?slug=${encodeURIComponent(slug)}`, {
+    await requestJson<{ slug: string }>(`${PRODUCTS_API_URL}/${encodeURIComponent(slug)}`, {
       method: 'DELETE',
     });
   } catch (err) {
@@ -683,6 +684,10 @@ export const mergeWithCatalogue = (catalogue: any): any => {
               const adminProduct = adminMap.get(card.slug);
               if (adminProduct) {
                 // Override with admin data
+                const finalSpecs = adminProduct.specs && adminProduct.specs.length > 0
+                  ? `${adminProduct.specs[0].label}: ${adminProduct.specs[0].value}`
+                  : (card.addItem?.specs || 'Standard Specs');
+
                 return {
                   ...card,
                   name: adminProduct.name,
@@ -690,6 +695,11 @@ export const mergeWithCatalogue = (catalogue: any): any => {
                   img: adminProduct.imageUrl || card.img,
                   tag: adminProduct.tagline || card.tag,
                   pills: adminProduct.tags !== undefined ? adminProduct.tags : card.pills,
+                  addItem: {
+                    title: adminProduct.name,
+                    specs: finalSpecs,
+                    image: adminProduct.imageUrl || card.img,
+                  },
                 };
               }
               return card;

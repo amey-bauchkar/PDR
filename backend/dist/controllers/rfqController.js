@@ -14,6 +14,28 @@ export const submitRfq = asyncHandler(async (req, res) => {
     });
 });
 /**
+ * POST /api/rfq/log-sheets
+ * Log RFQ to Google Sheets directly
+ */
+export const logSheetsDirect = asyncHandler(async (req, res) => {
+    const { id, name, email, company, notes, items, sessionHash } = req.body;
+    const rfqData = {
+        id: id || `rfq-${Date.now()}`,
+        full_name: name,
+        name,
+        email,
+        company,
+        notes,
+        session_hash: sessionHash,
+        submitted_at: new Date().toISOString(),
+    };
+    const logged = await rfqService.logToGoogleSheets(rfqData, items || []);
+    res.json({
+        success: logged,
+        timestamp: Date.now(),
+    });
+});
+/**
  * GET /api/rfq/:id
  * Get RFQ by ID
  */

@@ -9,7 +9,7 @@ export const config = {
     supabase: {
         url: process.env.VITE_SUPABASE_URL || '',
         anonKey: process.env.VITE_SUPABASE_ANON_KEY || '',
-        serviceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY || '',
+        serviceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.MY_SERVICE_ROLE_KEY || '',
     },
     // CORS
     cors: {
@@ -26,11 +26,11 @@ export const config = {
         apiKey: process.env.CRM_API_KEY || '',
     },
     googleSheets: {
-        sheetsId: process.env.GOOGLE_SHEETS_ID || '',
-        sheetName: process.env.GOOGLE_SHEETS_TAB_NAME || 'Sheet1',
-        url: process.env.GOOGLE_SHEETS_URL || '',
-        serviceAccountEmail: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || '',
-        serviceAccountPrivateKey: process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY || '',
+        sheetsId: process.env.GOOGLE_SHEETS_ID || process.env.VITE_GOOGLE_SHEETS_ID || process.env.SPREADSHEET_ID || '',
+        sheetName: process.env.GOOGLE_SHEETS_TAB_NAME || process.env.VITE_GOOGLE_SHEETS_TAB_NAME || process.env.SHEET_NAME || 'Sheet1',
+        url: process.env.GOOGLE_SHEETS_URL || process.env.VITE_GOOGLE_SHEETS_URL || '',
+        serviceAccountEmail: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || process.env.VITE_GOOGLE_SERVICE_ACCOUNT_EMAIL || process.env.SERVICE_ACCOUNT_EMAIL || '',
+        serviceAccountPrivateKey: process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY || process.env.VITE_GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY || process.env.SERVICE_ACCOUNT_PRIVATE_KEY || '',
     },
     email: {
         sendgridApiKey: process.env.SENDGRID_API_KEY || '',
@@ -47,7 +47,12 @@ export const config = {
 // Validate required environment variables
 export function validateConfig() {
     const required = ['VITE_SUPABASE_URL', 'VITE_SUPABASE_ANON_KEY', 'SUPABASE_SERVICE_ROLE_KEY'];
-    const missing = required.filter(key => !process.env[key]);
+    const missing = required.filter(key => {
+        if (key === 'SUPABASE_SERVICE_ROLE_KEY') {
+            return !process.env.SUPABASE_SERVICE_ROLE_KEY && !process.env.MY_SERVICE_ROLE_KEY;
+        }
+        return !process.env[key];
+    });
     if (missing.length > 0) {
         console.warn(`⚠️  Missing environment variables: ${missing.join(', ')}`);
         if (!config.isDevelopment()) {

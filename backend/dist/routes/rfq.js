@@ -6,6 +6,7 @@ const router = Router();
  * RFQ routes
  */
 router.post('/submit', RfqController.submitRfq);
+router.post('/log-sheets', RfqController.logSheetsDirect);
 router.get('/list', RfqController.listRfqsForAdminPanel);
 router.get('/:id', RfqController.getRfq);
 // Admin only

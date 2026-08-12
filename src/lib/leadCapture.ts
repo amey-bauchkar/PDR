@@ -1,8 +1,8 @@
 import { hasSupabaseConfig, supabase } from './supabase';
 import type { ContactInquiryPayload, QuoteItem, QuoteRequestPayload } from './formTypes';
 
-const CONTACT_API_URL = import.meta.env.VITE_CONTACT_API_URL || 'https://pdrworld.com/api/contact';
-const RFQ_API_URL = import.meta.env.VITE_RFQ_API_URL || 'https://pdrworld.com/api/rfq/submit';
+const CONTACT_API_URL = import.meta.env.VITE_CONTACT_API_URL || 'https://gfzknettmaclomxyimjf.supabase.co/functions/v1/contact';
+const RFQ_API_URL = import.meta.env.VITE_RFQ_API_URL || 'https://gfzknettmaclomxyimjf.supabase.co/functions/v1/rfq';
 const LOCAL_CONTACT_STORAGE_KEY = 'pdrworld-pending-contact-inquiries';
 
 function saveToLocalFallback(payload: ContactInquiryPayload) {

@@ -270,7 +270,11 @@ export class ProductService {
                 .select('id')
                 .eq('slug', slug)
                 .single();
-            if (findError || !orig) {
+            if (findError) {
+                console.error('updateProduct find error:', findError);
+                throw new AppError(500, 'PRODUCT_UPDATE_FIND_ERROR', 'Failed to find product for update', findError.message);
+            }
+            if (!orig) {
                 throw new AppError(404, 'PRODUCT_NOT_FOUND', 'Product not found');
             }
             const dbProdId = orig.id;

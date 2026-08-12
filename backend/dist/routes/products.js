@@ -11,6 +11,7 @@ router.get('/:id', ProductController.getProduct);
 router.get('/:id/configuration-options', ProductController.getProductConfigurationOptions);
 router.get('/category/:categoryId', ProductController.getProductsByCategory);
 // Product CRUD routes
+router.post('/image-upload-url', ProductController.getImageUploadUrl);
 router.post('/datasheet-upload-url', ProductController.getDatasheetUploadUrl);
 router.post('/', ProductController.createProduct);
 router.put('/:slug', ProductController.updateProduct);

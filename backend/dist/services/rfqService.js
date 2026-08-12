@@ -1,6 +1,7 @@
 import { google } from 'googleapis';
 import { config } from '../config/env.js';
 import { supabaseServiceClient as rawSupabaseServiceClient } from '../config/database.js';
+import { cleanKey } from '../config/database.js';
 const supabaseServiceClient = rawSupabaseServiceClient;
 import { AppError } from '../types/index.js';
 import { v4 as uuidv4 } from 'uuid';
@@ -264,33 +265,44 @@ export class RfqService {
         try {
             const sheetsContext = this.getSheetsContext();
             if (!sheetsContext) {
-                console.log('Google Sheets credentials not configured, skipping sheet logging');
-                return;
+                console.warn('[GoogleSheets] Credentials not configured, skipping sheet logging');
+                return false;
             }
             await this.ensureSheetHeaders(sheetsContext);
             await this.appendRfqRowToSheet(sheetsContext, rfqData, items);
-            console.log('Logged RFQ to Google Sheets:', { rfqId: rfqData.id, name: rfqData.full_name || rfqData.name });
+            console.log('[GoogleSheets] Successfully logged RFQ to Google Sheets:', { rfqId: rfqData.id, name: rfqData.full_name || rfqData.name });
+            return true;
         }
         catch (error) {
-            console.error('Error logging to Google Sheets:', error);
+            console.error('[GoogleSheets] Error logging to Google Sheets:', error?.message || error, error?.stack);
+            return false;
             // Don't throw - let RFQ submission succeed even if logging fails
         }
     }
     getSheetsContext() {
-        const spreadsheetId = config.googleSheets.sheetsId;
-        const serviceAccountEmail = config.googleSheets.serviceAccountEmail;
-        const serviceAccountPrivateKey = config.googleSheets.serviceAccountPrivateKey;
+        const spreadsheetId = cleanKey(config.googleSheets.sheetsId);
+        const serviceAccountEmail = cleanKey(config.googleSheets.serviceAccountEmail);
+        const serviceAccountPrivateKey = cleanKey(config.googleSheets.serviceAccountPrivateKey);
         if (!spreadsheetId || !serviceAccountEmail || !serviceAccountPrivateKey) {
+            console.warn('[GoogleSheets] Missing configuration:', {
+                hasSpreadsheetId: Boolean(spreadsheetId),
+                hasEmail: Boolean(serviceAccountEmail),
+                hasPrivateKey: Boolean(serviceAccountPrivateKey),
+            });
             return null;
         }
+        const formattedPrivateKey = serviceAccountPrivateKey
+            .replace(/\\n/g, '\n')
+            .replace(/\\r/g, '')
+            .trim();
         const auth = new google.auth.JWT({
             email: serviceAccountEmail,
-            key: serviceAccountPrivateKey.replace(/\\n/g, '\n'),
+            key: formattedPrivateKey,
             scopes: ['https://www.googleapis.com/auth/spreadsheets'],
         });
         return {
             spreadsheetId,
-            sheetName: config.googleSheets.sheetName || 'Sheet1',
+            sheetName: cleanKey(config.googleSheets.sheetName || 'Sheet1'),
             sheets: google.sheets({ version: 'v4', auth }),
         };
     }
@@ -317,10 +329,12 @@ export class RfqService {
             // normalize some known patterns
             return spec.replace(/Insertion Loss \(IL\):\s*/i, 'Insertion Loss: ').replace(/Standard Factory Specs/i, 'Standard factory specs (suitable for Gigabit Ethernet)');
         };
-        // Ultra-simple summary: "Name (qty), Name (qty)"
         const itemsSummary = items
-            .map((item) => `${item.productName || item.productId || 'Item'} (${item.quantity || 1})`)
-            .join(', ');
+            .map((item) => {
+            const specText = item.configuration?.specs ? ` (${formatSpec(item.configuration.specs)})` : '';
+            return `${item.productName || item.productId || 'Item'} (Qty: ${item.quantity || 1})${specText}`;
+        })
+            .join('\n');
         await ctx.sheets.spreadsheets.values.append({
             spreadsheetId: ctx.spreadsheetId,
             range: `${ctx.sheetName}!A:J`,

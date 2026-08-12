@@ -28,7 +28,7 @@ export function CatalogProductCard({ card, sectionId }: { card: CatalogCard; sec
 
   const handleAdd = () => {
     addItem({
-      title: card.addItem?.title || card.name || 'Product',
+      title: card.name || card.addItem?.title || 'Product',
       specs: card.addItem?.specs || 'Standard Specs',
       image: resolveCanonicalProductImage(card.slug, card.img, sectionId),
       qty: 1,

@@ -39,6 +39,11 @@ export declare const updateProduct: import("express").RequestHandler<import("exp
  */
 export declare const deleteProduct: import("express").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
 /**
+ * POST /api/products/image-upload-url
+ * Get a signed URL for image upload
+ */
+export declare const getImageUploadUrl: import("express").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
+/**
  * POST /api/products/datasheet-upload-url
  * Get a signed URL for datasheet upload
  */

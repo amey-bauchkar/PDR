@@ -1,6 +1,7 @@
 import { productService } from '../services/productService.js';
 import { asyncHandler } from '../middleware/auth.js';
 import { supabaseServiceClient } from '../config/database.js';
+import { config } from '../config/env.js';
 const BUCKET = 'product-datasheets';
 function safeFileName(name = 'datasheet.pdf') {
     const clean = name
@@ -141,6 +142,50 @@ export const deleteProduct = asyncHandler(async (req, res) => {
         success: true,
         data: { slug: req.params.slug },
         timestamp: Date.now(),
+    });
+});
+/**
+ * POST /api/products/image-upload-url
+ * Get a signed URL for image upload
+ */
+export const getImageUploadUrl = asyncHandler(async (req, res) => {
+    const { slug, fileName, fileSize } = req.body || {};
+    if (!slug) {
+        return res.status(400).json({ success: false, error: 'Missing product slug' });
+    }
+    if (fileSize && fileSize > 10 * 1024 * 1024) {
+        return res.status(413).json({ success: false, error: 'Image size must be less than 10MB.' });
+    }
+    if (!supabaseServiceClient) {
+        return res.status(500).json({ success: false, error: 'Storage not configured' });
+    }
+    const IMAGE_BUCKET = 'product-images';
+    const { data: buckets, error: listError } = await supabaseServiceClient.storage.listBuckets();
+    if (!listError) {
+        const exists = buckets?.some((bucket) => bucket.name === IMAGE_BUCKET);
+        if (!exists) {
+            await supabaseServiceClient.storage.createBucket(IMAGE_BUCKET, {
+                public: true,
+                fileSizeLimit: 10 * 1024 * 1024,
+                allowedMimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml'],
+            });
+        }
+    }
+    const stamp = Date.now();
+    const cleanName = (fileName || 'image.jpg').toLowerCase().replace(/[^a-z0-9.\-_]+/g, '-');
+    const path = `${slug}/${stamp}-${cleanName}`;
+    const { data, error } = await supabaseServiceClient.storage.from(IMAGE_BUCKET).createSignedUploadUrl(path);
+    if (error)
+        throw error;
+    const publicUrl = `${config.supabase.url.replace(/\/$/, '')}/storage/v1/object/public/${IMAGE_BUCKET}/${path}`;
+    res.status(200).json({
+        success: true,
+        data: {
+            bucket: IMAGE_BUCKET,
+            path,
+            token: data.token,
+            publicUrl,
+        },
     });
 });
 /**

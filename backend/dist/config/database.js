@@ -1,28 +1,17 @@
 import { createClient } from '@supabase/supabase-js';
 import { config } from './env.js';
 const hasSupabaseConfig = Boolean(config.supabase.url && config.supabase.serviceRoleKey && config.supabase.anonKey);
-function getValidServiceKey(url, serviceKey, anonKey) {
-    try {
-        const parts = serviceKey.split('.');
-        if (parts.length >= 2) {
-            const payload = JSON.parse(Buffer.from(parts[1], 'base64').toString('utf8'));
-            const urlMatch = url.match(/https:\/\/([^.]+)\.supabase/);
-            if (urlMatch && payload.ref === urlMatch[1]) {
-                console.log('[Supabase] Service Role Key matches project ref. Using service role client.');
-                return serviceKey;
-            }
-        }
-    }
-    catch (e) {
-        // Fail silently
-    }
-    console.warn('[Supabase] Service Role Key is invalid or mismatching. falling back to Anon Key.');
-    return anonKey;
+export function cleanKey(key) {
+    if (!key)
+        return '';
+    let cleaned = String(key).trim();
+    // Strip all leading/trailing single, double, or escaped quotes
+    cleaned = cleaned.replace(/^["'\\]+|["'\\]+$/g, '').trim();
+    return cleaned;
 }
-// Initialize Supabase client. Fallback to anonKey to keep all backend admin operations active.
-const serviceKeyToUse = hasSupabaseConfig
-    ? getValidServiceKey(config.supabase.url, config.supabase.serviceRoleKey, config.supabase.anonKey)
-    : '';
+// Initialize Supabase client. We MUST use the service role key to bypass RLS for admin operations.
+// Do not fallback to anonKey, as that will cause confusing RLS errors if the service key is malformed.
+const serviceKeyToUse = hasSupabaseConfig ? cleanKey(config.supabase.serviceRoleKey) : '';
 const supabaseServiceClient = hasSupabaseConfig
     ? createClient(config.supabase.url, serviceKeyToUse, {
         auth: {

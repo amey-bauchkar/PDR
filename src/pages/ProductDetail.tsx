@@ -268,7 +268,7 @@ export default function ProductDetail() {
                       // If the stored URL is already an API route (e.g. from a new product upload), use it directly
                       // This prevents "Not found" errors if the product slug changed after the PDF was uploaded
                       const storedUrl = getAssetUrl(product.datasheetUrl || '');
-                      const downloadUrl = storedUrl || `https://pdrworld.com/api/products/datasheet-download/${product.slug}`;
+                      const downloadUrl = storedUrl || `/api/products/datasheet-download/${product.slug}`;
                       window.open(downloadUrl, '_blank', 'noopener,noreferrer');
                     }}
                     style={{

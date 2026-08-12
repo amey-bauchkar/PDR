@@ -17,12 +17,13 @@
   Redirect 301 /fiber-distribution-box /products/fdb
   Redirect 301 /rapid-push-connector /products/rapid-push
 
-  # Serve actual asset files (JS, CSS, images, PDFs, etc.) directly
+  # Exclude API and CDN routes from static file handling so the Node backend (Passenger) processes them
+  RewriteCond %{REQUEST_URI} !^/(api|cdn) [NC]
   RewriteCond %{REQUEST_URI} \.(js|css|png|jpg|jpeg|gif|webp|svg|ico|pdf|woff|woff2|ttf|eot|json|xml|txt)$ [NC]
   RewriteRule ^ - [L]
 
   # For ALL other requests (HTML pages, SPA routes), serve root index.html
-  # This ensures the latest JS bundle is always loaded, even if old
-  # prerendered HTML files exist from previous deploys
+  # But exclude API and CDN routes!
+  RewriteCond %{REQUEST_URI} !^/(api|cdn) [NC]
   RewriteRule ^ /index.html [L]
 </IfModule>

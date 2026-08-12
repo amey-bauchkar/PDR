@@ -938,7 +938,7 @@
               "tag": "Drone",
               "img": "/images/live/optical-fiber-drone.webp",
               "heroSvg": "",
-              "name": "Drone Optical Fiber Kit",
+              "name": "Ground unit",
               "blurb": "Rapid aerial deployment in inaccessible areas.",
               "pills": [
                 "Aerial Deployment",
@@ -947,7 +947,7 @@
               ],
               "detailsSlug": "drone",
               "addItem": {
-                "title": "Drone Optical Fiber Kit",
+                "title": "Ground unit",
                 "specs": "Standard Factory Specs",
                 "image": "/images/live/optical-fiber-drone.webp"
               }

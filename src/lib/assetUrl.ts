@@ -125,20 +125,22 @@ export function getAssetUrl(key: string | undefined | null): string {
     if (slug && LOCAL_DATASHEET_MAP[slug]) {
       return LOCAL_DATASHEET_MAP[slug];
     }
-    // No local mapping (new admin-uploaded datasheet) — fall through to original URL
+    // No local mapping (new admin-uploaded datasheet) — fall through to Egress Proxy
   }
 
-  // If it's already a full HTTP/HTTPS URL and does not contain /cdn/storage, pass through untouched
-  if (key.startsWith('http') && !key.includes('/cdn/storage/')) return key;
-
-  // Replace legacy "/cdn/storage/" prefix with canonical Supabase Storage public path
+  // For backward compatibility: if a URL was previously saved as a CDN proxy URL (which fails on Hostinger due to static file interception),
+  // we rewrite it BACK to the absolute Supabase URL.
   if (key.includes('/cdn/storage/')) {
-    return key.replace(/^.*\/cdn\/storage\//, `${SUPABASE_URL}/storage/v1/object/public/`);
+    const supabaseBaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://gfzknettmaclomxyimjf.supabase.co';
+    return key.replace('/cdn/storage/', `${supabaseBaseUrl}/storage/v1/object/public/`);
   }
+
+  // If it's already a full HTTP/HTTPS URL, pass it through untouched
+  if (key.startsWith('http')) return key;
 
   // If it's a relative static asset path (e.g. "/datasheets/..." or "/images/..."), keep it
   if (key.startsWith('/') || key.startsWith('./')) return key;
 
-  // Otherwise treat as a raw bucket object key
-  return `${SUPABASE_URL}/storage/v1/object/public/${key}`;
+  // Otherwise treat as a raw bucket object key and route through proxy
+  return `/cdn/storage/${key}`;
 }
