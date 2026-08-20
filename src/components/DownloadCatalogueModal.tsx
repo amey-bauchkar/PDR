@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import './DownloadCatalogueModal.css';
 
-const CATALOGUE_PATH = '/files/PDR-Catalogue-2024.pdf';
+const CATALOGUE_PATH = '/files/PDR-Product-Catalogue.pdf';
 
 interface DownloadCatalogueModalProps {
   isOpen: boolean;
@@ -23,7 +23,7 @@ export default function DownloadCatalogueModal({ isOpen, onClose }: DownloadCata
       // Fallback: create a temporary anchor
       const a = document.createElement('a');
       a.href = CATALOGUE_PATH;
-      a.download = 'PDR-Catalogue-2024.pdf';
+      a.download = 'PDR-Product-Catalogue.pdf';
       a.rel = 'noopener noreferrer';
       document.body.appendChild(a);
       a.click();
@@ -90,7 +90,7 @@ export default function DownloadCatalogueModal({ isOpen, onClose }: DownloadCata
         <a
           ref={downloadRef}
           href={CATALOGUE_PATH}
-          download="PDR-Catalogue-2024.pdf"
+          download="PDR-Product-Catalogue.pdf"
           style={{ display: 'none' }}
           aria-hidden="true"
           tabIndex={-1}
@@ -103,7 +103,7 @@ export default function DownloadCatalogueModal({ isOpen, onClose }: DownloadCata
             <h3>Thank You!</h3>
             <p>
               Your catalogue download should have started. If it didn't,{' '}
-              <a href={CATALOGUE_PATH} download="PDR-Catalogue-2024.pdf">
+              <a href={CATALOGUE_PATH} download="PDR-Product-Catalogue.pdf">
                 click here to download
               </a>.
             </p>

@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express';
+import jwt from 'jsonwebtoken';
 import { AppError } from '../types/index.js';
+import { config } from '../config/env.js';
 import type { AuthRequest } from './common.js';
 export type { AuthRequest };
 
@@ -14,16 +16,26 @@ export function verifyToken(req: AuthRequest, res: Response, next: NextFunction)
 
     const token = authHeader.substring(7);
 
-    // Lightweight development-only token handling.
-    // The backend keeps the admin routes usable without depending on JWT packages.
-    const [role = 'admin', userId = 'dev-admin'] = token.split(':');
-    req.userId = userId;
-    req.userRole = role;
+    // Verify JWT token cryptographically
+    const decoded = jwt.verify(token, config.jwt.secret) as {
+      userId: string;
+      role: string;
+      iat: number;
+    };
+
+    req.userId = decoded.userId;
+    req.userRole = decoded.role;
     
     next();
   } catch (error) {
     if (error instanceof AppError) {
       throw error;
+    }
+    if (error instanceof jwt.TokenExpiredError) {
+      throw new AppError(401, 'TOKEN_EXPIRED', 'Token has expired. Please login again.');
+    }
+    if (error instanceof jwt.JsonWebTokenError) {
+      throw new AppError(401, 'INVALID_TOKEN', 'Invalid token. Please login again.');
     }
     throw new AppError(401, 'INVALID_TOKEN', 'Invalid or expired token');
   }
@@ -47,3 +59,4 @@ export function asyncHandler(
     Promise.resolve(fn(req, res, next)).catch(next);
   };
 }
+

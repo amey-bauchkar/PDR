@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "prerender": "node prerender.js",
     "generate-catalogue": "node scripts/generate-catalogue.js",
-    "build:full": "npm install && cd backend && npm install && cd .. && node scripts/sync-supabase.js && npm run generate-catalogue && npm run build && npm run prerender",
+    "generate-sitemap": "node scripts/generate-sitemap.js",
+    "build:full": "npm install && cd backend && npm install && cd .. && node scripts/sync-supabase.js && npm run generate-catalogue && npm run generate-sitemap && npm run build && npm run prerender",
     "start": "node backend/dist/index.js",
     "verify-deployment": "node scripts/verify-deployment.js"
   },

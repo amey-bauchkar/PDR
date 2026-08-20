@@ -117,22 +117,45 @@ export const checkPermission = (session: AdminSession, permission: AdminPermissi
   return session.permissions.has(permission);
 };
 
-// Secure Admin credentials configuration
-export const verifyCredentials = (emailOrUsername: string, password: string): AdminRole | null => {
-  const normalized = (emailOrUsername || '').trim().toLowerCase();
-  if ((normalized === 'admin' || normalized === 'admin@pdrworld.com') && password === 'adminpdr_32543') {
-    return 'super_admin';
+// Server-side admin authentication — password is NEVER sent to the browser
+// This calls the backend POST /api/auth/login endpoint which validates
+// credentials against bcrypt-hashed password stored in environment variables
+export const verifyCredentials = async (emailOrUsername: string, password: string): Promise<{ role: AdminRole; token: string } | null> => {
+  try {
+    const apiBase = import.meta.env.VITE_API_URL || '';
+    const res = await fetch(`${apiBase}/api/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: emailOrUsername, password }),
+    });
+
+    if (!res.ok) {
+      return null;
+    }
+
+    const data = await res.json();
+    if (data.success && data.token && data.role) {
+      // Store token for subsequent API requests
+      if (typeof window !== 'undefined') {
+        window.sessionStorage.setItem('pdrworld-admin-token', data.token);
+      }
+      return { role: data.role as AdminRole, token: data.token };
+    }
+    return null;
+  } catch {
+    return null;
   }
-  return null;
 };
 
-export const hashData = (data: string): string => {
-  // Simple hash for demo. Use bcrypt or similar in production.
-  let hash = 0;
-  for (let i = 0; i < data.length; i++) {
-    const char = data.charCodeAt(i);
-    hash = (hash << 5) - hash + char;
-    hash = hash & hash; // Convert to 32-bit integer
-  }
-  return Math.abs(hash).toString(16);
+// Get stored auth token for API requests
+export const getAuthToken = (): string | null => {
+  if (typeof window === 'undefined') return null;
+  return window.sessionStorage.getItem('pdrworld-admin-token');
 };
+
+// Clear auth token on logout
+export const clearAuthToken = (): void => {
+  if (typeof window === 'undefined') return;
+  window.sessionStorage.removeItem('pdrworld-admin-token');
+};
+

@@ -50,10 +50,15 @@ const DELETED_SLUGS = new Set([
   'loop-back-patch-cord',
   'loopback',
   'mini-optical-power-meter',
-  'fiber-optic-adapter',
-  'easyget-wifi',
   'splice-on-connector',
   'splice-on',
+  'easycheck-v2',
+  'armoured-patchcord',
+  'bendiboot-patchcord',
+  'odf',
+  'mating-sleeve',
+  'mini-opm',
+  'soc',
 ]);
 
 /**

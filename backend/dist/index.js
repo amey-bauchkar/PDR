@@ -14,6 +14,7 @@ import productRoutes from './routes/products.js';
 import rfqRoutes from './routes/rfq.js';
 import calculatorRoutes from './routes/calculator.js';
 import contactRoutes from './routes/contact.js';
+import authRoutes from './routes/auth.js';
 // Validate environment
 validateConfig();
 const app = express();
@@ -31,6 +32,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/rfq', rfqRoutes);
 app.use('/api/calculator', calculatorRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/auth', authRoutes);
 // Proxy Supabase storage through Express with caching
 app.use('/cdn/storage', createProxyMiddleware({
     target: config.supabase.url.replace(/\/$/, ''),

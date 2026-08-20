@@ -5,14 +5,16 @@ import { verifyToken } from '../middleware/auth.js';
 const router = Router();
 
 /**
- * RFQ routes
+ * RFQ routes — Public (customer submissions)
  */
 router.post('/submit', RfqController.submitRfq);
 router.post('/log-sheets', RfqController.logSheetsDirect);
-router.get('/list', RfqController.listRfqsForAdminPanel);
-router.get('/:id', RfqController.getRfq);
 
-// Admin only
+/**
+ * RFQ routes — Admin only (requires JWT)
+ */
+router.get('/list', verifyToken, RfqController.listRfqsForAdminPanel);
+router.get('/:id', verifyToken, RfqController.getRfq);
 router.get('/', verifyToken, RfqController.getAllRfqs);
 
 export default router;

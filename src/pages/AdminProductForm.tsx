@@ -11,6 +11,7 @@ import {
   createSession,
   storeSession,
   clearStoredSession,
+  clearAuthToken,
 } from '../lib/adminAuth';
 import { getAdminProducts, saveProduct } from '../lib/productSync';
 import type { AdminProduct } from '../lib/productSync';
@@ -191,7 +192,7 @@ export default function AdminProductForm() {
     }
   }, [slug, products]);
 
-  const handleLogin = (event: FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoginError('');
 
@@ -200,13 +201,13 @@ export default function AdminProductForm() {
       return;
     }
 
-    const role = verifyCredentials(loginEmail, loginPassword);
-    if (!role) {
+    const result = await verifyCredentials(loginEmail, loginPassword);
+    if (!result) {
       setLoginError('Invalid username or password.');
       return;
     }
 
-    const newSession = createSession(loginEmail, role);
+    const newSession = createSession(loginEmail, result.role);
     setSession(newSession);
     storeSession(newSession);
     setLoginEmail('');
@@ -215,6 +216,7 @@ export default function AdminProductForm() {
 
   const handleLogout = () => {
     clearStoredSession();
+    clearAuthToken();
     setSession(null);
     navigate('/admin');
   };

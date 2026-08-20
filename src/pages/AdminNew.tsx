@@ -10,6 +10,7 @@ import {
   clearStoredSession,
   checkPermission,
   verifyCredentials,
+  clearAuthToken,
 } from '../lib/adminAuth';
 import { getAdminProducts, saveProduct, deleteProduct } from '../lib/productSync';
 import { resolveCanonicalProductImage, getFallbackImage } from '../lib/imageResolution';
@@ -350,7 +351,7 @@ export default function AdminNew() {
     ]);
   };
 
-  const handleLogin = (event: FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoginError('');
 
@@ -359,23 +360,24 @@ export default function AdminNew() {
       return;
     }
 
-    const role = verifyCredentials(loginEmail, loginPassword);
-    if (!role) {
+    const result = await verifyCredentials(loginEmail, loginPassword);
+    if (!result) {
       setLoginError('Invalid username or password.');
       pushActivity('Failed login attempt', `Username/Email: ${loginEmail}`, 'error', 'login', loginEmail);
       return;
     }
 
-    const newSession = createSession(loginEmail, role);
+    const newSession = createSession(loginEmail, result.role);
     setSession(newSession);
     storeSession(newSession);
     setLoginEmail('');
     setLoginPassword('');
-    pushActivity('User logged in', `Role: ${role}`, 'success', 'login', loginEmail);
+    pushActivity('User logged in', `Role: ${result.role}`, 'success', 'login', loginEmail);
   };
 
   const handleLogout = () => {
     clearStoredSession();
+    clearAuthToken();
     pushActivity('User logged out', '', 'info', 'login', session?.email);
     setSession(null);
     setActiveTab('dashboard');

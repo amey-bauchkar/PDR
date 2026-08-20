@@ -20,13 +20,10 @@
   <url><loc>https://pdrworld.com/products/specialty-drones</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://pdrworld.com/products/maintenance-tools</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
-  <!-- Product Detail Pages (58 products) -->
+  <!-- Product Detail Pages (53 products) -->
   <url><loc>https://pdrworld.com/products/aoc</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://pdrworld.com/products/armoured-patchcord</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/attenuator</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/bare-fiber-adapter</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://pdrworld.com/products/bendiboot-patchcord</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://pdrworld.com/products/bypass-switch</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/cassette-cleaner</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/cat6-panel</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/cat6-patch-cord</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -36,7 +33,6 @@
   <url><loc>https://pdrworld.com/products/dac</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/drone</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/dwdm</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://pdrworld.com/products/easycheck-v2</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/easyget-wifi</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/fanout-patch-cords</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/fdb</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -46,17 +42,11 @@
   <url><loc>https://pdrworld.com/products/fusion-splicer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/heat-shrink-closure</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/horizontal-closure</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://pdrworld.com/products/htb</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/hybrid-adapter</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://pdrworld.com/products/lc-uniboot</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://pdrworld.com/products/loopback</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://pdrworld.com/products/mating-sleeve</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://pdrworld.com/products/mini-opm</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/mode-conditioning</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/mpo-assembly</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/mpo-cleaner</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/next-gen-splicer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://pdrworld.com/products/odf</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/olps</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/plc-splitter</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/pocket-otdr</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -69,14 +59,19 @@
   <url><loc>https://pdrworld.com/products/sfp-10g-bidi</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/sfp-10g-dual</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/sfp-1g-bidi</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://pdrworld.com/products/sfp-1g-dual</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/sfp-25g-bidi</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/sfp-400g</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/sfp-40g</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/sfp-copper</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/smart-sfp</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/smpte-assembly</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://pdrworld.com/products/soc</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/vfl</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://pdrworld.com/products/wall-mount</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pdrworld.com/products/bypass-switch</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pdrworld.com/products/htb</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pdrworld.com/products/sfp-1g-dual</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pdrworld.com/products/uav-fiber-optic-spool</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pdrworld.com/products/fpv-optical-terminal</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pdrworld.com/products/fiber-optic-adapter</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pdrworld.com/products/wifi-wireless-fiber-endface-microscope</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>
