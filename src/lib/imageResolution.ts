@@ -19,13 +19,13 @@ import scAdapter from '../assets/images/products/passive/sc-apc-to-sc-upc-adapte
 import smpteCable from '../assets/images/products/passive/smpte-cable.webp';
 
 export const CATEGORY_IMAGE_MAP: Record<string, string> = {
-  active: '/images/sfp-transceiver.webp',
+  active: '/images/active-components.webp',
   passive: '/images/fiber-patchcord.webp',
   cable: '/images/fiber-patch-panel.webp',
   test: '/images/fiber-patch-panel.webp',
   specialty: '/images/fiber-drone.webp',
   tools: '/images/fiber-patch-panel.webp',
-  'Active Components': '/images/sfp-transceiver.webp',
+  'Active Components': '/images/active-components.webp',
   'Passive Components': '/images/fiber-patchcord.webp',
   'Cable Management Devices': '/images/fiber-patch-panel.webp',
   'Test and Measurement': '/images/fiber-patch-panel.webp',

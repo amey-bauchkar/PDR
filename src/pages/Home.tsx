@@ -10,7 +10,7 @@ const homeCategories = [
     title: 'Active Components',
     description: 'High-performance SFP transceivers, bypass switches, and optical protection systems.',
     count: '15+ SKUs',
-    image: '/images/sfp-transceiver.webp',
+    image: '/images/active-components.webp',
   },
   {
     id: 'passive',

@@ -100,7 +100,7 @@ export default function Resources() {
               </div>
               <div className="rs-video-info">
                 <h4>Splice Closure</h4>
-                <p>Complete calibration and operation guide for our fusion splicer.</p>
+                <p>Complete installation guide, sealing procedure, and fiber tray management demonstration for PDR optical splice closures.</p>
               </div>
             </div>
 

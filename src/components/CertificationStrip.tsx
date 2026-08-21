@@ -1,16 +1,16 @@
 import React from 'react';
 
 const badges = [
-  { name: "ISO 9001:2015", src: "/images/certi/iso-9001.png" },
-  { name: "ISO 14001:2015", src: "/images/certi/iso-14001.png" },
-  { name: "RoHS", src: "/images/certi/rohs.png" },
-  { name: "IEC", src: "/images/certi/iec.svg" },
-  { name: "CACT", src: "/images/certi/cact.jpeg" },
-  { name: "Made in India", src: "/images/certi/made-in-india.webp" },
-  { name: "GeM", src: "/images/certi/gem.png" }
+  { name: "ISO 9001:2015", src: "/images/certi/iso-9001.png", height: '42px' },
+  { name: "ISO 14001:2015", src: "/images/certi/iso-14001.png", height: '46px' },
+  { name: "RoHS", src: "/images/certi/rohs.png", height: '36px' },
+  { name: "IEC", src: "/images/certi/iec.svg", height: '36px' },
+  { name: "CACT", src: "/images/certi/cact.jpeg", height: '34px' },
+  { name: "Made in India", src: "/images/certi/made-in-india.webp", height: '36px' },
+  { name: "GeM", src: "/images/certi/gem.png", height: '42px' }
 ];
 
-const BadgeItem = ({ badge }: { badge: { name: string, src: string } }) => {
+const BadgeItem = ({ badge }: { badge: { name: string, src: string, height?: string } }) => {
   const [imgError, setImgError] = React.useState(false);
 
   if (imgError) {
@@ -31,10 +31,12 @@ const BadgeItem = ({ badge }: { badge: { name: string, src: string } }) => {
       alt={badge.name}
       title={badge.name}
       style={{ 
-        height: '32px', 
+        height: badge.height || '36px', 
+        maxHeight: '48px',
         objectFit: 'contain', 
-        transition: 'all 0.3s ease',
-        cursor: 'default'
+        transition: 'transform 0.2s ease, opacity 0.2s ease',
+        cursor: 'default',
+        filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.04))',
       }}
       onError={() => setImgError(true)}
     />
@@ -47,7 +49,7 @@ export default function CertificationStrip() {
       background: '#f8fafc',
       borderTop: '1px solid #e2e8f0',
       borderBottom: '1px solid #e2e8f0',
-      padding: '12px 0',
+      padding: '16px 0',
       width: '100%',
       overflow: 'hidden'
     }}>
@@ -57,7 +59,7 @@ export default function CertificationStrip() {
           alignItems: 'center',
           justifyContent: 'center',
           flexWrap: 'wrap',
-          gap: '32px',
+          gap: '36px',
           color: '#475569',
           fontSize: '13px',
           fontWeight: 600,
