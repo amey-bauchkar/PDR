@@ -5,18 +5,20 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "cd backend && npm install && cd .. && vite build && cd backend && tsc",
+    "build": "cd backend && npm install && cd .. && vite build && node scripts/generate-static-pages.js && cd backend && tsc",
     "lint": "eslint .",
     "preview": "vite preview",
+    "generate-static-pages": "node scripts/generate-static-pages.js",
     "prerender": "node prerender.js",
     "generate-catalogue": "node scripts/generate-catalogue.js",
     "generate-sitemap": "node scripts/generate-sitemap.js",
-    "build:full": "npm install && cd backend && npm install && cd .. && node scripts/sync-supabase.js && npm run generate-catalogue && npm run generate-sitemap && npm run build && npm run prerender",
+    "build:full": "npm install && cd backend && npm install && cd .. && node scripts/sync-supabase.js && npm run generate-catalogue && npm run generate-sitemap && npm run build",
     "start": "node backend/dist/index.js",
     "verify-deployment": "node scripts/verify-deployment.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.56.0",
+    "bcryptjs": "^3.0.3",
     "dompurify": "^3.4.13",
     "googleapis": "^174.0.1",
     "idb-keyval": "^6.2.5",
@@ -32,6 +34,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@sparticuz/chromium": "^149.0.0",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^24.12.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

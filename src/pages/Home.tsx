@@ -17,14 +17,14 @@ const homeCategories = [
     title: 'Passive Components',
     description: 'Premium patchcords, MPO assemblies, WDMs, and precision splitters.',
     count: '40+ SKUs',
-    image: '/images/fiber-patchcord.webp',
+    image: '/images/live/fiber-optic-patch-cords-and-pigtails.webp',
   },
   {
     id: 'cable',
     title: 'Cable Management',
     description: 'Modular ODFs, termination boxes, and IP-rated splice closures.',
     count: '12+ SKUs',
-    image: '/images/fiber-patch-panel.webp',
+    image: '/images/live/rack-mount-fiber-management-system.webp',
   },
   {
     id: 'test',

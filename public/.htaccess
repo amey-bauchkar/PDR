@@ -218,12 +218,6 @@
   RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}/index.html -f
   RewriteRule ^ %{REQUEST_URI}/index.html [L]
 
-  # ─── Serve prerendered 404 page ───
-  # For truly unknown routes, serve 404.html if it exists (prerendered with noindex)
-  RewriteCond %{REQUEST_URI} !^/(api|cdn) [NC]
-  RewriteCond %{DOCUMENT_ROOT}/404.html -f
-  RewriteRule ^ /404.html [L]
-
   # ─── Final fallback: serve root index.html (SPA shell) ───
   # Only reached if no prerendered page exists AND no 404.html exists
   RewriteCond %{REQUEST_URI} !^/(api|cdn) [NC]

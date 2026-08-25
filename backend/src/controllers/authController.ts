@@ -5,10 +5,8 @@ import { config } from '../config/env.js';
 import { AuthRequest, asyncHandler } from '../middleware/auth.js';
 import { AppError } from '../types/index.js';
 
-// Admin credentials from environment variables
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@pdrworld.com';
-const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
-const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH || '';
+// Default bcrypt hash for 'Autopdr123' if env var is missing
+const DEFAULT_ADMIN_HASH = '$2b$12$VY62sWCijOpjAd4PxJ3KP.AD4JgjcHrB8jG7h20.VxVI8CabftB1G';
 
 /**
  * POST /api/auth/login
@@ -22,19 +20,17 @@ export const login = asyncHandler(async (req: AuthRequest, res: Response) => {
   }
 
   const normalized = (email as string).trim().toLowerCase();
+  const expectedEmail = (process.env.ADMIN_EMAIL || 'admin@pdrworld.com').trim().toLowerCase();
+  const expectedUsername = (process.env.ADMIN_USERNAME || 'admin').trim().toLowerCase();
+  const passwordHash = (process.env.ADMIN_PASSWORD_HASH || DEFAULT_ADMIN_HASH).trim();
 
   // Check if the provided email/username matches
-  if (normalized !== ADMIN_EMAIL.toLowerCase() && normalized !== ADMIN_USERNAME.toLowerCase()) {
+  if (normalized !== expectedEmail && normalized !== expectedUsername) {
     throw new AppError(401, 'INVALID_CREDENTIALS', 'Invalid email or password.');
   }
 
   // Verify password against bcrypt hash
-  if (!ADMIN_PASSWORD_HASH) {
-    console.error('ADMIN_PASSWORD_HASH is not set in environment variables!');
-    throw new AppError(500, 'CONFIG_ERROR', 'Server authentication is not configured.');
-  }
-
-  const passwordValid = await bcrypt.compare(password as string, ADMIN_PASSWORD_HASH);
+  const passwordValid = await bcrypt.compare(password as string, passwordHash);
   if (!passwordValid) {
     throw new AppError(401, 'INVALID_CREDENTIALS', 'Invalid email or password.');
   }
@@ -43,7 +39,7 @@ export const login = asyncHandler(async (req: AuthRequest, res: Response) => {
   const role = 'super_admin';
   const token = jwt.sign(
     {
-      userId: ADMIN_EMAIL,
+      userId: expectedEmail,
       role,
     },
     config.jwt.secret,
@@ -54,7 +50,7 @@ export const login = asyncHandler(async (req: AuthRequest, res: Response) => {
     success: true,
     token,
     role,
-    email: ADMIN_EMAIL,
+    email: expectedEmail,
     expiresIn: config.jwt.expiry,
     timestamp: Date.now(),
   });

@@ -375,7 +375,8 @@ export default function AdminNew() {
     pushActivity('User logged in', `Role: ${result.role}`, 'success', 'login', loginEmail);
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
     clearStoredSession();
     clearAuthToken();
     pushActivity('User logged out', '', 'info', 'login', session?.email);

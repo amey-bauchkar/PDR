@@ -117,32 +117,32 @@ export const checkPermission = (session: AdminSession, permission: AdminPermissi
   return session.permissions.has(permission);
 };
 
-// Server-side admin authentication — password is NEVER sent to the browser
-// This calls the backend POST /api/auth/login endpoint which validates
-// credentials against bcrypt-hashed password stored in environment variables
+import { supabase } from './supabase';
+
 export const verifyCredentials = async (emailOrUsername: string, password: string): Promise<{ role: AdminRole; token: string } | null> => {
   try {
-    const apiBase = import.meta.env.VITE_API_URL || '';
-    const res = await fetch(`${apiBase}/api/auth/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: emailOrUsername, password }),
+    // If the user types 'admin', try to map to 'admin@pdrworld.com'
+    const email = emailOrUsername.trim().toLowerCase() === 'admin' 
+      ? 'admin@pdrworld.com' 
+      : emailOrUsername.trim();
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
     });
 
-    if (!res.ok) {
+    if (error || !data.session) {
+      console.error("Supabase Auth Error:", error?.message);
       return null;
     }
 
-    const data = await res.json();
-    if (data.success && data.token && data.role) {
-      // Store token for subsequent API requests
-      if (typeof window !== 'undefined') {
-        window.sessionStorage.setItem('pdrworld-admin-token', data.token);
-      }
-      return { role: data.role as AdminRole, token: data.token };
+    if (typeof window !== 'undefined') {
+      window.sessionStorage.setItem('pdrworld-admin-token', data.session.access_token);
     }
-    return null;
-  } catch {
+
+    return { role: 'super_admin' as AdminRole, token: data.session.access_token };
+  } catch (err) {
+    console.error("Auth Exception:", err);
     return null;
   }
 };

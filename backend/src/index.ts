@@ -56,8 +56,21 @@ app.use('/cdn/storage', createProxyMiddleware({
   },
 }));
 
+import fs from 'fs';
+
 // Serve React build as static files
-app.use(express.static(path.join(__dirname, '../../dist')));
+const cwdDir = process.cwd();
+const rootDir = path.resolve(__dirname, '../..');
+const parentDir = path.resolve(__dirname, '..');
+const distDir = path.join(__dirname, '../../dist');
+
+// Serve static assets from all possible deployment root directories
+app.use(express.static(cwdDir));
+app.use(express.static(rootDir));
+app.use(express.static(parentDir));
+if (fs.existsSync(distDir)) {
+  app.use(express.static(distDir));
+}
 
 // API Health check root
 app.get('/api', (req, res) => {
@@ -69,10 +82,46 @@ app.get('/api', (req, res) => {
   });
 });
 
-// Catch-all: send all unmatched routes to React
-// This makes React Router work correctly
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../dist/index.html'));
+// Catch-all: serve prerendered HTML if available for WhatsApp/OG/SEO, otherwise SPA shell
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api') || req.path.startsWith('/cdn')) {
+    return next();
+  }
+
+  const cleanPath = req.path.replace(/^\/+|\/+$/g, '');
+  
+  const candidates = [
+    path.join(cwdDir, cleanPath, 'index.html'),
+    path.join(cwdDir, cleanPath + '.html'),
+    path.join(rootDir, cleanPath, 'index.html'),
+    path.join(rootDir, cleanPath + '.html'),
+    path.join(parentDir, cleanPath, 'index.html'),
+    path.join(parentDir, cleanPath + '.html'),
+    path.join(distDir, cleanPath, 'index.html'),
+    path.join(distDir, cleanPath + '.html'),
+  ];
+
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+      return res.sendFile(candidate);
+    }
+  }
+
+  // Fallback to SPA root index.html
+  const fallbackCandidates = [
+    path.join(cwdDir, 'index.html'),
+    path.join(rootDir, 'index.html'),
+    path.join(parentDir, 'index.html'),
+    path.join(distDir, 'index.html'),
+  ];
+
+  for (const fallback of fallbackCandidates) {
+    if (fs.existsSync(fallback) && fs.statSync(fallback).isFile()) {
+      return res.sendFile(fallback);
+    }
+  }
+
+  res.status(404).send('Page Not Found');
 });
 
 // Error handler (must be last)

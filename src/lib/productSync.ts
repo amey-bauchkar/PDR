@@ -28,7 +28,14 @@ export type AdminProduct = {
 
 const seedProducts = seedProductsRaw as unknown as AdminProduct[];
 
-const STORAGE_KEY = 'pdrworld-admin-products-v6'; // Bumped to v6 to force fresh fetch across all devices
+const STORAGE_KEY = 'pdrworld-admin-products-v12';
+const BACKUP_STORAGE_KEY = 'pdrworld-admin-products-backup';
+const SYNC_EVENT = 'pdrworld-products-updated';
+const LEGACY_STORAGE_KEY = 'pdrworld_products';
+
+// Canonical version string — increment to force all clients to discard
+// stale localStorage and re-fetch clean defaults.
+const APP_VERSION = '2.8.0';
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://gfzknettmaclomxyimjf.supabase.co';
 const PRODUCTS_API_URL = `${SUPABASE_URL}/functions/v1/products-admin`;
 const TIMESTAMP_KEY = STORAGE_KEY + '-ts';
@@ -77,7 +84,6 @@ export const initializeProductStore = (): Promise<void> => {
   return initPromise;
 };
 
-const APP_VERSION = '2.2.0'; // Bump: base64 images migrated to Supabase Storage
 const VERSION_KEY = 'pdrworld-app-version';
 
 const _initializeProductStore = async (): Promise<void> => {

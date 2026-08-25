@@ -48,7 +48,12 @@ def make_zip(source_dir, output_zip_path):
     print(f"Archive Size: {size_mb:.2f} MB")
     print(f"Location: {output_zip_path}")
 
+import subprocess
+
 if __name__ == '__main__':
     project_dir = r"c:\Users\SEBIN\Desktop\PDR2"
+    print("Generating static HTML pages for all products and routes...")
+    subprocess.run(['node', os.path.join(project_dir, 'scripts', 'generate-static-pages.js')], cwd=project_dir, check=True)
     out_zip = r"C:\Users\SEBIN\Desktop\pdrworld-deploy.zip"
     make_zip(project_dir, out_zip)
+
