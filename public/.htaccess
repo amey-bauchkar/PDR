@@ -206,20 +206,21 @@
   Redirect 301 /bypass-switch.html /products/bypass-switch
 
 
-  # Exclude API and CDN routes from static file handling so the Node backend (Passenger) processes them
-  RewriteCond %{REQUEST_URI} !^/(api|cdn) [NC]
-  RewriteCond %{REQUEST_URI} \.(js|css|png|jpg|jpeg|gif|webp|svg|ico|pdf|woff|woff2|ttf|eot|json|xml|txt)$ [NC]
+  # ─── Static files and assets: serve directly without rewriting ───
+  RewriteCond %{REQUEST_FILENAME} -f
   RewriteRule ^ - [L]
 
-  # ─── Serve prerendered HTML if it exists ───
-  # e.g. /products/sfp-400g → /products/sfp-400g/index.html (with correct OG tags)
-  # This is critical for WhatsApp, LinkedIn, Google, and all social crawlers
-  RewriteCond %{REQUEST_URI} !^/(api|cdn) [NC]
-  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}/index.html -f
-  RewriteRule ^ %{REQUEST_URI}/index.html [L]
+  # ─── If a directory with index.html exists, serve it directly ───
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_FILENAME}/index.html -f
+  RewriteRule ^(.*)$ $1/index.html [L]
 
-  # ─── Final fallback: serve root index.html (SPA shell) ───
-  # Only reached if no prerendered page exists AND no 404.html exists
+  # ─── If prerendered static route index.html exists, serve it (e.g. /products/sfp-400g -> products/sfp-400g/index.html) ───
   RewriteCond %{REQUEST_URI} !^/(api|cdn) [NC]
-  RewriteRule ^ /index.html [L]
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^(.*)$ $1/index.html [L]
+
+  # ─── Final fallback for client-side SPA routes (non-existing files/folders) ───
+  RewriteCond %{REQUEST_URI} !^/(api|cdn) [NC]
+  RewriteRule ^ index.html [L]
 </IfModule>
