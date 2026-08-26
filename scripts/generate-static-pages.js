@@ -274,6 +274,14 @@ export function generateStaticPages() {
     const prodImg = resolveProductImage(product);
     const prodUrl = `${SITE_URL}/products/${product.slug}`;
 
+    const additionalProperty = Array.isArray(product.specs)
+      ? product.specs.map((s) => ({
+          '@type': 'PropertyValue',
+          name: s.label,
+          value: s.value,
+        }))
+      : [];
+
     const jsonLd = {
       '@context': 'https://schema.org/',
       '@type': 'Product',
@@ -285,12 +293,13 @@ export function generateStaticPages() {
         '@type': 'Brand',
         name: 'PDR World',
       },
-      offers: {
-        '@type': 'Offer',
-        availability: 'https://schema.org/InStock',
-        priceCurrency: 'INR',
-        url: prodUrl,
+      manufacturer: {
+        '@type': 'Organization',
+        name: 'PDR Videotronics India Pvt. Ltd.',
+        url: SITE_URL,
       },
+      url: prodUrl,
+      ...(additionalProperty.length > 0 ? { additionalProperty } : {}),
     };
 
     const prodHtml = injectMeta(baseHtml, {

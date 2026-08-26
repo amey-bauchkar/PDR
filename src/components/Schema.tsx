@@ -133,14 +133,22 @@ export function ProductSchema({
   specs: { label: string; value: string }[];
   image?: string;
 }) {
-  const specsText = specs.map((s) => `${s.label}: ${s.value}`).join('; ');
+  const specsText = specs?.length ? specs.map((s) => `${s.label}: ${s.value}`).join('; ') : '';
+  const fullDesc = specsText ? `${description}. Specifications: ${specsText}` : description;
+  
+  const additionalProperty = specs?.map((s) => ({
+    '@type': 'PropertyValue',
+    name: s.label,
+    value: s.value,
+  })) ?? [];
+
   return (
     <JsonLd
       data={{
         '@context': 'https://schema.org',
         '@type': 'Product',
         name,
-        description: `${description}. Specifications: ${specsText}`,
+        description: fullDesc,
         url: `${SITE}/products/${slug}`,
         image: image ?? `${SITE}/images/fiber-patchcord.webp`,
         brand: {
@@ -150,18 +158,10 @@ export function ProductSchema({
         manufacturer: {
           '@type': 'Organization',
           name: 'PDR Videotronics India Pvt. Ltd.',
+          url: SITE,
         },
         category,
-        offers: {
-          '@type': 'Offer',
-          url: `${SITE}/products/${slug}`,
-          priceCurrency: 'INR',
-          availability: 'https://schema.org/InStock',
-          seller: {
-            '@type': 'Organization',
-            name: 'PDR World',
-          },
-        },
+        ...(additionalProperty.length > 0 ? { additionalProperty } : {}),
       }}
     />
   );
