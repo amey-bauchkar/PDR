@@ -42,6 +42,9 @@ export default function Seo({
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
+      <link rel="alternate" hrefLang="en-in" href={url} />
+      <link rel="alternate" hrefLang="en" href={url} />
+      <link rel="alternate" hrefLang="x-default" href={url} />
       <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content="PDR World" />
       <meta property="og:title" content={resolvedOgTitle} />

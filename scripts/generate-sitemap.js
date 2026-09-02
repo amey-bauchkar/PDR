@@ -1,73 +1,92 @@
-/**
- * Generate sitemap.xml from actual product data.
- * Replaces the hand-maintained sitemap that drifted from reality.
- * 
- * Run: node scripts/generate-sitemap.js
- * Called automatically during build:full
- */
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const ROOT_DIR = path.resolve(__dirname, '..');
+const SITE_URL = 'https://pdrworld.com';
 
 const productsData = JSON.parse(
-  fs.readFileSync(path.join(__dirname, '../src/data/products.json'), 'utf8')
+  fs.readFileSync(path.join(ROOT_DIR, 'src/data/products.json'), 'utf8')
 );
 
-const SITE = 'https://pdrworld.com';
-
-// Core pages (static)
-const corePages = [
-  { loc: '/', changefreq: 'weekly', priority: '1.0' },
-  { loc: '/about', changefreq: 'monthly', priority: '0.8' },
-  { loc: '/products', changefreq: 'weekly', priority: '0.9' },
-  { loc: '/solutions', changefreq: 'monthly', priority: '0.8' },
-  { loc: '/resources', changefreq: 'monthly', priority: '0.6' },
-  { loc: '/contact', changefreq: 'monthly', priority: '0.7' },
-  { loc: '/cable-configurator', changefreq: 'monthly', priority: '0.7' },
-  { loc: '/fiber-selector', changefreq: 'monthly', priority: '0.7' },
-  { loc: '/terms', changefreq: 'yearly', priority: '0.3' },
-  { loc: '/privacy', changefreq: 'yearly', priority: '0.3' },
+const STATIC_ROUTES = [
+  { path: '', priority: '1.0', changefreq: 'daily' },
+  { path: 'about', priority: '0.8', changefreq: 'monthly' },
+  { path: 'products', priority: '0.9', changefreq: 'daily' },
+  { path: 'solutions', priority: '0.8', changefreq: 'monthly' },
+  { path: 'resources', priority: '0.8', changefreq: 'weekly' },
+  { path: 'contact', priority: '0.8', changefreq: 'monthly' },
+  { path: 'cable-configurator', priority: '0.8', changefreq: 'monthly' },
+  { path: 'fiber-selector', priority: '0.8', changefreq: 'monthly' },
+  { path: 'terms', priority: '0.5', changefreq: 'yearly' },
+  { path: 'privacy', priority: '0.5', changefreq: 'yearly' },
 ];
 
-// Product category pages (static)
-const categoryPages = [
-  { loc: '/products/active-components', changefreq: 'weekly', priority: '0.8' },
-  { loc: '/products/passive-components', changefreq: 'weekly', priority: '0.8' },
-  { loc: '/products/cable-management', changefreq: 'weekly', priority: '0.8' },
-  { loc: '/products/test-measuring', changefreq: 'weekly', priority: '0.8' },
-  { loc: '/products/specialty-drones', changefreq: 'monthly', priority: '0.7' },
-  { loc: '/products/maintenance-tools', changefreq: 'monthly', priority: '0.7' },
+const CATEGORY_ROUTES = [
+  'products/active-components',
+  'products/passive-components',
+  'products/cable-management',
+  'products/test-measuring',
+  'products/specialty-drones',
+  'products/maintenance-tools',
 ];
 
-// Product detail pages — generated from actual data
-const productPages = productsData
-  .filter(p => p.status === 'Active' && p.slug)
-  .map(p => ({
-    loc: `/products/${p.slug}`,
-    changefreq: 'monthly',
-    priority: '0.6',
-  }));
+export function generateSitemap() {
+  const today = new Date().toISOString().split('T')[0];
 
-const allPages = [...corePages, ...categoryPages, ...productPages];
+  const entries = [];
 
-// Build XML
-const xml = `<?xml version="1.0" encoding="UTF-8"?>
+  // Static routes
+  for (const r of STATIC_ROUTES) {
+    const loc = r.path ? `${SITE_URL}/${r.path}` : `${SITE_URL}/`;
+    entries.push(`  <url>
+    <loc>${loc}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${r.changefreq}</changefreq>
+    <priority>${r.priority}</priority>
+  </url>`);
+  }
+
+  // Category routes
+  for (const cat of CATEGORY_ROUTES) {
+    entries.push(`  <url>
+    <loc>${SITE_URL}/${cat}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`);
+  }
+
+  // Active products (excluding any deleted items)
+  for (const p of productsData) {
+    if (!p.slug || p.status === 'Archived' || p.slug === 'easyget-wifi') continue;
+    const lastmod = p.updatedAt ? p.updatedAt.split('T')[0] : today;
+    entries.push(`  <url>
+    <loc>${SITE_URL}/products/${p.slug}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>`);
+  }
+
+  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Core Pages -->
-${corePages.map(p => `  <url><loc>${SITE}${p.loc}</loc><changefreq>${p.changefreq}</changefreq><priority>${p.priority}</priority></url>`).join('\n')}
-
-  <!-- Product Categories -->
-${categoryPages.map(p => `  <url><loc>${SITE}${p.loc}</loc><changefreq>${p.changefreq}</changefreq><priority>${p.priority}</priority></url>`).join('\n')}
-
-  <!-- Product Detail Pages (${productPages.length} products) -->
-${productPages.map(p => `  <url><loc>${SITE}${p.loc}</loc><changefreq>${p.changefreq}</changefreq><priority>${p.priority}</priority></url>`).join('\n')}
+${entries.join('\n')}
 </urlset>
 `;
 
-const outputPath = path.join(__dirname, '../public/sitemap.xml');
-fs.writeFileSync(outputPath, xml, 'utf8');
+  // Write to public and dist if dist exists
+  fs.writeFileSync(path.join(ROOT_DIR, 'public/sitemap.xml'), sitemapXml);
+  const distPath = path.join(ROOT_DIR, 'dist/sitemap.xml');
+  if (fs.existsSync(path.join(ROOT_DIR, 'dist'))) {
+    fs.writeFileSync(distPath, sitemapXml);
+  }
 
-console.log(`Generated sitemap.xml with ${allPages.length} URLs (${corePages.length} core + ${categoryPages.length} categories + ${productPages.length} products)`);
+  console.log(`✅ Generated sitemap.xml with ${entries.length} active URLs (easyget-wifi excluded).`);
+}
+
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  generateSitemap();
+}

@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { Routes, Route } from 'react-router';
+import { Routes, Route, Navigate } from 'react-router';
 import Layout from './components/Layout';
 import { RfqCartProvider } from './components/RfqCartProvider';
 import RfqCartWidget from './components/RfqCartWidget';
@@ -39,6 +39,8 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="products" element={<Products />} />
+          <Route path="products/nano-otdr" element={<Navigate to="/products/pocket-otdr" replace />} />
+          <Route path="nano-otdr" element={<Navigate to="/products/pocket-otdr" replace />} />
           <Route path="products/:slug" element={<ProductRoute />} />
           <Route path="solutions" element={<Solutions />} />
           <Route path="resources" element={<Resources />} />

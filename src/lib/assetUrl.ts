@@ -92,6 +92,60 @@ const LOCAL_DATASHEET_MAP: Record<string, string> = {
   "wifi-wireless-fiber-endface-microscope": "/datasheets/wifi-wireless-fiber-endface-microscope.pdf",
 };
 
+const SYNCED_DATASHEET_FILENAMES: Record<string, string> = {
+  "attenuator": "1783331246231-variablefiberopticattenuator_datasheet.pdf",
+  "bare-fiber-adapter": "1783331270086-bare_fiber_adapter_datasheet.pdf",
+  "cassette-cleaner": "1783331297990-fiberopticconnectorcleaner_datasheet.pdf",
+  "cat6-panel": "1783331102628-cat6_patchpanel_datasheet_v3.pdf",
+  "cat6-patch-cord": "1783684524968-utp_cat6_patchcord_datasheet_corrected.pdf",
+  "cleaner-pen": "1783331345207-fiberopticcleanerpen_datasheet.pdf",
+  "cpri-patchcord": "1783331367036-cpri_patchcord_datasheet_corrected.pdf",
+  "cwdm": "1783331394449-cwdm_muxdemux_datasheet.pdf",
+  "dac": "1783598330651-dac_datasheet_revised.pdf",
+  "drone": "1783768884035-fpv_optical_terminal_datasheet.pdf",
+  "dwdm": "1783331412913-dwdm_muxdemux_datasheet.pdf",
+  "fanout-patch-cords": "1783331439851-fanoutpatchcord_datasheet_corrected.pdf",
+  "fdb": "1783331124478-fdb24b_datasheet_v2.pdf",
+  "fiber-spool": "1783935128770-g652d_fiberspool_datasheet.pdf",
+  "field-connector": "1783934825982-fastconnector_datasheet.pdf",
+  "fo-patchcords": "1783331574671-patchcord_pigtail_datasheet_corrected.pdf",
+  "fusion-splicer": "1786047550061-fusionsplicer_pdr618h_datasheet.pdf",
+  "heat-shrink-closure": "1786047183918-spliceclosure_datasheet_v2.pdf",
+  "horizontal-closure": "1786047223882-horizontalspliceclosure_htsc-tl16_datasheet.pdf",
+  "hybrid-adapter": "1786046950530-hybrid-adapter-datasheet.pdf",
+  "mode-conditioning": "1786098830941-modeconditioningpatchcord_datasheet.pdf",
+  "mpo-assembly": "1784550973009-mpo_cableassembly_datasheet_corrected.pdf",
+  "mpo-cleaner": "mpo_cleaner_pen_datasheet.pdf",
+  "next-gen-splicer": "1786047600801-fusion-splicer-pdr4107s-datasheet.pdf",
+  "olps": "1786046587454-olps_datasheet.pdf",
+  "plc-splitter": "1786115520063-plc_splitter_datasheet.pdf",
+  "pocket-otdr": "1786095647272-nanootdr_datasheet.pdf",
+  "pof-patchcord": "1786046896967-pof_cableassembly_datasheet.pdf",
+  "pon-power-meter": "1786047409006-pdr4213b_ponpowermeter_datasheet.pdf",
+  "rack-mount-fms": "1786041407889-rackmount_fms_datasheet_v5_rackonly.pdf",
+  "rapid-push": "1786103244212-fttx-smart-bullet-drop-cable-assembly.pdf",
+  "regular-opm": "1786095956617-miniopticalpowermeter_pdr60_datasheet.pdf",
+  "sfp-100g-bidi": "1786046230361-optical_transceivers_datasheet_v2_compressed-1-.pdf",
+  "sfp-10g-bidi": "1786046265208-optical_transceivers_datasheet_v2_compressed-1-.pdf",
+  "sfp-10g-dual": "1786046420493-optical_transceivers_datasheet_v2_compressed-1-.pdf",
+  "sfp-1g-bidi": "1786046458495-optical_transceivers_datasheet_v2_compressed-1-.pdf",
+  "sfp-25g-bidi": "1786046391302-optical_transceivers_datasheet_v2_compressed-1-.pdf",
+  "sfp-400g": "1786046329452-optical_transceivers_datasheet_v2_compressed-1-.pdf",
+  "sfp-40g": "1786046359681-optical_transceivers_datasheet_v2_compressed-1-.pdf",
+  "sfp-copper": "1786046535110-optical_transceivers_datasheet_v2_compressed-1-.pdf",
+  "smart-sfp": "1787749869657-optismart-sfp_otdr.pdf",
+  "smpte-assembly": "1786115559927-smpte_cableassembly_datasheet.pdf",
+  "vfl": "1786103196405-bml209_faultlocator_datasheet.pdf",
+  "wall-mount": "1786047123982-wallmountenclosure_datasheet_v2.pdf",
+  "bypass-switch": "1783598428726-optical_bypass_switch_datasheet.pdf",
+  "htb": "1786041472279-htb_datasheet_v2.pdf",
+  "sfp-1g-dual": "1786046500544-optical_transceivers_datasheet_v2_compressed-1-.pdf",
+  "uav-fiber-optic-spool": "1786092970636-pdr_drone_fiber_optic_spool_datasheet.pdf",
+  "fpv-optical-terminal": "1787750364419-fpv_optical_terminal_datasheet.pdf",
+  "fiber-optic-adapter": "1783949043808-fiber_optic_adapter_datasheet.pdf",
+  "wifi-wireless-fiber-endface-microscope": "1786095925238-easyget-wifi-wireless-fiber-endface-microscope.pdf",
+};
+
 /**
  * Extracts the product slug from a Supabase Storage URL.
  * e.g. "https://xxx.supabase.co/storage/v1/object/public/product-images/aoc/product-image.png" → "aoc"
@@ -102,10 +156,16 @@ function extractSlugFromSupabaseUrl(url: string, bucket: string): string | null 
   return match ? match[1] : null;
 }
 
+function extractFileNameFromUrl(url: string): string | null {
+  const clean = url.split('?')[0];
+  const parts = clean.split('/');
+  return parts.length > 0 ? parts[parts.length - 1] : null;
+}
+
 /**
  * Converts a stored object key, Supabase Storage URL, or legacy proxy path
- * into a URL that is served locally from Hostinger (zero egress) when possible,
- * falling back to the original Supabase URL for any new admin-uploaded assets.
+ * into a URL that is served locally from Hostinger (zero egress) for baseline files,
+ * while seamlessly allowing new admin uploads to pass through immediately.
  */
 export function getAssetUrl(key: string | undefined | null): string {
   if (!key) return '';
@@ -119,13 +179,17 @@ export function getAssetUrl(key: string | undefined | null): string {
     // No local mapping (new admin-uploaded product) — fall through to original URL
   }
 
-  // Intercept Supabase Storage URLs for product-datasheets bucket → serve locally
+  // Intercept Supabase Storage URLs for product-datasheets bucket:
+  // Only serve locally if this matches the baseline file that was synced to disk at build time.
+  // If an admin uploaded a newer datasheet in Supabase, pass through the new URL directly!
   if (key.includes('supabase.co/storage') && key.includes('/product-datasheets/')) {
     const slug = extractSlugFromSupabaseUrl(key, 'product-datasheets');
-    if (slug && LOCAL_DATASHEET_MAP[slug]) {
-      return LOCAL_DATASHEET_MAP[slug];
+    const fileName = extractFileNameFromUrl(key);
+    if (slug && LOCAL_DATASHEET_MAP[slug] && fileName && SYNCED_DATASHEET_FILENAMES[slug] === fileName) {
+      return LOCAL_DATASHEET_MAP[slug]; // Baseline file → local zero egress
     }
-    // No local mapping (new admin-uploaded datasheet) — fall through to Egress Proxy
+    // Newly uploaded file with different timestamp or new slug → return authentic URL directly
+    return key;
   }
 
   // For backward compatibility: if a URL was previously saved as a CDN proxy URL (which fails on Hostinger due to static file interception),

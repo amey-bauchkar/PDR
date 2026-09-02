@@ -12,7 +12,7 @@
     "prerender": "node prerender.js",
     "generate-catalogue": "node scripts/generate-catalogue.js",
     "generate-sitemap": "node scripts/generate-sitemap.js",
-    "build:full": "npm install && cd backend && npm install && cd .. && node scripts/sync-supabase.js && npm run generate-catalogue && npm run generate-sitemap && npm run build",
+    "build:full": "node scripts/sync-supabase.js && node scripts/sync-assets.js && npm run generate-catalogue && npm run generate-sitemap && npm run build",
     "start": "node backend/dist/index.js",
     "verify-deployment": "node scripts/verify-deployment.js"
   },

@@ -483,7 +483,7 @@
               "tag": "POF",
               "img": "/images/products/pof-patchcord.png",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><circle cx=\"24\" cy=\"24\" r=\"6\"></circle></svg>",
-              "name": "POF — Plastic Optical Fiber Patchcord",
+              "name": "POF \u2014 Plastic Optical Fiber Patchcord",
               "blurb": "Large-core plastic fiber for short-range consumer and industrial communication links.",
               "pills": [
                 "PMMA Core",
@@ -491,7 +491,7 @@
               ],
               "detailsSlug": "pof-patchcord",
               "addItem": {
-                "title": "POF — Plastic Optical Fiber Patchcord",
+                "title": "POF \u2014 Plastic Optical Fiber Patchcord",
                 "specs": "Standard Factory Specs",
                 "image": "/images/products/pof-patchcord.png"
               }
@@ -690,7 +690,7 @@
               "img": "/images/products/fiber-spool.png",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><circle cx=\"24\" cy=\"24\" r=\"16\"></circle><circle cx=\"24\" cy=\"24\" r=\"6\"></circle><path d=\"M24 8v16\"></path><path d=\"M8 24h16\"></path></svg>",
               "name": "G652D Fiber Spool / Fiber Drum",
-              "blurb": "Precision-wound fiber optic spool for storage, testing, and emergency field restoration. Available in SM and MM, 100m – 2km lengths.",
+              "blurb": "Precision-wound fiber optic spool for storage, testing, and emergency field restoration. Available in SM and MM, 100m \u2013 2km lengths.",
               "pills": [
                 "SM / MM",
                 "100m - 2km"
@@ -721,7 +721,7 @@
               "img": "/images/live/rack-mount-fiber-management-system.webp",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"6\" y=\"16\" width=\"36\" height=\"16\" rx=\"2\"></rect><line x1=\"12\" y1=\"24\" x2=\"16\" y2=\"24\"></line><line x1=\"20\" y1=\"24\" x2=\"24\" y2=\"24\"></line><line x1=\"28\" y1=\"24\" x2=\"32\" y2=\"24\"></line><circle cx=\"8\" cy=\"20\" r=\"1\"></circle><circle cx=\"8\" cy=\"28\" r=\"1\"></circle><circle cx=\"40\" cy=\"20\" r=\"1\"></circle><circle cx=\"40\" cy=\"28\" r=\"1\"></circle></svg>",
               "name": "Rack Mount Fiber Management System",
-              "blurb": "19â€ Rack Mount fiber-optic enclosures help deliver modularity, flexibility and customization in design.",
+              "blurb": "19\u00e2\u20ac\u009d Rack Mount fiber-optic enclosures help deliver modularity, flexibility and customization in design.",
               "pills": [
                 "19\" Rack",
                 "Modular"
@@ -886,7 +886,7 @@
               "blurb": "Standard bench/field OPM for 800-1700nm range, auto-wavelength detection, LCD display.",
               "pills": [
                 "800-1700nm",
-                "Auto-λ"
+                "Auto-\u03bb"
               ],
               "detailsSlug": "regular-opm",
               "addItem": {
@@ -905,7 +905,7 @@
               "tag": "Pocket",
               "img": "/images/live/mini-otdr-pdr4402s.webp",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"10\" width=\"20\" height=\"28\" rx=\"2\"></rect><rect x=\"16\" y=\"14\" width=\"16\" height=\"12\" rx=\"1\"></rect><circle cx=\"24\" cy=\"32\" r=\"2\"></circle></svg>",
-              "name": "Pocket OTDR",
+              "name": "Nano OTDR",
               "blurb": "Ultra-compact handheld OTDR for quick field checks; single-mode and multimode models.",
               "pills": [
                 "Pocket",
@@ -913,7 +913,7 @@
               ],
               "detailsSlug": "pocket-otdr",
               "addItem": {
-                "title": "Pocket OTDR",
+                "title": "Nano OTDR",
                 "specs": "Standard Factory Specs",
                 "image": "/images/live/mini-otdr-pdr4402s.webp"
               }
@@ -992,7 +992,7 @@
               "tag": "VFL",
               "img": "/images/products/vfl.png",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M16 8l16 16-16 16\"></path><line x1=\"8\" y1=\"24\" x2=\"32\" y2=\"24\"></line></svg>",
-              "name": "VFL — Visual Fault Locator",
+              "name": "VFL \u2014 Visual Fault Locator",
               "blurb": "Pen-type 650nm red laser source for fiber break, bend, and fault detection up to 30km.",
               "pills": [
                 "650nm Red Laser",
@@ -1013,7 +1013,7 @@
       "id": "specialty",
       "eyebrow": "Drone Optical Fiber Kit",
       "heading": "Aerial Deployment Solutions",
-      "intro": "Fiber-tethered drone systems for secure, jam-proof communication — built for defence and FPV operations.",
+      "intro": "Fiber-tethered drone systems for secure, jam-proof communication \u2014 built for defence and FPV operations.",
       "groups": [
         {
           "subhead": "",
@@ -1114,7 +1114,7 @@
               "tag": "VFL",
               "img": "/images/products/vfl.png",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M24 10l4 8 8 4-8 4-4 8-4-8-8-4 8-4z\"></path><circle cx=\"24\" cy=\"24\" r=\"2\"></circle></svg>",
-              "name": "VFL — Visual Fault Locator",
+              "name": "VFL \u2014 Visual Fault Locator",
               "blurb": "650nm visible red laser (1mW) to detect breaks, micro-bends, and faults up to 10km.",
               "pills": [
                 "650nm Laser",

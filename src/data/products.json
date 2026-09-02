@@ -3,7 +3,7 @@
     "slug": "aoc",
     "name": "Active Optical Cable (AOC)",
     "category": "Active Components > Active Optical Cable (AOC)",
-    "title": "Active Optical Cable (AOC) \u2014 Active Components > Active Optical Cable (AOC) | PDR World",
+    "title": "Active Optical Cable (AOC) — Active Components > Active Optical Cable (AOC) | PDR World",
     "description": "Explore high-performance Active Optical Cable (AOC) engineered by PDR World for enterprise telecom and data center applications.",
     "canonical": "https://pdrworld.com/products/aoc",
     "tagline": "",
@@ -23,16 +23,16 @@
     "name": "Variable Fiber Attenuator",
     "category": "Passive Components > Attenuator",
     "title": "Variable Fiber Attenuator - OVA Series | PDR World",
-    "description": "PDR Variable Fiber Optic Attenuator (VOA) provides continuously adjustable attenuation up to 30 dB for single-mode and multimode fiber with accurate, low-loss performance across 1260\u20131650 nm for telecom, CATV, data center, and test applications.",
+    "description": "PDR Variable Fiber Optic Attenuator (VOA) provides continuously adjustable attenuation up to 30 dB for single-mode and multimode fiber with accurate, low-loss performance across 1260–1650 nm for telecom, CATV, data center, and test applications.",
     "canonical": "https://pdrworld.com/products/attenuator",
     "tagline": "Variable optical attenuator for precise in-line signal level control.",
     "status": "Active",
     "imageUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-images/attenuator/product-image.png",
     "features": [
       "Wide attenuation range of 0 to 30 dB with precise, continuous adjustment capability",
-      "High attenuation accuracy of \u00b10.5 dB for reliable signal level management",
-      "Low insertion loss of \u2264 1.0 dB to minimise signal degradation in the optical path",
-      "High return loss of \u2265 50 dB (SM) for excellent back-reflection suppression",
+      "High attenuation accuracy of ±0.5 dB for reliable signal level management",
+      "Low insertion loss of ≤ 1.0 dB to minimise signal degradation in the optical path",
+      "High return loss of ≥ 50 dB (SM) for excellent back-reflection suppression",
       "Available in SC, LC, FC, and ST connector interfaces for universal compatibility",
       "Supports both single-mode and multi-mode fiber types"
     ],
@@ -49,7 +49,7 @@
       },
       {
         "label": "Attenuation Accuracy",
-        "value": "\u00b1 0.5 dB"
+        "value": "± 0.5 dB"
       },
       {
         "label": "Resolution",
@@ -57,11 +57,11 @@
       },
       {
         "label": "Insertion Loss",
-        "value": "\u2264 1.0 dB"
+        "value": "≤ 1.0 dB"
       },
       {
         "label": "Return Loss",
-        "value": "\u2265 50 dB (SM)"
+        "value": "≥ 50 dB (SM)"
       },
       {
         "label": "Wavelength Range",
@@ -77,23 +77,23 @@
       },
       {
         "label": "Polarisation Dependent Loss (PDL)",
-        "value": "\u2264 0.2 dB"
+        "value": "≤ 0.2 dB"
       },
       {
         "label": "Repeatability",
-        "value": "\u2264 \u00b1 0.2 dB"
+        "value": "≤ ± 0.2 dB"
       },
       {
         "label": "Operating Temperature",
-        "value": "-20\u00b0C to +70\u00b0C"
+        "value": "-20°C to +70°C"
       },
       {
         "label": "Storage Temperature",
-        "value": "40\u00b0C to +85\u00b0C"
+        "value": "40°C to +85°C"
       },
       {
         "label": "Durability",
-        "value": "\u2265 1000 adjustment cycles"
+        "value": "≥ 1000 adjustment cycles"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><path d=\"M18 18l6 6-6 6\"></path><path d=\"M30 18l-6 6 6 6\"></path></svg>",
@@ -137,7 +137,7 @@
       },
       {
         "label": "Fiber Cladding Diameter",
-        "value": "125 \u00b5m (standard)"
+        "value": "125 µm (standard)"
       },
       {
         "label": "Fiber Holding Mechanism",
@@ -145,15 +145,15 @@
       },
       {
         "label": "Insertion Loss",
-        "value": "SC/FC/ST: \u2264 0.5 dB | LC: \u2264 0.5 dB | SMA: \u2264 1.0 dB (typical)"
+        "value": "SC/FC/ST: ≤ 0.5 dB | LC: ≤ 0.5 dB | SMA: ≤ 1.0 dB (typical)"
       },
       {
         "label": "Return Loss",
-        "value": "SC/FC/ST: \u2265 20 dB | LC: \u2265 20 dB | SMA: \u2265 14 dB"
+        "value": "SC/FC/ST: ≥ 20 dB | LC: ≥ 20 dB | SMA: ≥ 14 dB"
       },
       {
         "label": "Mating Durability",
-        "value": "\u2265 500 mating cycles"
+        "value": "≥ 500 mating cycles"
       },
       {
         "label": "Housing Material",
@@ -161,11 +161,11 @@
       },
       {
         "label": "Operating Temperature",
-        "value": "20\u00b0C to +70\u00b0C"
+        "value": "20°C to +70°C"
       },
       {
         "label": "Storage Temperature",
-        "value": "-40\u00b0C to +85\u00b0C"
+        "value": "-40°C to +85°C"
       },
       {
         "label": "Operating Humidity",
@@ -240,8 +240,8 @@
         "value": "One-push mechanical advance"
       },
       {
-        "label": "Dimensions (L\u00d7W\u00d7H)",
-        "value": "115 mm \u00d7 79 mm \u00d7 32 mm"
+        "label": "Dimensions (L×W×H)",
+        "value": "115 mm × 79 mm × 32 mm"
       },
       {
         "label": "Weight",
@@ -333,11 +333,11 @@
       },
       {
         "label": "Insulation Resistance",
-        "value": "> 500 M\u2126 (minimum)"
+        "value": "> 500 MΩ (minimum)"
       },
       {
         "label": "DC Resistance",
-        "value": "< 0.1 \u2126 (maximum)"
+        "value": "< 0.1 Ω (maximum)"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"6\" y=\"16\" width=\"36\" height=\"16\" rx=\"2\"></rect><line x1=\"12\" y1=\"20\" x2=\"16\" y2=\"20\"></line><line x1=\"12\" y1=\"28\" x2=\"16\" y2=\"28\"></line><line x1=\"20\" y1=\"20\" x2=\"24\" y2=\"20\"></line><line x1=\"20\" y1=\"28\" x2=\"24\" y2=\"28\"></line><line x1=\"28\" y1=\"20\" x2=\"32\" y2=\"20\"></line><line x1=\"28\" y1=\"28\" x2=\"32\" y2=\"28\"></line></svg>",
@@ -357,11 +357,11 @@
     "status": "Active",
     "imageUrl": "",
     "features": [
-      "U/UTP 4-pair construction with stranded 24 AWG (7\u00d70.18 mm) conductors for flexibility and durability",
+      "U/UTP 4-pair construction with stranded 24 AWG (7×0.18 mm) conductors for flexibility and durability",
       "HDPE insulation for low capacitance and consistent electrical performance across all four pairs",
       "Cat 6 RJ45 plug termination with moulded PVC strain relief boot, colour-matched to outer jacket",
       "Outer jacket available in PVC or LSZH, specify at time of order to suit installation requirements",
-      "Jacket outer diameter 5.8 \u00b1 0.20 mm with ripcord for easy stripping during termination",
+      "Jacket outer diameter 5.8 ± 0.20 mm with ripcord for easy stripping during termination",
       "Pair colour coding: Blue/White, Orange/White, Green/White, Brown/White"
     ],
     "applications": [
@@ -381,7 +381,7 @@
       },
       {
         "label": "Conductor",
-        "value": "Stranded 24 AWG (7\u00d70.18 mm)"
+        "value": "Stranded 24 AWG (7×0.18 mm)"
       },
       {
         "label": "Insulation Material",
@@ -389,7 +389,7 @@
       },
       {
         "label": "Insulation Diameter",
-        "value": "0.91 \u00b1 0.01 mm"
+        "value": "0.91 ± 0.01 mm"
       },
       {
         "label": "Pair Colours",
@@ -413,11 +413,11 @@
       },
       {
         "label": "Jacket Thickness",
-        "value": "0.6 \u00b1 0.05 mm"
+        "value": "0.6 ± 0.05 mm"
       },
       {
         "label": "Outer Diameter",
-        "value": "5.8 \u00b1 0.20 mm"
+        "value": "5.8 ± 0.20 mm"
       },
       {
         "label": "Ripcord",
@@ -425,7 +425,7 @@
       },
       {
         "label": "Rated Temperature",
-        "value": "60\u00b0C, 75\u00b0C, 90\u00b0C"
+        "value": "60°C, 75°C, 90°C"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M12 24h24\"></path><rect x=\"6\" y=\"20\" width=\"8\" height=\"8\" rx=\"2\"></rect><rect x=\"34\" y=\"20\" width=\"8\" height=\"8\" rx=\"2\"></rect></svg>",
@@ -450,7 +450,7 @@
       "Anti-static resin body, prevents electrostatic charge build-up during cleaning",
       "Densely stranded, debris-free micro-fiber cleaning element for thorough end-face cleaning",
       "Extendable tip design reaches recessed connectors on panels and equipment",
-      "Cleaning system rotates 180\u00b0 for a full, complete sweep of the ferrule end face"
+      "Cleaning system rotates 180° for a full, complete sweep of the ferrule end face"
     ],
     "applications": [
       "Fiber network panels and patch panel assemblies in data centres",
@@ -473,7 +473,7 @@
       },
       {
         "label": "Cleaning Rotation",
-        "value": "180\u00b0 full sweep per actuation"
+        "value": "180° full sweep per actuation"
       },
       {
         "label": "Cleanings Per Unit",
@@ -515,7 +515,7 @@
     "name": "CPRI Patchcord",
     "category": "Passive Components > Cable Assembly",
     "title": "CPRI Patchcord | PDR World",
-    "description": "PDR CPRI Outdoor Waterproof Patch Cords feature rugged IP-rated, blind-mate fiber assemblies with multiple waterproof connector options, armored/non-armored cable designs, and 2\u201324 core single-mode or multimode fiber for harsh outdoor applications.",
+    "description": "PDR CPRI Outdoor Waterproof Patch Cords feature rugged IP-rated, blind-mate fiber assemblies with multiple waterproof connector options, armored/non-armored cable designs, and 2–24 core single-mode or multimode fiber for harsh outdoor applications.",
     "canonical": "https://pdrworld.com/products/cpri-patchcord",
     "tagline": "Outdoor waterproof fiber optic assembly",
     "status": "Active",
@@ -537,7 +537,7 @@
     "specs": [
       {
         "label": "Cable Diameter",
-        "value": "5.0 mm | 7.0 mm | 8.0 mm (\u00b10.3 mm)"
+        "value": "5.0 mm | 7.0 mm | 8.0 mm (±0.3 mm)"
       },
       {
         "label": "Connector Housing Types",
@@ -569,27 +569,27 @@
       },
       {
         "label": "Operating Temperature",
-        "value": "-40\u00b0C to +85\u00b0C"
+        "value": "-40°C to +85°C"
       },
       {
         "label": "SM Insertion Loss, Typical",
-        "value": "\u22640.30 dB (IEC 61300-3-34)"
+        "value": "≤0.30 dB (IEC 61300-3-34)"
       },
       {
         "label": "SM Insertion Loss, Maximum",
-        "value": "\u22640.75 dB (IEC 61300-3-34)"
+        "value": "≤0.75 dB (IEC 61300-3-34)"
       },
       {
         "label": "MM Insertion Loss, Typical",
-        "value": "\u22640.50 dB (IEC 61300-3-34)"
+        "value": "≤0.50 dB (IEC 61300-3-34)"
       },
       {
         "label": "MM Insertion Loss, Maximum",
-        "value": "\u22640.75 dB (IEC 61300-3-34)"
+        "value": "≤0.75 dB (IEC 61300-3-34)"
       },
       {
         "label": "SM Return Loss",
-        "value": "\u226550 dB (PC) | \u226560 dB (APC) (IEC 61300-3-6)"
+        "value": "≥50 dB (PC) | ≥60 dB (APC) (IEC 61300-3-6)"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M12 24h24\"></path><circle cx=\"10\" cy=\"24\" r=\"4\"></circle><circle cx=\"38\" cy=\"24\" r=\"4\"></circle></svg>",
@@ -603,7 +603,7 @@
     "name": "CWDM Mux / DeMux Module",
     "category": "Passive Components > WDM & Splitters",
     "title": "CWDM Mux / DeMux Module | PDR World",
-    "description": "PDR CWDM Mux/DeMux offers 4/8/16-channel CWDM (1270\u20131610 nm) in ABS, LGX, and 1U rack formats with low loss, high isolation, and reliable optical performance.",
+    "description": "PDR CWDM Mux/DeMux offers 4/8/16-channel CWDM (1270–1610 nm) in ABS, LGX, and 1U rack formats with low loss, high isolation, and reliable optical performance.",
     "canonical": "https://pdrworld.com/products/cwdm",
     "tagline": "CWDM multiplexer / demultiplexer modules for cost-effective wavelength expansion.",
     "status": "Active",
@@ -611,9 +611,9 @@
     "features": [
       "Four form factors: ABS Compact Module (two sizes), 1U Rack Equipment, and LGX Module",
       "Supports 4, 8, and 16 channel configurations across the CWDM grid from 1270 nm to 1610 nm",
-      "Low insertion loss: \u22641.6 dB (4ch), \u22642.8 dB (8ch), \u22644.5 dB (16ch) for ABS Compact Module",
+      "Low insertion loss: ≤1.6 dB (4ch), ≤2.8 dB (8ch), ≤4.5 dB (16ch) for ABS Compact Module",
       "High adjacent channel isolation >30 dB; non-adjacent channel isolation >40 dB",
-      "Low passband ripple \u22640.40 dB and polarization dependent loss <0.30 dB across all variants",
+      "Low passband ripple ≤0.40 dB and polarization dependent loss <0.30 dB across all variants",
       "Return loss >45 dB and directivity >50 dB for excellent signal integrity"
     ],
     "applications": [
@@ -625,7 +625,7 @@
     "specs": [
       {
         "label": "CWDM Wavelength Grid",
-        "value": "1270, 1290, 1310 \u2026 1570, 1590, 1610 nm (20 nm channel spacing)"
+        "value": "1270, 1290, 1310 … 1570, 1590, 1610 nm (20 nm channel spacing)"
       },
       {
         "label": "Channel Configurations",
@@ -633,31 +633,31 @@
       },
       {
         "label": "IL, ABS Compact Module (Narrow PB)",
-        "value": "4ch: \u22641.6 dB | 8ch: \u22642.8 dB | 16ch: \u22644.5 dB"
+        "value": "4ch: ≤1.6 dB | 8ch: ≤2.8 dB | 16ch: ≤4.5 dB"
       },
       {
         "label": "IL, ABS Compact Module (Wide PB)",
-        "value": "4ch: \u22642.0 dB | 8ch: \u22643.6 dB | 16ch: \u22645.0 dB"
+        "value": "4ch: ≤2.0 dB | 8ch: ≤3.6 dB | 16ch: ≤5.0 dB"
       },
       {
         "label": "IL, 1U Rack Equipment",
-        "value": "4ch: \u22641.8 dB | 8ch: \u22643.0 dB | 16ch: \u22644.8 dB"
+        "value": "4ch: ≤1.8 dB | 8ch: ≤3.0 dB | 16ch: ≤4.8 dB"
       },
       {
         "label": "IL, LGX Module",
-        "value": "4ch: \u22641.8 dB | 8ch: \u22643.0 dB | 16ch: \u22644.8 dB"
+        "value": "4ch: ≤1.8 dB | 8ch: ≤3.0 dB | 16ch: ≤4.8 dB"
       },
       {
         "label": "Passband, ABS Compact (Narrow PB)",
-        "value": "\u00b10.11 nm (@\u22120.5 dB)"
+        "value": "±0.11 nm (@−0.5 dB)"
       },
       {
         "label": "Passband, ABS Compact (Wide PB)",
-        "value": "\u00b16.5 nm (@\u22120.5 dB)"
+        "value": "±6.5 nm (@−0.5 dB)"
       },
       {
         "label": "Passband, 1U Rack / LGX Module",
-        "value": "\u00b17.5 nm (@\u22120.5 dB)"
+        "value": "±7.5 nm (@−0.5 dB)"
       },
       {
         "label": "Isolation, Adjacent Channel",
@@ -669,7 +669,7 @@
       },
       {
         "label": "Passband Ripple",
-        "value": "\u22640.40 dB"
+        "value": "≤0.40 dB"
       },
       {
         "label": "Polarization Dependent Loss (PDL)",
@@ -736,7 +736,7 @@
       },
       {
         "label": "Operating Temperature",
-        "value": "0\u00b0C to 70\u00b0C"
+        "value": "0°C to 70°C"
       },
       {
         "label": "Power Consumption",
@@ -744,7 +744,7 @@
       },
       {
         "label": "Compliance",
-        "value": "SFP+ MSA, IEEE 802.3ae, 10GFC, RoHS/REACH, T\u00dcV/UL"
+        "value": "SFP+ MSA, IEEE 802.3ae, 10GFC, RoHS/REACH, TÜV/UL"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"4\" y=\"18\" width=\"12\" height=\"12\" rx=\"2\"></rect><rect x=\"32\" y=\"18\" width=\"12\" height=\"12\" rx=\"2\"></rect><path d=\"M16 24h16\" stroke-dasharray=\"4 2\"></path></svg>",
@@ -770,7 +770,7 @@
       "Dial-code selectable GH1.25 (W) or cable (C) interface mode",
       "Selectable CRSF or SBUS protocol for popular FPV / racing-drone flight controllers",
       "FC optical, RJ45 100M Ethernet and BNC video front-panel interfaces",
-      "Compact 105 \u00d7 70 \u00d7 28 mm housing"
+      "Compact 105 × 70 × 28 mm housing"
     ],
     "applications": [
       "Defence ISR & secure communications",
@@ -781,7 +781,7 @@
     "specs": [
       {
         "label": "Unit Type",
-        "value": "Type B \u2014 Ground Unit"
+        "value": "Type B — Ground Unit"
       },
       {
         "label": "Optical Transmission Rate",
@@ -805,7 +805,7 @@
       },
       {
         "label": "Power Input",
-        "value": "10\u201326 V DC (DC-IN); GH1.25 outputs 5 V"
+        "value": "10–26 V DC (DC-IN); GH1.25 outputs 5 V"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" strokeWidth=\"1.5\"><path d=\"M2 12h4l2-8 4 16 2-8h4\"/></svg>",
@@ -819,18 +819,18 @@
     "name": "DWDM Mux/DeMux Module",
     "category": "Passive Components > WDM & Splitters",
     "title": "DWDM Mux/DeMux Module | PDR World",
-    "description": "PDR DWDM Mux/DeMux supports 4/8/16-channel ITU-T C20\u2013C60 DWDM (1520\u20131570 nm, 100 GHz) in ABS or 1U rack formats with low loss, >30 dB isolation, and >45 dB return loss.",
+    "description": "PDR DWDM Mux/DeMux supports 4/8/16-channel ITU-T C20–C60 DWDM (1520–1570 nm, 100 GHz) in ABS or 1U rack formats with low loss, >30 dB isolation, and >45 dB return loss.",
     "canonical": "https://pdrworld.com/products/dwdm",
     "tagline": "DWDM multiplexer / demultiplexer modules for high-capacity dense wavelength transport.",
     "status": "Active",
     "imageUrl": "",
     "features": [
-      "Available in compact ABS module (100\u00d780\u00d710 mm / 120\u00d780\u00d718 mm) and 1U rack equipment form factors",
+      "Available in compact ABS module (100×80×10 mm / 120×80×18 mm) and 1U rack equipment form factors",
       "Supports 4, 8, and 16 channel configurations covering ITU-T channels C20 to C60",
-      "Low insertion loss: \u22642.0 dB (4ch), \u22643.0 dB (8ch), \u22644.8 dB (16ch) for ABS module",
+      "Low insertion loss: ≤2.0 dB (4ch), ≤3.0 dB (8ch), ≤4.8 dB (16ch) for ABS module",
       "Operating wavelength range 1520 to 1570 nm with 100 GHz minimum channel spacing",
       "High channel isolation: >30 dB adjacent channel, >40 dB non-adjacent channel",
-      "Low passband ripple (\u22640.30 dB) and polarization dependent loss (\u22640.30 dB)"
+      "Low passband ripple (≤0.30 dB) and polarization dependent loss (≤0.30 dB)"
     ],
     "applications": [
       "CATV and cable television headend signal multiplexing and distribution",
@@ -845,15 +845,15 @@
       },
       {
         "label": "Insertion Loss, ABS Module",
-        "value": "4ch: \u22642.0 dB | 8ch: \u22643.0 dB | 16ch: \u22644.8 dB"
+        "value": "4ch: ≤2.0 dB | 8ch: ≤3.0 dB | 16ch: ≤4.8 dB"
       },
       {
         "label": "Insertion Loss, 1U Rack Equipment",
-        "value": "4ch: \u22642.2 dB | 8ch: \u22643.2 dB | 16ch: \u22645.0 dB"
+        "value": "4ch: ≤2.2 dB | 8ch: ≤3.2 dB | 16ch: ≤5.0 dB"
       },
       {
         "label": "ITU Channels",
-        "value": "C20, C60 (C20, C21, C22 \u2026 C58, C59, C60)"
+        "value": "C20, C60 (C20, C21, C22 … C58, C59, C60)"
       },
       {
         "label": "Operating Wavelength",
@@ -864,8 +864,8 @@
         "value": "100 GHz"
       },
       {
-        "label": "Passband (\u22120.5 dB bandwidth)",
-        "value": "\u00b10.11 nm"
+        "label": "Passband (−0.5 dB bandwidth)",
+        "value": "±0.11 nm"
       },
       {
         "label": "Isolation, Adjacent Channel",
@@ -877,11 +877,11 @@
       },
       {
         "label": "Passband Ripple",
-        "value": "\u22640.30 dB"
+        "value": "≤0.30 dB"
       },
       {
         "label": "Polarization Dependent Loss (PDL)",
-        "value": "\u22640.30 dB"
+        "value": "≤0.30 dB"
       },
       {
         "label": "Polarization Mode Dispersion (PMD)",
@@ -901,46 +901,6 @@
     "galleryUrls": [],
     "tags": [],
     "updatedAt": "2026-07-06T09:50:18.82+00:00"
-  },
-  {
-    "slug": "easyget-wifi",
-    "name": "EasyGet WiFi Wireless Fiber Endface Microscope",
-    "category": "Test and Measurement Equipment > Endface Inspector",
-    "title": "EasyGet WiFi Wireless Fiber Endface Microscope | PDR World",
-    "description": "Wireless transmission to smartphone/tablet",
-    "canonical": "https://pdrworld.com/products/easyget-wifi",
-    "tagline": "Wireless transmission to smartphone/tablet",
-    "status": "Active",
-    "imageUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-images/wifi-wireless-fiber-endface-microscope/1786115879060-easyget-wifi-wireless-fiber-endface-microscope.png",
-    "features": [
-      "Wireless transmission to smartphone/tablet",
-      "High-resolution endface imaging",
-      "Eliminates direct eye exposure to lasers"
-    ],
-    "applications": [
-      "Connector Endface Inspection",
-      "Patch Panel Cleaning Verification",
-      "Transceiver Port Checking"
-    ],
-    "specs": [
-      {
-        "label": "Connectivity",
-        "value": "WiFi / USB"
-      },
-      {
-        "label": "Magnification",
-        "value": "400X"
-      },
-      {
-        "label": "App Support",
-        "value": "iOS / Android / Windows"
-      }
-    ],
-    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"18\" y=\"10\" width=\"12\" height=\"28\" rx=\"2\"></rect><path d=\"M22 10V6h4v4\"></path><circle cx=\"24\" cy=\"18\" r=\"3\"></circle><circle cx=\"24\" cy=\"30\" r=\"1\"></circle></svg>",
-    "datasheetUrl": "/datasheets/easyget-wifi.pdf",
-    "galleryUrls": [],
-    "tags": [],
-    "updatedAt": "2026-06-27T14:43:22.631+00:00"
   },
   {
     "slug": "fanout-patch-cords",
@@ -981,7 +941,7 @@
       },
       {
         "label": "Return Loss",
-        "value": "\u226560 dB (APC) | \u226520 dB (PC) | \u226550 dB (UPC)"
+        "value": "≥60 dB (APC) | ≥20 dB (PC) | ≥50 dB (UPC)"
       },
       {
         "label": "Durability",
@@ -989,7 +949,7 @@
       },
       {
         "label": "Operating Temperature",
-        "value": "\u221240\u00b0C to +75\u00b0C"
+        "value": "−40°C to +75°C"
       },
       {
         "label": "Fiber Mode, Single-Mode",
@@ -1035,7 +995,7 @@
     "name": "Fiber Distribution Box (FDB)",
     "category": "Cable Management Devices > Fiber Termination Box (Indoor)",
     "title": "Fiber Distribution Box (FDB) | PDR World",
-    "description": "PDR-FDB24B Fiber Distribution Box is a compact, rugged FTTx termination enclosure supporting straight-joint, branch, and pass-through connectivity with up to 24 SC adaptors, two 1\u00d78 LGX splitters, and separate cable routing for easy maintenance and fault identification.",
+    "description": "PDR-FDB24B Fiber Distribution Box is a compact, rugged FTTx termination enclosure supporting straight-joint, branch, and pass-through connectivity with up to 24 SC adaptors, two 1×8 LGX splitters, and separate cable routing for easy maintenance and fault identification.",
     "canonical": "https://pdrworld.com/products/fdb",
     "tagline": "Fiber distribution box for splitting and distributing fiber in access networks.",
     "status": "Active",
@@ -1123,7 +1083,7 @@
     "name": "G652D Fiber Spool / Fiber Drum",
     "category": "Passive Components > Fiber Spool",
     "title": "Fiber Spool / Fiber Drum | PDR World",
-    "description": "Precision-wound ITU-T G.652D single-mode reels with Germania-doped silica core, ultra-low attenuation under 0.200 dB/km at 1550 nm across 1310\u20131625 nm, individually tested and barcoded for traceability.",
+    "description": "Precision-wound ITU-T G.652D single-mode reels with Germania-doped silica core, ultra-low attenuation under 0.200 dB/km at 1550 nm across 1310–1625 nm, individually tested and barcoded for traceability.",
     "canonical": "https://pdrworld.com/products/fiber-spool",
     "tagline": "Precision-wound G.652D single-mode fiber spool for long-haul, FTTH and data infrastructure.",
     "status": "Active",
@@ -1149,7 +1109,7 @@
       },
       {
         "label": "Attenuation",
-        "value": "\u2264 0.36 dB/km (1310 nm); \u2264 0.23 dB/km (1550 nm)"
+        "value": "≤ 0.36 dB/km (1310 nm); ≤ 0.23 dB/km (1550 nm)"
       },
       {
         "label": "Cable Cutoff Wavelength",
@@ -1157,11 +1117,11 @@
       },
       {
         "label": "Mode Field Diameter",
-        "value": "9.2 \u00b10.4 \u00b5m at 1310 nm"
+        "value": "9.2 ±0.4 µm at 1310 nm"
       },
       {
         "label": "Cladding Diameter",
-        "value": "125 \u00b10.7 \u00b5m"
+        "value": "125 ±0.7 µm"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><circle cx=\"24\" cy=\"24\" r=\"16\"></circle><circle cx=\"24\" cy=\"24\" r=\"6\"></circle><path d=\"M24 8v16\"></path><path d=\"M8 24h16\"></path></svg>",
@@ -1175,18 +1135,18 @@
     "name": "Fiber Optic Connector, Field Installable",
     "category": "Passive Components > Connectors",
     "title": "Fiber Optic Connector, Field Installable | PDR World",
-    "description": "Field-installable SC connector for tool-light on-site termination with no adhesives or polishing, fully zirconia-ceramic ferrule, \u22640.3 dB IL, \u226545 dB (PC)/\u226555 dB (APC) RL, re-assemblable.",
+    "description": "Field-installable SC connector for tool-light on-site termination with no adhesives or polishing, fully zirconia-ceramic ferrule, ≤0.3 dB IL, ≥45 dB (PC)/≥55 dB (APC) RL, re-assemblable.",
     "canonical": "https://pdrworld.com/products/field-connector",
     "tagline": "Field-installable fast connectors for quick, tool-light on-site termination.",
     "status": "Active",
     "imageUrl": "",
     "features": [
       "Field installable without adhesives, polishing, or electrical power, ready for immediate on-site use",
-      "Fully zirconia-ceramic ferrule: nominal 2.5 mm diameter, \u00b10.5 mm tolerance, \u22641 \u00b5m fiber concentricity",
+      "Fully zirconia-ceramic ferrule: nominal 2.5 mm diameter, ±0.5 mm tolerance, ≤1 µm fiber concentricity",
       "Ferrule end-face geometry compliant with Telcordia GR-326 interferometric measurement standard",
-      "Low insertion loss \u22640.3 dB and high return loss \u226545 dB (PC) / \u226555 dB (APC)",
+      "Low insertion loss ≤0.3 dB and high return loss ≥45 dB (PC) / ≥55 dB (APC)",
       "Re-assemblable design reduces connection defect rate and simplifies field maintenance and rework",
-      "Type-A: compact 52.4 \u00d7 9 \u00d7 7.3 mm body, compatible with 3.1 \u00d7 2 mm flat cable"
+      "Type-A: compact 52.4 × 9 × 7.3 mm body, compatible with 3.1 × 2 mm flat cable"
     ],
     "applications": [
       "FTTx last-mile fiber drops and subscriber premises installations requiring rapid field termination",
@@ -1213,15 +1173,15 @@
       },
       {
         "label": "Insertion Loss",
-        "value": "\u22640.3 dB"
+        "value": "≤0.3 dB"
       },
       {
         "label": "Return Loss",
-        "value": "\u226545 dB (PC) / \u226555 dB (APC)"
+        "value": "≥45 dB (PC) / ≥55 dB (APC)"
       },
       {
         "label": "Compatible Cable",
-        "value": "3.1\u00d72 mm flat / 3 mm drop / 2.0 mm / 0.9 mm"
+        "value": "3.1×2 mm flat / 3 mm drop / 2.0 mm / 0.9 mm"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"16\" width=\"20\" height=\"16\" rx=\"2\"></rect><line x1=\"8\" y1=\"24\" x2=\"14\" y2=\"24\"></line><line x1=\"34\" y1=\"24\" x2=\"40\" y2=\"24\"></line></svg>",
@@ -1244,9 +1204,9 @@
       "Widest connector selection: FC, DIN, LC, MU, MTRJ, SC, ST, MPO, D4, Biconic, SMA, E-2000",
       "Singlemode fibers: OS2, G.657A1, G.657A2, multimode fibers: OM1, OM2, OM3, OM4",
       "Simplex, duplex, and fanout (up to 24F) configurations; 0.9 mm, 2.0 mm, and 3.0 mm cable diameters",
-      "Low insertion loss \u22640.3 dB (PC) for both SM and MM; high return loss \u226550 dB UPC, \u226560 dB APC",
-      "Exchangeability and repeatability both \u22640.2 dB for consistent mating performance",
-      "Boot styles: standard, short boot, 90\u00b0 bendable boot, and uniboot for high-density applications"
+      "Low insertion loss ≤0.3 dB (PC) for both SM and MM; high return loss ≥50 dB UPC, ≥60 dB APC",
+      "Exchangeability and repeatability both ≤0.2 dB for consistent mating performance",
+      "Boot styles: standard, short boot, 90° bendable boot, and uniboot for high-density applications"
     ],
     "applications": [
       "Data centre structured cabling and patch panel interconnections in high-density SM and MM environments",
@@ -1281,35 +1241,35 @@
       },
       {
         "label": "SM Insertion Loss (PC)",
-        "value": "\u22640.3 dB"
+        "value": "≤0.3 dB"
       },
       {
         "label": "SM Return Loss, UPC",
-        "value": "\u226550 dB"
+        "value": "≥50 dB"
       },
       {
         "label": "SM Return Loss, APC",
-        "value": "\u226560 dB"
+        "value": "≥60 dB"
       },
       {
         "label": "MM Insertion Loss (PC)",
-        "value": "\u22640.3 dB"
+        "value": "≤0.3 dB"
       },
       {
         "label": "MM Return Loss (PC)",
-        "value": "\u226535 dB"
+        "value": "≥35 dB"
       },
       {
         "label": "Exchangeability",
-        "value": "\u22640.2 dB"
+        "value": "≤0.2 dB"
       },
       {
         "label": "Repeatability",
-        "value": "\u22640.2 dB"
+        "value": "≤0.2 dB"
       },
       {
         "label": "Operating Temperature",
-        "value": "\u221220\u00b0C to +75\u00b0C"
+        "value": "−20°C to +75°C"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><circle cx=\"8\" cy=\"24\" r=\"3\"></circle><circle cx=\"40\" cy=\"24\" r=\"3\"></circle></svg>",
@@ -1342,11 +1302,11 @@
       },
       {
         "label": "Cladding Diameter",
-        "value": "80 to 150 \u00b5m"
+        "value": "80 to 150 µm"
       },
       {
         "label": "Coating Diameter",
-        "value": "160 to 900 \u00b5m"
+        "value": "160 to 900 µm"
       },
       {
         "label": "Typical Splice Loss",
@@ -1358,7 +1318,7 @@
       },
       {
         "label": "Fiber Cleaved Length",
-        "value": "10 to 16 mm (coating dia. < 250 \u00b5m) 16 mm (coating dia. 250 to 900 \u00b5m)"
+        "value": "10 to 16 mm (coating dia. < 250 µm) 16 mm (coating dia. 250 to 900 µm)"
       },
       {
         "label": "Splicing Programs",
@@ -1382,11 +1342,11 @@
       },
       {
         "label": "Fiber View Magnification",
-        "value": "250\u00d7 (X or Y axis) | 125\u00d7 (X and Y axis)"
+        "value": "250× (X or Y axis) | 125× (X and Y axis)"
       },
       {
         "label": "Viewing & Display",
-        "value": "2\u00d7 CMOS cameras, 4.3-inch colour LCD monitor"
+        "value": "2× CMOS cameras, 4.3-inch colour LCD monitor"
       },
       {
         "label": "Splice Result Storage",
@@ -1425,8 +1385,8 @@
     ],
     "specs": [
       {
-        "label": "Dimension (L \u00d7 D)",
-        "value": "530 mm \u00d7 210 mm"
+        "label": "Dimension (L × D)",
+        "value": "530 mm × 210 mm"
       },
       {
         "label": "Weight",
@@ -1455,8 +1415,8 @@
     "slug": "horizontal-closure",
     "name": "Horizontal Splice Closure",
     "category": "Cable Management Devices > Fiber Termination Box (Outdoor)",
-    "title": "Fiber Optic Splitter Closure GJS 2016 | PDR World",
-    "description": "Re-enterable IP65 outdoor closure for duct, aerial, and wall mounting, supporting up to 48 splices (2\u00d724) in a UV-resistant ribbed 445\u00d7240\u00d7140 mm body.",
+    "title": "Horizontal Splice Closure | PDR World",
+    "description": "Re-enterable IP65 outdoor closure for duct, aerial, and wall mounting, supporting up to 48 splices (2×24) in a UV-resistant ribbed 445×240×140 mm body.",
     "canonical": "https://pdrworld.com/products/horizontal-closure",
     "tagline": "Horizontal splice closure for inline protection of fiber splices.",
     "status": "Active",
@@ -1467,7 +1427,7 @@
       "Integrated sheath retention and central strength member fastening",
       "Ribbed closure construction using UV-resistant, lightweight plastic",
       "High resistance to chemical attack and UV degradation for extended outdoor life",
-      "Supports up to 48 splices (2 \u00d7 24) with 16 SC simplex adapter capacity"
+      "Supports up to 48 splices (2 × 24) with 16 SC simplex adapter capacity"
     ],
     "applications": [
       "Fiber-to-the-Home (FTTH) and Fiber-to-the-Building (FTTB) feeder cable splicing",
@@ -1481,12 +1441,12 @@
         "value": "HTSC-TL16"
       },
       {
-        "label": "Dimensions (L\u00d7W\u00d7H)",
-        "value": "445 \u00d7 240 \u00d7 140 mm"
+        "label": "Dimensions (L×W×H)",
+        "value": "445 × 240 × 140 mm"
       },
       {
         "label": "Splice Capacity",
-        "value": "48 splices (2 \u00d7 24)"
+        "value": "48 splices (2 × 24)"
       },
       {
         "label": "Main Cable Ports",
@@ -1494,7 +1454,7 @@
       },
       {
         "label": "Drop Cable Ports",
-        "value": "16 ports, 3 mm / 3\u00d72 drop cable"
+        "value": "16 ports, 3 mm / 3×2 drop cable"
       },
       {
         "label": "Mounting Options",
@@ -1509,14 +1469,14 @@
     "datasheetUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-datasheets/horizontal-closure/1786047223882-horizontalspliceclosure_htsc-tl16_datasheet.pdf",
     "galleryUrls": [],
     "tags": [],
-    "updatedAt": "2026-08-06T20:13:52.508+00:00"
+    "updatedAt": "2026-08-27T10:59:38.809+00:00"
   },
   {
     "slug": "hybrid-adapter",
     "name": "Hybrid Adapter",
     "category": "Passive Components > Adapters",
     "title": "Hybrid Adapter | PDR",
-    "description": "Mates two dissimilar connector types (SC-FC, LC-SC, ST-FC, etc.) via a precision ceramic/phosphor-bronze sleeve, \u22640.3 dB IL and \u226550 dB RL, for SM/MM fiber in simplex or duplex.",
+    "description": "Mates two dissimilar connector types (SC-FC, LC-SC, ST-FC, etc.) via a precision ceramic/phosphor-bronze sleeve, ≤0.3 dB IL and ≥50 dB RL, for SM/MM fiber in simplex or duplex.",
     "canonical": "https://pdrworld.com/products/hybrid-adapter",
     "tagline": "Hybrid fiber optic adapters that mate different connector types.",
     "status": "Active",
@@ -1524,7 +1484,7 @@
     "features": [
       "Enables connection between different connector types, SC-FC, LC-SC, LC-FC, ST-FC, LC-ST, and more",
       "High-precision ceramic or phosphor bronze alignment sleeve for superior optical performance",
-      "Low insertion loss \u2264 0.3 dB and high return loss \u2265 50 dB (single-mode)",
+      "Low insertion loss ≤ 0.3 dB and high return loss ≥ 50 dB (single-mode)",
       "Compatible with both single-mode (SM) and multi-mode (MM) fibers",
       "Available in simplex and duplex configurations to suit varied cabling requirements"
     ],
@@ -1555,10 +1515,10 @@
       "Ensures Gigabit transmission over multimode fiber",
       "Eliminates Differential Mode Delay (DMD)",
       "Offset launch technique from single-mode to multimode",
-      "Compatible with 62.5/125 \u00b5m or 50/125 \u00b5m MMF cable plant",
+      "Compatible with 62.5/125 µm or 50/125 µm MMF cable plant",
       "Available with various connector types",
       "High return loss and low insertion loss",
-      "High durability for repeated matings (\u2264 0.20 dB typical change after 500 matings)"
+      "High durability for repeated matings (≤ 0.20 dB typical change after 500 matings)"
     ],
     "applications": [
       "Gigabit Ethernet (1000BASE-LX / LH) over legacy multimode fiber",
@@ -1572,20 +1532,20 @@
         "value": "62.5/125 or 50/125 Multimode Fiber (MMF)"
       },
       {
-        "label": "Insertion Loss (MMF\u2013SMF)",
-        "value": "\u2264 2.1 dB (50/125); \u2264 2.6 dB (62.5/125)"
+        "label": "Insertion Loss (MMF–SMF)",
+        "value": "≤ 2.1 dB (50/125); ≤ 2.6 dB (62.5/125)"
       },
       {
         "label": "Return Loss",
-        "value": "\u2265 50 dB (UPC); \u2265 65 dB (APC)"
+        "value": "≥ 50 dB (UPC); ≥ 65 dB (APC)"
       },
       {
         "label": "Durability",
-        "value": "\u2264 0.20 dB typical after 500 matings"
+        "value": "≤ 0.20 dB typical after 500 matings"
       },
       {
         "label": "Operating Temperature",
-        "value": "\u201320 \u00b0C to +75 \u00b0C"
+        "value": "–20 °C to +75 °C"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M8 24c8-8 24 8 32 0\"></path></svg>",
@@ -1599,7 +1559,7 @@
     "name": "MPO Cable Assembly",
     "category": "Passive Components > Cable Assembly",
     "title": "MPO Cable Assembly | PDR World",
-    "description": "PDR MPO Cable Assemblies are high-density 4\u201324 fiber OS2/OM3/OM4/OM5 trunk cables with MT ferrules, ribbon or round cables, and male/female PC/APC connectors for fast data center deployment.",
+    "description": "PDR MPO Cable Assemblies are high-density 4–24 fiber OS2/OM3/OM4/OM5 trunk cables with MT ferrules, ribbon or round cables, and male/female PC/APC connectors for fast data center deployment.",
     "canonical": "https://pdrworld.com/products/mpo-assembly",
     "tagline": "High-density multi-fiber connector system",
     "status": "Active",
@@ -1661,11 +1621,11 @@
       },
       {
         "label": "Min. Bending Radius",
-        "value": "10\u00d7D (installed) | 20\u00d7D (under load)"
+        "value": "10×D (installed) | 20×D (under load)"
       },
       {
         "label": "Cable Operating Temperature",
-        "value": ", 20\u00b0C to +70\u00b0C"
+        "value": ", 20°C to +70°C"
       },
       {
         "label": "MPO Connector Type",
@@ -1761,10 +1721,10 @@
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"14\" y=\"14\" width=\"20\" height=\"20\" rx=\"2\"></rect><path d=\"M14 24h20\"></path></svg>",
-    "datasheetUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-datasheets/mpo-cleaner/1783331693873-mpo_cleaner_pen_datasheet.pdf",
+    "datasheetUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-datasheets/mpo-cleaner/mpo_cleaner_pen_datasheet.pdf",
     "galleryUrls": [],
     "tags": [],
-    "updatedAt": "2026-07-06T09:54:58.238+00:00"
+    "updatedAt": "2026-08-27T10:59:40.705+00:00"
   },
   {
     "slug": "next-gen-splicer",
@@ -1801,7 +1761,7 @@
       },
       {
         "label": "Cladding Diameter",
-        "value": "80 to 150 \u00b5m"
+        "value": "80 to 150 µm"
       },
       {
         "label": "Coating Diameter",
@@ -1893,7 +1853,7 @@
       },
       {
         "label": "Switching Threshold",
-        "value": "Default \u221230 dBm (configurable)"
+        "value": "Default −30 dBm (configurable)"
       },
       {
         "label": "Switching Delay",
@@ -1909,7 +1869,7 @@
       },
       {
         "label": "Power Supply",
-        "value": "220V AC | \u221248V DC (dual redundant)"
+        "value": "220V AC | −48V DC (dual redundant)"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"10\" y=\"14\" width=\"28\" height=\"20\" rx=\"3\"></rect><path d=\"M16 24h16\"></path><path d=\"M24 19v10\"></path><circle cx=\"10\" cy=\"24\" r=\"2\"></circle><circle cx=\"38\" cy=\"24\" r=\"2\"></circle></svg>",
@@ -1923,18 +1883,18 @@
     "name": "PLC Splitter",
     "category": "Passive Components > WDM & Splitters",
     "title": "PLC Splitter | PDR World",
-    "description": "PDR PLC Splitters offer passive optical power splitting over 1260\u20131650 nm in 1\u00d7N/2\u00d7N configurations with multiple packaging options for FTTx, PON, LAN, CATV, and test applications.",
+    "description": "PDR PLC Splitters offer passive optical power splitting over 1260–1650 nm in 1×N/2×N configurations with multiple packaging options for FTTx, PON, LAN, CATV, and test applications.",
     "canonical": "https://pdrworld.com/products/plc-splitter",
     "tagline": "Planar lightwave circuit splitters for low-loss PON power splitting.",
     "status": "Active",
     "imageUrl": "",
     "features": [
       "Planar waveguide chip technology for low insertion loss, high uniformity, and excellent long-term stability",
-      "1\u00d7N configurations: 1\u00d72, 1\u00d74, 1\u00d78, 1\u00d716, 1\u00d732, 1\u00d764",
-      "2\u00d7N configurations: 2\u00d72, 2\u00d74, 2\u00d78, 2\u00d716, 2\u00d732, 2\u00d764",
+      "1×N configurations: 1×2, 1×4, 1×8, 1×16, 1×32, 1×64",
+      "2×N configurations: 2×2, 2×4, 2×8, 2×16, 2×32, 2×64",
       "Wide operating wavelength: 1260 to 1650 nm, covers all standard PON and WDM bands",
-      "Low polarization-dependent loss (PDL): \u22640.2 dB (1\u00d72) to \u22640.4 dB (1\u00d764)",
-      "High directivity \u226555 dB and return loss \u226555 dB (1\u00d7N) / \u226550 dB (2\u00d7N)"
+      "Low polarization-dependent loss (PDL): ≤0.2 dB (1×2) to ≤0.4 dB (1×64)",
+      "High directivity ≥55 dB and return loss ≥55 dB (1×N) / ≥50 dB (2×N)"
     ],
     "applications": [],
     "specs": [],
@@ -1946,14 +1906,14 @@
   },
   {
     "slug": "pocket-otdr",
-    "name": "Pocket OTDR",
+    "name": "Nano OTDR",
     "category": "Test and Measurement Equipment > OTDR",
-    "title": "Pocket OTDR | PDR World",
+    "title": "Nano OTDR | PDR World",
     "description": "The PDR Nano OTDR is a compact, smartphone-connected dual-wavelength (1310/1550 nm) OTDR for precise fiber testing, loss analysis, and real-time measurements via the Smart-OTDR app.",
     "canonical": "https://pdrworld.com/products/pocket-otdr",
     "tagline": "Ultra-compact Nano OTDR with built-in VFL and power meter for quick field testing.",
     "status": "Active",
-    "imageUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-images/pocket-otdr/product-image.png",
+    "imageUrl": "/images/products/pocket-otdr.png",
     "features": [
       "Ultra-compact nano size, fits in a shirt pocket for true field portability",
       "Dual-wavelength operation at 1310 nm and 1550 nm for comprehensive fiber testing",
@@ -1991,19 +1951,19 @@
       },
       {
         "label": "Distance Accuracy",
-        "value": "\u00b11 m + \u00b10.005% \u00d7 distance"
+        "value": "±1 m + ±0.005% × distance"
       },
       {
         "label": "Event Dead Zone",
-        "value": "\u2264 1 m (typical, with 10 ns pulse)"
+        "value": "≤ 1 m (typical, with 10 ns pulse)"
       },
       {
         "label": "Attenuation Dead Zone",
-        "value": "\u2264 4 m (typical, with 10 ns pulse)"
+        "value": "≤ 4 m (typical, with 10 ns pulse)"
       },
       {
         "label": "Pulse Widths",
-        "value": "10 ns / 30 ns / 100 ns / 300 ns / 1 \u00b5s / 3 \u00b5s"
+        "value": "10 ns / 30 ns / 100 ns / 300 ns / 1 µs / 3 µs"
       },
       {
         "label": "Sampling Resolution",
@@ -2030,14 +1990,14 @@
     "datasheetUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-datasheets/pocket-otdr/1786095647272-nanootdr_datasheet.pdf",
     "galleryUrls": [],
     "tags": [],
-    "updatedAt": "2026-08-07T09:43:16.06+00:00"
+    "updatedAt": "2026-08-27T10:59:37.768+00:00"
   },
   {
     "slug": "pof-patchcord",
-    "name": "POF \u2014 Plastic Optical Fiber Patchcord",
+    "name": "POF — Plastic Optical Fiber Patchcord",
     "category": "Passive Components > Cable Assembly",
-    "title": "POF \u2014 Plastic Optical Fiber Patchcord | PDR World",
-    "description": "PDR Plastic Optical Fiber (POF) Cable Assemblies provide cost-effective, EMI-immune connectivity with SI-POF cables, LC/RedLink\u2122/VersaLink\u00ae patch cords, reel options for custom installation, UL VW-1 jackets, and compatibility with standard POF transceivers.",
+    "title": "POF — Plastic Optical Fiber Patchcord | PDR World",
+    "description": "PDR Plastic Optical Fiber (POF) Cable Assemblies provide cost-effective, EMI-immune connectivity with SI-POF cables, LC/RedLink™/VersaLink® patch cords, reel options for custom installation, UL VW-1 jackets, and compatibility with standard POF transceivers.",
     "canonical": "https://pdrworld.com/products/pof-patchcord",
     "tagline": "Large PMMA core for easy alignment",
     "status": "Active",
@@ -2047,7 +2007,7 @@
       "Low attenuation: 0.19 dB/m at 650 nm, ideal for short-range links up to tens of metres",
       "Simplex cable OD 2.2 mm; duplex (figure-of-8) minor axis 2.2 mm, major axis 4.4 mm",
       "UL VW-1 flame-retardant jacket option available for building and equipment installations",
-      "Minimum bend radius 25 mm; repeat bending endurance \u226510,000 cycles (\u22641 dB additional loss)",
+      "Minimum bend radius 25 mm; repeat bending endurance ≥10,000 cycles (≤1 dB additional loss)",
       "Tensile rating: 70 N simplex / 140 N duplex cable"
     ],
     "applications": [
@@ -2067,7 +2027,7 @@
       },
       {
         "label": "Attenuation at 650 nm",
-        "value": "\u22640.19 dB/m"
+        "value": "≤0.19 dB/m"
       },
       {
         "label": "Fiber Diameter (incl. cladding)",
@@ -2107,11 +2067,11 @@
       },
       {
         "label": "Repeat Bending Endurance",
-        "value": "\u226510,000 cycles (\u22641 dB additional loss)"
+        "value": "≥10,000 cycles (≤1 dB additional loss)"
       },
       {
         "label": "Operating Temperature",
-        "value": "-40\u00b0C to +85\u00b0C"
+        "value": "-40°C to +85°C"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M8 24h32\"></path><circle cx=\"24\" cy=\"24\" r=\"6\"></circle></svg>",
@@ -2206,7 +2166,7 @@
     "name": "Rack Mount Fiber Management System",
     "category": "Cable Management Devices > Fiber Termination Box (Indoor)",
     "title": "Rack Mount Fiber Management System | PDR World",
-    "description": "PDR 19-inch Rack Mount Fiber Management System provides modular, scalable, high-density fiber management in durable 1U/2U/4U CRCA steel enclosures with sliding tray access, supporting 6\u2013192 fiber terminations.",
+    "description": "PDR 19-inch Rack Mount Fiber Management System provides modular, scalable, high-density fiber management in durable 1U/2U/4U CRCA steel enclosures with sliding tray access, supporting 6–192 fiber terminations.",
     "canonical": "https://pdrworld.com/products/rack-mount-fms",
     "tagline": "Modular 19-inch rack-mount fiber management system for high-density termination.",
     "status": "Active",
@@ -2248,7 +2208,7 @@
       },
       {
         "label": "Finish",
-        "value": "Structure finish and powder coated, 80 to 100 \u00b5m"
+        "value": "Structure finish and powder coated, 80 to 100 µm"
       },
       {
         "label": "Colour",
@@ -2280,7 +2240,7 @@
       },
       {
         "label": "Dimensions (1U models)",
-        "value": "485 mm \u00d7 315 mm \u00d7 45 mm"
+        "value": "485 mm × 315 mm × 45 mm"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"6\" y=\"16\" width=\"36\" height=\"16\" rx=\"2\"></rect><line x1=\"12\" y1=\"24\" x2=\"16\" y2=\"24\"></line><line x1=\"20\" y1=\"24\" x2=\"24\" y2=\"24\"></line><line x1=\"28\" y1=\"24\" x2=\"32\" y2=\"24\"></line><circle cx=\"8\" cy=\"20\" r=\"1\"></circle><circle cx=\"8\" cy=\"28\" r=\"1\"></circle><circle cx=\"40\" cy=\"20\" r=\"1\"></circle><circle cx=\"40\" cy=\"28\" r=\"1\"></circle></svg>",
@@ -2293,19 +2253,19 @@
     "slug": "rapid-push",
     "name": "FTTX Smart Bullet Drop Cable",
     "category": "Passive Components > Cable Assembly",
-    "title": "Rapid Push Cable Assembly | PDR World",
-    "description": "Single-fiber SC/APC drop assembly with a \u00d85.9 mm bullet head for traction pulling through narrow ducts, \u22640.3 dB IL, \u226560 dB RL over 1260\u20131650 nm, 100% optically tested.",
+    "title": "FTTX Smart Bullet Drop Cable | PDR World",
+    "description": "Single-fiber SC/APC drop assembly with a Ø5.9 mm bullet head for traction pulling through narrow ducts, ≤0.3 dB IL, ≥60 dB RL over 1260–1650 nm, 100% optically tested.",
     "canonical": "https://pdrworld.com/products/rapid-push",
     "tagline": "FTTXSmart pre-connectorized bullet drop cable for fast last-mile FTTH deployment.",
     "status": "Active",
     "imageUrl": "",
     "features": [
-      "Bullet-shaped connector head (\u00d85.9 mm) with guide-wire hole for traction installation through narrow ducts",
+      "Bullet-shaped connector head (Ø5.9 mm) with guide-wire hole for traction installation through narrow ducts",
       "Pull-through design for free and occupied ducts, no large bore holes, conduits, or specialist tools required",
-      "SC/APC connectors with zirconia ceramic ferrule: insertion loss \u22640.3 dB (typ. 0.2 dB), return loss \u226560 dB",
+      "SC/APC connectors with zirconia ceramic ferrule: insertion loss ≤0.3 dB (typ. 0.2 dB), return loss ≥60 dB",
       "Wide operating wavelength 1260 to 1650 nm covers all standard telecom bands including O, E, S, C, L, and U",
-      "APC ferrule angle 8\u00b0 \u00b10.3\u00b0 for superior back-reflection performance in FTTH and PON networks",
-      "Mechanical durability \u2265500 insertion/removal cycles; repeatability and interchangeability \u22640.1 dB"
+      "APC ferrule angle 8° ±0.3° for superior back-reflection performance in FTTH and PON networks",
+      "Mechanical durability ≥500 insertion/removal cycles; repeatability and interchangeability ≤0.1 dB"
     ],
     "applications": [],
     "specs": [
@@ -2315,7 +2275,7 @@
       },
       {
         "label": "Bullet Connector Diameter",
-        "value": "\u00d85.9 mm"
+        "value": "Ø5.9 mm"
       },
       {
         "label": "Operating Wavelength",
@@ -2323,45 +2283,45 @@
       },
       {
         "label": "Insertion Loss",
-        "value": "\u22640.3 dB (typ. 0.2 dB)"
+        "value": "≤0.3 dB (typ. 0.2 dB)"
       },
       {
         "label": "Return Loss",
-        "value": "\u226560 dB"
+        "value": "≥60 dB"
       },
       {
         "label": "Tractive Force",
-        "value": "\u2265150 N"
+        "value": "≥150 N"
       },
       {
         "label": "Working Temperature",
-        "value": "\u221240\u00b0C to +70\u00b0C"
+        "value": "−40°C to +70°C"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M10 24h28\"></path><path d=\"M34 20l4 4-4 4\"></path></svg>",
     "datasheetUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-datasheets/rapid-push/1786103244212-fttx-smart-bullet-drop-cable-assembly.pdf",
     "galleryUrls": [],
     "tags": [],
-    "updatedAt": "2026-08-07T11:47:30.078+00:00"
+    "updatedAt": "2026-08-27T10:59:39.97+00:00"
   },
   {
     "slug": "regular-opm",
     "name": "Mini Optical Power Meter",
     "category": "Test and Measurement Equipment > Power Meter",
     "title": "Mini Optical Power Meter PDR60 | PDR",
-    "description": "Palm-sized handheld meter for FTTH continuity and link-loss testing, six calibrated wavelengths (850\u20131625 nm), \u00b10.2 dB accuracy, 0.01 dB resolution, SM/MM via 2.5 mm connector, up to 100 h battery.",
+    "description": "Palm-sized handheld meter for FTTH continuity and link-loss testing, six calibrated wavelengths (850–1625 nm), ±0.2 dB accuracy, 0.01 dB resolution, SM/MM via 2.5 mm connector, up to 100 h battery.",
     "canonical": "https://pdrworld.com/products/regular-opm",
     "tagline": "Palm-sized handheld optical power meter for FTTH continuity and link-loss testing.",
     "status": "Active",
     "imageUrl": "",
     "features": [
       "Palm-sized, pocket-carry handheld design for one-hand field use",
-      "Wide measurement range with high 0.01 dB resolution and \u00b10.2 dB accuracy",
+      "Wide measurement range with high 0.01 dB resolution and ±0.2 dB accuracy",
       "Six calibrated wavelengths: 850 / 1300 / 1310 / 1490 / 1550 / 1625 nm",
       "Supports single-mode and multimode fiber via 2.5 mm universal connector",
       "Optional visual fault locator (1 mW or 10 mW, CW and glint) and LED SOS output",
       "Auto power-off after 10 minutes (cancellable) to conserve battery",
-      "Battery autonomy above 100 hours; runs on 2\u00d7 AA or AC/DC adapter",
+      "Battery autonomy above 100 hours; runs on 2× AA or AC/DC adapter",
       "One-year warranty with three-year recommended calibration interval"
     ],
     "applications": [
@@ -2374,15 +2334,15 @@
     "specs": [
       {
         "label": "Display Range (PDR60T)",
-        "value": "+6 to \u221270 dBm (1310/1490/1550/1625 nm)"
+        "value": "+6 to −70 dBm (1310/1490/1550/1625 nm)"
       },
       {
         "label": "Display Range (PDR60C)",
-        "value": "+26 to \u221250 dBm (1310/1490/1550/1625 nm)"
+        "value": "+26 to −50 dBm (1310/1490/1550/1625 nm)"
       },
       {
         "label": "Accuracy",
-        "value": "\u00b10.2 dB"
+        "value": "±0.2 dB"
       },
       {
         "label": "Calibrated Wavelengths",
@@ -2398,11 +2358,11 @@
       },
       {
         "label": "Power Supply",
-        "value": "2\u00d7 AA or AC/DC adapter"
+        "value": "2× AA or AC/DC adapter"
       },
       {
         "label": "Dimensions / Weight",
-        "value": "105 \u00d7 52 \u00d7 34 mm; ~100 g"
+        "value": "105 × 52 × 34 mm; ~100 g"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"12\" y=\"8\" width=\"24\" height=\"32\" rx=\"4\"></rect><rect x=\"16\" y=\"14\" width=\"16\" height=\"10\" rx=\"1\"></rect><circle cx=\"24\" cy=\"32\" r=\"3\"></circle></svg>",
@@ -2416,7 +2376,7 @@
     "name": "100G & 100G BIDI",
     "category": "Active Components > SFP Transceivers",
     "title": "100G & 100G BIDI | PDR World",
-    "description": "PDR optical transceivers deliver hot-pluggable, MSA-compliant 1.25G\u2013400G connectivity with SFP to QSFP-DD form factors, DDM, and SM/MM, CWDM/DWDM/BiDi support.",
+    "description": "PDR optical transceivers deliver hot-pluggable, MSA-compliant 1.25G–400G connectivity with SFP to QSFP-DD form factors, DDM, and SM/MM, CWDM/DWDM/BiDi support.",
     "canonical": "https://pdrworld.com/products/sfp-100g-bidi",
     "tagline": "Full range of MSA-compliant transceivers from 1.25G to 400G across SFP and QSFP form factors.",
     "status": "Active",
@@ -2437,35 +2397,35 @@
     "specs": [
       {
         "label": "SFP",
-        "value": "Up to 2.67 Gbps \u00b7 SM/MM \u00b7 up to 80 km"
+        "value": "Up to 2.67 Gbps · SM/MM · up to 80 km"
       },
       {
         "label": "SFP+",
-        "value": "Up to 11.3 Gbps \u00b7 SM/MM \u00b7 up to 40 km"
+        "value": "Up to 11.3 Gbps · SM/MM · up to 40 km"
       },
       {
         "label": "SFP28",
-        "value": "25.78 Gbps \u00b7 SM/MM \u00b7 up to 10 km"
+        "value": "25.78 Gbps · SM/MM · up to 10 km"
       },
       {
         "label": "QSFP+ (40G)",
-        "value": "41.2 Gbps (4\u00d710G) \u00b7 up to 10 km"
+        "value": "41.2 Gbps (4×10G) · up to 10 km"
       },
       {
         "label": "QSFP28 (100G)",
-        "value": "103.1 Gbps (4\u00d725G) \u00b7 up to 2 km"
+        "value": "103.1 Gbps (4×25G) · up to 2 km"
       },
       {
         "label": "QSFP-DD (200G/400G)",
-        "value": "200G / 400G \u00b7 up to 2 km"
+        "value": "200G / 400G · up to 2 km"
       },
       {
         "label": "Copper SFP",
-        "value": "10/100/1000BASE-T \u00b7 Cat 5 \u00b7 100 m"
+        "value": "10/100/1000BASE-T · Cat 5 · 100 m"
       },
       {
         "label": "Operating Temperature",
-        "value": "0\u00b0C to 70\u00b0C"
+        "value": "0°C to 70°C"
       },
       {
         "label": "Compliance",
@@ -2483,7 +2443,7 @@
     "name": "SFP+ 10G BIDI",
     "category": "Active Components > SFP Transceivers",
     "title": "SFP+ 10G BIDI | PDR World",
-    "description": "PDR optical transceivers deliver hot-pluggable, MSA-compliant 1.25G\u2013400G connectivity with SFP to QSFP-DD form factors, DDM, and SM/MM, CWDM/DWDM/BiDi support.",
+    "description": "PDR optical transceivers deliver hot-pluggable, MSA-compliant 1.25G–400G connectivity with SFP to QSFP-DD form factors, DDM, and SM/MM, CWDM/DWDM/BiDi support.",
     "canonical": "https://pdrworld.com/products/sfp-10g-bidi",
     "tagline": "Full range of MSA-compliant transceivers from 1.25G to 400G across SFP and QSFP form factors.",
     "status": "Active",
@@ -2504,35 +2464,35 @@
     "specs": [
       {
         "label": "SFP",
-        "value": "Up to 2.67 Gbps \u00b7 SM/MM \u00b7 up to 80 km"
+        "value": "Up to 2.67 Gbps · SM/MM · up to 80 km"
       },
       {
         "label": "SFP+",
-        "value": "Up to 11.3 Gbps \u00b7 SM/MM \u00b7 up to 40 km"
+        "value": "Up to 11.3 Gbps · SM/MM · up to 40 km"
       },
       {
         "label": "SFP28",
-        "value": "25.78 Gbps \u00b7 SM/MM \u00b7 up to 10 km"
+        "value": "25.78 Gbps · SM/MM · up to 10 km"
       },
       {
         "label": "QSFP+ (40G)",
-        "value": "41.2 Gbps (4\u00d710G) \u00b7 up to 10 km"
+        "value": "41.2 Gbps (4×10G) · up to 10 km"
       },
       {
         "label": "QSFP28 (100G)",
-        "value": "103.1 Gbps (4\u00d725G) \u00b7 up to 2 km"
+        "value": "103.1 Gbps (4×25G) · up to 2 km"
       },
       {
         "label": "QSFP-DD (200G/400G)",
-        "value": "200G / 400G \u00b7 up to 2 km"
+        "value": "200G / 400G · up to 2 km"
       },
       {
         "label": "Copper SFP",
-        "value": "10/100/1000BASE-T \u00b7 Cat 5 \u00b7 100 m"
+        "value": "10/100/1000BASE-T · Cat 5 · 100 m"
       },
       {
         "label": "Operating Temperature",
-        "value": "0\u00b0C to 70\u00b0C"
+        "value": "0°C to 70°C"
       },
       {
         "label": "Compliance",
@@ -2550,7 +2510,7 @@
     "name": "SFP+ 10G Dual Fiber",
     "category": "Active Components > SFP Transceivers",
     "title": "SFP+ 10G Dual Fiber | PDR World",
-    "description": "PDR optical transceivers deliver hot-pluggable, MSA-compliant 1.25G\u2013400G connectivity with SFP to QSFP-DD form factors, DDM, and SM/MM, CWDM/DWDM/BiDi support.",
+    "description": "PDR optical transceivers deliver hot-pluggable, MSA-compliant 1.25G–400G connectivity with SFP to QSFP-DD form factors, DDM, and SM/MM, CWDM/DWDM/BiDi support.",
     "canonical": "https://pdrworld.com/products/sfp-10g-dual",
     "tagline": "Standard dual-fiber 10G transmission",
     "status": "Active",
@@ -2571,35 +2531,35 @@
     "specs": [
       {
         "label": "SFP",
-        "value": "Up to 2.67 Gbps \u00b7 SM/MM \u00b7 up to 80 km"
+        "value": "Up to 2.67 Gbps · SM/MM · up to 80 km"
       },
       {
         "label": "SFP+",
-        "value": "Up to 11.3 Gbps \u00b7 SM/MM \u00b7 up to 40 km"
+        "value": "Up to 11.3 Gbps · SM/MM · up to 40 km"
       },
       {
         "label": "SFP28",
-        "value": "25.78 Gbps \u00b7 SM/MM \u00b7 up to 10 km"
+        "value": "25.78 Gbps · SM/MM · up to 10 km"
       },
       {
         "label": "QSFP+ (40G)",
-        "value": "41.2 Gbps (4\u00d710G) \u00b7 up to 10 km"
+        "value": "41.2 Gbps (4×10G) · up to 10 km"
       },
       {
         "label": "QSFP28 (100G)",
-        "value": "103.1 Gbps (4\u00d725G) \u00b7 up to 2 km"
+        "value": "103.1 Gbps (4×25G) · up to 2 km"
       },
       {
         "label": "QSFP-DD (200G/400G)",
-        "value": "200G / 400G \u00b7 up to 2 km"
+        "value": "200G / 400G · up to 2 km"
       },
       {
         "label": "Copper SFP",
-        "value": "10/100/1000BASE-T \u00b7 Cat 5 \u00b7 100 m"
+        "value": "10/100/1000BASE-T · Cat 5 · 100 m"
       },
       {
         "label": "Operating Temperature",
-        "value": "0\u00b0C to 70\u00b0C"
+        "value": "0°C to 70°C"
       },
       {
         "label": "Compliance",
@@ -2617,7 +2577,7 @@
     "name": "1G SFP BIDI",
     "category": "Active Components > SFP Transceivers",
     "title": "1G SFP BIDI | PDR World",
-    "description": "PDR optical transceivers deliver hot-pluggable, MSA-compliant 1.25G\u2013400G connectivity with SFP to QSFP-DD form factors, DDM, and SM/MM, CWDM/DWDM/BiDi support.",
+    "description": "PDR optical transceivers deliver hot-pluggable, MSA-compliant 1.25G–400G connectivity with SFP to QSFP-DD form factors, DDM, and SM/MM, CWDM/DWDM/BiDi support.",
     "canonical": "https://pdrworld.com/products/sfp-1g-bidi",
     "tagline": "Cost-effective 1G bi-directional link",
     "status": "Active",
@@ -2638,35 +2598,35 @@
     "specs": [
       {
         "label": "SFP",
-        "value": "Up to 2.67 Gbps \u00b7 SM/MM \u00b7 up to 80 km"
+        "value": "Up to 2.67 Gbps · SM/MM · up to 80 km"
       },
       {
         "label": "SFP+",
-        "value": "Up to 11.3 Gbps \u00b7 SM/MM \u00b7 up to 40 km"
+        "value": "Up to 11.3 Gbps · SM/MM · up to 40 km"
       },
       {
         "label": "SFP28",
-        "value": "25.78 Gbps \u00b7 SM/MM \u00b7 up to 10 km"
+        "value": "25.78 Gbps · SM/MM · up to 10 km"
       },
       {
         "label": "QSFP+ (40G)",
-        "value": "41.2 Gbps (4\u00d710G) \u00b7 up to 10 km"
+        "value": "41.2 Gbps (4×10G) · up to 10 km"
       },
       {
         "label": "QSFP28 (100G)",
-        "value": "103.1 Gbps (4\u00d725G) \u00b7 up to 2 km"
+        "value": "103.1 Gbps (4×25G) · up to 2 km"
       },
       {
         "label": "QSFP-DD (200G/400G)",
-        "value": "200G / 400G \u00b7 up to 2 km"
+        "value": "200G / 400G · up to 2 km"
       },
       {
         "label": "Copper SFP",
-        "value": "10/100/1000BASE-T \u00b7 Cat 5 \u00b7 100 m"
+        "value": "10/100/1000BASE-T · Cat 5 · 100 m"
       },
       {
         "label": "Operating Temperature",
-        "value": "0\u00b0C to 70\u00b0C"
+        "value": "0°C to 70°C"
       },
       {
         "label": "Compliance",
@@ -2684,7 +2644,7 @@
     "name": "25G & 25G BIDI",
     "category": "Active Components > SFP Transceivers",
     "title": "25G & 25G BIDI | PDR World",
-    "description": "PDR optical transceivers deliver hot-pluggable, MSA-compliant 1.25G\u2013400G connectivity with SFP to QSFP-DD form factors, DDM, and SM/MM, CWDM/DWDM/BiDi support.",
+    "description": "PDR optical transceivers deliver hot-pluggable, MSA-compliant 1.25G–400G connectivity with SFP to QSFP-DD form factors, DDM, and SM/MM, CWDM/DWDM/BiDi support.",
     "canonical": "https://pdrworld.com/products/sfp-25g-bidi",
     "tagline": "Optimized for 5G fronthaul",
     "status": "Active",
@@ -2705,35 +2665,35 @@
     "specs": [
       {
         "label": "SFP",
-        "value": "Up to 2.67 Gbps \u00b7 SM/MM \u00b7 up to 80 km"
+        "value": "Up to 2.67 Gbps · SM/MM · up to 80 km"
       },
       {
         "label": "SFP+",
-        "value": "Up to 11.3 Gbps \u00b7 SM/MM \u00b7 up to 40 km"
+        "value": "Up to 11.3 Gbps · SM/MM · up to 40 km"
       },
       {
         "label": "SFP28",
-        "value": "25.78 Gbps \u00b7 SM/MM \u00b7 up to 10 km"
+        "value": "25.78 Gbps · SM/MM · up to 10 km"
       },
       {
         "label": "QSFP+ (40G)",
-        "value": "41.2 Gbps (4\u00d710G) \u00b7 up to 10 km"
+        "value": "41.2 Gbps (4×10G) · up to 10 km"
       },
       {
         "label": "QSFP28 (100G)",
-        "value": "103.1 Gbps (4\u00d725G) \u00b7 up to 2 km"
+        "value": "103.1 Gbps (4×25G) · up to 2 km"
       },
       {
         "label": "QSFP-DD (200G/400G)",
-        "value": "200G / 400G \u00b7 up to 2 km"
+        "value": "200G / 400G · up to 2 km"
       },
       {
         "label": "Copper SFP",
-        "value": "10/100/1000BASE-T \u00b7 Cat 5 \u00b7 100 m"
+        "value": "10/100/1000BASE-T · Cat 5 · 100 m"
       },
       {
         "label": "Operating Temperature",
-        "value": "0\u00b0C to 70\u00b0C"
+        "value": "0°C to 70°C"
       },
       {
         "label": "Compliance",
@@ -2751,7 +2711,7 @@
     "name": "400G",
     "category": "Active Components > SFP Transceivers",
     "title": "400G | PDR World",
-    "description": "PDR optical transceivers deliver hot-pluggable, MSA-compliant 1.25G\u2013400G connectivity with SFP to QSFP-DD form factors, DDM, and SM/MM, CWDM/DWDM/BiDi support.",
+    "description": "PDR optical transceivers deliver hot-pluggable, MSA-compliant 1.25G–400G connectivity with SFP to QSFP-DD form factors, DDM, and SM/MM, CWDM/DWDM/BiDi support.",
     "canonical": "https://pdrworld.com/products/sfp-400g",
     "tagline": "Next-generation high-capacity throughput",
     "status": "Active",
@@ -2772,35 +2732,35 @@
     "specs": [
       {
         "label": "SFP",
-        "value": "Up to 2.67 Gbps \u00b7 SM/MM \u00b7 up to 80 km"
+        "value": "Up to 2.67 Gbps · SM/MM · up to 80 km"
       },
       {
         "label": "SFP+",
-        "value": "Up to 11.3 Gbps \u00b7 SM/MM \u00b7 up to 40 km"
+        "value": "Up to 11.3 Gbps · SM/MM · up to 40 km"
       },
       {
         "label": "SFP28",
-        "value": "25.78 Gbps \u00b7 SM/MM \u00b7 up to 10 km"
+        "value": "25.78 Gbps · SM/MM · up to 10 km"
       },
       {
         "label": "QSFP+ (40G)",
-        "value": "41.2 Gbps (4\u00d710G) \u00b7 up to 10 km"
+        "value": "41.2 Gbps (4×10G) · up to 10 km"
       },
       {
         "label": "QSFP28 (100G)",
-        "value": "103.1 Gbps (4\u00d725G) \u00b7 up to 2 km"
+        "value": "103.1 Gbps (4×25G) · up to 2 km"
       },
       {
         "label": "QSFP-DD (200G/400G)",
-        "value": "200G / 400G \u00b7 up to 2 km"
+        "value": "200G / 400G · up to 2 km"
       },
       {
         "label": "Copper SFP",
-        "value": "10/100/1000BASE-T \u00b7 Cat 5 \u00b7 100 m"
+        "value": "10/100/1000BASE-T · Cat 5 · 100 m"
       },
       {
         "label": "Operating Temperature",
-        "value": "0\u00b0C to 70\u00b0C"
+        "value": "0°C to 70°C"
       },
       {
         "label": "Compliance",
@@ -2818,7 +2778,7 @@
     "name": "40G",
     "category": "Active Components > SFP Transceivers",
     "title": "40G | PDR World",
-    "description": "PDR optical transceivers deliver hot-pluggable, MSA-compliant 1.25G\u2013400G connectivity with SFP to QSFP-DD form factors, DDM, and SM/MM, CWDM/DWDM/BiDi support.",
+    "description": "PDR optical transceivers deliver hot-pluggable, MSA-compliant 1.25G–400G connectivity with SFP to QSFP-DD form factors, DDM, and SM/MM, CWDM/DWDM/BiDi support.",
     "canonical": "https://pdrworld.com/products/sfp-40g",
     "tagline": "Reliable mid-tier aggregation",
     "status": "Active",
@@ -2839,35 +2799,35 @@
     "specs": [
       {
         "label": "SFP",
-        "value": "Up to 2.67 Gbps \u00b7 SM/MM \u00b7 up to 80 km"
+        "value": "Up to 2.67 Gbps · SM/MM · up to 80 km"
       },
       {
         "label": "SFP+",
-        "value": "Up to 11.3 Gbps \u00b7 SM/MM \u00b7 up to 40 km"
+        "value": "Up to 11.3 Gbps · SM/MM · up to 40 km"
       },
       {
         "label": "SFP28",
-        "value": "25.78 Gbps \u00b7 SM/MM \u00b7 up to 10 km"
+        "value": "25.78 Gbps · SM/MM · up to 10 km"
       },
       {
         "label": "QSFP+ (40G)",
-        "value": "41.2 Gbps (4\u00d710G) \u00b7 up to 10 km"
+        "value": "41.2 Gbps (4×10G) · up to 10 km"
       },
       {
         "label": "QSFP28 (100G)",
-        "value": "103.1 Gbps (4\u00d725G) \u00b7 up to 2 km"
+        "value": "103.1 Gbps (4×25G) · up to 2 km"
       },
       {
         "label": "QSFP-DD (200G/400G)",
-        "value": "200G / 400G \u00b7 up to 2 km"
+        "value": "200G / 400G · up to 2 km"
       },
       {
         "label": "Copper SFP",
-        "value": "10/100/1000BASE-T \u00b7 Cat 5 \u00b7 100 m"
+        "value": "10/100/1000BASE-T · Cat 5 · 100 m"
       },
       {
         "label": "Operating Temperature",
-        "value": "0\u00b0C to 70\u00b0C"
+        "value": "0°C to 70°C"
       },
       {
         "label": "Compliance",
@@ -2885,7 +2845,7 @@
     "name": "Copper SFP+",
     "category": "Active Components > SFP Transceivers",
     "title": "Copper SFP+ | PDR World",
-    "description": "PDR optical transceivers deliver hot-pluggable, MSA-compliant 1.25G\u2013400G connectivity with SFP to QSFP-DD form factors, DDM, and SM/MM, CWDM/DWDM/BiDi support.",
+    "description": "PDR optical transceivers deliver hot-pluggable, MSA-compliant 1.25G–400G connectivity with SFP to QSFP-DD form factors, DDM, and SM/MM, CWDM/DWDM/BiDi support.",
     "canonical": "https://pdrworld.com/products/sfp-copper",
     "tagline": "RJ-45 interface for twisted pair copper",
     "status": "Active",
@@ -2906,35 +2866,35 @@
     "specs": [
       {
         "label": "SFP",
-        "value": "Up to 2.67 Gbps \u00b7 SM/MM \u00b7 up to 80 km"
+        "value": "Up to 2.67 Gbps · SM/MM · up to 80 km"
       },
       {
         "label": "SFP+",
-        "value": "Up to 11.3 Gbps \u00b7 SM/MM \u00b7 up to 40 km"
+        "value": "Up to 11.3 Gbps · SM/MM · up to 40 km"
       },
       {
         "label": "SFP28",
-        "value": "25.78 Gbps \u00b7 SM/MM \u00b7 up to 10 km"
+        "value": "25.78 Gbps · SM/MM · up to 10 km"
       },
       {
         "label": "QSFP+ (40G)",
-        "value": "41.2 Gbps (4\u00d710G) \u00b7 up to 10 km"
+        "value": "41.2 Gbps (4×10G) · up to 10 km"
       },
       {
         "label": "QSFP28 (100G)",
-        "value": "103.1 Gbps (4\u00d725G) \u00b7 up to 2 km"
+        "value": "103.1 Gbps (4×25G) · up to 2 km"
       },
       {
         "label": "QSFP-DD (200G/400G)",
-        "value": "200G / 400G \u00b7 up to 2 km"
+        "value": "200G / 400G · up to 2 km"
       },
       {
         "label": "Copper SFP",
-        "value": "10/100/1000BASE-T \u00b7 Cat 5 \u00b7 100 m"
+        "value": "10/100/1000BASE-T · Cat 5 · 100 m"
       },
       {
         "label": "Operating Temperature",
-        "value": "0\u00b0C to 70\u00b0C"
+        "value": "0°C to 70°C"
       },
       {
         "label": "Compliance",
@@ -2956,7 +2916,7 @@
     "canonical": "https://pdrworld.com/products/smart-sfp",
     "tagline": "Integrated OAM (Operations, Administration, and Maintenance)",
     "status": "Active",
-    "imageUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-images/smart-sfp/product-image.jpeg",
+    "imageUrl": "/images/products/smart-sfp.jpeg",
     "features": [
       "Integrated OAM (Operations, Administration, and Maintenance)",
       "Real-time performance monitoring",
@@ -2986,10 +2946,10 @@
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"></rect><circle cx=\"24\" cy=\"24\" r=\"4\"></circle><path d=\"M12 24h24\"></path></svg>",
-    "datasheetUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-datasheets/smart-sfp/1786046297896-optical_transceivers_datasheet_v2_compressed-1-.pdf",
+    "datasheetUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-datasheets/smart-sfp/1787749869657-optismart-sfp_otdr.pdf",
     "galleryUrls": [],
     "tags": [],
-    "updatedAt": "2026-08-06T19:58:22.578+00:00"
+    "updatedAt": "2026-08-27T10:59:41.524+00:00"
   },
   {
     "slug": "smpte-assembly",
@@ -3006,7 +2966,7 @@
       "Heavy-duty cable retention for secure long-term performance",
       "Silicon gasket protection against dust and dirt",
       "Wide connector range: SC, LC, FC, ST, MU, MTRJ, SMA, E2000",
-      "Supports single-mode (9/125 \u00b5m) and multimode (50/125 \u00b5m, 62.5/125 \u00b5m, OM3) fiber",
+      "Supports single-mode (9/125 µm) and multimode (50/125 µm, 62.5/125 µm, OM3) fiber",
       "Multiple jacket types: simplex, duplex, mini-zipcord, armored, FTTH",
       "Customizable lengths from 0.5 m to 999 m"
     ],
@@ -3018,7 +2978,7 @@
     "specs": [
       {
         "label": "Fiber Type",
-        "value": "Single-mode (9/125 \u00b5m); Multimode (50/125, 62.5/125, OM3)"
+        "value": "Single-mode (9/125 µm); Multimode (50/125, 62.5/125, OM3)"
       },
       {
         "label": "Connector Options",
@@ -3026,11 +2986,11 @@
       },
       {
         "label": "Insertion Loss",
-        "value": "\u2264 0.30 dB typical; \u2264 0.50 dB max"
+        "value": "≤ 0.30 dB typical; ≤ 0.50 dB max"
       },
       {
         "label": "Return Loss",
-        "value": "\u2265 50 dB UPC; \u2265 60 dB APC"
+        "value": "≥ 50 dB UPC; ≥ 60 dB APC"
       },
       {
         "label": "Length Options",
@@ -3038,7 +2998,7 @@
       },
       {
         "label": "Operating Temperature",
-        "value": "\u201340 \u00b0C to +75 \u00b0C"
+        "value": "–40 °C to +75 °C"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"8\" y=\"16\" width=\"32\" height=\"16\" rx=\"3\"></rect><circle cx=\"18\" cy=\"24\" r=\"3\"></circle><circle cx=\"30\" cy=\"24\" r=\"3\"></circle></svg>",
@@ -3049,16 +3009,16 @@
   },
   {
     "slug": "vfl",
-    "name": "VFL \u2014 Visual Fault Locator",
+    "name": "VFL — Visual Fault Locator",
     "category": "Test and Measurement Equipment > Visual Fault Locator",
-    "title": "VFL \u2014 Visual Fault Locator | PDR World",
-    "description": "The BML209 is a compact pen-style 650 nm Visual Fault Locator (VFL) that detects fiber faults, breaks, bends, and connector defects, with 1\u201330 mW output options for 3 km to 10+ km testing.",
+    "title": "VFL — Visual Fault Locator | PDR World",
+    "description": "The BML209 is a compact pen-style 650 nm Visual Fault Locator (VFL) that detects fiber faults, breaks, bends, and connector defects, with 1–30 mW output options for 3 km to 10+ km testing.",
     "canonical": "https://pdrworld.com/products/vfl",
     "tagline": "Visual fault locator for pinpointing fiber breaks, bends and faults.",
     "status": "Active",
     "imageUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-images/vfl/product-image.png",
     "features": [
-      "650 nm \u00b120 nm visible red laser for instant fault and break localisation",
+      "650 nm ±20 nm visible red laser for instant fault and break localisation",
       "Four output power variants: 1 mW, 10 mW, 20 mW, and 30 mW for different reach requirements",
       "Dynamic detection distance: 3 to 5 km (1 mW) up to >10 km (20/30 mW variants)",
       "Dual operation modes: Continuous Wave (CW) and Pulsed (2 Hz) for identification",
@@ -3077,7 +3037,7 @@
       },
       {
         "label": "Wavelength",
-        "value": "650 nm \u00b120 nm"
+        "value": "650 nm ±20 nm"
       },
       {
         "label": "Operation Modes",
@@ -3089,7 +3049,7 @@
       },
       {
         "label": "Dimensions",
-        "value": "180 mm (L) \u00d7 30 mm (diameter)"
+        "value": "180 mm (L) × 30 mm (diameter)"
       },
       {
         "label": "Weight",
@@ -3144,16 +3104,16 @@
     "status": "Active",
     "imageUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-images/bypass-switch/product-image.jpeg",
     "features": [
-      "Automatic bypass protection via power supply, optical power, and TCP/IP heartbeat monitoring \u2014 individually or in combination",
+      "Automatic bypass protection via power supply, optical power, and TCP/IP heartbeat monitoring — individually or in combination",
       "Sub-50 ms carrier-grade switching speed for transparent network failover",
       "Up to 4 independent bypass channels in a single 1U 19-inch rack chassis",
       "Auto-Switch and Manual-Switch modes with configurable auto-return after an idle period",
-      "LC/PC single-mode (9/125 \u00b5m) interfaces with \u2264 1.5 dB insertion loss and \u2265 50 dB return loss",
+      "LC/PC single-mode (9/125 µm) interfaces with ≤ 1.5 dB insertion loss and ≥ 50 dB return loss",
       "Switching-log records reason, time, and result of every switching event",
-      "Dual power inputs: AC 85\u2013264 V (50/60 Hz) and DC 36\u201372 V for full redundancy"
+      "Dual power inputs: AC 85–264 V (50/60 Hz) and DC 36–72 V for full redundancy"
     ],
     "applications": [
-      "Inline node protection for network security appliances \u2014 firewalls, IPS, DPI, and flow-control devices",
+      "Inline node protection for network security appliances — firewalls, IPS, DPI, and flow-control devices",
       "Repeater and optical amplifier protection in long-haul and metro networks",
       "FTTH/FTTB access network deployments",
       "Data centre interconnects and spine-leaf fabric resilience",
@@ -3166,7 +3126,7 @@
       },
       {
         "label": "Fiber Type",
-        "value": "SM 9/125 \u00b5m (ITU-T G.652)"
+        "value": "SM 9/125 µm (ITU-T G.652)"
       },
       {
         "label": "Channels",
@@ -3174,11 +3134,11 @@
       },
       {
         "label": "Insertion Loss",
-        "value": "\u2264 1.5 dB"
+        "value": "≤ 1.5 dB"
       },
       {
         "label": "Return Loss",
-        "value": "\u2265 50 dB"
+        "value": "≥ 50 dB"
       },
       {
         "label": "Switching Time",
@@ -3186,7 +3146,7 @@
       },
       {
         "label": "Power Supply",
-        "value": "AC 85\u2013264 V | DC 36\u201372 V (dual inputs)"
+        "value": "AC 85–264 V | DC 36–72 V (dual inputs)"
       },
       {
         "label": "Dimensions",
@@ -3225,8 +3185,8 @@
     ],
     "specs": [
       {
-        "label": "Dimensions (L\u00d7W\u00d7H)",
-        "value": "86 \u00d7 86 \u00d7 25 mm"
+        "label": "Dimensions (L×W×H)",
+        "value": "86 × 86 × 25 mm"
       },
       {
         "label": "Fiber Count",
@@ -3246,7 +3206,7 @@
       },
       {
         "label": "Return Loss",
-        "value": "\u2265 65 dB (APC) / \u2265 55 dB (UPC)"
+        "value": "≥ 65 dB (APC) / ≥ 55 dB (UPC)"
       },
       {
         "label": "Adapter Compatibility",
@@ -3272,7 +3232,7 @@
     "name": "1G SFP Dual Fiber",
     "category": "Active Components > SFP Transceivers",
     "title": "1G SFP Dual Fiber | PDR World",
-    "description": "PDR optical transceivers deliver hot-pluggable, MSA-compliant 1.25G\u2013400G connectivity with SFP to QSFP-DD form factors, DDM, and SM/MM, CWDM/DWDM/BiDi support.",
+    "description": "PDR optical transceivers deliver hot-pluggable, MSA-compliant 1.25G–400G connectivity with SFP to QSFP-DD form factors, DDM, and SM/MM, CWDM/DWDM/BiDi support.",
     "canonical": "https://pdrworld.com/products/sfp-1g-dual",
     "tagline": "Legacy compatible 1G module",
     "status": "Active",
@@ -3293,35 +3253,35 @@
     "specs": [
       {
         "label": "SFP",
-        "value": "Up to 2.67 Gbps \u00b7 SM/MM \u00b7 up to 80 km"
+        "value": "Up to 2.67 Gbps · SM/MM · up to 80 km"
       },
       {
         "label": "SFP+",
-        "value": "Up to 11.3 Gbps \u00b7 SM/MM \u00b7 up to 40 km"
+        "value": "Up to 11.3 Gbps · SM/MM · up to 40 km"
       },
       {
         "label": "SFP28",
-        "value": "25.78 Gbps \u00b7 SM/MM \u00b7 up to 10 km"
+        "value": "25.78 Gbps · SM/MM · up to 10 km"
       },
       {
         "label": "QSFP+ (40G)",
-        "value": "41.2 Gbps (4\u00d710G) \u00b7 up to 10 km"
+        "value": "41.2 Gbps (4×10G) · up to 10 km"
       },
       {
         "label": "QSFP28 (100G)",
-        "value": "103.1 Gbps (4\u00d725G) \u00b7 up to 2 km"
+        "value": "103.1 Gbps (4×25G) · up to 2 km"
       },
       {
         "label": "QSFP-DD (200G/400G)",
-        "value": "200G / 400G \u00b7 up to 2 km"
+        "value": "200G / 400G · up to 2 km"
       },
       {
         "label": "Copper SFP",
-        "value": "10/100/1000BASE-T \u00b7 Cat 5 \u00b7 100 m"
+        "value": "10/100/1000BASE-T · Cat 5 · 100 m"
       },
       {
         "label": "Operating Temperature",
-        "value": "0\u00b0C to 70\u00b0C"
+        "value": "0°C to 70°C"
       },
       {
         "label": "Compliance",
@@ -3339,7 +3299,7 @@
     "name": "UAV Fiber Optic Spool",
     "category": "Specialty Drones",
     "title": "UAV Fiber Optic Spool (PDR-FOS Series) | PDR",
-    "description": "Ultra-light optical fiber payout spool for tethered UAVs and unmanned vehicles, wound with bend-insensitive G.657.A2 single-mode fiber supplied in 17 standard lengths (500 m\u201350 km) with an FC interface.",
+    "description": "Ultra-light optical fiber payout spool for tethered UAVs and unmanned vehicles, wound with bend-insensitive G.657.A2 single-mode fiber supplied in 17 standard lengths (500 m–50 km) with an FC interface.",
     "canonical": "https://pdrworld.com/products/uav-fiber-optic-spool",
     "tagline": "Ultra-light UAV payout spool that dispenses bend-insensitive fiber cleanly at high speed, from 500 m to 50 km.",
     "status": "Active",
@@ -3371,7 +3331,7 @@
       },
       {
         "label": "Available Lengths",
-        "value": "500 m to 50 km (17 standard variants \u2014 see Ordering Information)"
+        "value": "500 m to 50 km (17 standard variants — see Ordering Information)"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"14\" y=\"14\" width=\"20\" height=\"20\" rx=\"3\"></rect><circle cx=\"24\" cy=\"24\" r=\"4\"></circle></svg>",
@@ -3384,20 +3344,20 @@
     "slug": "fpv-optical-terminal",
     "name": "Sky Unit",
     "category": "Specialty Drones",
-    "title": "FPV Optical Terminal Sky Unit (Type A) | PDR",
+    "title": "Sky Unit | PDR World",
     "description": "Aircraft-mounted transmit terminal that accepts camera composite video plus flight-controller telemetry and carries them over a single fiber at 1.25 Gbps, offered in four compact mounting sizes with a GH1.25 interface for direct integration into the drone's power and control harness.",
     "canonical": "https://pdrworld.com/products/fpv-optical-terminal",
     "tagline": "Airborne fiber optical terminal that sends camera video and flight-controller telemetry down a single fiber at 1.25 Gbps.",
     "status": "Active",
-    "imageUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-images/fpv-optical-terminal/product-image.png",
+    "imageUrl": "/images/products/fpv-optical-terminal.png",
     "features": [
       "Airborne (Type A) transmit terminal for tethered / FPV drone fiber links",
       "Single-fiber optical transmission at 1.25 Gbps over an FC interface",
       "Accepts composite video input and flight-controller TTL telemetry",
-      "Four mounting sizes (88\u00d788 to 141\u00d7120 mm) for flexible airframe integration",
+      "Four mounting sizes (88×88 to 141×120 mm) for flexible airframe integration",
       "GH1.25 (8P) back-panel connector carrying video, TTL serial and power",
       "PWR and SYC status LEDs for power and optical-sync diagnostics",
-      "Wide 5\u201312 V DC input for direct drone-power integration"
+      "Wide 5–12 V DC input for direct drone-power integration"
     ],
     "applications": [
       "Airborne video/telemetry transmission for FPV and racing drones",
@@ -3408,7 +3368,7 @@
     "specs": [
       {
         "label": "Unit Type",
-        "value": "Type A \u2014 Airborne Sky Unit"
+        "value": "Type A — Airborne Sky Unit"
       },
       {
         "label": "Optical Transmission Rate",
@@ -3428,16 +3388,16 @@
       },
       {
         "label": "Power Budget",
-        "value": "5\u201312 V DC (via GH1.25)"
+        "value": "5–12 V DC (via GH1.25)"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"14\" y=\"14\" width=\"20\" height=\"20\" rx=\"3\"></rect><circle cx=\"24\" cy=\"24\" r=\"4\"></circle></svg>",
-    "datasheetUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-datasheets/fpv-optical-terminal/1785333060432-pdr-catalogue-2024-1-.pdf",
+    "datasheetUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-datasheets/fpv-optical-terminal/1787750364419-fpv_optical_terminal_datasheet.pdf",
     "galleryUrls": [
-      "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-images/fpv-optical-terminal/gallery-0-1786042615940.png"
+      "/images/products/fpv-optical-terminal.png"
     ],
     "tags": [],
-    "updatedAt": "2026-08-07T08:57:30.33+00:00"
+    "updatedAt": "2026-08-27T10:59:41.131+00:00"
   },
   {
     "slug": "fiber-optic-adapter",
@@ -3452,12 +3412,12 @@
     "features": [
       "Couples two like connectors (SC, LC, FC, ST, MU, E2000, MT-RJ) for optical continuity across a panel",
       "High-precision zirconia-ceramic or phosphor-bronze split alignment sleeve for accurate ferrule alignment",
-      "Low insertion loss \u2264 0.2 dB for minimal signal degradation",
-      "High return loss \u2265 50 dB (UPC) and \u2265 60 dB (APC) for single-mode",
+      "Low insertion loss ≤ 0.2 dB for minimal signal degradation",
+      "High return loss ≥ 50 dB (UPC) and ≥ 60 dB (APC) for single-mode",
       "Available in simplex, duplex, and quad configurations",
       "UPC and APC polish options to match connector end-faces",
-      "Compatible with both single-mode (OS1/OS2) and multimode (OM1\u2013OM4) fiber",
-      "Plug-and-play installation with no special tools; \u2265 1000 mating cycles over \u221240 \u00b0C to +75 \u00b0C"
+      "Compatible with both single-mode (OS1/OS2) and multimode (OM1–OM4) fiber",
+      "Plug-and-play installation with no special tools; ≥ 1000 mating cycles over −40 °C to +75 °C"
     ],
     "applications": [
       "Fiber-to-the-Home (FTTH) and Fiber-to-the-Building (FTTB) network deployments",
@@ -3476,7 +3436,7 @@
       },
       {
         "label": "Fiber Type",
-        "value": "Single-mode (OS1/OS2) / Multimode (OM1\u2013OM4)"
+        "value": "Single-mode (OS1/OS2) / Multimode (OM1–OM4)"
       },
       {
         "label": "Polish",
@@ -3484,7 +3444,7 @@
       },
       {
         "label": "Durability",
-        "value": "\u2265 1000 mating cycles"
+        "value": "≥ 1000 mating cycles"
       }
     ],
     "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"14\" y=\"14\" width=\"20\" height=\"20\" rx=\"3\"></rect><circle cx=\"24\" cy=\"24\" r=\"4\"></circle></svg>",
@@ -3506,7 +3466,7 @@
     "features": [
       "WiFi and USB Type-C data transfer with real-time video and automatic pass/fail analysis",
       "Compatible with Windows, Android, and iOS",
-      "0.42 \u00b5m resolution, 5 MP CMOS sensor, 10X optical magnification, <1 \u00b5m particle detection",
+      "0.42 µm resolution, 5 MP CMOS sensor, 10X optical magnification, <1 µm particle detection",
       "More than 50 adapter types including MPO/MTP; custom adapters available",
       "Built-in rechargeable Li-ion battery, up to 5 hours; usable while charging",
       "White LED lighting for low-light and dark environments"
@@ -3521,7 +3481,7 @@
     "specs": [
       {
         "label": "Resolution",
-        "value": "0.42 \u00b5m"
+        "value": "0.42 µm"
       },
       {
         "label": "Image Sensor",
@@ -3533,7 +3493,7 @@
       },
       {
         "label": "Field of View",
-        "value": "512 \u00b5m \u00d7 384 \u00b5m"
+        "value": "512 µm × 384 µm"
       },
       {
         "label": "Signal Output",

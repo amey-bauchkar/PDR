@@ -90,16 +90,30 @@ app.get('*', (req, res, next) => {
             return res.sendFile(candidate);
         }
     }
-    // Fallback to SPA root index.html
-    const fallbackCandidates = [
-        path.join(cwdDir, 'index.html'),
-        path.join(rootDir, 'index.html'),
-        path.join(parentDir, 'index.html'),
-        path.join(distDir, 'index.html'),
+    // If admin route, fallback to SPA root index.html
+    if (req.path.startsWith('/admin')) {
+        const fallbackCandidates = [
+            path.join(cwdDir, 'index.html'),
+            path.join(rootDir, 'index.html'),
+            path.join(parentDir, 'index.html'),
+            path.join(distDir, 'index.html'),
+        ];
+        for (const fallback of fallbackCandidates) {
+            if (fs.existsSync(fallback) && fs.statSync(fallback).isFile()) {
+                return res.sendFile(fallback);
+            }
+        }
+    }
+    // Non-existent route: serve 404.html with real HTTP 404 status
+    const notFoundCandidates = [
+        path.join(cwdDir, '404.html'),
+        path.join(rootDir, '404.html'),
+        path.join(parentDir, '404.html'),
+        path.join(distDir, '404.html'),
     ];
-    for (const fallback of fallbackCandidates) {
-        if (fs.existsSync(fallback) && fs.statSync(fallback).isFile()) {
-            return res.sendFile(fallback);
+    for (const nf of notFoundCandidates) {
+        if (fs.existsSync(nf) && fs.statSync(nf).isFile()) {
+            return res.status(404).sendFile(nf);
         }
     }
     res.status(404).send('Page Not Found');

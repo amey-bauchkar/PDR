@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { generateSitemap } from './generate-sitemap.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -60,7 +61,6 @@ const LOCAL_IMAGE_MAP = {
   'pof-patchcord': '/images/products/pof-patchcord.png',
   'fusion-splicer': '/images/live/fusion-splicer-pdr618h.webp',
   'next-gen-splicer': '/images/products/next-gen-splicer.png',
-  'easyget-wifi': '/images/live/easyget-wifi-wireless-fiber-endface-microscope.webp',
   'regular-opm': '/images/live/mini-optical-power-meter.webp',
   'pocket-otdr': '/images/live/mini-otdr-pdr4402s.webp',
   'pon-power-meter': '/images/live/pon-power-meter.webp',
@@ -96,46 +96,52 @@ function getImageMimeType(url) {
 const CATEGORY_PAGES = [
   {
     path: 'products/active-components',
+    name: 'Active Components',
     title: 'Active Optical Components & Transceivers | PDR World',
     description: 'Explore high-speed optical transceivers from 1G to 400G, AOCs, DACs, and CWDM/DWDM modules engineered for enterprise networks and data centres.',
   },
   {
     path: 'products/passive-components',
+    name: 'Passive Components',
     title: 'Passive Fiber Optic Components & Patch Cords | PDR World',
-    description: 'Premium fiber patch cords, pigtails, attenuators, PLC splitters, and adapters manufactured for ultra-low insertion loss and high return loss.',
+    description: 'Browse precision fiber patch cords, MPO trunk assemblies, PLC splitters, and attenuators built with premium low-loss optical glass.',
   },
   {
     path: 'products/cable-management',
-    title: 'Fiber Cable Management & Distribution Systems | PDR World',
-    description: 'High-density rack mount FMS, ODFs, fiber distribution boxes, and splice closures designed for streamlined telecom routing and protection.',
+    name: 'Cable Management',
+    title: 'Fiber Management Systems, Enclosures & Patch Panels | PDR World',
+    description: 'High-density rack-mount FMS, wall-mount enclosures, fiber distribution boxes (FDB), and Cat6 patch panels designed for organized cable routing.',
   },
   {
     path: 'products/test-measuring',
-    title: 'Fiber Optic Test & Measurement Equipment | PDR World',
-    description: 'Precision optical power meters, visual fault locators, OTDRs, and fiber inspection microscopes for field testing and lab certification.',
+    name: 'Test & Measurement',
+    title: 'Optical Test & Measurement Equipment | PDR World',
+    description: 'Core-alignment fusion splicers, handheld OTDRs, optical power meters (OPM), and visual fault locators for field installation and certification.',
   },
   {
     path: 'products/specialty-drones',
-    title: 'Specialty Drone Fiber Tether Systems | PDR World',
-    description: 'Ultra-lightweight fiber optic tether spools and high-bandwidth optical terminals for uninterrupted, jam-proof UAV communication links.',
+    name: 'Specialty Defense & UAV Solutions',
+    title: 'Defense & UAV Tethered Fiber Spools | PDR World',
+    description: 'Ultra-lightweight micro-armored fiber optic spools and optical ground/sky terminals for jam-proof FPV drone and defense tethering.',
   },
   {
     path: 'products/maintenance-tools',
-    title: 'Fiber Optic Cleaning & Maintenance Tools | PDR World',
-    description: 'One-click cleaner pens, cassette cleaners, and precision fusion splicing accessories for flawless fiber end-face maintenance.',
+    name: 'Maintenance Tools',
+    title: 'Fiber Cleaning & Inspection Tools | PDR World',
+    description: 'One-click cleaner pens, cassette cleaners, and fiber endface inspection scopes to ensure zero optical contamination.',
   },
 ];
 
 const STATIC_PAGES = [
   {
     path: 'about',
-    title: 'About Us | PDR World — 35+ Years of Optical Fiber Innovation',
-    description: 'Learn about PDR Videotronics, an ISO-certified pioneer in optical fiber communication components, infrastructure, and custom telecom manufacturing since 1988.',
+    title: 'About PDR World — Leading Fiber Optic Manufacturer in India',
+    description: 'Established in 1986, PDR Videotronics is an ISO 9001/14001 certified pioneer in fiber optic communication systems and networking infrastructure.',
   },
   {
     path: 'products',
-    title: 'Products Catalogue — Optical Fiber Infrastructure & Devices | PDR World',
-    description: 'Browse the complete PDR product line: transceivers, patch cords, cable management, test tools, fusion splicers, and drone tether systems.',
+    title: 'All Optical Fiber Products & Systems | PDR World',
+    description: 'Comprehensive catalogue of optical transceivers, fiber patch cords, splice closures, MPO cables, and fusion splicers manufactured by PDR.',
   },
   {
     path: 'solutions',
@@ -176,7 +182,7 @@ const STATIC_PAGES = [
 
 function escapeHtml(str) {
   if (!str) return '';
-  return str
+  return String(str)
     .replace(/&/g, '&amp;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;')
@@ -184,10 +190,59 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;');
 }
 
-function injectMeta(templateHtml, { title, description, canonicalUrl, ogImage, ogType = 'website', jsonLd = null }) {
+function resolveDatasheetUrl(url, slug) {
+  if (slug) {
+    const localFile = path.join(DIST_DIR, 'datasheets', `${slug}.pdf`);
+    const publicFile = path.join(ROOT_DIR, 'public/datasheets', `${slug}.pdf`);
+    if (fs.existsSync(localFile) || fs.existsSync(publicFile)) {
+      return `/datasheets/${slug}.pdf`;
+    }
+  }
+  return url || '';
+}
+
+function renderProductBody(product, prodImg) {
+  const specs = Array.isArray(product.specs) ? product.specs : [];
+  const features = Array.isArray(product.features) ? product.features : [];
+  const apps = Array.isArray(product.applications) ? product.applications : [];
+  const dsUrl = resolveDatasheetUrl(product.datasheetUrl, product.slug);
+
+  const specsSection = specs.length > 0 
+    ? `<section style="margin-top:40px;border-top:1px solid #e2e8f0;padding-top:32px;"><h2 style="font-size:24px;font-weight:700;color:#0f172a;margin-bottom:20px;">Technical Specifications</h2><table style="width:100%;border-collapse:collapse;text-align:left;font-size:15px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;"><tbody>${specs.map((s, idx) => `<tr style="background:${idx % 2 === 0 ? '#f8fafc' : '#ffffff'};border-bottom:1px solid #e2e8f0;"><th style="padding:12px 16px;font-weight:600;color:#334155;width:35%;border-right:1px solid #e2e8f0;">${escapeHtml(s.label)}</th><td style="padding:12px 16px;color:#475569;">${escapeHtml(s.value)}</td></tr>`).join('')}</tbody></table></section>`
+    : `<section style="margin-top:40px;border-top:1px solid #e2e8f0;padding-top:32px;"><h2 style="font-size:24px;font-weight:700;color:#0f172a;margin-bottom:20px;">Technical Specifications</h2><p style="color:#64748b;font-size:15px;">Complete technical specifications and performance graphs are provided in the official downloadable datasheet. Please contact PDR engineering for custom technical parameters.</p></section>`;
+
+  const featuresSection = features.length > 0
+    ? `<section style="margin-top:40px;border-top:1px solid #e2e8f0;padding-top:32px;"><h2 style="font-size:24px;font-weight:700;color:#0f172a;margin-bottom:16px;">Key Features</h2><ul style="padding-left:24px;color:#334155;line-height:1.8;font-size:15px;">${features.map(f => `<li>${escapeHtml(f)}</li>`).join('')}</ul></section>`
+    : `<section style="margin-top:40px;border-top:1px solid #e2e8f0;padding-top:32px;"><h2 style="font-size:24px;font-weight:700;color:#0f172a;margin-bottom:16px;">Key Features</h2><ul style="padding-left:24px;color:#334155;line-height:1.8;font-size:15px;"><li>Engineered to international telecommunication standards (Telcordia / IEC / TIA)</li><li>Manufactured under ISO 9001:2015 and ISO 14001:2015 certified quality processes</li><li>100% factory tested for optical insertion loss and return loss compliance</li></ul></section>`;
+
+  const appsSection = apps.length > 0
+    ? `<section style="margin-top:40px;border-top:1px solid #e2e8f0;padding-top:32px;"><h2 style="font-size:24px;font-weight:700;color:#0f172a;margin-bottom:16px;">Applications &amp; Use Cases</h2><ul style="padding-left:24px;color:#334155;line-height:1.8;font-size:15px;">${apps.map(a => `<li>${escapeHtml(a)}</li>`).join('')}</ul></section>`
+    : `<section style="margin-top:40px;border-top:1px solid #e2e8f0;padding-top:32px;"><h2 style="font-size:24px;font-weight:700;color:#0f172a;margin-bottom:16px;">Applications &amp; Use Cases</h2><ul style="padding-left:24px;color:#334155;line-height:1.8;font-size:15px;"><li>Telecommunications network infrastructure &amp; FTTH/FTTX deployments</li><li>Enterprise data centres, high-density optical routing, and campus LANs</li><li>Broadband CATV networks and carrier-grade fiber backhaul</li></ul></section>`;
+
+  return `<div id="root"><header style="background:#0f172a;color:#ffffff;padding:16px 24px;border-bottom:1px solid #1e293b;"><div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;"><a href="/" style="color:#ffffff;text-decoration:none;font-weight:700;font-size:20px;letter-spacing:1px;">PDR WORLD</a><nav style="display:flex;gap:20px;font-size:14px;"><a href="/products" style="color:#94a3b8;text-decoration:none;">Products</a><a href="/solutions" style="color:#94a3b8;text-decoration:none;">Solutions</a><a href="/about" style="color:#94a3b8;text-decoration:none;">About</a><a href="/contact" style="color:#38bdf8;text-decoration:none;font-weight:600;">Contact</a></nav></div></header><main style="font-family:system-ui,-apple-system,sans-serif;max-width:1200px;margin:0 auto;padding:32px 16px;color:#1e293b;"><nav aria-label="Breadcrumb" style="font-size:14px;color:#64748b;margin-bottom:24px;"><a href="/" style="color:#0284c7;text-decoration:none;">Home</a> &gt; <a href="/products" style="color:#0284c7;text-decoration:none;">Products</a> &gt; <span>${escapeHtml(product.category)}</span> &gt; <span style="font-weight:600;color:#0f172a;">${escapeHtml(product.name)}</span></nav><article style="display:flex;flex-wrap:wrap;gap:40px;margin-bottom:48px;"><div style="flex:1;min-width:300px;max-width:500px;"><img src="${escapeHtml(prodImg)}" alt="${escapeHtml(product.name)}" style="width:100%;height:auto;border-radius:12px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);background:#f8fafc;border:1px solid #e2e8f0;" /></div><div style="flex:1;min-width:320px;"><span style="display:inline-block;padding:4px 12px;background:#e0f2fe;color:#0369a1;border-radius:9999px;font-size:13px;font-weight:600;margin-bottom:12px;">${escapeHtml(product.category)}</span><h1 style="font-size:32px;font-weight:800;color:#0f172a;margin:0 0 12px 0;line-height:1.2;">${escapeHtml(product.name)}</h1>${product.tagline ? `<p style="font-size:18px;color:#0284c7;font-weight:500;margin:0 0 16px 0;">${escapeHtml(product.tagline)}</p>` : ''}<div style="font-size:16px;line-height:1.6;color:#334155;margin-bottom:24px;">${escapeHtml(product.description || '')}</div><div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;">${dsUrl ? `<a href="${escapeHtml(dsUrl)}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;padding:12px 20px;background:#0f172a;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:600;font-size:15px;">Download Official Datasheet (PDF)</a>` : ''}<a href="/contact?product=${encodeURIComponent(product.name)}" style="display:inline-flex;align-items:center;padding:12px 20px;background:#0284c7;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:600;font-size:15px;">Request a Quote</a></div></div></article>${specsSection}${featuresSection}${appsSection}</main><footer style="background:#0f172a;color:#94a3b8;padding:32px 16px;margin-top:64px;border-top:1px solid #1e293b;text-align:center;font-size:14px;"><p>&copy; ${new Date().getFullYear()} PDR Videotronics (India) Pvt. Ltd. All rights reserved.</p></footer></div>`;
+}
+
+function renderCategoryBody(category, prods) {
+  const catProds = prods.filter(p => p.category && p.category.toLowerCase().includes(category.name.toLowerCase()));
+  return `<div id="root"><header style="background:#0f172a;color:#ffffff;padding:16px 24px;"><div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;"><a href="/" style="color:#ffffff;text-decoration:none;font-weight:700;font-size:20px;">PDR WORLD</a><nav style="display:flex;gap:20px;font-size:14px;"><a href="/products" style="color:#94a3b8;text-decoration:none;">Products</a><a href="/contact" style="color:#38bdf8;text-decoration:none;">Contact</a></nav></div></header><main style="font-family:system-ui,-apple-system,sans-serif;max-width:1200px;margin:0 auto;padding:32px 16px;color:#1e293b;"><nav style="font-size:14px;color:#64748b;margin-bottom:20px;"><a href="/" style="color:#0284c7;text-decoration:none;">Home</a> &gt; <a href="/products" style="color:#0284c7;text-decoration:none;">Products</a> &gt; <span style="font-weight:600;color:#0f172a;">${escapeHtml(category.name)}</span></nav><h1 style="font-size:32px;font-weight:800;color:#0f172a;margin-bottom:12px;">${escapeHtml(category.name)}</h1><p style="font-size:16px;color:#475569;max-width:800px;line-height:1.6;margin-bottom:32px;">${escapeHtml(category.description)}</p><div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));gap:24px;">${catProds.map(p => `<article style="border:1px solid #e2e8f0;border-radius:12px;padding:20px;background:#ffffff;box-shadow:0 1px 3px rgba(0,0,0,0.05);"><h2 style="font-size:18px;font-weight:700;margin:0 0 8px 0;"><a href="/products/${p.slug}" style="color:#0f172a;text-decoration:none;">${escapeHtml(p.name)}</a></h2><p style="font-size:14px;color:#64748b;line-height:1.5;margin:0 0 16px 0;">${escapeHtml(p.tagline || p.description || '')}</p><a href="/products/${p.slug}" style="display:inline-block;font-size:14px;font-weight:600;color:#0284c7;text-decoration:none;">View Specifications &rarr;</a></article>`).join('')}</div></main></div>`;
+}
+
+function renderStaticBody(page) {
+  return `<div id="root"><header style="background:#0f172a;color:#ffffff;padding:16px 24px;"><div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;"><a href="/" style="color:#ffffff;text-decoration:none;font-weight:700;font-size:20px;">PDR WORLD</a><nav style="display:flex;gap:20px;font-size:14px;"><a href="/products" style="color:#94a3b8;text-decoration:none;">Products</a><a href="/solutions" style="color:#94a3b8;text-decoration:none;">Solutions</a><a href="/about" style="color:#94a3b8;text-decoration:none;">About</a><a href="/contact" style="color:#38bdf8;text-decoration:none;">Contact</a></nav></div></header><main style="font-family:system-ui,-apple-system,sans-serif;max-width:1200px;margin:0 auto;padding:40px 16px;color:#1e293b;"><h1 style="font-size:36px;font-weight:800;color:#0f172a;margin-bottom:16px;">${escapeHtml(page.title.split('|')[0].split('—')[0].trim())}</h1><p style="font-size:18px;color:#475569;line-height:1.6;max-width:800px;margin-bottom:32px;">${escapeHtml(page.description)}</p><a href="/products" style="display:inline-block;padding:12px 24px;background:#0284c7;color:#ffffff;border-radius:8px;text-decoration:none;font-weight:600;">Explore PDR Products</a></main></div>`;
+}
+
+function renderHomeBody(categories, prods) {
+  return `<div id="root"><header style="background:#0f172a;color:#ffffff;padding:16px 24px;border-bottom:1px solid #1e293b;"><div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;"><a href="/" style="color:#ffffff;text-decoration:none;font-weight:700;font-size:20px;letter-spacing:1px;">PDR WORLD</a><nav style="display:flex;gap:20px;font-size:14px;"><a href="/products" style="color:#94a3b8;text-decoration:none;">Products</a><a href="/solutions" style="color:#94a3b8;text-decoration:none;">Solutions</a><a href="/cable-configurator" style="color:#94a3b8;text-decoration:none;">3D Configurator</a><a href="/about" style="color:#94a3b8;text-decoration:none;">About</a><a href="/contact" style="color:#38bdf8;text-decoration:none;font-weight:600;">Contact</a></nav></div></header><main style="font-family:system-ui,-apple-system,sans-serif;max-width:1200px;margin:0 auto;padding:48px 16px;color:#1e293b;"><section style="text-align:center;margin-bottom:64px;"><span style="display:inline-block;padding:6px 16px;background:#e0f2fe;color:#0369a1;border-radius:9999px;font-size:14px;font-weight:600;margin-bottom:16px;">India's Premier Optical Fiber Manufacturer Since 1986</span><h1 style="font-size:42px;font-weight:800;color:#0f172a;margin:0 0 20px 0;line-height:1.2;">High-Performance Fiber Optic Connectivity &amp; Test Instruments</h1><p style="font-size:18px;color:#475569;max-width:800px;margin:0 auto 32px auto;line-height:1.6;">PDR Videotronics delivers world-class 1G to 400G optical transceivers, low-loss fiber patch cords, MPO trunk assemblies, ruggedized splice enclosures, and precision fusion splicers engineered for modern enterprise data centers, telecom operators, defense, and FTTx networks.</p><div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;"><a href="/products" style="display:inline-block;padding:14px 28px;background:#0284c7;color:#ffffff;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;">Browse Product Catalogue</a><a href="/cable-configurator" style="display:inline-block;padding:14px 28px;background:#0f172a;color:#ffffff;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;">Launch 3D Configurator</a></div></section><section style="margin-bottom:64px;"><h2 style="font-size:28px;font-weight:800;color:#0f172a;margin-bottom:24px;text-align:center;">Product Categories</h2><div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));gap:24px;">${categories.map(c => `<div style="border:1px solid #e2e8f0;border-radius:12px;padding:24px;background:#ffffff;box-shadow:0 1px 3px rgba(0,0,0,0.05);"><h3 style="font-size:20px;font-weight:700;color:#0f172a;margin:0 0 10px 0;">${escapeHtml(c.name)}</h3><p style="font-size:14px;color:#64748b;line-height:1.6;margin:0 0 16px 0;">${escapeHtml(c.description)}</p><a href="/${c.path}" style="color:#0284c7;text-decoration:none;font-weight:600;font-size:14px;">Explore ${escapeHtml(c.name)} &rarr;</a></div>`).join('')}</div></section><section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:40px 32px;margin-bottom:48px;"><div style="display:flex;flex-wrap:wrap;gap:32px;align-items:center;"><div style="flex:1;min-width:300px;"><h2 style="font-size:26px;font-weight:800;color:#0f172a;margin-bottom:12px;">ISO 9001 &amp; ISO 14001 Certified Quality</h2><p style="font-size:15px;color:#475569;line-height:1.7;margin-bottom:20px;">Every PDR optical patchcord and transceiver undergoes rigorous interferometric geometry inspection, insertion loss testing, and return loss certification before dispatch from our Mumbai manufacturing facility.</p><a href="/about" style="color:#0284c7;text-decoration:none;font-weight:600;">Learn More About PDR Manufacturing &rarr;</a></div><div style="flex:1;min-width:300px;text-align:center;"><div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;"><div style="background:#ffffff;border:1px solid #cbd5e1;border-radius:8px;padding:16px 24px;font-weight:700;color:#0f172a;">ISO 9001:2015</div><div style="background:#ffffff;border:1px solid #cbd5e1;border-radius:8px;padding:16px 24px;font-weight:700;color:#0f172a;">ISO 14001:2015</div><div style="background:#ffffff;border:1px solid #cbd5e1;border-radius:8px;padding:16px 24px;font-weight:700;color:#0f172a;">CACT Approved</div><div style="background:#ffffff;border:1px solid #cbd5e1;border-radius:8px;padding:16px 24px;font-weight:700;color:#0f172a;">RoHS Compliant</div></div></div></div></section></main><footer style="background:#0f172a;color:#94a3b8;padding:32px 16px;text-align:center;font-size:14px;border-top:1px solid #1e293b;"><p>&copy; ${new Date().getFullYear()} PDR Videotronics (India) Pvt. Ltd. 99, Old Prabhadevi Road, Mumbai 400 025, India.</p></footer></div>`;
+}
+
+function render404Body() {
+  return `<div id="root"><main style="font-family:system-ui,-apple-system,sans-serif;max-width:600px;margin:100px auto;padding:32px;text-align:center;color:#1e293b;"><h1 style="font-size:72px;font-weight:800;color:#0284c7;margin:0 0 16px 0;">404</h1><h2 style="font-size:24px;font-weight:700;color:#0f172a;margin:0 0 16px 0;">Page Not Found</h2><p style="font-size:16px;color:#64748b;line-height:1.6;margin:0 0 32px 0;">The page you requested could not be found or has been moved.</p><a href="/" style="display:inline-block;padding:12px 24px;background:#0f172a;color:#ffffff;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;">Return to Homepage</a></main></div>`;
+}
+
+function injectMeta(templateHtml, { title, description, canonicalUrl, ogImage, ogType = 'website', jsonLd = null, bodyHtml = null }) {
   let html = templateHtml;
   
-  // Replace or inject title
+  // Replace title
   const titleTag = `<title>${escapeHtml(title)}</title>`;
   if (html.includes('<title>')) {
     html = html.replace(/<title>[\s\S]*?<\/title>/i, titleTag);
@@ -195,9 +250,10 @@ function injectMeta(templateHtml, { title, description, canonicalUrl, ogImage, o
     html = html.replace('</head>', `  ${titleTag}\n  </head>`);
   }
 
-  // Remove any pre-existing description, canonical or og tags from template
+  // Strip existing description, canonical, alternate/hreflang, og, twitter tags
   html = html.replace(/<meta\s+name="description"[\s\S]*?>/gi, '');
   html = html.replace(/<link\s+rel="canonical"[\s\S]*?>/gi, '');
+  html = html.replace(/<link\s+[^>]*hreflang=[^>]*>/gi, '');
   html = html.replace(/<meta\s+property="og:[^"]+"[\s\S]*?>/gi, '');
   html = html.replace(/<meta\s+name="twitter:[^"]+"[\s\S]*?>/gi, '');
 
@@ -210,6 +266,9 @@ function injectMeta(templateHtml, { title, description, canonicalUrl, ogImage, o
   const tags = [
     `<meta name="description" content="${safeDesc}" />`,
     `<link rel="canonical" href="${safeUrl}" />`,
+    `<link rel="alternate" hreflang="en-in" href="${safeUrl}" />`,
+    `<link rel="alternate" hreflang="en" href="${safeUrl}" />`,
+    `<link rel="alternate" hreflang="x-default" href="${safeUrl}" />`,
     `<meta property="og:site_name" content="PDR World" />`,
     `<meta property="og:type" content="${ogType}" />`,
     `<meta property="og:title" content="${safeTitle}" />`,
@@ -232,7 +291,14 @@ function injectMeta(templateHtml, { title, description, canonicalUrl, ogImage, o
   }
 
   const injectedTags = tags.map((t) => `    ${t}`).join('\n');
-  return html.replace('</head>', `${injectedTags}\n  </head>`);
+  html = html.replace('</head>', `${injectedTags}\n  </head>`);
+
+  // Inject crawlable readable body inside <div id="root">
+  if (bodyHtml) {
+    html = html.replace(/<div id="root">[\s\S]*?(?=\s*<script|\s*<\/body>)/, bodyHtml);
+  }
+
+  return html;
 }
 
 export function generateStaticPages() {
@@ -247,29 +313,33 @@ export function generateStaticPages() {
     return;
   }
 
-  const baseHtml = fs.readFileSync(baseHtmlPath, 'utf8');
+  const rawBaseHtml = fs.readFileSync(baseHtmlPath, 'utf8');
+  // Clean base template ensuring <div id="root"> is reset to an empty <div id="root"></div>
+  const cleanBaseHtml = rawBaseHtml.replace(/<div id="root">[\s\S]*?(?=\s*<script|\s*<\/body>)/, '<div id="root"></div>');
   let generatedCount = 0;
 
-  // 1. Update root index.html with default home SEO & Open Graph
-  const homeHtml = injectMeta(baseHtml, {
+  // 1. Update root index.html with default home SEO & Open Graph and pre-rendered body
+  const homeBodyHtml = renderHomeBody(CATEGORY_PAGES, productsData);
+  const homeHtml = injectMeta(cleanBaseHtml, {
     title: 'PDR World — Optical Fiber Components, Cables & Test Equipment',
     description: 'PDR Videotronics is a premier Indian manufacturer of high-performance fiber optic patch cords, 1G-400G optical transceivers, splice enclosures, and testing instruments.',
     canonicalUrl: `${SITE_URL}/`,
     ogImage: `${SITE_URL}/og-card.png`,
     ogType: 'website',
+    bodyHtml: homeBodyHtml,
   });
   fs.writeFileSync(baseHtmlPath, homeHtml);
   generatedCount++;
 
   // 2. Generate Product Detail Pages
   for (const product of productsData) {
-    if (!product.slug) continue;
+    if (!product.slug || product.slug === 'easyget-wifi') continue;
     const pageDir = path.join(DIST_DIR, 'products', product.slug);
     if (!fs.existsSync(pageDir)) {
       fs.mkdirSync(pageDir, { recursive: true });
     }
 
-    const prodTitle = product.title || `${product.name} — ${product.category} | PDR World`;
+    const prodTitle = product.title || `${product.name} | PDR World`;
     const prodDesc = product.description || product.tagline || 'Explore high-quality optical fiber solutions engineered by PDR World.';
     const prodImg = resolveProductImage(product);
     const prodUrl = `${SITE_URL}/products/${product.slug}`;
@@ -302,18 +372,40 @@ export function generateStaticPages() {
       ...(additionalProperty.length > 0 ? { additionalProperty } : {}),
     };
 
-    const prodHtml = injectMeta(baseHtml, {
+    const prodBodyHtml = renderProductBody(product, prodImg);
+
+    const prodHtml = injectMeta(cleanBaseHtml, {
       title: prodTitle,
       description: prodDesc,
       canonicalUrl: prodUrl,
       ogImage: prodImg,
       ogType: 'product',
       jsonLd,
+      bodyHtml: prodBodyHtml,
     });
 
     fs.writeFileSync(path.join(pageDir, 'index.html'), prodHtml);
     generatedCount++;
   }
+
+  // Generate /products/nano-otdr static redirect page to /products/pocket-otdr
+  const nanoDir = path.join(DIST_DIR, 'products', 'nano-otdr');
+  if (!fs.existsSync(nanoDir)) fs.mkdirSync(nanoDir, { recursive: true });
+  const nanoRedirectHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nano OTDR | PDR World</title>
+  <link rel="canonical" href="${SITE_URL}/products/pocket-otdr" />
+  <meta http-equiv="refresh" content="0;url=/products/pocket-otdr">
+  <script>window.location.replace('/products/pocket-otdr');</script>
+</head>
+<body>
+  <p>Redirecting to <a href="/products/pocket-otdr">Nano OTDR</a>...</p>
+</body>
+</html>`;
+  fs.writeFileSync(path.join(nanoDir, 'index.html'), nanoRedirectHtml);
+  generatedCount++;
 
   // 3. Generate Category Pages
   for (const cat of CATEGORY_PAGES) {
@@ -322,12 +414,15 @@ export function generateStaticPages() {
       fs.mkdirSync(pageDir, { recursive: true });
     }
 
-    const catHtml = injectMeta(baseHtml, {
+    const catBodyHtml = renderCategoryBody(cat, productsData);
+
+    const catHtml = injectMeta(cleanBaseHtml, {
       title: cat.title,
       description: cat.description,
       canonicalUrl: `${SITE_URL}/${cat.path}`,
       ogImage: `${SITE_URL}/og-card.png`,
       ogType: 'website',
+      bodyHtml: catBodyHtml,
     });
 
     fs.writeFileSync(path.join(pageDir, 'index.html'), catHtml);
@@ -341,12 +436,15 @@ export function generateStaticPages() {
       fs.mkdirSync(pageDir, { recursive: true });
     }
 
-    const pageHtml = injectMeta(baseHtml, {
+    const staticBodyHtml = renderStaticBody(page);
+
+    const pageHtml = injectMeta(cleanBaseHtml, {
       title: page.title,
       description: page.description,
       canonicalUrl: `${SITE_URL}/${page.path}`,
       ogImage: `${SITE_URL}/og-card.png`,
       ogType: 'website',
+      bodyHtml: staticBodyHtml,
     });
 
     fs.writeFileSync(path.join(pageDir, 'index.html'), pageHtml);
@@ -354,16 +452,20 @@ export function generateStaticPages() {
   }
 
   // 5. Generate 404.html
-  const notFoundHtml = injectMeta(baseHtml, {
+  const notFoundHtml = injectMeta(cleanBaseHtml, {
     title: 'Page Not Found | PDR World',
     description: "The page you're looking for doesn't exist or has moved.",
     canonicalUrl: `${SITE_URL}/404`,
     ogImage: `${SITE_URL}/og-card.png`,
+    bodyHtml: render404Body(),
   });
   fs.writeFileSync(path.join(DIST_DIR, '404.html'), notFoundHtml);
   generatedCount++;
 
-  console.log(`Successfully generated ${generatedCount} static HTML pages with full Open Graph and SEO tags in dist/!`);
+  // 6. Generate Dynamic Sitemap
+  generateSitemap();
+
+  console.log(`Successfully generated ${generatedCount} static HTML pages with full readable content and Open Graph tags in dist/!`);
 }
 
 // Run directly if invoked
