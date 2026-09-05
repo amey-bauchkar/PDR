@@ -203,10 +203,30 @@
   Redirect 301 /smpte-assembly.html /products/smpte-assembly
   Redirect 301 /vfl.html /products/vfl
   Redirect 301 /wall-mount.html /products/wall-mount
-  Redirect 301 /bypass-switch.html /products/bypass-switch
-  Redirect 301 /nano-otdr /products/pocket-otdr
-  Redirect 301 /products/nano-otdr /products/pocket-otdr
-  Redirect 301 /products/nano-otdr.html /products/pocket-otdr
+  # ─── Product URL Slug & Name Alignment 301 Permanent Redirects ───
+  Redirect 301 /drone /products/ground-unit
+  Redirect 301 /products/drone /products/ground-unit
+  Redirect 301 /products/drone.html /products/ground-unit
+
+  Redirect 301 /fpv-optical-terminal /products/sky-unit
+  Redirect 301 /products/fpv-optical-terminal /products/sky-unit
+  Redirect 301 /products/fpv-optical-terminal.html /products/sky-unit
+
+  Redirect 301 /pocket-otdr /products/nano-otdr
+  Redirect 301 /products/pocket-otdr /products/nano-otdr
+  Redirect 301 /products/pocket-otdr.html /products/nano-otdr
+
+  Redirect 301 /nano-otdr /products/nano-otdr
+  Redirect 301 /products/nano-otdr.html /products/nano-otdr
+
+  Redirect 301 /rapid-push /products/fttx-smart-bullet-drop-cable
+  Redirect 301 /products/rapid-push /products/fttx-smart-bullet-drop-cable
+  Redirect 301 /products/rapid-push.html /products/fttx-smart-bullet-drop-cable
+
+  Redirect 301 /easyget-wifi /products/test-measuring
+  Redirect 301 /products/easyget-wifi /products/test-measuring
+  Redirect 301 /wifi-wireless-fiber-endface-microscope /products/test-measuring
+  Redirect 301 /products/wifi-wireless-fiber-endface-microscope /products/test-measuring
 
   # ─── Custom 404 Page ───
   ErrorDocument 404 /404.html

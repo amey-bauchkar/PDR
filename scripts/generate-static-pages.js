@@ -388,24 +388,33 @@ export function generateStaticPages() {
     generatedCount++;
   }
 
-  // Generate /products/nano-otdr static redirect page to /products/pocket-otdr
-  const nanoDir = path.join(DIST_DIR, 'products', 'nano-otdr');
-  if (!fs.existsSync(nanoDir)) fs.mkdirSync(nanoDir, { recursive: true });
-  const nanoRedirectHtml = `<!DOCTYPE html>
+  // Generate static redirect stubs for historical slugs to new canonical product slugs
+  const REDIRECT_STUBS = [
+    { oldSlug: 'pocket-otdr', newSlug: 'nano-otdr', title: 'Nano OTDR' },
+    { oldSlug: 'drone', newSlug: 'ground-unit', title: 'Ground unit' },
+    { oldSlug: 'fpv-optical-terminal', newSlug: 'sky-unit', title: 'Sky Unit' },
+    { oldSlug: 'rapid-push', newSlug: 'fttx-smart-bullet-drop-cable', title: 'FTTX Smart Bullet Drop Cable' },
+  ];
+
+  for (const stub of REDIRECT_STUBS) {
+    const stubDir = path.join(DIST_DIR, 'products', stub.oldSlug);
+    if (!fs.existsSync(stubDir)) fs.mkdirSync(stubDir, { recursive: true });
+    const stubHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Nano OTDR | PDR World</title>
-  <link rel="canonical" href="${SITE_URL}/products/pocket-otdr" />
-  <meta http-equiv="refresh" content="0;url=/products/pocket-otdr">
-  <script>window.location.replace('/products/pocket-otdr');</script>
+  <title>${escapeHtml(stub.title)} | PDR World</title>
+  <link rel="canonical" href="${SITE_URL}/products/${stub.newSlug}" />
+  <meta http-equiv="refresh" content="0;url=/products/${stub.newSlug}">
+  <script>window.location.replace('/products/${stub.newSlug}');</script>
 </head>
 <body>
-  <p>Redirecting to <a href="/products/pocket-otdr">Nano OTDR</a>...</p>
+  <p>Redirecting to <a href="/products/${stub.newSlug}">${escapeHtml(stub.title)}</a>...</p>
 </body>
 </html>`;
-  fs.writeFileSync(path.join(nanoDir, 'index.html'), nanoRedirectHtml);
-  generatedCount++;
+    fs.writeFileSync(path.join(stubDir, 'index.html'), stubHtml);
+    generatedCount++;
+  }
 
   // 3. Generate Category Pages
   for (const cat of CATEGORY_PAGES) {
