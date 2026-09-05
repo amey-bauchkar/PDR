@@ -2,6 +2,7 @@ import seedProductsRaw from '../data/products.json';
 import { get, set } from 'idb-keyval';
 import { supabase } from './supabase';
 import { getAssetUrl } from './assetUrl';
+import { resolveCanonicalProductImage } from './imageResolution';
 
 export type AdminProduct = {
   slug: string;
@@ -714,6 +715,7 @@ export const mergeWithCatalogue = (catalogue: any): any => {
             .map((card: any) => {
               const adminProduct = adminMap.get(card.slug);
               if (adminProduct) {
+                const resolvedImg = (adminProduct.imageUrl && adminProduct.imageUrl.trim()) || card.img || resolveCanonicalProductImage(card.slug, undefined, section.id);
                 // Override with admin data
                 const finalSpecs = adminProduct.specs && adminProduct.specs.length > 0
                   ? `${adminProduct.specs[0].label}: ${adminProduct.specs[0].value}`
@@ -723,13 +725,13 @@ export const mergeWithCatalogue = (catalogue: any): any => {
                   ...card,
                   name: adminProduct.name,
                   blurb: adminProduct.description || card.blurb,
-                  img: adminProduct.imageUrl || card.img,
+                  img: resolvedImg,
                   tag: adminProduct.tagline || card.tag,
                   pills: adminProduct.tags !== undefined ? adminProduct.tags : card.pills,
                   addItem: {
                     title: adminProduct.name,
                     specs: finalSpecs,
-                    image: adminProduct.imageUrl || card.img,
+                    image: resolvedImg,
                   },
                 };
               }
@@ -748,14 +750,11 @@ export const mergeWithCatalogue = (catalogue: any): any => {
 
           // Find new products that match this group's subhead
           const groupSubhead = (group.subhead || '').toLowerCase().trim();
-          let productsForThisGroup: any[] = [];
+          const productsForThisGroup: any[] = [];
 
-          // Match by subcategory → group.subhead (exact equality match to avoid false positives)
-          for (const [sub, products] of productsBySubcat.entries()) {
-            if (groupSubhead && groupSubhead === sub) {
-              productsForThisGroup.push(...products);
-              matchedSubs.add(sub);
-            }
+          if (groupSubhead && productsBySubcat.has(groupSubhead)) {
+            productsForThisGroup.push(...productsBySubcat.get(groupSubhead)!);
+            matchedSubs.add(groupSubhead);
           }
 
           // For the first group, also add products that have no subcategory
@@ -768,7 +767,7 @@ export const mergeWithCatalogue = (catalogue: any): any => {
               const finalTagline = p.tagline || '';
               const finalDescription = p.description || '';
               const finalSpecs = p.specs && p.specs.length > 0 ? p.specs : [];
-              const finalImage = p.imageUrl || '';
+              const finalImage = (p.imageUrl && p.imageUrl.trim()) || resolveCanonicalProductImage(p.slug, undefined, section.id);
 
               return {
                 slug: p.slug,
@@ -808,7 +807,7 @@ export const mergeWithCatalogue = (catalogue: any): any => {
               const finalTagline = p.tagline || '';
               const finalDescription = p.description || '';
               const finalSpecs = p.specs && p.specs.length > 0 ? p.specs : [];
-              const finalImage = p.imageUrl || '';
+              const finalImage = (p.imageUrl && p.imageUrl.trim()) || resolveCanonicalProductImage(p.slug, undefined, section.id);
               return {
                 slug: p.slug,
                 tag: finalTagline,

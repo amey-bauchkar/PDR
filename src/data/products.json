@@ -111,7 +111,7 @@
     "canonical": "https://pdrworld.com/products/bare-fiber-adapter",
     "tagline": "Bare fiber adapter for quickly coupling unterminated fiber to test equipment.",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/bare-fiber-adapter.webp",
     "features": [
       "Available in SC, LC, FC, ST, and SMA interface types to suit all common test equipment",
       "Secure mechanical clamping mechanism holds bare fiber firmly without adhesive or tools",
@@ -199,7 +199,7 @@
     "canonical": "https://pdrworld.com/products/cassette-cleaner",
     "tagline": "Reel cassette cleaner for safe, lint-free connector end-face cleaning.",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/cassette-cleaner.webp",
     "features": [
       "Compatible with SC, FC, ST, MU, LC, MT, D4, DIN, and E2000 fiber optic connectors",
       "Special non-alcohol superfine fiber tape for safe, residue-free end-face cleaning",
@@ -355,7 +355,7 @@
     "canonical": "https://pdrworld.com/products/cat6-patch-cord",
     "tagline": "High-speed copper patch cord",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/cat-6-patch-cord.webp",
     "features": [
       "U/UTP 4-pair construction with stranded 24 AWG (7×0.18 mm) conductors for flexibility and durability",
       "HDPE insulation for low capacitance and consistent electrical performance across all four pairs",
@@ -443,7 +443,7 @@
     "canonical": "https://pdrworld.com/products/cleaner-pen",
     "tagline": "One-click cleaner pen for fast, reliable connector end-face cleaning.",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/fiber-optic-cleaner-pen.webp",
     "features": [
       "Push-to-clean operation, easy single-motion engagement initiates the cleaning cycle",
       "800+ cleanings per unit, cost-effective and long lasting",
@@ -519,7 +519,7 @@
     "canonical": "https://pdrworld.com/products/cpri-patchcord",
     "tagline": "Outdoor waterproof fiber optic assembly",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/cpri-patchcord.webp",
     "features": [
       "Waterproof connector housings: ODVA, IP, FX, PDLC, and NSN types with MPO/MTP, LC, or SC ferrules",
       "IP-rated blind-mating design for quick, tool-free installation in field and outdoor environments",
@@ -607,7 +607,7 @@
     "canonical": "https://pdrworld.com/products/cwdm",
     "tagline": "CWDM multiplexer / demultiplexer modules for cost-effective wavelength expansion.",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/cwdm-mux-demux-module.webp",
     "features": [
       "Four form factors: ABS Compact Module (two sizes), 1U Rack Equipment, and LGX Module",
       "Supports 4, 8, and 16 channel configurations across the CWDM grid from 1270 nm to 1610 nm",
@@ -823,7 +823,7 @@
     "canonical": "https://pdrworld.com/products/dwdm",
     "tagline": "DWDM multiplexer / demultiplexer modules for high-capacity dense wavelength transport.",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/dwdm-mux-demux-module.webp",
     "features": [
       "Available in compact ABS module (100×80×10 mm / 120×80×18 mm) and 1U rack equipment form factors",
       "Supports 4, 8, and 16 channel configurations covering ITU-T channels C20 to C60",
@@ -911,7 +911,7 @@
     "canonical": "https://pdrworld.com/products/fanout-patch-cords",
     "tagline": "Small form factor high-density assembly",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/fanout-patch-cords.webp",
     "features": [
       "Small form factor MPO/MTP breakout to LC, SC, ST, or FC pigtails in 0.9 mm, 2.0 mm simplex, duplex, or Uniboot formats",
       "Available in 8F, 12F, 24F, 48F, 72F, 96F, and 144F fiber counts; fully custom solutions on request",
@@ -999,7 +999,7 @@
     "canonical": "https://pdrworld.com/products/fdb",
     "tagline": "Fiber distribution box for splitting and distributing fiber in access networks.",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/fiber-distribution-box-fdb.webp",
     "features": [
       "Accommodates 1x4, 1x8, 1x16, 2x4, 2x8, and 2x16 PLC steel tube or LGX splitter modules",
       "IP65 protection class, suitable for both indoor and outdoor environments",
@@ -1139,7 +1139,7 @@
     "canonical": "https://pdrworld.com/products/field-connector",
     "tagline": "Field-installable fast connectors for quick, tool-light on-site termination.",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/fiber-optic-connector-field-installable.webp",
     "features": [
       "Field installable without adhesives, polishing, or electrical power, ready for immediate on-site use",
       "Fully zirconia-ceramic ferrule: nominal 2.5 mm diameter, ±0.5 mm tolerance, ≤1 µm fiber concentricity",
@@ -1199,7 +1199,7 @@
     "canonical": "https://pdrworld.com/products/fo-patchcords",
     "tagline": "Broadest choice of patchcords in the industry",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/fiber-optic-patch-cords-and-pigtails.webp",
     "features": [
       "Widest connector selection: FC, DIN, LC, MU, MTRJ, SC, ST, MPO, D4, Biconic, SMA, E-2000",
       "Singlemode fibers: OS2, G.657A1, G.657A2, multimode fibers: OM1, OM2, OM3, OM4",
@@ -1287,7 +1287,7 @@
     "canonical": "https://pdrworld.com/products/fusion-splicer",
     "tagline": "Handheld core-alignment fusion splicer with fast splice and heating times.",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/fusion-splicer-pdr618h.webp",
     "features": [],
     "applications": [
       "Fiber-to-the-Home (FTTH) and Fiber-to-the-Building (FTTB) network installations",
@@ -1368,7 +1368,7 @@
     "canonical": "https://pdrworld.com/products/heat-shrink-closure",
     "tagline": "Sealed splice closure protecting fiber joints in outdoor and buried networks.",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/heat-shrink-splice-closure.webp",
     "features": [
       "IP 68 sealing protection, suitable for fully immersed and buried deployments",
       "Zero additional insertion loss when fibers are routed through splice trays",
@@ -1510,7 +1510,7 @@
     "canonical": "https://pdrworld.com/products/mode-conditioning",
     "tagline": "Gigabit launch patchcord that runs single-mode laser sources over legacy multimode fiber without DMD.",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/mode-conditioning-patchcord.webp",
     "features": [
       "Ensures Gigabit transmission over multimode fiber",
       "Eliminates Differential Mode Delay (DMD)",
@@ -1563,7 +1563,7 @@
     "canonical": "https://pdrworld.com/products/mpo-assembly",
     "tagline": "High-density multi-fiber connector system",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/mpo-cable-assembly.webp",
     "features": [
       "High-density MT ferrule with precision guide pins for reliable multi-fiber alignment in 4, 8, 12, and 24F configurations",
       "Fiber options: OS2 (singlemode), OM3, OM4, OM5 (multimode), supports 10GbE, 40GbE, and 100GbE migration",
@@ -1651,7 +1651,7 @@
     "canonical": "https://pdrworld.com/products/mpo-cleaner",
     "tagline": "One-click cleaner pen for multi-fiber MPO/MTP connector end-faces.",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/fiber-optic-cleaner-pen-mpo.webp",
     "features": [
       "Pen-style handheld design with narrow profile for tightly-spaced MPO adapter panels",
       "Cleans all 12 fiber end-faces simultaneously in a single push-and-release action",
@@ -1887,7 +1887,7 @@
     "canonical": "https://pdrworld.com/products/plc-splitter",
     "tagline": "Planar lightwave circuit splitters for low-loss PON power splitting.",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/plc-splitter.webp",
     "features": [
       "Planar waveguide chip technology for low insertion loss, high uniformity, and excellent long-term stability",
       "1×N configurations: 1×2, 1×4, 1×8, 1×16, 1×32, 1×64",
@@ -2170,7 +2170,7 @@
     "canonical": "https://pdrworld.com/products/rack-mount-fms",
     "tagline": "Modular 19-inch rack-mount fiber management system for high-density termination.",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/rack-mount-fiber-management-system.webp",
     "features": [
       "19-inch rack mount enclosure available in 1U, 2U, and 4U heights for scalable fiber density",
       "Supports 6F to 192F fiber terminations per enclosure, FC, SC, ST, and LC connector types",
@@ -2258,7 +2258,7 @@
     "canonical": "https://pdrworld.com/products/fttx-smart-bullet-drop-cable",
     "tagline": "FTTXSmart pre-connectorized bullet drop cable for fast last-mile FTTH deployment.",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/rapid-push-cable-assembly.webp",
     "features": [
       "Bullet-shaped connector head (Ø5.9 mm) with guide-wire hole for traction installation through narrow ducts",
       "Pull-through design for free and occupied ducts, no large bore holes, conduits, or specialist tools required",
@@ -2313,7 +2313,7 @@
     "canonical": "https://pdrworld.com/products/regular-opm",
     "tagline": "Palm-sized handheld optical power meter for FTTH continuity and link-loss testing.",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/mini-optical-power-meter.webp",
     "features": [
       "Palm-sized, pocket-carry handheld design for one-hand field use",
       "Wide measurement range with high 0.01 dB resolution and ±0.2 dB accuracy",
@@ -2960,7 +2960,7 @@
     "canonical": "https://pdrworld.com/products/smpte-assembly",
     "tagline": "Ruggedized, dirt-protected fiber assemblies engineered for HDTV broadcast infrastructure.",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/smpte-cable-assembly.webp",
     "features": [
       "Rugged all-metal connector housing for durability",
       "Heavy-duty cable retention for secure long-term performance",
@@ -3071,7 +3071,7 @@
     "canonical": "https://pdrworld.com/products/wall-mount",
     "tagline": "Wall-mount optical enclosure for protected indoor fiber termination.",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/optical-fiber-wall-mount-enclosure.webp",
     "features": [
       "Scalable port capacity, available in 12, 24, 48, and 96 port configurations",
       "Double-door construction with key lock for secure, access-controlled fiber termination",
@@ -3408,7 +3408,7 @@
     "canonical": "https://pdrworld.com/products/fiber-optic-adapter",
     "tagline": "Precision bulkhead adapters that join like connectors for low-loss optical continuity.",
     "status": "Active",
-    "imageUrl": "",
+    "imageUrl": "/images/live/sc-apc-female-to-sc-upc-male-adapter-converter.webp",
     "features": [
       "Couples two like connectors (SC, LC, FC, ST, MU, E2000, MT-RJ) for optical continuity across a panel",
       "High-precision zirconia-ceramic or phosphor-bronze split alignment sleeve for accurate ferrule alignment",

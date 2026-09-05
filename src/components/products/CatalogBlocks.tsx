@@ -41,24 +41,20 @@ export function CatalogProductCard({ card, sectionId }: { card: CatalogCard; sec
   return (
     <div className="pr-pcard product-card reveal" data-product={card.slug || 'unknown'}>
       <div className="pr-pcard-art">
-        {card.heroSvg && !card.img ? (
-          <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(card.heroSvg) }} />
-        ) : (
-          <img
-            src={resolveCanonicalProductImage(card.slug, card.img, sectionId)}
-            alt={card.name ? `${card.name} — PDR World` : 'PDR World Product'}
-            className="real-img"
-            loading="lazy"
-            width="400"
-            height="300"
-            onError={(event) => {
-              const fallback = getFallbackImage(sectionId);
-              if (!event.currentTarget.src.endsWith(fallback)) {
-                event.currentTarget.src = fallback;
-              }
-            }}
-          />
-        )}
+        <img
+          src={resolveCanonicalProductImage(card.slug, card.img, sectionId)}
+          alt={card.name ? `${card.name} — PDR World` : 'PDR World Product'}
+          className="real-img"
+          loading="lazy"
+          width="400"
+          height="300"
+          onError={(event) => {
+            const fallback = getFallbackImage(sectionId);
+            if (!event.currentTarget.src.endsWith(fallback)) {
+              event.currentTarget.src = fallback;
+            }
+          }}
+        />
       </div>
       <div className="pr-pcard-body">
         <h3>{card.name || 'Unnamed Product'}</h3>
