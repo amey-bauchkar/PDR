@@ -27,7 +27,41 @@ export default function Contact() {
     };
 
     try {
+      // 1. Submit to Web3Forms (delivers directly to sales@pdrworld.com)
+      const accessKey = import.meta.env.VITE_WEB3FORMS_KEY;
+      if (accessKey && accessKey !== 'YOUR_ACCESS_KEY_HERE') {
+        try {
+          const web3FormData = {
+            access_key: accessKey,
+            subject: `New Inquiry: ${payload.inquiryType || 'General'} from ${payload.firstName} ${payload.lastName}`,
+            from_name: `${payload.firstName} ${payload.lastName}`,
+            name: `${payload.firstName} ${payload.lastName}`,
+            email: payload.email,
+            phone: payload.phone,
+            company: payload.company,
+            inquiry_type: payload.inquiryType,
+            message: payload.message,
+          };
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify(web3FormData),
+          });
+          const data = await res.json();
+          if (!data.success) {
+            console.warn('Web3Forms returned non-success:', data);
+          }
+        } catch (w3err) {
+          console.warn('Web3Forms email delivery failed:', w3err);
+        }
+      }
+
+      // 2. Also record in Supabase / Local Storage as database backup
       await submitContactInquiry(payload);
+
       setStatus({
         type: 'success',
         text: 'Thank you! Your message has been sent successfully. Our team will respond within 24 hours.',
