@@ -23,8 +23,37 @@ validateConfig();
 
 const app: Express = express();
 
+const allowedOrigins = [
+  'https://pdrworld.com',
+  'https://www.pdrworld.com',
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'http://127.0.0.1:5173',
+  'http://127.0.0.1:3000',
+  config.cors.origin,
+  process.env.FRONTEND_URL,
+].filter(Boolean) as string[];
+
 app.use(cors({
-  origin: true, // Dynamically reflect request origin so Hostinger and any frontend deployment can access API
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    
+    if (config.isDevelopment()) {
+      if (/^http:\/\/localhost(:\d+)?$/.test(origin) || /^http:\/\/127\.0\.0\.1(:\d+)?$/.test(origin)) {
+        return callback(null, true);
+      }
+    }
+    
+    if (
+      allowedOrigins.includes(origin) ||
+      /^https:\/\/([a-zA-Z0-9-]+\.)?pdrworld\.com$/.test(origin)
+    ) {
+      return callback(null, true);
+    }
+    
+    return callback(new Error(`CORS policy violation: origin ${origin} is not allowed.`));
+  },
   credentials: true,
   optionsSuccessStatus: 200,
 }));
@@ -42,19 +71,21 @@ app.use('/api/contact', contactRoutes);
 app.use('/api/auth', authRoutes);
 
 // Proxy Supabase storage through Express with caching
-app.use('/cdn/storage', createProxyMiddleware({ 
-  target: config.supabase.url.replace(/\/$/, ''),
-  changeOrigin: true,
-  pathRewrite: {
-    '^/cdn/storage': '/storage/v1/object/public',
-  },
-  on: {
-    proxyRes: (proxyRes) => {
-      // Cache for 1 year
-      proxyRes.headers['cache-control'] = 'public, max-age=31536000, immutable';
+if (config.supabase.url) {
+  app.use('/cdn/storage', createProxyMiddleware({ 
+    target: config.supabase.url.replace(/\/$/, ''),
+    changeOrigin: true,
+    pathRewrite: {
+      '^/cdn/storage': '/storage/v1/object/public',
     },
-  },
-}));
+    on: {
+      proxyRes: (proxyRes) => {
+        // Cache for 1 year
+        proxyRes.headers['cache-control'] = 'public, max-age=31536000, immutable';
+      },
+    },
+  }));
+}
 
 import fs from 'fs';
 
@@ -88,8 +119,12 @@ app.get('*', (req, res, next) => {
     return next();
   }
 
-  const cleanPath = req.path.replace(/^\/+|\/+$/g, '');
+  // Sanitize path against directory traversal
+  const normalizedPath = path.normalize(req.path).replace(/^(\.\.[\/\\])+/, '');
+  const cleanPath = normalizedPath.replace(/^\/+|\/+$/g, '');
   
+  const allowedRoots = [cwdDir, rootDir, parentDir, distDir].map((d) => path.resolve(d));
+
   const candidates = [
     path.join(cwdDir, cleanPath, 'index.html'),
     path.join(cwdDir, cleanPath + '.html'),
@@ -102,8 +137,10 @@ app.get('*', (req, res, next) => {
   ];
 
   for (const candidate of candidates) {
-    if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
-      return res.sendFile(candidate);
+    const resolvedCandidate = path.resolve(candidate);
+    const isWithinAllowed = allowedRoots.some((root) => resolvedCandidate.startsWith(root));
+    if (isWithinAllowed && fs.existsSync(resolvedCandidate) && fs.statSync(resolvedCandidate).isFile()) {
+      return res.sendFile(resolvedCandidate);
     }
   }
 

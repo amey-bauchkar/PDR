@@ -79,7 +79,25 @@ export default function CookieConsent() {
         We use cookies to enhance your experience, analyze site traffic, and serve targeted advertisements. 
         By continuing to visit this site you agree to our use of cookies.
       </p>
-      <div style={{ display: 'flex', gap: '12px' }}>
+      <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+        <button
+          onClick={() => {
+            localStorage.setItem('pdr-cookie-consent', 'false');
+            setShow(false);
+          }}
+          style={{
+            background: 'transparent',
+            color: '#475569',
+            border: '1px solid #cbd5e1',
+            padding: '8px 20px',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontWeight: 600,
+            fontSize: '14px',
+          }}
+        >
+          Decline
+        </button>
         <button 
           onClick={() => {
             localStorage.setItem('pdr-cookie-consent', 'true');

@@ -28,14 +28,25 @@ export type AdminProduct = {
 
 const seedProducts = seedProductsRaw as unknown as AdminProduct[];
 
-const STORAGE_KEY = 'pdrworld-admin-products-v12';
+const STORAGE_KEY = 'pdrworld-admin-products-v15';
 const BACKUP_STORAGE_KEY = 'pdrworld-admin-products-backup';
 const SYNC_EVENT = 'pdrworld-products-updated';
 const LEGACY_STORAGE_KEY = 'pdrworld_products';
 
+export const SLUG_MIGRATIONS: Record<string, string> = {
+  'drone': 'ground-unit',
+  'fpv-optical-terminal': 'sky-unit',
+  'rapid-push': 'fttx-smart-bullet-drop-cable',
+  'pocket-otdr': 'nano-otdr',
+};
+
+export const normalizeProductSlug = (slug: string): string => {
+  return SLUG_MIGRATIONS[slug] || slug;
+};
+
 // Canonical version string — increment to force all clients to discard
 // stale localStorage and re-fetch clean defaults.
-const APP_VERSION = '2.8.0';
+const APP_VERSION = '3.1.0';
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://gfzknettmaclomxyimjf.supabase.co';
 const PRODUCTS_API_URL = `${SUPABASE_URL}/functions/v1/products-admin`;
 const TIMESTAMP_KEY = STORAGE_KEY + '-ts';
@@ -43,6 +54,7 @@ const TIMESTAMP_KEY = STORAGE_KEY + '-ts';
 const getDefaultProducts = (): AdminProduct[] => {
   return seedProducts.map((item) => ({
     ...item,
+    slug: normalizeProductSlug(item.slug),
     status: item.status || 'Active',
   }));
 };
@@ -66,6 +78,8 @@ const DELETED_SLUGS = new Set([
   'mating-sleeve',
   'mini-opm',
   'soc',
+  'easyget-wifi',
+  'wifi-wireless-fiber-endface-microscope',
 ]);
 
 /**
@@ -152,18 +166,22 @@ async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 15_000);
 
+  const token = typeof window !== 'undefined' ? window.sessionStorage.getItem('pdrworld-admin-token') : null;
+  const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    ...(anonKey ? { 'apikey': anonKey } : {}),
+    ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+    ...((init?.headers as Record<string, string>) || {}),
+  };
+
   try {
     const response = await fetch(url, {
       ...init,
       signal: controller.signal,
       cache: isGet ? 'default' : 'no-store',
-      headers: {
-        'Content-Type': 'application/json',
-        // NOTE: Do NOT add Cache-Control here — it triggers CORS preflight failures
-        // when called cross-origin (e.g. Hostinger → Vercel). The `cache: 'no-store'`
-        // option above achieves the same cache-busting effect without CORS issues.
-        ...(init?.headers || {}),
-      },
+      headers,
     });
 
     const payload = await response.json().catch(() => null);
@@ -180,6 +198,7 @@ async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
 const cleanProductUrls = (products: AdminProduct[]): AdminProduct[] => {
   return products.map(p => ({
     ...p,
+    slug: normalizeProductSlug(p.slug),
     imageUrl: getAssetUrl(p.imageUrl),
     datasheetUrl: getAssetUrl(p.datasheetUrl || ''),
     galleryUrls: (p.galleryUrls || []).map(u => getAssetUrl(u)),

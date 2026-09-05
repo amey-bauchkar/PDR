@@ -6,10 +6,10 @@ const router = Router();
  * RFQ routes — Public (customer submissions)
  */
 router.post('/submit', RfqController.submitRfq);
-router.post('/log-sheets', RfqController.logSheetsDirect);
 /**
  * RFQ routes — Admin only (requires JWT)
  */
+router.post('/log-sheets', verifyToken, RfqController.logSheetsDirect);
 router.get('/list', verifyToken, RfqController.listRfqsForAdminPanel);
 router.get('/:id', verifyToken, RfqController.getRfq);
 router.get('/', verifyToken, RfqController.getAllRfqs);

@@ -7,7 +7,8 @@ import { fetchAndSyncProducts, mergeWithProducts } from '../lib/productSync';
 export default function RfqCartWidget() {
   const { items, isOpen, removeItem, updateQty, open, close, submit } = useRfqCart();
   const [submitting, setSubmitting] = useState(false);
-  const [step, setStep] = useState<1 | 2>(1);
+  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const total = items.reduce((s, i) => s + i.qty, 0);
   const [products, setProducts] = useState(() => mergeWithProducts(productsData));
 
@@ -30,7 +31,10 @@ export default function RfqCartWidget() {
 
   useEffect(() => {
     if (!isOpen) {
-      const t = setTimeout(() => setStep(1), 400);
+      const t = setTimeout(() => {
+        setStep(1);
+        setErrorMessage(null);
+      }, 400);
       return () => clearTimeout(t);
     }
   }, [isOpen]);
@@ -40,6 +44,7 @@ export default function RfqCartWidget() {
     const formElement = e.currentTarget;
     const fd = new FormData(formElement);
     setSubmitting(true);
+    setErrorMessage(null);
 
     try {
       await submit({
@@ -49,11 +54,10 @@ export default function RfqCartWidget() {
         notes: String(fd.get('notes') ?? ''),
       });
       formElement.reset();
-      alert('Thank you! Your quote request has been securely submitted.');
-      close();
+      setStep(3);
     } catch (error: any) {
       console.error('Failed to submit quote request', error);
-      alert(`We could not submit the quote request right now. Error: ${error?.message || error}. Please try again.`);
+      setErrorMessage(error?.message || 'We could not submit the quote request right now. Please try again.');
     } finally {
       setSubmitting(false);
     }
@@ -99,9 +103,13 @@ export default function RfqCartWidget() {
       <div className={`rfq-drawer${isOpen ? ' open' : ''}`}>
         <div className="rfq-header">
           <div>
-            <h2>{step === 1 ? 'Your Quote Cart' : 'Request Details'}</h2>
+            <h2>{step === 1 ? 'Your Quote Cart' : step === 2 ? 'Request Details' : 'Request Received'}</h2>
             <p className="rfq-header-sub">
-              {step === 1 ? 'Review your selected items below.' : 'Share your specs and our engineering team responds within 24 hours.'}
+              {step === 1
+                ? 'Review your selected items below.'
+                : step === 2
+                ? 'Share your specs and our engineering team responds within 24 hours.'
+                : 'Your request has been successfully dispatched.'}
             </p>
           </div>
           <button className="rfq-close" onClick={close} aria-label="Close">
@@ -150,7 +158,7 @@ export default function RfqCartWidget() {
                 );
               })
             )
-          ) : (
+          ) : step === 2 ? (
             <div className="rfq-step2">
               <div className="rfq-summary" style={{ background: 'var(--surface-2)', padding: 16, borderRadius: 12, border: '1px solid var(--line)', marginBottom: 24 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
@@ -185,6 +193,11 @@ export default function RfqCartWidget() {
                   })}
                 </div>
               </div>
+              {errorMessage && (
+                <div style={{ padding: '12px 16px', background: '#fef2f2', border: '1px solid #fecaca', color: '#b91c1c', borderRadius: 8, fontSize: 14, marginBottom: 16 }}>
+                  {errorMessage}
+                </div>
+              )}
               <form id="rfq-form" className="rfq-form" onSubmit={handleSubmit}>
                 <h3 style={{ marginBottom: 8, fontSize: 18 }}>Your Information</h3>
                 <p style={{ marginBottom: 16, fontSize: 14, color: 'var(--muted)' }}>Submit your project details and we will send a tailored proposal.</p>
@@ -194,6 +207,18 @@ export default function RfqCartWidget() {
                 <textarea name="notes" placeholder="Additional Requirements (Lengths, Connectors, etc.)" rows={3} />
               </form>
             </div>
+          ) : (
+            <div style={{ padding: '40px 16px', textAlign: 'center' }}>
+              <div style={{ width: 64, height: 64, borderRadius: '50%', background: '#ecfdf5', color: '#059669', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <h3 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', marginBottom: 10 }}>Quote Request Submitted</h3>
+              <p style={{ fontSize: 15, color: '#64748b', lineHeight: 1.6, maxWidth: 360, margin: '0 auto' }}>
+                Thank you! Your quote request has been securely dispatched to our sales and technical team. We will review your specifications and follow up within 24 hours.
+              </p>
+            </div>
           )}
         </div>
         <div className="rfq-footer">
@@ -201,7 +226,7 @@ export default function RfqCartWidget() {
             <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }} disabled={items.length === 0} onClick={() => setStep(2)}>
               Proceed to Request Quote
             </button>
-          ) : (
+          ) : step === 2 ? (
             <div style={{ display: 'flex', gap: 12 }}>
               <button type="button" className="btn" style={{ flex: '0 0 auto', background: '#fff', border: '1px solid var(--line)' }} onClick={() => setStep(1)}>
                 Back
@@ -210,6 +235,17 @@ export default function RfqCartWidget() {
                 {submitting ? 'Submitting...' : 'Submit Request'}
               </button>
             </div>
+          ) : (
+            <button
+              className="btn btn-primary"
+              style={{ width: '100%', justifyContent: 'center' }}
+              onClick={() => {
+                close();
+                setStep(1);
+              }}
+            >
+              Done
+            </button>
           )}
         </div>
       </div>

@@ -483,6 +483,7 @@ export default function CableConfigurator() {
   const [customLenUnit, setCustomLenUnit] = useState<'m' | 'km'>('m');
   const [localCart, setLocalCart] = useState<string[]>([]);
   const [confirmation, setConfirmation] = useState('');
+  const [webGlError, setWebGlError] = useState(false);
 
   const { addItem, open: openCart } = useRfqCart();
 
@@ -502,10 +503,17 @@ export default function CableConfigurator() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setClearColor(0x000000, 0);
-    rendererRef.current = renderer;
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setClearColor(0x000000, 0);
+      rendererRef.current = renderer;
+    } catch (err) {
+      console.warn('WebGL initialization failed, switching to 2D spec mode:', err);
+      setWebGlError(true);
+      return;
+    }
 
     const scene = new THREE.Scene();
     sceneRef.current = scene;
@@ -740,8 +748,18 @@ export default function CableConfigurator() {
           <div className="cfg3-left">
             <div className="cfg3-viewer-box">
               <div className="cfg3-canvas-wrap">
-                <canvas ref={canvasRef} className="cfg3-canvas" />
-                <div className="cfg3-canvas-hint">Drag to rotate · scroll to zoom</div>
+                {webGlError ? (
+                  <div style={{ padding: '60px 20px', textAlign: 'center', color: '#64748b' }}>
+                    <div style={{ fontSize: '32px', marginBottom: '12px' }}>⚡</div>
+                    <div style={{ fontWeight: 700, color: '#1e293b', marginBottom: '6px' }}>2D Specification Mode Active</div>
+                    <div style={{ fontSize: '13px' }}>WebGL 3D acceleration is unavailable. Live part codes and specifications are fully operational below.</div>
+                  </div>
+                ) : (
+                  <>
+                    <canvas ref={canvasRef} className="cfg3-canvas" />
+                    <div className="cfg3-canvas-hint">Drag to rotate · scroll to zoom</div>
+                  </>
+                )}
                 <div
                   className="cfg3-fiber-tag"
                   style={{
@@ -774,8 +792,7 @@ export default function CableConfigurator() {
                 className="cfg3-rfq-btn"
                 onClick={() => {
                   if (!localCart.length) {
-                    alert('Add at least one item to your quote cart first.');
-                    return;
+                    handleAdd();
                   }
                   openCart();
                 }}

@@ -75,6 +75,7 @@ export const PASSIVE_IMAGE_MAP: Record<string, string> = {
   'mpo-assembly': '/images/live/mpo-cable-assembly.webp',
   'plc-splitter': '/images/live/plc-splitter.webp',
   'rapid-push': '/images/live/rapid-push-cable-assembly.webp',
+  'fttx-smart-bullet-drop-cable': '/images/live/rapid-push-cable-assembly.webp',
   'smpte-assembly': '/images/live/smpte-cable-assembly.webp',
   'attenuator': '/images/live/variable-fiber-attenuator.webp',
   'bare-fiber-adapter': '/images/live/bare-fiber-adapter.webp',
@@ -101,6 +102,11 @@ export const PASSIVE_IMAGE_MAP: Record<string, string> = {
   'dac': '/images/products/dac.png',
   'aoc': '/images/products/aoc.png',
   'drone': '/images/live/optical-fiber-drone.webp',
+  'ground-unit': '/images/live/optical-fiber-drone.webp',
+  'sky-unit': '/images/products/fpv-optical-terminal.png',
+  'fpv-optical-terminal': '/images/products/fpv-optical-terminal.png',
+  'uav-fiber-optic-spool': '/images/products/uav-fiber-optic-spool.png',
+  'nano-otdr': '/images/live/mini-otdr-pdr4402s.webp',
 };
 
 const catalogueImageBySlug = new Map<string, string>();

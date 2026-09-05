@@ -754,12 +754,12 @@
     "updatedAt": "2026-07-16T21:37:46.717+00:00"
   },
   {
-    "slug": "drone",
+    "slug": "ground-unit",
     "name": "Ground unit",
     "category": "Specialty Drones",
     "title": "FPV Optical Terminal Ground Unit | PDR",
     "description": "Ground-side receive terminal that recovers the 1.25 Gbps single-fiber link and outputs composite video to a display while interfacing with the remote controller, image-transmission module or FPV receiver, with dial-code selectable GH1.25 or cable modes and CRSF/SBUS protocol support.",
-    "canonical": "https://pdrworld.com/products/drone",
+    "canonical": "https://pdrworld.com/products/ground-unit",
     "tagline": "Ground-side fiber optical terminal that outputs video and links to the remote controller, with selectable CRSF/SBUS protocols.",
     "status": "Active",
     "imageUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-images/drone/product-image.png",
@@ -1905,12 +1905,12 @@
     "updatedAt": "2026-08-07T15:12:06.921+00:00"
   },
   {
-    "slug": "pocket-otdr",
+    "slug": "nano-otdr",
     "name": "Nano OTDR",
     "category": "Test and Measurement Equipment > OTDR",
     "title": "Nano OTDR | PDR World",
     "description": "The PDR Nano OTDR is a compact, smartphone-connected dual-wavelength (1310/1550 nm) OTDR for precise fiber testing, loss analysis, and real-time measurements via the Smart-OTDR app.",
-    "canonical": "https://pdrworld.com/products/pocket-otdr",
+    "canonical": "https://pdrworld.com/products/nano-otdr",
     "tagline": "Ultra-compact Nano OTDR with built-in VFL and power meter for quick field testing.",
     "status": "Active",
     "imageUrl": "/images/products/pocket-otdr.png",
@@ -2250,12 +2250,12 @@
     "updatedAt": "2026-08-06T18:36:54.983+00:00"
   },
   {
-    "slug": "rapid-push",
+    "slug": "fttx-smart-bullet-drop-cable",
     "name": "FTTX Smart Bullet Drop Cable",
     "category": "Passive Components > Cable Assembly",
     "title": "FTTX Smart Bullet Drop Cable | PDR World",
     "description": "Single-fiber SC/APC drop assembly with a Ø5.9 mm bullet head for traction pulling through narrow ducts, ≤0.3 dB IL, ≥60 dB RL over 1260–1650 nm, 100% optically tested.",
-    "canonical": "https://pdrworld.com/products/rapid-push",
+    "canonical": "https://pdrworld.com/products/fttx-smart-bullet-drop-cable",
     "tagline": "FTTXSmart pre-connectorized bullet drop cable for fast last-mile FTTH deployment.",
     "status": "Active",
     "imageUrl": "",
@@ -3341,12 +3341,12 @@
     "updatedAt": "2026-08-07T08:56:21.232+00:00"
   },
   {
-    "slug": "fpv-optical-terminal",
+    "slug": "sky-unit",
     "name": "Sky Unit",
     "category": "Specialty Drones",
     "title": "Sky Unit | PDR World",
     "description": "Aircraft-mounted transmit terminal that accepts camera composite video plus flight-controller telemetry and carries them over a single fiber at 1.25 Gbps, offered in four compact mounting sizes with a GH1.25 interface for direct integration into the drone's power and control harness.",
-    "canonical": "https://pdrworld.com/products/fpv-optical-terminal",
+    "canonical": "https://pdrworld.com/products/sky-unit",
     "tagline": "Airborne fiber optical terminal that sends camera video and flight-controller telemetry down a single fiber at 1.25 Gbps.",
     "status": "Active",
     "imageUrl": "/images/products/fpv-optical-terminal.png",
@@ -3452,62 +3452,5 @@
     "galleryUrls": [],
     "tags": [],
     "updatedAt": "2026-07-13T13:24:11.295673+00:00"
-  },
-  {
-    "slug": "wifi-wireless-fiber-endface-microscope",
-    "name": "WiFi Wireless Fiber Endface Microscope",
-    "category": "Test and Measurement Equipment > Endface Inspector",
-    "title": "WiFi Wireless Fiber Endface Microscope | PDR",
-    "description": "Wireless/USB-C fiber endface inspector with automatic pass/fail analysis",
-    "canonical": "https://pdrworld.com/products/wifi-wireless-fiber-endface-microscope",
-    "tagline": "Wireless endface microscope with automatic pass/fail analysis on Windows, Android, and iOS.",
-    "status": "Active",
-    "imageUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-images/wifi-wireless-fiber-endface-microscope/1786115879060-easyget-wifi-wireless-fiber-endface-microscope.png",
-    "features": [
-      "WiFi and USB Type-C data transfer with real-time video and automatic pass/fail analysis",
-      "Compatible with Windows, Android, and iOS",
-      "0.42 µm resolution, 5 MP CMOS sensor, 10X optical magnification, <1 µm particle detection",
-      "More than 50 adapter types including MPO/MTP; custom adapters available",
-      "Built-in rechargeable Li-ion battery, up to 5 hours; usable while charging",
-      "White LED lighting for low-light and dark environments"
-    ],
-    "applications": [
-      "5G optical network construction and maintenance",
-      "Data centre connector inspection",
-      "High-reliability fiber connections",
-      "Laboratory and manufacturing test",
-      "Endface inspection before OTDR testing"
-    ],
-    "specs": [
-      {
-        "label": "Resolution",
-        "value": "0.42 µm"
-      },
-      {
-        "label": "Image Sensor",
-        "value": "5-megapixel CMOS"
-      },
-      {
-        "label": "Optical Magnification",
-        "value": "10X"
-      },
-      {
-        "label": "Field of View",
-        "value": "512 µm × 384 µm"
-      },
-      {
-        "label": "Signal Output",
-        "value": "WiFi / USB Type-C"
-      },
-      {
-        "label": "Battery Life",
-        "value": "5 hours (rechargeable Li-ion)"
-      }
-    ],
-    "heroIcon": "<svg width=\"120\" height=\"120\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"14\" y=\"14\" width=\"20\" height=\"20\" rx=\"3\"></rect><circle cx=\"24\" cy=\"24\" r=\"4\"></circle></svg>",
-    "datasheetUrl": "https://gfzknettmaclomxyimjf.supabase.co/storage/v1/object/public/product-datasheets/wifi-wireless-fiber-endface-microscope/1786095925238-easyget-wifi-wireless-fiber-endface-microscope.pdf",
-    "galleryUrls": [],
-    "tags": [],
-    "updatedAt": "2026-08-07T15:18:06.029+00:00"
   }
 ]

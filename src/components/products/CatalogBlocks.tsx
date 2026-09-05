@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
+import DOMPurify from 'dompurify';
 import { useRfqCart } from '../RfqCartProvider';
 import catalogue from '../../data/catalogue.json';
 import { productsCategoryHrefDeep } from '../../data/productCategoryRoutes';
@@ -41,7 +42,7 @@ export function CatalogProductCard({ card, sectionId }: { card: CatalogCard; sec
     <div className="pr-pcard product-card reveal" data-product={card.slug || 'unknown'}>
       <div className="pr-pcard-art">
         {card.heroSvg && !card.img ? (
-          <span dangerouslySetInnerHTML={{ __html: card.heroSvg }} />
+          <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(card.heroSvg) }} />
         ) : (
           <img
             src={resolveCanonicalProductImage(card.slug, card.img, sectionId)}

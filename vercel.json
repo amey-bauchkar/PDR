@@ -8,8 +8,18 @@
     { "source": "/admin-new(.*)", "destination": "/index.html" }
   ],
   "redirects": [
-    { "source": "/nano-otdr", "destination": "/products/pocket-otdr", "permanent": true },
-    { "source": "/products/nano-otdr", "destination": "/products/pocket-otdr", "permanent": true }
+    { "source": "/pocket-otdr", "destination": "/products/nano-otdr", "permanent": true },
+    { "source": "/products/pocket-otdr", "destination": "/products/nano-otdr", "permanent": true },
+    { "source": "/drone", "destination": "/products/ground-unit", "permanent": true },
+    { "source": "/products/drone", "destination": "/products/ground-unit", "permanent": true },
+    { "source": "/fpv-optical-terminal", "destination": "/products/sky-unit", "permanent": true },
+    { "source": "/products/fpv-optical-terminal", "destination": "/products/sky-unit", "permanent": true },
+    { "source": "/rapid-push", "destination": "/products/fttx-smart-bullet-drop-cable", "permanent": true },
+    { "source": "/products/rapid-push", "destination": "/products/fttx-smart-bullet-drop-cable", "permanent": true },
+    { "source": "/easyget-wifi", "destination": "/products/test-measuring", "permanent": true },
+    { "source": "/products/easyget-wifi", "destination": "/products/test-measuring", "permanent": true },
+    { "source": "/wifi-wireless-fiber-endface-microscope", "destination": "/products/test-measuring", "permanent": true },
+    { "source": "/products/wifi-wireless-fiber-endface-microscope", "destination": "/products/test-measuring", "permanent": true }
   ],
   "cleanUrls": true,
   "headers": [

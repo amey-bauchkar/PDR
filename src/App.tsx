@@ -21,6 +21,7 @@ import ScrollToHash from './components/ScrollToHash';
 import { fetchAndSyncProducts, initializeProductStore } from './lib/productSync';
 
 import CookieConsent from './components/CookieConsent';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // Three.js is heavy — load the configurator on demand
 const CableConfigurator = lazy(() => import('./pages/CableConfigurator'));
@@ -39,8 +40,18 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="products" element={<Products />} />
-          <Route path="products/nano-otdr" element={<Navigate to="/products/pocket-otdr" replace />} />
-          <Route path="nano-otdr" element={<Navigate to="/products/pocket-otdr" replace />} />
+          <Route path="products/pocket-otdr" element={<Navigate to="/products/nano-otdr" replace />} />
+          <Route path="pocket-otdr" element={<Navigate to="/products/nano-otdr" replace />} />
+          <Route path="products/drone" element={<Navigate to="/products/ground-unit" replace />} />
+          <Route path="drone" element={<Navigate to="/products/ground-unit" replace />} />
+          <Route path="products/fpv-optical-terminal" element={<Navigate to="/products/sky-unit" replace />} />
+          <Route path="fpv-optical-terminal" element={<Navigate to="/products/sky-unit" replace />} />
+          <Route path="products/rapid-push" element={<Navigate to="/products/fttx-smart-bullet-drop-cable" replace />} />
+          <Route path="rapid-push" element={<Navigate to="/products/fttx-smart-bullet-drop-cable" replace />} />
+          <Route path="products/easyget-wifi" element={<Navigate to="/products/test-measuring" replace />} />
+          <Route path="easyget-wifi" element={<Navigate to="/products/test-measuring" replace />} />
+          <Route path="products/wifi-wireless-fiber-endface-microscope" element={<Navigate to="/products/test-measuring" replace />} />
+          <Route path="wifi-wireless-fiber-endface-microscope" element={<Navigate to="/products/test-measuring" replace />} />
           <Route path="products/:slug" element={<ProductRoute />} />
           <Route path="solutions" element={<Solutions />} />
           <Route path="resources" element={<Resources />} />
@@ -48,9 +59,14 @@ export default function App() {
           <Route
             path="cable-configurator"
             element={
-              <Suspense fallback={<div style={{ padding: 120, textAlign: 'center', color: '#888' }}>Loading 3D configurator…</div>}>
-                <CableConfigurator />
-              </Suspense>
+              <ErrorBoundary
+                fallbackTitle="3D Cable Configurator Unavailable"
+                fallbackMessage="WebGL 3D rendering could not be initialized. Please verify hardware acceleration is enabled in your browser settings or retry."
+              >
+                <Suspense fallback={<div style={{ padding: 120, textAlign: 'center', color: '#888' }}>Loading 3D configurator…</div>}>
+                  <CableConfigurator />
+                </Suspense>
+              </ErrorBoundary>
             }
           />
           <Route path="fiber-selector" element={<FiberSelector />} />

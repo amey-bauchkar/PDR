@@ -59,6 +59,10 @@ export const config = {
 export function validateConfig() {
   const required = ['VITE_SUPABASE_URL', 'VITE_SUPABASE_ANON_KEY', 'SUPABASE_SERVICE_ROLE_KEY'];
   
+  if (config.isProduction()) {
+    required.push('JWT_SECRET', 'ADMIN_PASSWORD_HASH');
+  }
+  
   const missing = required.filter(key => {
     if (key === 'SUPABASE_SERVICE_ROLE_KEY') {
       return !process.env.SUPABASE_SERVICE_ROLE_KEY && !process.env.MY_SERVICE_ROLE_KEY;

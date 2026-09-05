@@ -14,11 +14,18 @@ export async function uploadProductImage(file: File, slug: string): Promise<stri
     throw new Error('Image size must be less than 5MB.');
   }
 
-  // Step 1: Get a Signed Upload URL from our Vercel API
+  const authToken = typeof window !== 'undefined' ? window.sessionStorage.getItem('pdrworld-admin-token') : null;
+  const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+
+  // Step 1: Get a Signed Upload URL from our Edge Function
   const tokenRes = await fetch(UPLOAD_API, {
     method: 'POST',
     cache: 'no-store',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      ...(anonKey ? { 'apikey': anonKey } : {}),
+      ...(authToken ? { 'Authorization': `Bearer ${authToken}` } : {}),
+    },
     body: JSON.stringify({
       type: 'image',
       slug,

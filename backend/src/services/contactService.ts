@@ -4,13 +4,13 @@ import { AppError, ContactInquiryPayload } from '../types/index.js';
 
 export class ContactService {
   async submitContactInquiry(payload: ContactInquiryPayload) {
-    const firstName = payload.firstName.trim();
-    const lastName = payload.lastName.trim();
-    const email = payload.email.trim();
-    const phone = payload.phone.trim();
-    const company = payload.company.trim();
-    const inquiryType = payload.inquiryType.trim();
-    const message = payload.message.trim();
+    const firstName = (payload.firstName || '').trim();
+    const lastName = (payload.lastName || '').trim();
+    const email = (payload.email || '').trim();
+    const phone = (payload.phone || '').trim();
+    const company = (payload.company || '').trim();
+    const inquiryType = (payload.inquiryType || '').trim();
+    const message = (payload.message || '').trim();
 
     if (!firstName || !lastName || !email || !phone || !company || !inquiryType) {
       throw new AppError(400, 'VALIDATION_ERROR', 'Missing required contact fields');

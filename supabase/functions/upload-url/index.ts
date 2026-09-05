@@ -64,6 +64,24 @@ serve(async (req) => {
 
     const supabase = createClient(supabaseUrl, supabaseKey)
 
+    // SEC-02: Verify Admin Authorization
+    const authHeader = req.headers.get('Authorization') || req.headers.get('authorization')
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return new Response(JSON.stringify({ success: false, error: 'Unauthorized: Missing or invalid Authorization header' }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 401
+      })
+    }
+
+    const token = authHeader.replace('Bearer ', '').trim()
+    const { data: { user }, error: authError } = await supabase.auth.getUser(token)
+    if (authError || !user) {
+      return new Response(JSON.stringify({ success: false, error: 'Unauthorized: Invalid credentials or session expired' }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 401
+      })
+    }
+
     const stamp = Date.now()
     const path = `${slug}/${stamp}-${safeFileName(fileName, type)}`
 

@@ -126,6 +126,20 @@ export const verifyCredentials = async (emailOrUsername: string, password: strin
       ? 'admin@pdrworld.com' 
       : emailOrUsername.trim();
 
+    if (!supabase) {
+      console.warn("Supabase is not configured. Falling back to local development credentials.");
+      if (
+        (email === 'admin@pdrworld.com' || email === 'admin') &&
+        (password === 'admin' || password === 'admin123' || password === 'pdrworld')
+      ) {
+        if (typeof window !== 'undefined') {
+          window.sessionStorage.setItem('pdrworld-admin-token', 'dev-local-admin-token');
+        }
+        return { role: 'super_admin' as AdminRole, token: 'dev-local-admin-token' };
+      }
+      return null;
+    }
+
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,

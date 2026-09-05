@@ -407,7 +407,7 @@
               }
             },
             {
-              "slug": "rapid-push",
+              "slug": "fttx-smart-bullet-drop-cable",
               "tag": "FTTx",
               "img": "/images/live/rapid-push-cable-assembly.webp",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><path d=\"M10 24h28\"></path><path d=\"M34 20l4 4-4 4\"></path></svg>",
@@ -417,7 +417,7 @@
                 "Pushable",
                 "Pre-terminated"
               ],
-              "detailsSlug": "rapid-push",
+              "detailsSlug": "fttx-smart-bullet-drop-cable",
               "addItem": {
                 "title": "FTTX Smart Bullet Drop Cable",
                 "specs": "Standard Factory Specs",
@@ -901,7 +901,7 @@
           "subhead": "OTDR",
           "cards": [
             {
-              "slug": "pocket-otdr",
+              "slug": "nano-otdr",
               "tag": "Pocket",
               "img": "/images/live/mini-otdr-pdr4402s.webp",
               "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><rect x=\"14\" y=\"10\" width=\"20\" height=\"28\" rx=\"2\"></rect><rect x=\"16\" y=\"14\" width=\"16\" height=\"12\" rx=\"1\"></rect><circle cx=\"24\" cy=\"32\" r=\"2\"></circle></svg>",
@@ -911,7 +911,7 @@
                 "Pocket",
                 "SM/MM"
               ],
-              "detailsSlug": "pocket-otdr",
+              "detailsSlug": "nano-otdr",
               "addItem": {
                 "title": "Nano OTDR",
                 "specs": "Standard Factory Specs",
@@ -962,29 +962,6 @@
           ]
         },
         {
-          "subhead": "Endface Inspector",
-          "cards": [
-            {
-              "slug": "easyget-wifi",
-              "tag": "Inspector",
-              "img": "/images/live/easyget-wifi-wireless-fiber-endface-microscope.webp",
-              "heroSvg": "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.5\"><circle cx=\"24\" cy=\"20\" r=\"10\"></circle><path d=\"M24 30v10\"></path><path d=\"M18 40h12\"></path></svg>",
-              "name": "EasyGet WiFi Wireless Fiber Endface Microscope",
-              "blurb": "Wireless handheld probe for rapid fiber endface inspection, auto pass/fail analysis.",
-              "pills": [
-                "WiFi Wireless",
-                "Auto Analysis"
-              ],
-              "detailsSlug": "easyget-wifi",
-              "addItem": {
-                "title": "EasyGet WiFi Microscope",
-                "specs": "Standard Factory Specs",
-                "image": "/images/live/easyget-wifi-wireless-fiber-endface-microscope.webp"
-              }
-            }
-          ]
-        },
-        {
           "subhead": "Visual Fault Locator",
           "cards": [
             {
@@ -1019,7 +996,7 @@
           "subhead": "",
           "cards": [
             {
-              "slug": "drone",
+              "slug": "ground-unit",
               "tag": "Drone",
               "img": "/images/live/optical-fiber-drone.webp",
               "heroSvg": "",
@@ -1030,11 +1007,49 @@
                 "4K / Thermal",
                 "Secure Link"
               ],
-              "detailsSlug": "drone",
+              "detailsSlug": "ground-unit",
               "addItem": {
                 "title": "Ground unit",
                 "specs": "Standard Factory Specs",
                 "image": "/images/live/optical-fiber-drone.webp"
+              }
+            },
+            {
+              "slug": "sky-unit",
+              "tag": "Drone",
+              "img": "/images/products/fpv-optical-terminal.png",
+              "heroSvg": "",
+              "name": "Sky Unit",
+              "blurb": "Airborne fiber optical terminal that sends camera video and flight-controller telemetry down a single fiber at 1.25 Gbps.",
+              "pills": [
+                "Airborne Unit",
+                "1.25 Gbps",
+                "GH1.25 Interface"
+              ],
+              "detailsSlug": "sky-unit",
+              "addItem": {
+                "title": "Sky Unit",
+                "specs": "Standard Factory Specs",
+                "image": "/images/products/fpv-optical-terminal.png"
+              }
+            },
+            {
+              "slug": "uav-fiber-optic-spool",
+              "tag": "Drone",
+              "img": "/images/products/uav-fiber-optic-spool.png",
+              "heroSvg": "",
+              "name": "UAV Fiber Optic Spool",
+              "blurb": "Precision payout spool with G.657.B3 bend-insensitive micro optical fiber for airborne tether links.",
+              "pills": [
+                "G.657.B3 Fiber",
+                "High Tensile",
+                "Payout Spool"
+              ],
+              "detailsSlug": "uav-fiber-optic-spool",
+              "addItem": {
+                "title": "UAV Fiber Optic Spool",
+                "specs": "Standard Factory Specs",
+                "image": "/images/products/uav-fiber-optic-spool.png"
               }
             }
           ]

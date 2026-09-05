@@ -1,44 +1,44 @@
 import { useState } from 'react';
 import Seo from '../components/Seo';
 import { LocalBusinessSchema, BreadcrumbSchema } from '../components/Schema';
+import { submitContactInquiry } from '../lib/leadCapture';
+import type { ContactInquiryPayload } from '../lib/formTypes';
 import '../styles/contact.css';
 
 export default function Contact() {
   const [submitting, setSubmitting] = useState(false);
+  const [status, setStatus] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formElement = e.currentTarget;
     const fd = new FormData(formElement);
     setSubmitting(true);
+    setStatus(null);
 
-    const object = Object.fromEntries(fd as any);
-    // Add Web3Forms access key (replace with your actual key in .env)
-    object.access_key = import.meta.env.VITE_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE";
-    object.subject = `New Inquiry: ${object.inquiryType} from ${object.fname} ${object.lname}`;
-    object.from_name = `${object.fname} ${object.lname}`;
+    const payload: ContactInquiryPayload = {
+      firstName: (fd.get('fname') as string) || '',
+      lastName: (fd.get('lname') as string) || '',
+      email: (fd.get('email') as string) || '',
+      phone: (fd.get('phone') as string) || '',
+      company: (fd.get('company') as string) || '',
+      inquiryType: (fd.get('inquiryType') as string) || '',
+      message: (fd.get('message') as string) || '',
+    };
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: JSON.stringify(object)
+      await submitContactInquiry(payload);
+      setStatus({
+        type: 'success',
+        text: 'Thank you! Your message has been sent successfully. Our team will respond within 24 hours.',
       });
-      
-      const data = await res.json();
-
-      if (data.success) {
-        alert('Thank you! Your message has been sent successfully. Our team will respond within 24 hours.');
-        formElement.reset();
-      } else {
-        throw new Error(data.message || 'Form submission failed');
-      }
+      formElement.reset();
     } catch (error: any) {
       console.error('Failed to submit contact inquiry', error);
-      alert(`We could not submit your inquiry right now. Error: ${error?.message || error}. Please try again.`);
+      setStatus({
+        type: 'error',
+        text: error?.message ? `Failed to submit inquiry: ${error.message}` : 'We could not submit your inquiry right now. Please try again or reach out directly.',
+      });
     } finally {
       setSubmitting(false);
     }
@@ -120,6 +120,37 @@ export default function Contact() {
                 </div>
 
                 <form className="ct-form" id="pdrForm" onSubmit={handleSubmit}>
+                  {status && (
+                    <div
+                      style={{
+                        padding: '14px 18px',
+                        borderRadius: '8px',
+                        marginBottom: '16px',
+                        fontSize: '14px',
+                        lineHeight: 1.5,
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '12px',
+                        background: status.type === 'success' ? '#ecfdf5' : '#fef2f2',
+                        border: `1px solid ${status.type === 'success' ? '#a7f3d0' : '#fecaca'}`,
+                        color: status.type === 'success' ? '#065f46' : '#991b1b',
+                        fontWeight: 500,
+                      }}
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ flexShrink: 0 }}>
+                        {status.type === 'success' ? (
+                          <polyline points="20 6 9 17 4 12" />
+                        ) : (
+                          <>
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="12" />
+                            <line x1="12" y1="16" x2="12.01" y2="16" />
+                          </>
+                        )}
+                      </svg>
+                      <span>{status.text}</span>
+                    </div>
+                  )}
                   <div className="ct-form-row">
                     <div className="ct-field">
                       <label htmlFor="fname">First Name <span>*</span></label>

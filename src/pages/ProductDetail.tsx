@@ -4,7 +4,7 @@ import { useRfqCart } from '../components/RfqCartProvider';
 import Seo from '../components/Seo';
 import { ProductSchema, BreadcrumbSchema } from '../components/Schema';
 import productsData from '../data/products.json';
-import { fetchAndSyncProducts, fetchProductBySlug, mergeWithProducts } from '../lib/productSync';
+import { fetchAndSyncProducts, fetchProductBySlug, mergeWithProducts, normalizeProductSlug } from '../lib/productSync';
 import { resolveCanonicalProductImage, getFallbackImage } from '../lib/imageResolution';
 import { getAssetUrl } from '../lib/assetUrl';
 
@@ -85,7 +85,8 @@ export default function ProductDetail() {
     };
   }, [slug]);
 
-  const product = products.find((p) => p.slug === slug);
+  const targetSlug = slug ? normalizeProductSlug(slug) : '';
+  const product = products.find((p) => p.slug === slug || (targetSlug && p.slug === targetSlug));
   const detailImage = resolveCanonicalProductImage(product?.slug, product?.imageUrl, product?.category);
 
   if (!product && !syncComplete) {
@@ -199,7 +200,7 @@ export default function ProductDetail() {
               </h1>
               <p style={{ color: '#475569', fontSize: 20, lineHeight: 1.6, marginBottom: 24 }}>{product.tagline}</p>
 
-              {product.slug === 'drone' && (
+              {(product.slug === 'ground-unit' || product.slug === 'drone' || product.category === 'Specialty Drones') && (
                 <div style={{ marginBottom: 24 }}>
                   <label style={{ display: 'block', marginBottom: 8, fontWeight: 600, color: '#475569' }}>Select Fiber Length</label>
                   <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 12 }}>
@@ -248,7 +249,7 @@ export default function ProductDetail() {
                   onClick={() => {
                     addItem({
                       title: product.name,
-                      specs: product.slug === 'drone' ? `Fiber Length: ${customDroneLength || droneLength}` : (product.specs?.[0] ? `${product.specs[0].label}: ${product.specs[0].value}` : 'Standard Specs'),
+                      specs: (product.slug === 'ground-unit' || product.slug === 'drone' || product.category === 'Specialty Drones') ? `Fiber Length: ${customDroneLength || droneLength}` : (product.specs?.[0] ? `${product.specs[0].label}: ${product.specs[0].value}` : 'Standard Specs'),
                       image: detailImage || '/placeholder.webp',
                       qty: 1,
                     });

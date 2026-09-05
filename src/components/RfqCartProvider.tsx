@@ -117,14 +117,11 @@ export function RfqCartProvider({ children }: { children: React.ReactNode }) {
   const submit = useCallback(
     async (form: QuoteRequestPayload) => {
       if (items.length === 0) {
-        alert('Add at least one product before submitting a quote request.');
-        return;
+        throw new Error('Please add at least one product before submitting a quote request.');
       }
 
       await submitQuoteRequest(sessionHash, form, items);
-      alert('Quote Request Submitted Successfully! Our engineers will contact you within 24 hours.');
       setItems([]);
-      setIsOpen(false);
     },
     [items, sessionHash],
   );

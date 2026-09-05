@@ -15,12 +15,19 @@ export async function uploadProductDatasheet(file: File, slug: string): Promise<
     throw new Error('PDF size must be less than 25MB.');
   }
 
-  // Step 1: Get a Signed Upload URL from our Vercel API
+  const authToken = typeof window !== 'undefined' ? window.sessionStorage.getItem('pdrworld-admin-token') : null;
+  const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+
+  // Step 1: Get a Signed Upload URL from our Edge Function
   // We send the metadata, but NOT the fileData, so the payload is tiny.
   const tokenRes = await fetch(UPLOAD_API, {
     method: 'POST',
     cache: 'no-store',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      ...(anonKey ? { 'apikey': anonKey } : {}),
+      ...(authToken ? { 'Authorization': `Bearer ${authToken}` } : {}),
+    },
     body: JSON.stringify({
       type: 'datasheet',
       slug,

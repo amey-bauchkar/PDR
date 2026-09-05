@@ -45,14 +45,17 @@ export class CalculatorService {
      * Validate calculator input
      */
     validateInput(input) {
-        if (input.distance <= 0) {
-            throw new AppError(400, 'INVALID_DISTANCE', 'Distance must be greater than 0 km');
+        if (!input || typeof input !== 'object') {
+            throw new AppError(400, 'INVALID_INPUT', 'Calculation input payload is required');
         }
-        if (input.fiberLoss <= 0) {
-            throw new AppError(400, 'INVALID_FIBER_LOSS', 'Fiber loss must be greater than 0 dB/km');
+        if (typeof input.distance !== 'number' || isNaN(input.distance) || !isFinite(input.distance) || input.distance <= 0) {
+            throw new AppError(400, 'INVALID_DISTANCE', 'Distance must be a valid number greater than 0 km');
         }
-        if (input.connectorCount < 0) {
-            throw new AppError(400, 'INVALID_CONNECTOR_COUNT', 'Connector count cannot be negative');
+        if (typeof input.fiberLoss !== 'number' || isNaN(input.fiberLoss) || !isFinite(input.fiberLoss) || input.fiberLoss <= 0) {
+            throw new AppError(400, 'INVALID_FIBER_LOSS', 'Fiber loss must be a valid number greater than 0 dB/km');
+        }
+        if (typeof input.connectorCount !== 'number' || isNaN(input.connectorCount) || !isFinite(input.connectorCount) || input.connectorCount < 0) {
+            throw new AppError(400, 'INVALID_CONNECTOR_COUNT', 'Connector count must be a non-negative number');
         }
         if (input.distance > 100) {
             throw new AppError(400, 'INVALID_DISTANCE', 'Distance exceeds maximum supported range (100 km)');

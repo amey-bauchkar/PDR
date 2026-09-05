@@ -5,8 +5,8 @@ import { config } from '../config/env.js';
 import { AuthRequest, asyncHandler } from '../middleware/auth.js';
 import { AppError } from '../types/index.js';
 
-// Default bcrypt hash for 'Autopdr123' if env var is missing
-const DEFAULT_ADMIN_HASH = '$2b$12$VY62sWCijOpjAd4PxJ3KP.AD4JgjcHrB8jG7h20.VxVI8CabftB1G';
+// Development-only fallback bcrypt hash for local testing
+const DEV_DEFAULT_ADMIN_HASH = '$2b$12$VY62sWCijOpjAd4PxJ3KP.AD4JgjcHrB8jG7h20.VxVI8CabftB1G';
 
 /**
  * POST /api/auth/login
@@ -22,7 +22,14 @@ export const login = asyncHandler(async (req: AuthRequest, res: Response) => {
   const normalized = (email as string).trim().toLowerCase();
   const expectedEmail = (process.env.ADMIN_EMAIL || 'admin@pdrworld.com').trim().toLowerCase();
   const expectedUsername = (process.env.ADMIN_USERNAME || 'admin').trim().toLowerCase();
-  const passwordHash = (process.env.ADMIN_PASSWORD_HASH || DEFAULT_ADMIN_HASH).trim();
+  
+  let passwordHash = process.env.ADMIN_PASSWORD_HASH ? process.env.ADMIN_PASSWORD_HASH.trim() : '';
+  if (!passwordHash) {
+    if (config.isProduction()) {
+      throw new AppError(500, 'AUTH_CONFIG_ERROR', 'ADMIN_PASSWORD_HASH is not configured on the server.');
+    }
+    passwordHash = DEV_DEFAULT_ADMIN_HASH;
+  }
 
   // Check if the provided email/username matches
   if (normalized !== expectedEmail && normalized !== expectedUsername) {
